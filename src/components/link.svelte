@@ -3,4 +3,6 @@
 	export let text = '';
 </script>
 
-<a {href} class="hover:text-slate-200">{text}</a>
+<a {href} class="hover:text-slate-200 hover:underline hover:transition-all hover:duration-200">
+	{text}
+</a>
