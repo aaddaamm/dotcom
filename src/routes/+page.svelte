@@ -1,4 +1,4 @@
-<div class="p-4 text-slate-200">
+<div class="text-slate-200">
 	<p class="pb-4">
 		Building software fo more than 15 years. I've worked on everything from Insurance Software to
 		commercial power grid planning software.
