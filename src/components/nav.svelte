@@ -6,16 +6,15 @@
 <nav
 	class="w-full text-right flex justify-between items-center mb-8 bg-slate-800 p-4 shadow-sm border-b-0"
 >
-	<HeaderCard />
+	<Link href="/">
+		<HeaderCard />
+	</Link>
 	<ul class="flex space-x-2">
 		<li>
-			<Link href="/" text="Home" />
+			<Link href="/about">About</Link>
 		</li>
 		<li>
-			<Link href="/about" text="About" />
-		</li>
-		<li>
-			<Link href="/contact" text="Contact" />
+			<Link href="/contact">Contact</Link>
 		</li>
 	</ul>
 </nav>
