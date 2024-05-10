@@ -1,5 +1,5 @@
 <script>
-	import '../app.postcss';
+	import '../app.css';
 	import { dev } from '$app/environment';
 	import Nav from '../components/nav.svelte';
 	import { inject } from '@vercel/analytics';
