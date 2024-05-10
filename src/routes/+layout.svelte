@@ -1,7 +1,7 @@
 <script>
-	import '../app.css';
-	import Nav from '../components/nav.svelte';
+	import '../app.postcss';
 	import { dev } from '$app/environment';
+	import Nav from '../components/nav.svelte';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 

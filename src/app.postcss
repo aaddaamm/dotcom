@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* NOTE: set your target theme name (ex: skeleton, wintry, modern, etc) */
+
+@font-face {
+	/* Reference name */
+	font-family: 'Inter';
+	/* For multiple files use commas, ex: url(), url(), ... */
+	src: url('/fonts/Inter-VariableFont_slnt,wght.ttf');
+}
+
+@font-face {
+	/* Reference name */
+	font-family: 'JetBrains Mono';
+	/* For multiple files use commas, ex: url(), url(), ... */
+	src: url('/fonts/JetBrainsMono-VariableFont_wght.ttf'),
+		url('/fonts/JetBrainsMono-Italic-VariableFont_wght.tff');
+}
+
+:root [data-theme='modern'] {
+	--theme-font-family-heading: 'Inter', sans-serif;
+	--theme-font-family-base: 'JetBrains Mono', sans-serif;
+}
