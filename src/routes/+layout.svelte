@@ -1,17 +1,19 @@
 <script>
 	import '../app.css';
 	import { dev } from '$app/environment';
-	import Nav from '../components/nav.svelte';
+	import Header from '../components/header.svelte';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import Footer from '../components/footer.svelte';
 
 	injectSpeedInsights();
 	inject({ mode: dev ? 'development' : 'production' });
 </script>
 
-<div class="bg-slate-700 text-white h-screen">
-	<Nav />
-	<div class="px-4">
+<div class="flex flex-col min-h-screen">
+	<Header />
+	<div class="px-4 flex-grow">
 		<slot />
 	</div>
+	<Footer />
 </div>

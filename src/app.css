@@ -33,6 +33,10 @@
 	--theme-font-family-base: 'JetBrains Mono', sans-serif;
 }
 
+html,
 body {
-	@apply bg-surface-50-900-token;
+	box-sizing: border-box;
+	height: 100%;
+	padding: 0;
+	margin: 0;
 }
