@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 /* NOTE: set your target theme name (ex: skeleton, wintry, modern, etc) */
-
 @font-face {
 	/* Reference name */
 	font-family: 'Inter';
@@ -20,6 +19,16 @@
 }
 
 :root [data-theme='modern'] {
+	--theme-font-family-heading: 'Inter', sans-serif;
+	--theme-font-family-base: 'JetBrains Mono', sans-serif;
+}
+
+:root [data-theme='skeleton'] {
+	--theme-font-family-heading: 'Inter', sans-serif;
+	--theme-font-family-base: 'JetBrains Mono', sans-serif;
+}
+
+:root [data-theme='crimson'] {
 	--theme-font-family-heading: 'Inter', sans-serif;
 	--theme-font-family-base: 'JetBrains Mono', sans-serif;
 }
