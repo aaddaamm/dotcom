@@ -11,23 +11,21 @@
 	onMount(async () => {
 		await sleep(1000);
 
+		// render the command text
 		const commandRenderTarget = document.getElementById('command') || document.createElement('div');
-
 		const classes = 'inline pb-4';
-
 		await renderLine('about', commandRenderTarget, classes);
 
 		await sleep(500);
 
+		// remove the command text
 		commandRenderTarget.remove();
 
+		// render the copy text
 		const copyRenderTarget =
 			document.getElementById('copy-render-target') || document.createElement('div');
-
 		await renderLines(copy, copyRenderTarget);
 	});
-	// i want the cursor to blink for about 5 seconds then
-	// i want to display some text about me and my hobbies
 </script>
 
 <div>
