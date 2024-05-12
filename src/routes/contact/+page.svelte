@@ -34,23 +34,25 @@
 	$: setErrors(name, email, message);
 </script>
 
-<form class="flex flex-col max-w-96">
-	<label class="label mb-4">
-		<span>Name</span>
-		<input class="input" title="Name" type="text" bind:value={name} />
-	</label>
-	<label class="label mb-4">
-		<span>Email</span>
-		<input class="input" title="email" type="email" bind:value={email} />
-	</label>
-	<label class="label mb-4">
-		<span>Message</span>
-		<textarea
-			class="textarea"
-			rows="4"
-			placeholder="Tell me what you'd like to discuss."
-			bind:value={message}
-		/>
-	</label>
-	<button class="btn variant-filled-primary" on:click={submitForm}>Submit</button>
-</form>
+<div class="w-full justify-center">
+	<form class="flex flex-col sm:max-w-96">
+		<label class="label mb-4">
+			<span>Name</span>
+			<input class="input" title="Name" type="text" bind:value={name} />
+		</label>
+		<label class="label mb-4">
+			<span>Email</span>
+			<input class="input" title="email" type="email" bind:value={email} />
+		</label>
+		<label class="label mb-4">
+			<span>Message</span>
+			<textarea
+				class="textarea"
+				rows="4"
+				placeholder="Tell me what you'd like to discuss."
+				bind:value={message}
+			/>
+		</label>
+		<button class="btn variant-filled-primary" on:click={submitForm}>Submit</button>
+	</form>
+</div>
