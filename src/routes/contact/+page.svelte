@@ -35,6 +35,7 @@
 </script>
 
 <div class="w-full justify-center">
+	<h3 class="h3 font-thin mb-4">&#128679; under construction &#128679;</h3>
 	<form class="flex flex-col sm:max-w-96">
 		<label class="label mb-4">
 			<span>Name</span>
