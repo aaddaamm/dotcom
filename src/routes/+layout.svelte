@@ -12,7 +12,7 @@
 
 <div class="flex flex-col min-h-screen">
 	<Header />
-	<div class="px-4 flex-grow">
+	<div class="px-4 flex-grow max-w-5xl align-center">
 		<slot />
 	</div>
 	<Footer />
