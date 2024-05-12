@@ -18,6 +18,20 @@
 
 		console.log('Form submitted!', { name, email, message, response });
 	}
+
+	function setErrors(...fields: string[]) {
+		fields.forEach((field) => {
+			if (field === '' || field === undefined || field === null) {
+				console.log('error for', { field });
+				// document.querySelector(`input[title="${field}"]`).classList.add('error');
+			} else {
+				console.log('no error for', { field });
+				// document.querySelector(`input[title="${field}"]`).classList.remove('error');
+			}
+		});
+	}
+
+	$: setErrors(name, email, message);
 </script>
 
 <div>
