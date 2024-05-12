@@ -9,7 +9,7 @@
 	];
 
 	onMount(async () => {
-		await sleep(2000);
+		await sleep(1000);
 
 		const commandRenderTarget = document.getElementById('command') || document.createElement('div');
 
@@ -17,7 +17,7 @@
 
 		renderLine('about', commandRenderTarget, classes);
 
-		await sleep(2000);
+		await sleep(500);
 
 		commandRenderTarget.remove();
 
