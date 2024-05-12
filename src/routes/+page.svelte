@@ -15,7 +15,7 @@
 
 		const classes = 'inline pb-4';
 
-		renderLine('about', commandRenderTarget, classes);
+		await renderLine('about', commandRenderTarget, classes);
 
 		await sleep(500);
 
@@ -24,7 +24,7 @@
 		const copyRenderTarget =
 			document.getElementById('copy-render-target') || document.createElement('div');
 
-		renderLines(copy, copyRenderTarget);
+		await renderLines(copy, copyRenderTarget);
 	});
 	// i want the cursor to blink for about 5 seconds then
 	// i want to display some text about me and my hobbies
