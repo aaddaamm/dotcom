@@ -2,15 +2,21 @@
 	import Icon from '@iconify/svelte';
 </script>
 
-<div class="p-4">
+<div class="flex flex-row items-center justify-between p-4">
 	<ul class="flex flex-row items-center">
 		<li class="mr-4">
-			<a href="https://github.com/aaddaamm" target="_blank" rel="noopener noreferrer">
+			<a
+				aria-label="Github Profile"
+				href="https://github.com/aaddaamm"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<Icon icon="logos:github-icon" />
 			</a>
 		</li>
 		<li class="mr-4">
 			<a
+				aria-label="LinkedIn Profile"
 				href="https://www.linkedin.com/in/adam-robinson-software/"
 				target="_blank"
 				rel="noopener noreferrer"
@@ -20,6 +26,7 @@
 		</li>
 		<li class="mr-4">
 			<a
+				aria-label="Goodreads Profile"
 				href="https://www.goodreads.com/user/show/92024399-adam-robinson"
 				target="_blank"
 				rel="noopener noreferrer"
@@ -39,4 +46,15 @@
 			</a>
 		</li>
 	</ul>
+	<p class="flex text-xs text-center items-center">
+		&copy; {new Date().getFullYear()} Adam Robinson
+	</p>
+	<p class="flex flex-col sm:flex-row text-xs text-right">
+		<span class="mr-1">Tech:</span>
+		<a href="https://kit.svelte.dev/" target="_blank" rel="noopener noreferrer">SvelteKit</a>
+		<span class="hidden sm:flex mx-1">&middot;</span>
+		<a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">tailwindcss</a>
+		<span class="hidden sm:flex mx-1">&middot;</span>
+		<a href="https://www.skeleton.dev/" target="_blank" rel="noopener noreferrer">Skeleton ui</a>
+	</p>
 </div>
