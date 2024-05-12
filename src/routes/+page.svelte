@@ -28,7 +28,7 @@
 	});
 </script>
 
-<div>
+<div class="w-full">
 	<div id="copy-render-target" />
 	<span>{'>'}</span>
 	<span id="command" />
