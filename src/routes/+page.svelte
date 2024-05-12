@@ -14,7 +14,7 @@
 		// render the command text
 		const commandRenderTarget = document.getElementById('command') || document.createElement('div');
 		const classes = 'inline pb-4';
-		await renderLine('about', commandRenderTarget, classes);
+		await renderLine('site --info', commandRenderTarget, classes);
 
 		await sleep(500);
 
