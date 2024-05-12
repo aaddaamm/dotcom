@@ -8,7 +8,10 @@
 	</a>
 	<ul class="flex space-x-2">
 		<li>
-			<a class="anchor" href="/about">About</a>
+			<a class="anchor" href="/work">Work</a>
+		</li>
+		<li>
+			<a class="anchor" href="/play">Play</a>
 		</li>
 		<li>
 			<a class="anchor" href="/contact">Contact</a>
