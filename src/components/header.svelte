@@ -3,7 +3,7 @@
 </script>
 
 <nav
-	class="flex-col sm:flex-row w-full text-right flex justify-between items-center mb-4 sm:mb-8 p-4 shadow-sm border-b-0"
+	class="flex-col sm:flex-row w-full text-right flex justify-between items-center mb-4 sm:mb-8 p-4 shadow-md"
 >
 	<a href="/">
 		<HeaderCard />

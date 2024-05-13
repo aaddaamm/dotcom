@@ -26,6 +26,7 @@
 		"@tsconfig/svelte": "^5.0.4",
 		"@types/eslint": "^8.56.0",
 		"@types/node": "^20.12.11",
+		"@types/nodemailer": "^6.4.15",
 		"@typescript-eslint/eslint-plugin": "^7.0.0",
 		"@typescript-eslint/parser": "^7.0.0",
 		"autoprefixer": "^10.4.19",
@@ -47,6 +48,7 @@
 	"type": "module",
 	"dependencies": {
 		"@vercel/analytics": "^1.2.2",
-		"@vercel/speed-insights": "^1.0.10"
+		"@vercel/speed-insights": "^1.0.10",
+		"nodemailer": "^6.9.13"
 	}
 }
