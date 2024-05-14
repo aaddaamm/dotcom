@@ -47,7 +47,8 @@
 		</li>
 	</ul>
 	<p class="flex text-xs text-center items-center">
-		&copy; {new Date().getFullYear()} Adam Robinson
+		<span class="pr-1">&copy;</span>
+		{new Date().getFullYear()} Adam Robinson
 	</p>
 	<p class="flex flex-col sm:flex-row text-xs text-right">
 		<span class="mr-1">Tech:</span>
