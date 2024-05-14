@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 	import { dev } from '$app/environment';
 	import Header from '../components/header.svelte';
