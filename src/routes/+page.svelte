@@ -15,7 +15,7 @@
 		const classes = 'inline pb-4';
 		await renderLine('site --info', commandRenderTarget, classes);
 
-		await sleep(400);
+		await sleep(200);
 
 		// remove the command text
 		commandRenderTarget.remove();
