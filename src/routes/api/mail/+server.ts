@@ -35,7 +35,6 @@ export async function POST({ request }: { request: Request }) {
 			to: EMAIL_TO, // list of receivers
 			subject: `Hello from ${payload.name}`, // Subject line
 			text: body
-			// html: '<b>Hello world?</b>' // html body
 		});
 
 		console.log('Message sent: %s', info.messageId);
