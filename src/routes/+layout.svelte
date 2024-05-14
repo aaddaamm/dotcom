@@ -13,10 +13,18 @@
 </script>
 
 <div class="flex flex-col min-h-screen">
-	<Header />
-	<div class="px-8 flex-grow max-w-5xl align-center shadow-b-md">
-		<slot />
-	</div>
 	<Toast />
+	<Header />
+	<div class="w-full flex-grow bottom-shadow">
+		<div class="px-8 h-auto max-w-5xl align-center">
+			<slot />
+		</div>
+	</div>
 	<Footer />
 </div>
+
+<style>
+	.bottom-shadow {
+		box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
+	}
+</style>
