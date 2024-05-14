@@ -5,7 +5,7 @@
 
 	const copy = [
 		"Building software for more than 15 years. I've worked on everything from Insurance Software to commercial power grid planning software.",
-		"I enjoy gaming and reading fantasy books. I'm a father of 4 and the proud owner of a mini Berna-doodle"
+		"I enjoy gaming and reading fantasy books. I'm a father of 4 and the proud owner of a mini Berna-doodle."
 	];
 
 	onMount(async () => {
