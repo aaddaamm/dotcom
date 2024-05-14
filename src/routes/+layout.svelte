@@ -5,7 +5,9 @@
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import Footer from '../components/footer.svelte';
+	import { initializeStores, Toast } from '@skeletonlabs/skeleton';
 
+	initializeStores();
 	injectSpeedInsights();
 	inject({ mode: dev ? 'development' : 'production' });
 </script>
@@ -15,5 +17,6 @@
 	<div class="px-8 flex-grow max-w-5xl align-center">
 		<slot />
 	</div>
+	<Toast />
 	<Footer />
 </div>
