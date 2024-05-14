@@ -7,7 +7,7 @@ export async function renderLine(line: string, target: HTMLElement, classes: str
 	p.className = classes;
 
 	for (let i = 0; i <= line.length; i++) {
-		await sleep(10);
+		await sleep(8);
 		p.textContent = line.slice(0, i);
 		target.appendChild(p);
 	}
@@ -16,6 +16,6 @@ export async function renderLine(line: string, target: HTMLElement, classes: str
 export async function renderLines(lines: string[], target: HTMLElement) {
 	for (const line of lines) {
 		await renderLine(line, target, 'pb-4');
-		await sleep(500);
+		await sleep(400);
 	}
 }
