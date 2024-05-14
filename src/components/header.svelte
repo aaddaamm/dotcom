@@ -8,7 +8,7 @@
 	<a href="/">
 		<HeaderCard />
 	</a>
-	<ul class="flex space-x-2">
+	<ul class="flex space-x-4">
 		<li>
 			<a class="anchor" href="/work">Work</a>
 		</li>
