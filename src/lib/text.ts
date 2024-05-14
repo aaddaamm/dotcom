@@ -16,6 +16,6 @@ export async function renderLine(line: string, target: HTMLElement, classes: str
 export async function renderLines(lines: string[], target: HTMLElement) {
 	for (const line of lines) {
 		await renderLine(line, target, 'pb-4');
-		await sleep(400);
+		await sleep(100);
 	}
 }

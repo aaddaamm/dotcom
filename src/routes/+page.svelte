@@ -9,14 +9,13 @@
 	];
 
 	onMount(async () => {
-		await sleep(700);
-
+		sleep(80);
 		// render the command text
 		const commandRenderTarget = document.getElementById('command') || document.createElement('div');
 		const classes = 'inline pb-4';
 		await renderLine('site --info', commandRenderTarget, classes);
 
-		await sleep(600);
+		await sleep(400);
 
 		// remove the command text
 		commandRenderTarget.remove();
