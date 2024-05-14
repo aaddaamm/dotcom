@@ -16,7 +16,7 @@
 	<Toast />
 	<Header />
 	<div class="w-full flex-grow bottom-shadow">
-		<div class="px-8 h-auto max-w-5xl align-center">
+		<div class="px-4 sm:px-8 h-auto max-w-5xl align-center">
 			<slot />
 		</div>
 	</div>
