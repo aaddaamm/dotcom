@@ -52,10 +52,20 @@
 	</p>
 	<p class="flex flex-col sm:flex-row text-xs text-right">
 		<span class="mr-1">Tech:</span>
-		<a href="https://kit.svelte.dev/" target="_blank" rel="noopener noreferrer">SvelteKit</a>
+		<a class="anchor" href="https://kit.svelte.dev/" target="_blank" rel="noopener noreferrer">
+			SvelteKit
+		</a>
 		<span class="hidden sm:flex mx-1">&middot;</span>
-		<a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">tailwindcss</a>
+		<a class="anchor" href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer">
+			tailwindcss
+		</a>
 		<span class="hidden sm:flex mx-1">&middot;</span>
-		<a href="https://www.skeleton.dev/" target="_blank" rel="noopener noreferrer">Skeleton ui</a>
+		<a class="anchor" href="https://www.skeleton.dev/" target="_blank" rel="noopener noreferrer">
+			Skeleton ui
+		</a>
+		<span class="hidden sm:flex mx-1">&middot;</span>
+		<a class="anchor" href="https://www.vercel.com/" target="_blank" rel="noopener noreferrer">
+			Vercel
+		</a>
 	</p>
 </div>
