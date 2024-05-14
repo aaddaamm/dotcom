@@ -15,6 +15,7 @@
 			toastStore.trigger({
 				message: 'please fill out all fields.',
 				background: 'variant-filled-error',
+				hideDismiss: true,
 				timeout: 5000
 			});
 			isSubmitting = false;
@@ -29,6 +30,7 @@
 			toastStore.trigger({
 				message: 'Message sent! I will get back to you as soon as possible.',
 				background: 'variant-filled-success',
+				hideDismiss: true,
 				timeout: 5000
 			});
 
@@ -41,6 +43,7 @@
 			toastStore.trigger({
 				message: 'There was an error sending your message. Please try again later.',
 				background: 'variant-filled-error',
+				hideDismiss: true,
 				timeout: 5000
 			});
 		} finally {
