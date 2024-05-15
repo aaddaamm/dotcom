@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /private/
+Disallow: /tmp/
+Sitemap: https://www.adamrobinson.tech/sitemap.xml
