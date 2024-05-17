@@ -27,8 +27,6 @@ export async function POST({ request }: { request: Request }) {
 
 	const body = `Name: ${payload.name}\nEmail: ${payload.email}\nMessage: ${payload.message}`;
 
-	console.log(body);
-
 	try {
 		const info = await transporter.sendMail({
 			from: EMAIL_FROM, // sender address
