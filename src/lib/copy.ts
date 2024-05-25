@@ -58,3 +58,65 @@ export const introCopy: Element[] = [
 		}
 	}
 ];
+
+export const workCopy: Element[] = [
+	{
+		type: 'h2',
+		children: 'Experience',
+		props: {
+			class: 'h2'
+		}
+	},
+	{
+		type: 'p',
+		children: "I'm an experienced software engineer who enjoys Reading and Gaming",
+		props: {
+			class: 'pb-8'
+		}
+	},
+	{
+		type: 'h3',
+		children: 'The Before Times',
+		props: {
+			class: 'h3'
+		}
+	},
+	{
+		type: 'p',
+		children:
+			"Worked in many different industries. I've worked in the food industry, the retail industry, the construction industry, sales on a warehouse team, warehouse receiving/shipping, and a few others.",
+		props: {
+			class: 'pb-8'
+		}
+	},
+	{
+		type: 'h3',
+		children: 'Beacon Mutual',
+		props: {
+			class: 'h3'
+		}
+	},
+	{
+		type: 'p',
+		children:
+			"I worked at Beacon Mutual for 4 years. I started off working as a Production systems controller. My duties were mostly administering file transfers, code deploys, environment process management and generation. I was then promoted to a software engineer where I mostly worked on the Database and stored procedures using PL/SQL and a very custom/niche JavaScript library designed specifically for this company's systems. Very specifically.",
+		props: {
+			class: 'pb-8'
+		}
+	},
+	{
+		type: 'h3',
+		children: 'MojoTech',
+		props: {
+			class: 'h3'
+		}
+	},
+	{
+		type: 'p',
+		children:
+			"I am currently working for MojoTech. I am a full stack engineer working on a variety of projects. I've worked on everything from investment platforms, insurance software, a healthcare knowledge sharing platform, a commercial power grid planning software, and a few other things.",
+		props: {
+			class: 'pb-8'
+		}
+	}
+];
