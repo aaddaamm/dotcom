@@ -51,8 +51,17 @@ export const introCopy: Element[] = [
 	},
 	{
 		type: 'p',
-		children:
-			"Thanks for visiting my site. If you'd like to connect or learn more about my work and interests, feel free to reach out.",
+		children: [
+			"Thanks for visiting my site. If you'd like to connect or learn more about my work and interests, feel free to ",
+			{
+				type: 'a',
+				children: 'reach out',
+				props: {
+					href: '/contact',
+					className: 'anchor'
+				}
+			}
+		],
 		props: {
 			className: 'mb-4'
 		}
