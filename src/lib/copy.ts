@@ -32,7 +32,7 @@ export const introCopy: Element[] = [
 				children: 'Books',
 				props: {
 					href: '/play',
-					className: 'text-primary hover:underline'
+					className: 'anchor'
 				}
 			},
 			' page on my site where I share my favorite reads and recommendations.'
