@@ -11,7 +11,7 @@
 		const commandRenderTarget = document.getElementById('command') || document.createElement('div');
 		const element: Element = {
 			type: 'span',
-			children: 'site --info',
+			children: 'site --intro',
 			props: {
 				className: 'inline pb-4'
 			}
