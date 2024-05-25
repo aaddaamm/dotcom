@@ -54,3 +54,11 @@ export enum ElementTypes {
 	Nav = 'nav',
 	Section = 'section'
 }
+
+export type GoodreadsBook = {
+	cover?: string;
+	title?: string;
+	series?: string;
+	author?: string;
+	url?: string;
+};

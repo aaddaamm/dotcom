@@ -6,7 +6,7 @@ import {
 } from '$lib/goodreads-helpers';
 import axios from 'axios';
 import { load } from 'cheerio';
-import { type Book } from '../types';
+import { type GoodreadsBook } from '$lib/types';
 
 const BASE_URL = 'https://www.goodreads.com/review/list/92024399-adam-robinson';
 const SHELF = 'currently-reading';
@@ -16,7 +16,7 @@ export async function GET() {
 
 	const html = load(resp.data);
 
-	const books: Book[] = [];
+	const books: GoodreadsBook[] = [];
 
 	html('tr.bookalike').each((i, elem) => {
 		const cover = parseCoverFromHTML(elem);

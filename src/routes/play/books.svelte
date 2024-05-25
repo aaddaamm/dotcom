@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { Book } from '../api/goodreads/types';
-	let books: Book[] = [];
+	import type { GoodreadsBook } from '$lib/types';
+	let books: GoodreadsBook[] = [];
 	let isFetching = false;
 
 	onMount(async () => {
