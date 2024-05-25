@@ -1,19 +1,23 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { sleep } from '$lib';
-	import { renderLine, renderLines } from '$lib/text';
-
-	const copy = [
-		"Building software for more than 15 years. I've worked on everything from Insurance Software to commercial power grid planning software.",
-		"I enjoy gaming and reading fantasy books. I'm a father of 4 and the proud owner of a mini Berna-doodle."
-	];
+	import { renderElements, renderElement } from '$lib/text';
+	import { introCopy } from '$lib/copy';
+	import type { Element } from '$lib/types';
 
 	onMount(async () => {
 		sleep(80);
 		// render the command text
 		const commandRenderTarget = document.getElementById('command') || document.createElement('div');
-		const classes = 'inline pb-4';
-		await renderLine('site --info', commandRenderTarget, classes);
+		const element: Element = {
+			type: 'span',
+			children: 'site --info',
+			props: {
+				className: 'inline pb-4'
+			}
+		};
+
+		await renderElement(element, commandRenderTarget);
 
 		await sleep(200);
 
@@ -23,7 +27,7 @@
 		// render the copy text
 		const copyRenderTarget =
 			document.getElementById('copy-render-target') || document.createElement('div');
-		await renderLines(copy, copyRenderTarget);
+		await renderElements(introCopy, copyRenderTarget);
 	});
 </script>
 
