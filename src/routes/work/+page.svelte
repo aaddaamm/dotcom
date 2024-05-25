@@ -6,6 +6,7 @@
 	import type { Element } from '$lib/types';
 
 	onMount(async () => {
+		sleep(80);
 		const commandRenderTarget = document.getElementById('command') || document.createElement('div');
 		const element: Element = {
 			type: 'span',
