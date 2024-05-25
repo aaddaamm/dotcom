@@ -29,7 +29,7 @@
 
 <div class="w-full">
 	<div id="copy-render-target" />
-	<span>{'>'}</span>
+	<span>&gt;</span>
 	<span id="command" />
 	<span class="blinking-cursor">|</span>
 </div>
