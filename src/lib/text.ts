@@ -1,7 +1,7 @@
 import { sleep } from '$lib';
 import { type Element } from '$lib/types';
 
-const sleep_time = 4;
+const sleep_time = 2;
 
 export async function renderText(text: string, node: HTMLElement, target: HTMLElement) {
 	for (let i = 0; i < text.length; i++) {
