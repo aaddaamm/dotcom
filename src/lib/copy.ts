@@ -2,7 +2,7 @@ import type { Element } from '$lib/types';
 export const introCopy: Element[] = [
 	{
 		type: 'h2',
-		children: 'Hello and welcome!',
+		children: 'Greetings and welcome all!',
 		props: {
 			className: 'h2 mb-4'
 		}
