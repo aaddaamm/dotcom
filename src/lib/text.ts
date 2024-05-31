@@ -31,24 +31,24 @@ export async function renderElement(node: Element, parent: HTMLElement) {
 
 	if (hasArrayForChildren) {
 		for (const child of node.children) {
-			if (typeof child === 'string') {
+			const isString = typeof child === 'string';
+			if (isString) {
 				await renderText(child, el, parent);
 				continue;
 			}
+			// recursive call for nested elements
 			await renderElement(child, el);
 		}
 		return;
 	}
 
 	const hasElementForChildren = typeof node.children === 'object';
-
 	if (hasElementForChildren) {
 		await renderElement(node, el);
 		return;
 	}
 
 	const hasStringForChildren = typeof node.children === 'string';
-
 	if (hasStringForChildren) {
 		await renderText(node.children as string, el, parent);
 		return;
