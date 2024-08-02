@@ -2,7 +2,9 @@ import type { Element } from 'cheerio';
 import { load } from 'cheerio';
 
 export function parseCoverFromHTML(element: Element) {
-	return load(element)('img').attr('src');
+	const url = load(element)('img').attr('src');
+
+	return url;
 }
 
 export function parseTitleAndSeriesFromHTML(element: Element) {
