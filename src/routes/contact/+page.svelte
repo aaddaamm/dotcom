@@ -54,7 +54,7 @@
 
 <div class="w-full justify-center">
 	<h2 class="text-2xl font-bold mb-4">Contact Me</h2>
-	<form class="flex flex-col sm:max-w-96">
+	<form class="flex flex-col sm:max-w-96 mb-16">
 		<label class="label mb-4">
 			<span>Name</span>
 			<input class="input" title="Name" type="text" bind:value={name} disabled={isSubmitting} />
