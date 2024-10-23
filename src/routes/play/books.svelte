@@ -53,9 +53,9 @@
 							<img class="w-full h-auto" alt={book.title} src={book.cover} />
 						</div>
 						<div class="flex flex-col h-full w-full justify-center text-center pr-4">
-							<p class="font-bold">
+							<h4>
 								{book.title}
-							</p>
+							</h4>
 							{#if book.series}
 								<p class="font-thin text-sm">
 									{book.series}
