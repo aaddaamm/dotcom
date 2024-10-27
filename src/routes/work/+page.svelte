@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { sleep } from '$lib';
+	import { sleep } from '$lib/helpers';
 	import { renderElements, renderElement } from '$lib/text';
 	import { workCopy } from '$lib/copy';
 	import type { Element } from '$lib/types';

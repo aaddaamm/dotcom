@@ -1,4 +1,4 @@
-import { sleep } from '$lib';
+import { sleep } from '$lib/helpers';
 import { type Element } from '$lib/types';
 
 const sleep_time = 2;
