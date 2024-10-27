@@ -3,7 +3,7 @@ import {
 	parseTitleAndSeriesFromHTML,
 	parseAuthorFromHTML,
 	parseGoodreadsURLFromHTML
-} from '$lib/goodreads-helpers';
+} from '$lib/goodreads/helpers';
 import axios from 'axios';
 import { load } from 'cheerio';
 import { type GoodreadsBook } from '$lib/types';
