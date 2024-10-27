@@ -7,12 +7,12 @@ import {
 import axios from 'axios';
 import { load } from 'cheerio';
 import { type GoodreadsBook } from '$lib/types';
+import { GOODREADS_SHELVES } from '$lib/constants';
 
 const BASE_URL = 'https://www.goodreads.com/review/list/92024399-adam-robinson';
-const SHELF = 'currently-reading';
 
 export async function GET() {
-	const resp = await axios(`${BASE_URL}?shelf=${SHELF}`);
+	const resp = await axios(`${BASE_URL}?shelf=${GOODREADS_SHELVES.CURRENTLY_READING}`);
 
 	const html = load(resp.data);
 
