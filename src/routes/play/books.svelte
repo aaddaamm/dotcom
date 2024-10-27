@@ -49,7 +49,7 @@
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<div class="w-24 overflow-hidden mr-4">
+						<div class="w-80 overflow-hidden mr-4">
 							<img class="w-full h-auto" alt={book.title} src={book.cover} />
 						</div>
 						<div class="flex flex-col h-full w-full justify-center text-center pr-4">
