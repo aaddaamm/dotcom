@@ -10,6 +10,7 @@
 
 	async function submitForm() {
 		isSubmitting = true;
+
 		if (!name || !email || !message) {
 			errors = true;
 			toastStore.trigger({
@@ -18,6 +19,7 @@
 				hideDismiss: true,
 				timeout: 5000
 			});
+
 			isSubmitting = false;
 			return;
 		}
@@ -27,6 +29,7 @@
 				method: 'POST',
 				body: JSON.stringify({ name, email, message })
 			});
+
 			toastStore.trigger({
 				message: 'Message sent! I will get back to you as soon as possible.',
 				background: 'variant-filled-success',
@@ -71,7 +74,7 @@
 				placeholder="Tell me what you'd like to discuss."
 				disabled={isSubmitting}
 				bind:value={message}
-			/>
+			></textarea>
 		</label>
 		<button class="btn variant-filled-primary" disabled={isSubmitting} on:click={submitForm}>
 			Submit

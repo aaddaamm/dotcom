@@ -32,9 +32,9 @@
 </script>
 
 <div class="w-full">
-	<div id="copy-render-target" />
+	<div id="copy-render-target"></div>
 	<span>&gt;</span>
-	<span id="command" />
+	<span id="command"></span>
 	<span class="blinking-cursor">|</span>
 </div>
 

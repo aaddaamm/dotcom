@@ -30,9 +30,9 @@
 </script>
 
 <div>
-	<div id="work-render-target" />
+	<div id="work-render-target"></div>
 	<span>&gt;</span>
-	<span id="command" />
+	<span id="command"></span>
 	<span class="blinking-cursor">|</span>
 </div>
 
