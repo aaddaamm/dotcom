@@ -6,11 +6,14 @@
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import Footer from '../components/footer.svelte';
 	import { initializeStores, Toast } from '@skeletonlabs/skeleton';
+	import { autoModeWatcher } from '@skeletonlabs/skeleton';
 
 	initializeStores();
 	injectSpeedInsights();
 	inject({ mode: dev ? 'development' : 'production' });
 </script>
+
+<svelte:head>{@html '<script>(' + autoModeWatcher.toString() + ')();</script>'}</svelte:head>
 
 <div class="flex flex-col min-h-screen">
 	<Toast />
