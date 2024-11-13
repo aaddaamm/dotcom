@@ -61,4 +61,6 @@ export type GoodreadsBook = {
 	series?: string;
 	author?: string;
 	url?: string;
+	rating?: number;
+	dateRead?: string;
 };

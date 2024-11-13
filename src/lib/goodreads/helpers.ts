@@ -40,3 +40,44 @@ export function parseGoodreadsURLFromHTML(element: cheerio.Element) {
 
 	return `https://www.goodreads.com${goodreadsURL}`;
 }
+
+export function parseRatingFromHTML(element: cheerio.Element) {
+	const rating = cheerio.load(element)('.rating .staticStars p10').length;
+
+	return rating;
+}
+
+export function parseDateReadFromHTML(element: cheerio.Element) {
+	const dateRead = cheerio.load(element)('.date_read .date_read_value').text();
+
+	return dateRead;
+}
+
+// i'm gathering the pagingation links from the element with ID 'reviewPagination'
+// the issue i'm having is that i'm not able to select the element
+// based on the ID without spending more time learning how to do it
+// with Cherrio.
+// this function may not be necessary as i can just
+// return the pagination link from the last anchor tag `next_page
+// as long as this element has an href, i can keep paginating
+export function parsePaginationFromHTML(html: cheerio.Root) {
+	const pagination = html('.right.uitext a');
+
+	return pagination;
+}
+
+export function parseNextPageFromHTML(element: cheerio.Root) {
+	const nextPage = element('.next_page').attr('href');
+	return nextPage;
+}
+
+export function parseBookFromElement(element: cheerio.Element) {
+	const cover = parseCoverFromHTML(element);
+	const { title, series } = parseTitleAndSeriesFromHTML(element);
+	const author = parseAuthorFromHTML(element);
+	const url = parseGoodreadsURLFromHTML(element);
+	const rating = parseRatingFromHTML(element);
+	const dateRead = parseDateReadFromHTML(element);
+
+	return { cover, title, series, author, url, rating, dateRead };
+}
