@@ -11,7 +11,6 @@ datasource db {
 model GoodreadsBook {
   id         Int      @id @default(autoincrement())
   title      String?
-  author     Author?  @relation(fields: [authorId], references: [id])
   authorId   Int?
   imageURL   String?
   externalId String?
@@ -19,10 +18,22 @@ model GoodreadsBook {
   updatedAt  DateTime @updatedAt
 }
 
+model Book {
+  id              Int      @id @default(autoincrement())
+  title           String?
+  imageURL        String?
+  externalId      String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  goodreadsBookId Int
+  Author          Author?  @relation(fields: [authorId], references: [id])
+  authorId        Int?
+}
+
 model Author {
-  id            Int             @id @default(autoincrement())
-  name          String?
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  GoodreadsBook GoodreadsBook[]
+  id        Int      @id @default(autoincrement())
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Books     Book[]
 }
