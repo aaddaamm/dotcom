@@ -103,6 +103,11 @@ export namespace GoodreadsService {
 		return { isbn, isbn13, asin };
 	}
 
+	export function getDateStartedFromHTML(element: cheerio.Element) {
+		const dateStarted = cheerio.load(element)('.date_started .date_started_value').text();
+		return dateStarted;
+	}
+
 	export function parseBookFromElement(element: cheerio.Element) {
 		const cover = parseCoverFromHTML(element);
 		const { title, series } = parseTitleAndSeriesFromHTML(element);
@@ -111,8 +116,9 @@ export namespace GoodreadsService {
 		const rating = parseRatingFromHTML(element);
 		const dateRead = parseDateReadFromHTML(element);
 		const { isbn, isbn13, asin } = parseIdentificationFromElement(element);
+		const dateStarted = getDateStartedFromHTML(element);
 
-		return { cover, title, series, author, url, rating, dateRead, isbn, isbn13, asin };
+		return { cover, title, series, author, url, rating, dateRead, isbn, isbn13, asin, dateStarted };
 	}
 
 	export const getBooksFromShelf = async (shelf: GOODREADS_SHELVES, allowSleep?: boolean) => {
@@ -153,8 +159,10 @@ export namespace GoodreadsService {
 	};
 
 	export function fetchGoodreadsCurrentlyReadingData() {
-		const books = getBooksFromShelf(GOODREADS_SHELVES.CURRENTLY_READING);
-		return books;
+		const books = await getBooksFromShelf(GOODREADS_SHELVES.CURRENTLY_READING);
+		return books?.sort(
+			(a, b) => new Date(b.dateStarted).getTime() - new Date(a?.dateStarted).getTime()
+		);
 	}
 }
 
