@@ -68,3 +68,7 @@ export type GoodreadsBook = {
 	asin?: string;
 };
 
+export type GoodreadsPagination = {
+	page: number;
+	URL?: string;
+};
