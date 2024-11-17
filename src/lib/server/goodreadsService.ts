@@ -1,5 +1,5 @@
 import * as cheerio from 'cheerio';
-import type { GoodreadsBook } from '$lib/types';
+import type { GoodreadsBook, GoodreadsPagination } from '$lib/types';
 import axios from 'axios';
 import { GOODREADS_SHELVES } from '$lib/constants';
 import { load } from 'cheerio';
@@ -62,7 +62,8 @@ export namespace GoodreadsService {
 		return dateRead;
 	}
 
-	export function findMaxPageFromPagination(pagination: { page: number; URL?: string }[]) {
+	// used to find the maximum page number from the pagination links provided
+	export function findMaxPageFromPagination(pagination: GoodreadsPagination[]) {
 		const maxPage = pagination.reduce((acc, curr) => {
 			if (curr.page > acc) {
 				acc = curr.page;
@@ -74,11 +75,10 @@ export namespace GoodreadsService {
 		return maxPage;
 	}
 
-	// this function may not be necessary as i can just
-	// return the pagination link from the last anchor tag `next_page
-	// as long as this element has an href, i can keep paginating
+	// used to parse the URL and the text of the pagination links
+	// so that we can iterate over the pages.
 	export function parsePaginationFromHTML(html: cheerio.Root) {
-		const pagination: { page: number; URL?: string }[] = [];
+		const pagination: GoodreadsPagination[] = [];
 
 		html('div#reviewPagination a').each((i, elem) => {
 			const text = html(elem).text();
