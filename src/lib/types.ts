@@ -56,16 +56,16 @@ export enum ElementTypes {
 }
 
 export type GoodreadsBook = {
-	cover?: string;
-	title?: string;
+	cover: string;
+	title: string;
 	series?: string;
-	author?: string;
-	url?: string;
+	author: string;
+	url: string;
 	rating?: number;
 	dateRead?: string;
-	isbn?: string;
-	isbn13?: string;
-	asin?: string;
+	isbn: string;
+	isbn13: string;
+	asin: string;
 };
 
 export type GoodreadsPagination = {
