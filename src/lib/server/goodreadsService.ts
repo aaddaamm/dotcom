@@ -158,7 +158,7 @@ export namespace GoodreadsService {
 		}
 	};
 
-	export function fetchGoodreadsCurrentlyReadingData() {
+	export async function fetchCurrentlyReadingShelf() {
 		const books = await getBooksFromShelf(GOODREADS_SHELVES.CURRENTLY_READING);
 		return books?.sort(
 			(a, b) => new Date(b.dateStarted).getTime() - new Date(a?.dateStarted).getTime()
