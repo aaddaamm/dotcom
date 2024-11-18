@@ -67,6 +67,7 @@ export type GoodreadsBook = {
 	isbn13: string;
 	asin: string;
 	dateStarted: string;
+	goodreadsID: number;
 };
 
 export type GoodreadsPagination = {

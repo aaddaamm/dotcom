@@ -3,6 +3,7 @@ import type { GoodreadsBook, GoodreadsPagination } from '$lib/types';
 import axios from 'axios';
 import { GOODREADS_SHELVES } from '$lib/constants';
 import { load } from 'cheerio';
+import { addGoodreadsBook } from '../../../prisma/queries/goodreadsBooks';
 
 import { sleep } from '$lib/helpers';
 
@@ -48,6 +49,13 @@ export namespace GoodreadsService {
 		const goodreadsURL = cheerio.load(element)('.title a').attr('href');
 
 		return `https://www.goodreads.com${goodreadsURL}`;
+	}
+
+	export function parseGoodreadsIDFromHTML(url: string) {
+		const urlParts = url.split('/');
+		const goodreadsID = urlParts[urlParts.length - 1].split('-')[0];
+
+		return Number(goodreadsID);
 	}
 
 	export function parseRatingFromHTML(element: cheerio.Element) {
@@ -117,8 +125,26 @@ export namespace GoodreadsService {
 		const dateRead = parseDateReadFromHTML(element);
 		const { isbn, isbn13, asin } = parseIdentificationFromElement(element);
 		const dateStarted = getDateStartedFromHTML(element);
+		const goodreadsID = parseGoodreadsIDFromHTML(url);
 
-		return { cover, title, series, author, url, rating, dateRead, isbn, isbn13, asin, dateStarted };
+		return {
+			cover,
+			title,
+			series,
+			author,
+			url,
+			rating,
+			dateRead,
+			isbn,
+			isbn13,
+			asin,
+			dateStarted,
+			goodreadsID
+		};
+	}
+
+	export async function addBookFromGoodreads(goodreadsData: GoodreadsBook) {
+		await addGoodreadsBook(goodreadsData);
 	}
 
 	export const getBooksFromShelf = async (shelf: GOODREADS_SHELVES, allowSleep?: boolean) => {
