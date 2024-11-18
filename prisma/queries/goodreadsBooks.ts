@@ -23,3 +23,13 @@ export async function addGoodreadsBook(goodreadsData: GoodreadsBook) {
 
 	return goodreadsBook;
 }
+
+export async function getGoodreadsBookByGoodreadsId(goodreadsId: number) {
+	const book = await client.goodreadsBook.findUnique({
+		where: {
+			goodreadsId
+		}
+	});
+
+	return book;
+}
