@@ -10,17 +10,16 @@ datasource db {
 
 model GoodreadsBook {
   id          Int       @id @default(autoincrement())
-  goodreadsId Int
+  goodreadsId Int       @unique
   title       String?
   authorName  String?
   imageURL    String?
-  externalId  String?
   series      String?
   rating      Int?
   url         String?
-  isbn        String?
-  isbn13      String?
-  asin        String?
+  isbn        String?   @unique
+  isbn13      String?   @unique
+  asin        String?   @unique
   dateRead    DateTime?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
