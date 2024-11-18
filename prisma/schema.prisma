@@ -9,19 +9,21 @@ datasource db {
 }
 
 model GoodreadsBook {
-  id         Int      @id @default(autoincrement())
-  title      String?
-  authorId   Int?
-  authorName String?
-  imageURL   String?
-  externalId String?
-  series     String?
-  rating     Int?
-  isbn       String?
-  isbn13     String?
-  asin       String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id          Int       @id @default(autoincrement())
+  goodreadsId Int
+  title       String?
+  authorName  String?
+  imageURL    String?
+  externalId  String?
+  series      String?
+  rating      Int?
+  url         String?
+  isbn        String?
+  isbn13      String?
+  asin        String?
+  dateRead    DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Book {
