@@ -184,11 +184,28 @@ export namespace GoodreadsService {
 		}
 	};
 
-	export async function fetchCurrentlyReadingShelf() {
-		const books = await getBooksFromShelf(GOODREADS_SHELVES.CURRENTLY_READING);
+	export async function fetchCurrentlyReadingShelf(sleep = false) {
+		const books = await getBooksFromShelf(GOODREADS_SHELVES.CURRENTLY_READING, sleep);
 		return books?.sort(
 			(a, b) => new Date(b.dateStarted).getTime() - new Date(a?.dateStarted).getTime()
 		);
+	}
+
+	export async function fetchWantToReadShelf(sleep = false) {
+		const books = await getBooksFromShelf(GOODREADS_SHELVES.WANT_TO_READ, sleep);
+		return books;
+	}
+
+	export async function fetchReadShelf(sleep = false) {
+		const books = await getBooksFromShelf(GOODREADS_SHELVES.READ, sleep);
+		return books?.sort(
+			(a, b) => new Date(b?.dateRead || 0).getTime() - new Date(a?.dateRead || 0).getTime()
+		);
+	}
+
+	export async function fetchGaveUpOnShelf(sleep = false) {
+		const books = await getBooksFromShelf(GOODREADS_SHELVES.GAVE_UP_ON, sleep);
+		return books;
 	}
 }
 
