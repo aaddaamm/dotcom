@@ -3,10 +3,7 @@ import type { GoodreadsBook, GoodreadsPagination } from '$lib/types';
 import axios from 'axios';
 import { GOODREADS_SHELVES } from '$lib/constants';
 import { load } from 'cheerio';
-import {
-	addGoodreadsBook,
-	getGoodreadsBookByGoodreadsId
-} from '../../../prisma/queries/goodreadsBooks';
+import { addGoodreadsBook, findExistingBook } from '../../../prisma/queries/goodreadsBooks';
 
 import { sleep } from '$lib/helpers';
 
@@ -67,10 +64,10 @@ export namespace GoodreadsService {
 		return rating;
 	}
 
-	export function parseDateReadFromHTML(element: cheerio.Element) {
-		const dateRead = cheerio.load(element)('.date_read .date_read_value').text();
+	export function parseDatesReadFromHTML(element: cheerio.Element) {
+		const datesRead = cheerio.load(element)('.date_read .date_read_value').text();
 
-		return dateRead;
+		return datesRead;
 	}
 
 	// used to find the maximum page number from the pagination links provided
@@ -107,9 +104,9 @@ export namespace GoodreadsService {
 	}
 
 	export function parseIdentificationFromElement(element: cheerio.Element) {
-		const isbn = cheerio.load(element)('.isbn').text().trim();
-		const isbn13 = cheerio.load(element)('.isbn13').text().trim();
-		const asin = cheerio.load(element)('.asin').text().trim();
+		const isbn = cheerio.load(element)('.isbn > .value').text().trim();
+		const isbn13 = cheerio.load(element)('.isbn13 > .value').text().trim();
+		const asin = cheerio.load(element)('.asin > .value').text().trim();
 
 		return { isbn, isbn13, asin };
 	}
@@ -125,7 +122,7 @@ export namespace GoodreadsService {
 		const author = parseAuthorFromHTML(element);
 		const url = parseGoodreadsURLFromHTML(element);
 		const rating = parseRatingFromHTML(element);
-		const dateRead = parseDateReadFromHTML(element);
+		const datesRead = parseDatesReadFromHTML(element);
 		const { isbn, isbn13, asin } = parseIdentificationFromElement(element);
 		const dateStarted = getDateStartedFromHTML(element);
 		const goodreadsID = parseGoodreadsIDFromHTML(url);
@@ -137,7 +134,7 @@ export namespace GoodreadsService {
 			author,
 			url,
 			rating,
-			dateRead,
+			datesRead,
 			isbn,
 			isbn13,
 			asin,
@@ -146,11 +143,11 @@ export namespace GoodreadsService {
 		};
 	}
 
-	export async function addBookFromGoodreads(goodreadsData: GoodreadsBook) {
-		const existingBook = await getGoodreadsBookByGoodreadsId(goodreadsData.goodreadsID);
+	export async function addBook(goodreadsData: GoodreadsBook) {
+		const existingBook = await findExistingBook(goodreadsData);
 
 		if (existingBook) {
-			console.log(`Book with ID ${goodreadsData.goodreadsID} already exists`);
+			console.log(`${goodreadsData.title} already exists in the database`);
 			return;
 		}
 
@@ -197,7 +194,7 @@ export namespace GoodreadsService {
 	export async function fetchCurrentlyReadingShelf(sleep = false) {
 		const books = await getBooksFromShelf(GOODREADS_SHELVES.CURRENTLY_READING, sleep);
 		return books?.sort(
-			(a, b) => new Date(b.dateStarted).getTime() - new Date(a?.dateStarted).getTime()
+			(a, b) => new Date(b?.dateStarted || 0).getTime() - new Date(a?.dateStarted || 0).getTime()
 		);
 	}
 
@@ -208,9 +205,8 @@ export namespace GoodreadsService {
 
 	export async function fetchReadShelf(sleep = false) {
 		const books = await getBooksFromShelf(GOODREADS_SHELVES.READ, sleep);
-		return books?.sort(
-			(a, b) => new Date(b?.dateRead || 0).getTime() - new Date(a?.dateRead || 0).getTime()
-		);
+
+		return books;
 	}
 
 	export async function fetchGaveUpOnShelf(sleep = false) {

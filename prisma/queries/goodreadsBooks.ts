@@ -2,8 +2,20 @@ import client from '../client';
 import type { GoodreadsBook } from '../../src/lib/types';
 
 export async function addGoodreadsBook(goodreadsData: GoodreadsBook) {
-	const { cover, title, series, author, url, rating, dateRead, isbn, isbn13, asin, goodreadsID } =
-		goodreadsData;
+	const {
+		cover,
+		title,
+		series,
+		author,
+		url,
+		rating,
+		dateStarted,
+		datesRead,
+		isbn,
+		isbn13,
+		asin,
+		goodreadsID
+	} = goodreadsData;
 
 	const goodreadsBook = await client.goodreadsBook.create({
 		data: {
@@ -14,20 +26,43 @@ export async function addGoodreadsBook(goodreadsData: GoodreadsBook) {
 			authorName: author,
 			rating,
 			url,
-			dateRead: dateRead ? new Date(dateRead) : null,
 			isbn,
 			isbn13,
-			asin
+			asin,
+			dateStarted,
+			datesRead
 		}
 	});
 
 	return goodreadsBook;
 }
 
-export async function getGoodreadsBookByGoodreadsId(goodreadsId: number) {
-	const book = await client.goodreadsBook.findUnique({
+export async function findExistingBook(goodeadsBook: GoodreadsBook) {
+	const book = await client.goodreadsBook.findFirst({
 		where: {
-			goodreadsId
+			OR: [
+				{
+					isbn: goodeadsBook.isbn
+				},
+				{
+					isbn13: goodeadsBook.isbn13
+				},
+				{
+					asin: goodeadsBook.asin
+				},
+				{
+					goodreadsId: goodeadsBook.goodreadsID
+				},
+				{
+					url: goodeadsBook.url
+				},
+				{
+					title: goodeadsBook.title
+				},
+				{
+					authorName: goodeadsBook.author
+				}
+			]
 		}
 	});
 
