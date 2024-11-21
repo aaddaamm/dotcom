@@ -15,9 +15,9 @@
 <div>
 	<h3 class="h3 pb-4">Books</h3>
 	<p class="pb-4">
-		I do enjoy reading and wrote out this small interaction with my goodreads account. I'm currently
-		reading:
+		I do enjoy reading and wrote out this small interaction with my goodreads account.
 	</p>
+	<h3 class="h3 pb-4">I'm currently reading:</h3>
 	{#if isFetching}
 		<section class="card w-full h-auto">
 			<div class="p-4 space-y-4">
@@ -36,7 +36,7 @@
 			</div>
 		</section>
 	{:else if !isFetching && books.length === 0}
-		<p class="pb-8">I'm not currently reading anything. I'm probably playing video games.</p>
+		<p class="pb-8">Guess i'm not reading anything. I'm probably playing video games.</p>
 	{:else}
 		<ul
 			class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 pb-4"
@@ -69,6 +69,6 @@
 				</li>
 			{/each}
 		</ul>
-		<p class="pb-8">I'm currently reading {books.length} books. I'm easily distracted I guess.</p>
+		<p class="pb-8">I'm reading or have started {books.length} books.</p>
 	{/if}
 </div>

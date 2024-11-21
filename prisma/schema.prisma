@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // Uses connection pooling
+  url      = env("DATABASE_URL")
+}
+
+model GoodreadsBook {
+  id          Int      @id @default(autoincrement())
+  goodreadsId Int?
+  title       String?
+  authorName  String?
+  imageURL    String?
+  series      String?
+  rating      Int?
+  url         String?
+  isbn        String?
+  isbn13      String?
+  asin        String?
+  dateStarted String?
+  shelf       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  datesRead   String?
+}
+
+model Shelf {
+  id          Int      @id @default(autoincrement())
+  name        String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  Books       Book[]
+}
+
+model DateRead {
+  id        Int      @id @default(autoincrement())
+  dateRead  DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Book      Book?    @relation(fields: [bookId], references: [id])
+  bookId    Int?
+}
+
+model Book {
+  id              Int        @id @default(autoincrement())
+  title           String?
+  imageURL        String?
+  externalId      String?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  goodreadsBookId Int
+  Author          Author?    @relation(fields: [authorId], references: [id])
+  authorId        Int?
+  DateRead        DateRead[]
+  Shelf           Shelf?     @relation(fields: [shelfId], references: [id])
+  shelfId         Int?
+}
+
+model Author {
+  id        Int      @id @default(autoincrement())
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Books     Book[]
+}
