@@ -55,12 +55,28 @@ export enum ElementTypes {
 	Section = 'section'
 }
 
+export type DateRead = {
+	dateRead: string;
+	bookId: number;
+	goodreadsId: number;
+};
+
 export type GoodreadsBook = {
-	cover?: string;
-	title?: string;
+	cover: string;
+	title: string;
 	series?: string;
-	author?: string;
-	url?: string;
+	author: string;
+	url: string;
 	rating?: number;
-	dateRead?: string;
+	datesRead?: string;
+	isbn: string;
+	isbn13: string;
+	asin: string;
+	dateStarted?: string;
+	goodreadsID: number;
+};
+
+export type GoodreadsPagination = {
+	page: number;
+	URL?: string;
 };

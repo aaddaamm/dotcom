@@ -28,7 +28,7 @@ export const introCopy: Element[] = [
 		children: [
 			"In my spare time, I have a deep love for reading, especially Sci-Fi and Fantasy books. These genres captivate my imagination and provide a great escape into other worlds. If you're a fellow book lover, be sure to check out the ",
 			{
-				type: 'a',
+				type: ElementTypes.Anchor,
 				children: 'Books',
 				props: {
 					href: '/play',
