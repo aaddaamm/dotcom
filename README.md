@@ -2,6 +2,17 @@
 
 `npm install`
 
+# setup env
+`cp .env.example .env`
+
+# setup db string
+DB is postgres
+
+`DATABASE_URL="postgresql://<username>:<password>@localhost:5432/dotcom?schema=public"`
+
+# run migrations
+`npx prisma migrate dev`
+
 ```bash
 npm run dev
 ```
