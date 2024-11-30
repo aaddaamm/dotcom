@@ -1,7 +1,9 @@
 import client from '../client';
 import type { GoodreadsBook } from '../../src/lib/types';
 
-export async function addGoodreadsBook(goodreadsData: GoodreadsBook) {
+import { GOODREADS_SHELVES } from '../../src/lib/constants';
+
+export async function addGoodreadsBook(goodreadsData: GoodreadsBook, shelf?: GOODREADS_SHELVES) {
 	const {
 		cover,
 		title,
@@ -30,7 +32,8 @@ export async function addGoodreadsBook(goodreadsData: GoodreadsBook) {
 			isbn13,
 			asin,
 			dateStarted,
-			datesRead
+			datesRead,
+			shelf
 		}
 	});
 
@@ -68,3 +71,7 @@ export async function findExistingBook(goodeadsBook: GoodreadsBook) {
 
 	return book;
 }
+export default {
+	findExistingBook,
+	addGoodreadsBook,
+};

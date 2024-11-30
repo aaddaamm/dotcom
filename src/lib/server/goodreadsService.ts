@@ -3,7 +3,7 @@ import type { GoodreadsBook, GoodreadsPagination } from '$lib/types';
 import axios from 'axios';
 import { GOODREADS_SHELVES } from '$lib/constants';
 import { load } from 'cheerio';
-import { addGoodreadsBook, findExistingBook } from '../../../prisma/queries/goodreadsBooks';
+import GoodreadsDB from '../../../prisma/queries/goodreadsBooks';
 
 import { sleep } from '$lib/helpers';
 
@@ -143,15 +143,15 @@ export namespace GoodreadsService {
 		};
 	}
 
-	export async function addBook(goodreadsData: GoodreadsBook) {
-		const existingBook = await findExistingBook(goodreadsData);
+	export async function addBook(goodreadsData: GoodreadsBook, shelf?: GOODREADS_SHELVES) {
+		const existingBook = await GoodreadsDB.findExistingBook(goodreadsData);
 
 		if (existingBook) {
 			console.log(`${goodreadsData.title} already exists in the database`);
 			return;
 		}
 
-		await addGoodreadsBook(goodreadsData);
+		await GoodreadsDB.addGoodreadsBook(goodreadsData, shelf);
 	}
 
 	export const getBooksFromShelf = async (shelf: GOODREADS_SHELVES, allowSleep?: boolean) => {

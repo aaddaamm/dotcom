@@ -1,5 +1,6 @@
 import GoodreadsService from '../src/lib/server/goodreadsService';
 
+import { GOODREADS_SHELVES } from '../src/lib/constants';
 /**
  * Function for mapping over the books on the "Read" shelf
  * TODO: add data validation
@@ -21,25 +22,25 @@ async function main(): Promise<void> {
 		readShelf?.forEach(async (book) => {
 			console.log('processing book:', book.title);
 
-			await GoodreadsService.addBook(book);
+			await GoodreadsService.addBook(book, GOODREADS_SHELVES.READ);
 		});
 
 		wantToReadShelf?.forEach(async (book) => {
 			console.log('processing book:', book.title);
 
-			await GoodreadsService.addBook(book);
+			await GoodreadsService.addBook(book, GOODREADS_SHELVES.WANT_TO_READ);
 		});
 
 		currentlyReadingShelf?.forEach(async (book) => {
 			console.log('processing book:', book.title);
 
-			await GoodreadsService.addBook(book);
+			await GoodreadsService.addBook(book, GOODREADS_SHELVES.CURRENTLY_READING);
 		});
 
 		gaveUpOnShelf?.forEach(async (book) => {
 			console.log('processing book:', book.title);
 
-			await GoodreadsService.addBook(book);
+			await GoodreadsService.addBook(book, GOODREADS_SHELVES.GAVE_UP_ON);
 		});
 
 		console.log('Read shelf count:', readShelf?.length);
