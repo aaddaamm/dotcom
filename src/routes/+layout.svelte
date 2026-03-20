@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
+	import { afterNavigate } from '$app/navigation';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import { AppShell, AppBar, initializeStores } from '@skeletonlabs/skeleton';
@@ -8,6 +9,21 @@
 	initializeStores();
 	injectSpeedInsights();
 	inject({ mode: dev ? 'development' : 'production' });
+
+	afterNavigate((navigation) => {
+		const hash = navigation.to?.url.hash;
+		if (hash) {
+			const el = document.querySelector(hash);
+			if (el) {
+				el.scrollIntoView({ behavior: 'smooth' });
+				return;
+			}
+		}
+		const page = document.querySelector('#page');
+		if (page) {
+			page.scrollTop = 0;
+		}
+	});
 </script>
 
 <svelte:head>{@html '<script>(' + autoModeWatcher.toString() + ')();</script>'}</svelte:head>
