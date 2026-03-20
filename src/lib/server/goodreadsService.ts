@@ -40,18 +40,32 @@ export namespace GoodreadsService {
 		};
 	}
 
+	async function fetchRSSPage(shelf: GOODREADS_SHELVES, page: number): Promise<GoodreadsBook[]> {
+		const response = await axios(`${RSS_BASE_URL}?shelf=${shelf}&page=${page}`);
+		const xml = cheerio.load(response.data, { xmlMode: true });
+		const books: GoodreadsBook[] = [];
+
+		xml('item').each((_, elem) => {
+			const item = xml(elem);
+			books.push(parseBookFromRSSItem(item, xml));
+		});
+
+		return books;
+	}
+
 	export async function getBooksFromShelf(shelf: GOODREADS_SHELVES): Promise<GoodreadsBook[]> {
 		try {
-			const response = await axios(`${RSS_BASE_URL}?shelf=${shelf}`);
-			const xml = cheerio.load(response.data, { xmlMode: true });
-			const books: GoodreadsBook[] = [];
+			const allBooks: GoodreadsBook[] = [];
+			let page = 1;
 
-			xml('item').each((_, elem) => {
-				const item = xml(elem);
-				books.push(parseBookFromRSSItem(item, xml));
-			});
+			while (true) {
+				const books = await fetchRSSPage(shelf, page);
+				allBooks.push(...books);
+				if (books.length < 100) break;
+				page++;
+			}
 
-			return books;
+			return allBooks;
 		} catch (error) {
 			console.error('Error fetching Goodreads RSS:', error);
 			return [];
