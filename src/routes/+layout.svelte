@@ -1,5 +1,4 @@
 <script lang="ts">
-	import '../app.css';
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
@@ -38,3 +37,7 @@
 	</svelte:fragment>
 	<slot />
 </AppShell>
+
+<style lang="postcss">
+	@import '../app.css';
+</style>
