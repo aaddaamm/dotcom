@@ -27,13 +27,14 @@
 		<h2 class="text-2xl font-semibold tracking-tight text-slate-50 mb-6">About<span class="text-accent-500">.</span></h2>
 		<div class="space-y-5 text-slate-300 leading-relaxed">
 			<p>
-				With over 10 years of experience, I focus on designing systems that are reliable,
+				With over a decade of experience, I focus on designing systems that are reliable,
 				maintainable, and adaptable to evolving requirements. My work spans internal tools,
 				financial systems, and full-stack applications across a variety of domains.
 			</p>
 			<p>
 				I'm particularly interested in software that enables teams—tools that help people
-				design, create, and operate more effectively.
+				design, create, and operate more effectively. I'm drawn to work that powers creative,
+				real-world experiences and supports cross-disciplinary collaboration.
 			</p>
 		</div>
 	</section>
@@ -127,6 +128,7 @@
 	<!-- Contact -->
 	<section id="contact" class="py-16 border-t border-white/[0.06]">
 		<h2 class="text-2xl font-semibold tracking-tight text-slate-50 mb-6">Contact<span class="text-accent-500">.</span></h2>
+		<p class="text-slate-500 text-sm mb-6">Based in Providence, RI — open to relocation.</p>
 		<ul class="space-y-3">
 			<li>
 				<a
