@@ -15,7 +15,7 @@
 	font-family: 'JetBrains Mono';
 	/* For multiple files use commas, ex: url(), url(), ... */
 	src: url('/fonts/JetBrainsMono-VariableFont_wght.ttf'),
-		url('/fonts/JetBrainsMono-Italic-VariableFont_wght.tff');
+		url('/fonts/JetBrainsMono-Italic-VariableFont_wght.ttf');
 }
 
 :root [data-theme='modern'] {
