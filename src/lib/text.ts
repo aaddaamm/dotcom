@@ -43,7 +43,8 @@ export async function renderElement(node: Element, parent: HTMLElement) {
 
 	const hasElementForChildren = typeof node.children === 'object';
 	if (hasElementForChildren) {
-		await renderElement(node, el);
+		await renderElement(node.children as Element, el);
+		parent.appendChild(el);
 		return;
 	}
 
