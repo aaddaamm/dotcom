@@ -21,7 +21,6 @@ export async function renderElement(node: Element, parent: HTMLElement) {
 	// i need to iterate over each character in the line
 	// so that i can slowly render the text to the screen
 	const el = document.createElement(node.type);
-	el.className = node.props?.className || '';
 
 	if (node.props) {
 		setElementProps(el, node.props);

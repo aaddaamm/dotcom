@@ -13,7 +13,7 @@
 			type: 'span',
 			children: 'site --intro',
 			props: {
-				className: 'inline pb-4'
+				class: 'inline pb-4'
 			}
 		};
 

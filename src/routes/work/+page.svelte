@@ -12,7 +12,7 @@
 			type: 'span',
 			children: 'site --work',
 			props: {
-				className: 'inline pb-4'
+				class: 'inline pb-4'
 			}
 		};
 
