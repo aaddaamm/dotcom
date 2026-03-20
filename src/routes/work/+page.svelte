@@ -30,8 +30,12 @@
 </script>
 
 <svelte:head>
-	<title>Work - Adam Robinson</title>
-	<meta name="description" content="Professional experience and technical skills of Adam Robinson" />
+	<title>Work — Adam Robinson</title>
+	<meta name="description" content="Professional experience and technical skills of Adam Robinson." />
+	<meta property="og:title" content="Work — Adam Robinson" />
+	<meta property="og:description" content="Professional experience and technical skills of Adam Robinson." />
+	<meta property="og:url" content="https://adamrobinson.tech/work" />
+	<link rel="canonical" href="https://adamrobinson.tech/work" />
 </svelte:head>
 
 <div>

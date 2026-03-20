@@ -5,6 +5,10 @@
 <svelte:head>
 	<title>Adam Robinson — Lead Software Engineer</title>
 	<meta name="description" content="Lead Software Engineer building backend systems and workflow-driven platforms." />
+	<meta property="og:title" content="Adam Robinson — Lead Software Engineer" />
+	<meta property="og:description" content="Lead Software Engineer building backend systems and workflow-driven platforms." />
+	<meta property="og:url" content="https://adamrobinson.tech" />
+	<link rel="canonical" href="https://adamrobinson.tech" />
 </svelte:head>
 
 <div class="max-w-3xl mx-auto px-6">

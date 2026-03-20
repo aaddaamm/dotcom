@@ -43,8 +43,12 @@
 </script>
 
 <svelte:head>
-	<title>Contact - Adam Robinson</title>
-	<meta name="description" content="Get in touch with Adam Robinson" />
+	<title>Contact — Adam Robinson</title>
+	<meta name="description" content="Get in touch with Adam Robinson." />
+	<meta property="og:title" content="Contact — Adam Robinson" />
+	<meta property="og:description" content="Get in touch with Adam Robinson." />
+	<meta property="og:url" content="https://adamrobinson.tech/contact" />
+	<link rel="canonical" href="https://adamrobinson.tech/contact" />
 </svelte:head>
 
 <div class="max-w-3xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
