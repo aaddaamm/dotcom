@@ -25,10 +25,14 @@
 		}
 
 		try {
-			await fetch('/api/mail', {
+			const response = await fetch('/api/mail', {
 				method: 'POST',
 				body: JSON.stringify({ name, email, message })
 			});
+
+			if (!response.ok) {
+				throw new Error('Failed to send message');
+			}
 
 			toastStore.trigger({
 				message: 'Message sent! I will get back to you as soon as possible.',
