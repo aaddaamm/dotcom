@@ -2,35 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* NOTE: set your target theme name (ex: skeleton, wintry, modern, etc) */
 @font-face {
-	/* Reference name */
 	font-family: 'Inter';
-	/* For multiple files use commas, ex: url(), url(), ... */
 	src: url('/fonts/Inter-VariableFont_slnt,wght.ttf');
-}
-
-@font-face {
-	/* Reference name */
-	font-family: 'JetBrains Mono';
-	/* For multiple files use commas, ex: url(), url(), ... */
-	src: url('/fonts/JetBrainsMono-VariableFont_wght.ttf'),
-		url('/fonts/JetBrainsMono-Italic-VariableFont_wght.ttf');
+	font-display: swap;
 }
 
 :root [data-theme='modern'] {
-	--theme-font-family-heading: 'Inter', sans-serif;
-	--theme-font-family-base: 'JetBrains Mono', sans-serif;
+	--theme-font-family-heading: 'Inter', system-ui, sans-serif;
+	--theme-font-family-base: 'Inter', system-ui, sans-serif;
 }
 
-:root [data-theme='skeleton'] {
-	--theme-font-family-heading: 'Inter', sans-serif;
-	--theme-font-family-base: 'JetBrains Mono', sans-serif;
-}
-
-:root [data-theme='crimson'] {
-	--theme-font-family-heading: 'Inter', sans-serif;
-	--theme-font-family-base: 'JetBrains Mono', sans-serif;
+html {
+	scroll-behavior: smooth;
 }
 
 html,
@@ -39,4 +23,13 @@ body {
 	height: 100%;
 	padding: 0;
 	margin: 0;
+}
+
+.section {
+	padding-top: 4rem;
+	padding-bottom: 4rem;
+}
+
+.section-divider {
+	border-top: 1px solid rgb(var(--color-surface-700) / 0.3);
 }

@@ -1,11 +1,9 @@
 <script lang="ts">
 	import '../app.css';
 	import { dev } from '$app/environment';
-	import Header from '../components/header.svelte';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-	import Footer from '../components/footer.svelte';
-	import { initializeStores, Toast } from '@skeletonlabs/skeleton';
+	import { AppShell, AppBar, initializeStores } from '@skeletonlabs/skeleton';
 	import { autoModeWatcher } from '@skeletonlabs/skeleton';
 
 	initializeStores();
@@ -15,19 +13,28 @@
 
 <svelte:head>{@html '<script>(' + autoModeWatcher.toString() + ')();</script>'}</svelte:head>
 
-<div class="flex flex-col min-h-screen">
-	<Toast />
-	<Header />
-	<div class="w-full flex-grow bottom-shadow">
-		<div class="px-4 sm:px-8 h-auto max-w-5xl align-center">
-			<slot />
-		</div>
-	</div>
-	<Footer />
-</div>
-
-<style>
-	.bottom-shadow {
-		box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.2);
-	}
-</style>
+<AppShell slotHeader="sticky top-0 z-50">
+	<svelte:fragment slot="header">
+		<AppBar
+			background="bg-surface-900/80 backdrop-blur-md"
+			border="border-b border-surface-700/30"
+			padding="px-6 py-3"
+			gridColumns="grid-cols-[auto_1fr_auto]"
+			slotDefault="hidden"
+		>
+			<svelte:fragment slot="lead">
+				<a href="/" class="font-semibold text-sm tracking-tight text-surface-50 hover:text-primary-400 transition-colors">
+					Adam Robinson
+				</a>
+			</svelte:fragment>
+			<svelte:fragment slot="trail">
+				<nav class="flex items-center gap-1">
+					<a class="btn btn-sm variant-soft-surface" href="/#work">Work</a>
+					<a class="btn btn-sm variant-soft-surface" href="/play">Reading</a>
+					<a class="btn btn-sm variant-soft-surface" href="/#contact">Contact</a>
+				</nav>
+			</svelte:fragment>
+		</AppBar>
+	</svelte:fragment>
+	<slot />
+</AppShell>
