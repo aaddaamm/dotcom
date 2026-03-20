@@ -111,6 +111,12 @@
 				These interests influence how I think about software—not just as systems, but as
 				tools that enable real-world and creative outcomes.
 			</p>
+			<a
+				href="/play"
+				class="inline-flex items-center gap-1 text-sm text-accent-400 hover:text-accent-300 transition-colors mt-2"
+			>
+				See what I'm reading &rarr;
+			</a>
 		</div>
 	</section>
 

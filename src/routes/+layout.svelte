@@ -31,6 +31,7 @@
 				<a href="/#about" class="text-sm text-slate-400 hover:text-accent-400 transition-colors">About</a>
 				<a href="/#work" class="text-sm text-slate-400 hover:text-accent-400 transition-colors">Work</a>
 				<a href="/#approach" class="text-sm text-slate-400 hover:text-accent-400 transition-colors">Approach</a>
+				<a href="/play" class="text-sm text-slate-400 hover:text-accent-400 transition-colors">Reading</a>
 				<a href="/#contact" class="text-sm text-slate-400 hover:text-accent-400 transition-colors">Contact</a>
 				<a
 					href="https://github.com/aaddaamm"
