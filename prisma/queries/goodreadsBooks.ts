@@ -45,26 +45,14 @@ export async function findExistingBook(goodeadsBook: GoodreadsBook) {
 		where: {
 			OR: [
 				{
-					isbn: goodeadsBook.isbn
-				},
-				{
-					isbn13: goodeadsBook.isbn13
-				},
-				{
-					asin: goodeadsBook.asin
-				},
-				{
 					goodreadsId: goodeadsBook.goodreadsID
 				},
 				{
 					url: goodeadsBook.url
 				},
-				{
-					title: goodeadsBook.title
-				},
-				{
-					authorName: goodeadsBook.author
-				}
+				...(goodeadsBook.isbn ? [{ isbn: goodeadsBook.isbn }] : []),
+				...(goodeadsBook.isbn13 ? [{ isbn13: goodeadsBook.isbn13 }] : []),
+				...(goodeadsBook.asin ? [{ asin: goodeadsBook.asin }] : [])
 			]
 		}
 	});
