@@ -140,6 +140,11 @@ console.log("The room area is " + area + " square feet");`
 	});
 </script>
 
+<svelte:head>
+	<title>Teach - Adam Robinson</title>
+	<meta name="description" content="Interactive programming lessons by Adam Robinson" />
+</svelte:head>
+
 <div class="container mx-auto px-4 py-8">
 	<header class="mb-8 text-center">
 		<h1 class="text-3xl font-bold">{lesson.title}</h1>

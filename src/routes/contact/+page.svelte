@@ -59,6 +59,11 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Contact - Adam Robinson</title>
+	<meta name="description" content="Get in touch with Adam Robinson" />
+</svelte:head>
+
 <div class="w-full justify-center">
 	<h2 class="text-2xl font-bold mb-4">Contact Me</h2>
 	<form class="flex flex-col sm:max-w-96 mb-16">

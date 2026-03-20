@@ -31,6 +31,11 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Adam Robinson - Software Engineer</title>
+	<meta name="description" content="Adam Robinson - Software Engineer based in Cranston, RI" />
+</svelte:head>
+
 <div class="w-full">
 	<div id="copy-render-target"></div>
 	<span>&gt;</span>

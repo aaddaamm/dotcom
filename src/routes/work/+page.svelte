@@ -29,6 +29,11 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Work - Adam Robinson</title>
+	<meta name="description" content="Professional experience and technical skills of Adam Robinson" />
+</svelte:head>
+
 <div>
 	<div id="work-render-target"></div>
 	<span>&gt;</span>
