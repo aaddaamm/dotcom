@@ -50,7 +50,7 @@
 		"axios": "^1.6.8",
 		"cheerio": "^1.0.0",
 		"dotenv": "^17.3.1",
-		"nodemailer": "^6.9.15",
-		"sitemap": "^8.0.0"
+		"nodemailer": "^8.0.3",
+		"sitemap": "^9.0.1"
 	}
 }
