@@ -59,9 +59,7 @@
 			</div>
 		{:else if currentlyReading.length === 0}
 			<div class="rounded-lg border border-white/[0.06] bg-white/[0.02] p-8 text-center">
-				<p class="text-slate-500">
-					Not reading anything right now. Probably playing video games.
-				</p>
+				<p class="text-slate-500">Not reading anything right now. Probably playing video games.</p>
 			</div>
 		{:else}
 			<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -152,7 +150,11 @@
 							{#if book.rating}
 								<div class="flex gap-0.5 mt-1">
 									{#each Array(5) as _, i}
-										<span class="text-[10px] {i < book.rating ? 'text-accent-400' : 'text-white/[0.1]'}">★</span>
+										<span
+											class="text-[10px] {i < book.rating ? 'text-accent-400' : 'text-white/[0.1]'}"
+										>
+											★
+										</span>
 									{/each}
 								</div>
 							{/if}

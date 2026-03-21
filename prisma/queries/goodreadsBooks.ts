@@ -61,5 +61,5 @@ export async function findExistingBook(goodeadsBook: GoodreadsBook) {
 }
 export default {
 	findExistingBook,
-	addGoodreadsBook,
+	addGoodreadsBook
 };

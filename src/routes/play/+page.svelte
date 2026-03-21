@@ -7,7 +7,10 @@
 	<title>Reading — Adam Robinson</title>
 	<meta name="description" content="What Adam Robinson is currently reading and has finished." />
 	<meta property="og:title" content="Reading — Adam Robinson" />
-	<meta property="og:description" content="What Adam Robinson is currently reading and has finished." />
+	<meta
+		property="og:description"
+		content="What Adam Robinson is currently reading and has finished."
+	/>
 	<meta property="og:url" content="https://adamrobinson.tech/play" />
 	<link rel="canonical" href="https://adamrobinson.tech/play" />
 </svelte:head>
