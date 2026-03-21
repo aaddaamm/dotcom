@@ -51,7 +51,6 @@
 					<a href="/#about" class="nav-link">about</a>
 					<a href="/#work" class="nav-link">work</a>
 					<a href="/#approach" class="nav-link">approach</a>
-					<a href="/#contact" class="nav-link">contact</a>
 				</nav>
 			</div>
 		</div>
