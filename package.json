@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev --open",
-		"build": "prisma generate && vite build",
+		"build": "vite build",
 		"preview": "vite preview",
 		"test": "npm run test:integration && npm run test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -30,10 +30,8 @@
 		"eslint-plugin-svelte": "^3.15.2",
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.7",
-		"prisma": "^7.5.0",
 		"svelte": "^5.53.13",
 		"svelte-check": "^4.0.5",
-		"tslib": "^2.8.1",
 		"typescript": "^5.7.2",
 		"vite": "^6.4.1",
 		"vitest": "^4.1.0"
@@ -41,13 +39,11 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/jetbrains-mono": "^5.2.8",
-		"@prisma/client": "^7.5.0",
 		"@tailwindcss/vite": "^4.2.2",
 		"@vercel/analytics": "^2.0.1",
 		"@vercel/speed-insights": "^2.0.0",
 		"axios": "^1.6.8",
 		"cheerio": "^1.0.0",
-		"dotenv": "^17.3.1",
 		"nodemailer": "^8.0.3",
 		"sitemap": "^9.0.1",
 		"tailwindcss": "^4.2.2"
