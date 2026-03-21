@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
-	// Sample lesson content
 	const lesson = {
 		title: 'Introduction to Programming',
 		sections: [
@@ -53,10 +50,10 @@ console.log("The room area is " + area + " square feet");`
 		]
 	};
 
-	let userCode = "// Write your code here\nconsole.log('Hello, world!');";
-	let codeOutput = '';
-	let isRunning = false;
-	let selectedSection = 0;
+	let userCode = $state("// Write your code here\nconsole.log('Hello, world!');");
+	let codeOutput = $state('');
+	let isRunning = $state(false);
+	let selectedSection = $state(0);
 
 	let sandboxIframe: HTMLIFrameElement;
 
@@ -115,7 +112,6 @@ console.log("The room area is " + area + " square feet");`
 
 			sandboxIframe.srcdoc = sandboxCode;
 
-			// Timeout fallback
 			setTimeout(() => {
 				if (isRunning) {
 					codeOutput = 'Error: Code execution timed out';
@@ -134,36 +130,41 @@ console.log("The room area is " + area + " square feet");`
 			userCode = lesson.sections[index].codeExample;
 		}
 	}
-
-	onMount(() => {
-		// Any initialization if needed
-	});
 </script>
 
 <svelte:head>
-	<title>Teach - Adam Robinson</title>
-	<meta name="description" content="Interactive programming lessons by Adam Robinson" />
+	<title>Teach — Adam Robinson</title>
+	<meta name="description" content="Interactive programming lessons by Adam Robinson." />
+	<meta property="og:title" content="Teach — Adam Robinson" />
+	<meta property="og:description" content="Interactive programming lessons by Adam Robinson." />
+	<meta property="og:image" content="https://adamrobinson.tech/og-card.png" />
+	<meta property="og:url" content="https://adamrobinson.tech/teach" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="canonical" href="https://adamrobinson.tech/teach" />
 </svelte:head>
 
-<div class="container mx-auto px-4 py-8">
-	<header class="mb-8 text-center">
-		<h1 class="text-3xl font-bold">{lesson.title}</h1>
-		<p class="mt-2">Interactive coding lessons to help you learn programming</p>
-	</header>
+<div class="max-w-5xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
+	<a
+		href="/"
+		class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors"
+	>
+		<span aria-hidden="true">&larr;</span>
+		Back
+	</a>
+	<h1 class="page-title text-3xl font-semibold tracking-tight mb-2">{lesson.title}</h1>
+	<p class="page-description leading-relaxed mb-12">
+		Interactive coding lessons to help you learn programming
+	</p>
 
 	<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-		<!-- Left side: Lesson content -->
-		<div class="rounded-lg shadow-md p-6">
+		<div class="rounded-lg p-6 panel">
 			<div class="mb-6">
-				<div class="flex border-b border-gray-200">
+				<div class="flex tab-bar">
 					{#each lesson.sections as section, i}
 						<button
-							class={`px-4 py-2 text-sm font-medium ${
-								selectedSection === i
-									? 'text-blue-600 border-b-2 border-blue-600'
-									: 'text-gray-500 hover:text-gray-700'
-							}`}
-							on:click={() => (selectedSection = i)}
+							class="tab px-4 py-2 text-sm font-medium"
+							class:tab-active={selectedSection === i}
+							onclick={() => (selectedSection = i)}
 						>
 							{section.title}
 						</button>
@@ -171,63 +172,135 @@ console.log("The room area is " + area + " square feet");`
 				</div>
 			</div>
 
-			<div class="lesson-content">
-				<h2 class="text-xl font-bold mb-3">{lesson.sections[selectedSection].title}</h2>
-				<p class="mb-6 leading-relaxed">
+			<div>
+				<h2 class="section-title text-xl font-semibold mb-3">{lesson.sections[selectedSection].title}</h2>
+				<p class="body-text mb-6 leading-relaxed">
 					{lesson.sections[selectedSection].content}
 				</p>
 
-				<div class="rounded-md p-4 mb-4">
+				<div class="rounded-md p-4 mb-4 code-block">
 					<div class="flex justify-between items-center mb-2">
-						<h3 class="text-sm font-semibol">Example Code</h3>
-						<button class="btn px-2 py-1 rounded" on:click={() => loadExample(selectedSection)}>
+						<h3 class="text-sm font-semibold muted-text">Example Code</h3>
+						<button class="load-btn px-2 py-1 rounded text-sm" onclick={() => loadExample(selectedSection)}>
 							Load Example
 						</button>
 					</div>
-					<pre class="text-sm bg-gray-800 text-white p-3 rounded overflow-x-auto"><code>{lesson
-								.sections[selectedSection].codeExample}</code></pre>
+					<pre class="text-sm p-3 rounded overflow-x-auto code-pre"><code>{lesson.sections[selectedSection].codeExample}</code></pre>
 				</div>
 			</div>
 		</div>
 
-		<!-- Right side: Interactive coding area -->
-		<div class="rounded-lg shadow-md p-6">
-			<h2 class="text-xl font-bold mb-4">Your Code</h2>
+		<div class="rounded-lg p-6 panel">
+			<h2 class="section-title text-xl font-semibold mb-4">Your Code</h2>
 			<div class="mb-4">
 				<textarea
 					bind:value={userCode}
-					class="w-full h-64 p-3 font-mono text-sm bg-gray-800 text-white rounded resize-none"
+					class="editor w-full h-64 p-3 font-mono text-sm rounded resize-none"
 					spellcheck="false"
 				></textarea>
 			</div>
 			<div class="flex justify-end mb-4">
 				<button
-					class="bg-green-500 text-white px-6 py-2 rounded font-semibold hover:bg-green-600 transition-colors disabled:opacity-50"
-					on:click={runCode}
+					class="run-btn rounded-lg px-6 py-2 text-sm font-semibold disabled:opacity-50 transition-colors"
+					onclick={runCode}
 					disabled={isRunning}
 				>
 					{isRunning ? 'Running...' : 'Run Code'}
 				</button>
 			</div>
 			<div>
-				<h3 class="text-md font-bold mb-2">Output:</h3>
-				<pre
-					class="h-40 bg-gray-800 border border-gray-700 p-3 rounded font-mono text-sm overflow-y-auto">{codeOutput}</pre>
+				<h3 class="section-title text-md font-semibold mb-2">Output:</h3>
+				<pre class="output-pre h-40 p-3 rounded font-mono text-sm overflow-y-auto">{codeOutput}</pre>
 			</div>
 		</div>
 	</div>
 
 	<div class="mt-12 text-center">
-		<p class="text-gray-600">
+		<p class="muted-text text-sm">
 			This is a simple JavaScript playground. For security reasons, some features may be limited.
 		</p>
 	</div>
 </div>
 
 <style>
-	/* Add any additional styles if needed */
 	pre {
 		white-space: pre-wrap;
 		word-break: break-word;
+	}
+
+	.back-link {
+		color: var(--color-muted);
+	}
+	.back-link:hover {
+		color: var(--color-accent);
+	}
+	.page-title {
+		color: var(--color-text);
+	}
+	.page-description {
+		color: var(--color-muted);
+	}
+	.section-title {
+		color: var(--color-text);
+	}
+	.body-text {
+		color: var(--color-text);
+	}
+	.muted-text {
+		color: var(--color-muted);
+	}
+	.panel {
+		border: 1px solid var(--color-border);
+	}
+	.tab-bar {
+		border-bottom: 1px solid var(--color-border);
+	}
+	.tab {
+		color: var(--color-muted);
+		transition: color 150ms ease;
+	}
+	.tab:hover {
+		color: var(--color-text);
+	}
+	.tab-active {
+		color: var(--color-accent);
+		border-bottom: 2px solid var(--color-accent);
+	}
+	.code-block {
+		background-color: color-mix(in srgb, var(--color-border) 30%, var(--color-bg));
+	}
+	.code-pre {
+		background-color: var(--color-bg);
+		color: var(--color-text);
+		border: 1px solid var(--color-border);
+	}
+	.load-btn {
+		color: var(--color-accent);
+		border: 1px solid var(--color-border);
+		transition: border-color 150ms ease;
+	}
+	.load-btn:hover {
+		border-color: var(--color-accent);
+	}
+	.editor {
+		background-color: var(--color-bg);
+		color: var(--color-text);
+		border: 1px solid var(--color-border);
+	}
+	.editor:focus {
+		border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+		outline: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+	}
+	.run-btn {
+		background-color: var(--color-accent);
+		color: white;
+	}
+	.run-btn:hover {
+		background-color: color-mix(in srgb, var(--color-accent) 85%, white);
+	}
+	.output-pre {
+		background-color: var(--color-bg);
+		color: var(--color-text);
+		border: 1px solid var(--color-border);
 	}
 </style>
