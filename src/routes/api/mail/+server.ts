@@ -21,22 +21,18 @@ const config: SMTPTransport.Options = {
 
 const transporter = nodemailer.createTransport(config);
 
-// export function GET(req: Request, res: Response) {
 export async function POST({ request }: { request: Request }) {
 	const payload = await request.json();
 
 	const body = `Name: ${payload.name}\nEmail: ${payload.email}\nMessage: ${payload.message}`;
 
 	try {
-		const info = await transporter.sendMail({
-			from: EMAIL_FROM, // sender address
-			to: EMAIL_TO, // list of receivers
-			subject: `Hello from ${payload.name}`, // Subject line
+		await transporter.sendMail({
+			from: EMAIL_FROM,
+			to: EMAIL_TO,
+			subject: `Hello from ${payload.name}`,
 			text: body
 		});
-
-		console.log('Message sent: %s', info.messageId);
-		// Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
 
 		return new Response('success', {
 			status: 200,
