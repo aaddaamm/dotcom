@@ -42,10 +42,8 @@
 				financial systems, and full-stack applications across a variety of domains.
 			</p>
 			<p>
-				I'm particularly interested in software that enables teams—tools that help people design,
-				create, and operate more effectively. I'm particularly drawn to software that enables
-				creative and cross-disciplinary teams — tools that connect how people think and work with
-				the systems that support them.
+				I'm particularly drawn to software that enables creative and cross-disciplinary teams —
+				tools that connect how people think and work with the systems that support them.
 			</p>
 		</div>
 	</section>
