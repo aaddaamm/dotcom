@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { dev } from '$app/environment';
 	import { afterNavigate } from '$app/navigation';
 	import { inject } from '@vercel/analytics';
@@ -7,6 +8,8 @@
 	import '@fontsource/jetbrains-mono/400.css';
 	import '../app.css';
 	import Footer from '../components/footer.svelte';
+
+	let { children }: { children: Snippet } = $props();
 
 	setTimeout(() => {
 		injectSpeedInsights();
@@ -46,7 +49,7 @@
 		</div>
 	</header>
 	<main id="main-content" class="flex-1">
-		<slot />
+		{@render children()}
 	</main>
 	<Footer />
 </div>
