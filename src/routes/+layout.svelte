@@ -33,12 +33,12 @@
 				<img
 					src="/logo-dark.svg"
 					alt="Adam Robinson"
-					class="h-7 hidden sm:block logo-wordmark"
+					class="h-8 hidden sm:block logo-wordmark"
 				/>
 				<img
 					src="/icon.svg"
 					alt="Adam Robinson"
-					class="h-7 block sm:hidden"
+					class="h-8 block sm:hidden"
 				/>
 			</a>
 
