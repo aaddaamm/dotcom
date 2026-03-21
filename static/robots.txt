@@ -1,3 +1,4 @@
 User-agent: *
 Disallow: /api/
+Allow: /api/sitemap
 Sitemap: https://adamrobinson.tech/api/sitemap

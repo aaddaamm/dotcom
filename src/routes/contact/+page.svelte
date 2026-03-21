@@ -44,9 +44,9 @@
 
 <svelte:head>
 	<title>Contact — Adam Robinson</title>
-	<meta name="description" content="Get in touch with Adam Robinson." />
+	<meta name="description" content="Get in touch with Adam Robinson, Lead Software Engineer specializing in backend systems and workflow-driven platforms." />
 	<meta property="og:title" content="Contact — Adam Robinson" />
-	<meta property="og:description" content="Get in touch with Adam Robinson." />
+	<meta property="og:description" content="Get in touch with Adam Robinson, Lead Software Engineer specializing in backend systems and workflow-driven platforms." />
 	<meta property="og:image" content="https://adamrobinson.tech/og-card.png" />
 	<meta property="og:url" content="https://adamrobinson.tech/contact" />
 	<meta name="twitter:card" content="summary_large_image" />

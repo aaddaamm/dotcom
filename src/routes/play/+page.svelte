@@ -4,11 +4,11 @@
 
 <svelte:head>
 	<title>Reading — Adam Robinson</title>
-	<meta name="description" content="What Adam Robinson is currently reading and has finished." />
+	<meta name="description" content="Books Adam Robinson is currently reading and recently finished — a curated reading list spanning software engineering, design, and more." />
 	<meta property="og:title" content="Reading — Adam Robinson" />
 	<meta
 		property="og:description"
-		content="What Adam Robinson is currently reading and has finished."
+		content="Books Adam Robinson is currently reading and recently finished — a curated reading list spanning software engineering, design, and more."
 	/>
 	<meta property="og:image" content="https://adamrobinson.tech/og-card.png" />
 	<meta property="og:url" content="https://adamrobinson.tech/play" />

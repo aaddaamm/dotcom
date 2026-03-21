@@ -144,7 +144,7 @@
 				<a
 					href="https://github.com/aaddaamm"
 					target="_blank"
-					rel="noopener noreferrer"
+					rel="noopener noreferrer me"
 					class="contact-link"
 				>
 					github.com/aaddaamm
@@ -154,7 +154,7 @@
 				<a
 					href="https://linkedin.com/in/adam-robinson-software"
 					target="_blank"
-					rel="noopener noreferrer"
+					rel="noopener noreferrer me"
 					class="contact-link"
 				>
 					linkedin.com/in/adam-robinson-software

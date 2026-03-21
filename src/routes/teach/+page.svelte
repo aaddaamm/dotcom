@@ -134,9 +134,9 @@ console.log("The room area is " + area + " square feet");`
 
 <svelte:head>
 	<title>Teach — Adam Robinson</title>
-	<meta name="description" content="Interactive programming lessons by Adam Robinson." />
+	<meta name="description" content="Interactive JavaScript programming lessons and exercises by Adam Robinson. Learn fundamentals through hands-on coding in the browser." />
 	<meta property="og:title" content="Teach — Adam Robinson" />
-	<meta property="og:description" content="Interactive programming lessons by Adam Robinson." />
+	<meta property="og:description" content="Interactive JavaScript programming lessons and exercises by Adam Robinson. Learn fundamentals through hands-on coding in the browser." />
 	<meta property="og:image" content="https://adamrobinson.tech/og-card.png" />
 	<meta property="og:url" content="https://adamrobinson.tech/teach" />
 	<meta name="twitter:card" content="summary_large_image" />
