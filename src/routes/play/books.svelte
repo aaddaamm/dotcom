@@ -18,15 +18,17 @@
 			.then((r) => r.json())
 			.then((books) => {
 				currentlyReading = books;
-				isFetchingCurrent = false;
-			});
+			})
+			.catch((e) => console.error('Failed to fetch currently reading:', e))
+			.finally(() => (isFetchingCurrent = false));
 
 		fetch('/api/goodreads/read')
 			.then((r) => r.json())
 			.then((books) => {
 				readBooks = books;
-				isFetchingRead = false;
-			});
+			})
+			.catch((e) => console.error('Failed to fetch read books:', e))
+			.finally(() => (isFetchingRead = false));
 	});
 
 	let visibleReadBooks = $derived(showAllRead ? readBooks : readBooks.slice(0, READ_PREVIEW_COUNT));
