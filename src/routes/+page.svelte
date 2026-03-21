@@ -1,7 +1,3 @@
-<script lang="ts">
-	import Footer from '../components/footer.svelte';
-</script>
-
 <svelte:head>
 	<title>Adam Robinson — Lead Software Engineer</title>
 	<meta
@@ -170,8 +166,6 @@
 		<p class="text-sm mt-6 muted-text">Based in Providence, RI — open to relocation.</p>
 	</section>
 </div>
-
-<Footer />
 
 <style>
 	.hero-cursor {

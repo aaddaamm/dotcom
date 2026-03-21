@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Footer from '../../components/footer.svelte';
 	import Books from './books.svelte';
 </script>
 
@@ -33,8 +32,6 @@
 		<Books />
 	</section>
 </div>
-
-<Footer />
 
 <style>
 	.back-link {

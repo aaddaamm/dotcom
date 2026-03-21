@@ -6,6 +6,7 @@
 	import '@fontsource/jetbrains-mono/500.css';
 	import '@fontsource/jetbrains-mono/400.css';
 	import '../app.css';
+	import Footer from '../components/footer.svelte';
 
 	injectSpeedInsights();
 	inject({ mode: dev ? 'development' : 'production' });
@@ -56,6 +57,7 @@
 	<main id="main-content" class="flex-1">
 		<slot />
 	</main>
+	<Footer />
 </div>
 
 <style>
