@@ -40,7 +40,9 @@
 		property="og:description"
 		content="Professional experience and technical skills of Adam Robinson."
 	/>
+	<meta property="og:image" content="https://adamrobinson.tech/og-card.png" />
 	<meta property="og:url" content="https://adamrobinson.tech/work" />
+	<meta name="twitter:card" content="summary_large_image" />
 	<link rel="canonical" href="https://adamrobinson.tech/work" />
 </svelte:head>
 

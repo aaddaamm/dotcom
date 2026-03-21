@@ -47,7 +47,9 @@
 	<meta name="description" content="Get in touch with Adam Robinson." />
 	<meta property="og:title" content="Contact — Adam Robinson" />
 	<meta property="og:description" content="Get in touch with Adam Robinson." />
+	<meta property="og:image" content="https://adamrobinson.tech/og-card.png" />
 	<meta property="og:url" content="https://adamrobinson.tech/contact" />
+	<meta name="twitter:card" content="summary_large_image" />
 	<link rel="canonical" href="https://adamrobinson.tech/contact" />
 </svelte:head>
 

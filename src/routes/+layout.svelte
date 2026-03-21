@@ -3,6 +3,8 @@
 	import { afterNavigate } from '$app/navigation';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import '@fontsource/jetbrains-mono/500.css';
+	import '@fontsource/jetbrains-mono/400.css';
 	import '../app.css';
 
 	injectSpeedInsights();
@@ -21,51 +23,92 @@
 	});
 </script>
 
-<div class="min-h-screen flex flex-col font-sans">
-	<header class="sticky top-0 z-50 border-b border-white/[0.06] bg-[#0a0a0f]/80 backdrop-blur-md">
-		<div class="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
-			<a
-				href="/"
-				class="text-sm font-semibold tracking-tight text-slate-100 hover:text-accent-400 transition-colors"
-			>
-				Adam Robinson
-				<span class="text-accent-500">.</span>
+<div class="min-h-screen flex flex-col">
+	<a href="#main-content" class="skip-link">Skip to content</a>
+	<header
+		class="sticky top-0 z-50 site-header"
+	>
+		<div class="max-w-3xl mx-auto flex items-center justify-between h-full header-inner">
+			<a href="/" aria-label="Adam Robinson — Home" class="flex items-center gap-3 shrink-0">
+				<img
+					src="/logo-dark.svg"
+					alt="Adam Robinson"
+					class="h-7 hidden sm:block logo-wordmark"
+				/>
+				<img
+					src="/icon.svg"
+					alt="Adam Robinson"
+					class="h-7 block sm:hidden"
+				/>
 			</a>
-			<nav class="flex items-center gap-6">
-				<a href="/#about" class="text-sm text-slate-400 hover:text-accent-400 transition-colors">
-					About
-				</a>
-				<a href="/#work" class="text-sm text-slate-400 hover:text-accent-400 transition-colors">
-					Work
-				</a>
-				<a href="/#approach" class="text-sm text-slate-400 hover:text-accent-400 transition-colors">
-					Approach
-				</a>
-				<a href="/play" class="text-sm text-slate-400 hover:text-accent-400 transition-colors">
-					Reading
-				</a>
-				<a href="/#contact" class="text-sm text-slate-400 hover:text-accent-400 transition-colors">
-					Contact
-				</a>
-				<a
-					href="https://github.com/aaddaamm"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="text-sm text-slate-500 hover:text-accent-400 transition-colors"
-					aria-label="GitHub"
-				>
-					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-						<path
-							fill-rule="evenodd"
-							d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-							clip-rule="evenodd"
-						/>
-					</svg>
-				</a>
-			</nav>
+
+			<div class="flex items-center gap-6">
+				<div class="hidden sm:block nav-divider" aria-hidden="true"></div>
+				<nav aria-label="Main navigation" class="flex items-center gap-6">
+					<a href="/#about" class="nav-link">about</a>
+					<a href="/#work" class="nav-link">work</a>
+					<a href="/#approach" class="nav-link">approach</a>
+					<a href="/#contact" class="nav-link">contact</a>
+				</nav>
+			</div>
 		</div>
 	</header>
-	<main class="flex-1">
+	<main id="main-content" class="flex-1">
 		<slot />
 	</main>
 </div>
+
+<style>
+	.site-header {
+		height: 56px;
+		background-color: var(--color-bg);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.header-inner {
+		padding: 0 24px;
+	}
+
+	.logo-wordmark {
+		min-width: 240px;
+	}
+
+	.nav-divider {
+		width: 1px;
+		height: 24px;
+		background-color: var(--color-border);
+	}
+
+	.nav-link {
+		font-size: 12px;
+		color: var(--color-muted);
+		transition: color 150ms ease;
+	}
+
+	.nav-link:hover {
+		color: var(--color-text);
+	}
+
+	.nav-link:focus-visible {
+		outline: 2px solid var(--color-accent);
+		outline-offset: 2px;
+		border-radius: 2px;
+	}
+
+	.skip-link {
+		position: absolute;
+		top: -100%;
+		left: 16px;
+		z-index: 100;
+		padding: 8px 16px;
+		font-size: 14px;
+		background-color: var(--color-accent);
+		color: #fff;
+		border-radius: 4px;
+		text-decoration: none;
+	}
+
+	.skip-link:focus {
+		top: 8px;
+	}
+</style>

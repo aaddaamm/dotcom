@@ -2,6 +2,7 @@
 
 @theme {
 	--font-sans: 'Inter', system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
 
 	--color-accent-50: #f0f9ff;
 	--color-accent-100: #e0f2fe;
@@ -22,6 +23,22 @@
 	font-display: swap;
 }
 
+:root {
+	--color-bg: #fafafa;
+	--color-text: #0a0a0a;
+	--color-accent: #2a7a7a;
+	--color-muted: #aaaaaa;
+	--color-border: #ebebeb;
+}
+
+[data-theme='dark'] {
+	--color-bg: #0a0a0a;
+	--color-text: #ffffff;
+	--color-accent: #3aafa9;
+	--color-muted: #444444;
+	--color-border: #1a1a1a;
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -35,11 +52,63 @@ body {
 }
 
 body {
-	background-color: #0a0a0f;
-	color: #e2e8f0;
+	background-color: var(--color-bg);
+	color: var(--color-text);
+	font-family: 'Inter', system-ui, sans-serif;
+}
+
+h1 {
+	font-size: 36px;
+	font-weight: 500;
+	letter-spacing: -0.5px;
+}
+
+h2 {
+	font-size: 24px;
+	font-weight: 500;
+}
+
+h3 {
+	font-size: 18px;
+	font-weight: 400;
+}
+
+p {
+	font-size: 16px;
+	line-height: 1.7;
+	color: var(--color-text);
 }
 
 ::selection {
-	background-color: rgba(14, 165, 233, 0.3);
-	color: #f8fafc;
+	background-color: rgba(58, 175, 169, 0.3);
+	color: #ffffff;
+}
+
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}
+
+.cursor-blink {
+	animation: blink 1s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cursor-blink {
+		animation: none;
+	}
+
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+:focus-visible {
+	outline: 2px solid var(--color-accent);
+	outline-offset: 2px;
 }

@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0A0A0A"/>
+  <!-- Subtle grid -->
+  <line x1="0" y1="105" x2="1200" y2="105" stroke="#111" stroke-width="1"/>
+  <line x1="0" y1="210" x2="1200" y2="210" stroke="#111" stroke-width="1"/>
+  <line x1="0" y1="315" x2="1200" y2="315" stroke="#111" stroke-width="1"/>
+  <line x1="0" y1="420" x2="1200" y2="420" stroke="#111" stroke-width="1"/>
+  <line x1="0" y1="525" x2="1200" y2="525" stroke="#111" stroke-width="1"/>
+  <line x1="200" y1="0" x2="200" y2="630" stroke="#111" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="630" stroke="#111" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="630" stroke="#111" stroke-width="1"/>
+  <line x1="800" y1="0" x2="800" y2="630" stroke="#111" stroke-width="1"/>
+  <line x1="1000" y1="0" x2="1000" y2="630" stroke="#111" stroke-width="1"/>
+  <!-- Cursor mark -->
+  <rect x="200" y="220" width="28" height="110" rx="4" fill="#3AAFA9"/>
+  <!-- Name -->
+  <text x="248" y="315" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="88" font-weight="500" fill="#FFFFFF" letter-spacing="-2">adam robinson</text>
+  <!-- Subtitle -->
+  <text x="250" y="368" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="20" letter-spacing="6" fill="#3AAFA9">LEAD SOFTWARE ENGINEER</text>
+  <!-- URL -->
+  <text x="250" y="406" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="18" letter-spacing="1" fill="#333">adamrobinson.tech</text>
+</svg>

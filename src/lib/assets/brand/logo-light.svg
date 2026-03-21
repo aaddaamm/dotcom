@@ -1,0 +1,6 @@
+<svg width="320" height="80" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="80" rx="0" fill="#FAFAFA"/>
+  <rect x="16" y="14" width="10" height="38" rx="2" fill="#2A7A7A"/>
+  <text x="36" y="48" font-family="'JetBrains Mono', 'Fira Mono', 'Courier New', monospace" font-size="30" font-weight="500" fill="#0A0A0A" letter-spacing="-0.8">adam robinson</text>
+  <text x="37" y="64" font-family="'JetBrains Mono', 'Fira Mono', 'Courier New', monospace" font-size="8" letter-spacing="3" fill="#2A7A7A">LEAD SOFTWARE ENGINEER</text>
+</svg>

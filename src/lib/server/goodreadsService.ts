@@ -33,8 +33,6 @@ export namespace GoodreadsService {
 			url,
 			rating: rating || undefined,
 			isbn,
-			isbn13: '',
-			asin: '',
 			dateStarted: dateAdded,
 			goodreadsID: parseInt(bookId)
 		};
@@ -79,16 +77,8 @@ export namespace GoodreadsService {
 		);
 	}
 
-	export async function fetchWantToReadShelf() {
-		return getBooksFromShelf(GOODREADS_SHELVES.WANT_TO_READ);
-	}
-
 	export async function fetchReadShelf() {
 		return getBooksFromShelf(GOODREADS_SHELVES.READ);
-	}
-
-	export async function fetchGaveUpOnShelf() {
-		return getBooksFromShelf(GOODREADS_SHELVES.GAVE_UP_ON);
 	}
 }
 
