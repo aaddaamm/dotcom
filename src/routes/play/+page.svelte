@@ -4,7 +4,10 @@
 
 <svelte:head>
 	<title>Reading — Adam Robinson</title>
-	<meta name="description" content="Books Adam Robinson is currently reading and recently finished — a curated reading list spanning software engineering, design, and more." />
+	<meta
+		name="description"
+		content="Books Adam Robinson is currently reading and recently finished — a curated reading list spanning software engineering, design, and more."
+	/>
 	<meta property="og:title" content="Reading — Adam Robinson" />
 	<meta
 		property="og:description"
@@ -18,10 +21,7 @@
 
 <div class="max-w-4xl mx-auto px-6">
 	<section class="pt-20 sm:pt-28">
-		<a
-			href="/"
-			class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors"
-		>
+		<a href="/" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
 			<span aria-hidden="true">&larr;</span>
 			Back
 		</a>

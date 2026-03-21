@@ -89,11 +89,11 @@ static/
 
 ## Commands
 
-| Command            | Purpose                      |
-| ------------------ | ---------------------------- |
-| `npm run dev`      | Dev server (opens browser)   |
-| `npx vite build`   | Production build             |
-| `npm run preview`  | Preview production build     |
-| `npm run check`    | Svelte + TypeScript checking |
-| `npm run lint`     | Prettier + ESLint            |
-| `npm run format`   | Auto-format with Prettier    |
+| Command           | Purpose                      |
+| ----------------- | ---------------------------- |
+| `npm run dev`     | Dev server (opens browser)   |
+| `npx vite build`  | Production build             |
+| `npm run preview` | Preview production build     |
+| `npm run check`   | Svelte + TypeScript checking |
+| `npm run lint`    | Prettier + ESLint            |
+| `npm run format`  | Auto-format with Prettier    |

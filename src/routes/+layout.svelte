@@ -28,21 +28,11 @@
 
 <div class="min-h-screen flex flex-col">
 	<a href="#main-content" class="skip-link">Skip to content</a>
-	<header
-		class="sticky top-0 z-50 site-header"
-	>
+	<header class="sticky top-0 z-50 site-header">
 		<div class="max-w-3xl mx-auto flex items-center justify-between h-full header-inner">
 			<a href="/" aria-label="Adam Robinson — Home" class="flex items-center gap-3 shrink-0">
-				<img
-					src="/logo-dark.svg"
-					alt="Adam Robinson"
-					class="h-8 hidden sm:block logo-wordmark"
-				/>
-				<img
-					src="/icon.svg"
-					alt="Adam Robinson"
-					class="h-8 block sm:hidden"
-				/>
+				<img src="/logo-dark.svg" alt="Adam Robinson" class="h-8 hidden sm:block logo-wordmark" />
+				<img src="/icon.svg" alt="Adam Robinson" class="h-8 block sm:hidden" />
 			</a>
 
 			<div class="flex items-center gap-6">

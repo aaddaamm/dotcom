@@ -95,7 +95,8 @@ console.log("The room area is " + area + " square feet");`
 
 			window.addEventListener('message', handleMessage);
 
-			const sandboxCode = `
+			const sandboxCode =
+				`
 				<script>
 					const originalLog = console.log;
 					console.log = (...args) => {
@@ -107,7 +108,8 @@ console.log("The room area is " + area + " square feet");`
 					} catch (e) {
 						parent.postMessage({ type: 'error', data: e.message }, '*');
 					}
-				</` + `script>
+				</` +
+				`script>
 			`;
 
 			sandboxIframe.srcdoc = sandboxCode;
@@ -134,9 +136,15 @@ console.log("The room area is " + area + " square feet");`
 
 <svelte:head>
 	<title>Teach — Adam Robinson</title>
-	<meta name="description" content="Interactive JavaScript programming lessons and exercises by Adam Robinson. Learn fundamentals through hands-on coding in the browser." />
+	<meta
+		name="description"
+		content="Interactive JavaScript programming lessons and exercises by Adam Robinson. Learn fundamentals through hands-on coding in the browser."
+	/>
 	<meta property="og:title" content="Teach — Adam Robinson" />
-	<meta property="og:description" content="Interactive JavaScript programming lessons and exercises by Adam Robinson. Learn fundamentals through hands-on coding in the browser." />
+	<meta
+		property="og:description"
+		content="Interactive JavaScript programming lessons and exercises by Adam Robinson. Learn fundamentals through hands-on coding in the browser."
+	/>
 	<meta property="og:image" content="https://adamrobinson.tech/og-card.png" />
 	<meta property="og:url" content="https://adamrobinson.tech/teach" />
 	<meta name="twitter:card" content="summary_large_image" />
@@ -144,10 +152,7 @@ console.log("The room area is " + area + " square feet");`
 </svelte:head>
 
 <div class="max-w-5xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
-	<a
-		href="/"
-		class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors"
-	>
+	<a href="/" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
 		<span aria-hidden="true">&larr;</span>
 		Back
 	</a>
@@ -173,7 +178,9 @@ console.log("The room area is " + area + " square feet");`
 			</div>
 
 			<div>
-				<h2 class="section-title text-xl font-semibold mb-3">{lesson.sections[selectedSection].title}</h2>
+				<h2 class="section-title text-xl font-semibold mb-3">
+					{lesson.sections[selectedSection].title}
+				</h2>
 				<p class="body-text mb-6 leading-relaxed">
 					{lesson.sections[selectedSection].content}
 				</p>
@@ -181,11 +188,16 @@ console.log("The room area is " + area + " square feet");`
 				<div class="rounded-md p-4 mb-4 code-block">
 					<div class="flex justify-between items-center mb-2">
 						<h3 class="text-sm font-semibold muted-text">Example Code</h3>
-						<button class="load-btn px-2 py-1 rounded text-sm" onclick={() => loadExample(selectedSection)}>
+						<button
+							class="load-btn px-2 py-1 rounded text-sm"
+							onclick={() => loadExample(selectedSection)}
+						>
 							Load Example
 						</button>
 					</div>
-					<pre class="text-sm p-3 rounded overflow-x-auto code-pre"><code>{lesson.sections[selectedSection].codeExample}</code></pre>
+					<pre class="text-sm p-3 rounded overflow-x-auto code-pre"><code>{lesson.sections[
+								selectedSection
+							].codeExample}</code></pre>
 				</div>
 			</div>
 		</div>
@@ -210,7 +222,8 @@ console.log("The room area is " + area + " square feet");`
 			</div>
 			<div>
 				<h3 class="section-title text-md font-semibold mb-2">Output:</h3>
-				<pre class="output-pre h-40 p-3 rounded font-mono text-sm overflow-y-auto">{codeOutput}</pre>
+				<pre
+					class="output-pre h-40 p-3 rounded font-mono text-sm overflow-y-auto">{codeOutput}</pre>
 			</div>
 		</div>
 	</div>
