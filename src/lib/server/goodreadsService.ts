@@ -1,4 +1,5 @@
 import * as cheerio from 'cheerio';
+import type { AnyNode } from 'domhandler';
 import type { GoodreadsBook } from '$lib/types';
 import { GOODREADS_SHELVES } from '$lib/constants';
 
@@ -16,7 +17,10 @@ export namespace GoodreadsService {
 		return { title: rawTitle.trim() };
 	}
 
-	export function parseBookFromRSSItem(item: cheerio.Cheerio, _xml: cheerio.Root): GoodreadsBook {
+	export function parseBookFromRSSItem(
+		item: cheerio.Cheerio<AnyNode>,
+		_xml: cheerio.CheerioAPI
+	): GoodreadsBook {
 		const rawTitle = item.find('title').text();
 		const { title, series } = parseTitleAndSeries(rawTitle);
 		const author = item.find('author_name').text();
