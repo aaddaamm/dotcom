@@ -1,10 +1,10 @@
 <script lang="ts">
-	let name: string = '';
-	let email: string = '';
-	let message: string = '';
-	let isSubmitting: boolean = false;
-	let status: 'idle' | 'success' | 'error' = 'idle';
-	let statusMessage: string = '';
+	let name = $state('');
+	let email = $state('');
+	let message = $state('');
+	let isSubmitting = $state(false);
+	let status: 'idle' | 'success' | 'error' = $state('idle');
+	let statusMessage = $state('');
 
 	async function submitForm() {
 		isSubmitting = true;
@@ -73,7 +73,7 @@
 		</div>
 	{/if}
 
-	<form class="flex flex-col sm:max-w-md" on:submit|preventDefault={submitForm}>
+	<form class="flex flex-col sm:max-w-md" onsubmit={(e) => { e.preventDefault(); submitForm(); }}>
 		<label class="block mb-5">
 			<span class="form-label text-sm mb-1.5 block">Name</span>
 			<input
