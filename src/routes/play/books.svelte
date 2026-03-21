@@ -201,6 +201,8 @@
 
 	.book-card {
 		transition: transform 0.2s ease;
+		content-visibility: auto;
+		contain-intrinsic-size: auto 200px 350px;
 	}
 
 	.book-card:hover {

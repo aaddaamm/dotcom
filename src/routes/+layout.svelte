@@ -8,8 +8,10 @@
 	import '../app.css';
 	import Footer from '../components/footer.svelte';
 
-	injectSpeedInsights();
-	inject({ mode: dev ? 'development' : 'production' });
+	setTimeout(() => {
+		injectSpeedInsights();
+		inject({ mode: dev ? 'development' : 'production' });
+	}, 0);
 
 	afterNavigate((navigation) => {
 		const hash = navigation.to?.url.hash;

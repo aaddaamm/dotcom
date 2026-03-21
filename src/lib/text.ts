@@ -1,11 +1,24 @@
-import { sleep } from '$lib/helpers';
 import { type Element } from '$lib/types';
 
-const sleep_time = 2;
+const CHAR_DELAY = 2;
+const BATCH_DELAY = 4;
+
+function waitFrame(): Promise<void> {
+	return new Promise((resolve) => requestAnimationFrame(() => resolve()));
+}
+
+function waitMs(ms: number): Promise<void> {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 export async function renderText(text: string, node: HTMLElement, target: HTMLElement) {
+	let lastFrame = performance.now();
 	for (let i = 0; i < text.length; i++) {
-		await sleep(sleep_time);
+		const now = performance.now();
+		if (now - lastFrame >= CHAR_DELAY) {
+			await waitFrame();
+			lastFrame = performance.now();
+		}
 		node.appendChild(document.createTextNode(text[i]));
 		target.appendChild(node);
 	}
@@ -18,8 +31,6 @@ function setElementProps(el: HTMLElement, props: Record<string, string>) {
 }
 
 export async function renderElement(node: Element, parent: HTMLElement) {
-	// i need to iterate over each character in the line
-	// so that i can slowly render the text to the screen
 	const el = document.createElement(node.type);
 
 	if (node.props) {
@@ -35,7 +46,6 @@ export async function renderElement(node: Element, parent: HTMLElement) {
 				await renderText(child, el, parent);
 				continue;
 			}
-			// recursive call for nested elements
 			await renderElement(child, el);
 		}
 		return;
@@ -58,6 +68,6 @@ export async function renderElement(node: Element, parent: HTMLElement) {
 export async function renderElements(nodes: Element[], parent: HTMLElement) {
 	for (const node of nodes) {
 		await renderElement(node, parent);
-		await sleep(sleep_time * 2);
+		await waitMs(BATCH_DELAY);
 	}
 }
