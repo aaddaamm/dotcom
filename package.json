@@ -42,7 +42,6 @@
 		"@tailwindcss/vite": "^4.2.2",
 		"@vercel/analytics": "^2.0.1",
 		"@vercel/speed-insights": "^2.0.0",
-		"axios": "^1.6.8",
 		"cheerio": "^1.0.0",
 		"nodemailer": "^8.0.3",
 		"sitemap": "^9.0.1",

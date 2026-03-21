@@ -5,7 +5,14 @@
 	import { workCopy } from '$lib/copy';
 	import type { Element } from '$lib/types';
 
+	let animated = $state(false);
+
 	onMount(async () => {
+		const staticContent = document.getElementById('work-static');
+		if (staticContent) staticContent.remove();
+
+		animated = true;
+
 		await sleep(80);
 		const commandRenderTarget = document.getElementById('command') || document.createElement('div');
 		const element: Element = {
@@ -46,11 +53,33 @@
 	<link rel="canonical" href="https://adamrobinson.tech/work" />
 </svelte:head>
 
+{#if !animated}
+	<div id="work-static">
+		{#each workCopy as node}
+			{#if typeof node.children === 'string'}
+				<svelte:element this={node.type} {...node.props}>{node.children}</svelte:element>
+			{:else if Array.isArray(node.children)}
+				<svelte:element this={node.type} {...node.props}>
+					{#each node.children as child}
+						{#if typeof child === 'string'}
+							{child}
+						{:else}
+							<svelte:element this={child.type} {...(child.props || {})}>{typeof child.children === 'string' ? child.children : ''}</svelte:element>
+						{/if}
+					{/each}
+				</svelte:element>
+			{/if}
+		{/each}
+	</div>
+{/if}
+
 <div>
 	<div id="work-render-target"></div>
-	<span>&gt;</span>
-	<span id="command"></span>
-	<span class="blinking-cursor">|</span>
+	{#if animated}
+		<span>&gt;</span>
+		<span id="command"></span>
+		<span class="blinking-cursor">|</span>
+	{/if}
 </div>
 
 <style>

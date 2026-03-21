@@ -16,7 +16,8 @@ export async function GET() {
 	return new Response(sitemapData, {
 		status: 200,
 		headers: {
-			'Content-Type': 'application/xml'
+			'Content-Type': 'application/xml',
+			'Cache-Control': 's-maxage=86400, stale-while-revalidate=3600'
 		}
 	});
 }

@@ -1,9 +1,11 @@
 import * as cheerio from 'cheerio';
 import type { GoodreadsBook } from '$lib/types';
-import axios from 'axios';
 import { GOODREADS_SHELVES } from '$lib/constants';
 
 const RSS_BASE_URL = 'https://www.goodreads.com/review/list_rss/92024399';
+
+const cache = new Map<string, { data: GoodreadsBook[]; timestamp: number }>();
+const CACHE_TTL = 60 * 60 * 1000; // 1 hour
 
 export namespace GoodreadsService {
 	export function parseTitleAndSeries(rawTitle: string): { title: string; series?: string } {
@@ -39,8 +41,9 @@ export namespace GoodreadsService {
 	}
 
 	async function fetchRSSPage(shelf: GOODREADS_SHELVES, page: number): Promise<GoodreadsBook[]> {
-		const response = await axios(`${RSS_BASE_URL}?shelf=${shelf}&page=${page}`);
-		const xml = cheerio.load(response.data, { xmlMode: true });
+		const response = await fetch(`${RSS_BASE_URL}?shelf=${shelf}&page=${page}`);
+		const text = await response.text();
+		const xml = cheerio.load(text, { xmlMode: true });
 		const books: GoodreadsBook[] = [];
 
 		xml('item').each((_, elem) => {
@@ -53,6 +56,11 @@ export namespace GoodreadsService {
 
 	export async function getBooksFromShelf(shelf: GOODREADS_SHELVES): Promise<GoodreadsBook[]> {
 		try {
+			const cached = cache.get(shelf);
+			if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
+				return cached.data;
+			}
+
 			const allBooks: GoodreadsBook[] = [];
 			let page = 1;
 
@@ -62,6 +70,8 @@ export namespace GoodreadsService {
 				if (books.length < 100) break;
 				page++;
 			}
+
+			cache.set(shelf, { data: allBooks, timestamp: Date.now() });
 
 			return allBooks;
 		} catch (error) {

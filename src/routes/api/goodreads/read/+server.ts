@@ -6,7 +6,8 @@ export async function GET() {
 	return new Response(JSON.stringify(books), {
 		status: 200,
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
 		}
 	});
 }

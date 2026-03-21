@@ -56,12 +56,12 @@
 <div class="max-w-3xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
 	<a
 		href="/"
-		class="text-sm inline-flex items-center gap-1 mb-8 text-slate-500 hover:text-accent-400 transition-colors"
+		class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors"
 	>
 		<span aria-hidden="true">&larr;</span>
 		Back
 	</a>
-	<h1 class="text-3xl font-semibold tracking-tight text-slate-50 mb-8">Contact Me</h1>
+	<h1 class="page-title text-3xl font-semibold tracking-tight mb-8">Contact Me</h1>
 
 	{#if status !== 'idle'}
 		<div
@@ -75,27 +75,27 @@
 
 	<form class="flex flex-col sm:max-w-md" on:submit|preventDefault={submitForm}>
 		<label class="block mb-5">
-			<span class="text-sm text-slate-400 mb-1.5 block">Name</span>
+			<span class="form-label text-sm mb-1.5 block">Name</span>
 			<input
-				class="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:border-accent-500/50 focus:ring-1 focus:ring-accent-500/30 transition-colors"
+				class="form-input w-full rounded-lg border bg-white/[0.03] px-3 py-2.5 text-sm transition-colors"
 				type="text"
 				bind:value={name}
 				disabled={isSubmitting}
 			/>
 		</label>
 		<label class="block mb-5">
-			<span class="text-sm text-slate-400 mb-1.5 block">Email</span>
+			<span class="form-label text-sm mb-1.5 block">Email</span>
 			<input
-				class="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:border-accent-500/50 focus:ring-1 focus:ring-accent-500/30 transition-colors"
+				class="form-input w-full rounded-lg border bg-white/[0.03] px-3 py-2.5 text-sm transition-colors"
 				type="email"
 				bind:value={email}
 				disabled={isSubmitting}
 			/>
 		</label>
 		<label class="block mb-5">
-			<span class="text-sm text-slate-400 mb-1.5 block">Message</span>
+			<span class="form-label text-sm mb-1.5 block">Message</span>
 			<textarea
-				class="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2.5 text-sm text-slate-200 placeholder-slate-600 focus:border-accent-500/50 focus:ring-1 focus:ring-accent-500/30 transition-colors resize-none"
+				class="form-input w-full rounded-lg border bg-white/[0.03] px-3 py-2.5 text-sm transition-colors resize-none"
 				rows="4"
 				placeholder="Tell me what you'd like to discuss."
 				disabled={isSubmitting}
@@ -104,10 +104,43 @@
 		</label>
 		<button
 			type="submit"
-			class="rounded-lg bg-accent-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-accent-500 disabled:opacity-50 transition-colors"
+			class="submit-button rounded-lg px-5 py-2.5 text-sm font-medium disabled:opacity-50 transition-colors"
 			disabled={isSubmitting}
 		>
 			{isSubmitting ? 'Sending...' : 'Send Message'}
 		</button>
 	</form>
 </div>
+
+<style>
+	.back-link {
+		color: var(--color-muted);
+	}
+	.back-link:hover {
+		color: var(--color-accent);
+	}
+	.page-title {
+		color: var(--color-text);
+	}
+	.form-label {
+		color: var(--color-muted);
+	}
+	.form-input {
+		color: var(--color-text);
+		border-color: rgba(255, 255, 255, 0.08);
+	}
+	.form-input::placeholder {
+		color: var(--color-muted);
+	}
+	.form-input:focus {
+		border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+		outline: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+	}
+	.submit-button {
+		background-color: var(--color-accent);
+		color: white;
+	}
+	.submit-button:hover {
+		background-color: color-mix(in srgb, var(--color-accent) 85%, white);
+	}
+</style>

@@ -7,7 +7,8 @@ export async function GET() {
 		status: 200,
 		statusText: 'OK',
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
 		}
 	});
 }
