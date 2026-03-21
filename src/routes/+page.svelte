@@ -17,7 +17,7 @@
 
 <div class="max-w-3xl mx-auto px-6">
 	<!-- Hero -->
-	<section aria-label="Introduction" class="pt-20 sm:pt-28 pb-12">
+	<section aria-label="Introduction" class="pt-20 sm:pt-28 pb-10">
 		<div class="flex items-center gap-4 mb-4">
 			<div class="hero-cursor cursor-blink" aria-hidden="true"></div>
 			<h1 class="hero-name font-mono">adam robinson</h1>
@@ -30,7 +30,7 @@
 	</section>
 
 	<!-- About -->
-	<section id="about" aria-labelledby="about-heading" class="py-16 section-border">
+	<section id="about" aria-labelledby="about-heading" class="py-14 section-border">
 		<h2 id="about-heading" class="section-heading">
 			About
 			<span class="accent-dot" aria-hidden="true">.</span>
@@ -183,7 +183,7 @@
 	}
 
 	.hero-subtitle {
-		font-size: 10px;
+		font-size: 14px;
 		font-weight: 500;
 		letter-spacing: 3px;
 		color: var(--color-accent);
