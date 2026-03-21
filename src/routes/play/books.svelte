@@ -68,9 +68,9 @@
 						href={book.url}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="book-card group rounded-lg overflow-hidden border border-white/[0.06] bg-white/[0.02] hover:border-accent-500/20 transition-all"
+						class="book-card group rounded-lg overflow-hidden border border-white/6 bg-white/2 hover:border-accent-500/20 transition-all"
 					>
-						<div class="aspect-[2/3] overflow-hidden bg-white/[0.03]">
+						<div class="aspect-2/3 overflow-hidden bg-white/3">
 							{#if book.cover}
 								<img
 									class="w-full h-full object-cover book-img"
@@ -100,7 +100,7 @@
 		<div class="flex items-baseline gap-3 mb-2">
 			<h2 class="text-xl font-semibold tracking-tight text-slate-50">Read</h2>
 			{#if !isFetchingRead && readBooks.length > 0}
-				<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-white/[0.06] text-slate-400">
+				<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-white/6 text-slate-400">
 					{readBooks.length}
 				</span>
 			{/if}
@@ -110,17 +110,17 @@
 		{#if isFetchingRead}
 			<div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
 				{#each Array(6) as _}
-					<div class="rounded-lg overflow-hidden border border-white/[0.06] animate-pulse">
-						<div class="aspect-[2/3] bg-white/[0.03]"></div>
+					<div class="rounded-lg overflow-hidden border border-white/6 animate-pulse">
+						<div class="aspect-2/3 bg-white/3"></div>
 						<div class="p-2 space-y-1">
-							<div class="h-2.5 bg-white/[0.06] rounded w-3/4"></div>
-							<div class="h-2.5 bg-white/[0.06] rounded w-1/2"></div>
+							<div class="h-2.5 bg-white/6 rounded w-3/4"></div>
+							<div class="h-2.5 bg-white/6 rounded w-1/2"></div>
 						</div>
 					</div>
 				{/each}
 			</div>
 		{:else if readBooks.length === 0}
-			<div class="rounded-lg border border-white/[0.06] bg-white/[0.02] p-8 text-center">
+			<div class="rounded-lg border border-white/6 bg-white/2 p-8 text-center">
 				<p class="text-slate-500">No books on the read shelf yet.</p>
 			</div>
 		{:else}
@@ -130,9 +130,9 @@
 						href={book.url}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="book-card group rounded-lg overflow-hidden border border-white/[0.06] bg-white/[0.02] hover:border-accent-500/20 transition-all"
+						class="book-card group rounded-lg overflow-hidden border border-white/6 bg-white/2 hover:border-accent-500/20 transition-all"
 					>
-						<div class="aspect-[2/3] overflow-hidden bg-white/[0.03]">
+						<div class="aspect-2/3 overflow-hidden bg-white/3">
 							{#if book.cover}
 								<img
 									class="w-full h-full object-cover book-img"
@@ -151,7 +151,7 @@
 								<div class="flex gap-0.5 mt-1">
 									{#each Array(5) as _, i}
 										<span
-											class="text-[10px] {i < book.rating ? 'text-accent-400' : 'text-white/[0.1]'}"
+											class="text-[10px] {i < book.rating ? 'text-accent-400' : 'text-white/1'}"
 										>
 											★
 										</span>
@@ -165,7 +165,7 @@
 			{#if readBooks.length > READ_PREVIEW_COUNT}
 				<div class="flex justify-center pt-8">
 					<button
-						class="text-sm px-4 py-2 rounded-lg border border-white/[0.08] text-slate-400 hover:border-accent-500/30 hover:text-accent-400 transition-colors"
+						class="text-sm px-4 py-2 rounded-lg border border-white/8 text-slate-400 hover:border-accent-500/30 hover:text-accent-400 transition-colors"
 						on:click={() => (showAllRead = !showAllRead)}
 					>
 						{showAllRead ? 'Show less' : `Show all ${readBooks.length} books`}
