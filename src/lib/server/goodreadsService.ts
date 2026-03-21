@@ -16,7 +16,7 @@ export namespace GoodreadsService {
 		return { title: rawTitle.trim() };
 	}
 
-	export function parseBookFromRSSItem(item: cheerio.Cheerio, xml: cheerio.Root): GoodreadsBook {
+	export function parseBookFromRSSItem(item: cheerio.Cheerio, _xml: cheerio.Root): GoodreadsBook {
 		const rawTitle = item.find('title').text();
 		const { title, series } = parseTitleAndSeries(rawTitle);
 		const author = item.find('author_name').text();

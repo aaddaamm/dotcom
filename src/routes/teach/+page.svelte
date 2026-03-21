@@ -107,7 +107,7 @@ console.log("The room area is " + area + " square feet");`
 					} catch (e) {
 						parent.postMessage({ type: 'error', data: e.message }, '*');
 					}
-				<\/script>
+				</` + `script>
 			`;
 
 			sandboxIframe.srcdoc = sandboxCode;
