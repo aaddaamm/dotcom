@@ -6,6 +6,7 @@
 <SeoHead
 	title="Adam Robinson — Lead Software Engineer"
 	description="Lead Software Engineer building backend systems and workflow-driven platforms."
+	path="/"
 />
 
 <div class="max-w-3xl mx-auto px-6">
