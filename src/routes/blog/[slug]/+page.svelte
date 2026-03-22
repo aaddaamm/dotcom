@@ -10,6 +10,23 @@
 	path="/blog/{data.post.slug}"
 />
 
+<svelte:head>
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: data.post.title,
+		description: data.post.description,
+		datePublished: data.post.date,
+		author: {
+			'@type': 'Person',
+			name: 'Adam Robinson',
+			url: 'https://adamrobinson.tech'
+		},
+		url: `https://adamrobinson.tech/blog/${data.post.slug}`,
+		keywords: data.post.tags
+	})}</script>`}
+</svelte:head>
+
 <article class="max-w-3xl mx-auto px-6">
 	<div class="pt-20 sm:pt-28">
 		<a href="/blog" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
