@@ -63,6 +63,7 @@
 					<a href="/#about" class="nav-link">about</a>
 					<a href="/#work" class="nav-link">work</a>
 					<a href="/#approach" class="nav-link">approach</a>
+					<a href="/blog" class="nav-link">blog</a>
 					<a href="/play" class="nav-link">reading</a>
 					<a href="/teach" class="nav-link">teach</a>
 				</nav>
