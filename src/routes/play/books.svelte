@@ -1,43 +1,14 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import type { GoodreadsBook } from '$lib/types';
 
-	let currentlyReading: GoodreadsBook[] = $state([]);
-	let readBooks: GoodreadsBook[] = $state([]);
-	let isFetchingCurrent = $state(false);
-	let isFetchingRead = $state(false);
+	let {
+		currentlyReading,
+		readBooks
+	}: { currentlyReading: GoodreadsBook[]; readBooks: GoodreadsBook[] } = $props();
+
 	let showAllRead = $state(false);
 
 	const READ_PREVIEW_COUNT = 12;
-
-	async function fetchShelf(url: string): Promise<GoodreadsBook[]> {
-		const res = await fetch(url);
-		return res.json();
-	}
-
-	onMount(async () => {
-		isFetchingCurrent = true;
-		isFetchingRead = true;
-
-		const [currentResult, readResult] = await Promise.allSettled([
-			fetchShelf('/api/goodreads/currently-reading'),
-			fetchShelf('/api/goodreads/read')
-		]);
-
-		if (currentResult.status === 'fulfilled') {
-			currentlyReading = currentResult.value;
-		} else {
-			console.error('Failed to fetch currently reading:', currentResult.reason);
-		}
-		isFetchingCurrent = false;
-
-		if (readResult.status === 'fulfilled') {
-			readBooks = readResult.value;
-		} else {
-			console.error('Failed to fetch read books:', readResult.reason);
-		}
-		isFetchingRead = false;
-	});
 
 	let visibleReadBooks = $derived(showAllRead ? readBooks : readBooks.slice(0, READ_PREVIEW_COUNT));
 </script>
@@ -47,7 +18,7 @@
 	<section>
 		<div class="flex items-baseline gap-3 mb-2">
 			<h2 class="section-title text-xl font-semibold tracking-tight">Currently Reading</h2>
-			{#if !isFetchingCurrent && currentlyReading.length > 0}
+			{#if currentlyReading.length > 0}
 				<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-accent-500/10 accent-text">
 					{currentlyReading.length}
 				</span>
@@ -55,19 +26,7 @@
 		</div>
 		<p class="text-sm muted-text mb-6">What I'm working through right now.</p>
 
-		{#if isFetchingCurrent}
-			<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-				{#each Array(4) as _}
-					<div class="rounded-lg overflow-hidden border border-white/6 animate-pulse">
-						<div class="aspect-2/3 bg-white/3"></div>
-						<div class="p-3 space-y-2">
-							<div class="h-3 bg-white/6 rounded w-3/4"></div>
-							<div class="h-3 bg-white/6 rounded w-1/2"></div>
-						</div>
-					</div>
-				{/each}
-			</div>
-		{:else if currentlyReading.length === 0}
+		{#if currentlyReading.length === 0}
 			<div class="rounded-lg border border-white/6 bg-white/2 p-8 text-center">
 				<p class="muted-text">Not reading anything right now. Probably playing video games.</p>
 			</div>
@@ -109,7 +68,7 @@
 	<section>
 		<div class="flex items-baseline gap-3 mb-2">
 			<h2 class="section-title text-xl font-semibold tracking-tight">Read</h2>
-			{#if !isFetchingRead && readBooks.length > 0}
+			{#if readBooks.length > 0}
 				<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-white/6 muted-text">
 					{readBooks.length}
 				</span>
@@ -117,19 +76,7 @@
 		</div>
 		<p class="text-sm muted-text mb-6">Everything I've finished — rated and shelved.</p>
 
-		{#if isFetchingRead}
-			<div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-				{#each Array(6) as _}
-					<div class="rounded-lg overflow-hidden border border-white/6 animate-pulse">
-						<div class="aspect-2/3 bg-white/3"></div>
-						<div class="p-2 space-y-1">
-							<div class="h-2.5 bg-white/6 rounded w-3/4"></div>
-							<div class="h-2.5 bg-white/6 rounded w-1/2"></div>
-						</div>
-					</div>
-				{/each}
-			</div>
-		{:else if readBooks.length === 0}
+		{#if readBooks.length === 0}
 			<div class="rounded-lg border border-white/6 bg-white/2 p-8 text-center">
 				<p class="muted-text">No books on the read shelf yet.</p>
 			</div>

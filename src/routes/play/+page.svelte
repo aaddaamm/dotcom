@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Books from './books.svelte';
 	import SeoHead from '../../components/seo-head.svelte';
+
+	let { data } = $props();
 </script>
 
 <SeoHead
@@ -19,7 +21,7 @@
 		<p class="page-description leading-relaxed mb-12">
 			A live look at my Goodreads shelves — what I'm working through and everything I've finished.
 		</p>
-		<Books />
+		<Books currentlyReading={data.currentlyReading} readBooks={data.readBooks} />
 	</section>
 </div>
 
