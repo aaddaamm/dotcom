@@ -154,7 +154,7 @@
 				</a>
 			</li>
 		</ul>
-		<p class="text-sm mt-6 muted-text">Based in Providence, RI — open to relocation.</p>
+		<p class="text-sm mt-6 muted-text">Based in Providence, RI</p>
 	</section>
 </div>
 
