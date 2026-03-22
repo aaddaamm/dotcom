@@ -6,6 +6,7 @@ export async function GET() {
 	const now = new Date().toISOString().split('T')[0];
 
 	sitemap.write({ url: '/', changefreq: 'monthly', priority: 1.0, lastmod: now });
+	sitemap.write({ url: '/work', changefreq: 'monthly', priority: 0.8, lastmod: now });
 	sitemap.write({ url: '/play', changefreq: 'weekly', priority: 0.6, lastmod: now });
 	sitemap.write({ url: '/teach', changefreq: 'yearly', priority: 0.4, lastmod: now });
 
