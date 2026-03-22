@@ -31,11 +31,11 @@
 
 <div class="min-h-screen flex flex-col">
 	<a href="#main-content" class="skip-link">Skip to content</a>
-	<header class="sticky top-0 z-50 site-header">
+	<header class="sticky top-0 z-50 site-header align-middle">
 		<div class="max-w-3xl mx-auto flex items-center justify-between h-full header-inner">
 			<a href="/" aria-label="Adam Robinson — Home" class="flex items-center gap-3 shrink-0">
-				<img src="/logo-dark.svg" alt="Adam Robinson" class="h-8 hidden sm:block logo-wordmark" />
-				<img src="/icon.svg" alt="Adam Robinson" class="h-8 block sm:hidden" />
+				<img src="/logo-dark.svg" alt="Adam Robinson" class="h-10 hidden sm:block logo-wordmark" />
+				<img src="/icon.svg" alt="Adam Robinson" class="h-10 block sm:hidden" />
 			</a>
 
 			<div class="flex items-center gap-6">
@@ -79,10 +79,20 @@
 		font-size: 12px;
 		color: var(--color-muted);
 		transition: color 150ms ease;
+		text-decoration: none;
+		background-image: linear-gradient(var(--color-accent), var(--color-accent));
+		background-size: 0% 1.5px;
+		background-position: left bottom;
+		background-repeat: no-repeat;
+		padding-bottom: 2px;
+		transition:
+			color 150ms ease,
+			background-size 300ms ease;
 	}
 
 	.nav-link:hover {
 		color: var(--color-text);
+		background-size: 100% 1.5px;
 	}
 
 	.nav-link:focus-visible {
