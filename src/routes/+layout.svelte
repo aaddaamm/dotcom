@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { dev, browser } from '$app/environment';
+	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
@@ -13,11 +14,10 @@
 
 	let isDark = $state(true);
 
-	if (browser) {
+	onMount(() => {
 		const stored = localStorage.getItem('theme');
 		isDark = stored ? stored === 'dark' : true;
-		document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-	}
+	});
 
 	function toggleTheme() {
 		isDark = !isDark;
