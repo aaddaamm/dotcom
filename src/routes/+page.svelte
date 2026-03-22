@@ -83,6 +83,9 @@
 				</div>
 			{/each}
 		</div>
+		<a href="/work" class="inline-flex items-center gap-1 text-sm mt-6 accent-link">
+			View all work &rarr;
+		</a>
 	</section>
 
 	<!-- AI Section -->
@@ -118,9 +121,14 @@
 				These interests influence how I think about software—not just as systems, but as tools that
 				enable real-world and creative outcomes.
 			</p>
-			<a href="/play" class="inline-flex items-center gap-1 text-sm mt-2 accent-link">
-				See what I'm reading &rarr;
-			</a>
+			<div class="flex flex-col sm:flex-row gap-3 mt-4">
+				<a href="/play" class="inline-flex items-center gap-1 text-sm accent-link">
+					See what I'm reading &rarr;
+				</a>
+				<a href="/blog" class="inline-flex items-center gap-1 text-sm accent-link">
+					Read my blog &rarr;
+				</a>
+			</div>
 		</div>
 	</section>
 
