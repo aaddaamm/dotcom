@@ -18,8 +18,7 @@ export namespace GoodreadsService {
 	}
 
 	export function parseBookFromRSSItem(
-		item: cheerio.Cheerio<AnyNode>,
-		_xml: cheerio.CheerioAPI
+		item: cheerio.Cheerio<AnyNode>
 	): GoodreadsBook {
 		const rawTitle = item.find('title').text();
 		const { title, series } = parseTitleAndSeries(rawTitle);
@@ -52,7 +51,7 @@ export namespace GoodreadsService {
 
 		xml('item').each((_, elem) => {
 			const item = xml(elem);
-			books.push(parseBookFromRSSItem(item, xml));
+			books.push(parseBookFromRSSItem(item));
 		});
 
 		return books;

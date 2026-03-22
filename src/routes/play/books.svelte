@@ -10,25 +10,33 @@
 
 	const READ_PREVIEW_COUNT = 12;
 
+	async function fetchShelf(url: string): Promise<GoodreadsBook[]> {
+		const res = await fetch(url);
+		return res.json();
+	}
+
 	onMount(async () => {
 		isFetchingCurrent = true;
 		isFetchingRead = true;
 
-		fetch('/api/goodreads/currently-reading')
-			.then((r) => r.json())
-			.then((books) => {
-				currentlyReading = books;
-			})
-			.catch((e) => console.error('Failed to fetch currently reading:', e))
-			.finally(() => (isFetchingCurrent = false));
+		const [currentResult, readResult] = await Promise.allSettled([
+			fetchShelf('/api/goodreads/currently-reading'),
+			fetchShelf('/api/goodreads/read')
+		]);
 
-		fetch('/api/goodreads/read')
-			.then((r) => r.json())
-			.then((books) => {
-				readBooks = books;
-			})
-			.catch((e) => console.error('Failed to fetch read books:', e))
-			.finally(() => (isFetchingRead = false));
+		if (currentResult.status === 'fulfilled') {
+			currentlyReading = currentResult.value;
+		} else {
+			console.error('Failed to fetch currently reading:', currentResult.reason);
+		}
+		isFetchingCurrent = false;
+
+		if (readResult.status === 'fulfilled') {
+			readBooks = readResult.value;
+		} else {
+			console.error('Failed to fetch read books:', readResult.reason);
+		}
+		isFetchingRead = false;
 	});
 
 	let visibleReadBooks = $derived(showAllRead ? readBooks : readBooks.slice(0, READ_PREVIEW_COUNT));
@@ -194,20 +202,8 @@
 		transition: transform 0.3s ease;
 	}
 
-	.section-title {
-		color: var(--color-text);
-	}
-
 	.book-title {
 		color: var(--color-text);
-	}
-
-	.muted-text {
-		color: var(--color-muted);
-	}
-
-	.accent-text {
-		color: var(--color-accent);
 	}
 
 	.show-all-btn {

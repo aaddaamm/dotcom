@@ -1,4 +1,6 @@
 <script lang="ts">
+	import SeoHead from '../../components/seo-head.svelte';
+
 	const lesson = {
 		title: 'Introduction to Programming',
 		sections: [
@@ -134,22 +136,11 @@ console.log("The room area is " + area + " square feet");`
 	}
 </script>
 
-<svelte:head>
-	<title>Teach — Adam Robinson</title>
-	<meta
-		name="description"
-		content="Interactive JavaScript programming lessons and exercises by Adam Robinson. Learn fundamentals through hands-on coding in the browser."
-	/>
-	<meta property="og:title" content="Teach — Adam Robinson" />
-	<meta
-		property="og:description"
-		content="Interactive JavaScript programming lessons and exercises by Adam Robinson. Learn fundamentals through hands-on coding in the browser."
-	/>
-	<meta property="og:image" content="https://adamrobinson.tech/og-card.png" />
-	<meta property="og:url" content="https://adamrobinson.tech/teach" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<link rel="canonical" href="https://adamrobinson.tech/teach" />
-</svelte:head>
+<SeoHead
+	title="Teach — Adam Robinson"
+	description="Interactive JavaScript programming lessons and exercises by Adam Robinson. Learn fundamentals through hands-on coding in the browser."
+	path="/teach"
+/>
 
 <div class="max-w-5xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
 	<a href="/" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
@@ -241,27 +232,6 @@ console.log("The room area is " + area + " square feet");`
 		word-break: break-word;
 	}
 
-	.back-link {
-		color: var(--color-muted);
-	}
-	.back-link:hover {
-		color: var(--color-accent);
-	}
-	.page-title {
-		color: var(--color-text);
-	}
-	.page-description {
-		color: var(--color-muted);
-	}
-	.section-title {
-		color: var(--color-text);
-	}
-	.body-text {
-		color: var(--color-text);
-	}
-	.muted-text {
-		color: var(--color-muted);
-	}
 	.panel {
 		border: 1px solid var(--color-border);
 	}

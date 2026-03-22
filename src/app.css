@@ -112,3 +112,36 @@ p {
 	outline: 2px solid var(--color-accent);
 	outline-offset: 2px;
 }
+
+.body-text {
+	color: var(--color-text);
+}
+
+.muted-text {
+	color: var(--color-muted);
+}
+
+.accent-text {
+	color: var(--color-accent);
+}
+
+.section-title {
+	color: var(--color-text);
+}
+
+.page-title {
+	color: var(--color-text);
+}
+
+.page-description {
+	color: var(--color-muted);
+}
+
+.back-link {
+	color: var(--color-muted);
+	transition: color 150ms ease;
+}
+
+.back-link:hover {
+	color: var(--color-accent);
+}

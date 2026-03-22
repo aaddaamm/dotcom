@@ -1,23 +1,13 @@
 <script lang="ts">
 	import Books from './books.svelte';
+	import SeoHead from '../../components/seo-head.svelte';
 </script>
 
-<svelte:head>
-	<title>Reading — Adam Robinson</title>
-	<meta
-		name="description"
-		content="Books Adam Robinson is currently reading and recently finished — a curated reading list spanning software engineering, design, and more."
-	/>
-	<meta property="og:title" content="Reading — Adam Robinson" />
-	<meta
-		property="og:description"
-		content="Books Adam Robinson is currently reading and recently finished — a curated reading list spanning software engineering, design, and more."
-	/>
-	<meta property="og:image" content="https://adamrobinson.tech/og-card.png" />
-	<meta property="og:url" content="https://adamrobinson.tech/play" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<link rel="canonical" href="https://adamrobinson.tech/play" />
-</svelte:head>
+<SeoHead
+	title="Reading — Adam Robinson"
+	description="Books Adam Robinson is currently reading and recently finished — a curated reading list spanning software engineering, design, and more."
+	path="/play"
+/>
 
 <div class="max-w-4xl mx-auto px-6">
 	<section class="pt-20 sm:pt-28">
@@ -33,17 +23,4 @@
 	</section>
 </div>
 
-<style>
-	.back-link {
-		color: var(--color-muted);
-	}
-	.back-link:hover {
-		color: var(--color-accent);
-	}
-	.page-title {
-		color: var(--color-text);
-	}
-	.page-description {
-		color: var(--color-muted);
-	}
-</style>
+
