@@ -1,8 +1,28 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import Books from './books.svelte';
 	import SeoHead from '../../components/seo-head.svelte';
+	import type { GoodreadsBook } from '$lib/types';
 
-	let { data } = $props();
+	let currentlyReading = $state<GoodreadsBook[]>([]);
+	let readBooks = $state<GoodreadsBook[]>([]);
+	let loading = $state(true);
+
+	onMount(async () => {
+		try {
+			const [currentlyReadingRes, readBooksRes] = await Promise.all([
+				fetch('/api/goodreads/currently-reading'),
+				fetch('/api/goodreads/read')
+			]);
+
+			currentlyReading = await currentlyReadingRes.json();
+			readBooks = await readBooksRes.json();
+		} catch (error) {
+			console.error('Failed to load books:', error);
+		} finally {
+			loading = false;
+		}
+	});
 </script>
 
 <SeoHead
@@ -21,7 +41,16 @@
 		<p class="page-description leading-relaxed mb-12">
 			A live look at my Goodreads shelves — what I'm working through and everything I've finished.
 		</p>
-		<Books currentlyReading={data.currentlyReading} readBooks={data.readBooks} />
+		{#if loading}
+			<div class="flex items-center justify-center py-12">
+				<div class="text-center">
+					<div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-accent-500"></div>
+					<p class="mt-2 text-sm muted-text">Loading books...</p>
+				</div>
+			</div>
+		{:else}
+			<Books {currentlyReading} {readBooks} />
+		{/if}
 	</section>
 </div>
 
