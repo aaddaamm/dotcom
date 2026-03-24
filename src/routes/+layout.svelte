@@ -15,12 +15,9 @@
 
 	onMount(() => {
 		themeStore.init();
-	});
-
-	setTimeout(() => {
 		injectSpeedInsights();
 		inject({ mode: dev ? 'development' : 'production' });
-	}, 0);
+	});
 
 	afterNavigate((navigation) => {
 		const hash = navigation.to?.url.hash;
@@ -44,8 +41,9 @@
 					src={$themeStore === 'dark' ? '/logo-dark.svg' : '/logo-light.svg'}
 					alt="Adam Robinson"
 					class="h-10 hidden sm:block logo-wordmark"
+					loading="eager"
 				/>
-				<img src="/icon.svg" alt="Adam Robinson" class="h-10 block sm:hidden" />
+				<img src="/icon.svg" alt="Adam Robinson" class="h-10 block sm:hidden" loading="eager" />
 			</a>
 
 			<div class="flex items-center gap-6">
