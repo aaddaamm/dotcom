@@ -33,6 +33,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/jetbrains-mono": "^5.2.8",
+		"@sveltejs/adapter-vercel": "^6.3.3",
 		"@tailwindcss/vite": "^4.2.2",
 		"@vercel/analytics": "^2.0.1",
 		"@vercel/speed-insights": "^2.0.0",
