@@ -83,7 +83,7 @@
 				</div>
 			{/each}
 		</div>
-		<a href="/work" class="inline-flex items-center gap-1 text-sm mt-6 accent-link">
+		<a href="/work" class="inline-flex items-center gap-1 text-sm mt-6 accent-link link-underline">
 			View all work &rarr;
 		</a>
 	</section>
@@ -122,10 +122,10 @@
 				enable real-world and creative outcomes.
 			</p>
 			<div class="flex flex-col sm:flex-row gap-3 mt-4">
-				<a href="/play" class="inline-flex items-center gap-1 text-sm accent-link">
+				<a href="/play" class="inline-flex items-center gap-1 text-sm accent-link link-underline">
 					See what I'm reading &rarr;
 				</a>
-				<a href="/blog" class="inline-flex items-center gap-1 text-sm accent-link">
+				<a href="/blog" class="inline-flex items-center gap-1 text-sm accent-link link-underline">
 					Read my blog &rarr;
 				</a>
 			</div>
@@ -140,14 +140,14 @@
 		</h2>
 		<ul class="space-y-3">
 			<li>
-				<a href="mailto:adam@adamrobinson.tech" class="contact-link">adam@adamrobinson.tech</a>
+				<a href="mailto:adam@adamrobinson.tech" class="contact-link link-underline">adam@adamrobinson.tech</a>
 			</li>
 			<li>
 				<a
 					href="https://github.com/aaddaamm"
 					target="_blank"
 					rel="noopener noreferrer me"
-					class="contact-link"
+					class="contact-link link-underline"
 				>
 					github.com/aaddaamm
 				</a>
@@ -157,7 +157,7 @@
 					href="https://linkedin.com/in/adam-robinson-software"
 					target="_blank"
 					rel="noopener noreferrer me"
-					class="contact-link"
+					class="contact-link link-underline"
 				>
 					linkedin.com/in/adam-robinson-software
 				</a>
@@ -233,46 +233,4 @@
 		background-color: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
 	}
 
-	.accent-link {
-		color: var(--color-accent);
-		text-decoration: none;
-		background-image: linear-gradient(var(--color-accent), var(--color-accent));
-		background-size: 0% 1.5px;
-		background-position: left bottom;
-		background-repeat: no-repeat;
-		padding-bottom: 2px;
-		transition:
-			color 150ms ease,
-			background-size 300ms ease;
-	}
-
-	.accent-link:hover {
-		color: var(--color-text);
-		background-size: 100% 1.5px;
-	}
-
-	.contact-link {
-		color: var(--color-muted);
-		text-decoration: none;
-		background-image: linear-gradient(var(--color-accent), var(--color-accent));
-		background-size: 0% 1.5px;
-		background-position: left bottom;
-		background-repeat: no-repeat;
-		padding-bottom: 2px;
-		transition:
-			color 150ms ease,
-			background-size 300ms ease;
-	}
-
-	.contact-link:hover {
-		color: var(--color-text);
-		background-size: 100% 1.5px;
-	}
-
-	.contact-link:focus-visible,
-	.accent-link:focus-visible {
-		outline: 2px solid var(--color-accent);
-		outline-offset: 2px;
-		border-radius: 2px;
-	}
 </style>

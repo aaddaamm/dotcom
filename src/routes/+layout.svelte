@@ -60,12 +60,12 @@
 			<div class="flex items-center gap-6">
 				<div class="hidden sm:block nav-divider" aria-hidden="true"></div>
 				<nav aria-label="Main navigation" class="flex items-center gap-6">
-					<a href="/#about" class="nav-link">about</a>
-					<a href="/#work" class="nav-link">work</a>
-					<a href="/#approach" class="nav-link">approach</a>
-					<a href="/blog" class="nav-link">blog</a>
-					<a href="/play" class="nav-link">reading</a>
-					<a href="/teach" class="nav-link">teach</a>
+					<a href="/#about" class="nav-link link-underline">about</a>
+					<a href="/#work" class="nav-link link-underline">work</a>
+					<a href="/#approach" class="nav-link link-underline">approach</a>
+					<a href="/blog" class="nav-link link-underline">blog</a>
+					<a href="/play" class="nav-link link-underline">reading</a>
+					<a href="/teach" class="nav-link link-underline">teach</a>
 				</nav>
 				<button
 					onclick={toggleTheme}
@@ -108,31 +108,6 @@
 		background-color: var(--color-border);
 	}
 
-	.nav-link {
-		font-size: 12px;
-		color: var(--color-muted);
-		transition: color 150ms ease;
-		text-decoration: none;
-		background-image: linear-gradient(var(--color-accent), var(--color-accent));
-		background-size: 0% 1.5px;
-		background-position: left bottom;
-		background-repeat: no-repeat;
-		padding-bottom: 2px;
-		transition:
-			color 150ms ease,
-			background-size 300ms ease;
-	}
-
-	.nav-link:hover {
-		color: var(--color-text);
-		background-size: 100% 1.5px;
-	}
-
-	.nav-link:focus-visible {
-		outline: 2px solid var(--color-accent);
-		outline-offset: 2px;
-		border-radius: 2px;
-	}
 
 	.theme-toggle {
 		color: var(--color-muted);
