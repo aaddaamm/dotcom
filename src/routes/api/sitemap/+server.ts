@@ -15,7 +15,7 @@ export async function GET() {
 	}
 
 	sitemap.write({ url: '/play', changefreq: 'weekly', priority: 0.6, lastmod: now });
-	sitemap.write({ url: '/teach', changefreq: 'yearly', priority: 0.4, lastmod: now });
+	sitemap.write({ url: '/teach', changefreq: 'monthly', priority: 0.7, lastmod: now });
 
 	sitemap.end();
 
