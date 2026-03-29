@@ -9,13 +9,13 @@
 
 ## Frontmatter
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `title` | string | Yes | Post title — used in `<title>`, OG tags, and the blog index |
-| `description` | string | Yes | Short summary — used in meta description, OG description, and blog index cards |
-| `date` | string (YYYY-MM-DD) | Yes | Publish date — used for sorting and display |
-| `tags` | string[] | No | Categorization tags — rendered as pills on the index and post page |
-| `published` | boolean | Yes | `false` = draft (hidden from index, sitemap, and RSS), `true` = live |
+| Field         | Type                | Required | Description                                                                    |
+| ------------- | ------------------- | -------- | ------------------------------------------------------------------------------ |
+| `title`       | string              | Yes      | Post title — used in `<title>`, OG tags, and the blog index                    |
+| `description` | string              | Yes      | Short summary — used in meta description, OG description, and blog index cards |
+| `date`        | string (YYYY-MM-DD) | Yes      | Publish date — used for sorting and display                                    |
+| `tags`        | string[]            | No       | Categorization tags — rendered as pills on the index and post page             |
+| `published`   | boolean             | Yes      | `false` = draft (hidden from index, sitemap, and RSS), `true` = live           |
 
 ## How It Works
 

@@ -18,8 +18,8 @@
 		</div>
 		<p class="hero-subtitle font-mono" role="doc-subtitle">SOFTWARE CONSULTANT & FREELANCER</p>
 		<p class="body-text">
-			I work directly with small local businesses to solve software problems that matter to you. 
-			Get personalized attention and solutions built to fit your actual budget and timeline.
+			I work directly with small local businesses to solve software problems that matter to you. Get
+			personalized attention and solutions built to fit your actual budget and timeline.
 		</p>
 		<div class="hero-stats flex flex-wrap gap-6 mt-4 mb-2">
 			<div class="stat-item">
@@ -36,10 +36,16 @@
 			</div>
 		</div>
 		<div class="flex flex-col sm:flex-row gap-3 mt-6">
-			<a href="/contact" class="cta-button px-6 py-3 rounded-lg font-semibold text-center transition-colors">
+			<a
+				href="/contact"
+				class="cta-button px-6 py-3 rounded-lg font-semibold text-center transition-colors"
+			>
 				Start Your Project
 			</a>
-			<a href="#services" class="contact-button px-6 py-3 rounded-lg font-semibold text-center transition-colors border">
+			<a
+				href="#services"
+				class="contact-button px-6 py-3 rounded-lg font-semibold text-center transition-colors border"
+			>
 				See How I Can Help
 			</a>
 		</div>
@@ -53,13 +59,15 @@
 		</h2>
 		<div class="space-y-5 body-text">
 			<p>
-				With over a decade of experience, I focus on building software that actually works and solves real problems. 
-				I work directly with local business owners who need reliable solutions without the complexity or cost of big development firms.
+				With over a decade of experience, I focus on building software that actually works and
+				solves real problems. I work directly with local business owners who need reliable solutions
+				without the complexity or cost of big development firms.
 			</p>
 			<p>
-				Living in Cranston with my family, I understand what it's like to run a local business and manage a budget. 
-				Whether you need a simple website fix, a custom business tool, or ongoing technical support, 
-				I provide the same level of expertise you'd get elsewhere, but with personal attention and pricing that makes sense for small businesses.
+				Living in Cranston with my family, I understand what it's like to run a local business and
+				manage a budget. Whether you need a simple website fix, a custom business tool, or ongoing
+				technical support, I provide the same level of expertise you'd get elsewhere, but with
+				personal attention and pricing that makes sense for small businesses.
 			</p>
 		</div>
 	</section>
@@ -98,7 +106,9 @@
 		<div class="grid gap-6">
 			{#each services as service}
 				<div class="rounded-lg p-6 service-card">
-					<h3 class="mb-3 text-lg font-semibold" style="color: var(--color-text);">{service.title}</h3>
+					<h3 class="mb-3 text-lg font-semibold" style="color: var(--color-text);">
+						{service.title}
+					</h3>
 					<p class="body-text mb-3">{service.description}</p>
 					<p class="outcome-text mb-4 font-medium">{service.outcome}</p>
 					<div class="flex flex-wrap gap-2">
@@ -111,7 +121,10 @@
 		</div>
 		<div class="mt-8 text-center">
 			<p class="body-text mb-4">Ready to get started? Let's talk about your project.</p>
-			<a href="/contact" class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+			<a
+				href="/contact"
+				class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block"
+			>
 				Start a Conversation
 			</a>
 		</div>
@@ -145,14 +158,19 @@
 		<div class="grid gap-6">
 			{#each faqItems as faq}
 				<div class="faq-item">
-					<h3 class="faq-question mb-3 text-lg font-semibold" style="color: var(--color-text);">{faq.question}</h3>
+					<h3 class="faq-question mb-3 text-lg font-semibold" style="color: var(--color-text);">
+						{faq.question}
+					</h3>
 					<p class="body-text">{faq.answer}</p>
 				</div>
 			{/each}
 		</div>
 		<div class="mt-8 text-center">
 			<p class="body-text mb-4">Have a different question?</p>
-			<a href="mailto:adam@adamrobinson.tech?subject=Project Inquiry" class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+			<a
+				href="mailto:adam@adamrobinson.tech?subject=Project Inquiry"
+				class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block"
+			>
 				Ask Me Directly
 			</a>
 		</div>
@@ -169,7 +187,8 @@
 				I use modern AI tools to work faster and deliver better results for clients.
 			</p>
 			<p class="muted-text">
-				This means I can tackle complex problems more efficiently while keeping costs reasonable for small businesses.
+				This means I can tackle complex problems more efficiently while keeping costs reasonable for
+				small businesses.
 			</p>
 		</div>
 	</section>
@@ -183,15 +202,24 @@
 		<div class="grid md:grid-cols-3 gap-6">
 			<div class="benefit-card p-6 rounded-lg">
 				<h3 class="font-semibold mb-3 text-lg">Direct Communication</h3>
-				<p class="body-text">No project managers or middlemen. You work directly with me, in your timezone, speaking your language.</p>
+				<p class="body-text">
+					No project managers or middlemen. You work directly with me, in your timezone, speaking
+					your language.
+				</p>
 			</div>
 			<div class="benefit-card p-6 rounded-lg">
 				<h3 class="font-semibold mb-3 text-lg">Right-Sized Solutions</h3>
-				<p class="body-text">I understand small business needs and build solutions that fit your actual budget and requirements.</p>
+				<p class="body-text">
+					I understand small business needs and build solutions that fit your actual budget and
+					requirements.
+				</p>
 			</div>
 			<div class="benefit-card p-6 rounded-lg">
 				<h3 class="font-semibold mb-3 text-lg">Local & Invested</h3>
-				<p class="body-text">I live here with my family and care about our local business community. I'm here for the long term when you need updates, fixes, or want to grow.</p>
+				<p class="body-text">
+					I live here with my family and care about our local business community. I'm here for the
+					long term when you need updates, fixes, or want to grow.
+				</p>
 			</div>
 		</div>
 	</section>
@@ -210,7 +238,10 @@
 				<a href="/contact" class="cta-button px-8 py-4 rounded-lg font-semibold transition-colors">
 					Get Started Today
 				</a>
-				<a href="/work" class="contact-button px-8 py-4 rounded-lg font-semibold transition-colors border">
+				<a
+					href="/work"
+					class="contact-button px-8 py-4 rounded-lg font-semibold transition-colors border"
+				>
 					See Past Projects
 				</a>
 			</div>
@@ -228,7 +259,9 @@
 		</h2>
 		<ul class="space-y-3">
 			<li>
-				<a href="mailto:adam@adamrobinson.tech" class="contact-link link-underline">adam@adamrobinson.tech</a>
+				<a href="mailto:adam@adamrobinson.tech" class="contact-link link-underline">
+					adam@adamrobinson.tech
+				</a>
 			</li>
 			<li>
 				<a
@@ -343,7 +376,10 @@
 	.service-card {
 		border: 1px solid var(--color-border);
 		border-left: 3px solid var(--color-accent);
-		transition: background-color 400ms ease, border-color 400ms ease, transform 300ms ease;
+		transition:
+			background-color 400ms ease,
+			border-color 400ms ease,
+			transform 300ms ease;
 	}
 
 	.service-card:hover {
@@ -374,9 +410,11 @@
 	}
 
 	.bg-gradient {
-		background: linear-gradient(135deg, 
-			color-mix(in srgb, var(--color-accent) 8%, var(--color-bg)) 0%, 
-			color-mix(in srgb, var(--color-accent) 3%, var(--color-bg)) 100%);
+		background: linear-gradient(
+			135deg,
+			color-mix(in srgb, var(--color-accent) 8%, var(--color-bg)) 0%,
+			color-mix(in srgb, var(--color-accent) 3%, var(--color-bg)) 100%
+		);
 		border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
 	}
 
@@ -409,7 +447,9 @@
 
 	.benefit-card {
 		border: 1px solid var(--color-border);
-		transition: background-color 300ms ease, border-color 300ms ease;
+		transition:
+			background-color 300ms ease,
+			border-color 300ms ease;
 	}
 
 	.benefit-card:hover {
@@ -420,5 +460,4 @@
 	.benefit-card h3 {
 		color: var(--color-text);
 	}
-
 </style>

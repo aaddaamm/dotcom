@@ -26,19 +26,31 @@ export const selectedWork = [
 export const services = [
 	{
 		title: 'Custom Software Development',
-		description: 'Build tools specific to your business needs - from simple automations to complete applications.',
-		examples: ['Inventory management systems', 'Customer portals', 'Data processing tools', 'API integrations'],
+		description:
+			'Build tools specific to your business needs - from simple automations to complete applications.',
+		examples: [
+			'Inventory management systems',
+			'Customer portals',
+			'Data processing tools',
+			'API integrations'
+		],
 		outcome: 'Save 10+ hours per week on manual tasks'
 	},
 	{
 		title: 'Website & Web App Help',
 		description: 'Fix bugs, add features, or modernize existing websites and web applications.',
-		examples: ['Performance improvements', 'Security updates', 'New features', 'Mobile optimization'],
+		examples: [
+			'Performance improvements',
+			'Security updates',
+			'New features',
+			'Mobile optimization'
+		],
 		outcome: 'Faster sites that convert better and rank higher'
 	},
 	{
 		title: 'Technical Consultation',
-		description: 'Get guidance on technology decisions, code reviews, or planning software projects.',
+		description:
+			'Get guidance on technology decisions, code reviews, or planning software projects.',
 		examples: ['Technology stack advice', 'Code audits', 'Project planning', 'Team training'],
 		outcome: 'Make confident technical decisions and avoid costly mistakes'
 	}
@@ -47,22 +59,27 @@ export const services = [
 export const faqItems = [
 	{
 		question: 'How much do you charge?',
-		answer: 'I work primarily on fixed-price project rates rather than hourly billing. Most small business projects range from $500-5000. I tailor pricing to fit what local businesses can actually afford and provide clear estimates upfront.'
+		answer:
+			'I work primarily on fixed-price project rates rather than hourly billing. Most small business projects range from $500-5000. I tailor pricing to fit what local businesses can actually afford and provide clear estimates upfront.'
 	},
 	{
 		question: 'Why choose a local developer?',
-		answer: 'You get direct access to me, faster communication in your timezone, and someone who understands local business challenges. No middlemen or language barriers.'
+		answer:
+			'You get direct access to me, faster communication in your timezone, and someone who understands local business challenges. No middlemen or language barriers.'
 	},
 	{
 		question: 'How quickly can you start?',
-		answer: 'I typically have availability within 1-2 weeks for new projects. For urgent fixes or small tasks, I can often start within 24-48 hours.'
+		answer:
+			'I typically have availability within 1-2 weeks for new projects. For urgent fixes or small tasks, I can often start within 24-48 hours.'
 	},
 	{
 		question: 'Do you work with non-technical clients?',
-		answer: 'Absolutely! Most of my clients are business owners who want to focus on running their business, not managing technology. I handle the technical stuff so you don\'t have to.'
+		answer:
+			"Absolutely! Most of my clients are business owners who want to focus on running their business, not managing technology. I handle the technical stuff so you don't have to."
 	},
 	{
 		question: 'What if my project is too small?',
-		answer: 'No project is too small! I work with everything from simple website fixes to custom business applications. Small local businesses are exactly who I want to help.'
+		answer:
+			'No project is too small! I work with everything from simple website fixes to custom business applications. Small local businesses are exactly who I want to help.'
 	}
 ];

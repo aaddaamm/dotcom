@@ -31,11 +31,11 @@
 				</p>
 				<p class="body-text">
 					<strong>Response time:</strong>
-					 Typically within 24 hours
+					Typically within 24 hours
 				</p>
 				<p class="body-text">
 					<strong>Location:</strong>
-					 Cranston, RI (serving all of Rhode Island and remote)
+					Cranston, RI (serving all of Rhode Island and remote)
 				</p>
 			</div>
 		</div>

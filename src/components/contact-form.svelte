@@ -6,25 +6,67 @@
 	let isSubmitting = $state(false);
 	let submitted = $state(false);
 
+	function sanitizeText(text: string): string {
+		return text.replace(/[<>&"']/g, (match) => {
+			switch (match) {
+				case '<':
+					return '&lt;';
+				case '>':
+					return '&gt;';
+				case '&':
+					return '&amp;';
+				case '"':
+					return '&quot;';
+				case "'":
+					return '&#x27;';
+				default:
+					return match;
+			}
+		});
+	}
+
 	function handleSubmit(event: Event) {
 		event.preventDefault();
 		isSubmitting = true;
-		
-		// Create mailto link with form data
-		const subject = encodeURIComponent(`Project Inquiry from ${name}`);
-		const body = encodeURIComponent(`Name: ${name}
-Email: ${email}
-Project Type: ${project}
+
+		// Sanitize inputs to prevent XSS
+		const safeName = sanitizeText(name.trim());
+		const safeEmail = sanitizeText(email.trim());
+		const safeProject = sanitizeText(project.trim());
+		const safeMessage = sanitizeText(message.trim());
+
+		// Validate inputs
+		if (!safeName || !safeEmail || !safeProject || !safeMessage) {
+			isSubmitting = false;
+			return;
+		}
+
+		// Create mailto link with sanitized data
+		const subject = encodeURIComponent(`Project Inquiry from ${safeName}`);
+		const body = encodeURIComponent(`Name: ${safeName}
+Email: ${safeEmail}
+Project Type: ${safeProject}
 
 Message:
-${message}
+${safeMessage}
 
 ---
 Sent from adamrobinson.tech contact form`);
-		
+
 		const mailtoLink = `mailto:adam@adamrobinson.tech?subject=${subject}&body=${body}`;
-		window.location.href = mailtoLink;
-		
+
+		// Use a more secure method to open mailto
+		try {
+			const link = document.createElement('a');
+			link.href = mailtoLink;
+			link.target = '_blank';
+			link.rel = 'noopener noreferrer';
+			link.click();
+		} catch (error) {
+			// Fallback for browsers that don't support the above
+			window.open(mailtoLink, '_blank', 'noopener,noreferrer');
+		}
+
 		// Reset form and show success
 		setTimeout(() => {
 			name = '';
@@ -33,7 +75,7 @@ Sent from adamrobinson.tech contact form`);
 			message = '';
 			isSubmitting = false;
 			submitted = true;
-			
+
 			// Hide success message after 5 seconds
 			setTimeout(() => {
 				submitted = false;
@@ -46,7 +88,14 @@ Sent from adamrobinson.tech contact form`);
 	{#if submitted}
 		<div class="success-message p-6 rounded-lg text-center">
 			<h3 class="text-xl font-semibold mb-2">Thanks for reaching out!</h3>
-			<p class="body-text">Your email client should have opened with the message pre-filled. If not, feel free to email me directly at adam@adamrobinson.tech</p>
+			<p class="body-text mb-4">
+				Your email client should have opened with the message pre-filled. If not, feel free to email
+				me directly at
+				<a href="mailto:adam@adamrobinson.tech" class="accent-link">adam@adamrobinson.tech</a>
+			</p>
+			<button class="text-sm accent-link underline" onclick={() => (submitted = false)}>
+				Send Another Message
+			</button>
 		</div>
 	{:else}
 		<form onsubmit={handleSubmit} class="contact-form">
@@ -106,9 +155,16 @@ Sent from adamrobinson.tech contact form`);
 				{isSubmitting ? 'Opening Email...' : 'Send Message'}
 			</button>
 
-			<p class="form-note text-sm mt-4">
-				This will open your email client with the message pre-filled. I typically respond within 24 hours.
-			</p>
+			<div class="form-note text-sm mt-4">
+				<p class="mb-2">
+					This will open your email client with the message pre-filled. I typically respond within
+					24 hours.
+				</p>
+				<p class="text-xs muted-text">
+					Email client not working? Copy and paste this into your email:
+					<code class="bg-gray-100 px-1 rounded">adam@adamrobinson.tech</code>
+				</p>
+			</div>
 		</form>
 	{/if}
 </div>
@@ -144,7 +200,9 @@ Sent from adamrobinson.tech contact form`);
 		color: var(--color-text);
 		font-family: inherit;
 		font-size: 0.95rem;
-		transition: border-color 300ms ease, box-shadow 300ms ease;
+		transition:
+			border-color 300ms ease,
+			box-shadow 300ms ease;
 	}
 
 	.form-input:focus {

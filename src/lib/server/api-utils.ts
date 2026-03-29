@@ -7,15 +7,15 @@ export function createApiResponse<T>(
 	}
 ) {
 	const { status = 200, statusText = 'OK', cacheControl } = options || {};
-	
+
 	const headers: Record<string, string> = {
 		'Content-Type': 'application/json'
 	};
-	
+
 	if (cacheControl) {
 		headers['Cache-Control'] = cacheControl;
 	}
-	
+
 	return new Response(JSON.stringify(data), {
 		status,
 		statusText,
@@ -23,14 +23,8 @@ export function createApiResponse<T>(
 	});
 }
 
-export function createErrorResponse(
-	message: string,
-	status: number = 500
-) {
-	return createApiResponse(
-		{ error: message },
-		{ status, statusText: getStatusText(status) }
-	);
+export function createErrorResponse(message: string, status: number = 500) {
+	return createApiResponse({ error: message }, { status, statusText: getStatusText(status) });
 }
 
 function getStatusText(status: number): string {
@@ -41,6 +35,6 @@ function getStatusText(status: number): string {
 		404: 'Not Found',
 		500: 'Internal Server Error'
 	};
-	
+
 	return statusTexts[status] || 'Error';
 }

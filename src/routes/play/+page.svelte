@@ -7,6 +7,7 @@
 	let currentlyReading = $state<GoodreadsBook[]>([]);
 	let readBooks = $state<GoodreadsBook[]>([]);
 	let loading = $state(true);
+	let error = $state<string | null>(null);
 
 	onMount(async () => {
 		try {
@@ -15,10 +16,14 @@
 				fetch('/api/goodreads/read')
 			]);
 
+			if (!currentlyReadingRes.ok || !readBooksRes.ok) {
+				throw new Error('Failed to fetch book data');
+			}
+
 			currentlyReading = await currentlyReadingRes.json();
 			readBooks = await readBooksRes.json();
-		} catch (error) {
-			console.error('Failed to load books:', error);
+		} catch (err) {
+			error = 'Unable to load reading data. Please try again later.';
 		} finally {
 			loading = false;
 		}
@@ -44,8 +49,24 @@
 		{#if loading}
 			<div class="flex items-center justify-center py-12">
 				<div class="text-center">
-					<div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-accent-500"></div>
+					<div
+						class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-accent-500"
+					></div>
 					<p class="mt-2 text-sm muted-text">Loading books...</p>
+				</div>
+			</div>
+		{:else if error}
+			<div class="text-center py-12">
+				<div class="error-message p-6 rounded-lg" role="alert">
+					<h2 class="text-lg font-semibold mb-2">Unable to Load Reading Data</h2>
+					<p class="text-red-600 mb-4">{error}</p>
+					<button
+						class="px-4 py-2 bg-accent-600 text-white rounded hover:bg-accent-700 transition-colors"
+						onclick={() => window.location.reload()}
+						aria-label="Reload page to try loading books again"
+					>
+						Try Again
+					</button>
 				</div>
 			</div>
 		{:else}
@@ -53,4 +74,3 @@
 		{/if}
 	</section>
 </div>
-

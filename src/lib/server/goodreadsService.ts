@@ -17,9 +17,7 @@ export namespace GoodreadsService {
 		return { title: rawTitle.trim() };
 	}
 
-	export function parseBookFromRSSItem(
-		item: cheerio.Cheerio<AnyNode>
-	): GoodreadsBook {
+	export function parseBookFromRSSItem(item: cheerio.Cheerio<AnyNode>): GoodreadsBook {
 		const rawTitle = item.find('title').text();
 		const { title, series } = parseTitleAndSeries(rawTitle);
 		const author = item.find('author_name').text();
@@ -78,7 +76,7 @@ export namespace GoodreadsService {
 
 			return allBooks;
 		} catch (error) {
-			console.error('Error fetching Goodreads RSS:', error);
+			// Log error server-side only, return empty array for graceful degradation
 			return [];
 		}
 	}

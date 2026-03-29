@@ -1,8 +1,8 @@
 ---
-title: "Hello World"
+title: 'Hello World'
 description: "A first post — why I'm starting to write, and what to expect."
-date: "2026-03-22"
-tags: ["meta"]
+date: '2026-03-22'
+tags: ['meta']
 published: true
 ---
 

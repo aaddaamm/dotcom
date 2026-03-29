@@ -12,7 +12,12 @@ export async function GET() {
 	sitemap.write({ url: '/blog', changefreq: 'weekly', priority: 0.8, lastmod: now });
 
 	for (const post of getAllPosts()) {
-		sitemap.write({ url: `/blog/${post.slug}`, changefreq: 'yearly', priority: 0.7, lastmod: post.date });
+		sitemap.write({
+			url: `/blog/${post.slug}`,
+			changefreq: 'yearly',
+			priority: 0.7,
+			lastmod: post.date
+		});
 	}
 
 	sitemap.write({ url: '/play', changefreq: 'weekly', priority: 0.6, lastmod: now });

@@ -1,6 +1,6 @@
 <script lang="ts">
 	type IconName = 'sun' | 'moon';
-	
+
 	let {
 		name,
 		size = 16,

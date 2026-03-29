@@ -1,289 +1,207 @@
 <script lang="ts">
 	import SeoHead from '../../components/seo-head.svelte';
 
-	const lesson = {
-		title: 'Introduction to Programming',
-		sections: [
-			{
-				title: 'Variables and Data Types',
-				content:
-					'Variables are containers for storing data values. In programming, we use variables to store and manipulate information.',
-				codeExample: `// Declaring variables in JavaScript
-let name = "Alice";    // String
-let age = 25;          // Number
-let isStudent = true;  // Boolean
-
-console.log("Hello, " + name);
-console.log("You are " + age + " years old");`
-			},
-			{
-				title: 'Control Flow with Conditionals',
-				content:
-					'Conditional statements help your program make decisions based on certain conditions.',
-				codeExample: `// Simple if-else statement
-let hour = 14;
-let greeting;
-
-if (hour < 12) {
-	greeting = "Good morning!";
-} else if (hour < 18) {
-	greeting = "Good afternoon!";
-} else {
-	greeting = "Good evening!";
-}
-
-console.log(greeting);  // Outputs: "Good afternoon!"`
-			},
-			{
-				title: 'Working with Functions',
-				content:
-					'Functions allow you to group code that performs a specific task, making it reusable and more organized.',
-				codeExample: `// Defining and calling a function
-function calculateArea(width, height) {
-	return width * height;
-}
-
-let roomWidth = 10;
-let roomHeight = 15;
-let area = calculateArea(roomWidth, roomHeight);
-
-console.log("The room area is " + area + " square feet");`
-			}
-		]
-	};
-
-	let userCode = $state("// Write your code here\nconsole.log('Hello, world!');");
-	let codeOutput = $state('');
-	let isRunning = $state(false);
-	let selectedSection = $state(0);
-
-	let sandboxIframe: HTMLIFrameElement;
-
-	function runCode() {
-		isRunning = true;
-		codeOutput = '';
-
-		try {
-			if (sandboxIframe) {
-				sandboxIframe.remove();
-			}
-
-			sandboxIframe = document.createElement('iframe');
-			sandboxIframe.setAttribute('sandbox', 'allow-scripts');
-			sandboxIframe.style.display = 'none';
-			document.body.appendChild(sandboxIframe);
-
-			const logs: string[] = [];
-
-			const handleMessage = (event: MessageEvent) => {
-				if (event.source !== sandboxIframe.contentWindow) return;
-				const { type, data } = event.data;
-				if (type === 'log') {
-					logs.push(data);
-				} else if (type === 'result') {
-					if (logs.length > 0) {
-						codeOutput = logs.join('\n');
-					} else if (data !== undefined && data !== 'undefined') {
-						codeOutput = data;
-					}
-					isRunning = false;
-					window.removeEventListener('message', handleMessage);
-				} else if (type === 'error') {
-					codeOutput = `Error: ${data}`;
-					isRunning = false;
-					window.removeEventListener('message', handleMessage);
-				}
-			};
-
-			window.addEventListener('message', handleMessage);
-
-			const sandboxCode =
-				`
-				<script>
-					const originalLog = console.log;
-					console.log = (...args) => {
-						parent.postMessage({ type: 'log', data: args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ') }, '*');
-					};
-					try {
-						const result = (function() { ${userCode} })();
-						parent.postMessage({ type: 'result', data: result !== undefined ? String(result) : undefined }, '*');
-					} catch (e) {
-						parent.postMessage({ type: 'error', data: e.message }, '*');
-					}
-				</` +
-				`script>
-			`;
-
-			sandboxIframe.srcdoc = sandboxCode;
-
-			setTimeout(() => {
-				if (isRunning) {
-					codeOutput = 'Error: Code execution timed out';
-					isRunning = false;
-					window.removeEventListener('message', handleMessage);
-				}
-			}, 5000);
-		} catch (error) {
-			codeOutput = `Error: ${error instanceof Error ? error.message : 'Unknown error'}`;
-			isRunning = false;
+	const learningResources = [
+		{
+			title: 'Exercism',
+			url: 'https://exercism.org',
+			description:
+				'Practice coding with mentorship in 70+ programming languages. Free, hands-on exercises with real human feedback.',
+			category: 'Interactive Practice'
+		},
+		{
+			title: 'freeCodeCamp',
+			url: 'https://freecodecamp.org',
+			description:
+				'Comprehensive full-stack web development curriculum with projects and certifications.',
+			category: 'Full Curriculum'
+		},
+		{
+			title: 'The Odin Project',
+			url: 'https://theodinproject.com',
+			description:
+				'Open-source curriculum for learning web development with a focus on building real projects.',
+			category: 'Full Curriculum'
+		},
+		{
+			title: 'MDN Web Docs',
+			url: 'https://developer.mozilla.org',
+			description:
+				'Comprehensive documentation and tutorials for web technologies (HTML, CSS, JavaScript).',
+			category: 'Reference & Tutorials'
+		},
+		{
+			title: 'LeetCode',
+			url: 'https://leetcode.com',
+			description: 'Algorithm and data structure problems for technical interview preparation.',
+			category: 'Problem Solving'
+		},
+		{
+			title: 'Codecademy',
+			url: 'https://codecademy.com',
+			description:
+				'Interactive coding lessons with hands-on practice in various programming languages.',
+			category: 'Interactive Learning'
 		}
-	}
+	];
 
-	function loadExample(index: number) {
-		if (confirm('Load the example code? This will replace your current code.')) {
-			userCode = lesson.sections[index].codeExample;
-		}
-	}
+	const categories = ['All', ...new Set(learningResources.map((r) => r.category))];
+	let selectedCategory = $state('All');
+
+	let filteredResources = $derived(
+		selectedCategory === 'All'
+			? learningResources
+			: learningResources.filter((r) => r.category === selectedCategory)
+	);
 </script>
 
 <SeoHead
-	title="Learn Programming — Adam Robinson | Interactive JavaScript Lessons"
-	description="Free interactive JavaScript programming lessons. Learn coding fundamentals with hands-on exercises that run in your browser. Perfect for beginners."
+	title="Learning Resources — Adam Robinson | Best Places to Learn Programming"
+	description="Curated list of the best free and paid resources for learning programming, web development, and software engineering skills."
 	path="/teach"
 />
 
-<div class="max-w-5xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
+<div class="max-w-4xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
 	<a href="/" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
 		<span aria-hidden="true">&larr;</span>
 		Back
 	</a>
-	<h1 class="page-title text-3xl font-semibold tracking-tight mb-2">{lesson.title}</h1>
-	<p class="page-description leading-relaxed mb-12">
-		Interactive coding lessons to help you learn programming
+	<h1 class="page-title text-3xl font-semibold tracking-tight mb-3">Learning Resources</h1>
+	<p class="page-description leading-relaxed mb-8">
+		The best places to learn programming and develop your skills, curated from years of experience
+		in the field.
 	</p>
 
-	<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-		<div class="rounded-lg p-6 panel">
-			<div class="mb-6">
-				<div class="flex tab-bar">
-					{#each lesson.sections as section, i}
-						<button
-							class="tab px-4 py-2 text-sm font-medium"
-							class:tab-active={selectedSection === i}
-							onclick={() => (selectedSection = i)}
-						>
-							{section.title}
-						</button>
-					{/each}
-				</div>
-			</div>
-
-			<div>
-				<h2 class="section-title text-xl font-semibold mb-3">
-					{lesson.sections[selectedSection].title}
-				</h2>
-				<p class="body-text mb-6 leading-relaxed">
-					{lesson.sections[selectedSection].content}
-				</p>
-
-				<div class="rounded-md p-4 mb-4 code-block">
-					<div class="flex justify-between items-center mb-2">
-						<h3 class="text-sm font-semibold muted-text">Example Code</h3>
-						<button
-							class="load-btn px-2 py-1 rounded text-sm"
-							onclick={() => loadExample(selectedSection)}
-						>
-							Load Example
-						</button>
-					</div>
-					<pre class="text-sm p-3 rounded overflow-x-auto code-pre"><code>{lesson.sections[
-								selectedSection
-							].codeExample}</code></pre>
-				</div>
-			</div>
-		</div>
-
-		<div class="rounded-lg p-6 panel">
-			<h2 class="section-title text-xl font-semibold mb-4">Your Code</h2>
-			<div class="mb-4">
-				<textarea
-					bind:value={userCode}
-					class="editor w-full h-64 p-3 font-mono text-sm rounded resize-none"
-					spellcheck="false"
-				></textarea>
-			</div>
-			<div class="flex justify-end mb-4">
+	<div class="mb-8">
+		<h2 class="text-lg font-semibold mb-4">Filter by Category</h2>
+		<div
+			class="flex flex-wrap gap-2"
+			role="tablist"
+			aria-label="Filter learning resources by category"
+		>
+			{#each categories as category}
 				<button
-					class="run-btn rounded-lg px-6 py-2 text-sm font-semibold disabled:opacity-50 transition-colors"
-					onclick={runCode}
-					disabled={isRunning}
+					class="category-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+					class:active={selectedCategory === category}
+					onclick={() => (selectedCategory = category)}
+					role="tab"
+					aria-selected={selectedCategory === category}
+					aria-controls="resources-grid"
 				>
-					{isRunning ? 'Running...' : 'Run Code'}
+					{category}
 				</button>
-			</div>
-			<div>
-				<h3 class="section-title text-md font-semibold mb-2">Output:</h3>
-				<pre
-					class="output-pre h-40 p-3 rounded font-mono text-sm overflow-y-auto">{codeOutput}</pre>
-			</div>
+			{/each}
 		</div>
 	</div>
 
-	<div class="mt-12 text-center">
-		<p class="muted-text text-sm">
-			This is a simple JavaScript playground. For security reasons, some features may be limited.
+	<div class="grid gap-6 md:grid-cols-2" id="resources-grid" role="tabpanel">
+		{#each filteredResources as resource}
+			<article class="resource-card p-6 rounded-lg border transition-all duration-300">
+				<div class="flex items-start justify-between mb-3">
+					<h3 class="text-xl font-semibold">
+						<a
+							href={resource.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="resource-link hover:underline"
+							aria-label={`Visit ${resource.title} - ${resource.description}`}
+						>
+							{resource.title}
+						</a>
+					</h3>
+					<span class="category-tag px-2 py-1 text-xs rounded-full" aria-label="Category">
+						{resource.category}
+					</span>
+				</div>
+				<p class="body-text mb-4">{resource.description}</p>
+				<a
+					href={resource.url}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-1 text-sm accent-link"
+					aria-label={`Visit ${resource.title} website`}
+				>
+					Visit Site <span aria-hidden="true">→</span>
+				</a>
+			</article>
+		{/each}
+	</div>
+
+	<div class="mt-12 p-6 rounded-lg bg-gradient border">
+		<h2 class="text-xl font-semibold mb-3">Need Guidance?</h2>
+		<p class="body-text mb-4">
+			Learning to code can be overwhelming with so many resources available. If you need help
+			choosing the right path or want personalized guidance, I'm happy to help.
 		</p>
+		<a
+			href="/contact"
+			class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block"
+		>
+			Get Learning Advice
+		</a>
 	</div>
 </div>
 
 <style>
-	pre {
-		white-space: pre-wrap;
-		word-break: break-word;
+	.category-btn {
+		border: 1px solid var(--color-border);
+		color: var(--color-muted);
+		background-color: var(--color-bg);
 	}
 
-	.panel {
-		border: 1px solid var(--color-border);
-	}
-	.tab-bar {
-		border-bottom: 1px solid var(--color-border);
-	}
-	.tab {
-		color: var(--color-muted);
-		transition: color 150ms ease;
-	}
-	.tab:hover {
+	.category-btn:hover {
 		color: var(--color-text);
-	}
-	.tab-active {
-		color: var(--color-accent);
-		border-bottom: 2px solid var(--color-accent);
-	}
-	.code-block {
-		background-color: color-mix(in srgb, var(--color-border) 30%, var(--color-bg));
-	}
-	.code-pre {
-		background-color: var(--color-bg);
-		color: var(--color-text);
-		border: 1px solid var(--color-border);
-	}
-	.load-btn {
-		color: var(--color-accent);
-		border: 1px solid var(--color-border);
-		transition: border-color 150ms ease;
-	}
-	.load-btn:hover {
 		border-color: var(--color-accent);
 	}
-	.editor {
-		background-color: var(--color-bg);
-		color: var(--color-text);
-		border: 1px solid var(--color-border);
-	}
-	.editor:focus {
-		border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
-		outline: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
-	}
-	.run-btn {
+
+	.category-btn.active {
 		background-color: var(--color-accent);
 		color: white;
+		border-color: var(--color-accent);
 	}
-	.run-btn:hover {
-		background-color: color-mix(in srgb, var(--color-accent) 85%, white);
-	}
-	.output-pre {
+
+	.resource-card {
+		border-color: var(--color-border);
 		background-color: var(--color-bg);
+	}
+
+	.resource-card:hover {
+		border-color: var(--color-accent);
+		background-color: color-mix(in srgb, var(--color-accent) 3%, var(--color-bg));
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px color-mix(in srgb, var(--color-accent) 15%, transparent);
+	}
+
+	.resource-link {
 		color: var(--color-text);
-		border: 1px solid var(--color-border);
+	}
+
+	.resource-link:hover {
+		color: var(--color-accent);
+	}
+
+	.category-tag {
+		background-color: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg));
+		color: var(--color-accent);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+	}
+
+	.bg-gradient {
+		background: linear-gradient(
+			135deg,
+			color-mix(in srgb, var(--color-accent) 8%, var(--color-bg)) 0%,
+			color-mix(in srgb, var(--color-accent) 3%, var(--color-bg)) 100%
+		);
+		border-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+	}
+
+	.cta-button {
+		background-color: var(--color-accent);
+		color: white;
+		border: none;
+	}
+
+	.cta-button:hover {
+		background-color: color-mix(in srgb, var(--color-accent) 85%, white);
 	}
 </style>

@@ -11,7 +11,12 @@
 />
 
 <svelte:head>
-	<link rel="alternate" type="application/rss+xml" title="Adam Robinson — Blog" href="/blog/rss.xml" />
+	<link
+		rel="alternate"
+		type="application/rss+xml"
+		title="Adam Robinson — Blog"
+		href="/blog/rss.xml"
+	/>
 </svelte:head>
 
 <div class="max-w-3xl mx-auto px-6">
@@ -31,8 +36,16 @@
 			<div class="space-y-6">
 				{#each data.posts as post}
 					<a href="/blog/{post.slug}" class="post-card block rounded-lg p-6">
-						<time class="text-xs muted-text">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-						<h2 class="text-lg font-semibold mt-1" style="color: var(--color-text);">{post.title}</h2>
+						<time class="text-xs muted-text">
+							{new Date(post.date).toLocaleDateString('en-US', {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric'
+							})}
+						</time>
+						<h2 class="text-lg font-semibold mt-1" style="color: var(--color-text);">
+							{post.title}
+						</h2>
 						<p class="muted-text mt-2 text-sm">{post.description}</p>
 						{#if post.tags.length > 0}
 							<div class="flex gap-2 mt-3">

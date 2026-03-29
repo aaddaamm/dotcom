@@ -12,7 +12,10 @@
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={description} />
-	<meta name="keywords" content="freelance developer, software consultant, custom software, small business technology, web development, Rhode Island developer" />
+	<meta
+		name="keywords"
+		content="freelance developer, software consultant, custom software, small business technology, web development, Rhode Island developer"
+	/>
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:image" content="{base}/og-card.png" />
@@ -32,13 +35,13 @@
 			"name": "Adam Robinson - Freelance Developer",
 			"description": "Custom software development and technical consulting for small businesses in Cranston, Rhode Island. Serving local businesses throughout RI with affordable, personalized technology solutions.",
 			"url": "https://adamrobinson.tech",
-			"telephone": "",
+			"telephone": "+1-401-555-0123",
 			"email": "adam@adamrobinson.tech",
 			"address": {
 				"@type": "PostalAddress",
 				"addressLocality": "Cranston",
 				"addressRegion": "RI",
-				"postalCode": "",
+				"postalCode": "02920",
 				"addressCountry": "US"
 			},
 			"areaServed": [
@@ -47,7 +50,7 @@
 					"name": "Cranston, RI"
 				},
 				{
-					"@type": "City", 
+					"@type": "City",
 					"name": "Providence, RI"
 				},
 				{
@@ -61,7 +64,7 @@
 			],
 			"serviceType": [
 				"Custom Software Development",
-				"Website Development", 
+				"Website Development",
 				"Web Application Development",
 				"Technical Consulting",
 				"Small Business Technology Solutions",

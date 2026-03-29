@@ -34,7 +34,11 @@
 	.work-card {
 		border: 1px solid var(--color-border);
 		border-left: 2px solid var(--color-accent);
-		transition: background-color 400ms ease, border-color 400ms ease, box-shadow 400ms ease, transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+		transition:
+			background-color 400ms ease,
+			border-color 400ms ease,
+			box-shadow 400ms ease,
+			transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
 	}
 	.work-card:hover {
 		transform: scale(1.02);
