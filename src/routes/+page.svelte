@@ -298,6 +298,17 @@
 				</a>
 			</li>
 		</ul>
+		<div class="mt-6 pt-4 border-t border-[var(--color-border)]">
+			<p class="text-sm font-medium mb-3">More from me:</p>
+			<div class="flex flex-wrap gap-4">
+				<a href="/play" class="text-sm accent-link link-underline">
+					📚 Current Reading
+				</a>
+				<a href="/teach" class="text-sm accent-link link-underline">
+					🎯 Learning Resources
+				</a>
+			</div>
+		</div>
 		<p class="text-sm mt-6 muted-text">Based in Cranston, RI</p>
 	</section>
 </div>
