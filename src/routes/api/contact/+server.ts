@@ -12,8 +12,51 @@ interface ContactFormData {
 	budget?: string;
 }
 
-export const POST: RequestHandler = async ({ request }) => {
+// HTML escape function to prevent XSS
+function escapeHtml(unsafe: string): string {
+	return unsafe
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#x27;')
+		.replace(/\//g, '&#x2F;');
+}
+
+// Simple rate limiting - in production should use Redis/database
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
+const RATE_LIMIT_MAX = 3; // 3 submissions per 15 minutes per IP
+
+function isRateLimited(ip: string): boolean {
+	const now = Date.now();
+	const record = rateLimitMap.get(ip);
+	
+	if (!record || now > record.resetTime) {
+		// Reset or create new record
+		rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+		return false;
+	}
+	
+	if (record.count >= RATE_LIMIT_MAX) {
+		return true;
+	}
+	
+	record.count++;
+	return false;
+}
+
+export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 	try {
+		// Rate limiting
+		const clientIP = getClientAddress();
+		if (isRateLimited(clientIP)) {
+			return json(
+				{ error: 'Too many submissions. Please wait 15 minutes before trying again.' },
+				{ status: 429 }
+			);
+		}
+
 		const data: ContactFormData = await request.json();
 
 		// Basic validation
@@ -27,7 +70,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			return json({ error: 'Invalid email format' }, { status: 400 });
 		}
 
-		// Sanitize inputs (basic)
+		// Sanitize and validate inputs
 		const sanitizedData = {
 			name: data.name.trim().slice(0, 100),
 			email: data.email.trim().slice(0, 100),
@@ -36,6 +79,14 @@ export const POST: RequestHandler = async ({ request }) => {
 			phone: data.phone?.trim().slice(0, 20) || '',
 			budget: data.budget?.trim() || 'Not specified'
 		};
+
+		// Additional security validations
+		if (sanitizedData.name.length === 0 || sanitizedData.name.length > 100) {
+			return json({ error: 'Name must be 1-100 characters' }, { status: 400 });
+		}
+		if (sanitizedData.message.length === 0 || sanitizedData.message.length > 2000) {
+			return json({ error: 'Message must be 1-2000 characters' }, { status: 400 });
+		}
 
 		// Create email content
 		const emailSubject = `New Project Inquiry from ${sanitizedData.name}`;
@@ -92,17 +143,17 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 					<h2 style="color: #2a7a7a;">New Contact Form Submission</h2>
 					
 					<div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-						<p><strong>Name:</strong> ${data.name}</p>
-						<p><strong>Email:</strong> <a href="mailto:${data.email}">${data.email}</a></p>
-						${data.phone ? `<p><strong>Phone:</strong> <a href="tel:${data.phone}">${data.phone}</a></p>` : ''}
-						<p><strong>Project Type:</strong> ${data.project}</p>
-						<p><strong>Budget Range:</strong> ${data.budget}</p>
+						<p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
+						<p><strong>Email:</strong> <a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></p>
+						${data.phone ? `<p><strong>Phone:</strong> <a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a></p>` : ''}
+						<p><strong>Project Type:</strong> ${escapeHtml(data.project)}</p>
+						<p><strong>Budget Range:</strong> ${escapeHtml(data.budget)}</p>
 					</div>
 
 					<div style="margin: 20px 0;">
 						<h3 style="color: #2a7a7a;">Message:</h3>
 						<div style="background-color: #ffffff; padding: 15px; border-left: 4px solid #2a7a7a; margin: 10px 0;">
-							${data.message.replace(/\n/g, '<br>')}
+							${escapeHtml(data.message).replace(/\n/g, '<br>')}
 						</div>
 					</div>
 
@@ -121,9 +172,9 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 			subject: 'Thanks for reaching out! - Adam Robinson',
 			html: `
 				<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-					<h2 style="color: #2a7a7a;">Thanks for reaching out, ${data.name}!</h2>
+					<h2 style="color: #2a7a7a;">Thanks for reaching out, ${escapeHtml(data.name)}!</h2>
 					
-					<p>I received your message about <strong>${data.project}</strong> and will get back to you within 24 hours with next steps and a rough timeline.</p>
+					<p>I received your message about <strong>${escapeHtml(data.project)}</strong> and will get back to you within 24 hours with next steps and a rough timeline.</p>
 					
 					<div style="background-color: #f0fdfa; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #2a7a7a;">
 						<h3 style="color: #2a7a7a; margin-top: 0;">What happens next:</h3>

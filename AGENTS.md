@@ -9,6 +9,7 @@ Personal website for Adam Robinson, Freelance Developer & Software Consultant.
 - **Fonts**: Inter (variable, self-hosted from `/static/fonts/`), JetBrains Mono (via `@fontsource/jetbrains-mono`)
 - **Hosting**: Vercel (adapter-vercel)
 - **Analytics**: `@vercel/analytics` v2 + `@vercel/speed-insights` v2
+- **Email**: Resend API for contact form submissions (notification + auto-responder)
 - **Build**: Vite 6
 
 ## Brand & Design System
@@ -50,7 +51,7 @@ src/
     +error.svelte    — Error page with status code and back link
     play/            — Reading page (SSR Goodreads integration via +page.server.ts)
     teach/           — Interactive JS playground
-    api/             — API routes (goodreads/, sitemap/)
+    api/             — API routes (goodreads/, contact/, sitemap/)
 static/
   logo-dark.svg      — Dark-mode wordmark
   logo-light.svg     — Light-mode wordmark
