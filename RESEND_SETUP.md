@@ -11,7 +11,9 @@
 ## 2. Set Up Environment Variables
 
 ### For Local Development:
+
 1. Copy `.env.example` to `.env.local`:
+
    ```bash
    cp .env.example .env.local
    ```
@@ -22,6 +24,7 @@
    ```
 
 ### For Vercel Production:
+
 1. Go to your Vercel dashboard
 2. Select your project → Settings → Environment Variables
 3. Add a new variable:
@@ -32,6 +35,7 @@
 ## 3. Configure Your Domain (For Production)
 
 ### Option A: Use Resend's Domain (Quick Start)
+
 - You can start sending emails immediately using `onboarding@resend.dev`
 - Update the "from" email in `/src/routes/api/contact/+server.ts`:
   ```javascript
@@ -39,6 +43,7 @@
   ```
 
 ### Option B: Use Your Custom Domain (Recommended)
+
 1. In Resend dashboard, go to [Domains](https://resend.com/domains)
 2. Add your domain: `adamrobinson.tech`
 3. Add the required DNS records to your domain provider
@@ -51,6 +56,7 @@
 ## 4. Test the Setup
 
 1. Start your development server:
+
    ```bash
    npm run dev
    ```
