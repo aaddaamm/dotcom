@@ -4,8 +4,8 @@
 </script>
 
 <SeoHead
-	title="Adam Robinson — Freelance Developer & Software Consultant | Providence, RI"
-	description="Freelance software developer helping small businesses with custom tools, website fixes, and technical consulting. Based in Providence, RI. Available for projects of any size."
+	title="Adam Robinson — Freelance Developer & Software Consultant | Cranston, RI"
+	description="Freelance software developer helping small businesses with custom tools, website fixes, and technical consulting. Based in Cranston, RI. Available for projects of any size."
 	path="/"
 />
 
@@ -27,8 +27,8 @@
 				<span class="stat-label">Years Experience</span>
 			</div>
 			<div class="stat-item">
-				<span class="stat-number">$100-150</span>
-				<span class="stat-label">Per Hour</span>
+				<span class="stat-number">Project</span>
+				<span class="stat-label">Based Rates</span>
 			</div>
 			<div class="stat-item">
 				<span class="stat-number">24hr</span>
@@ -57,7 +57,7 @@
 				I work directly with local business owners who need reliable solutions without the complexity or cost of big development firms.
 			</p>
 			<p>
-				Living in Providence with my family, I understand what it's like to run a local business and manage a budget. 
+				Living in Cranston with my family, I understand what it's like to run a local business and manage a budget. 
 				Whether you need a simple website fix, a custom business tool, or ongoing technical support, 
 				I provide the same level of expertise you'd get elsewhere, but with personal attention and pricing that makes sense for small businesses.
 			</p>
@@ -251,7 +251,7 @@
 				</a>
 			</li>
 		</ul>
-		<p class="text-sm mt-6 muted-text">Based in Providence, RI</p>
+		<p class="text-sm mt-6 muted-text">Based in Cranston, RI</p>
 	</section>
 </div>
 

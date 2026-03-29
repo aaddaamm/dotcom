@@ -47,7 +47,7 @@ export const services = [
 export const faqItems = [
 	{
 		question: 'How much do you charge?',
-		answer: 'I work on both hourly ($100-150/hour) and fixed-price projects. Most small business projects range from $500-5000. I tailor pricing to fit what local businesses can actually afford.'
+		answer: 'I work primarily on fixed-price project rates rather than hourly billing. Most small business projects range from $500-5000. I tailor pricing to fit what local businesses can actually afford and provide clear estimates upfront.'
 	},
 	{
 		question: 'Why choose a local developer?',
