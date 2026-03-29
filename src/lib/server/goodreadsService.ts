@@ -75,7 +75,7 @@ export namespace GoodreadsService {
 			cache.set(shelf, { data: allBooks, timestamp: Date.now() });
 
 			return allBooks;
-		} catch (error) {
+		} catch {
 			// Log error server-side only, return empty array for graceful degradation
 			return [];
 		}

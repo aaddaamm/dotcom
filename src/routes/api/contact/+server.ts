@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { dev } from '$app/environment';
+import { RESEND_API_KEY } from '$env/static/private';
 import { Resend } from 'resend';
 import type { RequestHandler } from './$types';
 
@@ -15,7 +15,7 @@ interface ContactFormData {
 export const POST: RequestHandler = async ({ request }) => {
 	try {
 		const data: ContactFormData = await request.json();
-		
+
 		// Basic validation
 		if (!data.name || !data.email || !data.project || !data.message) {
 			return json({ error: 'Missing required fields' }, { status: 400 });
@@ -57,42 +57,22 @@ IP: ${request.headers.get('x-forwarded-for') || 'Unknown'}
 User-Agent: ${request.headers.get('user-agent') || 'Unknown'}
 `.trim();
 
-		// In development, just log the form submission
-		if (dev) {
-			console.log('📧 Contact form submission:', {
-				subject: emailSubject,
-				body: emailBody
-			});
-			
-			return json({ 
-				success: true, 
-				message: 'Development mode - form logged to console' 
-			});
-		}
-
-		// For production, send email notification
-		// You'll need to set up RESEND_API_KEY or similar in environment variables
+		// Send email notification (works in both dev and production)
 		await sendEmailNotification(sanitizedData, emailSubject, emailBody);
-		
-		console.log('📧 Contact form submission received:', sanitizedData);
-		
-		return json({ 
-			success: true, 
-			message: 'Thank you for your message! I\'ll respond within 24 hours.' 
-		});
 
+		console.log('📧 Contact form submission received:', sanitizedData);
+
+		return json({
+			success: true,
+			message: "Thank you for your message! I'll respond within 24 hours."
+		});
 	} catch (error) {
 		console.error('Contact form error:', error);
-		return json(
-			{ error: 'Failed to process form submission' },
-			{ status: 500 }
-		);
+		return json({ error: 'Failed to process form submission' }, { status: 500 });
 	}
 };
 
 async function sendEmailNotification(data: ContactFormData, subject: string, body: string) {
-	const RESEND_API_KEY = process.env.RESEND_API_KEY;
-	
 	if (!RESEND_API_KEY) {
 		console.log('📧 RESEND_API_KEY not configured - email notification skipped');
 		console.log('📧 Email would send:', { subject, body });
@@ -155,11 +135,15 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 						</ul>
 					</div>
 
-					${data.budget === 'Not Sure' ? `
+					${
+						data.budget === 'Not Sure'
+							? `
 					<p style="background-color: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107;">
 						<strong>💡 Tip:</strong> Since you're not sure about budget, I'll include some typical project ranges in my response to help set expectations.
 					</p>
-					` : ''}
+					`
+							: ''
+					}
 
 					<p>In the meantime, feel free to check out some <a href="https://adamrobinson.tech/work" style="color: #2a7a7a;">recent projects</a> or <a href="https://adamrobinson.tech/blog" style="color: #2a7a7a;">technical articles</a> on my site.</p>
 
@@ -178,7 +162,6 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 		});
 
 		console.log('📧 Emails sent successfully via Resend');
-
 	} catch (error) {
 		console.error('📧 Resend email failed:', error);
 		// Don't fail the entire request if email fails

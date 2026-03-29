@@ -22,7 +22,7 @@
 
 			currentlyReading = await currentlyReadingRes.json();
 			readBooks = await readBooksRes.json();
-		} catch (err) {
+		} catch {
 			error = 'Unable to load reading data. Please try again later.';
 		} finally {
 			loading = false;

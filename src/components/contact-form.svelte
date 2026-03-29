@@ -10,6 +10,16 @@
 	let errorMessage = $state('');
 	let successMessage = $state('');
 
+	interface VercelAnalytics {
+		track: (event: string, properties?: Record<string, string>) => void;
+	}
+
+	declare global {
+		interface Window {
+			va?: VercelAnalytics;
+		}
+	}
+
 	async function handleSubmit(event: Event) {
 		event.preventDefault();
 		isSubmitting = true;
@@ -51,8 +61,8 @@
 
 			if (response.ok && result.success) {
 				// Track successful form submission
-				if (typeof window !== 'undefined' && (window as any).va) {
-					(window as any).va('track', 'Contact Form Submitted', {
+				if (typeof window !== 'undefined' && window.va) {
+					window.va.track('Contact Form Submitted', {
 						project_type: project.trim(),
 						budget_range: budget.trim() || 'Not specified',
 						has_phone: phone.trim() ? 'yes' : 'no'
@@ -60,7 +70,7 @@
 				}
 
 				// Success - reset form and show success message
-				successMessage = result.message || 'Thank you! I\'ll respond within 24 hours.';
+				successMessage = result.message || "Thank you! I'll respond within 24 hours.";
 				name = '';
 				email = '';
 				project = '';
@@ -149,7 +159,13 @@
 
 			<div class="form-group">
 				<label for="project" class="form-label">Project Type *</label>
-				<select id="project" bind:value={project} required class="form-input" disabled={isSubmitting}>
+				<select
+					id="project"
+					bind:value={project}
+					required
+					class="form-input"
+					disabled={isSubmitting}
+				>
 					<option value="">Select project type...</option>
 					<option value="Website Fix/Update">Website Fix/Update</option>
 					<option value="Custom Software Development">Custom Software Development</option>
@@ -217,9 +233,7 @@
 				<p class="mb-2">
 					I typically respond within 24 hours with next steps and a rough timeline.
 				</p>
-				<p class="text-xs muted-text">
-					All information is kept confidential. No spam, ever.
-				</p>
+				<p class="text-xs muted-text">All information is kept confidential. No spam, ever.</p>
 			</div>
 		</form>
 	{/if}
