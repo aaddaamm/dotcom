@@ -106,6 +106,16 @@ p {
 	html {
 		scroll-behavior: auto;
 	}
+
+	/* Disable all micro-interactions for users who prefer reduced motion */
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
 }
 
 :focus-visible {
@@ -171,10 +181,12 @@ p {
 
 .accent-link {
 	color: var(--color-accent);
+	transition: all 150ms ease;
 }
 
 .accent-link:hover {
 	color: var(--color-text);
+	transform: translateY(-1px);
 }
 
 .nav-link {
@@ -193,4 +205,28 @@ p {
 
 .contact-link:hover {
 	color: var(--color-text);
+}
+
+/* Scroll animations */
+.scroll-animate {
+	opacity: 0;
+	transform: translateY(20px);
+	transition:
+		opacity 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+		transform 400ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+	transition-delay: var(--animation-delay, 0ms);
+}
+
+.scroll-animate.animate-in {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+/* Disable scroll animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	.scroll-animate {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
 }

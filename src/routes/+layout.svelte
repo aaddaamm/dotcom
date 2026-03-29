@@ -18,7 +18,7 @@
 		themeStore.init();
 		injectSpeedInsights();
 		inject({ mode: dev ? 'development' : 'production' });
-		
+
 		// Register service worker in production
 		if ('serviceWorker' in navigator && !dev) {
 			navigator.serviceWorker.register('/sw.js').catch((error) => {

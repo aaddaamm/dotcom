@@ -23,7 +23,7 @@
 		text-decoration: none;
 		transition: color 150ms ease;
 	}
-	
+
 	.footer-link:hover {
 		color: var(--color-accent);
 	}

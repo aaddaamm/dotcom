@@ -2,6 +2,15 @@
 	import SeoHead from '../components/seo-head.svelte';
 	import ServiceIcon from '../components/service-icon.svelte';
 	import { approachItems, selectedWork, services, faqItems } from '$lib/copy';
+	import { setupScrollAnimations } from '$lib/animations';
+	import { onMount } from 'svelte';
+
+	let mainContainer: HTMLElement;
+
+	onMount(() => {
+		const cleanup = setupScrollAnimations(mainContainer);
+		return cleanup;
+	});
 </script>
 
 <SeoHead
@@ -10,7 +19,7 @@
 	path="/"
 />
 
-<div class="max-w-3xl mx-auto px-6">
+<div class="max-w-3xl mx-auto px-6" bind:this={mainContainer}>
 	<!-- Hero -->
 	<section aria-label="Introduction" class="pt-20 sm:pt-28 pb-10">
 		<div class="flex items-center gap-4 mb-4">
@@ -301,12 +310,8 @@
 		<div class="mt-6 pt-4 border-t border-[var(--color-border)]">
 			<p class="text-sm font-medium mb-3">More from me:</p>
 			<div class="flex flex-wrap gap-4">
-				<a href="/play" class="text-sm accent-link link-underline">
-					📚 Current Reading
-				</a>
-				<a href="/teach" class="text-sm accent-link link-underline">
-					🎯 Learning Resources
-				</a>
+				<a href="/play" class="text-sm accent-link link-underline">📚 Current Reading</a>
+				<a href="/teach" class="text-sm accent-link link-underline">🎯 Learning Resources</a>
 			</div>
 		</div>
 		<p class="text-sm mt-6 muted-text">Based in Cranston, RI</p>
@@ -382,20 +387,36 @@
 	.cta-button {
 		background-color: var(--color-accent);
 		color: white;
+		transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
 	}
 
 	.cta-button:hover {
 		background-color: color-mix(in srgb, var(--color-accent) 85%, white);
+		transform: translateY(-2px);
+		box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 25%, transparent);
+	}
+
+	.cta-button:active {
+		transform: translateY(-1px);
+		transition-duration: 100ms;
 	}
 
 	.contact-button {
 		border-color: var(--color-accent);
 		color: var(--color-accent);
+		transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
 	}
 
 	.contact-button:hover {
 		background-color: var(--color-accent);
 		color: white;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 25%, transparent);
+	}
+
+	.contact-button:active {
+		transform: translateY(-1px);
+		transition-duration: 100ms;
 	}
 
 	.service-card {
@@ -513,12 +534,14 @@
 		border: 1px solid var(--color-border);
 		transition:
 			background-color 300ms ease,
-			border-color 300ms ease;
+			border-color 300ms ease,
+			transform 200ms ease;
 	}
 
 	.benefit-card:hover {
 		background-color: color-mix(in srgb, var(--color-accent) 3%, var(--color-bg));
 		border-color: color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
+		transform: translateY(-2px);
 	}
 
 	.benefit-card h3 {
