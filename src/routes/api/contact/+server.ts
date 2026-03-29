@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { RESEND_API_KEY } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { Resend } from 'resend';
 import type { RequestHandler } from './$types';
 
@@ -124,6 +124,7 @@ User-Agent: ${request.headers.get('user-agent') || 'Unknown'}
 };
 
 async function sendEmailNotification(data: ContactFormData, subject: string, body: string) {
+	const RESEND_API_KEY = env.RESEND_API_KEY;
 	if (!RESEND_API_KEY) {
 		console.log('📧 RESEND_API_KEY not configured - email notification skipped');
 		console.log('📧 Email would send:', { subject, body });
