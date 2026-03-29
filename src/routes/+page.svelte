@@ -1,11 +1,11 @@
 <script lang="ts">
 	import SeoHead from '../components/seo-head.svelte';
-	import { approachItems, selectedWork } from '$lib/copy';
+	import { approachItems, selectedWork, services } from '$lib/copy';
 </script>
 
 <SeoHead
-	title="Adam Robinson — Lead Software Engineer"
-	description="Lead Software Engineer building backend systems and workflow-driven platforms."
+	title="Adam Robinson — Freelance Developer & Software Consultant | Providence, RI"
+	description="Freelance software developer helping small businesses with custom tools, website fixes, and technical consulting. Based in Providence, RI. Available for projects of any size."
 	path="/"
 />
 
@@ -16,11 +16,18 @@
 			<div class="hero-cursor cursor-blink" aria-hidden="true"></div>
 			<h1 class="hero-name font-mono">adam robinson</h1>
 		</div>
-		<p class="hero-subtitle font-mono" role="doc-subtitle">LEAD SOFTWARE ENGINEER</p>
+		<p class="hero-subtitle font-mono" role="doc-subtitle">SOFTWARE CONSULTANT & FREELANCER</p>
 		<p class="body-text">
-			I build backend systems and workflow-driven platforms that support complex, real-world
-			applications.
+			I help small businesses and individuals solve software problems, build custom tools, and improve existing systems.
 		</p>
+		<div class="flex flex-col sm:flex-row gap-3 mt-6">
+			<a href="#services" class="cta-button px-6 py-3 rounded-lg font-semibold text-center transition-colors">
+				See How I Can Help
+			</a>
+			<a href="mailto:adam@adamrobinson.tech" class="contact-button px-6 py-3 rounded-lg font-semibold text-center transition-colors border">
+				Get In Touch
+			</a>
+		</div>
 	</section>
 
 	<!-- About -->
@@ -31,13 +38,12 @@
 		</h2>
 		<div class="space-y-5 body-text">
 			<p>
-				With over a decade of experience, I focus on designing systems that are reliable,
-				maintainable, and adaptable to evolving requirements. My work spans internal tools,
-				financial systems, and full-stack applications across a variety of domains.
+				With over a decade of experience, I focus on building software that actually works and solves real problems. 
+				I work with small businesses, startups, and individuals who need custom solutions or help with existing systems.
 			</p>
 			<p>
-				I'm particularly drawn to software that enables creative and cross-disciplinary teams —
-				tools that connect how people think and work with the systems that support them.
+				I specialize in taking complex technical problems and turning them into simple, reliable solutions. 
+				Whether you need a custom tool built from scratch or help fixing something that's broken, I can help.
 			</p>
 		</div>
 	</section>
@@ -45,12 +51,11 @@
 	<!-- Approach -->
 	<section id="approach" aria-labelledby="approach-heading" class="py-14 section-border">
 		<h2 id="approach-heading" class="section-heading">
-			How I Think About Systems
+			How I Work
 			<span class="accent-dot" aria-hidden="true">.</span>
 		</h2>
 		<p class="body-text mb-6">
-			I approach software as something that needs to live and evolve over time. That means focusing
-			on:
+			I believe software should make your life easier, not harder. That means:
 		</p>
 		<ul class="space-y-3">
 			{#each approachItems as item}
@@ -64,9 +69,35 @@
 			{/each}
 		</ul>
 		<p class="muted-text mt-6">
-			The goal isn't just to build something that works today, but something that continues to work
-			as the problem changes.
+			I focus on creating solutions that work reliably and can adapt as your business grows.
 		</p>
+	</section>
+
+	<!-- Services -->
+	<section id="services" aria-labelledby="services-heading" class="py-14 section-border">
+		<h2 id="services-heading" class="section-heading" style="margin-bottom: 32px;">
+			How I Can Help
+			<span class="accent-dot" aria-hidden="true">.</span>
+		</h2>
+		<div class="grid gap-6">
+			{#each services as service}
+				<div class="rounded-lg p-6 service-card">
+					<h3 class="mb-3 text-lg font-semibold" style="color: var(--color-text);">{service.title}</h3>
+					<p class="body-text mb-4">{service.description}</p>
+					<div class="flex flex-wrap gap-2">
+						{#each service.examples as example}
+							<span class="example-tag px-3 py-1 rounded-full text-sm">{example}</span>
+						{/each}
+					</div>
+				</div>
+			{/each}
+		</div>
+		<div class="mt-8 text-center">
+			<p class="body-text mb-4">Ready to get started? Let's talk about your project.</p>
+			<a href="mailto:adam@adamrobinson.tech" class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+				Start a Conversation
+			</a>
+		</div>
 	</section>
 
 	<!-- Selected Work -->
@@ -231,6 +262,42 @@
 	.ai-card {
 		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
 		background-color: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
+	}
+
+	.cta-button {
+		background-color: var(--color-accent);
+		color: white;
+	}
+
+	.cta-button:hover {
+		background-color: color-mix(in srgb, var(--color-accent) 85%, white);
+	}
+
+	.contact-button {
+		border-color: var(--color-accent);
+		color: var(--color-accent);
+	}
+
+	.contact-button:hover {
+		background-color: var(--color-accent);
+		color: white;
+	}
+
+	.service-card {
+		border: 1px solid var(--color-border);
+		border-left: 3px solid var(--color-accent);
+		transition: background-color 400ms ease, border-color 400ms ease, transform 300ms ease;
+	}
+
+	.service-card:hover {
+		background-color: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
+		border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
+	}
+
+	.example-tag {
+		background-color: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg));
+		color: var(--color-text);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
 	}
 
 </style>

@@ -4,8 +4,8 @@
 </script>
 
 <SeoHead
-	title="Work — Adam Robinson"
-	description="Selected work and systems designed by Adam Robinson — workflow platforms, serverless architecture, and financial systems."
+	title="Portfolio — Adam Robinson | Custom Software & Web Development"
+	description="See examples of custom software solutions, website improvements, and business tools I've built for small businesses and individuals."
 	path="/work"
 />
 
@@ -15,9 +15,9 @@
 			<span aria-hidden="true">&larr;</span>
 			Back
 		</a>
-		<h1 class="page-title text-3xl font-semibold tracking-tight mb-3">Selected Work</h1>
+		<h1 class="page-title text-3xl font-semibold tracking-tight mb-3">Portfolio</h1>
 		<p class="page-description leading-relaxed mb-12">
-			Systems I've designed and built — workflow platforms, serverless architecture, and financial systems.
+			Examples of custom software and tools I've built for small businesses and individuals.
 		</p>
 		<div class="grid gap-4">
 			{#each selectedWork as project}

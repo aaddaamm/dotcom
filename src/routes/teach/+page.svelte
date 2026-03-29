@@ -137,8 +137,8 @@ console.log("The room area is " + area + " square feet");`
 </script>
 
 <SeoHead
-	title="Teach — Adam Robinson"
-	description="Interactive JavaScript programming lessons and exercises by Adam Robinson. Learn fundamentals through hands-on coding in the browser."
+	title="Learn Programming — Adam Robinson | Interactive JavaScript Lessons"
+	description="Free interactive JavaScript programming lessons. Learn coding fundamentals with hands-on exercises that run in your browser. Perfect for beginners."
 	path="/teach"
 />
 
