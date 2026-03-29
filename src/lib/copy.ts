@@ -76,6 +76,11 @@ export const faqItems = [
 			'I typically have availability within 1-2 weeks for new projects. For urgent fixes or small tasks, I can often start within 24-48 hours.'
 	},
 	{
+		question: 'What if I\'m not satisfied with the work?',
+		answer:
+			'I offer a 100% satisfaction guarantee with unlimited revisions until you\'re completely happy with the results. For consultations, if you don\'t find value in our discussion, I\'ll provide a full refund. My goal is your success, not just completing tasks.'
+	},
+	{
 		question: 'Do you work with non-technical clients?',
 		answer:
 			"Absolutely! Most of my clients are business owners who want to focus on running their business, not managing technology. I handle the technical stuff so you don't have to."
