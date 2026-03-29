@@ -1,13 +1,13 @@
 # AGENTS.md — adamrobinson.tech
 
-Personal website for Adam Robinson, Lead Software Engineer.
+Personal website for Adam Robinson, Freelance Developer & Software Consultant.
 
 ## Stack
 
 - **Framework**: SvelteKit 2 (Svelte 5) with TypeScript
 - **Styling**: Tailwind CSS 4 (via `@tailwindcss/vite` plugin) + CSS custom properties for brand tokens
 - **Fonts**: Inter (variable, self-hosted from `/static/fonts/`), JetBrains Mono (via `@fontsource/jetbrains-mono`)
-- **Hosting**: Vercel (adapter-auto)
+- **Hosting**: Vercel (adapter-vercel)
 - **Analytics**: `@vercel/analytics` v2 + `@vercel/speed-insights` v2
 - **Build**: Vite 6
 
@@ -38,7 +38,7 @@ Refer to `STYLEGUIDE.md` for the full brand specification. Key points:
 src/
   app.css            — Tailwind import, @theme, CSS variables, global typography, blink animation
   app.html           — HTML shell (data-theme="dark", favicon, JSON-LD, theme init script)
-  components/        — Shared components (footer.svelte, seo-head.svelte)
+  components/        — Shared components (footer.svelte, seo-head.svelte, contact-form.svelte)
   lib/
     types.ts         — Shared types (GoodreadsBook, etc.)
     constants.ts     — Enums (Goodreads shelves)
@@ -64,7 +64,7 @@ static/
 
 ## SEO & Accessibility
 
-- **Structured data**: JSON-LD `Person` schema in `app.html` (includes description, email, address, knowsAbout)
+- **Structured data**: JSON-LD `LocalBusiness` and `ProfessionalService` schema in `seo-head.svelte` (includes location, services, pricing, hours)
 - **Open Graph**: `og:title`, `og:description`, `og:image`, `og:url`, `twitter:card` on all pages
 - **Twitter meta**: `twitter:title`, `twitter:description`, `twitter:image` on all pages via `seo-head.svelte`
 - **Canonical URL**: `<link rel="canonical">` on all pages via `seo-head.svelte`

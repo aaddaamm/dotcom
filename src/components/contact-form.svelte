@@ -1,0 +1,188 @@
+<script lang="ts">
+	let name = $state('');
+	let email = $state('');
+	let project = $state('');
+	let message = $state('');
+	let isSubmitting = $state(false);
+	let submitted = $state(false);
+
+	function handleSubmit(event: Event) {
+		event.preventDefault();
+		isSubmitting = true;
+		
+		// Create mailto link with form data
+		const subject = encodeURIComponent(`Project Inquiry from ${name}`);
+		const body = encodeURIComponent(`Name: ${name}
+Email: ${email}
+Project Type: ${project}
+
+Message:
+${message}
+
+---
+Sent from adamrobinson.tech contact form`);
+		
+		const mailtoLink = `mailto:adam@adamrobinson.tech?subject=${subject}&body=${body}`;
+		window.location.href = mailtoLink;
+		
+		// Reset form and show success
+		setTimeout(() => {
+			name = '';
+			email = '';
+			project = '';
+			message = '';
+			isSubmitting = false;
+			submitted = true;
+			
+			// Hide success message after 5 seconds
+			setTimeout(() => {
+				submitted = false;
+			}, 5000);
+		}, 1000);
+	}
+</script>
+
+<div class="contact-form-container">
+	{#if submitted}
+		<div class="success-message p-6 rounded-lg text-center">
+			<h3 class="text-xl font-semibold mb-2">Thanks for reaching out!</h3>
+			<p class="body-text">Your email client should have opened with the message pre-filled. If not, feel free to email me directly at adam@adamrobinson.tech</p>
+		</div>
+	{:else}
+		<form onsubmit={handleSubmit} class="contact-form">
+			<div class="form-group">
+				<label for="name" class="form-label">Name</label>
+				<input
+					type="text"
+					id="name"
+					bind:value={name}
+					required
+					class="form-input"
+					placeholder="Your name"
+				/>
+			</div>
+
+			<div class="form-group">
+				<label for="email" class="form-label">Email</label>
+				<input
+					type="email"
+					id="email"
+					bind:value={email}
+					required
+					class="form-input"
+					placeholder="your@email.com"
+				/>
+			</div>
+
+			<div class="form-group">
+				<label for="project" class="form-label">Project Type</label>
+				<select id="project" bind:value={project} required class="form-input">
+					<option value="">Select project type...</option>
+					<option value="Website Fix/Update">Website Fix/Update</option>
+					<option value="Custom Software Development">Custom Software Development</option>
+					<option value="Technical Consultation">Technical Consultation</option>
+					<option value="Ongoing Support">Ongoing Support</option>
+					<option value="Not Sure - Need Advice">Not Sure - Need Advice</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="message" class="form-label">Project Details</label>
+				<textarea
+					id="message"
+					bind:value={message}
+					required
+					rows="4"
+					class="form-input"
+					placeholder="Tell me about your project, timeline, and any specific challenges you're facing..."
+				></textarea>
+			</div>
+
+			<button
+				type="submit"
+				disabled={isSubmitting || !name || !email || !project || !message}
+				class="submit-button w-full px-6 py-3 rounded-lg font-semibold transition-colors disabled:opacity-50"
+			>
+				{isSubmitting ? 'Opening Email...' : 'Send Message'}
+			</button>
+
+			<p class="form-note text-sm mt-4">
+				This will open your email client with the message pre-filled. I typically respond within 24 hours.
+			</p>
+		</form>
+	{/if}
+</div>
+
+<style>
+	.contact-form-container {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	.contact-form {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.form-label {
+		font-weight: 500;
+		color: var(--color-text);
+		font-size: 0.95rem;
+	}
+
+	.form-input {
+		padding: 0.75rem;
+		border: 1px solid var(--color-border);
+		border-radius: 0.5rem;
+		background-color: var(--color-bg);
+		color: var(--color-text);
+		font-family: inherit;
+		font-size: 0.95rem;
+		transition: border-color 300ms ease, box-shadow 300ms ease;
+	}
+
+	.form-input:focus {
+		outline: none;
+		border-color: var(--color-accent);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
+	}
+
+	.form-input::placeholder {
+		color: var(--color-muted);
+	}
+
+	.submit-button {
+		background-color: var(--color-accent);
+		color: white;
+		border: none;
+		cursor: pointer;
+	}
+
+	.submit-button:hover:not(:disabled) {
+		background-color: color-mix(in srgb, var(--color-accent) 85%, white);
+	}
+
+	.submit-button:disabled {
+		cursor: not-allowed;
+	}
+
+	.form-note {
+		color: var(--color-muted);
+		text-align: center;
+	}
+
+	.success-message {
+		background-color: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg));
+		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+	}
+
+	.success-message h3 {
+		color: var(--color-text);
+	}
+</style>

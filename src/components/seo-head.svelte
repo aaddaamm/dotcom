@@ -28,9 +28,9 @@
 	<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
-			"@type": "ProfessionalService",
+			"@type": ["LocalBusiness", "ProfessionalService"],
 			"name": "Adam Robinson - Freelance Developer",
-			"description": "Custom software development and technical consulting for small businesses in Cranston, RI",
+			"description": "Custom software development and technical consulting for small businesses in Cranston, Rhode Island. Serving local businesses throughout RI with affordable, personalized technology solutions.",
 			"url": "https://adamrobinson.tech",
 			"telephone": "",
 			"email": "adam@adamrobinson.tech",
@@ -38,11 +38,39 @@
 				"@type": "PostalAddress",
 				"addressLocality": "Cranston",
 				"addressRegion": "RI",
+				"postalCode": "",
 				"addressCountry": "US"
 			},
-			"areaServed": ["Rhode Island", "New England", "Remote"],
-			"serviceType": ["Custom Software Development", "Website Development", "Technical Consulting"],
-			"priceRange": "Project-based pricing"
+			"areaServed": [
+				{
+					"@type": "City",
+					"name": "Cranston, RI"
+				},
+				{
+					"@type": "City", 
+					"name": "Providence, RI"
+				},
+				{
+					"@type": "City",
+					"name": "Warwick, RI"
+				},
+				{
+					"@type": "State",
+					"name": "Rhode Island"
+				}
+			],
+			"serviceType": [
+				"Custom Software Development",
+				"Website Development", 
+				"Web Application Development",
+				"Technical Consulting",
+				"Small Business Technology Solutions",
+				"Software Debugging and Fixes"
+			],
+			"priceRange": "Project-based pricing",
+			"openingHours": "Mo-Fr 09:00-17:00",
+			"paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
+			"currenciesAccepted": "USD"
 		}
 	</script>
 </svelte:head>

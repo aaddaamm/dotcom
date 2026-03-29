@@ -36,11 +36,11 @@
 			</div>
 		</div>
 		<div class="flex flex-col sm:flex-row gap-3 mt-6">
-			<a href="#services" class="cta-button px-6 py-3 rounded-lg font-semibold text-center transition-colors">
-				See How I Can Help
+			<a href="/contact" class="cta-button px-6 py-3 rounded-lg font-semibold text-center transition-colors">
+				Start Your Project
 			</a>
-			<a href="mailto:adam@adamrobinson.tech" class="contact-button px-6 py-3 rounded-lg font-semibold text-center transition-colors border">
-				Get In Touch
+			<a href="#services" class="contact-button px-6 py-3 rounded-lg font-semibold text-center transition-colors border">
+				See How I Can Help
 			</a>
 		</div>
 	</section>
@@ -111,7 +111,7 @@
 		</div>
 		<div class="mt-8 text-center">
 			<p class="body-text mb-4">Ready to get started? Let's talk about your project.</p>
-			<a href="mailto:adam@adamrobinson.tech" class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+			<a href="/contact" class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
 				Start a Conversation
 			</a>
 		</div>
@@ -207,8 +207,8 @@
 				Most projects start with a simple conversation about what you need.
 			</p>
 			<div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-				<a href="mailto:adam@adamrobinson.tech?subject=Project Inquiry" class="cta-button px-8 py-4 rounded-lg font-semibold transition-colors">
-					Email Me Your Idea
+				<a href="/contact" class="cta-button px-8 py-4 rounded-lg font-semibold transition-colors">
+					Get Started Today
 				</a>
 				<a href="/work" class="contact-button px-8 py-4 rounded-lg font-semibold transition-colors border">
 					See Past Projects

@@ -8,6 +8,7 @@ export async function GET() {
 
 	sitemap.write({ url: '/', changefreq: 'monthly', priority: 1.0, lastmod: now });
 	sitemap.write({ url: '/work', changefreq: 'monthly', priority: 0.8, lastmod: now });
+	sitemap.write({ url: '/contact', changefreq: 'monthly', priority: 0.9, lastmod: now });
 	sitemap.write({ url: '/blog', changefreq: 'weekly', priority: 0.8, lastmod: now });
 
 	for (const post of getAllPosts()) {

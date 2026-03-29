@@ -20,10 +20,8 @@
 			<nav aria-label="Main navigation" class="flex items-center gap-6">
 				<a href="/#about" class="nav-link link-underline">about</a>
 				<a href="/#work" class="nav-link link-underline">work</a>
-				<a href="/#approach" class="nav-link link-underline">approach</a>
+				<a href="/contact" class="nav-link link-underline contact-nav">contact</a>
 				<a href="/blog" class="nav-link link-underline">blog</a>
-				<a href="/play" class="nav-link link-underline">reading</a>
-				<a href="/teach" class="nav-link link-underline">teach</a>
 			</nav>
 			<button
 				onclick={themeStore.toggle}
@@ -76,5 +74,10 @@
 		outline: 2px solid var(--color-accent);
 		outline-offset: 2px;
 		border-radius: 2px;
+	}
+
+	.contact-nav {
+		color: var(--color-accent);
+		font-weight: 500;
 	}
 </style>
