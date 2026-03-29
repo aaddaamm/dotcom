@@ -5,8 +5,8 @@
 	import { afterNavigate } from '$app/navigation';
 	import { inject } from '@vercel/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-	import '@fontsource/jetbrains-mono/500.css';
-	import '@fontsource/jetbrains-mono/400.css';
+	import '@fontsource/jetbrains-mono/latin-400.css';
+	import '@fontsource/jetbrains-mono/latin-500.css';
 	import '../app.css';
 	import Footer from '../components/footer.svelte';
 	import Header from '../components/header.svelte';
@@ -18,6 +18,13 @@
 		themeStore.init();
 		injectSpeedInsights();
 		inject({ mode: dev ? 'development' : 'production' });
+		
+		// Register service worker in production
+		if ('serviceWorker' in navigator && !dev) {
+			navigator.serviceWorker.register('/sw.js').catch((error) => {
+				console.warn('Service Worker registration failed:', error);
+			});
+		}
 	});
 
 	afterNavigate((navigation) => {
