@@ -23,12 +23,8 @@
 		<ContactForm />
 
 		<div class="mt-12 pt-8 border-t border-[var(--color-border)]">
-			<h2 class="text-xl font-semibold mb-4">Prefer email?</h2>
+			<h2 class="text-xl font-semibold mb-4">Additional Information</h2>
 			<div class="space-y-3">
-				<p class="body-text">
-					<strong>Email:</strong>
-					<a href="mailto:adam@adamrobinson.tech" class="accent-link">adam@adamrobinson.tech</a>
-				</p>
 				<p class="body-text">
 					<strong>Response time:</strong>
 					Typically within 24 hours
