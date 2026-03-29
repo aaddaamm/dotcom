@@ -39,6 +39,7 @@
 		"cheerio": "^1.0.0",
 		"gray-matter": "^4.0.3",
 		"marked": "^17.0.5",
+		"resend": "^6.9.4",
 		"sitemap": "^9.0.1",
 		"tailwindcss": "^4.2.2"
 	}

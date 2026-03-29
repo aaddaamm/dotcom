@@ -3,94 +3,98 @@
 	let email = $state('');
 	let project = $state('');
 	let message = $state('');
+	let phone = $state('');
+	let budget = $state('');
 	let isSubmitting = $state(false);
 	let submitted = $state(false);
+	let errorMessage = $state('');
+	let successMessage = $state('');
 
-	function sanitizeText(text: string): string {
-		return text.replace(/[<>&"']/g, (match) => {
-			switch (match) {
-				case '<':
-					return '&lt;';
-				case '>':
-					return '&gt;';
-				case '&':
-					return '&amp;';
-				case '"':
-					return '&quot;';
-				case "'":
-					return '&#x27;';
-				default:
-					return match;
-			}
-		});
-	}
-
-	function handleSubmit(event: Event) {
+	async function handleSubmit(event: Event) {
 		event.preventDefault();
 		isSubmitting = true;
-
-		// Sanitize inputs to prevent XSS
-		const safeName = sanitizeText(name.trim());
-		const safeEmail = sanitizeText(email.trim());
-		const safeProject = sanitizeText(project.trim());
-		const safeMessage = sanitizeText(message.trim());
+		errorMessage = '';
+		successMessage = '';
 
 		// Validate inputs
-		if (!safeName || !safeEmail || !safeProject || !safeMessage) {
+		if (!name.trim() || !email.trim() || !project.trim() || !message.trim()) {
+			errorMessage = 'Please fill in all required fields.';
 			isSubmitting = false;
 			return;
 		}
 
-		// Create mailto link with sanitized data
-		const subject = encodeURIComponent(`Project Inquiry from ${safeName}`);
-		const body = encodeURIComponent(`Name: ${safeName}
-Email: ${safeEmail}
-Project Type: ${safeProject}
-
-Message:
-${safeMessage}
-
----
-Sent from adamrobinson.tech contact form`);
-
-		const mailtoLink = `mailto:adam@adamrobinson.tech?subject=${subject}&body=${body}`;
-
-		// Use a more secure method to open mailto
-		try {
-			const link = document.createElement('a');
-			link.href = mailtoLink;
-			link.target = '_blank';
-			link.rel = 'noopener noreferrer';
-			link.click();
-		} catch {
-			// Fallback for browsers that don't support the above
-			window.open(mailtoLink, '_blank', 'noopener,noreferrer');
+		// Email validation
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailRegex.test(email.trim())) {
+			errorMessage = 'Please enter a valid email address.';
+			isSubmitting = false;
+			return;
 		}
 
-		// Reset form and show success
-		setTimeout(() => {
-			name = '';
-			email = '';
-			project = '';
-			message = '';
-			isSubmitting = false;
-			submitted = true;
+		try {
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					name: name.trim(),
+					email: email.trim(),
+					project: project.trim(),
+					message: message.trim(),
+					phone: phone.trim(),
+					budget: budget.trim()
+				})
+			});
 
-			// Hide success message after 5 seconds
-			setTimeout(() => {
-				submitted = false;
-			}, 5000);
-		}, 1000);
+			const result = await response.json();
+
+			if (response.ok && result.success) {
+				// Track successful form submission
+				if (typeof window !== 'undefined' && (window as any).va) {
+					(window as any).va('track', 'Contact Form Submitted', {
+						project_type: project.trim(),
+						budget_range: budget.trim() || 'Not specified',
+						has_phone: phone.trim() ? 'yes' : 'no'
+					});
+				}
+
+				// Success - reset form and show success message
+				successMessage = result.message || 'Thank you! I\'ll respond within 24 hours.';
+				name = '';
+				email = '';
+				project = '';
+				message = '';
+				phone = '';
+				budget = '';
+				submitted = true;
+
+				// Hide success message after 8 seconds
+				setTimeout(() => {
+					submitted = false;
+					successMessage = '';
+				}, 8000);
+			} else {
+				errorMessage = result.error || 'Something went wrong. Please try again.';
+			}
+		} catch (error) {
+			console.error('Form submission error:', error);
+			errorMessage = 'Network error. Please check your connection and try again.';
+		}
+
+		isSubmitting = false;
 	}
 </script>
 
 <div class="contact-form-container">
-	{#if submitted}
+	{#if submitted && successMessage}
 		<div class="success-message p-6 rounded-lg text-center">
-			<h3 class="text-xl font-semibold mb-2">Thanks for reaching out!</h3>
+			<h3 class="text-xl font-semibold mb-2">Message Sent Successfully!</h3>
 			<p class="body-text mb-4">
-				Your email client should have opened with the message pre-filled. If not, feel free to email
-				me directly at
+				{successMessage}
+			</p>
+			<p class="text-sm muted-text mb-4">
+				If you need to reach me urgently, you can also email me directly at
 				<a href="mailto:adam@adamrobinson.tech" class="accent-link">adam@adamrobinson.tech</a>
 			</p>
 			<button class="text-sm accent-link underline" onclick={() => (submitted = false)}>
@@ -99,8 +103,14 @@ Sent from adamrobinson.tech contact form`);
 		</div>
 	{:else}
 		<form onsubmit={handleSubmit} class="contact-form">
+			{#if errorMessage}
+				<div class="error-message p-4 rounded-lg mb-4">
+					<p class="text-sm font-medium">{errorMessage}</p>
+				</div>
+			{/if}
+
 			<div class="form-group">
-				<label for="name" class="form-label">Name</label>
+				<label for="name" class="form-label">Name *</label>
 				<input
 					type="text"
 					id="name"
@@ -108,11 +118,12 @@ Sent from adamrobinson.tech contact form`);
 					required
 					class="form-input"
 					placeholder="Your name"
+					disabled={isSubmitting}
 				/>
 			</div>
 
 			<div class="form-group">
-				<label for="email" class="form-label">Email</label>
+				<label for="email" class="form-label">Email *</label>
 				<input
 					type="email"
 					id="email"
@@ -120,12 +131,25 @@ Sent from adamrobinson.tech contact form`);
 					required
 					class="form-input"
 					placeholder="your@email.com"
+					disabled={isSubmitting}
 				/>
 			</div>
 
 			<div class="form-group">
-				<label for="project" class="form-label">Project Type</label>
-				<select id="project" bind:value={project} required class="form-input">
+				<label for="phone" class="form-label">Phone (Optional)</label>
+				<input
+					type="tel"
+					id="phone"
+					bind:value={phone}
+					class="form-input"
+					placeholder="(401) 555-0123"
+					disabled={isSubmitting}
+				/>
+			</div>
+
+			<div class="form-group">
+				<label for="project" class="form-label">Project Type *</label>
+				<select id="project" bind:value={project} required class="form-input" disabled={isSubmitting}>
 					<option value="">Select project type...</option>
 					<option value="Website Fix/Update">Website Fix/Update</option>
 					<option value="Custom Software Development">Custom Software Development</option>
@@ -136,7 +160,19 @@ Sent from adamrobinson.tech contact form`);
 			</div>
 
 			<div class="form-group">
-				<label for="message" class="form-label">Project Details</label>
+				<label for="budget" class="form-label">Budget Range (Optional)</label>
+				<select id="budget" bind:value={budget} class="form-input" disabled={isSubmitting}>
+					<option value="">Select budget range...</option>
+					<option value="$500-$1,000">$500-$1,000</option>
+					<option value="$1,000-$3,000">$1,000-$3,000</option>
+					<option value="$3,000-$5,000">$3,000-$5,000</option>
+					<option value="$5,000+">$5,000+</option>
+					<option value="Not Sure">Not Sure</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="message" class="form-label">Project Details *</label>
 				<textarea
 					id="message"
 					bind:value={message}
@@ -144,6 +180,7 @@ Sent from adamrobinson.tech contact form`);
 					rows="4"
 					class="form-input"
 					placeholder="Tell me about your project, timeline, and any specific challenges you're facing..."
+					disabled={isSubmitting}
 				></textarea>
 			</div>
 
@@ -169,7 +206,7 @@ Sent from adamrobinson.tech contact form`);
 								d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
 							/>
 						</svg>
-						Opening Email...
+						Sending Message...
 					{:else}
 						Send Message
 					{/if}
@@ -178,11 +215,10 @@ Sent from adamrobinson.tech contact form`);
 
 			<div class="form-note text-sm mt-4">
 				<p class="mb-2">
-					This will open your email client with the message pre-filled. I typically respond within
-					24 hours.
+					I typically respond within 24 hours with next steps and a rough timeline.
 				</p>
 				<p class="text-xs muted-text">
-					Email client not working? You can send me a message directly at the email above.
+					All information is kept confidential. No spam, ever.
 				</p>
 			</div>
 		</form>
@@ -231,6 +267,11 @@ Sent from adamrobinson.tech contact form`);
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
 	}
 
+	.form-input:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+
 	.form-input::placeholder {
 		color: var(--color-muted);
 	}
@@ -262,5 +303,11 @@ Sent from adamrobinson.tech contact form`);
 
 	.success-message h3 {
 		color: var(--color-text);
+	}
+
+	.error-message {
+		background-color: color-mix(in srgb, #ef4444 10%, var(--color-bg));
+		border: 1px solid color-mix(in srgb, #ef4444 20%, transparent);
+		color: #ef4444;
 	}
 </style>
