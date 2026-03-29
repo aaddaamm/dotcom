@@ -25,4 +25,24 @@
 	<meta name="author" content="Adam Robinson" />
 	<meta name="geo.region" content="US-RI" />
 	<meta name="geo.placename" content="Providence, Rhode Island" />
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "ProfessionalService",
+			"name": "Adam Robinson - Freelance Developer",
+			"description": "Custom software development and technical consulting for small businesses in Providence, RI",
+			"url": "https://adamrobinson.tech",
+			"telephone": "",
+			"email": "adam@adamrobinson.tech",
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Providence",
+				"addressRegion": "RI",
+				"addressCountry": "US"
+			},
+			"areaServed": ["Rhode Island", "New England", "Remote"],
+			"serviceType": ["Custom Software Development", "Website Development", "Technical Consulting"],
+			"priceRange": "$100-150 per hour"
+		}
+	</script>
 </svelte:head>

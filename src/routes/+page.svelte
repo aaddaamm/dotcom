@@ -1,6 +1,6 @@
 <script lang="ts">
 	import SeoHead from '../components/seo-head.svelte';
-	import { approachItems, selectedWork, services } from '$lib/copy';
+	import { approachItems, selectedWork, services, faqItems } from '$lib/copy';
 </script>
 
 <SeoHead
@@ -18,8 +18,23 @@
 		</div>
 		<p class="hero-subtitle font-mono" role="doc-subtitle">SOFTWARE CONSULTANT & FREELANCER</p>
 		<p class="body-text">
-			I help small businesses and individuals solve software problems, build custom tools, and improve existing systems.
+			I help small businesses save time and money with custom software solutions. 
+			From fixing broken websites to building tools that automate your daily tasks.
 		</p>
+		<div class="hero-stats flex flex-wrap gap-6 mt-4 mb-2">
+			<div class="stat-item">
+				<span class="stat-number">10+</span>
+				<span class="stat-label">Years Experience</span>
+			</div>
+			<div class="stat-item">
+				<span class="stat-number">$100-150</span>
+				<span class="stat-label">Per Hour</span>
+			</div>
+			<div class="stat-item">
+				<span class="stat-number">24hr</span>
+				<span class="stat-label">Response Time</span>
+			</div>
+		</div>
 		<div class="flex flex-col sm:flex-row gap-3 mt-6">
 			<a href="#services" class="cta-button px-6 py-3 rounded-lg font-semibold text-center transition-colors">
 				See How I Can Help
@@ -83,7 +98,8 @@
 			{#each services as service}
 				<div class="rounded-lg p-6 service-card">
 					<h3 class="mb-3 text-lg font-semibold" style="color: var(--color-text);">{service.title}</h3>
-					<p class="body-text mb-4">{service.description}</p>
+					<p class="body-text mb-3">{service.description}</p>
+					<p class="outcome-text mb-4 font-medium">{service.outcome}</p>
 					<div class="flex flex-wrap gap-2">
 						{#each service.examples as example}
 							<span class="example-tag px-3 py-1 rounded-full text-sm">{example}</span>
@@ -119,6 +135,28 @@
 		</a>
 	</section>
 
+	<!-- FAQ Section -->
+	<section id="faq" aria-labelledby="faq-heading" class="py-14 section-border">
+		<h2 id="faq-heading" class="section-heading">
+			Frequently Asked Questions
+			<span class="accent-dot" aria-hidden="true">.</span>
+		</h2>
+		<div class="grid gap-6">
+			{#each faqItems as faq}
+				<div class="faq-item">
+					<h3 class="faq-question mb-3 text-lg font-semibold" style="color: var(--color-text);">{faq.question}</h3>
+					<p class="body-text">{faq.answer}</p>
+				</div>
+			{/each}
+		</div>
+		<div class="mt-8 text-center">
+			<p class="body-text mb-4">Have a different question?</p>
+			<a href="mailto:adam@adamrobinson.tech?subject=Project Inquiry" class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block">
+				Ask Me Directly
+			</a>
+		</div>
+	</section>
+
 	<!-- AI Section -->
 	<section aria-labelledby="ai-heading" class="py-14 section-border">
 		<h2 id="ai-heading" class="section-heading">
@@ -127,39 +165,35 @@
 		</h2>
 		<div class="rounded-lg p-6 space-y-4 ai-card">
 			<p class="body-text">
-				I actively use AI-assisted development tools as part of my daily workflow, including GitHub
-				Copilot and Claude-based integrations.
+				I use modern AI tools to work faster and deliver better results for clients.
 			</p>
 			<p class="muted-text">
-				These tools help accelerate iteration and exploration while maintaining strong engineering
-				judgment and code quality.
+				This means I can tackle complex problems more efficiently while keeping costs reasonable for small businesses.
 			</p>
 		</div>
 	</section>
 
-	<!-- Outside of Work -->
-	<section aria-labelledby="outside-heading" class="py-14 section-border">
-		<h2 id="outside-heading" class="section-heading">
-			Outside of Work
+	<!-- Get Started -->
+	<section aria-labelledby="started-heading" class="py-14 section-border">
+		<h2 id="started-heading" class="section-heading">
+			Ready to Get Started?
 			<span class="accent-dot" aria-hidden="true">.</span>
 		</h2>
-		<div class="space-y-4">
-			<p class="body-text">
-				I spend time working with 3D printing and interactive systems, and I have a deep
-				appreciation for art and visual design.
+		<div class="bg-gradient rounded-lg p-8 text-center">
+			<p class="body-text mb-6 text-lg">
+				Most projects start with a simple conversation about what you need.
 			</p>
-			<p class="muted-text">
-				These interests influence how I think about software—not just as systems, but as tools that
-				enable real-world and creative outcomes.
-			</p>
-			<div class="flex flex-col sm:flex-row gap-3 mt-4">
-				<a href="/play" class="inline-flex items-center gap-1 text-sm accent-link link-underline">
-					See what I'm reading &rarr;
+			<div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+				<a href="mailto:adam@adamrobinson.tech?subject=Project Inquiry" class="cta-button px-8 py-4 rounded-lg font-semibold transition-colors">
+					Email Me Your Idea
 				</a>
-				<a href="/blog" class="inline-flex items-center gap-1 text-sm accent-link link-underline">
-					Read my blog &rarr;
+				<a href="/work" class="contact-button px-8 py-4 rounded-lg font-semibold transition-colors border">
+					See Past Projects
 				</a>
 			</div>
+			<p class="muted-text text-sm">
+				I typically respond within 24 hours with next steps and a rough timeline.
+			</p>
 		</div>
 	</section>
 
@@ -298,6 +332,56 @@
 		background-color: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg));
 		color: var(--color-text);
 		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+	}
+
+	.outcome-text {
+		color: var(--color-accent);
+		font-size: 0.95em;
+	}
+
+	.faq-item {
+		border-left: 3px solid var(--color-border);
+		padding-left: 1.5rem;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+	}
+
+	.faq-question {
+		color: var(--color-text);
+	}
+
+	.bg-gradient {
+		background: linear-gradient(135deg, 
+			color-mix(in srgb, var(--color-accent) 8%, var(--color-bg)) 0%, 
+			color-mix(in srgb, var(--color-accent) 3%, var(--color-bg)) 100%);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+	}
+
+	.hero-stats {
+		margin-top: 1.5rem;
+		margin-bottom: 1rem;
+	}
+
+	.stat-item {
+		text-align: center;
+		min-width: 80px;
+	}
+
+	.stat-number {
+		display: block;
+		font-weight: 600;
+		font-size: 1.125rem;
+		color: var(--color-accent);
+		font-family: var(--font-mono);
+	}
+
+	.stat-label {
+		display: block;
+		font-size: 0.75rem;
+		color: var(--color-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin-top: 0.25rem;
 	}
 
 </style>
