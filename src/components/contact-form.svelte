@@ -161,8 +161,7 @@ Sent from adamrobinson.tech contact form`);
 					24 hours.
 				</p>
 				<p class="text-xs muted-text">
-					Email client not working? Copy and paste this into your email:
-					<code class="bg-gray-100 px-1 rounded">adam@adamrobinson.tech</code>
+					Email client not working? You can send me a message directly at the email above.
 				</p>
 			</div>
 		</form>
