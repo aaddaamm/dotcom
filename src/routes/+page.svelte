@@ -57,6 +57,7 @@
 				I work directly with local business owners who need reliable solutions without the complexity or cost of big development firms.
 			</p>
 			<p>
+				Living in Providence with my family, I understand what it's like to run a local business and manage a budget. 
 				Whether you need a simple website fix, a custom business tool, or ongoing technical support, 
 				I provide the same level of expertise you'd get elsewhere, but with personal attention and pricing that makes sense for small businesses.
 			</p>
@@ -189,8 +190,8 @@
 				<p class="body-text">I understand small business needs and build solutions that fit your actual budget and requirements.</p>
 			</div>
 			<div class="benefit-card p-6 rounded-lg">
-				<h3 class="font-semibold mb-3 text-lg">Long-Term Partnership</h3>
-				<p class="body-text">I'm here when you need updates, fixes, or want to grow your system. No hunting for your original developer.</p>
+				<h3 class="font-semibold mb-3 text-lg">Local & Invested</h3>
+				<p class="body-text">I live here with my family and care about our local business community. I'm here for the long term when you need updates, fixes, or want to grow.</p>
 			</div>
 		</div>
 	</section>
