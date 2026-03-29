@@ -26,6 +26,7 @@ export const selectedWork = [
 export const services = [
 	{
 		title: 'Custom Software Development',
+		icon: 'code',
 		description:
 			'Build tools specific to your business needs - from simple automations to complete applications.',
 		examples: [
@@ -38,6 +39,7 @@ export const services = [
 	},
 	{
 		title: 'Website & Web App Help',
+		icon: 'globe',
 		description: 'Fix bugs, add features, or modernize existing websites and web applications.',
 		examples: [
 			'Performance improvements',
@@ -49,6 +51,7 @@ export const services = [
 	},
 	{
 		title: 'Technical Consultation',
+		icon: 'lightbulb',
 		description:
 			'Get guidance on technology decisions, code reviews, or planning software projects.',
 		examples: ['Technology stack advice', 'Code audits', 'Project planning', 'Team training'],

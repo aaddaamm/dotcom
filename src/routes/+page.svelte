@@ -1,5 +1,6 @@
 <script lang="ts">
 	import SeoHead from '../components/seo-head.svelte';
+	import ServiceIcon from '../components/service-icon.svelte';
 	import { approachItems, selectedWork, services, faqItems } from '$lib/copy';
 </script>
 
@@ -103,14 +104,24 @@
 			How I Can Help
 			<span class="accent-dot" aria-hidden="true">.</span>
 		</h2>
-		<div class="grid gap-6">
+		<div class="grid gap-8">
 			{#each services as service}
-				<div class="rounded-lg p-6 service-card">
-					<h3 class="mb-3 text-lg font-semibold" style="color: var(--color-text);">
-						{service.title}
-					</h3>
-					<p class="body-text mb-3">{service.description}</p>
-					<p class="outcome-text mb-4 font-medium">{service.outcome}</p>
+				<div class="rounded-lg p-6 sm:p-8 service-card">
+					<div class="flex flex-col sm:flex-row sm:items-start gap-4 mb-4">
+						<div class="service-icon-wrapper self-center sm:self-start">
+							<ServiceIcon type={service.icon} size={40} />
+						</div>
+						<div class="flex-1 text-center sm:text-left">
+							<h3 class="mb-2 text-xl font-semibold" style="color: var(--color-text);">
+								{service.title}
+							</h3>
+							<p class="body-text mb-3">{service.description}</p>
+						</div>
+					</div>
+					<div class="outcome-highlight mb-4">
+						<span class="outcome-icon">✓</span>
+						<span class="outcome-text font-medium">{service.outcome}</span>
+					</div>
 					<div class="flex flex-wrap gap-2">
 						{#each service.examples as example}
 							<span class="example-tag px-3 py-1 rounded-full text-sm">{example}</span>
@@ -201,6 +212,7 @@
 		</h2>
 		<div class="grid md:grid-cols-3 gap-6">
 			<div class="benefit-card p-6 rounded-lg">
+				<div class="benefit-icon mb-3">💬</div>
 				<h3 class="font-semibold mb-3 text-lg">Direct Communication</h3>
 				<p class="body-text">
 					No project managers or middlemen. You work directly with me, in your timezone, speaking
@@ -208,6 +220,7 @@
 				</p>
 			</div>
 			<div class="benefit-card p-6 rounded-lg">
+				<div class="benefit-icon mb-3">🎯</div>
 				<h3 class="font-semibold mb-3 text-lg">Right-Sized Solutions</h3>
 				<p class="body-text">
 					I understand small business needs and build solutions that fit your actual budget and
@@ -215,6 +228,7 @@
 				</p>
 			</div>
 			<div class="benefit-card p-6 rounded-lg">
+				<div class="benefit-icon mb-3">🏡</div>
 				<h3 class="font-semibold mb-3 text-lg">Local & Invested</h3>
 				<p class="body-text">
 					I live here with my family and care about our local business community. I'm here for the
@@ -379,12 +393,51 @@
 		transition:
 			background-color 400ms ease,
 			border-color 400ms ease,
-			transform 300ms ease;
+			transform 300ms ease,
+			box-shadow 300ms ease;
 	}
 
 	.service-card:hover {
 		background-color: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
 		border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
+		box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 10%, transparent);
+		transform: translateY(-2px);
+	}
+
+	.service-icon-wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 64px;
+		height: 64px;
+		background-color: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg));
+		border-radius: 12px;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+		flex-shrink: 0;
+	}
+
+	.outcome-highlight {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 12px 16px;
+		background-color: color-mix(in srgb, var(--color-accent) 8%, var(--color-bg));
+		border-radius: 8px;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+	}
+
+	.outcome-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 20px;
+		height: 20px;
+		background-color: var(--color-accent);
+		color: white;
+		border-radius: 50%;
+		font-size: 12px;
+		font-weight: bold;
+		flex-shrink: 0;
 	}
 
 	.example-tag {
@@ -459,5 +512,11 @@
 
 	.benefit-card h3 {
 		color: var(--color-text);
+	}
+
+	.benefit-icon {
+		font-size: 2rem;
+		line-height: 1;
+		opacity: 0.8;
 	}
 </style>
