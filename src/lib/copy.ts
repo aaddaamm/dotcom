@@ -47,7 +47,11 @@ export const services = [
 export const faqItems = [
 	{
 		question: 'How much do you charge?',
-		answer: 'I work on both hourly ($100-150/hour) and fixed-price projects depending on your needs. Most small projects range from $500-5000. I always provide a clear estimate upfront.'
+		answer: 'I work on both hourly ($100-150/hour) and fixed-price projects. Most small business projects range from $500-5000. I tailor pricing to fit what local businesses can actually afford.'
+	},
+	{
+		question: 'Why choose a local developer?',
+		answer: 'You get direct access to me, faster communication in your timezone, and someone who understands local business challenges. No middlemen or language barriers.'
 	},
 	{
 		question: 'How quickly can you start?',
@@ -55,10 +59,10 @@ export const faqItems = [
 	},
 	{
 		question: 'Do you work with non-technical clients?',
-		answer: 'Absolutely! I specialize in explaining technical concepts in plain English and work with many business owners who prefer to focus on their business, not technology.'
+		answer: 'Absolutely! Most of my clients are business owners who want to focus on running their business, not managing technology. I handle the technical stuff so you don\'t have to.'
 	},
 	{
-		question: 'What if I need ongoing support?',
-		answer: 'I offer maintenance retainers and ongoing support relationships. Most clients prefer this for peace of mind and faster response times.'
+		question: 'What if my project is too small?',
+		answer: 'No project is too small! I work with everything from simple website fixes to custom business applications. Small local businesses are exactly who I want to help.'
 	}
 ];

@@ -18,8 +18,8 @@
 		</div>
 		<p class="hero-subtitle font-mono" role="doc-subtitle">SOFTWARE CONSULTANT & FREELANCER</p>
 		<p class="body-text">
-			I help small businesses save time and money with custom software solutions. 
-			From fixing broken websites to building tools that automate your daily tasks.
+			I work directly with small local businesses to solve software problems that matter to you. 
+			Get personalized attention and solutions built to fit your actual budget and timeline.
 		</p>
 		<div class="hero-stats flex flex-wrap gap-6 mt-4 mb-2">
 			<div class="stat-item">
@@ -54,11 +54,11 @@
 		<div class="space-y-5 body-text">
 			<p>
 				With over a decade of experience, I focus on building software that actually works and solves real problems. 
-				I work with small businesses, startups, and individuals who need custom solutions or help with existing systems.
+				I work directly with local business owners who need reliable solutions without the complexity or cost of big development firms.
 			</p>
 			<p>
-				I specialize in taking complex technical problems and turning them into simple, reliable solutions. 
-				Whether you need a custom tool built from scratch or help fixing something that's broken, I can help.
+				Whether you need a simple website fix, a custom business tool, or ongoing technical support, 
+				I provide the same level of expertise you'd get elsewhere, but with personal attention and pricing that makes sense for small businesses.
 			</p>
 		</div>
 	</section>
@@ -170,6 +170,28 @@
 			<p class="muted-text">
 				This means I can tackle complex problems more efficiently while keeping costs reasonable for small businesses.
 			</p>
+		</div>
+	</section>
+
+	<!-- Why Local -->
+	<section aria-labelledby="local-heading" class="py-14 section-border">
+		<h2 id="local-heading" class="section-heading">
+			Why Work With a Local Developer?
+			<span class="accent-dot" aria-hidden="true">.</span>
+		</h2>
+		<div class="grid md:grid-cols-3 gap-6">
+			<div class="benefit-card p-6 rounded-lg">
+				<h3 class="font-semibold mb-3 text-lg">Direct Communication</h3>
+				<p class="body-text">No project managers or middlemen. You work directly with me, in your timezone, speaking your language.</p>
+			</div>
+			<div class="benefit-card p-6 rounded-lg">
+				<h3 class="font-semibold mb-3 text-lg">Right-Sized Solutions</h3>
+				<p class="body-text">I understand small business needs and build solutions that fit your actual budget and requirements.</p>
+			</div>
+			<div class="benefit-card p-6 rounded-lg">
+				<h3 class="font-semibold mb-3 text-lg">Long-Term Partnership</h3>
+				<p class="body-text">I'm here when you need updates, fixes, or want to grow your system. No hunting for your original developer.</p>
+			</div>
 		</div>
 	</section>
 
@@ -382,6 +404,20 @@
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
 		margin-top: 0.25rem;
+	}
+
+	.benefit-card {
+		border: 1px solid var(--color-border);
+		transition: background-color 300ms ease, border-color 300ms ease;
+	}
+
+	.benefit-card:hover {
+		background-color: color-mix(in srgb, var(--color-accent) 3%, var(--color-bg));
+		border-color: color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
+	}
+
+	.benefit-card h3 {
+		color: var(--color-text);
 	}
 
 </style>
