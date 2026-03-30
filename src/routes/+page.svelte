@@ -1,7 +1,11 @@
 <script lang="ts">
 	import SeoHead from '../components/seo-head.svelte';
 	import ServiceIcon from '../components/service-icon.svelte';
-	import { approachItems, selectedWork, services, faqItems } from '$lib/copy';
+	import HeroSection from '../components/hero-section.svelte';
+	import ServicesSection from '../components/services-section.svelte';
+	import FaqSection from '../components/faq-section.svelte';
+	import Card from '../components/card.svelte';
+	import { approachItems, selectedWork } from '$lib/copy';
 	import { setupScrollAnimations } from '$lib/animations';
 	import { onMount } from 'svelte';
 
@@ -20,62 +24,7 @@
 />
 
 <div class="max-w-3xl mx-auto px-6" bind:this={mainContainer}>
-	<!-- Hero -->
-	<section aria-label="Introduction" class="pt-20 sm:pt-28 pb-10">
-		<div class="flex items-center gap-4 mb-4">
-			<div class="hero-cursor cursor-blink" aria-hidden="true"></div>
-			<h1 class="hero-name font-mono">adam robinson</h1>
-		</div>
-		<p class="hero-subtitle font-mono" role="doc-subtitle">SOFTWARE CONSULTANT & FREELANCER</p>
-		<p class="body-text">
-			I work directly with small local businesses to solve software problems that matter to you. Get
-			personalized attention and solutions built to fit your actual budget and timeline.
-		</p>
-		<div class="hero-stats flex flex-wrap gap-6 mt-4 mb-2">
-			<div class="stat-item">
-				<span class="stat-number">10+</span>
-				<span class="stat-label">Years Experience</span>
-			</div>
-			<div class="stat-item">
-				<span class="stat-number">Project</span>
-				<span class="stat-label">Based Rates</span>
-			</div>
-			<div class="stat-item">
-				<span class="stat-number">24hr</span>
-				<span class="stat-label">Response Time</span>
-			</div>
-		</div>
-		
-		<!-- Satisfaction Guarantee Badge -->
-		<div class="guarantee-badge flex items-center gap-3 mt-6 p-4 rounded-lg border border-accent-500/20 bg-accent-500/5">
-			<div class="guarantee-icon text-accent-500" aria-hidden="true">
-				<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-					<path d="M12 2L3 7L12 12L21 7L12 2Z" opacity="0.5"/>
-					<path d="M3 17L12 22L21 17"/>
-					<path d="M3 12L12 17L21 12"/>
-				</svg>
-			</div>
-			<div class="guarantee-text">
-				<div class="font-semibold text-sm">100% Satisfaction Guarantee</div>
-				<div class="text-xs text-muted">Unlimited revisions until you're completely satisfied</div>
-			</div>
-		</div>
-		
-		<div class="flex flex-col sm:flex-row gap-3 mt-6">
-			<a
-				href="/contact"
-				class="cta-button px-6 py-3 rounded-lg font-semibold text-center transition-colors"
-			>
-				Start Your Project
-			</a>
-			<a
-				href="#services"
-				class="contact-button px-6 py-3 rounded-lg font-semibold text-center transition-colors border"
-			>
-				See How I Can Help
-			</a>
-		</div>
-	</section>
+	<HeroSection />
 
 	<!-- About -->
 	<section id="about" aria-labelledby="about-heading" class="py-14 section-border">
@@ -123,66 +72,7 @@
 		</p>
 	</section>
 
-	<!-- Services -->
-	<section id="services" aria-labelledby="services-heading" class="py-14 section-border">
-		<h2 id="services-heading" class="section-heading" style="margin-bottom: 32px;">
-			How I Can Help
-			<span class="accent-dot" aria-hidden="true">.</span>
-		</h2>
-		<div class="grid gap-8">
-			{#each services as service}
-				<div class="rounded-lg p-6 sm:p-8 service-card">
-					<div class="flex flex-col sm:flex-row sm:items-start gap-4 mb-4">
-						<div class="service-icon-wrapper self-center sm:self-start">
-							<ServiceIcon type={service.icon} size={40} />
-						</div>
-						<div class="flex-1 text-center sm:text-left">
-							<h3 class="mb-2 text-xl font-semibold" style="color: var(--color-text);">
-								{service.title}
-							</h3>
-							<p class="body-text mb-3">{service.description}</p>
-						</div>
-					</div>
-					<div class="outcome-highlight mb-4">
-						<span class="outcome-icon">✓</span>
-						<span class="outcome-text font-medium">{service.outcome}</span>
-					</div>
-					<div class="flex flex-wrap gap-2">
-						{#each service.examples as example}
-							<span class="example-tag px-3 py-1 rounded-full text-sm">{example}</span>
-						{/each}
-					</div>
-				</div>
-			{/each}
-		</div>
-		
-		<!-- Consultation Guarantee -->
-		<div class="consultation-guarantee mt-8 p-6 rounded-lg bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800">
-			<div class="flex items-start gap-4">
-				<div class="consultation-icon text-accent-500 mt-1" aria-hidden="true">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-						<path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"/>
-					</svg>
-				</div>
-				<div>
-					<h3 class="font-semibold mb-2">Risk-Free Consultation</h3>
-					<p class="text-sm text-muted leading-relaxed">
-						Not sure if I'm the right fit? Book a free 15-minute consultation call. If you're not completely satisfied with the value I provide, I'll refund the full cost of any paid consultation.
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<div class="mt-8 text-center">
-			<p class="body-text mb-4">Ready to get started? Let's talk about your project.</p>
-			<a
-				href="/contact"
-				class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block"
-			>
-				Start a Conversation
-			</a>
-		</div>
-	</section>
+	<ServicesSection />
 
 	<!-- Selected Work -->
 	<section id="work" aria-labelledby="work-heading" class="py-14 section-border">
@@ -192,10 +82,10 @@
 		</h2>
 		<div class="grid gap-4">
 			{#each selectedWork as project}
-				<div class="rounded-lg p-6 work-card">
+				<Card variant="work" class="p-6">
 					<h3 class="mb-2" style="color: var(--color-text);">{project.title}</h3>
 					<p class="muted-text">{project.description}</p>
-				</div>
+				</Card>
 			{/each}
 		</div>
 		<a href="/work" class="inline-flex items-center gap-1 text-sm mt-6 accent-link link-underline">
@@ -203,32 +93,7 @@
 		</a>
 	</section>
 
-	<!-- FAQ Section -->
-	<section id="faq" aria-labelledby="faq-heading" class="py-14 section-border">
-		<h2 id="faq-heading" class="section-heading">
-			Frequently Asked Questions
-			<span class="accent-dot" aria-hidden="true">.</span>
-		</h2>
-		<div class="grid gap-6">
-			{#each faqItems as faq}
-				<div class="faq-item">
-					<h3 class="faq-question mb-3 text-lg font-semibold" style="color: var(--color-text);">
-						{faq.question}
-					</h3>
-					<p class="body-text">{faq.answer}</p>
-				</div>
-			{/each}
-		</div>
-		<div class="mt-8 text-center">
-			<p class="body-text mb-4">Have a different question?</p>
-			<a
-				href="mailto:adam@adamrobinson.tech?subject=Project Inquiry"
-				class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block"
-			>
-				Ask Me Directly
-			</a>
-		</div>
-	</section>
+	<FaqSection />
 
 	<!-- AI Section -->
 	<section aria-labelledby="ai-heading" class="py-14 section-border">
@@ -292,13 +157,10 @@
 				Most projects start with a simple conversation about what you need.
 			</p>
 			<div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-				<a href="/contact" class="cta-button px-8 py-4 rounded-lg font-semibold transition-colors">
+				<a href="/contact" class="btn-primary px-8 py-4">
 					Get Started Today
 				</a>
-				<a
-					href="/work"
-					class="contact-button px-8 py-4 rounded-lg font-semibold transition-colors border"
-				>
+				<a href="/work" class="btn-secondary px-8 py-4">
 					See Past Projects
 				</a>
 			</div>
@@ -353,31 +215,6 @@
 </div>
 
 <style>
-	.hero-cursor {
-		width: 18px;
-		height: 64px;
-		border-radius: 3px;
-		background-color: var(--color-accent);
-		flex-shrink: 0;
-	}
-
-	.hero-name {
-		font-size: 52px;
-		font-weight: 500;
-		letter-spacing: -1.5px;
-		color: var(--color-text);
-		line-height: 1;
-	}
-
-	.hero-subtitle {
-		font-size: 14px;
-		font-weight: 500;
-		letter-spacing: 3px;
-		color: var(--color-accent);
-		text-transform: uppercase;
-		margin-bottom: 24px;
-	}
-
 	.section-border {
 		border-top: 1px solid var(--color-border);
 	}
@@ -391,141 +228,9 @@
 		color: var(--color-accent);
 	}
 
-	.accent-bg {
-		background-color: var(--color-accent);
-	}
-
-	.work-card {
-		border: 1px solid var(--color-border);
-		border-left: 2px solid var(--color-accent);
-		transition:
-			background-color 400ms ease,
-			border-color 400ms ease,
-			box-shadow 400ms ease,
-			transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
-	}
-
-	.work-card:hover {
-		transform: scale(1.02);
-		background-color: color-mix(in srgb, var(--color-accent) 7%, var(--color-bg));
-		border-color: color-mix(in srgb, var(--color-accent) 50%, var(--color-border));
-		border-left-color: var(--color-accent);
-		box-shadow: 0 4px 24px color-mix(in srgb, var(--color-accent) 15%, transparent);
-	}
-
 	.ai-card {
 		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
 		background-color: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
-	}
-
-	.cta-button {
-		background-color: var(--color-accent);
-		color: white;
-		transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
-	}
-
-	.cta-button:hover {
-		background-color: color-mix(in srgb, var(--color-accent) 85%, white);
-		transform: translateY(-2px);
-		box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 25%, transparent);
-	}
-
-	.cta-button:active {
-		transform: translateY(-1px);
-		transition-duration: 100ms;
-	}
-
-	.contact-button {
-		border-color: var(--color-accent);
-		color: var(--color-accent);
-		transition: all 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
-	}
-
-	.contact-button:hover {
-		background-color: var(--color-accent);
-		color: white;
-		transform: translateY(-2px);
-		box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 25%, transparent);
-	}
-
-	.contact-button:active {
-		transform: translateY(-1px);
-		transition-duration: 100ms;
-	}
-
-	.service-card {
-		border: 1px solid var(--color-border);
-		border-left: 3px solid var(--color-accent);
-		transition:
-			background-color 400ms ease,
-			border-color 400ms ease,
-			transform 300ms ease,
-			box-shadow 300ms ease;
-	}
-
-	.service-card:hover {
-		background-color: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
-		border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
-		box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 10%, transparent);
-		transform: translateY(-2px);
-	}
-
-	.service-icon-wrapper {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 64px;
-		height: 64px;
-		background-color: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg));
-		border-radius: 12px;
-		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
-		flex-shrink: 0;
-	}
-
-	.outcome-highlight {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		padding: 12px 16px;
-		background-color: color-mix(in srgb, var(--color-accent) 8%, var(--color-bg));
-		border-radius: 8px;
-		border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
-	}
-
-	.outcome-icon {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 20px;
-		height: 20px;
-		background-color: var(--color-accent);
-		color: white;
-		border-radius: 50%;
-		font-size: 12px;
-		font-weight: bold;
-		flex-shrink: 0;
-	}
-
-	.example-tag {
-		background-color: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg));
-		color: var(--color-text);
-		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
-	}
-
-	.outcome-text {
-		color: var(--color-accent);
-		font-size: 0.95em;
-	}
-
-	.faq-item {
-		border-left: 3px solid var(--color-border);
-		padding-left: 1.5rem;
-		padding-top: 0.5rem;
-		padding-bottom: 0.5rem;
-	}
-
-	.faq-question {
-		color: var(--color-text);
 	}
 
 	.bg-gradient {
@@ -537,45 +242,18 @@
 		border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
 	}
 
-	.hero-stats {
-		margin-top: 1.5rem;
-		margin-bottom: 1rem;
-	}
-
-	.stat-item {
-		text-align: center;
-		min-width: 80px;
-	}
-
-	.stat-number {
-		display: block;
-		font-weight: 600;
-		font-size: 1.125rem;
-		color: var(--color-accent);
-		font-family: var(--font-mono);
-	}
-
-	.stat-label {
-		display: block;
-		font-size: 0.75rem;
-		color: var(--color-muted);
-		text-transform: uppercase;
-		letter-spacing: 0.5px;
-		margin-top: 0.25rem;
-	}
-
 	.benefit-card {
 		border: 1px solid var(--color-border);
 		transition:
-			background-color 300ms ease,
-			border-color 300ms ease,
-			transform 200ms ease;
+			background-color var(--transition-normal) ease,
+			border-color var(--transition-normal) ease,
+			transform var(--transition-normal) ease;
 	}
 
 	.benefit-card:hover {
 		background-color: color-mix(in srgb, var(--color-accent) 3%, var(--color-bg));
 		border-color: color-mix(in srgb, var(--color-accent) 20%, var(--color-border));
-		transform: translateY(-2px);
+		transform: var(--lift-sm);
 	}
 
 	.benefit-card h3 {

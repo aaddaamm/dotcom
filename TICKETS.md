@@ -537,7 +537,7 @@
 **Acceptance Criteria**:
 
 - [ ] Add "Cranston Chamber of Commerce Member" badge if applicable
-- [ ] Include "Supporting Local RI Businesses Since X" messaging  
+- [ ] Include "Supporting Local RI Businesses Since X" messaging
 - [ ] Add Rhode Island map or location indicator
 - [ ] Include local business focus in hero or about section
 - [ ] Add community involvement or local partnerships  
@@ -596,12 +596,230 @@
 
 ---
 
+## 🚀 New Conversion & Trust Opportunities (Draft)
+
+### TICKET-036: Exit Intent Lead Capture
+
+**Status**: Backlog  
+**Priority**: High  
+**Effort**: 2-3 hours  
+**Description**: Add exit intent popup to capture visitors leaving without taking action  
+**Acceptance Criteria**:
+
+- [ ] Exit intent detection (desktop mouse movement, mobile scroll patterns)
+- [ ] Popup offering free consultation or resource download
+- [ ] A/B test different offers (consultation vs. checklist download)
+- [ ] Integration with email capture system
+- [ ] Respectful timing (not immediate, respect user experience)
+- [ ] Easy dismiss and "don't show again" options  
+      **Notes**: Could increase lead capture by 15-30% based on industry averages
+
+---
+
+### TICKET-037: Sticky Contact CTA
+
+**Status**: Backlog  
+**Priority**: Medium  
+**Effort**: 1-2 hours  
+**Description**: Add persistent contact button that follows scroll, especially on mobile  
+**Acceptance Criteria**:
+
+- [ ] Floating "Get Quote" or "Book Call" button
+- [ ] Always visible during scroll on mobile
+- [ ] Unobtrusive positioning (bottom right or similar)
+- [ ] Smooth animations and micro-interactions
+- [ ] Link to contact form or phone number
+- [ ] Hide on contact page to avoid redundancy  
+      **Notes**: Reduces friction for impulse inquiries from engaged visitors
+
+---
+
+### TICKET-038: Security & Privacy Trust Signals
+
+**Status**: Backlog  
+**Priority**: Medium  
+**Effort**: 1 hour  
+**Description**: Add security badges and privacy assurances to build trust  
+**Acceptance Criteria**:
+
+- [ ] "Your information is safe" messaging near contact form
+- [ ] SSL certificate indicator/badge
+- [ ] Privacy policy link in footer
+- [ ] "No spam guarantee" text
+- [ ] Secure form submission messaging
+- [ ] Professional data handling assurances  
+      **Notes**: Small businesses are increasingly concerned about data privacy
+
+---
+
+### TICKET-039: Enhanced Professional Credentials Display
+
+**Status**: Backlog  
+**Priority**: Medium  
+**Effort**: 1-2 hours  
+**Description**: More prominently display years in business, certifications, and professional associations  
+**Acceptance Criteria**:
+
+- [ ] "10+ Years Serving RI Businesses" prominently displayed
+- [ ] Any relevant technical certifications or credentials
+- [ ] Professional association memberships (if applicable)
+- [ ] Business registration/licensing information
+- [ ] "Established 20XX" or similar founding date reference
+- [ ] Integration with existing stats section on homepage  
+      **Notes**: Small businesses want to work with established, credible professionals
+
+---
+
+### TICKET-040: Free Resource Downloads for Lead Capture
+
+**Status**: Backlog  
+**Priority**: High  
+**Effort**: 4-6 hours  
+**Description**: Create downloadable resources to capture leads not ready for direct contact  
+**Acceptance Criteria**:
+
+- [ ] "RI Business Software Planning Checklist" PDF
+- [ ] "Website Health Check Template" download
+- [ ] "Questions to Ask Your Developer" guide
+- [ ] Landing pages for each resource with email capture
+- [ ] Email automation for delivery and follow-up
+- [ ] Integration with existing contact system  
+      **Notes**: Captures warm prospects who need more time before reaching out directly
+
+---
+
+### TICKET-041: Live Chat Widget Implementation
+
+**Status**: Backlog  
+**Priority**: Medium  
+**Effort**: 2-3 hours  
+**Description**: Add live chat for immediate response and basic question handling  
+**Acceptance Criteria**:
+
+- [ ] Chat widget with professional appearance
+- [ ] Automated responses for common questions
+- [ ] Business hours availability display
+- [ ] Mobile-optimized chat interface
+- [ ] Integration with email for offline messages
+- [ ] Quick response templates for efficiency  
+      **Notes**: Shows accessibility and can handle basic questions instantly
+
+---
+
+### TICKET-042: Client Logo Showcase
+
+**Status**: Backlog  
+**Priority**: Medium  
+**Effort**: 2-3 hours  
+**Description**: Display logos of local businesses you've worked with (permission-based)  
+**Acceptance Criteria**:
+
+- [ ] Obtain permission from past clients for logo use
+- [ ] Create "Trusted by Local RI Businesses" section
+- [ ] Clean, professional logo display grid
+- [ ] Include mix of business sizes and industries
+- [ ] Link to case studies where available
+- [ ] Keep updated with recent client work  
+      **Notes**: Even small local business logos build credibility and relatability
+
+---
+
+### TICKET-043: Dynamic Testimonial System
+
+**Status**: Backlog  
+**Priority**: Medium  
+**Effort**: 3-4 hours  
+**Description**: Create rotating testimonials and integrate live reviews from Google/LinkedIn  
+**Acceptance Criteria**:
+
+- [ ] Testimonial carousel or rotation on homepage
+- [ ] Pull recent Google Business reviews (if available)
+- [ ] LinkedIn recommendation integration
+- [ ] Mix of project types and business sizes
+- [ ] Include client names, companies, and photos when possible
+- [ ] Schema markup for review snippets  
+      **Notes**: Dynamic, recent testimonials feel more authentic than static quotes
+
+---
+
+### TICKET-044: Current Availability & Booking Status
+
+**Status**: Backlog  
+**Priority**: High  
+**Effort**: 30 minutes  
+**Description**: Display current booking timeline and create urgency for scheduling  
+**Acceptance Criteria**:
+
+- [ ] "Currently booking X weeks out" display on homepage
+- [ ] "Limited spots available this quarter" when appropriate
+- [ ] Update mechanism to keep status current
+- [ ] Integration with existing availability messaging
+- [ ] Seasonal adjustments for busy periods
+- [ ] Clear call-to-action to book consultation  
+      **Notes**: Scarcity and clear availability expectations encourage faster decision-making
+
+---
+
+### TICKET-045: Response Time Guarantees
+
+**Status**: Backlog  
+**Priority**: Medium  
+**Effort**: 30 minutes  
+**Description**: Add response time guarantees and service level commitments  
+**Acceptance Criteria**:
+
+- [ ] "24-hour response guarantee" badge/messaging
+- [ ] "Same-day quotes for urgent projects" offer
+- [ ] "Free consultation within 48 hours" commitment
+- [ ] Emergency contact option for urgent issues
+- [ ] Clear expectations for different inquiry types
+- [ ] Integration with contact form messaging  
+      **Notes**: Clear response expectations reduce anxiety about reaching out
+
+---
+
+### TICKET-046: Social Proof Aggregation Hub
+
+**Status**: Backlog  
+**Priority**: Low  
+**Effort**: 4-5 hours  
+**Description**: Create comprehensive social proof section aggregating testimonials, reviews, and case studies  
+**Acceptance Criteria**:
+
+- [ ] Dedicated testimonials/reviews page
+- [ ] Integration of Google reviews, LinkedIn recommendations
+- [ ] Client success stories and case studies
+- [ ] Before/after project examples
+- [ ] Filterable by industry or project type
+- [ ] Schema markup for SEO benefits  
+      **Notes**: Comprehensive social proof page for prospects who need extensive validation
+
+---
+
+### TICKET-047: Interactive Project Estimation Tool
+
+**Status**: Backlog  
+**Priority**: Medium  
+**Effort**: 6-8 hours  
+**Description**: Build interactive tool for prospects to get ballpark project estimates  
+**Acceptance Criteria**:
+
+- [ ] Multi-step questionnaire about project needs
+- [ ] Instant ballpark pricing estimates
+- [ ] Email capture before showing results
+- [ ] Follow-up automation for estimate recipients
+- [ ] Different paths for different project types
+- [ ] Disclaimer about estimate vs. final pricing  
+      **Notes**: Helps qualify leads and manages expectations while capturing contact information
+
+---
+
 ## 📊 Tracking & Notes
 
 **Created**: 2026-03-29  
-**Last Updated**: 2026-03-29  
-**Total Tickets**: 35 (3 completed, 1 rejected, 31 active)  
-**Estimated Total Effort**: 95-115 hours
+**Last Updated**: 2026-03-30  
+**Total Tickets**: 47 (3 completed, 1 rejected, 43 active)  
+**Estimated Total Effort**: 115-135 hours
 
 ### Priority Legend
 

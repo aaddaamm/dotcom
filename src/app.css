@@ -29,6 +29,17 @@
 	--color-accent: #2a7a7a;
 	--color-muted: #aaaaaa;
 	--color-border: #ebebeb;
+	
+	/* Design tokens */
+	--transition-fast: 150ms;
+	--transition-normal: 300ms;
+	--transition-slow: 400ms;
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	--lift-sm: -2px;
+	--lift-md: -3px;
+	--scale-hover: 1.02;
 }
 
 [data-theme='dark'] {
@@ -229,4 +240,113 @@ p {
 		transform: none;
 		transition: none;
 	}
+}
+
+/* Design System Utilities */
+
+/* Button Styles */
+.btn-primary {
+	background-color: var(--color-accent);
+	color: white;
+	padding: 12px 24px;
+	border-radius: var(--radius-md);
+	font-weight: 600;
+	text-decoration: none;
+	display: inline-block;
+	transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+	border: none;
+	cursor: pointer;
+}
+
+.btn-primary:hover {
+	background-color: color-mix(in srgb, var(--color-accent) 85%, white);
+	transform: var(--lift-sm);
+	box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+.btn-primary:active {
+	transform: translateY(-1px);
+	transition-duration: 100ms;
+}
+
+.btn-secondary {
+	border: 1px solid var(--color-accent);
+	color: var(--color-accent);
+	background: transparent;
+	padding: 12px 24px;
+	border-radius: var(--radius-md);
+	font-weight: 600;
+	text-decoration: none;
+	display: inline-block;
+	transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+	cursor: pointer;
+}
+
+.btn-secondary:hover {
+	background-color: var(--color-accent);
+	color: white;
+	transform: var(--lift-sm);
+	box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+.btn-secondary:active {
+	transform: translateY(-1px);
+	transition-duration: 100ms;
+}
+
+/* Card Styles */
+.card-base {
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	transition: all var(--transition-slow) ease;
+}
+
+.card-accent-border {
+	border-left: 3px solid var(--color-accent);
+}
+
+.card-hover-lift:hover {
+	transform: var(--lift-sm);
+	background-color: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
+	border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
+	box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 10%, transparent);
+}
+
+.card-work {
+	border-left: 2px solid var(--color-accent);
+	transition: all var(--transition-slow) ease, transform var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-work:hover {
+	transform: var(--scale-hover);
+	background-color: color-mix(in srgb, var(--color-accent) 7%, var(--color-bg));
+	border-color: color-mix(in srgb, var(--color-accent) 50%, var(--color-border));
+	border-left-color: var(--color-accent);
+	box-shadow: 0 4px 24px color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+
+/* Accent Background Utilities */
+.accent-bg-3 {
+	background-color: color-mix(in srgb, var(--color-accent) 3%, var(--color-bg));
+}
+
+.accent-bg-5 {
+	background-color: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
+}
+
+.accent-bg-8 {
+	background-color: color-mix(in srgb, var(--color-accent) 8%, var(--color-bg));
+}
+
+.accent-bg-10 {
+	background-color: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg));
+}
+
+/* Accent Border Utilities */
+.accent-border-15 {
+	border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+
+.accent-border-20 {
+	border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
 }

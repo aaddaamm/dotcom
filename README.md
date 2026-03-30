@@ -22,9 +22,11 @@ npm run dev
 ## Environment Setup
 
 1. **Resend Email API** (for contact form):
+
    ```bash
    RESEND_API_KEY=re_xxxxxxxxx
    ```
+
    Get your API key from: https://resend.com/api-keys
 
 2. **Optional - Database** (not currently used):
@@ -63,4 +65,5 @@ See `AGENTS.md` for detailed architecture documentation.
 Deployed to Vercel with automatic deployments from `main` branch.
 
 Environment variables must be configured in Vercel dashboard:
+
 - `RESEND_API_KEY`

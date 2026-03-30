@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { validateContactForm, sanitizeContactForm, type ContactFormData } from '$lib/validation';
+	
 	let name = $state('');
 	let email = $state('');
 	let project = $state('');
@@ -9,6 +11,7 @@
 	let submitted = $state(false);
 	let errorMessage = $state('');
 	let successMessage = $state('');
+	let fieldErrors = $state<Record<string, string>>({});
 
 	interface VercelAnalytics {
 		track: (event: string, properties?: Record<string, string>) => void;
@@ -25,21 +28,28 @@
 		isSubmitting = true;
 		errorMessage = '';
 		successMessage = '';
+		fieldErrors = {};
 
-		// Validate inputs
-		if (!name.trim() || !email.trim() || !project.trim() || !message.trim()) {
-			errorMessage = 'Please fill in all required fields.';
+		// Create form data object
+		const formData: ContactFormData = {
+			name: name.trim(),
+			email: email.trim(),
+			phone: phone.trim(),
+			budget,
+			message: `${project.trim()}\n\n${message.trim()}`
+		};
+
+		// Validate form
+		const validation = validateContactForm(formData);
+		if (!validation.isValid) {
+			fieldErrors = validation.errors;
+			errorMessage = 'Please fix the errors below.';
 			isSubmitting = false;
 			return;
 		}
 
-		// Email validation
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		if (!emailRegex.test(email.trim())) {
-			errorMessage = 'Please enter a valid email address.';
-			isSubmitting = false;
-			return;
-		}
+		// Sanitize inputs
+		const sanitizedData = sanitizeContactForm(formData);
 
 		try {
 			const response = await fetch('/api/contact', {

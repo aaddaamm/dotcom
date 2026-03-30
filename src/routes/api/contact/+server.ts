@@ -2,26 +2,8 @@ import { json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import { Resend } from 'resend';
 import type { RequestHandler } from './$types';
-
-interface ContactFormData {
-	name: string;
-	email: string;
-	project: string;
-	message: string;
-	phone?: string;
-	budget?: string;
-}
-
-// HTML escape function to prevent XSS
-function escapeHtml(unsafe: string): string {
-	return unsafe
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&#x27;')
-		.replace(/\//g, '&#x2F;');
-}
+import { generateNotificationEmail, generateAutoReplyEmail } from '$lib/email-templates';
+import { validateContactForm, sanitizeContactForm, type ContactFormData } from '$lib/validation';
 
 // Simple rate limiting - in production should use Redis/database
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -31,17 +13,17 @@ const RATE_LIMIT_MAX = 3; // 3 submissions per 15 minutes per IP
 function isRateLimited(ip: string): boolean {
 	const now = Date.now();
 	const record = rateLimitMap.get(ip);
-	
+
 	if (!record || now > record.resetTime) {
 		// Reset or create new record
 		rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
 		return false;
 	}
-	
+
 	if (record.count >= RATE_LIMIT_MAX) {
 		return true;
 	}
-	
+
 	record.count++;
 	return false;
 }
