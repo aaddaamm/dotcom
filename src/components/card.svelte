@@ -20,8 +20,7 @@
 		benefit: 'card-base'
 	};
 	
-	const hoverClass = hover ? 'card-hover-lift' : '';
-	const classes = `${variantClasses[variant]} ${hoverClass} ${className}`.trim();
+	const classes = $derived(`${variantClasses[variant]} ${hover ? 'card-hover-lift' : ''} ${className}`.trim());
 </script>
 
 <div class={classes}>
