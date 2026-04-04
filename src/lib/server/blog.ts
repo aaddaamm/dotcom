@@ -17,19 +17,28 @@ export type BlogPostWithContent = BlogPost & {
 };
 
 const BLOG_DIR = path.resolve('src/content/blog');
+const DRAFTS_DIR = path.join(BLOG_DIR, 'drafts');
 
-export function getAllPosts(): BlogPost[] {
+export function getAllPosts(includeDrafts = false): BlogPost[] {
 	if (!fs.existsSync(BLOG_DIR)) return [];
 
-	const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith('.md'));
+	const readDir = (dir: string, slugPrefix = '') =>
+		fs.existsSync(dir)
+			? fs.readdirSync(dir).filter((f) => f.endsWith('.md')).map((file) => ({ file, dir, slug: slugPrefix + file.replace(/\.md$/, '') }))
+			: [];
 
-	const posts = files
-		.map((file) => {
-			const raw = fs.readFileSync(path.join(BLOG_DIR, file), 'utf-8');
+	const entries = [
+		...readDir(BLOG_DIR),
+		...(includeDrafts ? readDir(DRAFTS_DIR, 'drafts/') : [])
+	];
+
+	const posts = entries
+		.map(({ file, dir, slug }) => {
+			const raw = fs.readFileSync(path.join(dir, file), 'utf-8');
 			const { data } = matter(raw);
 
 			return {
-				slug: file.replace(/\.md$/, ''),
+				slug,
 				title: data.title ?? '',
 				description: data.description ?? '',
 				date: data.date ?? '',
@@ -37,21 +46,26 @@ export function getAllPosts(): BlogPost[] {
 				published: data.published ?? false
 			} satisfies BlogPost;
 		})
-		.filter((p) => p.published)
+		.filter((p) => p.published || includeDrafts)
 		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 	return posts;
 }
 
-export function getPostBySlug(slug: string): BlogPostWithContent | null {
-	const filePath = path.join(BLOG_DIR, `${slug}.md`);
+export function getPostBySlug(slug: string, includeDrafts = false): BlogPostWithContent | null {
+	// Support drafts/some-slug routing
+	const isDraft = slug.startsWith('drafts/');
+	const actualSlug = isDraft ? slug.slice('drafts/'.length) : slug;
+	const filePath = isDraft
+		? path.join(DRAFTS_DIR, `${actualSlug}.md`)
+		: path.join(BLOG_DIR, `${slug}.md`);
 
 	if (!fs.existsSync(filePath)) return null;
 
 	const raw = fs.readFileSync(filePath, 'utf-8');
 	const { data, content } = matter(raw);
 
-	if (!data.published) return null;
+	if (!data.published && !includeDrafts) return null;
 
 	return {
 		slug,
@@ -59,7 +73,7 @@ export function getPostBySlug(slug: string): BlogPostWithContent | null {
 		description: data.description ?? '',
 		date: data.date ?? '',
 		tags: data.tags ?? [],
-		published: true,
+		published: data.published ?? false,
 		content: marked.parse(content, { async: false }) as string
 	};
 }
