@@ -43,8 +43,11 @@
 								day: 'numeric'
 							})}
 						</time>
-						<h2 class="text-lg font-semibold mt-1" style="color: var(--color-text);">
+						<h2 class="text-lg font-semibold mt-1 flex items-center gap-2" style="color: var(--color-text);">
 							{post.title}
+							{#if !post.published}
+								<span class="draft-badge text-xs font-normal px-2 py-0.5 rounded">draft</span>
+							{/if}
 						</h2>
 						<p class="muted-text mt-2 text-sm">{post.description}</p>
 						{#if post.tags.length > 0}
@@ -90,5 +93,11 @@
 	.tag {
 		color: var(--color-accent);
 		background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+	}
+
+	.draft-badge {
+		color: var(--color-muted, #888);
+		background-color: color-mix(in srgb, currentColor 12%, transparent);
+		border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
 	}
 </style>
