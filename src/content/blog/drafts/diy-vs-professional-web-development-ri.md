@@ -1,188 +1,49 @@
 ---
-title: 'DIY Website vs Professional Help: When RI Business Owners Should Make the Switch'
-description: 'Honest guide to DIY vs professional web development for Rhode Island businesses. Learn when DIY works, warning signs, and hidden costs of each approach.'
-date: 2026-04-10
-slug: diy-vs-professional-web-development-ri
+title: 'DIY Website vs. Hiring a Developer: When to Make the Switch'
+description: 'Honest guide to DIY vs professional web development for Rhode Island businesses. Learn when DIY works, warning signs, and the real costs of each approach.'
+date: '2026-04-10'
+tags: ['web-development', 'small-business', 'rhode-island']
+published: false
 ---
 
-# DIY Website vs Professional Help: When RI Business Owners Should Make the Switch
+DIY website builders are genuinely good tools. I don't try to talk anyone out of them when they're the right fit. But they're not always the right fit, and knowing the difference saves a lot of time and money.
 
-[DRAFT - Content outline ready, needs writing]
+## When DIY actually works
 
-Every Rhode Island business owner faces this decision: build it yourself or hire a professional? After helping dozens of local businesses transition from DIY solutions, I've learned when each approach makes sense.
+Building your own site makes sense in some situations. If you need a simple brochure — a few pages explaining what you do, your location, how to reach you — a DIY platform can handle that fine. If your budget is under $1,000 and the site isn't critical to how customers find or evaluate you, it's a reasonable starting point. If you enjoy learning new tools and have the time to invest, even better.
 
-## When DIY Actually Makes Sense
+The platforms worth considering: **Squarespace** has clean templates and is a good fit for service businesses that want something that looks polished without much customization. **Wix** has a gentler learning curve and more flexibility in how you lay things out. **Shopify** is the right choice if you need basic e-commerce — it's purpose-built for it.
 
-### Good Candidates for DIY
-- Simple brochure websites (5-10 pages max)
-- Very limited budget (under $1,000 total)
-- Temporary or short-term needs
-- You enjoy learning new technologies
-- Non-critical business function
+## Warning signs your DIY site is hurting you
 
-### Best DIY Platforms for RI Businesses
-**Squarespace:** Clean templates, good for service businesses  
-**WordPress.com:** Flexible, large community  
-**Wix:** User-friendly drag-and-drop interface  
-**Shopify:** If you need basic e-commerce  
+There's a difference between a site that's "good enough" and one that's actively costing you business. Some things to watch for:
 
-## Warning Signs Your DIY Site Is Hurting Business
+- The site loads slowly — anything over 3 seconds and people leave
+- It doesn't work right on mobile, and most of your visitors are on phones
+- Customers have mentioned issues, even offhand
+- You can't update the content yourself without something breaking elsewhere
+- Your competitors' sites make yours look dated by comparison
 
-### Performance Red Flags
-- Site loads slowly (over 3 seconds)
-- Doesn't work properly on mobile devices
-- Frequent downtime or technical issues
-- Poor search engine rankings
+That last one is harder to quantify, but it matters. First impressions happen fast, and a site that looks like it was built five years ago signals something about the business behind it — even if that signal isn't fair.
 
-### Business Impact Indicators
-- Customers mentioning website issues
-- Low conversion rates from website visits
-- Difficulty making updates yourself
-- Missing features competitors have
+## The hidden cost of doing it yourself
 
-### Security and Maintenance Issues
-- Outdated plugins or themes
-- No regular backups
-- Vulnerability to hacking
-- Broken forms or functionality
+The time investment is real and often underestimated. Getting competent enough to build a decent site from scratch takes 20–40 hours of learning. Ongoing maintenance — keeping things updated, troubleshooting when something breaks, figuring out why a plugin suddenly stopped working — adds a few hours a month on top of that.
 
-## Hidden Costs of DIY Web Development
+If your time is worth $50 an hour, those 40 initial hours are $2,000 before you've even launched. That doesn't include platform fees, premium templates, or the hours you'll spend when things inevitably need fixing.
 
-### Time Investment
-**Learning curve:** 20-40 hours to become competent  
-**Ongoing maintenance:** 2-5 hours monthly  
-**Troubleshooting issues:** 5-10 hours when problems arise  
+Over three years, DIY often ends up costing more than professional work once you factor in time, subscriptions, and fixes. The upfront number looks smaller, but the total rarely is.
 
-**Your Time Value:** If your time is worth $50/hour, 40 hours = $2,000
+## What professional work actually gets you
 
-### Opportunity Costs
-- Time not spent on core business activities
-- Lost customers due to poor user experience
-- Missed marketing opportunities
-- SEO penalties from technical issues
+It's not just "looks better," though that matters. A professionally built site loads faster, works correctly on every device, and has SEO handled properly from the start rather than bolted on later. You also get something you can hand off and not think about — which is worth real money if your business depends on staying focused on the work itself.
 
-### Hidden Technical Costs
-- Premium themes and plugins: $200-500/year
-- Professional photography: $500-1,500
-- Email marketing tools: $300-600/year
-- Security and backup services: $200-400/year
+The other thing you get is someone to call when something breaks. With a DIY site, troubleshooting is your problem. With a professional build, it's not.
 
-## What Professional Development Actually Gets You
+If you're thinking about making the switch and want to know what to watch out for when hiring, the [red flags post](/blog/red-flags-hiring-developer) covers that in detail.
 
-### Technical Expertise
-- Proper site architecture and performance
-- Mobile optimization and responsive design
-- SEO best practices implementation
-- Security and maintenance protocols
+## An honest assessment
 
-### Business Value
-- Professional design that builds trust
-- Conversion optimization
-- Integration with business tools
-- Scalability for future growth
+If your current site isn't bringing in business, or if maintaining it is taking time you don't have, it's worth at least getting an outside opinion. Sometimes the fix is smaller than you think. Sometimes it's bigger. Either way, it's better to know.
 
-### Time Savings
-- Faster project completion
-- No learning curve required
-- Ongoing support and maintenance
-- Quick issue resolution
-
-## Real Cost Comparison Over 2-3 Years
-
-### DIY Scenario
-**Year 1:** Platform ($200) + Theme ($100) + Plugins ($300) + Your Time ($2,000) = **$2,600**  
-**Year 2-3:** Maintenance time ($1,000/year) + Platform costs ($500/year) = **$3,000**  
-**Total 3-Year Cost: $5,600**
-
-### Professional Development Scenario
-**Year 1:** Development ($3,000) + Hosting ($200) = **$3,200**  
-**Year 2-3:** Hosting + maintenance ($500/year) = **$1,000**  
-**Total 3-Year Cost: $4,200**
-
-**Plus:** Professional result, better performance, no time investment
-
-## Local Examples of Successful Transitions
-
-### Case Study 1: Cranston Service Business
-**Before:** DIY Wix site, 2% conversion rate  
-**After:** Custom professional site, 8% conversion rate  
-**Result:** 4x more leads from same traffic  
-
-### Case Study 2: Providence Retail Shop
-**Before:** DIY e-commerce, constant technical issues  
-**After:** Professional Shopify customization  
-**Result:** 40% increase in online sales, zero technical problems  
-
-### Case Study 3: Warwick Professional Services
-**Before:** DIY WordPress, poor mobile experience  
-**After:** Mobile-optimized professional site  
-**Result:** 60% increase in mobile inquiries  
-
-## Making the Transition: What to Expect
-
-### Assessment Process
-1. **Current Site Audit** - Identify problems and opportunities
-2. **Business Goals Review** - Understand growth objectives
-3. **Content Strategy** - Plan improved site structure
-4. **Migration Planning** - Preserve SEO value and content
-
-### Typical Timeline
-- **Planning:** 1-2 weeks
-- **Development:** 3-6 weeks
-- **Testing and Launch:** 1 week
-- **Training and Support:** Ongoing
-
-### Investment Range for RI Businesses
-- **Basic professional site:** $2,000-4,000
-- **Custom functionality:** $4,000-8,000
-- **E-commerce solutions:** $5,000-10,000
-- **Ongoing maintenance:** $100-300/month
-
-## Red Flags When Hiring Professional Help
-
-### Warning Signs to Avoid
-- Promises that sound too good to be true
-- No local references or portfolio
-- Demands full payment upfront
-- Can't explain their process clearly
-
-*[See full details in my "Red Flags When Hiring a Developer" post]*
-
-## Decision Framework: DIY or Professional?
-
-### Choose DIY If:
-- ✓ Budget under $1,000
-- ✓ Simple brochure site only
-- ✓ Have 40+ hours to invest
-- ✓ Enjoy learning technology
-- ✓ Website isn't critical for business
-
-### Choose Professional If:
-- ✓ Budget over $2,000
-- ✓ Need custom functionality
-- ✓ Time is valuable
-- ✓ Website drives business results
-- ✓ Want professional appearance
-
-## Getting Started with Professional Development
-
-### Questions to Ask Potential Developers
-1. Can you show examples of similar RI business sites?
-2. What's included in your development process?
-3. How do you handle ongoing maintenance?
-4. What happens if I need changes later?
-5. Can I speak with recent local clients?
-
-### Preparing for Success
-- **Define your goals** clearly
-- **Gather existing content** (text, images, branding)
-- **Research competitors** you admire
-- **Set realistic timeline** expectations
-
----
-
-**Considering the switch from DIY to professional development?** I offer free consultations to review your current site and discuss options.
-
-**[Schedule your free website review](/contact)**
-
-*Serving Rhode Island businesses with honest advice and professional web development since 2014.*
+[Get in touch](/contact) if you want an honest look at what your site is doing — and what it could be doing.

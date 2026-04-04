@@ -1,127 +1,52 @@
 ---
 title: 'How Much Should Small Businesses Actually Spend on Software?'
 description: 'A practical guide to software budgeting for Rhode Island small businesses. Learn industry benchmarks, ROI calculation methods, and when custom development makes sense.'
-date: 2026-04-01
-slug: small-business-software-budget-guide
+date: '2026-04-01'
+tags: ['small-business', 'budgeting', 'rhode-island']
+published: false
 ---
 
-# How Much Should Small Businesses Actually Spend on Software?
+"How much should we be spending on software?" is one of the most common questions I get from small business owners. There's no single right answer, but there are some useful anchors.
 
-[DRAFT - Content outline ready, needs writing]
+## What businesses typically spend
 
-One of the most common questions I hear from Rhode Island business owners is: "How much should we really be spending on software?" The answer isn't one-size-fits-all, but there are proven frameworks to help you make smart investment decisions.
+Industry benchmarks put small business technology spending at 2–4% of revenue. Service businesses tend to land toward the higher end of that range. But benchmarks are just a starting point — they tell you what's normal, not what's right for your situation.
 
-## Industry Benchmarks: What Others Are Spending
+A business spending 1% of revenue on technology that's poorly chosen is wasting money. One spending 5% on tools that genuinely drive results is probably getting a good return. The percentage matters less than whether the spending is working.
 
-**General Guidelines:**
-- Small businesses (10-50 employees): 2-4% of revenue on technology
-- Service businesses: Often on the higher end (3-4%)
-- Manufacturing/retail: Typically 2-3%
-- Professional services: Can exceed 4-5%
+## The better question: what does it cost you not to have it?
 
-**Local RI Context:** [Add local business spending data if available]
+This is where ROI actually comes from. Take whatever manual process you're considering automating and figure out what it costs you now. How many hours per week does it consume? Multiply that by your staff's effective hourly rate. That's your baseline.
 
-## The ROI Calculation Framework
+If a software solution costs $3,000 and saves 5 hours a week at $25/hour, you're saving $6,500 a year. It pays for itself in under six months, and every month after that is pure upside. Most well-scoped automation projects pay for themselves within a year.
 
-### Step 1: Calculate Current Manual Process Costs
-- Time spent on repetitive tasks
-- Error rates and correction costs
-- Opportunity cost of staff time
+## What things actually cost
 
-### Step 2: Estimate Software Benefits
-- Time savings
-- Error reduction
-- New capabilities/revenue opportunities
+Here are realistic ranges for common work, written from experience working with small businesses in Rhode Island:
 
-### Step 3: Compare Investment Options
-- Off-the-shelf solutions
-- Custom development
-- Hybrid approaches
+**Website work** runs $500–3,000 depending on scope. Simple updates or fixes are at the low end. A meaningful redesign with new functionality is at the higher end.
 
-## Real Examples: Investment vs. Return
+**Business process automation** — things like connecting systems, automating follow-ups, or replacing manual data entry — typically runs $1,000–8,000. Simpler single-step automations are cheaper. Multi-system workflows with more business logic take more time.
 
-### Case Study 1: $1,000 Investment, $10,000 Annual Savings
-[Providence service business example]
+**Custom business tools** — dashboards, internal portals, custom reporting — generally fall in the $2,000–10,000+ range. Basic data management tools are on the lower end; more involved systems climb from there.
 
-### Case Study 2: $5,000 Investment, $15,000 Annual Value
-[Cranston manufacturing business example]
+These aren't quotes, just realistic anchors. Actual cost depends on complexity.
 
-### Case Study 3: When NOT to Invest
-[Example of poor ROI scenario]
+## When not to invest
 
-## When to DIY vs. Hire Professionals
+There are situations where software spending is clearly a bad idea:
 
-### DIY Makes Sense When:
-- Simple, standardized needs
-- Very limited budget (<$500)
-- Temporary or short-term solution needed
+- You're paying for features you don't use, on tools you picked because they were popular
+- You have multiple subscriptions doing roughly the same thing
+- You're considering expensive custom work for a problem that an off-the-shelf tool handles fine
+- There's no clear way to measure whether it's working
 
-### Hire Professionals When:
-- Integration with existing systems required
-- Security and compliance critical
-- Long-term business process changes
-- Time to market is important
+Before spending anything, it's worth auditing what you already pay for. Most small businesses have at least one or two subscriptions that aren't pulling their weight.
 
-## Budget Ranges for Common Business Needs
+## Start small and measure
 
-### Website Updates: $500 - $3,000
-- Simple fixes and updates: $500-1,000
-- Major redesigns: $2,000-3,000
-- Custom functionality: $3,000+
+The mistake I see most often is trying to solve everything at once. A better approach: pick the most painful problem, fix that, see what you get. A $1,500 automation that saves 5 hours a week pays for itself in a couple months. That gives you real data — and usually makes the case for the next investment.
 
-### Business Process Automation: $1,000 - $8,000
-- Simple workflows: $1,000-2,000
-- Multi-system integrations: $3,000-5,000
-- Complex business logic: $5,000-8,000+
+On payment structure: I work on a milestone basis, with 25–30% upfront and the rest tied to delivery. This keeps things predictable for both sides and gives you natural checkpoints to make sure the project is on track.
 
-### Custom Business Tools: $2,000 - $10,000
-- Basic data management: $2,000-4,000
-- Customer portals: $4,000-7,000
-- Comprehensive systems: $7,000-10,000+
-
-## Financing and Payment Options
-
-### Project-Based Pricing Benefits
-- Predictable costs
-- Clear deliverables
-- Risk sharing
-
-### Payment Structures That Work
-- 25-30% upfront
-- Milestone-based payments
-- Support and maintenance agreements
-
-## Red Flags: When You're Overspending
-
-- Paying for features you don't use
-- Multiple subscriptions for similar functions
-- Expensive custom work for standard problems
-- No clear ROI measurement
-
-## Making the Decision: A Practical Checklist
-
-1. **Calculate current process costs**
-2. **Define success metrics**
-3. **Get quotes from multiple sources**
-4. **Consider long-term maintenance**
-5. **Start with pilot or phase 1**
-
-## Special Considerations for RI Businesses
-
-### Local Advantages
-- Direct communication and support
-- Understanding of local business challenges
-- Reasonable pricing for local market
-
-### Common Mistakes to Avoid
-- Choosing cheapest option without considering quality
-- Not planning for training and adoption
-- Underestimating ongoing maintenance needs
-
----
-
-**Need help calculating the right software budget for your business?** I offer free project estimation consultations for Rhode Island businesses.
-
-**[Get your free project estimate](/contact)**
-
-*Use my project estimation tool to get a ballpark range for your specific needs.*
+If you want to think through what makes sense for your situation, [get in touch](/contact).

@@ -1,180 +1,70 @@
 ---
-title: 'Red Flags When Hiring a Developer (From a Local RI Developer)'
-description: "Warning signs to watch for when hiring a software developer in Rhode Island. Learn what questions to ask and how to avoid costly mistakes from someone who's seen it all."
-date: 2026-03-29
-slug: red-flags-hiring-developer
+title: 'Red Flags to Watch When Hiring a Developer'
+description: "Warning signs to watch for when hiring a software developer. From someone who's cleaned up after a lot of these situations."
+date: '2026-03-29'
+tags: ['freelancing', 'small-business', 'hiring']
+published: false
 ---
 
-# Red Flags When Hiring a Developer (From a Local RI Developer)
+After a decade-plus helping Rhode Island businesses with their software, a good chunk of that time has been cleaning up after bad development experiences. The clients who come to me in that situation aren't careless — they just didn't know what to look for. So here's what I've learned to watch for.
 
-After 10+ years helping Rhode Island businesses with their software needs, I've heard countless horror stories from clients about previous developers. Bad experiences that cost them time, money, and trust in the process.
+## No clear scope or timeline
 
-As someone who's cleaned up after these situations more times than I'd like to count, I want to share the biggest red flags I see so you can avoid them entirely.
+If you ask "how long will this take?" and you get a vague answer, that's a problem. Same with proposals that say things like "we'll figure it out as we go" or don't spell out what's included versus what costs extra.
 
-## Red Flag #1: No Clear Project Scope or Timeline
+Scope drift is how a $2,000 project becomes a $15,000 one. Without something in writing — what you're getting, when, and what happens if requirements change — you have no protection when things go sideways. A developer who can't answer these questions upfront either hasn't thought it through or doesn't want to be held to an answer.
 
-**What it looks like:**
+## Promises that sound too good
 
-- Vague answers when you ask "How long will this take?"
-- Proposals that say "we'll figure it out as we go"
-- No written breakdown of what's included vs. what costs extra
-- Can't explain the development process in simple terms
+"We can build anything for under $500." "Your site will rank #1 on Google immediately." "This will completely automate your business."
 
-**Why it's dangerous:** Without clear scope, projects drag on indefinitely. I've seen $2,000 projects balloon to $15,000 because nothing was defined upfront.
+When you hear something like that, the developer either doesn't understand the work or is telling you what you want to hear. Neither ends well. Good work takes time, realistic scoping takes honesty, and anyone who guarantees results they can't actually control is setting you up for disappointment. I've lost projects by being straight about what's realistic. I'll take that trade every time.
 
-**What to look for instead:** A developer who asks detailed questions about your needs, provides written estimates with clear deliverables, and explains exactly what you'll get at each milestone.
+## Can't explain their decisions in plain terms
 
-**How I handle this:** Every project starts with a detailed scope document. You know exactly what you're getting, when you'll get it, and what happens if requirements change.
+Technical jargon has its place, but if a developer can't explain why they're making a particular choice in terms that connect to your actual business, that's a sign. Either they don't fully understand what they're recommending, or they're not interested in making sure you understand what you're paying for.
 
-## Red Flag #2: Promises That Sound Too Good to Be True
+You don't need to know how it works under the hood. But you should understand what you're getting and why it's the right call for your situation. If asking "why?" makes someone defensive, that's worth noting.
 
-**What it looks like:**
+## No references or relevant portfolio
 
-- "We can build anything for under $500"
-- "Your website will rank #1 on Google immediately"
-- "This will completely automate your business"
-- Guaranteeing results they can't actually control
+A portfolio of personal projects from five years ago doesn't tell you much. Neither does a developer who's reluctant to connect you with past clients.
 
-**Why it's dangerous:** Unrealistic promises mean the developer either doesn't understand the work involved, or they're planning to cut corners. Either way, you won't get what you expect.
+If someone has done good work for businesses like yours, they should be able to show you. Not just screenshots — live examples, and people you can actually talk to. If that's not available, you're taking a bigger leap of faith than you might realize.
 
-**What to look for instead:** Honest assessments about what's possible, realistic timelines, and developers who explain both benefits and limitations.
+## Wants full payment upfront
 
-**How I handle this:** I'd rather lose a project by being honest about limitations than promise something I can't deliver. Your success depends on realistic expectations from day one.
+Asking for 100% payment before a single line of code is written removes all your leverage if something goes wrong. Legitimate developers don't need to do this. Payment should be tied to progress — a reasonable deposit to start, then milestones as work is delivered.
 
-## Red Flag #3: Can't Explain Technical Decisions in Simple Terms
-
-**What it looks like:**
-
-- Using lots of technical jargon without explanation
-- Getting frustrated when you ask "why" questions
-- Can't relate technical choices to business benefits
-- Makes you feel stupid for not understanding
-
-**Why it's dangerous:** If they can't explain their approach, how do you know they're making good decisions? You need to understand what you're paying for.
-
-**What to look for instead:** Someone who speaks your language, explains trade-offs clearly, and helps you understand how technical choices impact your business.
-
-**How I handle this:** I assume you don't need to know the technical details unless you want to. My job is to translate between tech and business so you can make informed decisions.
-
-## Red Flag #4: No Local References or Relevant Portfolio
-
-**What it looks like:**
-
-- Can't provide references from similar businesses
-- Portfolio shows only personal projects or work from 5+ years ago
-- No examples of solving problems like yours
-- Reluctant to connect you with past clients
-
-**Why it's dangerous:** Without proven experience in your type of business or problem, you're basically paying for their education on your dime.
-
-**What to look for instead:** Recent examples of similar work, references you can actually contact, and experience with businesses your size.
-
-**How I handle this:** I'm happy to connect you with past clients who've given permission to share their experience. Real references from real local businesses.
-
-## Red Flag #5: Demands Full Payment Upfront
-
-**What it looks like:**
-
-- Wants 100% payment before starting work
-- No milestone-based payment structure
-- Unusual payment methods (crypto, wire transfers to foreign accounts)
-- Pressure to pay immediately to "lock in pricing"
-
-**Why it's dangerous:** Once they have your money, you have no leverage if things go wrong. Legitimate developers understand this and structure payments accordingly.
-
-**What to look for instead:** Payment schedules tied to deliverables, standard payment methods, and terms that protect both parties.
-
-**How I handle this:** I typically ask for 25-30% upfront, with the remainder split across project milestones. You pay as you see results, not before.
-
-## Additional Warning Signs to Watch For
-
-### Communication Issues
-
-- Takes days to respond to simple questions
-- Only available during odd hours
-- Can't meet in person or do video calls
-- Poor written communication skills
-
-### Business Practices
-
-- No written contract or agreement
-- Can't provide business license or insurance info
-- Unwilling to sign a basic NDA
-- No clear process for handling changes or issues
-
-### Portfolio Red Flags
-
-- All examples look exactly the same
-- Can't show you live, working websites
-- Claims credit for work they clearly didn't do
-- No variety in project types or industries
-
-## What Good Developers Do Instead
-
-**Clear Communication:**
-
-- Respond to emails and calls promptly
-- Explain things in terms you understand
-- Regular progress updates without you having to ask
-
-**Professional Approach:**
-
-- Written contracts that protect everyone
-- Realistic timelines with buffer for unexpected issues
-- Structured payment schedules
-- Clear process for handling changes
-
-**Proven Experience:**
-
-- Portfolio of relevant, recent work
-- References from similar businesses
-- Examples of solving problems like yours
-- Honest about what they can and can't do
-
-## Questions to Ask Before Hiring
-
-1. **"Can you show me three recent examples of similar projects?"**
-2. **"What happens if the project takes longer than estimated?"**
-3. **"How do you handle changes or additions during development?"**
-4. **"Can I speak with a recent client about their experience?"**
-5. **"What exactly am I getting for this price?"**
-6. **"How will you keep me updated on progress?"**
-7. **"What happens after the project is complete?"**
-
-Pay attention not just to their answers, but how they answer. Good developers welcome these questions because they separate serious clients from tire-kickers.
-
-## The Cost of Ignoring Red Flags
-
-I've helped businesses recover from bad development experiences, and the pattern is always the same:
-
-- 2-3x more expensive to fix than doing it right the first time
-- Months of lost time and opportunity
-- Damage to internal teams who pushed for the project
-- Reluctance to invest in technology improvements in the future
-
-One Providence business owner told me: "We thought we were saving money going with the cheapest option. It ended up costing us our entire software budget for the year, plus we still didn't have a working solution."
-
-## Why This Matters for Rhode Island Businesses
-
-Small local businesses can't afford expensive mistakes. When you're working with limited budgets and tight timelines, getting burned by the wrong developer can set you back years.
-
-That's why I'm sharing this - I want to see local businesses succeed with technology, not get taken advantage of by developers who don't understand the stakes.
-
-## Your Next Steps
-
-If you're considering hiring a developer:
-
-1. **Use this list as a checklist** during your conversations
-2. **Ask the tough questions** upfront, even if it feels awkward
-3. **Trust your gut** - if something feels off, investigate further
-4. **Get everything in writing** before any money changes hands
-
-Remember: A good developer wants you to ask hard questions. We know that educated clients make better partners and lead to more successful projects.
+I ask for 25-30% upfront, with the rest split across milestones. That structure protects both sides. Be wary of anything that doesn't.
 
 ---
 
-**Need help evaluating a developer or getting a second opinion on a proposal?** I offer free 30-minute consultations for Rhode Island businesses. No sales pitch - just honest advice about your situation.
+## Other things worth watching
 
-**[Schedule a free consultation](/contact)** or email me directly with your questions.
+A few more that don't fit neatly into a category but matter:
 
-_Have you experienced any of these red flags? I'd love to hear your story (confidentially) to help other local businesses avoid similar issues._
+- Takes days to respond to basic questions
+- No written contract or refuses to sign a simple NDA
+- Can't do a video call or meet in person if you're local
+- All portfolio examples look the same regardless of client type
+
+---
+
+## Questions worth asking before you commit
+
+1. Can you show me three recent examples of similar projects?
+2. What happens if the project takes longer than estimated?
+3. How do you handle changes or additions mid-project?
+4. Can I speak with a recent client?
+5. What do I actually own when this is done?
+
+Pay attention to how they answer, not just what they say. A developer who's done this before welcomes these questions — they know it leads to a better working relationship for everyone.
+
+---
+
+Getting burned by the wrong developer is expensive in ways beyond the invoice. There's the time lost, the internal trust that gets damaged, and the reluctance to invest in technology again after a bad experience. Most of the businesses that come to me after one of these situations say the same thing: they thought they were saving money.
+
+If you're evaluating a developer and want a second opinion on a proposal, I'm happy to take a look. No obligation — just a straight answer about what you're looking at.
+
+[Get in touch](/contact)
