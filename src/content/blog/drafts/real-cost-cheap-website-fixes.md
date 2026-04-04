@@ -1,34 +1,45 @@
 ---
-title: "The Real Cost of 'Cheap' Website Fixes"
-description: 'Why the cheapest website fix often costs more in the long run. Real examples from Rhode Island businesses and what to look for in quality web development.'
-date: 2026-04-25
-slug: real-cost-cheap-website-fixes
+title: "The Real Cost of Cheap Website Fixes"
+description: "Why the cheapest fix often costs more in the long run. What to watch for and how to avoid digging a deeper hole."
+date: '2026-04-25'
+tags: ['web-development', 'small-business', 'hiring']
+published: false
 ---
 
-# The Real Cost of 'Cheap' Website Fixes
+"We had it fixed for $200, but now we have bigger problems." This comes up more than you'd think. A business owner notices something broken on their site, finds someone cheap to patch it, and a few weeks later they're dealing with something worse than the original issue.
 
-[DRAFT - Stub created, needs full content]
+It's not always the developer's fault. Sometimes it's a genuinely hard problem that wasn't scoped right. But a lot of the time, it's the predictable result of hiring someone to fix a symptom without understanding the cause.
 
-"We got our website fixed for only $200, but now we have bigger problems." I hear this story frequently from Rhode Island business owners who learned the hard way about cheap website fixes.
+## What cheap fixes usually look like
 
-## The True Cost of Cheap Fixes
+Someone comes in, finds the most obvious thing causing the problem, and addresses that thing. They don't spend time understanding the site's history, what else might be affected, or why the issue appeared in the first place. They get it looking fixed, collect payment, and move on.
 
-### Immediate Red Flags
-### Long-term Consequences  
-### Hidden Expenses
+That's not malicious — it's what the price often gets you. A thorough diagnosis takes time, and time costs money. When someone quotes $200 for a fix that a careful developer would quote $600 for, something is getting skipped.
 
-## Real RI Business Examples
+## The compounding problem
 
-### Case 1: The $200 Fix That Cost $3,000
-### Case 2: Security Breach from Poor Code
-### Case 3: SEO Penalties from Bad Practices
+What makes this genuinely costly is how often a cheap patch creates new problems.
 
-## What Quality Web Development Looks Like
+The most common pattern I see: someone installs a plugin to solve a specific problem, it conflicts with something else on the site, and now there are two problems instead of one. Untangling it takes longer than fixing the original issue would have.
 
-### Proper Planning and Scoping
-### Code Quality Standards
-### Testing and Documentation
+Security is where this gets serious. A site gets hacked or injected with spam links, someone "cleans it up," but they don't address how the attacker got in. The site gets compromised again in two months. This cycle can repeat several times before someone realizes the root cause was never actually fixed.
 
----
+The third pattern is SEO damage. Redirects and URL changes handled carelessly can tank search rankings in ways that take months to recover from. Canonical tags set incorrectly can cause Google to stop indexing pages. Someone who doesn't understand how these things work can cause significant, slow-to-reverse damage without realizing it.
 
-**Dealing with problems from a previous cheap fix?** [Let's discuss how to properly resolve the issues](/contact).
+## What quality work actually looks like
+
+Before touching anything, understand the problem. What exactly is broken, when did it start, and what changed around that time? That context usually points directly at the cause rather than the symptom.
+
+Scope the fix clearly before starting. What will be done, what won't be done, and what needs to be tested afterward. This protects both sides — the business knows what they're getting, and the developer has a defined target.
+
+Test before and after. Not just "does it look right" but "does everything that was working before still work."
+
+Document what was done. The next person to work on the site — whether that's the same developer six months later or someone new — shouldn't have to reverse-engineer what happened.
+
+## The math
+
+A $200 fix that creates a $1,500 problem isn't a savings. A $600 fix done right costs less over time, and it costs less in stress and lost time on your end too.
+
+This doesn't mean always hire the most expensive option. It means hire someone who can explain what they're doing and why, who asks questions before diving in, and who can point to work they've done before. Those signals matter more than the hourly rate.
+
+If you're dealing with the aftermath of a quick fix or want to make sure a problem gets handled correctly the first time, [get in touch](/contact).

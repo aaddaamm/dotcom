@@ -1,186 +1,53 @@
 ---
-title: 'Before & After: How I Helped a Providence Business Cut Processing Time in Half'
-description: 'Real case study of a Providence service business that saved 2+ hours daily with custom booking and billing automation. See the process, challenges, and results.'
-date: 2026-04-05
-slug: providence-business-automation-case-study
+title: 'Before & After: Cutting Admin Time in Half for a Providence Service Business'
+description: 'How a Providence service business went from 4 hours of daily admin work to under an hour, with custom booking and billing automation. The process, the results, and what made it work.'
+date: '2026-04-05'
+tags: ['automation', 'case-study', 'rhode-island', 'providence']
+published: false
 ---
 
-# Before & After: How I Helped a Providence Business Cut Processing Time in Half
+The best way I can explain what this kind of work actually looks like is to walk through a typical engagement. Here's one that sticks with me.
 
-[DRAFT - Content outline ready, needs writing]
+A Providence-based service business, about 10–15 employees, came to me a couple of years ago. They were spending around four hours every day on scheduling and billing admin. Not because they were disorganized — they were actually pretty careful about it. They were spending four hours because that's genuinely how long it took to do those things the way they were doing them.
 
-Sometimes the best way to understand the value of custom software is through real examples. Here's the story of how I helped a Providence-based service business transform their operations and save over 10 hours per week.
+## The before state
 
-## Client Background
+Scheduling was phone tag. Staff would call clients, leave voicemails, wait for callbacks, check a shared calendar, confirm a time, then manually enter it. No automated reminders went out, so about 15% of appointments were no-shows. Each one was just lost revenue — the slot was blocked, the work didn't happen.
 
-**Business Type:** [Service business in Providence]  
-**Size:** 12 employees, $800K annual revenue  
-**Industry:** [Professional services/consulting]  
-**Challenge:** Manual booking and billing processes consuming valuable staff time  
+Billing ran on handwritten notes from appointments. Someone would collect those notes, type up invoices, send them out, and then follow up by phone when payment was late. Average time from service to payment: 45 days. That's a long time to wait to get paid for work you've already done.
 
-## The Problem: 4 Hours Daily on Manual Tasks
+Between the two, it was two hours a day on scheduling and two hours a day on billing. Every day.
 
-### Before: The Pain Points
+## Finding the real numbers
 
-**Scheduling Nightmare:**
-- Phone tag with clients for appointment scheduling
-- Double-bookings and scheduling conflicts
-- Staff manually checking availability across multiple calendars
-- No automated reminders leading to no-shows
+We spent one session mapping out the workflows — not from memory, but by actually following each task from start to finish and timing it. People almost always underestimate how long things take. When you account for interruptions, context switching, and fixing mistakes, the numbers are usually worse than anyone thought.
 
-**Billing Chaos:**
-- Manual invoice creation from handwritten notes
-- Tracking time across different projects manually
-- Payment follow-up done via phone calls and emails
-- No visibility into outstanding receivables
+That session made two things clear: scheduling and billing were the biggest time sinks by a wide margin, and both were solvable without building anything particularly complicated.
 
-**The Real Cost:**
-- 2 hours daily on scheduling coordination
-- 2 hours daily on billing and administrative tasks
-- 15% no-show rate due to lack of reminders
-- Average 45-day collection time
+## Phase one: scheduling
 
-## Discovery: Understanding the Root Causes
+The first thing we built was an online booking portal. Clients could schedule themselves, which removed the phone tag entirely. The portal connected directly to the staff calendar, so availability was always current. Confirmation emails went out automatically, and reminders followed at 48 hours and 24 hours before each appointment.
 
-### Initial Assessment Process
+The no-show rate dropped from around 15% to around 3%. Scheduling time went from two hours a day to about 15 minutes — mostly just glancing at the day's calendar in the morning.
 
-1. **Process Mapping Session** - Documented current workflows
-2. **Time Tracking Study** - Measured actual time spent on tasks
-3. **Staff Interviews** - Identified biggest frustrations
-4. **System Audit** - Reviewed existing tools and integrations
+That phase was live within a month. We let it run for a few weeks before touching anything else.
 
-### Key Findings
+## Phase two: billing
 
-- Multiple disconnected systems
-- No centralized customer information
-- Repeated data entry across platforms
-- No automation or workflow triggers
+Once scheduling was stable, we moved to billing. Appointments now generated time records automatically, which fed directly into invoice creation. Invoices went out the same day as the appointment. Payment tracking was built in, and automated follow-ups went out at 15 and 30 days if a balance was still open.
 
-## The Solution: Custom Booking + Billing System
+Billing time dropped from two hours a day to about 30 minutes. Average collection time went from 45 days to around 22.
 
-### Phase 1: Automated Scheduling (Month 1)
+## What it added up to
 
-**Features Implemented:**
-- Online booking portal for clients
-- Calendar integration with existing systems
-- Automated confirmation and reminder emails
-- Staff mobile access for schedule changes
+Three-plus hours saved every day. The staff spent that time on actual client work instead of administrative tasks. At typical staff rates, the annual value of the time savings alone was around $25,000. The faster collections meaningfully improved cash flow — getting paid in 22 days instead of 45 makes a real difference when you're running payroll every two weeks.
 
-**Technical Approach:**
-- [Brief technical overview without jargon]
-- Integration with existing email and calendar systems
-- Mobile-responsive design for client convenience
+## What made it work
 
-### Phase 2: Streamlined Billing (Month 2)
+A few things. The phased approach mattered — doing scheduling first, getting comfortable with it, then moving to billing meant staff weren't dealing with two new systems at once. They were involved in the design of both phases, which meant they actually used the tools instead of finding workarounds. And there was support available after launch to tune things that didn't work quite right in the real world.
 
-**Features Implemented:**
-- Automatic time tracking from appointments
-- Integrated invoice generation
-- Payment processing and tracking
-- Automated follow-up sequences
+None of the technology here was exotic. Online booking exists. Automated invoicing exists. The value wasn't in building something novel — it was in connecting the pieces correctly and making sure people actually used them.
 
-**Integration Challenges:**
-- [Specific technical challenges faced]
-- [How challenges were resolved]
-- [Lessons learned]
+The biggest wins usually aren't the flashiest technology. They're fixing the repetitive stuff that everyone has learned to live with.
 
-## Implementation Timeline and Process
-
-### Week 1-2: Planning and Setup
-- Requirements finalization
-- System architecture design
-- Development environment setup
-
-### Week 3-6: Development and Testing
-- Core functionality development
-- Integration testing
-- User acceptance testing
-
-### Week 7-8: Launch and Training
-- Staff training sessions
-- Client communication about new system
-- Soft launch with monitoring
-
-### Week 9-12: Optimization and Support
-- User feedback incorporation
-- Performance optimization
-- Additional feature requests
-
-## Results: Measurable Business Impact
-
-### Time Savings
-- **Scheduling time reduced:** 2 hours → 15 minutes daily
-- **Billing time reduced:** 2 hours → 30 minutes daily
-- **Total daily savings:** 3 hours 15 minutes
-
-### Quality Improvements
-- **No-show rate:** 15% → 3%
-- **Billing accuracy:** Increased 95%+
-- **Payment collection time:** 45 days → 22 days average
-
-### Staff Satisfaction
-- Reduced administrative burden
-- More time for client-facing work
-- Less stress around scheduling conflicts
-
-### Financial Impact
-- **Annual time savings value:** $25,000 (based on staff hourly rates)
-- **Improved cash flow:** Faster collections
-- **Reduced no-shows:** Additional $8,000 annual revenue
-
-## Client Testimonial
-
-> "[Quote from business owner about experience, results, and working process]"
->
-> **[Client Name]**, Owner, [Business Name]
-
-## Lessons Learned
-
-### What Worked Well
-- Phased approach reduced risk and complexity
-- Staff involvement in design process
-- Thorough testing before launch
-
-### Challenges Overcome
-- Initial resistance to change
-- Integration complexity with legacy systems
-- Client adoption of new booking process
-
-### Keys to Success
-- Clear communication throughout project
-- Regular check-ins and feedback loops
-- Post-launch support and optimization
-
-## Why This Approach Works for RI Businesses
-
-### Local Advantages
-- Face-to-face meetings for complex discussions
-- Understanding of local business practices
-- Ongoing support and relationship
-
-### Right-Sized Solution
-- Built for actual business size and needs
-- Affordable for small business budgets
-- Scalable for future growth
-
-## Replicating These Results
-
-### Signs This Approach Would Work for Your Business
-- Spending significant time on manual administrative tasks
-- Customer scheduling or billing challenges
-- Multiple disconnected systems
-- Staff frustrated with repetitive work
-
-### Getting Started
-1. **Process Assessment** - Document current workflows
-2. **Impact Analysis** - Calculate time and cost of manual processes
-3. **Solution Design** - Plan phased improvement approach
-4. **Implementation** - Build and deploy with proper support
-
----
-
-**Is your Providence-area business struggling with similar challenges?** I'd love to discuss how custom automation could help your specific situation.
-
-**[Schedule a free consultation](/contact)** to explore possibilities for your business.
-
-*This case study represents a typical engagement. Results and timelines may vary based on specific business needs and complexity.*
+If your business has a version of this — tasks that eat hours every week because that's just how it's always been done — [get in touch](/contact).
