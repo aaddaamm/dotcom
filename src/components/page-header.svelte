@@ -1,10 +1,10 @@
 <script lang="ts">
-	let { 
-		title, 
-		description, 
-		showBackLink = true, 
-		backHref = '/', 
-		backLabel = 'Back' 
+	let {
+		title,
+		description,
+		showBackLink = true,
+		backHref = '/',
+		backLabel = 'Back'
 	}: {
 		title: string;
 		description?: string;
@@ -16,7 +16,10 @@
 
 <section class="pt-20 sm:pt-28">
 	{#if showBackLink}
-		<a href={backHref} class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
+		<a
+			href={backHref}
+			class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors"
+		>
 			<span aria-hidden="true">&larr;</span>
 			{backLabel}
 		</a>

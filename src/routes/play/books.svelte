@@ -32,7 +32,7 @@
 			</div>
 		{:else}
 			<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-				{#each currentlyReading as book}
+				{#each currentlyReading as book (book.url)}
 					<a
 						href={book.url}
 						target="_blank"
@@ -82,7 +82,7 @@
 			</div>
 		{:else}
 			<div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-				{#each visibleReadBooks as book}
+				{#each visibleReadBooks as book (book.url)}
 					<a
 						href={book.url}
 						target="_blank"
@@ -106,7 +106,7 @@
 							<p class="text-xs muted-text mt-0.5 line-clamp-1">{book.author}</p>
 							{#if book.rating}
 								<div class="flex gap-0.5 mt-1">
-									{#each Array(5) as _, i}
+									{#each Array(5) as _, i (i)}
 										<span class="text-[10px] {i < book.rating ? 'accent-text' : 'text-white/10'}">
 											★
 										</span>

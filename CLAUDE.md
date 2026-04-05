@@ -22,10 +22,10 @@ SvelteKit 2 (Svelte 5) + TypeScript. Tailwind CSS 4 via `@tailwindcss/vite` — 
 
 ## Commands
 
-| Command           | Purpose                   |
-| ----------------- | ------------------------- |
-| `npm run dev`     | Dev server                |
-| `npx vite build`  | Production build          |
-| `npm run check`   | Svelte + TypeScript check |
-| `npm run lint`    | Prettier + ESLint         |
-| `npm run format`  | Auto-format               |
+| Command          | Purpose                   |
+| ---------------- | ------------------------- |
+| `npm run dev`    | Dev server                |
+| `npx vite build` | Production build          |
+| `npm run check`  | Svelte + TypeScript check |
+| `npm run lint`   | Prettier + ESLint         |
+| `npm run format` | Auto-format               |

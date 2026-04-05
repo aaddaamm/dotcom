@@ -612,7 +612,7 @@
 - [ ] Integration with email capture system
 - [ ] Respectful timing (not immediate, respect user experience)
 - [ ] Easy dismiss and "don't show again" options  
-      **Notes**: Could increase lead capture by 15-30% based on industry averages
+       **Notes**: Could increase lead capture by 15-30% based on industry averages
 
 ---
 
@@ -630,7 +630,7 @@
 - [ ] Smooth animations and micro-interactions
 - [ ] Link to contact form or phone number
 - [ ] Hide on contact page to avoid redundancy  
-      **Notes**: Reduces friction for impulse inquiries from engaged visitors
+       **Notes**: Reduces friction for impulse inquiries from engaged visitors
 
 ---
 
@@ -648,7 +648,7 @@
 - [ ] "No spam guarantee" text
 - [ ] Secure form submission messaging
 - [ ] Professional data handling assurances  
-      **Notes**: Small businesses are increasingly concerned about data privacy
+       **Notes**: Small businesses are increasingly concerned about data privacy
 
 ---
 
@@ -666,7 +666,7 @@
 - [ ] Business registration/licensing information
 - [ ] "Established 20XX" or similar founding date reference
 - [ ] Integration with existing stats section on homepage  
-      **Notes**: Small businesses want to work with established, credible professionals
+       **Notes**: Small businesses want to work with established, credible professionals
 
 ---
 
@@ -684,7 +684,7 @@
 - [ ] Landing pages for each resource with email capture
 - [ ] Email automation for delivery and follow-up
 - [ ] Integration with existing contact system  
-      **Notes**: Captures warm prospects who need more time before reaching out directly
+       **Notes**: Captures warm prospects who need more time before reaching out directly
 
 ---
 
@@ -702,7 +702,7 @@
 - [ ] Mobile-optimized chat interface
 - [ ] Integration with email for offline messages
 - [ ] Quick response templates for efficiency  
-      **Notes**: Shows accessibility and can handle basic questions instantly
+       **Notes**: Shows accessibility and can handle basic questions instantly
 
 ---
 
@@ -720,7 +720,7 @@
 - [ ] Include mix of business sizes and industries
 - [ ] Link to case studies where available
 - [ ] Keep updated with recent client work  
-      **Notes**: Even small local business logos build credibility and relatability
+       **Notes**: Even small local business logos build credibility and relatability
 
 ---
 
@@ -738,7 +738,7 @@
 - [ ] Mix of project types and business sizes
 - [ ] Include client names, companies, and photos when possible
 - [ ] Schema markup for review snippets  
-      **Notes**: Dynamic, recent testimonials feel more authentic than static quotes
+       **Notes**: Dynamic, recent testimonials feel more authentic than static quotes
 
 ---
 
@@ -756,7 +756,7 @@
 - [ ] Integration with existing availability messaging
 - [ ] Seasonal adjustments for busy periods
 - [ ] Clear call-to-action to book consultation  
-      **Notes**: Scarcity and clear availability expectations encourage faster decision-making
+       **Notes**: Scarcity and clear availability expectations encourage faster decision-making
 
 ---
 
@@ -774,7 +774,7 @@
 - [ ] Emergency contact option for urgent issues
 - [ ] Clear expectations for different inquiry types
 - [ ] Integration with contact form messaging  
-      **Notes**: Clear response expectations reduce anxiety about reaching out
+       **Notes**: Clear response expectations reduce anxiety about reaching out
 
 ---
 
@@ -792,7 +792,7 @@
 - [ ] Before/after project examples
 - [ ] Filterable by industry or project type
 - [ ] Schema markup for SEO benefits  
-      **Notes**: Comprehensive social proof page for prospects who need extensive validation
+       **Notes**: Comprehensive social proof page for prospects who need extensive validation
 
 ---
 
@@ -810,7 +810,7 @@
 - [ ] Follow-up automation for estimate recipients
 - [ ] Different paths for different project types
 - [ ] Disclaimer about estimate vs. final pricing  
-      **Notes**: Helps qualify leads and manages expectations while capturing contact information
+       **Notes**: Helps qualify leads and manages expectations while capturing contact information
 
 ---
 

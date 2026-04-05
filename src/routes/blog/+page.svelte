@@ -34,7 +34,7 @@
 			<p class="muted-text">Nothing here yet — check back soon.</p>
 		{:else}
 			<div class="space-y-6">
-				{#each data.posts as post}
+				{#each data.posts as post (post.slug)}
 					<a href="/blog/{post.slug}" class="post-card block rounded-lg p-6">
 						<time class="text-xs muted-text">
 							{new Date(post.date).toLocaleDateString('en-US', {
@@ -43,7 +43,10 @@
 								day: 'numeric'
 							})}
 						</time>
-						<h2 class="text-lg font-semibold mt-1 flex items-center gap-2" style="color: var(--color-text);">
+						<h2
+							class="text-lg font-semibold mt-1 flex items-center gap-2"
+							style="color: var(--color-text);"
+						>
 							{post.title}
 							{#if !post.published}
 								<span class="draft-badge text-xs font-normal px-2 py-0.5 rounded">draft</span>
@@ -52,7 +55,7 @@
 						<p class="muted-text mt-2 text-sm">{post.description}</p>
 						{#if post.tags.length > 0}
 							<div class="flex gap-2 mt-3">
-								{#each post.tags as tag}
+								{#each post.tags as tag (tag)}
 									<span class="tag text-xs px-2 py-0.5 rounded-full">{tag}</span>
 								{/each}
 							</div>

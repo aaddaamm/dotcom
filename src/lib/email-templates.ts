@@ -19,7 +19,7 @@ function escapeHtml(unsafe: string): string {
 
 export function generateNotificationEmail(data: ContactFormData): string {
 	const { name, email, phone, budget, message } = data;
-	
+
 	return `
 <!DOCTYPE html>
 <html>
@@ -49,18 +49,26 @@ export function generateNotificationEmail(data: ContactFormData): string {
 			<div class="label">Email:</div>
 			<div class="value">${escapeHtml(email)}</div>
 		</div>
-		${phone ? `
+		${
+			phone
+				? `
 		<div class="field">
 			<div class="label">Phone:</div>
 			<div class="value">${escapeHtml(phone)}</div>
 		</div>
-		` : ''}
-		${budget ? `
+		`
+				: ''
+		}
+		${
+			budget
+				? `
 		<div class="field">
 			<div class="label">Budget:</div>
 			<div class="value">${escapeHtml(budget)}</div>
 		</div>
-		` : ''}
+		`
+				: ''
+		}
 		<div class="field">
 			<div class="label">Message:</div>
 			<div class="value message">${escapeHtml(message)}</div>

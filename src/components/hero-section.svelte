@@ -1,7 +1,3 @@
-<script lang="ts">
-	import { TRANSFORMS } from '$lib/design-tokens';
-</script>
-
 <!-- Hero -->
 <section aria-label="Introduction" class="pt-20 sm:pt-28 pb-10">
 	<div class="flex items-center gap-4 mb-4">
@@ -27,9 +23,11 @@
 			<span class="stat-label">Response Time</span>
 		</div>
 	</div>
-	
+
 	<!-- Satisfaction Guarantee Badge -->
-	<div class="guarantee-badge accent-bg-5 accent-border-20 flex items-center gap-3 mt-6 p-4 rounded-lg">
+	<div
+		class="guarantee-badge accent-bg-5 accent-border-20 flex items-center gap-3 mt-6 p-4 rounded-lg"
+	>
 		<div class="guarantee-icon text-accent-500" aria-hidden="true">
 			<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
 				<path d="M12 2L3 7L12 12L21 7L12 2Z" opacity="0.5" />
@@ -44,12 +42,8 @@
 	</div>
 
 	<div class="flex flex-col sm:flex-row gap-3 mt-6">
-		<a href="/contact" class="btn-primary text-center">
-			Start Your Project
-		</a>
-		<a href="#services" class="btn-secondary text-center">
-			See How I Can Help
-		</a>
+		<a href="/contact" class="btn-primary text-center">Start Your Project</a>
+		<a href="#services" class="btn-secondary text-center">See How I Can Help</a>
 	</div>
 </section>
 
