@@ -1,6 +1,5 @@
 <script lang="ts">
 	import SeoHead from '../components/seo-head.svelte';
-	import ServiceIcon from '../components/service-icon.svelte';
 	import HeroSection from '../components/hero-section.svelte';
 	import ServicesSection from '../components/services-section.svelte';
 	import FaqSection from '../components/faq-section.svelte';
@@ -57,7 +56,7 @@
 			I believe software should make your life easier, not harder. That means:
 		</p>
 		<ul class="space-y-3">
-			{#each approachItems as item}
+			{#each approachItems as item (item)}
 				<li class="flex items-start gap-3 body-text">
 					<span
 						class="mt-2 block h-1.5 w-1.5 rounded-full shrink-0 accent-bg"
@@ -81,7 +80,7 @@
 			<span class="accent-dot" aria-hidden="true">.</span>
 		</h2>
 		<div class="grid gap-4">
-			{#each selectedWork as project}
+			{#each selectedWork as project (project.title)}
 				<Card variant="work" class="p-6">
 					<h3 class="mb-2" style="color: var(--color-text);">{project.title}</h3>
 					<p class="muted-text">{project.description}</p>
@@ -157,12 +156,8 @@
 				Most projects start with a simple conversation about what you need.
 			</p>
 			<div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-				<a href="/contact" class="btn-primary px-8 py-4">
-					Get Started Today
-				</a>
-				<a href="/work" class="btn-secondary px-8 py-4">
-					See Past Projects
-				</a>
+				<a href="/contact" class="btn-primary px-8 py-4">Get Started Today</a>
+				<a href="/work" class="btn-secondary px-8 py-4">See Past Projects</a>
 			</div>
 			<p class="muted-text text-sm">
 				I typically respond within 24 hours with next steps and a rough timeline.
@@ -203,7 +198,7 @@
 				</a>
 			</li>
 		</ul>
-		<div class="mt-6 pt-4 border-t border-[var(--color-border)]">
+		<div class="mt-6 pt-4 border-t border-(--color-border)">
 			<p class="text-sm font-medium mb-3">More from me:</p>
 			<div class="flex flex-wrap gap-4">
 				<a href="/play" class="text-sm accent-link link-underline">📚 Current Reading</a>

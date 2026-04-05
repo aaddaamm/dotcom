@@ -1,6 +1,6 @@
 ---
-title: "The Real Cost of Cheap Website Fixes"
-description: "Why the cheapest fix often costs more in the long run. What to watch for and how to avoid digging a deeper hole."
+title: 'The Real Cost of Cheap Website Fixes'
+description: 'Why the cheapest fix often costs more in the long run. What to watch for and how to avoid digging a deeper hole.'
 date: '2026-04-25'
 tags: ['web-development', 'small-business', 'hiring']
 published: false

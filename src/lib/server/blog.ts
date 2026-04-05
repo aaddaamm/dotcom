@@ -24,13 +24,13 @@ export function getAllPosts(includeDrafts = false): BlogPost[] {
 
 	const readDir = (dir: string, slugPrefix = '') =>
 		fs.existsSync(dir)
-			? fs.readdirSync(dir).filter((f) => f.endsWith('.md')).map((file) => ({ file, dir, slug: slugPrefix + file.replace(/\.md$/, '') }))
+			? fs
+					.readdirSync(dir)
+					.filter((f) => f.endsWith('.md'))
+					.map((file) => ({ file, dir, slug: slugPrefix + file.replace(/\.md$/, '') }))
 			: [];
 
-	const entries = [
-		...readDir(BLOG_DIR),
-		...(includeDrafts ? readDir(DRAFTS_DIR, 'drafts/') : [])
-	];
+	const entries = [...readDir(BLOG_DIR), ...(includeDrafts ? readDir(DRAFTS_DIR, 'drafts/') : [])];
 
 	const posts = entries
 		.map(({ file, dir, slug }) => {
@@ -46,7 +46,7 @@ export function getAllPosts(includeDrafts = false): BlogPost[] {
 				published: data.published ?? false
 			} satisfies BlogPost;
 		})
-		.filter((p) => p.published || includeDrafts)
+		.filter((p) => p.title && p.date && (p.published || includeDrafts))
 		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 	return posts;

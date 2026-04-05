@@ -29,7 +29,7 @@
 	--color-accent: #2a7a7a;
 	--color-muted: #aaaaaa;
 	--color-border: #ebebeb;
-	
+
 	/* Design tokens */
 	--transition-fast: 150ms;
 	--transition-normal: 300ms;
@@ -314,7 +314,9 @@ p {
 
 .card-work {
 	border-left: 2px solid var(--color-accent);
-	transition: all var(--transition-slow) ease, transform var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+	transition:
+		all var(--transition-slow) ease,
+		transform var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .card-work:hover {

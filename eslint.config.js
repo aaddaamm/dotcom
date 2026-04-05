@@ -29,12 +29,18 @@ export default ts.config(
 	{
 		rules: {
 			'@typescript-eslint/no-namespace': 'off',
-			'@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-			'svelte/no-navigation-without-resolve': 'off',
-			'svelte/require-each-key': 'off'
+			'@typescript-eslint/no-unused-vars': [
+				'error',
+				{
+					varsIgnorePattern: '^_',
+					argsIgnorePattern: '^_',
+					caughtErrorsIgnorePattern: '^_'
+				}
+			],
+			'svelte/no-navigation-without-resolve': 'off'
 		}
 	},
 	{
-		ignores: ['build/', '.svelte-kit/', 'package/']
+		ignores: ['build/', '.svelte-kit/', '.vercel/', 'package/', 'node_modules/']
 	}
 );

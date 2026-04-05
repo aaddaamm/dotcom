@@ -79,7 +79,7 @@
 			role="tablist"
 			aria-label="Filter learning resources by category"
 		>
-			{#each categories as category}
+			{#each categories as category (category)}
 				<button
 					class="category-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors"
 					class:active={selectedCategory === category}
@@ -95,7 +95,7 @@
 	</div>
 
 	<div class="grid gap-6 md:grid-cols-2" id="resources-grid" role="tabpanel">
-		{#each filteredResources as resource}
+		{#each filteredResources as resource (resource.title)}
 			<article class="resource-card p-6 rounded-lg border transition-all duration-300">
 				<div class="flex items-start justify-between mb-3">
 					<h3 class="text-xl font-semibold">

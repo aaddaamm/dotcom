@@ -11,6 +11,7 @@
 />
 
 <svelte:head>
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		'@context': 'https://schema.org',
 		'@type': 'BlogPosting',
@@ -24,7 +25,7 @@
 		},
 		url: `https://adamrobinson.tech/blog/${data.post.slug}`,
 		keywords: data.post.tags
-	})}</script>`}
+	})}</` + `script>`}
 </svelte:head>
 
 <article class="max-w-3xl mx-auto px-6">
@@ -43,12 +44,13 @@
 		<h1 class="page-title text-3xl font-semibold tracking-tight mt-2 mb-3">{data.post.title}</h1>
 		{#if data.post.tags.length > 0}
 			<div class="flex gap-2 mb-10">
-				{#each data.post.tags as tag}
+				{#each data.post.tags as tag (tag)}
 					<span class="tag text-xs px-2 py-0.5 rounded-full">{tag}</span>
 				{/each}
 			</div>
 		{/if}
 		<div class="prose">
+			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html data.post.content}
 		</div>
 	</div>

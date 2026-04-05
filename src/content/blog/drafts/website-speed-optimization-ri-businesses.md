@@ -12,7 +12,7 @@ There's no shortage of advice about website speed. Most of it is technically acc
 
 You'll hear that every millisecond counts. In some contexts — high-traffic e-commerce, financial platforms — that's true. For a local plumber, law firm, or restaurant, the difference between a 1.2-second and 1.8-second load time is not why you're losing business.
 
-Below roughly 3 seconds on mobile, most users don't consciously notice a difference. The threshold that actually costs you customers is when the site *feels* sluggish — when things are visibly loading, buttons don't respond, or the page jumps around as content loads in. That's a real problem. Shaving 600 milliseconds off an already-acceptable site is not.
+Below roughly 3 seconds on mobile, most users don't consciously notice a difference. The threshold that actually costs you customers is when the site _feels_ sluggish — when things are visibly loading, buttons don't respond, or the page jumps around as content loads in. That's a real problem. Shaving 600 milliseconds off an already-acceptable site is not.
 
 ## The PageSpeed score trap
 

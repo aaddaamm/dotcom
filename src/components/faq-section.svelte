@@ -9,7 +9,7 @@
 		<span class="accent-dot" aria-hidden="true">.</span>
 	</h2>
 	<div class="grid gap-6">
-		{#each faqItems as faq}
+		{#each faqItems as faq (faq.question)}
 			<div class="faq-item">
 				<h3 class="faq-question mb-3 text-lg font-semibold" style="color: var(--color-text);">
 					{faq.question}

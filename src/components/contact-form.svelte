@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { validateContactForm, sanitizeContactForm, type ContactFormData } from '$lib/validation';
-	
+	import { validateContactForm, type ContactFormData } from '$lib/validation';
+
 	let name = $state('');
 	let email = $state('');
 	let project = $state('');
@@ -11,7 +11,6 @@
 	let submitted = $state(false);
 	let errorMessage = $state('');
 	let successMessage = $state('');
-	let fieldErrors = $state<Record<string, string>>({});
 
 	interface VercelAnalytics {
 		track: (event: string, properties?: Record<string, string>) => void;
@@ -28,8 +27,6 @@
 		isSubmitting = true;
 		errorMessage = '';
 		successMessage = '';
-		fieldErrors = {};
-
 		// Create form data object
 		const formData: ContactFormData = {
 			name: name.trim(),
@@ -42,14 +39,10 @@
 		// Validate form
 		const validation = validateContactForm(formData);
 		if (!validation.isValid) {
-			fieldErrors = validation.errors;
 			errorMessage = 'Please fix the errors below.';
 			isSubmitting = false;
 			return;
 		}
-
-		// Sanitize inputs
-		const sanitizedData = sanitizeContactForm(formData);
 
 		try {
 			const response = await fetch('/api/contact', {

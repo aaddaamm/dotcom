@@ -2,8 +2,7 @@ import { json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import { Resend } from 'resend';
 import type { RequestHandler } from './$types';
-import { generateNotificationEmail, generateAutoReplyEmail } from '$lib/email-templates';
-import { validateContactForm, sanitizeContactForm, type ContactFormData } from '$lib/validation';
+import type { ContactFormData } from '$lib/validation';
 
 // Simple rate limiting - in production should use Redis/database
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
