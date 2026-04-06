@@ -12,16 +12,6 @@
 	let errorMessage = $state('');
 	let successMessage = $state('');
 
-	interface VercelAnalytics {
-		track: (event: string, properties?: Record<string, string>) => void;
-	}
-
-	declare global {
-		interface Window {
-			va?: VercelAnalytics;
-		}
-	}
-
 	async function handleSubmit(event: Event) {
 		event.preventDefault();
 		isSubmitting = true;
@@ -64,8 +54,8 @@
 
 			if (response.ok && result.success) {
 				// Track successful form submission
-				if (typeof window !== 'undefined' && window.va) {
-					window.va.track('Contact Form Submitted', {
+				if (typeof window !== 'undefined' && (window as { va?: { track: (e: string, p?: Record<string, string>) => void } }).va) {
+					(window as { va?: { track: (e: string, p?: Record<string, string>) => void } }).va!.track('Contact Form Submitted', {
 						project_type: project.trim(),
 						budget_range: budget.trim() || 'Not specified',
 						has_phone: phone.trim() ? 'yes' : 'no'

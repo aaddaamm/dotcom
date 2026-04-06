@@ -1,4 +1,8 @@
 import { json } from '@sveltejs/kit';
+
+function escapeHtml(str: string): string {
+	return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
 import { env } from '$env/dynamic/private';
 import { Resend } from 'resend';
 import type { RequestHandler } from './$types';
@@ -128,8 +132,8 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 						<p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
 						<p><strong>Email:</strong> <a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></p>
 						${data.phone ? `<p><strong>Phone:</strong> <a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a></p>` : ''}
-						<p><strong>Project Type:</strong> ${escapeHtml(data.project)}</p>
-						<p><strong>Budget Range:</strong> ${escapeHtml(data.budget)}</p>
+						<p><strong>Project Type:</strong> ${escapeHtml(data.project ?? '')}</p>
+						<p><strong>Budget Range:</strong> ${escapeHtml(data.budget ?? '')}</p>
 					</div>
 
 					<div style="margin: 20px 0;">
@@ -156,7 +160,7 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 				<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
 					<h2 style="color: #2a7a7a;">Thanks for reaching out, ${escapeHtml(data.name)}!</h2>
 					
-					<p>I received your message about <strong>${escapeHtml(data.project)}</strong> and will get back to you within 24 hours with next steps and a rough timeline.</p>
+					<p>I received your message about <strong>${escapeHtml(data.project ?? '')}</strong> and will get back to you within 24 hours with next steps and a rough timeline.</p>
 					
 					<div style="background-color: #f0fdfa; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #2a7a7a;">
 						<h3 style="color: #2a7a7a; margin-top: 0;">What happens next:</h3>

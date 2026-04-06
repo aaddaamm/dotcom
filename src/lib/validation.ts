@@ -10,6 +10,7 @@ export interface ContactFormData {
 	email: string;
 	phone?: string;
 	budget?: string;
+	project?: string;
 	message: string;
 }
 

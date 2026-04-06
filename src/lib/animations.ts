@@ -45,7 +45,7 @@ export function setupScrollAnimations(container: HTMLElement) {
 
 		// Slight delay for sections after the first
 		if (index > 0) {
-			section.style.setProperty('--animation-delay', `${index * 50}ms`);
+			(section as HTMLElement).style.setProperty('--animation-delay', `${index * 50}ms`);
 		}
 
 		scrollObserver.observe(section);
