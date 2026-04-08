@@ -44,6 +44,11 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 
 		const data: ContactFormData = await request.json();
 
+		// Honeypot check — bots fill fields humans don't see
+		if (data.website) {
+			return json({ success: true, message: "Thank you for your message! I'll respond within 24 hours." });
+		}
+
 		// Basic validation
 		if (!data.name || !data.email || !data.project || !data.message) {
 			return json({ error: 'Missing required fields' }, { status: 400 });
