@@ -21,7 +21,7 @@ export const selectedWork = [
 		role: 'Staff Augmentation / Senior Engineer',
 		description:
 			'Moved across three separate products — HomeAdvisor (Vue/Java), Handy (Ruby on Rails), and Angie\'s List (Next.js) — contributing to each on its own terms. Took engineering interns under my wing, exposing them to sound practices and involving them in meaningful domain design work.',
-		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js'],
+		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js', 'Contentful'],
 		outcome: 'Cross-product delivery and intern mentorship across a newly merged home services platform'
 	},
 	{
