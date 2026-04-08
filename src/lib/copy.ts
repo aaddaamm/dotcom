@@ -38,8 +38,8 @@ export const selectedWork = [
 		period: '2022–2024',
 		role: 'Team Lead',
 		description:
-			'Team lead debut: worked with the client to plan an MVP that modernized their core business deliverables. Dove into a legacy PHP application to surface business logic, then rebuilt around a new CMS, review workflow, and custom rendering layer. Navigated tight deadlines and an AWS crash course along the way. The engagement succeeded and grew into a four-year collaboration.',
-		stack: ['PHP', 'AWS', 'CMS'],
+			'Team lead debut: worked with the client to plan an MVP that modernized their core business deliverables. Dove into a legacy PHP application to surface business logic, then rebuilt around a new CMS, review workflow, and custom rendering layer. Completely overhauled authentication — ripping out a brittle custom solution and replacing it with OAuth via Auth0 — which required a full backend redesign and careful coordination across engineering teams to propagate the change between the legacy system and the new one without breaking production. Navigated tight deadlines and an AWS crash course throughout. The engagement succeeded and grew into a four-year collaboration.',
+		stack: ['PHP', 'AWS', 'Auth0', 'OAuth', 'CMS'],
 		outcome: 'Successful MVP delivery that led to a four-year continued engagement'
 	}
 ];
