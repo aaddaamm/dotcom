@@ -4,38 +4,38 @@ function escapeHtml(str: string): string {
 	return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 import { env } from '$env/dynamic/private';
+import { Redis } from '@upstash/redis';
 import { Resend } from 'resend';
 import type { RequestHandler } from './$types';
 import type { ContactFormData } from '$lib/validation';
 
-// Simple rate limiting - in production should use Redis/database
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
-const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
-const RATE_LIMIT_MAX = 3; // 3 submissions per 15 minutes per IP
+const RATE_LIMIT_WINDOW = 15 * 60; // 15 minutes in seconds
+const RATE_LIMIT_MAX = 3; // 3 submissions per window per IP
 
-function isRateLimited(ip: string): boolean {
-	const now = Date.now();
-	const record = rateLimitMap.get(ip);
-
-	if (!record || now > record.resetTime) {
-		// Reset or create new record
-		rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+async function isRateLimited(ip: string): Promise<boolean> {
+	try {
+		const redis = new Redis({
+			url: env.UPSTASH_REDIS_REST_URL,
+			token: env.UPSTASH_REDIS_REST_TOKEN
+		});
+		const key = `rate_limit:contact:${ip}`;
+		const count = await redis.incr(key);
+		if (count === 1) {
+			await redis.expire(key, RATE_LIMIT_WINDOW);
+		}
+		return count > RATE_LIMIT_MAX;
+	} catch {
+		// KV not configured (e.g. local dev) — fail open
+		console.warn('Rate limit Redis unavailable, skipping check');
 		return false;
 	}
-
-	if (record.count >= RATE_LIMIT_MAX) {
-		return true;
-	}
-
-	record.count++;
-	return false;
 }
 
 export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 	try {
 		// Rate limiting
 		const clientIP = getClientAddress();
-		if (isRateLimited(clientIP)) {
+		if (await isRateLimited(clientIP)) {
 			return json(
 				{ error: 'Too many submissions. Please wait 15 minutes before trying again.' },
 				{ status: 429 }
