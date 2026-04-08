@@ -15,8 +15,8 @@ const RATE_LIMIT_MAX = 3; // 3 submissions per window per IP
 async function isRateLimited(ip: string): Promise<boolean> {
 	try {
 		const redis = new Redis({
-			url: env.UPSTASH_REDIS_REST_URL,
-			token: env.UPSTASH_REDIS_REST_TOKEN
+			url: env.KV_REST_API_URL,
+			token: env.KV_REST_API_TOKEN
 		});
 		const key = `rate_limit:contact:${ip}`;
 		const count = await redis.incr(key);
