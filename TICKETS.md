@@ -417,6 +417,70 @@
 
 ---
 
+### TICKET-054: Fix sanitizeContactForm Dropping project Field
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 15 min
+**Description**: `sanitizeContactForm` in `validation.ts` returns an object that omits the `project` field. It isn't called server-side today (the contact API has its own sanitization), but if it ever is, `project` silently disappears from the submission.
+**Acceptance Criteria**:
+
+- [ ] Add `project: data.project ? sanitizeInput(data.project) : undefined` to the return value in `sanitizeContactForm`
+- [ ] Verify all fields round-trip correctly through the function
+
+**File**: `src/lib/validation.ts:65-73`
+
+---
+
+### TICKET-055: Consolidate Email Validation — Remove Duplicate Regex
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 15 min
+**Description**: The contact API (`+server.ts:58-61`) duplicates the email regex instead of importing `validateEmail` from `$lib/validation`. Two copies of validation logic will drift over time.
+**Acceptance Criteria**:
+
+- [ ] Import `validateEmail` from `$lib/validation` in `src/routes/api/contact/+server.ts`
+- [ ] Replace the inline `emailRegex` + `test` call with `validateEmail(data.email)`
+- [ ] Remove the now-unused inline regex
+
+**File**: `src/routes/api/contact/+server.ts:58-61`
+
+---
+
+### TICKET-056: Consolidate Duplicate ContactFormData Type
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 15 min
+**Description**: `ContactFormData` is defined independently in both `validation.ts` and `email-templates.ts`. The two definitions diverge — `email-templates.ts` is missing the `project` field. One authoritative definition should be exported and re-used.
+**Acceptance Criteria**:
+
+- [ ] Keep `ContactFormData` in `validation.ts` as the single source of truth
+- [ ] Update `email-templates.ts` to import from `$lib/validation` (or delete the file per TICKET-051)
+- [ ] Ensure the contact API imports the type from `$lib/validation` only
+
+**Files**: `src/lib/validation.ts:8-16`, `src/lib/email-templates.ts:3-9`
+
+---
+
+### TICKET-057: Harden Contact API Input Handling
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 30 min
+**Description**: Two small gaps in the contact API's request handling:
+1. No `Content-Type` check — a non-JSON body causes `request.json()` to throw, returning a 500 instead of a 400.
+2. The IP address logged in the notification email (`x-forwarded-for` header, line 97) may differ from the IP used for rate limiting (`getClientAddress()`, line 37), making submissions hard to correlate in logs.
+**Acceptance Criteria**:
+
+- [ ] Check `request.headers.get('content-type')` before parsing; return 400 if not `application/json`
+- [ ] Capture `clientIP` before the try block and reuse it in the email body instead of re-reading `x-forwarded-for`
+
+**File**: `src/routes/api/contact/+server.ts`
+
+---
+
 ### TICKET-046: Social Proof Aggregation Page
 
 **Status**: Backlog
@@ -456,10 +520,10 @@
 ## 📊 Summary
 
 **Last Updated**: 2026-04-08
-**Open**: 27 tickets
+**Open**: 31 tickets
 **Completed**: 9 | **Rejected**: 1
 
 ### Priority Breakdown
 - High: 8 tickets (~17-20 hours)
 - Medium: 13 tickets (~35-45 hours)
-- Low: 6 tickets (~6-7 hours)
+- Low: 10 tickets (~7-9 hours)
