@@ -7,19 +7,40 @@ export const approachItems = [
 
 export const selectedWork = [
 	{
-		title: 'Custom Business Tools',
+		title: 'iCapital — Fintech Platform Engineering',
+		period: '2024–present',
+		role: 'Staff Augmentation / Senior Engineer',
 		description:
-			'Built internal tools that automate repetitive tasks and help teams work more efficiently. From inventory management to client tracking systems.'
+			'Embedded with an engineering team building a subdomain of iCapital\'s alternative investment platform. Navigate a large, complex codebase independently to deliver solutions across the stack. Also work with the team on communication and engineering culture.',
+		stack: ['React', 'TypeScript', 'Node.js'],
+		outcome: 'Ongoing contributor across multiple subdomains of an enterprise fintech platform'
 	},
 	{
-		title: 'Website & Platform Updates',
+		title: 'Angi — Multi-Platform Engineering',
+		period: '2021–2022',
+		role: 'Staff Augmentation / Senior Engineer',
 		description:
-			'Modernized outdated websites and content management systems. Improved site speed, security, and made updates easier for non-technical users.'
+			'Moved across three separate products — HomeAdvisor (Vue/Java), Handy (Ruby on Rails), and Angie\'s List (Next.js) — contributing to each on its own terms. Took engineering interns under my wing, exposing them to sound practices and involving them in meaningful domain design work.',
+		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js'],
+		outcome: 'Cross-product delivery and intern mentorship across a newly merged home services platform'
 	},
 	{
-		title: 'Payment & Data Systems',
+		title: 'Shell — Oil Platform Decommissioning',
+		period: '2018–2019',
+		role: 'Software Engineer',
 		description:
-			'Created secure systems for handling payments, customer data, and automated reporting. Focused on reliability and protecting sensitive information.'
+			'Built software to support the decommissioning of end-of-life oil platforms for Shell Techworks in Boston. Fast-paced MVP delivery with React and Node, structured around the Google Design Sprint process, including onsite collaboration sessions.',
+		stack: ['React', 'Node.js'],
+		outcome: 'MVP delivered on schedule using Design Sprint methodology with Shell engineering in Boston'
+	},
+	{
+		title: 'Healthcasts — Platform Modernization',
+		period: '2022–2024',
+		role: 'Team Lead',
+		description:
+			'Team lead debut: worked with the client to plan an MVP that modernized their core business deliverables. Dove into a legacy PHP application to surface business logic, then rebuilt around a new CMS, review workflow, and custom rendering layer. Navigated tight deadlines and an AWS crash course along the way. The engagement succeeded and grew into a four-year collaboration.',
+		stack: ['PHP', 'AWS', 'CMS'],
+		outcome: 'Successful MVP delivery that led to a four-year continued engagement'
 	}
 ];
 
