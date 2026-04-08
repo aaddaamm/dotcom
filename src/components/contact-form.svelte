@@ -7,6 +7,7 @@
 	let message = $state('');
 	let phone = $state('');
 	let budget = $state('');
+	let website = $state(''); // honeypot
 	let isSubmitting = $state(false);
 	let submitted = $state(false);
 	let errorMessage = $state('');
@@ -46,7 +47,8 @@
 					project: project.trim(),
 					message: message.trim(),
 					phone: phone.trim(),
-					budget: budget.trim()
+					budget: budget.trim(),
+					website
 				})
 			});
 
@@ -193,6 +195,18 @@
 				></textarea>
 			</div>
 
+			<div class="honeypot" aria-hidden="true">
+				<label for="website">Website</label>
+				<input
+					type="text"
+					id="website"
+					name="website"
+					bind:value={website}
+					tabindex="-1"
+					autocomplete="off"
+				/>
+			</div>
+
 			<button
 				type="submit"
 				disabled={isSubmitting || !name || !email || !project || !message}
@@ -296,6 +310,14 @@
 
 	.submit-button:disabled {
 		cursor: not-allowed;
+	}
+
+	.honeypot {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
 	}
 
 	.form-note {

@@ -12,6 +12,7 @@ export interface ContactFormData {
 	budget?: string;
 	project?: string;
 	message: string;
+	website?: string; // honeypot — must remain empty
 }
 
 export function validateEmail(email: string): boolean {
