@@ -4,10 +4,11 @@
 		<div class="hero-cursor cursor-blink" aria-hidden="true"></div>
 		<h1 class="hero-name font-mono">adam robinson</h1>
 	</div>
-	<p class="hero-subtitle font-mono" role="doc-subtitle">SOFTWARE CONSULTANT & FREELANCER</p>
+	<p class="hero-subtitle font-mono" role="doc-subtitle">SENIOR SOFTWARE ENGINEER</p>
 	<p class="body-text">
-		I work directly with small local businesses to solve software problems that matter to you. Get
-		personalized attention and solutions built to fit your actual budget and timeline.
+		I don't just write software — I develop solutions to real problems. Full-stack engineer with a
+		backend lean, I build systems, ship user-facing products, and bring order to unruly codebases.
+		Ten-plus years across fintech, healthcare, and enterprise.
 	</p>
 	<div class="hero-stats flex flex-wrap gap-6 mt-4 mb-2">
 		<div class="stat-item">
@@ -15,8 +16,8 @@
 			<span class="stat-label">Years Experience</span>
 		</div>
 		<div class="stat-item">
-			<span class="stat-number">Project</span>
-			<span class="stat-label">Based Rates</span>
+			<span class="stat-number">Full</span>
+			<span class="stat-label">Stack</span>
 		</div>
 		<div class="stat-item">
 			<span class="stat-number">24hr</span>
@@ -24,26 +25,9 @@
 		</div>
 	</div>
 
-	<!-- Satisfaction Guarantee Badge -->
-	<div
-		class="guarantee-badge accent-bg-5 accent-border-20 flex items-center gap-3 mt-6 p-4 rounded-lg"
-	>
-		<div class="guarantee-icon text-accent-500" aria-hidden="true">
-			<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-				<path d="M12 2L3 7L12 12L21 7L12 2Z" opacity="0.5" />
-				<path d="M3 17L12 22L21 17" />
-				<path d="M3 12L12 17L21 12" />
-			</svg>
-		</div>
-		<div class="guarantee-text">
-			<div class="font-semibold text-sm">100% Satisfaction Guarantee</div>
-			<div class="text-xs text-muted">Unlimited revisions until you're completely satisfied</div>
-		</div>
-	</div>
-
 	<div class="flex flex-col sm:flex-row gap-3 mt-6">
-		<a href="/contact" class="btn-primary text-center">Start Your Project</a>
-		<a href="#services" class="btn-secondary text-center">See How I Can Help</a>
+		<a href="/work" class="btn-primary text-center">See My Work</a>
+		<a href="/contact" class="btn-secondary text-center">Get In Touch</a>
 	</div>
 </section>
 
