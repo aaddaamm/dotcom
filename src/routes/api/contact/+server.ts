@@ -101,8 +101,6 @@ User-Agent: ${request.headers.get('user-agent') || 'Unknown'}
 		// Send email notification (works in both dev and production)
 		await sendEmailNotification(sanitizedData, emailSubject, emailBody);
 
-		console.log('📧 Contact form submission received:', sanitizedData);
-
 		return json({
 			success: true,
 			message: "Thank you for your message! I'll respond within 24 hours."
