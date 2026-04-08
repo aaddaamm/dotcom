@@ -334,7 +334,88 @@
 
 ---
 
+---
+
+### TICKET-048: Fix Rate-Limit Race Condition in Contact API
+
+**Status**: Backlog
+**Priority**: High
+**Effort**: 30 min
+**Description**: The `INCR` + `EXPIRE` calls in `isRateLimited` are not atomic. If `EXPIRE` fails after `INCR` succeeds (transient Redis error), the key has no TTL and that IP is permanently rate-limited. Two concurrent requests can also both get `count === 1` and bypass the limit.
+**Acceptance Criteria**:
+
+- [ ] Replace `incr` + conditional `expire` with an atomic operation (Redis pipeline, Lua script, or `SET key 1 EX 900 NX` + `INCR` pattern)
+- [ ] Verify behavior: first request sets TTL atomically, subsequent requests within window are counted correctly
+- [ ] Verify a Redis error during rate-check still fails open (no permanent bans)
+
+**File**: `src/routes/api/contact/+server.ts:15-32`
+
+---
+
 ## 🔧 Low Priority
+
+### TICKET-049: Fix Draft Blog Post Routing
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 30 min
+**Description**: `getAllPosts(true)` returns draft posts with slugs prefixed `drafts/foo`. These render as links on the `/blog` listing page in dev, but `blog/[slug]` is a single-segment route — SvelteKit won't match `/blog/drafts/foo`, so clicking them 404s.
+**Acceptance Criteria**:
+
+- [ ] Add a `src/routes/blog/drafts/[slug]/+page.server.ts` route that loads draft posts (dev-only), OR
+- [ ] Change `blog/[slug]` to `blog/[...slug]` and update `+page.server.ts` to join the segments back into a path
+- [ ] Draft links on the blog listing page navigate correctly in dev
+
+**Files**: `src/lib/server/blog.ts:33`, `src/routes/blog/[slug]/+page.server.ts`
+
+---
+
+### TICKET-050: Fix Schema Markup Inconsistencies in app.html
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 15 min
+**Description**: The `Person` structured data in `app.html` describes a "Lead Software Engineer building backend systems" in "Providence, RI" — conflicting with the site's freelance-consultant persona and the "Cranston, RI" used everywhere else.
+**Acceptance Criteria**:
+
+- [ ] Update `jobTitle` and `description` to match the freelance consultant persona (aligned with `seo-head.svelte` `LocalBusiness` schema)
+- [ ] Change `addressLocality` from `"Providence"` to `"Cranston"`
+
+**File**: `src/app.html:28-37`
+
+---
+
+### TICKET-051: Remove Dead Code (email-templates.ts, api-utils.ts)
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 15 min
+**Description**: Two library files export functions that are never imported or called anywhere. `email-templates.ts` also defines a `ContactFormData` interface that diverges from the one in `validation.ts` (missing `project` field), creating a maintenance hazard.
+**Acceptance Criteria**:
+
+- [ ] Delete `src/lib/email-templates.ts` (or wire it up if intended to replace inline email HTML in `+server.ts`)
+- [ ] Delete `src/lib/server/api-utils.ts` (or wire it up in the goodreads/sitemap routes)
+- [ ] Ensure build still passes after deletion
+
+**Files**: `src/lib/email-templates.ts`, `src/lib/server/api-utils.ts`
+
+---
+
+### TICKET-052: Harden Goodreads Service
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 30 min
+**Description**: Three small reliability gaps in `goodreadsService.ts`: silent error swallowing with no logging, `parseInt(bookId)` can produce `NaN` for empty strings, and the pagination loop has no max-page guard.
+**Acceptance Criteria**:
+
+- [ ] Add `console.error` in the `getBooksFromShelf` catch block before returning `[]`
+- [ ] Guard `parseInt(bookId)` against `NaN` (e.g. `parseInt(bookId) || 0`)
+- [ ] Add a max-page limit (e.g. `page > 20`) to the pagination `while(true)` loop
+
+**File**: `src/lib/server/goodreadsService.ts`
+
+---
 
 ### TICKET-046: Social Proof Aggregation Page
 
@@ -362,6 +443,7 @@
 | TICKET-026 | Risk Reversal & Satisfaction Guarantees | Already live on homepage |
 | TICKET-028 | Process Transparency & Next Steps | Already live on contact page |
 | TICKET-029 | Concrete Business Metrics | Already live in hero section |
+| TICKET-053 | Service Worker Breaking App on New Deployments | 2026-04-08 |
 
 ## ❌ Rejected
 
@@ -374,10 +456,10 @@
 ## 📊 Summary
 
 **Last Updated**: 2026-04-08
-**Open**: 21 tickets
-**Completed**: 8 | **Rejected**: 1
+**Open**: 27 tickets
+**Completed**: 9 | **Rejected**: 1
 
 ### Priority Breakdown
-- High: 7 tickets (~17-19 hours)
+- High: 8 tickets (~17-20 hours)
 - Medium: 13 tickets (~35-45 hours)
-- Low: 1 ticket (~4-5 hours)
+- Low: 6 tickets (~6-7 hours)
