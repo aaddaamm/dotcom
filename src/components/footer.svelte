@@ -3,6 +3,7 @@
 		<div class="flex flex-wrap gap-6 mb-6 text-sm">
 			<a href="/blog" class="footer-link">Blog</a>
 			<a href="/work" class="footer-link">Work</a>
+			<a href="/hire" class="footer-link">Hire</a>
 			<a href="/play" class="footer-link">Reading</a>
 			<a href="/teach" class="footer-link">Resources</a>
 			<a href="/contact" class="footer-link">Contact</a>

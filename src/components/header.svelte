@@ -18,10 +18,10 @@
 		<div class="flex items-center gap-6">
 			<div class="hidden sm:block nav-divider" aria-hidden="true"></div>
 			<nav aria-label="Main navigation" class="flex items-center gap-6">
-				<a href="/#about" class="nav-link link-underline">about</a>
-				<a href="/#work" class="nav-link link-underline">work</a>
-				<a href="/contact" class="nav-link link-underline contact-nav">contact</a>
+				<a href="/work" class="nav-link link-underline">work</a>
 				<a href="/blog" class="nav-link link-underline">blog</a>
+				<a href="/hire" class="nav-link link-underline">hire</a>
+				<a href="/contact" class="nav-link link-underline contact-nav">contact</a>
 			</nav>
 			<button
 				onclick={themeStore.toggle}

@@ -6,7 +6,6 @@
 	let project = $state('');
 	let message = $state('');
 	let phone = $state('');
-	let budget = $state('');
 	let website = $state(''); // honeypot
 	let isSubmitting = $state(false);
 	let submitted = $state(false);
@@ -23,7 +22,6 @@
 			name: name.trim(),
 			email: email.trim(),
 			phone: phone.trim(),
-			budget,
 			message: `${project.trim()}\n\n${message.trim()}`
 		};
 
@@ -47,7 +45,6 @@
 					project: project.trim(),
 					message: message.trim(),
 					phone: phone.trim(),
-					budget: budget.trim(),
 					website
 				})
 			});
@@ -59,7 +56,6 @@
 				if (typeof window !== 'undefined' && (window as { va?: { track: (e: string, p?: Record<string, string>) => void } }).va) {
 					(window as { va?: { track: (e: string, p?: Record<string, string>) => void } }).va!.track('Contact Form Submitted', {
 						project_type: project.trim(),
-						budget_range: budget.trim() || 'Not specified',
 						has_phone: phone.trim() ? 'yes' : 'no'
 					});
 				}
@@ -71,7 +67,6 @@
 				project = '';
 				message = '';
 				phone = '';
-				budget = '';
 				submitted = true;
 
 				// Hide success message after 8 seconds
@@ -161,24 +156,11 @@
 					class="form-input"
 					disabled={isSubmitting}
 				>
-					<option value="">Select project type...</option>
-					<option value="Website Fix/Update">Website Fix/Update</option>
-					<option value="Custom Software Development">Custom Software Development</option>
-					<option value="Technical Consultation">Technical Consultation</option>
-					<option value="Ongoing Support">Ongoing Support</option>
-					<option value="Not Sure - Need Advice">Not Sure - Need Advice</option>
-				</select>
-			</div>
-
-			<div class="form-group">
-				<label for="budget" class="form-label">Budget Range (Optional)</label>
-				<select id="budget" bind:value={budget} class="form-input" disabled={isSubmitting}>
-					<option value="">Select budget range...</option>
-					<option value="$500-$1,000">$500-$1,000</option>
-					<option value="$1,000-$3,000">$1,000-$3,000</option>
-					<option value="$3,000-$5,000">$3,000-$5,000</option>
-					<option value="$5,000+">$5,000+</option>
-					<option value="Not Sure">Not Sure</option>
+					<option value="">What brings you here...</option>
+					<option value="Full-time opportunity">Full-time opportunity</option>
+					<option value="Contract / Freelance project">Contract / Freelance project</option>
+					<option value="Technical consulting">Technical consulting</option>
+					<option value="Something else">Something else</option>
 				</select>
 			</div>
 
