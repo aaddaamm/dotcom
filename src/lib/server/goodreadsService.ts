@@ -44,7 +44,7 @@ export namespace GoodreadsService {
 		};
 	}
 
-	async function fetchRSSPage(shelf: GOODREADS_SHELVES, page: number): Promise<GoodreadsBook[]> {
+	async function fetchRSSPage(shelf: GOODREADS_SHELVES, page: number, fetch: typeof globalThis.fetch): Promise<GoodreadsBook[]> {
 		const response = await fetch(`${RSS_BASE_URL}?shelf=${shelf}&page=${page}`);
 		const text = await response.text();
 		const xml = cheerio.load(text, { xmlMode: true });
@@ -58,7 +58,7 @@ export namespace GoodreadsService {
 		return books;
 	}
 
-	export async function getBooksFromShelf(shelf: GOODREADS_SHELVES): Promise<GoodreadsBook[]> {
+	export async function getBooksFromShelf(shelf: GOODREADS_SHELVES, fetch: typeof globalThis.fetch): Promise<GoodreadsBook[]> {
 		try {
 			const cached = cache.get(shelf);
 			if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
@@ -69,7 +69,7 @@ export namespace GoodreadsService {
 			let page = 1;
 
 			while (true) {
-				const books = await fetchRSSPage(shelf, page);
+				const books = await fetchRSSPage(shelf, page, fetch);
 				allBooks.push(...books);
 				if (books.length < 100) break;
 				page++;
@@ -84,15 +84,15 @@ export namespace GoodreadsService {
 		}
 	}
 
-	export async function fetchCurrentlyReadingShelf() {
-		const books = await getBooksFromShelf(GOODREADS_SHELVES.CURRENTLY_READING);
+	export async function fetchCurrentlyReadingShelf(fetch: typeof globalThis.fetch) {
+		const books = await getBooksFromShelf(GOODREADS_SHELVES.CURRENTLY_READING, fetch);
 		return books.sort(
 			(a, b) => new Date(b?.dateStarted || 0).getTime() - new Date(a?.dateStarted || 0).getTime()
 		);
 	}
 
-	export async function fetchReadShelf() {
-		return getBooksFromShelf(GOODREADS_SHELVES.READ);
+	export async function fetchReadShelf(fetch: typeof globalThis.fetch) {
+		return getBooksFromShelf(GOODREADS_SHELVES.READ, fetch);
 	}
 }
 
