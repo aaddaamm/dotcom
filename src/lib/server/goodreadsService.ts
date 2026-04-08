@@ -5,6 +5,9 @@ import { GOODREADS_SHELVES } from '$lib/constants';
 
 const RSS_BASE_URL = 'https://www.goodreads.com/review/list_rss/92024399';
 
+// Per-instance in-memory cache. On Vercel serverless, each function instance
+// has its own cache and cold starts reset it, so actual TTL varies. Adequate
+// for this read-only shelf data — a cache miss just re-fetches the RSS feed.
 const cache = new Map<string, { data: GoodreadsBook[]; timestamp: number }>();
 const CACHE_TTL = 60 * 60 * 1000; // 1 hour
 
