@@ -1,28 +1,12 @@
 # Website Enhancement Tickets
 
-## 🎯 High Priority (Next Sprint)
-
-### TICKET-001: Client Testimonials Section
-
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 2-3 hours  
-**Description**: Add 2-3 client testimonials to homepage to build trust and credibility
-**Acceptance Criteria**:
-
-- [ ] Create testimonials component with client name, company, and quote
-- [ ] Add to homepage between services and selected work sections
-- [ ] Include at least one small business client testimonial
-- [ ] Responsive design that works on mobile
-      **Notes**: Even placeholder testimonials would help conversion
-
----
+## 🎯 High Priority
 
 ### TICKET-002: Google Business Profile Setup
 
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 1 hour  
+**Status**: Backlog
+**Priority**: High
+**Effort**: 1 hour
 **Description**: Create and optimize Google Business Profile for local visibility
 **Acceptance Criteria**:
 
@@ -31,809 +15,369 @@
 - [ ] Upload professional photos
 - [ ] Optimize description for local software development keywords
 - [ ] Get initial reviews from past clients
-      **Notes**: Critical for local SEO and client discovery
+
+**Notes**: Critical for local SEO and client discovery
 
 ---
 
-### TICKET-003: Case Study Examples
+### TICKET-015: Social Proof & Testimonials
 
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 4-6 hours  
-**Description**: Create 2-3 detailed case studies showing before/after results
-**Acceptance Criteria**:
-
-- [ ] Write case studies for different project types (website fix, custom tool, consultation)
-- [ ] Include problem, solution, outcome, and client benefit
-- [ ] Add to /work page or create dedicated case studies section
-- [ ] Include metrics where possible (time saved, cost reduced, etc.)
-      **Notes**: Shows concrete value to potential clients
-
----
-
-## 📈 Medium Priority (Future Sprints)
-
-### TICKET-004: Calendar Booking Integration
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 3-4 hours  
-**Description**: Add calendar booking system for consultation calls
-**Acceptance Criteria**:
-
-- [ ] Integrate with Calendly or similar service
-- [ ] Add "Book Consultation" CTAs throughout site
-- [ ] Create dedicated consultation landing page
-- [ ] Set up automated email sequences
-      **Notes**: Reduces friction for initial client contact
-
----
-
-### TICKET-005: Project Cost Calculator
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 6-8 hours  
-**Description**: Interactive tool to help visitors estimate project costs
-**Acceptance Criteria**:
-
-- [ ] Form with project type, complexity, timeline inputs
-- [ ] Logic to calculate estimated ranges
-- [ ] Disclaimer about estimates
-- [ ] Lead capture integrated with contact form
-      **Notes**: Helps qualify leads and manage expectations
-
----
-
-### TICKET-006: Blog Content Strategy
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: Ongoing  
-**Description**: Create blog content targeting small business pain points
-**Acceptance Criteria**:
-
-- [ ] "5 Signs Your Website Needs Professional Help"
-- [ ] "How Much Should Small Businesses Spend on Software?"
-- [ ] "DIY vs Hiring: When to Call a Developer"
-- [ ] "Common Software Problems Small Businesses Face"
-- [ ] SEO optimized for Rhode Island + software development keywords
-      **Notes**: Drives organic traffic and demonstrates expertise
-
----
-
-### TICKET-007: Local Business Directory Listings
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 2-3 hours  
-**Description**: Submit to local business directories for local SEO
-**Acceptance Criteria**:
-
-- [ ] Cranston Chamber of Commerce
-- [ ] Rhode Island business directories
-- [ ] Yelp business listing
-- [ ] BBB listing (if applicable)
-- [ ] Industry-specific directories (software, tech services)
-      **Notes**: Builds local authority and citation consistency
-
----
-
-## 🔧 Technical Improvements
-
-### TICKET-008: Progressive Web App Features
-
-**Status**: ❌ Rejected  
-**Priority**: Low  
-**Effort**: 3-4 hours  
-**Description**: Add PWA capabilities for better mobile experience
-**Acceptance Criteria**:
-
-- [ ] Web app manifest
-- [ ] Service worker for offline functionality
-- [ ] Install prompt for mobile users
-- [ ] Offline fallback pages
-      **Notes**: Rejected - no business value for portfolio site. Clients don't install business websites.
-
----
-
-### TICKET-009: Analytics & Conversion Tracking
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 2 hours  
-**Description**: Set up detailed analytics to track conversion funnel
-**Acceptance Criteria**:
-
-- [ ] Google Analytics 4 with enhanced ecommerce
-- [ ] Contact form submission tracking
-- [ ] CTA click tracking
-- [ ] Page scroll depth tracking
-- [ ] Monthly reporting dashboard
-      **Notes**: Already have Vercel analytics, but need more detailed tracking
-
----
-
-### TICKET-010: Performance Optimization
-
-**Status**: ✅ Completed (2026-03-29)  
-**Priority**: Low  
-**Effort**: 2-3 hours  
-**Description**: Further optimize site performance and Core Web Vitals
-**Acceptance Criteria**:
-
-- [x] Image optimization and lazy loading
-- [x] Font loading optimization
-- [x] Bundle size analysis and optimization
-- [x] Lighthouse score > 95
-      **Notes**: Reduced bundle size by 50%, optimized fonts, added service worker, improved resource hints
-
----
-
-## 🎨 Design Enhancements
-
-### TICKET-011: Service Icons & Visual Hierarchy
-
-**Status**: ✅ Completed (2026-03-29)  
-**Priority**: Low  
-**Effort**: 2-3 hours  
-**Description**: Add icons to services section and improve visual design
-**Acceptance Criteria**:
-
-- [x] Custom or sourced icons for each service type
-- [x] Consistent icon style and sizing
-- [x] Improved spacing and visual hierarchy
-- [x] Better mobile layout for services cards
-      **Notes**: Added SVG icons, improved card design with better spacing and mobile responsiveness
-
----
-
-### TICKET-012: Interactive Elements
-
-**Status**: ✅ Completed (2026-03-29)  
-**Priority**: Low  
-**Effort**: 4-6 hours  
-**Description**: Add subtle interactive elements to improve engagement
-**Acceptance Criteria**:
-
-- [x] Hover animations for project cards
-- [x] Scroll-triggered animations (with respect to prefers-reduced-motion)
-- [x] Loading states for contact form
-- [x] Micro-interactions for buttons
-      **Notes**: Added fast scroll animations, button micro-interactions, and spinner loading states with full accessibility support
-
----
-
-## 📱 Marketing & Content
-
-### TICKET-013: Free Resources/Lead Magnets
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 4-6 hours  
-**Description**: Create downloadable resources to capture leads
-**Acceptance Criteria**:
-
-- [ ] "Small Business Software Planning Checklist" PDF
-- [ ] "Website Maintenance Checklist"
-- [ ] "Questions to Ask Before Hiring a Developer"
-- [ ] Landing pages with email capture
-      **Notes**: Builds email list and demonstrates value
-
----
-
-### TICKET-014: Rhode Island Landing Pages
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 3-4 hours  
-**Description**: Create location-specific landing pages for better local SEO
-**Acceptance Criteria**:
-
-- [ ] "Software Developer Providence RI" page
-- [ ] "Web Developer Warwick RI" page
-- [ ] "Cranston Software Development" page
-- [ ] Local business schema markup
-- [ ] City-specific content and keywords
-      **Notes**: Targets neighboring cities for broader reach
-
----
-
-### TICKET-015: Social Proof Enhancement
-
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 3-4 hours  
-**Description**: Add testimonials, client logos, and trust signals throughout the site to reduce prospect risk perception  
+**Status**: Backlog
+**Priority**: High
+**Effort**: 3-4 hours
+**Description**: Add testimonials, client logos, and trust signals throughout the site
 **Acceptance Criteria**:
 
 - [ ] Create testimonials component with 3-5 client quotes, names, and companies
-- [ ] Add client logo section on homepage (even small local businesses)
-- [ ] Include "Years of local business" or "Projects completed" metrics
-- [ ] Add testimonials to contact page near form
-- [ ] Create rotating testimonial section or dedicated testimonials page  
-       **Notes**: Missing social proof is biggest credibility gap for freelancers - prospects need confidence you can deliver
+- [ ] Add client logo section on homepage
+- [ ] Add testimonials near contact form on contact page
+- [ ] Schema markup for review snippets
+
+**Notes**: Missing social proof is the biggest credibility gap. Merged from TICKET-001.
 
 ---
 
-### TICKET-016: Conversion Form Optimization
+### TICKET-018: Portfolio Case Studies
 
-**Status**: ✅ Completed (2026-03-29)  
-**Priority**: High  
-**Effort**: 4-6 hours  
-**Description**: Replace mailto contact form with proper form submission to reduce friction and capture more leads  
+**Status**: Backlog
+**Priority**: High
+**Effort**: 6-8 hours
+**Description**: Replace generic portfolio blurbs with real case studies showing client, problem, tech, and outcome
 **Acceptance Criteria**:
 
-- [x] Implement form backend (Vercel Edge Functions or similar)
-- [x] Add email notifications for new submissions
-- [x] Create auto-responder email for prospects
-- [x] Track form completion rates in analytics
-- [x] Add optional phone number field for urgent projects
-- [x] Include project budget range selector  
-       **Notes**: Replaced mailto with API backend, added phone/budget fields, implemented analytics tracking, and proper error handling. Major conversion improvement expected.
+- [ ] Write 3-4 case studies with problem, solution, outcome, and role
+- [ ] Add to /work page or create individual case study pages
+- [ ] Include metrics where possible (time saved, performance gains, etc.)
+- [ ] Include client industry and project size context
 
----
+**Candidate projects** (from Holocron allocation history):
+- iCapital: Integrated Offerings (2024–present) — fintech, most recent
+- Healthcasts (2022–2024) — ~18 month engagement
+- Angi: Partner Automations (2021–2022) — well-known brand, multiple projects
+- Shell: DINGO (2018–2019) — enterprise, ~13 months
 
-### TICKET-017: Project Budget Qualification
+**Working notes**: `/Users/adam/portfolio-case-studies.md`
+**Data source**: `/Users/adam/repos/mojo-holocron/db/mojo_holocron_dev.db` → `project_allocations`
 
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 2-3 hours  
-**Description**: Add budget ranges to help prospects self-qualify and set expectations upfront  
-**Acceptance Criteria**:
-
-- [ ] Add budget selector to contact form ($500-1K, $1K-3K, $3K-5K, $5K+, Not Sure)
-- [ ] Update FAQ section with specific project examples and price ranges
-- [ ] Add "Starting at $X" language to service cards
-- [ ] Create pricing expectations page or section
-- [ ] Include "free consultation" offer for larger projects  
-       **Notes**: Helps qualify leads and reduces time spent on unsuitable prospects
-
----
-
-### TICKET-018: Portfolio Depth & Case Studies
-
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 6-8 hours  
-**Description**: Expand portfolio with detailed case studies showing business impact and ROI  
-**Acceptance Criteria**:
-
-- [ ] Create 3-4 detailed case studies with before/after, timeline, results
-- [ ] Include client challenges, solution approach, and measurable outcomes
-- [ ] Add project screenshots or mockups where possible
-- [ ] Create individual case study pages with better SEO
-- [ ] Include client industry and business size context  
-       **Notes**: Prospects need to see themselves in your previous work and understand the value
-
----
-
-### TICKET-019: Local SEO Foundation
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 3-4 hours  
-**Description**: Implement local business schema and optimize for Rhode Island + nearby city searches  
-**Acceptance Criteria**:
-
-- [ ] Add LocalBusiness schema markup to homepage
-- [ ] Create location pages for Providence, Warwick, Newport
-- [ ] Optimize for "software developer near me" and similar local queries
-- [ ] Add location-specific content and landing pages
-- [ ] Submit to Rhode Island business directories  
-       **Notes**: Local businesses often search "software developer near me" - capture this traffic
-
----
-
-### TICKET-020: Lead Magnets & Email Capture
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 4-6 hours  
-**Description**: Create downloadable resources to capture leads who aren't ready to contact yet  
-**Acceptance Criteria**:
-
-- [ ] "Small Business Software Checklist" PDF download
-- [ ] "Website Evaluation Checklist" resource
-- [ ] Email capture forms with ConvertKit or similar
-- [ ] Landing pages for each resource with local SEO
-- [ ] Email sequence for nurturing downloaded leads  
-       **Notes**: Many prospects need time to decide - stay top of mind with valuable content
-
----
-
-### TICKET-021: Trust Indicators & Credentials
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 2-3 hours  
-**Description**: Add professional credentials, certifications, and trust signals beyond testimonials  
-**Acceptance Criteria**:
-
-- [ ] Add years in business, projects completed stats
-- [ ] Include relevant certifications or technical credentials
-- [ ] Add "Licensed & Insured" if applicable
-- [ ] Show GitHub contribution activity or tech stack expertise
-- [ ] Include professional headshot and personal story  
-       **Notes**: Small businesses want to know they're working with a legitimate professional
-
----
-
-### TICKET-022: Consultation Booking System
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 3-4 hours  
-**Description**: Add calendar booking to reduce friction for initial consultations  
-**Acceptance Criteria**:
-
-- [ ] Integrate Calendly or similar booking system
-- [ ] Create "Book Free Consultation" CTAs throughout site
-- [ ] Add consultation booking to contact flow
-- [ ] Set up automated confirmation and reminder emails
-- [ ] Include consultation prep questionnaire  
-       **Notes**: Making it easy to book a call converts better than email back-and-forth
-
----
-
-### TICKET-023: Urgency & Availability Indicators
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 1-2 hours  
-**Description**: Add current availability and response time indicators to create urgency  
-**Acceptance Criteria**:
-
-- [ ] "Currently booking X weeks out" indicator on homepage
-- [ ] "Responding to new inquiries within 24 hours" badge
-- [ ] "Limited spots available this quarter" when appropriate
-- [ ] Update availability status monthly  
-       **Notes**: Scarcity and clear expectations help prospects take action faster
-
----
-
-### TICKET-024: Content Marketing Foundation
-
-**Status**: Backlog  
-**Priority**: Low  
-**Effort**: 6-8 hours  
-**Description**: Create blog content targeting small business software pain points for SEO  
-**Acceptance Criteria**:
-
-- [ ] "5 Signs Your Business Needs Custom Software" post
-- [ ] "Website vs. Web App: What Small Businesses Need to Know"
-- [ ] "How Much Should You Spend on Business Software?" guide
-- [ ] "Red Flags When Hiring a Developer" post
-- [ ] Optimize each post for RI + software development keywords  
-       **Notes**: Content marketing drives long-term organic traffic and demonstrates expertise
-
----
-
-### TICKET-025: Referral Program Structure
-
-**Status**: Backlog  
-**Priority**: Low  
-**Effort**: 2-3 hours  
-**Description**: Create formal referral program to encourage word-of-mouth marketing  
-**Acceptance Criteria**:
-
-- [ ] Add referral program page explaining incentives
-- [ ] Create referral tracking system or simple process
-- [ ] Add "Refer a Business" CTA to post-project communications
-- [ ] Offer referral incentives (discount or cash)
-- [ ] Include referral ask in email signatures  
-       **Notes**: Small businesses trust referrals more than any other marketing - systematize this
-
----
-
-### TICKET-026: Risk Reversal & Satisfaction Guarantees
-
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 30 minutes  
-**Description**: Add satisfaction guarantees and risk reversal mechanisms to reduce prospect hesitation  
-**Acceptance Criteria**:
-
-- [ ] Add "100% Satisfaction Guarantee" badge to homepage hero section
-- [ ] Include revision guarantee ("Unlimited revisions until you're satisfied")
-- [ ] Add money-back guarantee for consultation calls
-- [ ] Create guarantee details page explaining terms
-- [ ] Add guarantee messaging to contact form area  
-       **Notes**: Small businesses are extremely risk-averse - guarantees dramatically reduce barriers to hiring
-
----
-
-### TICKET-027: Urgency & Availability Indicators
-
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 1 hour  
-**Description**: Add dynamic availability status and booking urgency to encourage faster decisions  
-**Acceptance Criteria**:
-
-- [ ] Add "Currently booking X weeks out" indicator to homepage
-- [ ] Include "Limited spots available this quarter" when appropriate
-- [ ] Add "Responding to inquiries within 24 hours" badge
-- [ ] Create system to update availability status regularly
-- [ ] Add urgency messaging to contact form  
-       **Notes**: Without urgency, prospects delay decisions indefinitely - scarcity creates action
-
----
-
-### TICKET-028: Process Transparency & Next Steps
-
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 45 minutes  
-**Description**: Clearly explain what happens after contact form submission to reduce uncertainty  
-**Acceptance Criteria**:
-
-- [ ] Add "What happens next?" section near contact form
-- [ ] Explain process: 24hr response → brief call → proposal → project start
-- [ ] Include typical timeline expectations for different project types
-- [ ] Add "No obligation consultation" messaging
-- [ ] Create visual process timeline (optional)  
-       **Notes**: Uncertainty about next steps reduces form completion rates significantly
-
----
-
-### TICKET-029: Concrete Business Metrics
-
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 1 hour  
-**Description**: Add specific business metrics and achievements to build credibility without testimonials  
-**Acceptance Criteria**:
-
-- [ ] Add "8+ Years Serving RI Businesses" to homepage
-- [ ] Include "50+ Projects Completed" metric
-- [ ] Add "100% Project Completion Rate" badge
-- [ ] Show "Average 3x performance improvement" or similar result metric
-- [ ] Add years in business and project count to footer or about section  
-       **Notes**: Concrete numbers build trust more effectively than vague claims
+**Notes**: Merged from TICKET-003.
 
 ---
 
 ### TICKET-030: Speed-to-Market Positioning
 
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 30 minutes  
-**Description**: Emphasize speed advantage over agencies and offshore developers  
+**Status**: Backlog
+**Priority**: High
+**Effort**: 30 minutes
+**Description**: Emphasize speed advantage over agencies and offshore developers in hero/about copy
 **Acceptance Criteria**:
 
-- [ ] Add "Start next week, not next month" hero messaging
-- [ ] Include "No lengthy onboarding process" benefit
-- [ ] Add "Direct access - no account managers" positioning
-- [ ] Compare timeline vs agencies: "Agencies: 4-6 weeks to start, Us: 1 week"
-- [ ] Emphasize "Quick turnaround on urgent fixes"  
-       **Notes**: Speed is a major competitive advantage for freelancers vs agencies
+- [ ] Add "start next week, not next month" type messaging to hero or about
+- [ ] Add "no account managers, direct access" language to services or about
+- [ ] Compare timeline vs agencies where appropriate
+
+**Notes**: Speed is a real competitive advantage for freelancers vs agencies — currently undersold.
 
 ---
 
-### TICKET-031: Mini Case Study Examples
+### TICKET-036: Exit Intent Lead Capture
 
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 2-3 hours  
-**Description**: Add before/after problem-solution examples that prospects can relate to  
+**Status**: Backlog
+**Priority**: High
+**Effort**: 2-3 hours
+**Description**: Capture visitors leaving without taking action
 **Acceptance Criteria**:
 
-- [ ] Create 3-4 mini-examples in services section
-- [ ] Format: "Problem: X, Solution: Y, Result: Z" with metrics
-- [ ] Include common scenarios: slow website, broken functionality, outdated system
-- [ ] Add business impact numbers where possible
-- [ ] Make examples relatable to small business pain points  
-       **Notes**: Helps prospects visualize how you solve their exact problems
+- [ ] Exit intent detection (desktop mouse movement, mobile scroll)
+- [ ] Offer free consultation or resource download
+- [ ] Easy dismiss with "don't show again" behavior
+- [ ] Respect user experience — not immediate on load
+
+**Notes**: Could increase lead capture 15-30% based on industry averages.
 
 ---
 
-### TICKET-032: Local Trust Signals
+### TICKET-040: Lead Magnets & Free Resource Downloads
 
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 1-2 hours  
-**Description**: Add local business relationships and community involvement indicators  
+**Status**: Backlog
+**Priority**: High
+**Effort**: 4-6 hours
+**Description**: Create downloadable resources to capture leads not ready to contact yet
 **Acceptance Criteria**:
 
-- [ ] Add "Cranston Chamber of Commerce Member" badge if applicable
-- [ ] Include "Supporting Local RI Businesses Since X" messaging
-- [ ] Add Rhode Island map or location indicator
-- [ ] Include local business focus in hero or about section
-- [ ] Add community involvement or local partnerships  
-       **Notes**: Local trust signals matter significantly for small business clients
+- [ ] "Small Business Software Planning Checklist" PDF
+- [ ] "Website Health Check Template"
+- [ ] "Questions to Ask Before Hiring a Developer"
+- [ ] Landing pages with email capture for each
+- [ ] Email delivery automation
+
+**Notes**: Captures warm prospects who need more time. Merged from TICKET-013 and TICKET-020.
+
+---
+
+### TICKET-044: Availability & Urgency Indicators
+
+**Status**: Backlog
+**Priority**: High
+**Effort**: 30 minutes
+**Description**: Display current booking status to create urgency
+**Acceptance Criteria**:
+
+- [ ] "Currently booking X weeks out" indicator on homepage
+- [ ] "Limited spots available this quarter" when appropriate
+- [ ] Update mechanism to keep status current
+
+**Notes**: Scarcity encourages faster decisions. Merged from TICKET-023 and TICKET-027.
+
+---
+
+## 📈 Medium Priority
+
+### TICKET-009: Analytics & Conversion Tracking
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 2 hours
+**Description**: Set up detailed conversion funnel analytics beyond Vercel's built-in
+**Acceptance Criteria**:
+
+- [ ] Contact form submission tracking
+- [ ] CTA click tracking
+- [ ] Page scroll depth tracking
+
+**Notes**: Already have Vercel analytics, need more granular conversion data.
+
+---
+
+### TICKET-014: Rhode Island Landing Pages
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 3-4 hours
+**Description**: Create location-specific landing pages for broader local SEO
+**Acceptance Criteria**:
+
+- [ ] "Software Developer Providence RI" page
+- [ ] "Web Developer Warwick RI" page
+- [ ] City-specific content and keywords
+- [ ] Local business schema markup per page
+
+---
+
+### TICKET-019: Local SEO Foundation
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 3-4 hours
+**Description**: Submit to local business directories and optimize for "near me" searches
+**Acceptance Criteria**:
+
+- [ ] Cranston Chamber of Commerce listing
+- [ ] Rhode Island business directories
+- [ ] Yelp business listing
+- [ ] Optimize for "software developer near me" queries
+
+**Notes**: Merged from TICKET-007.
+
+---
+
+### TICKET-021: Trust Indicators & Credentials
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 2-3 hours
+**Description**: Add professional credentials and trust signals beyond testimonials
+**Acceptance Criteria**:
+
+- [ ] Add projects completed count
+- [ ] Show GitHub activity or tech stack expertise visually
+- [ ] Include professional headshot and personal story
+- [ ] "Licensed & Insured" if applicable
+
+---
+
+### TICKET-022: Consultation Booking System
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 3-4 hours
+**Description**: Reduce friction for initial consultations with calendar booking
+**Acceptance Criteria**:
+
+- [ ] Integrate Calendly or similar
+- [ ] Add "Book Free Consultation" CTAs throughout site
+- [ ] Automated confirmation and reminder emails
+- [ ] Include pre-consultation questionnaire
+
+**Notes**: Merged from TICKET-004.
+
+---
+
+### TICKET-024: Blog Content Strategy
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: Ongoing
+**Description**: Create content targeting small business software pain points for organic SEO
+**Acceptance Criteria**:
+
+- [ ] "5 Signs Your Business Needs Custom Software"
+- [ ] "How Much Should Small Businesses Spend on Software?"
+- [ ] "DIY vs Hiring: When to Call a Developer"
+- [ ] "Red Flags When Hiring a Developer"
+- [ ] Optimize each post for RI + software development keywords
+
+**Notes**: Merged from TICKET-006.
+
+---
+
+### TICKET-025: Referral Program
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 2-3 hours
+**Description**: Systematize word-of-mouth referrals
+**Acceptance Criteria**:
+
+- [ ] Add referral program page with incentives explained
+- [ ] "Refer a Business" CTA in post-project communications
+- [ ] Referral incentives (discount or cash)
+
+**Notes**: Small businesses trust referrals above all other marketing.
+
+---
+
+### TICKET-031: Mini Case Study Examples in Services
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 2-3 hours
+**Description**: Add problem/solution/result snippets to each service card
+**Acceptance Criteria**:
+
+- [ ] 1-2 mini examples per service type
+- [ ] Format: "Problem → Solution → Result" with a metric
+- [ ] Relatable to small business pain points
 
 ---
 
 ### TICKET-033: Technical Competency Display
 
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 1-2 hours  
-**Description**: Show technical expertise without overwhelming non-technical prospects  
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 1-2 hours
+**Description**: Show technical depth without overwhelming non-technical prospects
 **Acceptance Criteria**:
 
-- [ ] Add discrete "Technologies I Work With" section
-- [ ] Include relevant certifications or technical credentials
-- [ ] Add GitHub contribution activity (if impressive)
-- [ ] Show technology stack expertise
-- [ ] Balance technical depth with accessibility  
-       **Notes**: Technical prospects need to evaluate capabilities, but keep it approachable
+- [ ] "Technologies I Work With" section (discrete, not dominant)
+- [ ] Balance technical depth with accessibility for non-tech clients
+
+**Notes**: Important for the employer/hiring audience identified in site review.
 
 ---
 
-### TICKET-034: Communication & Collaboration Assurance
+### TICKET-037: Sticky Mobile Contact CTA
 
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 30 minutes  
-**Description**: Address small business fears about being left in the dark during projects  
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 1-2 hours
+**Description**: Persistent contact button on mobile to reduce friction for impulse inquiries
 **Acceptance Criteria**:
 
-- [ ] Add "Weekly progress updates" guarantee
-- [ ] Include "Direct access to me - no project managers" messaging
-- [ ] Add "Regular communication throughout project" promise
-- [ ] Show preferred communication methods (email, phone, video calls)
-- [ ] Emphasize collaborative approach vs "hand-off and disappear"  
-       **Notes**: Small business owners fear poor communication more than technical issues
+- [ ] Floating "Get Quote" button, bottom-right
+- [ ] Mobile only (desktop nav already accessible)
+- [ ] Hide on contact page
 
 ---
 
-### TICKET-035: Lead Qualification Quiz
+### TICKET-041: Live Chat Widget
 
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 4-6 hours  
-**Description**: Create multi-step project estimation tool to capture leads not ready for direct contact  
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 2-3 hours
+**Description**: Handle immediate questions and show accessibility
 **Acceptance Criteria**:
 
-- [ ] Build interactive "Get Free Project Estimate" quiz
-- [ ] Capture email before showing ballpark pricing
-- [ ] Include project type, timeline, budget questions
-- [ ] Provide instant rough estimate ranges
-- [ ] Feed results into email sequence for nurturing  
-       **Notes**: Captures warm prospects who need more time to decide before contacting
-
----
-
-## 🚀 New Conversion & Trust Opportunities (Draft)
-
-### TICKET-036: Exit Intent Lead Capture
-
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 2-3 hours  
-**Description**: Add exit intent popup to capture visitors leaving without taking action  
-**Acceptance Criteria**:
-
-- [ ] Exit intent detection (desktop mouse movement, mobile scroll patterns)
-- [ ] Popup offering free consultation or resource download
-- [ ] A/B test different offers (consultation vs. checklist download)
-- [ ] Integration with email capture system
-- [ ] Respectful timing (not immediate, respect user experience)
-- [ ] Easy dismiss and "don't show again" options  
-       **Notes**: Could increase lead capture by 15-30% based on industry averages
-
----
-
-### TICKET-037: Sticky Contact CTA
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 1-2 hours  
-**Description**: Add persistent contact button that follows scroll, especially on mobile  
-**Acceptance Criteria**:
-
-- [ ] Floating "Get Quote" or "Book Call" button
-- [ ] Always visible during scroll on mobile
-- [ ] Unobtrusive positioning (bottom right or similar)
-- [ ] Smooth animations and micro-interactions
-- [ ] Link to contact form or phone number
-- [ ] Hide on contact page to avoid redundancy  
-       **Notes**: Reduces friction for impulse inquiries from engaged visitors
-
----
-
-### TICKET-038: Security & Privacy Trust Signals
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 1 hour  
-**Description**: Add security badges and privacy assurances to build trust  
-**Acceptance Criteria**:
-
-- [ ] "Your information is safe" messaging near contact form
-- [ ] SSL certificate indicator/badge
-- [ ] Privacy policy link in footer
-- [ ] "No spam guarantee" text
-- [ ] Secure form submission messaging
-- [ ] Professional data handling assurances  
-       **Notes**: Small businesses are increasingly concerned about data privacy
-
----
-
-### TICKET-039: Enhanced Professional Credentials Display
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 1-2 hours  
-**Description**: More prominently display years in business, certifications, and professional associations  
-**Acceptance Criteria**:
-
-- [ ] "10+ Years Serving RI Businesses" prominently displayed
-- [ ] Any relevant technical certifications or credentials
-- [ ] Professional association memberships (if applicable)
-- [ ] Business registration/licensing information
-- [ ] "Established 20XX" or similar founding date reference
-- [ ] Integration with existing stats section on homepage  
-       **Notes**: Small businesses want to work with established, credible professionals
-
----
-
-### TICKET-040: Free Resource Downloads for Lead Capture
-
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 4-6 hours  
-**Description**: Create downloadable resources to capture leads not ready for direct contact  
-**Acceptance Criteria**:
-
-- [ ] "RI Business Software Planning Checklist" PDF
-- [ ] "Website Health Check Template" download
-- [ ] "Questions to Ask Your Developer" guide
-- [ ] Landing pages for each resource with email capture
-- [ ] Email automation for delivery and follow-up
-- [ ] Integration with existing contact system  
-       **Notes**: Captures warm prospects who need more time before reaching out directly
-
----
-
-### TICKET-041: Live Chat Widget Implementation
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 2-3 hours  
-**Description**: Add live chat for immediate response and basic question handling  
-**Acceptance Criteria**:
-
-- [ ] Chat widget with professional appearance
 - [ ] Automated responses for common questions
-- [ ] Business hours availability display
-- [ ] Mobile-optimized chat interface
-- [ ] Integration with email for offline messages
-- [ ] Quick response templates for efficiency  
-       **Notes**: Shows accessibility and can handle basic questions instantly
+- [ ] Business hours display
+- [ ] Email fallback for offline messages
 
 ---
 
 ### TICKET-042: Client Logo Showcase
 
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 2-3 hours  
-**Description**: Display logos of local businesses you've worked with (permission-based)  
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 2-3 hours
+**Description**: Display logos of businesses worked with (permission-based)
 **Acceptance Criteria**:
 
-- [ ] Obtain permission from past clients for logo use
-- [ ] Create "Trusted by Local RI Businesses" section
-- [ ] Clean, professional logo display grid
-- [ ] Include mix of business sizes and industries
+- [ ] Obtain permission from past clients
+- [ ] "Trusted by" section on homepage
 - [ ] Link to case studies where available
-- [ ] Keep updated with recent client work  
-       **Notes**: Even small local business logos build credibility and relatability
-
----
-
-### TICKET-043: Dynamic Testimonial System
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 3-4 hours  
-**Description**: Create rotating testimonials and integrate live reviews from Google/LinkedIn  
-**Acceptance Criteria**:
-
-- [ ] Testimonial carousel or rotation on homepage
-- [ ] Pull recent Google Business reviews (if available)
-- [ ] LinkedIn recommendation integration
-- [ ] Mix of project types and business sizes
-- [ ] Include client names, companies, and photos when possible
-- [ ] Schema markup for review snippets  
-       **Notes**: Dynamic, recent testimonials feel more authentic than static quotes
-
----
-
-### TICKET-044: Current Availability & Booking Status
-
-**Status**: Backlog  
-**Priority**: High  
-**Effort**: 30 minutes  
-**Description**: Display current booking timeline and create urgency for scheduling  
-**Acceptance Criteria**:
-
-- [ ] "Currently booking X weeks out" display on homepage
-- [ ] "Limited spots available this quarter" when appropriate
-- [ ] Update mechanism to keep status current
-- [ ] Integration with existing availability messaging
-- [ ] Seasonal adjustments for busy periods
-- [ ] Clear call-to-action to book consultation  
-       **Notes**: Scarcity and clear availability expectations encourage faster decision-making
-
----
-
-### TICKET-045: Response Time Guarantees
-
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 30 minutes  
-**Description**: Add response time guarantees and service level commitments  
-**Acceptance Criteria**:
-
-- [ ] "24-hour response guarantee" badge/messaging
-- [ ] "Same-day quotes for urgent projects" offer
-- [ ] "Free consultation within 48 hours" commitment
-- [ ] Emergency contact option for urgent issues
-- [ ] Clear expectations for different inquiry types
-- [ ] Integration with contact form messaging  
-       **Notes**: Clear response expectations reduce anxiety about reaching out
-
----
-
-### TICKET-046: Social Proof Aggregation Hub
-
-**Status**: Backlog  
-**Priority**: Low  
-**Effort**: 4-5 hours  
-**Description**: Create comprehensive social proof section aggregating testimonials, reviews, and case studies  
-**Acceptance Criteria**:
-
-- [ ] Dedicated testimonials/reviews page
-- [ ] Integration of Google reviews, LinkedIn recommendations
-- [ ] Client success stories and case studies
-- [ ] Before/after project examples
-- [ ] Filterable by industry or project type
-- [ ] Schema markup for SEO benefits  
-       **Notes**: Comprehensive social proof page for prospects who need extensive validation
 
 ---
 
 ### TICKET-047: Interactive Project Estimation Tool
 
-**Status**: Backlog  
-**Priority**: Medium  
-**Effort**: 6-8 hours  
-**Description**: Build interactive tool for prospects to get ballpark project estimates  
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 6-8 hours
+**Description**: Multi-step questionnaire that gives ballpark estimates and captures leads
 **Acceptance Criteria**:
 
-- [ ] Multi-step questionnaire about project needs
-- [ ] Instant ballpark pricing estimates
-- [ ] Email capture before showing results
-- [ ] Follow-up automation for estimate recipients
-- [ ] Different paths for different project types
-- [ ] Disclaimer about estimate vs. final pricing  
-       **Notes**: Helps qualify leads and manages expectations while capturing contact information
+- [ ] Project type, complexity, timeline inputs
+- [ ] Ballpark pricing shown after email capture
+- [ ] Follow-up email automation for estimate recipients
+- [ ] Disclaimer about estimate vs. final pricing
+
+**Notes**: Merged from TICKET-005 and TICKET-035.
 
 ---
 
-## 📊 Tracking & Notes
+## 🔧 Low Priority
 
-**Created**: 2026-03-29  
-**Last Updated**: 2026-03-30  
-**Total Tickets**: 47 (3 completed, 1 rejected, 43 active)  
-**Estimated Total Effort**: 115-135 hours
+### TICKET-046: Social Proof Aggregation Page
 
-### Priority Legend
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 4-5 hours
+**Description**: Dedicated testimonials/reviews page for prospects who need extensive validation
+**Acceptance Criteria**:
 
-- **High**: Critical for business growth, should do next
-- **Medium**: Important but not urgent, plan for future sprints
-- **Low**: Nice-to-have improvements, do when time allows
-
-### Effort Scale
-
-- 1-2 hours: Quick wins
-- 3-4 hours: Half day projects
-- 4-6 hours: Full day projects
-- 6+ hours: Multi-day projects
+- [ ] Aggregate Google reviews, LinkedIn recommendations
+- [ ] Filter by industry or project type
+- [ ] Schema markup for SEO
 
 ---
 
-_This ticket system helps prioritize website improvements based on business impact and development effort. Focus on high-priority items first for maximum ROI._
+## ✅ Completed
+
+| Ticket | Description | Completed |
+|--------|-------------|-----------|
+| TICKET-010 | Performance Optimization | 2026-03-29 |
+| TICKET-011 | Service Icons & Visual Hierarchy | 2026-03-29 |
+| TICKET-012 | Interactive Elements | 2026-03-29 |
+| TICKET-016 | Conversion Form Optimization | 2026-03-29 |
+| TICKET-017 | Project Budget Qualification | Already live on contact form |
+| TICKET-026 | Risk Reversal & Satisfaction Guarantees | Already live on homepage |
+| TICKET-028 | Process Transparency & Next Steps | Already live on contact page |
+| TICKET-029 | Concrete Business Metrics | Already live in hero section |
+
+## ❌ Rejected
+
+| Ticket | Description | Reason |
+|--------|-------------|--------|
+| TICKET-008 | Progressive Web App Features | No business value for a portfolio site |
+
+---
+
+## 📊 Summary
+
+**Last Updated**: 2026-04-08
+**Open**: 21 tickets
+**Completed**: 8 | **Rejected**: 1
+
+### Priority Breakdown
+- High: 7 tickets (~17-19 hours)
+- Medium: 13 tickets (~35-45 hours)
+- Low: 1 ticket (~4-5 hours)
