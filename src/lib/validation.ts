@@ -22,6 +22,7 @@ export function validateEmail(email: string): boolean {
 
 export function validatePhone(phone: string): boolean {
 	if (!phone) return true; // Phone is optional
+	// Basic pattern for US-format numbers; international formats may not match
 	const phoneRegex = /^[+]?[(]?[\d\s\-()]{10,}$/;
 	return phoneRegex.test(phone);
 }
