@@ -19,10 +19,12 @@
 		injectSpeedInsights();
 		inject({ mode: dev ? 'development' : 'production' });
 
-		// Register service worker in production
-		if ('serviceWorker' in navigator && !dev) {
-			navigator.serviceWorker.register('/sw.js').catch((error) => {
-				console.warn('Service Worker registration failed:', error);
+		// Unregister any previously installed service worker
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.getRegistrations().then((registrations) => {
+				for (const registration of registrations) {
+					registration.unregister();
+				}
 			});
 		}
 	});
