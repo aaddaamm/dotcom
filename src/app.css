@@ -29,6 +29,7 @@
 	--color-accent: #2a7a7a;
 	--color-muted: #aaaaaa;
 	--color-border: #ebebeb;
+	--color-available: #4ade80;
 
 	/* Design tokens */
 	--transition-fast: 150ms;

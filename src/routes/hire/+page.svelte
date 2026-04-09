@@ -37,7 +37,7 @@
 
 	<FaqSection />
 
-	<div class="py-14" style="border-top: 1px solid var(--color-border);">
+	<div class="py-14 section-border">
 		<div class="text-center">
 			<a href="/contact" class="btn-primary px-8 py-4">Get In Touch</a>
 		</div>
@@ -71,7 +71,7 @@
 	}
 
 	.stack-category {
-		font-size: 0.7rem;
+		font-size: 0.75rem;
 		font-family: var(--font-mono);
 		text-transform: uppercase;
 		letter-spacing: 2px;

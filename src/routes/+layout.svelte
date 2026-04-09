@@ -53,7 +53,7 @@
 </div>
 
 {#if page.url.pathname !== '/contact'}
-	<a href="/contact" class="mobile-fab sm:hidden" aria-label="Get in touch">
+	<a href="/contact" class="mobile-fab sm:hidden" aria-label="Get In Touch">
 		Get In Touch
 	</a>
 {/if}
@@ -84,7 +84,7 @@
 		padding: 12px 20px;
 		border-radius: 999px;
 		background-color: var(--color-accent);
-		color: #fff;
+		color: white;
 		font-size: 0.875rem;
 		font-weight: 500;
 		text-decoration: none;

@@ -1,3 +1,8 @@
+export const availability = {
+	available: true,
+	label: 'Available for new engagements — can typically start within a week or two'
+};
+
 export const approachItems = [
 	'Clear documentation and maintainable code',
 	'Building solutions that grow with your needs',

@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { availability } from '$lib/copy'
+</script>
+
 <!-- Hero -->
 <section aria-label="Introduction" class="pt-20 sm:pt-28 pb-10">
 	<div class="flex items-center gap-4 mb-4">
@@ -27,10 +31,12 @@
 		</div>
 	</div>
 
-	<div class="availability-badge mt-6 mb-1">
-		<span class="availability-dot" aria-hidden="true"></span>
-		<span>Available for new engagements — can typically start within a week or two</span>
-	</div>
+	{#if availability.available}
+		<div class="availability-badge mt-6 mb-1">
+			<span class="availability-dot" aria-hidden="true"></span>
+			<span>{availability.label}</span>
+		</div>
+	{/if}
 
 	<div class="flex flex-col sm:flex-row gap-3 mt-3">
 		<a href="/work" class="btn-primary text-center">See My Work</a>
@@ -103,8 +109,8 @@
 		width: 8px;
 		height: 8px;
 		border-radius: 50%;
-		background-color: #4ade80;
+		background-color: var(--color-available);
 		flex-shrink: 0;
-		box-shadow: 0 0 0 2px color-mix(in srgb, #4ade80 25%, transparent);
+		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-available) 25%, transparent);
 	}
 </style>

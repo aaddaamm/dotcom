@@ -464,6 +464,38 @@
 
 ---
 
+### TICKET-060: Blog Draft Filtering Is Dev-Mode-Only, Not Build-Mode-Aware
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 30 min
+**Description**: `getAllPosts(dev)` gates draft visibility on SvelteKit's `dev` flag. Vercel preview deployments run in production mode (`dev === false`), so drafts are invisible there too — no way to preview a draft before publishing without running locally.
+**Acceptance Criteria**:
+
+- [ ] Add a `SHOW_DRAFTS` env var that can be set on the Vercel preview environment
+- [ ] Pass `dev || !!SHOW_DRAFTS` to `getAllPosts` in the blog load function
+- [ ] Document in CLAUDE.md that preview drafts require `SHOW_DRAFTS=true` on the Vercel project
+
+**File**: `src/lib/server/blog.ts`, `src/routes/blog/+page.server.ts`
+
+---
+
+### TICKET-061: Add PageData Types to Load Functions
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 1 hour
+**Description**: `app.d.ts` is minimal and load function return types rely entirely on inference. Explicit `PageData` types catch shape mismatches between `+page.server.ts` and `+page.svelte` at compile time rather than at runtime.
+**Acceptance Criteria**:
+
+- [ ] Define typed return shapes for blog index, blog post, and any other load functions with non-trivial data
+- [ ] Use SvelteKit's generated `PageData` type pattern or explicit `Load` return types
+- [ ] Confirm `npm run check` passes with no new type errors
+
+**Files**: `src/app.d.ts`, `src/routes/blog/+page.server.ts`, `src/routes/blog/[...slug]/+page.server.ts`
+
+---
+
 ### TICKET-057: Harden Contact API Input Handling
 
 **Status**: Done
@@ -478,6 +510,150 @@
 - [ ] Capture `clientIP` before the try block and reuse it in the email body instead of re-reading `x-forwarded-for`
 
 **File**: `src/routes/api/contact/+server.ts`
+
+---
+
+### TICKET-058: Goodreads Cache Persistence Across Cold Starts
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 1-2 hours
+**Description**: `goodreadsService.ts` uses an in-memory cache with a 1-hour TTL. Vercel serverless cold starts reset this cache, causing frequent RSS fetches and added latency on the first request after inactivity.
+**Acceptance Criteria**:
+
+- [ ] Move Goodreads cache to Upstash Redis (client already wired for contact rate-limiting)
+- [ ] Store serialized shelf JSON with a 1-hour TTL key per shelf
+- [ ] Fall back to live RSS fetch on Redis miss or error
+
+**File**: `src/lib/server/goodreadsService.ts`
+
+---
+
+### TICKET-059: Contact Form Silent Email Failure
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 1 hour
+**Description**: The contact API swallows Resend failures and returns HTTP 200 regardless. Users see a success message even if their message was never delivered. There is no fallback or notification channel.
+**Acceptance Criteria**:
+
+- [ ] Surface Resend errors to the client with a distinct failure message ("Message sent to backup — we'll follow up shortly")
+- [ ] Or: log failed submissions to Upstash Redis for manual review
+- [ ] Do not silently discard form data on transient Resend errors
+
+**File**: `src/routes/api/contact/+server.ts`
+
+---
+
+### TICKET-062: Extract WorkCard Component — Duplicated Across Home and Work Pages
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 1-2 hours
+**Description**: The work/project card markup is copy-pasted between `/` and `/work`. Both render the same `selectedWork` data with near-identical structure (header, stack tags, outcome) but subtly different class names and margin values, meaning they'll drift over time.
+**Acceptance Criteria**:
+
+- [ ] Create `src/components/work-card.svelte` accepting a work item prop
+- [ ] Support a `variant?: 'preview' | 'full'` prop for the layout differences between pages
+- [ ] Replace the inline markup in `+page.svelte` and `work/+page.svelte` with `<WorkCard>`
+- [ ] Shared styles moved to component `<style>` block or `app.css`
+
+**Files**: `src/routes/+page.svelte`, `src/routes/work/+page.svelte`
+
+---
+
+### TICKET-063: Move Repeated Section Styles to app.css
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 1 hour
+**Description**: `.section-border`, `.section-heading`, and `.accent-dot` are redefined in `<style>` blocks on multiple page components with minor variations (e.g. `margin-bottom: 24px` vs `20px`). They should be single global utilities.
+**Acceptance Criteria**:
+
+- [ ] Consolidate `.section-border`, `.section-heading`, `.accent-dot` into `app.css`
+- [ ] Remove per-page redefinitions; use the global classes directly
+- [ ] Resolve any margin/spacing differences by picking one canonical value or making it a CSS var
+
+**Files**: `src/routes/+page.svelte`, `src/routes/hire/+page.svelte`, `src/app.css`
+
+---
+
+### TICKET-064: Fix Hardcoded Code Block Colors in Blog Post — Theme-Unaware
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 30 min
+**Description**: Prose code block styles in the blog post page use hardcoded hex values (`#111111`, `#e8e8e8`, `#1a1a1a`) instead of CSS custom properties. These always render dark regardless of the active theme.
+**Acceptance Criteria**:
+
+- [ ] Add `--color-code-bg`, `--color-code-text`, `--color-code-border` to the `:root` / `[data-theme='dark']` blocks in `app.css`
+- [ ] Replace hardcoded hex values in `blog/[...slug]/+page.svelte` prose styles with the new vars
+- [ ] Light theme should have a legible light-mode code style; dark theme keeps existing dark style
+
+**File**: `src/routes/blog/[...slug]/+page.svelte`
+
+---
+
+### TICKET-065: Type window.va Vercel Analytics — Repeated Unsafe Cast
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 15 min
+**Description**: `contact-form.svelte` casts `window` to an inline anonymous type twice to access `window.va`. The type assertion is fragile and duplicated.
+**Acceptance Criteria**:
+
+- [ ] Add a `Window` interface augmentation to `src/app.d.ts` declaring `va?: { track: (event: string, params?: Record<string, string>) => void }`
+- [ ] Remove both inline type casts from `contact-form.svelte`
+
+**Files**: `src/app.d.ts`, `src/components/contact-form.svelte`
+
+---
+
+### TICKET-066: Unify IntersectionObserver Pattern — animations.ts vs Blog Post
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 30 min
+**Description**: Two separate IntersectionObserver implementations exist with different class names (`animate-in` vs `animated`) and different threshold/rootMargin values. The blog post page creates its own observer instead of using the utility in `animations.ts`.
+**Acceptance Criteria**:
+
+- [ ] Extend `animations.ts` with a configurable `createElementObserver(options)` factory (threshold, rootMargin, className all optional with sensible defaults)
+- [ ] Replace the inline observer in `blog/[...slug]/+page.svelte` with the factory
+- [ ] Confirm both use cases still animate correctly
+
+**Files**: `src/lib/animations.ts`, `src/routes/blog/[...slug]/+page.svelte`
+
+---
+
+### TICKET-067: Extract TechStack Component — Two Different Renderings of Same Data
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 1 hour
+**Description**: `techStack` from `$lib/copy.ts` is rendered as an interactive button grid on the home page and as comma-separated text on the hire page. Two different presentations of the same data, no shared component.
+**Acceptance Criteria**:
+
+- [ ] Create `src/components/tech-stack.svelte` with `variant: 'grid' | 'list'` prop
+- [ ] Home page uses `variant="grid"` (existing button/badge style)
+- [ ] Hire page uses `variant="list"` (existing comma-separated style)
+
+**Files**: `src/routes/+page.svelte`, `src/routes/hire/+page.svelte`
+
+---
+
+### TICKET-068: Remove Unused `budget` and `phone` Fields from ContactFormData
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 15 min
+**Description**: `ContactFormData` in `validation.ts` declares optional `budget` and `phone` fields. Neither appears in the contact form component or is read by the contact API. Dead type surface.
+**Acceptance Criteria**:
+
+- [ ] Confirm `budget` and `phone` are not used anywhere (grep)
+- [ ] Remove them from the `ContactFormData` interface
+- [ ] Verify `npm run check` passes
+
+**File**: `src/lib/validation.ts`
 
 ---
 
@@ -532,11 +708,11 @@
 
 ## 📊 Summary
 
-**Last Updated**: 2026-04-08
-**Open**: 22 tickets
+**Last Updated**: 2026-04-09
+**Open**: 33 tickets
 **Completed**: 18 | **Rejected**: 1
 
 ### Priority Breakdown
 - High: 7 tickets (~17-19 hours)
-- Medium: 13 tickets (~35-45 hours)
-- Low: 2 tickets (~1 hour)
+- Medium: 17 tickets (~40-53 hours)
+- Low: 9 tickets (~5-6 hours)
