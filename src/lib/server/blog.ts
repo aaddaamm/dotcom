@@ -1,5 +1,3 @@
-import fs from 'node:fs';
-import path from 'node:path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 
@@ -16,64 +14,70 @@ export type BlogPostWithContent = BlogPost & {
 	content: string;
 };
 
-const BLOG_DIR = path.resolve('src/content/blog');
-const DRAFTS_DIR = path.join(BLOG_DIR, 'drafts');
+// Bundled at build time by Vite — works in Vercel serverless
+const publishedRaw = import.meta.glob('/src/content/blog/*.md', { as: 'raw', eager: true });
+const draftsRaw = import.meta.glob('/src/content/blog/drafts/*.md', { as: 'raw', eager: true });
+
+function parseEntry(
+	filepath: string,
+	raw: string,
+	slugPrefix = ''
+): (BlogPost & { _content: string }) | null {
+	const filename = filepath.split('/').pop();
+	if (!filename) return null;
+	const slug = slugPrefix + filename.replace(/\.md$/, '');
+	const { data, content } = matter(raw);
+	if (!data.title || !data.date) return null;
+	return {
+		slug,
+		title: data.title,
+		description: data.description ?? '',
+		date: data.date,
+		tags: data.tags ?? [],
+		published: data.published ?? false,
+		_content: content
+	};
+}
 
 export function getAllPosts(includeDrafts = false): BlogPost[] {
-	if (!fs.existsSync(BLOG_DIR)) return [];
+	const posts: BlogPost[] = [];
 
-	const readDir = (dir: string, slugPrefix = '') =>
-		fs.existsSync(dir)
-			? fs
-					.readdirSync(dir)
-					.filter((f) => f.endsWith('.md'))
-					.map((file) => ({ file, dir, slug: slugPrefix + file.replace(/\.md$/, '') }))
-			: [];
+	for (const [filepath, raw] of Object.entries(publishedRaw)) {
+		const entry = parseEntry(filepath, raw as string);
+		if (entry && (entry.published || includeDrafts)) {
+			const { _content: _, ...post } = entry;
+			posts.push(post);
+		}
+	}
 
-	const entries = [...readDir(BLOG_DIR), ...(includeDrafts ? readDir(DRAFTS_DIR, 'drafts/') : [])];
+	if (includeDrafts) {
+		for (const [filepath, raw] of Object.entries(draftsRaw)) {
+			const entry = parseEntry(filepath, raw as string, 'drafts/');
+			if (entry) {
+				const { _content: _, ...post } = entry;
+				posts.push(post);
+			}
+		}
+	}
 
-	const posts = entries
-		.map(({ file, dir, slug }) => {
-			const raw = fs.readFileSync(path.join(dir, file), 'utf-8');
-			const { data } = matter(raw);
-
-			return {
-				slug,
-				title: data.title ?? '',
-				description: data.description ?? '',
-				date: data.date ?? '',
-				tags: data.tags ?? [],
-				published: data.published ?? false
-			} satisfies BlogPost;
-		})
-		.filter((p) => p.title && p.date && (p.published || includeDrafts))
-		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-	return posts;
+	return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export function getPostBySlug(slug: string, includeDrafts = false): BlogPostWithContent | null {
-	// Support drafts/some-slug routing
 	const isDraft = slug.startsWith('drafts/');
 	const actualSlug = isDraft ? slug.slice('drafts/'.length) : slug;
-	const filePath = isDraft
-		? path.join(DRAFTS_DIR, `${actualSlug}.md`)
-		: path.join(BLOG_DIR, `${slug}.md`);
+	const source = isDraft ? draftsRaw : publishedRaw;
 
-	if (!fs.existsSync(filePath)) return null;
+	const filepath = Object.keys(source).find((f) => f.endsWith(`/${actualSlug}.md`));
+	if (!filepath) return null;
 
-	const raw = fs.readFileSync(filePath, 'utf-8');
-	const { data, content } = matter(raw);
+	const entry = parseEntry(filepath, source[filepath] as string, isDraft ? 'drafts/' : '');
+	if (!entry) return null;
+	if (!entry.published && !includeDrafts) return null;
 
-	if (!data.published && !includeDrafts) return null;
-
+	const { _content, ...post } = entry;
 	return {
-		slug,
-		title: data.title ?? '',
-		description: data.description ?? '',
-		date: data.date ?? '',
-		tags: data.tags ?? [],
-		published: data.published ?? false,
-		content: marked.parse(content, { async: false }) as string
+		...post,
+		content: marked.parse(_content, { async: false }) as string
 	};
 }
