@@ -44,6 +44,25 @@ export const selectedWork = [
 	}
 ];
 
+export const techStack = [
+	{
+		category: 'Frontend',
+		items: ['React', 'TypeScript', 'Vue', 'Next.js', 'Svelte', 'Tailwind CSS']
+	},
+	{
+		category: 'Backend',
+		items: ['Node.js', 'Express', 'Ruby on Rails', 'Java', 'PHP']
+	},
+	{
+		category: 'Infrastructure',
+		items: ['AWS', 'Vercel', 'Auth0', 'Redis', 'PostgreSQL']
+	},
+	{
+		category: 'Tools',
+		items: ['Git', 'Docker', 'Contentful', 'Figma']
+	}
+];
+
 export const services = [
 	{
 		title: 'Embedded Engineering',
