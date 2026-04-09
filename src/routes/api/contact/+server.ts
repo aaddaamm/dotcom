@@ -1,13 +1,13 @@
 import { json } from '@sveltejs/kit';
-
-function escapeHtml(str: string): string {
-	return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-}
 import { env } from '$env/dynamic/private';
 import { Redis } from '@upstash/redis';
 import { Resend } from 'resend';
 import type { RequestHandler } from './$types';
-import type { ContactFormData } from '$lib/validation';
+import { validateEmail, type ContactFormData } from '$lib/validation';
+
+function escapeHtml(str: string): string {
+	return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
 
 const RATE_LIMIT_WINDOW = 15 * 60; // 15 minutes in seconds
 const RATE_LIMIT_MAX = 3; // 3 submissions per window per IP
@@ -19,10 +19,12 @@ async function isRateLimited(ip: string): Promise<boolean> {
 			token: env.KV_REST_API_TOKEN
 		});
 		const key = `rate_limit:contact:${ip}`;
-		const count = await redis.incr(key);
-		if (count === 1) {
-			await redis.expire(key, RATE_LIMIT_WINDOW);
-		}
+		// Pipeline sends INCR + EXPIRE atomically — prevents keys from persisting
+		// indefinitely if the process dies between the two calls.
+		const [count] = (await redis.pipeline().incr(key).expire(key, RATE_LIMIT_WINDOW).exec()) as [
+			number,
+			number
+		];
 		return count > RATE_LIMIT_MAX;
 	} catch {
 		// KV not configured (e.g. local dev) — fail open
@@ -32,9 +34,15 @@ async function isRateLimited(ip: string): Promise<boolean> {
 }
 
 export const POST: RequestHandler = async ({ request, getClientAddress }) => {
+	const clientIP = getClientAddress();
+
 	try {
+		// Reject non-JSON bodies early
+		if (!request.headers.get('content-type')?.includes('application/json')) {
+			return json({ error: 'Content-Type must be application/json' }, { status: 400 });
+		}
+
 		// Rate limiting
-		const clientIP = getClientAddress();
 		if (await isRateLimited(clientIP)) {
 			return json(
 				{ error: 'Too many submissions. Please wait 15 minutes before trying again.' },
@@ -55,8 +63,7 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 		}
 
 		// Email validation
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		if (!emailRegex.test(data.email)) {
+		if (!validateEmail(data.email)) {
 			return json({ error: 'Invalid email format' }, { status: 400 });
 		}
 
@@ -94,7 +101,7 @@ ${sanitizedData.message}
 
 ---
 Submitted at: ${new Date().toISOString()}
-IP: ${request.headers.get('x-forwarded-for') || 'Unknown'}
+IP: ${clientIP}
 User-Agent: ${request.headers.get('user-agent') || 'Unknown'}
 `.trim();
 

@@ -68,6 +68,7 @@ export function sanitizeContactForm(data: ContactFormData): ContactFormData {
 		email: sanitizeInput(data.email),
 		phone: data.phone ? sanitizeInput(data.phone) : undefined,
 		budget: data.budget,
+		project: data.project ? sanitizeInput(data.project) : undefined,
 		message: sanitizeInput(data.message)
 	};
 }

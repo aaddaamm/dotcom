@@ -338,7 +338,7 @@
 
 ### TICKET-048: Fix Rate-Limit Race Condition in Contact API
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: High
 **Effort**: 30 min
 **Description**: The `INCR` + `EXPIRE` calls in `isRateLimited` are not atomic. If `EXPIRE` fails after `INCR` succeeds (transient Redis error), the key has no TTL and that IP is permanently rate-limited. Two concurrent requests can also both get `count === 1` and bypass the limit.
@@ -356,7 +356,7 @@
 
 ### TICKET-049: Fix Draft Blog Post Routing
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Low
 **Effort**: 30 min
 **Description**: `getAllPosts(true)` returns draft posts with slugs prefixed `drafts/foo`. These render as links on the `/blog` listing page in dev, but `blog/[slug]` is a single-segment route — SvelteKit won't match `/blog/drafts/foo`, so clicking them 404s.
@@ -372,7 +372,7 @@
 
 ### TICKET-050: Fix Schema Markup Inconsistencies in app.html
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Low
 **Effort**: 15 min
 **Description**: The `Person` structured data in `app.html` describes a "Lead Software Engineer building backend systems" in "Providence, RI" — conflicting with the site's freelance-consultant persona and the "Cranston, RI" used everywhere else.
@@ -387,7 +387,7 @@
 
 ### TICKET-051: Remove Dead Code (email-templates.ts, api-utils.ts)
 
-**Status**: Backlog
+**Status**: Done (email-templates.ts deleted; api-utils.ts is NOT dead — used by goodreads routes)
 **Priority**: Low
 **Effort**: 15 min
 **Description**: Two library files export functions that are never imported or called anywhere. `email-templates.ts` also defines a `ContactFormData` interface that diverges from the one in `validation.ts` (missing `project` field), creating a maintenance hazard.
@@ -403,7 +403,7 @@
 
 ### TICKET-052: Harden Goodreads Service
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Low
 **Effort**: 30 min
 **Description**: Three small reliability gaps in `goodreadsService.ts`: silent error swallowing with no logging, `parseInt(bookId)` can produce `NaN` for empty strings, and the pagination loop has no max-page guard.
@@ -419,7 +419,7 @@
 
 ### TICKET-054: Fix sanitizeContactForm Dropping project Field
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Low
 **Effort**: 15 min
 **Description**: `sanitizeContactForm` in `validation.ts` returns an object that omits the `project` field. It isn't called server-side today (the contact API has its own sanitization), but if it ever is, `project` silently disappears from the submission.
@@ -434,7 +434,7 @@
 
 ### TICKET-055: Consolidate Email Validation — Remove Duplicate Regex
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Low
 **Effort**: 15 min
 **Description**: The contact API (`+server.ts:58-61`) duplicates the email regex instead of importing `validateEmail` from `$lib/validation`. Two copies of validation logic will drift over time.
@@ -450,7 +450,7 @@
 
 ### TICKET-056: Consolidate Duplicate ContactFormData Type
 
-**Status**: Backlog
+**Status**: Done (email-templates.ts deleted per TICKET-051; validation.ts is the single source of truth)
 **Priority**: Low
 **Effort**: 15 min
 **Description**: `ContactFormData` is defined independently in both `validation.ts` and `email-templates.ts`. The two definitions diverge — `email-templates.ts` is missing the `project` field. One authoritative definition should be exported and re-used.
@@ -466,7 +466,7 @@
 
 ### TICKET-057: Harden Contact API Input Handling
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Low
 **Effort**: 30 min
 **Description**: Two small gaps in the contact API's request handling:
@@ -508,6 +508,15 @@
 | TICKET-028 | Process Transparency & Next Steps | Already live on contact page |
 | TICKET-029 | Concrete Business Metrics | Already live in hero section |
 | TICKET-053 | Service Worker Breaking App on New Deployments | 2026-04-08 |
+| TICKET-048 | Fix Rate-Limit Race Condition in Contact API | 2026-04-08 |
+| TICKET-049 | Fix Draft Blog Post Routing | 2026-04-08 |
+| TICKET-050 | Fix Schema Markup Inconsistencies in app.html | 2026-04-08 |
+| TICKET-051 | Remove Dead Code (email-templates.ts deleted; api-utils.ts is used) | 2026-04-08 |
+| TICKET-052 | Harden Goodreads Service | 2026-04-08 |
+| TICKET-054 | Fix sanitizeContactForm Dropping project Field | 2026-04-08 |
+| TICKET-055 | Consolidate Email Validation — Remove Duplicate Regex | 2026-04-08 |
+| TICKET-056 | Consolidate Duplicate ContactFormData Type | 2026-04-08 |
+| TICKET-057 | Harden Contact API Input Handling | 2026-04-08 |
 
 ## ❌ Rejected
 
@@ -520,10 +529,10 @@
 ## 📊 Summary
 
 **Last Updated**: 2026-04-08
-**Open**: 31 tickets
-**Completed**: 9 | **Rejected**: 1
+**Open**: 22 tickets
+**Completed**: 18 | **Rejected**: 1
 
 ### Priority Breakdown
-- High: 8 tickets (~17-20 hours)
+- High: 7 tickets (~17-19 hours)
 - Medium: 13 tickets (~35-45 hours)
-- Low: 10 tickets (~7-9 hours)
+- Low: 2 tickets (~1 hour)

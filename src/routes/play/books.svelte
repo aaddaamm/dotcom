@@ -105,11 +105,9 @@
 							</h3>
 							<p class="text-xs muted-text mt-0.5 line-clamp-1">{book.author}</p>
 							{#if book.rating}
-								<div class="flex gap-0.5 mt-1">
+								<div class="flex gap-0.5 mt-1" aria-label="{book.rating} out of 5 stars">
 									{#each Array(5) as _, i (i)}
-										<span class="text-[10px] {i < book.rating ? 'accent-text' : 'text-white/10'}">
-											★
-										</span>
+										<span aria-hidden="true" class="text-[10px] {i < book.rating ? 'accent-text' : 'text-white/10'}">★</span>
 									{/each}
 								</div>
 							{/if}

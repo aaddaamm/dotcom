@@ -40,7 +40,7 @@ export namespace GoodreadsService {
 			rating: rating || undefined,
 			isbn,
 			dateStarted: dateAdded,
-			goodreadsID: parseInt(bookId)
+			goodreadsID: parseInt(bookId) || 0
 		};
 	}
 
@@ -68,7 +68,7 @@ export namespace GoodreadsService {
 			const allBooks: GoodreadsBook[] = [];
 			let page = 1;
 
-			while (true) {
+			while (page <= 20) {
 				const books = await fetchRSSPage(shelf, page, fetch);
 				allBooks.push(...books);
 				if (books.length < 100) break;
@@ -78,8 +78,8 @@ export namespace GoodreadsService {
 			cache.set(shelf, { data: allBooks, timestamp: Date.now() });
 
 			return allBooks;
-		} catch {
-			// Log error server-side only, return empty array for graceful degradation
+		} catch (err) {
+			console.error(`GoodreadsService: failed to fetch shelf "${shelf}":`, err);
 			return [];
 		}
 	}

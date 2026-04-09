@@ -88,7 +88,7 @@
 
 <div class="contact-form-container">
 	{#if submitted && successMessage}
-		<div class="success-message p-6 rounded-lg text-center">
+		<div role="status" aria-live="polite" class="success-message p-6 rounded-lg text-center">
 			<h3 class="text-xl font-semibold mb-2">Message Sent Successfully!</h3>
 			<p class="body-text mb-4">
 				{successMessage}
@@ -104,7 +104,7 @@
 	{:else}
 		<form onsubmit={handleSubmit} class="contact-form">
 			{#if errorMessage}
-				<div class="error-message p-4 rounded-lg mb-4">
+				<div role="alert" class="error-message p-4 rounded-lg mb-4">
 					<p class="text-sm font-medium">{errorMessage}</p>
 				</div>
 			{/if}
