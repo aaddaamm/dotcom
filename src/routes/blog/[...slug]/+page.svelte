@@ -45,6 +45,30 @@
 		url: `https://adamrobinson.tech/blog/${data.post.slug}`,
 		keywords: data.post.tags
 	})}</` + `script>`}
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{
+				'@type': 'ListItem',
+				position: 1,
+				name: 'Home',
+				item: 'https://adamrobinson.tech'
+			},
+			{
+				'@type': 'ListItem',
+				position: 2,
+				name: 'Blog',
+				item: 'https://adamrobinson.tech/blog'
+			},
+			{
+				'@type': 'ListItem',
+				position: 3,
+				name: data.post.title,
+				item: `https://adamrobinson.tech/blog/${data.post.slug}`
+			}
+		]
+	})}</` + `script>`}
 </svelte:head>
 
 <article class="max-w-3xl mx-auto px-6">

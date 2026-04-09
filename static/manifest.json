@@ -1,0 +1,16 @@
+{
+	"name": "Adam Robinson",
+	"short_name": "Adam Robinson",
+	"description": "Senior software engineer — backend systems, full-stack, fintech.",
+	"start_url": "/",
+	"display": "browser",
+	"background_color": "#0a0a0a",
+	"theme_color": "#0a0a0a",
+	"icons": [
+		{
+			"src": "/apple-touch-icon.png",
+			"sizes": "180x180",
+			"type": "image/png"
+		}
+	]
+}

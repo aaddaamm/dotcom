@@ -43,6 +43,10 @@
 	});
 </script>
 
+<svelte:head>
+	<link rel="alternate" type="application/rss+xml" title="Adam Robinson — Blog" href="/blog/rss.xml" />
+</svelte:head>
+
 <div class="min-h-screen flex flex-col">
 	<a href="#main-content" class="skip-link">Skip to content</a>
 	<Header />

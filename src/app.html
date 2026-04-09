@@ -5,6 +5,8 @@
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="theme-color" content="#0a0a0a" />
+		<meta name="robots" content="index, follow" />
+		<meta name="referrer" content="strict-origin-when-cross-origin" />
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Adam Robinson" />
 		<meta property="og:locale" content="en_US" />
@@ -20,6 +22,8 @@
 		<link rel="dns-prefetch" href="https://www.goodreads.com" />
 		<link rel="preload" href="%sveltekit.assets%/icon.svg" as="image" type="image/svg+xml" />
 		<link rel="preload" href="%sveltekit.assets%/logo-dark.svg" as="image" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png" />
+		<link rel="manifest" href="/manifest.json" />
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
@@ -43,6 +47,19 @@
 					"AI-Assisted Development"
 				],
 				"sameAs": ["https://github.com/aaddaamm", "https://linkedin.com/in/adam-robinson-software"]
+			}
+		</script>
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "WebSite",
+				"name": "Adam Robinson",
+				"url": "https://adamrobinson.tech",
+				"description": "Senior software engineer with ten-plus years across fintech, healthcare, and enterprise.",
+				"author": {
+					"@type": "Person",
+					"name": "Adam Robinson"
+				}
 			}
 		</script>
 		%sveltekit.head%
