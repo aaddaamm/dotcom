@@ -2,41 +2,6 @@
 
 ## 🎯 High Priority
 
-### TICKET-002: Google Business Profile Setup
-
-**Status**: Backlog
-**Priority**: High
-**Effort**: 1 hour
-**Description**: Create and optimize Google Business Profile for local visibility
-**Acceptance Criteria**:
-
-- [ ] Create Google Business Profile for "Adam Robinson - Freelance Developer"
-- [ ] Add business hours, services, location (Cranston, RI)
-- [ ] Upload professional photos
-- [ ] Optimize description for local software development keywords
-- [ ] Get initial reviews from past clients
-
-**Notes**: Critical for local SEO and client discovery
-
----
-
-### TICKET-015: Social Proof & Testimonials
-
-**Status**: Backlog
-**Priority**: High
-**Effort**: 3-4 hours
-**Description**: Add testimonials, client logos, and trust signals throughout the site
-**Acceptance Criteria**:
-
-- [ ] Create testimonials component with 3-5 client quotes, names, and companies
-- [ ] Add client logo section on homepage
-- [ ] Add testimonials near contact form on contact page
-- [ ] Schema markup for review snippets
-
-**Notes**: Missing social proof is the biggest credibility gap. Merged from TICKET-001.
-
----
-
 ### TICKET-018: Portfolio Case Studies
 
 **Status**: Backlog
@@ -60,74 +25,75 @@
 **Working notes**: `/Users/adam/portfolio-case-studies.md`
 **Data source**: `/Users/adam/repos/mojo-holocron/db/mojo_holocron_dev.db` → `project_allocations`
 
-**Notes**: Merged from TICKET-003.
+**Notes**: #1 priority for job search. Recognizable company names with real outcomes are the strongest signal for technical evaluators. Merged from TICKET-003.
 
 ---
 
-### TICKET-030: Speed-to-Market Positioning
+### TICKET-059: Contact Form Silent Email Failure
 
-**Status**: Done
+**Status**: Backlog
 **Priority**: High
-**Effort**: 30 minutes
-**Description**: Emphasize speed advantage over agencies and offshore developers in hero/about copy
+**Effort**: 1 hour
+**Description**: The contact API swallows Resend failures and returns HTTP 200 regardless. Users see a success message even if their message was never delivered. There is no fallback or notification channel.
 **Acceptance Criteria**:
 
-- [ ] Add "start next week, not next month" type messaging to hero or about
-- [ ] Add "no account managers, direct access" language to services or about
-- [ ] Compare timeline vs agencies where appropriate
+- [ ] Surface Resend errors to the client with a distinct failure message ("Message sent to backup — we'll follow up shortly")
+- [ ] Or: log failed submissions to Upstash Redis for manual review
+- [ ] Do not silently discard form data on transient Resend errors
 
-**Notes**: Speed is a real competitive advantage for freelancers vs agencies — currently undersold.
+**Notes**: Upgraded from Medium — a hiring manager or recruiter submitting the contact form and never getting a response is a high-cost failure.
+
+**File**: `src/routes/api/contact/+server.ts`
 
 ---
 
-### TICKET-036: Exit Intent Lead Capture
+### TICKET-042: Client Logo Showcase
 
 **Status**: Backlog
 **Priority**: High
 **Effort**: 2-3 hours
-**Description**: Capture visitors leaving without taking action
+**Description**: Display logos of companies worked with (permission-based) — iCapital, Shell, Angi are strong credibility signals for technical evaluators
 **Acceptance Criteria**:
 
-- [ ] Exit intent detection (desktop mouse movement, mobile scroll)
-- [ ] Offer free consultation or resource download
-- [ ] Easy dismiss with "don't show again" behavior
-- [ ] Respect user experience — not immediate on load
+- [ ] Obtain permission from past clients/employers
+- [ ] "Trusted by" section on homepage
+- [ ] Link to case studies where available
 
-**Notes**: Could increase lead capture 15-30% based on industry averages.
+**Notes**: Upgraded from Medium — recognizable company names are a key trust signal for hiring managers scanning the page quickly.
 
 ---
 
-### TICKET-040: Lead Magnets & Free Resource Downloads
+### TICKET-015: Social Proof & Testimonials
 
 **Status**: Backlog
 **Priority**: High
-**Effort**: 4-6 hours
-**Description**: Create downloadable resources to capture leads not ready to contact yet
+**Effort**: 3-4 hours
+**Description**: Add testimonials, LinkedIn recommendations, and trust signals throughout the site
 **Acceptance Criteria**:
 
-- [ ] "Small Business Software Planning Checklist" PDF
-- [ ] "Website Health Check Template"
-- [ ] "Questions to Ask Before Hiring a Developer"
-- [ ] Landing pages with email capture for each
-- [ ] Email delivery automation
+- [ ] Create testimonials component with LinkedIn recommendations and client quotes (3-5 entries, names and companies)
+- [ ] Add client logo section on homepage (coordinate with TICKET-042)
+- [ ] Add testimonials near contact form on contact page
+- [ ] Schema markup for review snippets
 
-**Notes**: Captures warm prospects who need more time. Merged from TICKET-013 and TICKET-020.
+**Notes**: Prioritize LinkedIn recommendations over generic quotes — they're verifiable and carry more weight with technical evaluators. Merged from TICKET-001.
 
 ---
 
-### TICKET-044: Availability & Urgency Indicators
+### TICKET-021: Trust Indicators & Credentials
 
-**Status**: Done
+**Status**: Backlog
 **Priority**: High
-**Effort**: 30 minutes
-**Description**: Display current booking status to create urgency
+**Effort**: 2-3 hours
+**Description**: Add professional credentials and technical trust signals for a hiring-manager audience
 **Acceptance Criteria**:
 
-- [ ] "Currently booking X weeks out" indicator on homepage
-- [ ] "Limited spots available this quarter" when appropriate
-- [ ] Update mechanism to keep status current
+- [ ] Add years of experience and projects completed count
+- [ ] Show GitHub activity or tech stack expertise visually
+- [ ] Include professional headshot and personal story
+- [ ] Highlight open source contributions or public technical work if available
 
-**Notes**: Scarcity encourages faster decisions. Merged from TICKET-023 and TICKET-027.
+**Notes**: Upgraded from Medium — GitHub activity and visible technical depth are exactly what engineers and hiring managers scan for. Removed "Licensed & Insured" criterion (freelance-only signal).
 
 ---
 
@@ -149,10 +115,112 @@
 
 ---
 
-### TICKET-014: Rhode Island Landing Pages
+### TICKET-024: Blog Content Strategy
 
 **Status**: Backlog
 **Priority**: Medium
+**Effort**: Ongoing
+**Description**: Create technical content that demonstrates engineering depth and judgment to a hiring-manager audience
+**Acceptance Criteria**:
+
+- [ ] At least 2 technical deep-dives tied to real project work (e.g. architecture decisions, scaling lessons, tradeoffs made)
+- [ ] Posts that showcase technical judgment, not just skill
+- [ ] At least 1 post on a topic relevant to the target companies/stack
+- [ ] Consistent publishing cadence
+
+**Notes**: Reframed from small-business pain points to technical writing. Blog is already the strongest job-search asset on the site — lean into it. Merged from TICKET-006.
+
+---
+
+### TICKET-058: Goodreads Cache Persistence Across Cold Starts
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 1-2 hours
+**Description**: `goodreadsService.ts` uses an in-memory cache with a 1-hour TTL. Vercel serverless cold starts reset this cache, causing frequent RSS fetches and added latency on the first request after inactivity.
+**Acceptance Criteria**:
+
+- [ ] Move Goodreads cache to Upstash Redis (client already wired for contact rate-limiting)
+- [ ] Store serialized shelf JSON with a 1-hour TTL key per shelf
+- [ ] Fall back to live RSS fetch on Redis miss or error
+
+**File**: `src/lib/server/goodreadsService.ts`
+
+---
+
+### TICKET-062: Extract WorkCard Component — Duplicated Across Home and Work Pages
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 1-2 hours
+**Description**: The work/project card markup is copy-pasted between `/` and `/work`. Both render the same `selectedWork` data with near-identical structure (header, stack tags, outcome) but subtly different class names and margin values, meaning they'll drift over time.
+**Acceptance Criteria**:
+
+- [ ] Create `src/components/work-card.svelte` accepting a work item prop
+- [ ] Support a `variant?: 'preview' | 'full'` prop for the layout differences between pages
+- [ ] Replace the inline markup in `+page.svelte` and `work/+page.svelte` with `<WorkCard>`
+- [ ] Shared styles moved to component `<style>` block or `app.css`
+
+**Files**: `src/routes/+page.svelte`, `src/routes/work/+page.svelte`
+
+---
+
+### TICKET-063: Move Repeated Section Styles to app.css
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 1 hour
+**Description**: `.section-border`, `.section-heading`, and `.accent-dot` are redefined in `<style>` blocks on multiple page components with minor variations (e.g. `margin-bottom: 24px` vs `20px`). They should be single global utilities.
+**Acceptance Criteria**:
+
+- [ ] Consolidate `.section-border`, `.section-heading`, `.accent-dot` into `app.css`
+- [ ] Remove per-page redefinitions; use the global classes directly
+- [ ] Resolve any margin/spacing differences by picking one canonical value or making it a CSS var
+
+**Files**: `src/routes/+page.svelte`, `src/routes/hire/+page.svelte`, `src/app.css`
+
+---
+
+### TICKET-064: Fix Hardcoded Code Block Colors in Blog Post — Theme-Unaware
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 30 min
+**Description**: Prose code block styles in the blog post page use hardcoded hex values (`#111111`, `#e8e8e8`, `#1a1a1a`) instead of CSS custom properties. These always render dark regardless of the active theme.
+**Acceptance Criteria**:
+
+- [ ] Add `--color-code-bg`, `--color-code-text`, `--color-code-border` to the `:root` / `[data-theme='dark']` blocks in `app.css`
+- [ ] Replace hardcoded hex values in `blog/[...slug]/+page.svelte` prose styles with the new vars
+- [ ] Light theme should have a legible light-mode code style; dark theme keeps existing dark style
+
+**File**: `src/routes/blog/[...slug]/+page.svelte`
+
+---
+
+## 🔧 Low Priority
+
+### TICKET-002: Google Business Profile Setup
+
+**Status**: Deferred
+**Priority**: Low
+**Effort**: 1 hour
+**Description**: Create and optimize Google Business Profile for local visibility
+**Acceptance Criteria**:
+
+- [ ] Create Google Business Profile for "Adam Robinson - Freelance Developer"
+- [ ] Add business hours, services, location (Cranston, RI)
+- [ ] Upload professional photos
+- [ ] Optimize description for local software development keywords
+- [ ] Get initial reviews from past clients
+
+**Notes**: Useful for freelance side work, but not a priority while job searching. Revisit if freelance pipeline needs a boost.
+
+---
+
+### TICKET-014: Rhode Island Landing Pages
+
+**Status**: Deferred
+**Priority**: Low
 **Effort**: 3-4 hours
 **Description**: Create location-specific landing pages for broader local SEO
 **Acceptance Criteria**:
@@ -162,12 +230,14 @@
 - [ ] City-specific content and keywords
 - [ ] Local business schema markup per page
 
+**Notes**: Deferred — local freelance SEO, not relevant to job search.
+
 ---
 
 ### TICKET-019: Local SEO Foundation
 
-**Status**: Backlog
-**Priority**: Medium
+**Status**: Deferred
+**Priority**: Low
 **Effort**: 3-4 hours
 **Description**: Submit to local business directories and optimize for "near me" searches
 **Acceptance Criteria**:
@@ -177,29 +247,14 @@
 - [ ] Yelp business listing
 - [ ] Optimize for "software developer near me" queries
 
-**Notes**: Merged from TICKET-007.
-
----
-
-### TICKET-021: Trust Indicators & Credentials
-
-**Status**: Backlog
-**Priority**: Medium
-**Effort**: 2-3 hours
-**Description**: Add professional credentials and trust signals beyond testimonials
-**Acceptance Criteria**:
-
-- [ ] Add projects completed count
-- [ ] Show GitHub activity or tech stack expertise visually
-- [ ] Include professional headshot and personal story
-- [ ] "Licensed & Insured" if applicable
+**Notes**: Deferred — local freelance SEO, not relevant to job search. Merged from TICKET-007.
 
 ---
 
 ### TICKET-022: Consultation Booking System
 
 **Status**: Backlog
-**Priority**: Medium
+**Priority**: Low
 **Effort**: 3-4 hours
 **Description**: Reduce friction for initial consultations with calendar booking
 **Acceptance Criteria**:
@@ -209,32 +264,14 @@
 - [ ] Automated confirmation and reminder emails
 - [ ] Include pre-consultation questionnaire
 
-**Notes**: Merged from TICKET-004.
-
----
-
-### TICKET-024: Blog Content Strategy
-
-**Status**: Backlog
-**Priority**: Medium
-**Effort**: Ongoing
-**Description**: Create content targeting small business software pain points for organic SEO
-**Acceptance Criteria**:
-
-- [ ] "5 Signs Your Business Needs Custom Software"
-- [ ] "How Much Should Small Businesses Spend on Software?"
-- [ ] "DIY vs Hiring: When to Call a Developer"
-- [ ] "Red Flags When Hiring a Developer"
-- [ ] Optimize each post for RI + software development keywords
-
-**Notes**: Merged from TICKET-006.
+**Notes**: More useful for freelance than job search — job leads come through email and LinkedIn. Merged from TICKET-004.
 
 ---
 
 ### TICKET-025: Referral Program
 
-**Status**: Backlog
-**Priority**: Medium
+**Status**: Deferred
+**Priority**: Low
 **Effort**: 2-3 hours
 **Description**: Systematize word-of-mouth referrals
 **Acceptance Criteria**:
@@ -243,57 +280,64 @@
 - [ ] "Refer a Business" CTA in post-project communications
 - [ ] Referral incentives (discount or cash)
 
-**Notes**: Small businesses trust referrals above all other marketing.
+**Notes**: Deferred — freelance-only. Small businesses trust referrals above all other marketing.
 
 ---
 
 ### TICKET-031: Mini Case Study Examples in Services
 
 **Status**: Backlog
-**Priority**: Medium
+**Priority**: Low
 **Effort**: 2-3 hours
 **Description**: Add problem/solution/result snippets to each service card
 **Acceptance Criteria**:
 
 - [ ] 1-2 mini examples per service type
 - [ ] Format: "Problem → Solution → Result" with a metric
-- [ ] Relatable to small business pain points
+
+**Notes**: Lower priority now that TICKET-018 (full case studies) is the focus.
 
 ---
 
-### TICKET-033: Technical Competency Display
+### TICKET-036: Exit Intent Lead Capture
 
-**Status**: Done
-**Priority**: Medium
-**Effort**: 1-2 hours
-**Description**: Show technical depth without overwhelming non-technical prospects
+**Status**: Deferred
+**Priority**: Low
+**Effort**: 2-3 hours
+**Description**: Capture visitors leaving without taking action
 **Acceptance Criteria**:
 
-- [ ] "Technologies I Work With" section (discrete, not dominant)
-- [ ] Balance technical depth with accessibility for non-tech clients
+- [ ] Exit intent detection (desktop mouse movement, mobile scroll)
+- [ ] Offer free consultation or resource download
+- [ ] Easy dismiss with "don't show again" behavior
+- [ ] Respect user experience — not immediate on load
 
-**Notes**: Important for the employer/hiring audience identified in site review.
+**Notes**: Deferred — pure freelance conversion tactic. A popup like this would feel out of place to a hiring manager.
 
 ---
 
-### TICKET-037: Sticky Mobile Contact CTA
+### TICKET-040: Lead Magnets & Free Resource Downloads
 
-**Status**: Done
-**Priority**: Medium
-**Effort**: 1-2 hours
-**Description**: Persistent contact button on mobile to reduce friction for impulse inquiries
+**Status**: Deferred
+**Priority**: Low
+**Effort**: 4-6 hours
+**Description**: Create downloadable resources to capture leads not ready to contact yet
 **Acceptance Criteria**:
 
-- [ ] Floating "Get Quote" button, bottom-right
-- [ ] Mobile only (desktop nav already accessible)
-- [ ] Hide on contact page
+- [ ] "Small Business Software Planning Checklist" PDF
+- [ ] "Website Health Check Template"
+- [ ] "Questions to Ask Before Hiring a Developer"
+- [ ] Landing pages with email capture for each
+- [ ] Email delivery automation
+
+**Notes**: Deferred — entirely freelance/small-business audience. Wrong signal for hiring managers. Merged from TICKET-013 and TICKET-020.
 
 ---
 
 ### TICKET-041: Live Chat Widget
 
 **Status**: Backlog
-**Priority**: Medium
+**Priority**: Low
 **Effort**: 2-3 hours
 **Description**: Handle immediate questions and show accessibility
 **Acceptance Criteria**:
@@ -302,26 +346,30 @@
 - [ ] Business hours display
 - [ ] Email fallback for offline messages
 
+**Notes**: Freelance sales tool — not relevant for job search.
+
 ---
 
-### TICKET-042: Client Logo Showcase
+### TICKET-046: Social Proof Aggregation Page
 
 **Status**: Backlog
-**Priority**: Medium
-**Effort**: 2-3 hours
-**Description**: Display logos of businesses worked with (permission-based)
+**Priority**: Low
+**Effort**: 4-5 hours
+**Description**: Dedicated testimonials/reviews page for prospects who need extensive validation
 **Acceptance Criteria**:
 
-- [ ] Obtain permission from past clients
-- [ ] "Trusted by" section on homepage
-- [ ] Link to case studies where available
+- [ ] Aggregate Google reviews, LinkedIn recommendations
+- [ ] Filter by industry or project type
+- [ ] Schema markup for SEO
+
+**Notes**: Do TICKET-015 first; this is the extended version.
 
 ---
 
 ### TICKET-047: Interactive Project Estimation Tool
 
-**Status**: Backlog
-**Priority**: Medium
+**Status**: Deferred
+**Priority**: Low
 **Effort**: 6-8 hours
 **Description**: Multi-step questionnaire that gives ballpark estimates and captures leads
 **Acceptance Criteria**:
@@ -331,29 +379,9 @@
 - [ ] Follow-up email automation for estimate recipients
 - [ ] Disclaimer about estimate vs. final pricing
 
-**Notes**: Merged from TICKET-005 and TICKET-035.
+**Notes**: Deferred — freelance lead-gen only, significant effort. Merged from TICKET-005 and TICKET-035.
 
 ---
-
----
-
-### TICKET-048: Fix Rate-Limit Race Condition in Contact API
-
-**Status**: Done
-**Priority**: High
-**Effort**: 30 min
-**Description**: The `INCR` + `EXPIRE` calls in `isRateLimited` are not atomic. If `EXPIRE` fails after `INCR` succeeds (transient Redis error), the key has no TTL and that IP is permanently rate-limited. Two concurrent requests can also both get `count === 1` and bypass the limit.
-**Acceptance Criteria**:
-
-- [ ] Replace `incr` + conditional `expire` with an atomic operation (Redis pipeline, Lua script, or `SET key 1 EX 900 NX` + `INCR` pattern)
-- [ ] Verify behavior: first request sets TTL atomically, subsequent requests within window are counted correctly
-- [ ] Verify a Redis error during rate-check still fails open (no permanent bans)
-
-**File**: `src/routes/api/contact/+server.ts:15-32`
-
----
-
-## 🔧 Low Priority
 
 ### TICKET-049: Fix Draft Blog Post Routing
 
@@ -465,6 +493,24 @@
 
 ---
 
+### TICKET-057: Harden Contact API Input Handling
+
+**Status**: Done
+**Priority**: Low
+**Effort**: 30 min
+**Description**: Two small gaps in the contact API's request handling:
+
+1. No `Content-Type` check — a non-JSON body causes `request.json()` to throw, returning a 500 instead of a 400.
+2. The IP address logged in the notification email (`x-forwarded-for` header, line 97) may differ from the IP used for rate limiting (`getClientAddress()`, line 37), making submissions hard to correlate in logs.
+   **Acceptance Criteria**:
+
+- [ ] Check `request.headers.get('content-type')` before parsing; return 400 if not `application/json`
+- [ ] Capture `clientIP` before the try block and reuse it in the email body instead of re-reading `x-forwarded-for`
+
+**File**: `src/routes/api/contact/+server.ts`
+
+---
+
 ### TICKET-060: Blog Draft Filtering Is Dev-Mode-Only, Not Build-Mode-Aware
 
 **Status**: Backlog
@@ -494,105 +540,6 @@
 - [ ] Confirm `npm run check` passes with no new type errors
 
 **Files**: `src/app.d.ts`, `src/routes/blog/+page.server.ts`, `src/routes/blog/[...slug]/+page.server.ts`
-
----
-
-### TICKET-057: Harden Contact API Input Handling
-
-**Status**: Done
-**Priority**: Low
-**Effort**: 30 min
-**Description**: Two small gaps in the contact API's request handling:
-
-1. No `Content-Type` check — a non-JSON body causes `request.json()` to throw, returning a 500 instead of a 400.
-2. The IP address logged in the notification email (`x-forwarded-for` header, line 97) may differ from the IP used for rate limiting (`getClientAddress()`, line 37), making submissions hard to correlate in logs.
-   **Acceptance Criteria**:
-
-- [ ] Check `request.headers.get('content-type')` before parsing; return 400 if not `application/json`
-- [ ] Capture `clientIP` before the try block and reuse it in the email body instead of re-reading `x-forwarded-for`
-
-**File**: `src/routes/api/contact/+server.ts`
-
----
-
-### TICKET-058: Goodreads Cache Persistence Across Cold Starts
-
-**Status**: Backlog
-**Priority**: Medium
-**Effort**: 1-2 hours
-**Description**: `goodreadsService.ts` uses an in-memory cache with a 1-hour TTL. Vercel serverless cold starts reset this cache, causing frequent RSS fetches and added latency on the first request after inactivity.
-**Acceptance Criteria**:
-
-- [ ] Move Goodreads cache to Upstash Redis (client already wired for contact rate-limiting)
-- [ ] Store serialized shelf JSON with a 1-hour TTL key per shelf
-- [ ] Fall back to live RSS fetch on Redis miss or error
-
-**File**: `src/lib/server/goodreadsService.ts`
-
----
-
-### TICKET-059: Contact Form Silent Email Failure
-
-**Status**: Backlog
-**Priority**: Medium
-**Effort**: 1 hour
-**Description**: The contact API swallows Resend failures and returns HTTP 200 regardless. Users see a success message even if their message was never delivered. There is no fallback or notification channel.
-**Acceptance Criteria**:
-
-- [ ] Surface Resend errors to the client with a distinct failure message ("Message sent to backup — we'll follow up shortly")
-- [ ] Or: log failed submissions to Upstash Redis for manual review
-- [ ] Do not silently discard form data on transient Resend errors
-
-**File**: `src/routes/api/contact/+server.ts`
-
----
-
-### TICKET-062: Extract WorkCard Component — Duplicated Across Home and Work Pages
-
-**Status**: Backlog
-**Priority**: Medium
-**Effort**: 1-2 hours
-**Description**: The work/project card markup is copy-pasted between `/` and `/work`. Both render the same `selectedWork` data with near-identical structure (header, stack tags, outcome) but subtly different class names and margin values, meaning they'll drift over time.
-**Acceptance Criteria**:
-
-- [ ] Create `src/components/work-card.svelte` accepting a work item prop
-- [ ] Support a `variant?: 'preview' | 'full'` prop for the layout differences between pages
-- [ ] Replace the inline markup in `+page.svelte` and `work/+page.svelte` with `<WorkCard>`
-- [ ] Shared styles moved to component `<style>` block or `app.css`
-
-**Files**: `src/routes/+page.svelte`, `src/routes/work/+page.svelte`
-
----
-
-### TICKET-063: Move Repeated Section Styles to app.css
-
-**Status**: Backlog
-**Priority**: Medium
-**Effort**: 1 hour
-**Description**: `.section-border`, `.section-heading`, and `.accent-dot` are redefined in `<style>` blocks on multiple page components with minor variations (e.g. `margin-bottom: 24px` vs `20px`). They should be single global utilities.
-**Acceptance Criteria**:
-
-- [ ] Consolidate `.section-border`, `.section-heading`, `.accent-dot` into `app.css`
-- [ ] Remove per-page redefinitions; use the global classes directly
-- [ ] Resolve any margin/spacing differences by picking one canonical value or making it a CSS var
-
-**Files**: `src/routes/+page.svelte`, `src/routes/hire/+page.svelte`, `src/app.css`
-
----
-
-### TICKET-064: Fix Hardcoded Code Block Colors in Blog Post — Theme-Unaware
-
-**Status**: Backlog
-**Priority**: Medium
-**Effort**: 30 min
-**Description**: Prose code block styles in the blog post page use hardcoded hex values (`#111111`, `#e8e8e8`, `#1a1a1a`) instead of CSS custom properties. These always render dark regardless of the active theme.
-**Acceptance Criteria**:
-
-- [ ] Add `--color-code-bg`, `--color-code-text`, `--color-code-border` to the `:root` / `[data-theme='dark']` blocks in `app.css`
-- [ ] Replace hardcoded hex values in `blog/[...slug]/+page.svelte` prose styles with the new vars
-- [ ] Light theme should have a legible light-mode code style; dark theme keeps existing dark style
-
-**File**: `src/routes/blog/[...slug]/+page.svelte`
 
 ---
 
@@ -659,20 +606,6 @@
 
 ---
 
-### TICKET-046: Social Proof Aggregation Page
-
-**Status**: Backlog
-**Priority**: Low
-**Effort**: 4-5 hours
-**Description**: Dedicated testimonials/reviews page for prospects who need extensive validation
-**Acceptance Criteria**:
-
-- [ ] Aggregate Google reviews, LinkedIn recommendations
-- [ ] Filter by industry or project type
-- [ ] Schema markup for SEO
-
----
-
 ## ✅ Completed
 
 | Ticket     | Description                                                         | Completed                    |
@@ -689,8 +622,8 @@
 | TICKET-033 | Technical Competency Display                                        | 2026-04-09                   |
 | TICKET-037 | Sticky Mobile Contact CTA                                           | 2026-04-09                   |
 | TICKET-044 | Availability & Urgency Indicators                                   | 2026-04-09                   |
-| TICKET-053 | Service Worker Breaking App on New Deployments                      | 2026-04-08                   |
 | TICKET-048 | Fix Rate-Limit Race Condition in Contact API                        | 2026-04-08                   |
+| TICKET-053 | Service Worker Breaking App on New Deployments                      | 2026-04-08                   |
 | TICKET-049 | Fix Draft Blog Post Routing                                         | 2026-04-08                   |
 | TICKET-050 | Fix Schema Markup Inconsistencies in app.html                       | 2026-04-08                   |
 | TICKET-051 | Remove Dead Code (email-templates.ts deleted; api-utils.ts is used) | 2026-04-08                   |
@@ -711,11 +644,14 @@
 ## 📊 Summary
 
 **Last Updated**: 2026-04-09
-**Open**: 33 tickets
-**Completed**: 18 | **Rejected**: 1
+**Open**: 28 tickets
+**Completed**: 22 | **Rejected**: 1
 
 ### Priority Breakdown
 
-- High: 7 tickets (~17-19 hours)
-- Medium: 17 tickets (~40-53 hours)
-- Low: 9 tickets (~5-6 hours)
+- High: 5 tickets (~15-17 hours)
+- Medium: 6 tickets (~6-8 hours)
+- Low: 17 tickets (mix of backlog, deferred, and done)
+
+### Deferred (resume if freelance pipeline needs attention)
+TICKET-002, TICKET-014, TICKET-019, TICKET-025, TICKET-036, TICKET-040, TICKET-047
