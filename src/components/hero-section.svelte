@@ -20,8 +20,8 @@
 			<span class="stat-label">Stack</span>
 		</div>
 		<div class="stat-item">
-			<span class="stat-number">24hr</span>
-			<span class="stat-label">Response Time</span>
+			<span class="stat-number">Team</span>
+			<span class="stat-label">Lead</span>
 		</div>
 	</div>
 
