@@ -65,7 +65,7 @@
 
 ### TICKET-030: Speed-to-Market Positioning
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: High
 **Effort**: 30 minutes
 **Description**: Emphasize speed advantage over agencies and offshore developers in hero/about copy
@@ -116,7 +116,7 @@
 
 ### TICKET-044: Availability & Urgency Indicators
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: High
 **Effort**: 30 minutes
 **Description**: Display current booking status to create urgency
@@ -262,7 +262,7 @@
 
 ### TICKET-033: Technical Competency Display
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Medium
 **Effort**: 1-2 hours
 **Description**: Show technical depth without overwhelming non-technical prospects
@@ -277,7 +277,7 @@
 
 ### TICKET-037: Sticky Mobile Contact CTA
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Medium
 **Effort**: 1-2 hours
 **Description**: Persistent contact button on mobile to reduce friction for impulse inquiries
@@ -507,6 +507,10 @@
 | TICKET-026 | Risk Reversal & Satisfaction Guarantees | Already live on homepage |
 | TICKET-028 | Process Transparency & Next Steps | Already live on contact page |
 | TICKET-029 | Concrete Business Metrics | Already live in hero section |
+| TICKET-030 | Speed-to-Market Positioning | 2026-04-09 |
+| TICKET-033 | Technical Competency Display | 2026-04-09 |
+| TICKET-037 | Sticky Mobile Contact CTA | 2026-04-09 |
+| TICKET-044 | Availability & Urgency Indicators | 2026-04-09 |
 | TICKET-053 | Service Worker Breaking App on New Deployments | 2026-04-08 |
 | TICKET-048 | Fix Rate-Limit Race Condition in Contact API | 2026-04-08 |
 | TICKET-049 | Fix Draft Blog Post Routing | 2026-04-08 |

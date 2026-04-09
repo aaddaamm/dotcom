@@ -11,6 +11,7 @@
 	import Footer from '../components/footer.svelte';
 	import Header from '../components/header.svelte';
 	import { themeStore } from '$lib/stores/theme';
+	import { page } from '$app/state';
 
 	let { children }: { children: Snippet } = $props();
 
@@ -51,6 +52,12 @@
 	<Footer />
 </div>
 
+{#if page.url.pathname !== '/contact'}
+	<a href="/contact" class="mobile-fab sm:hidden" aria-label="Get in touch">
+		Get In Touch
+	</a>
+{/if}
+
 <style>
 	.skip-link {
 		position: absolute;
@@ -67,5 +74,26 @@
 
 	.skip-link:focus {
 		top: 8px;
+	}
+
+	.mobile-fab {
+		position: fixed;
+		bottom: 24px;
+		right: 20px;
+		z-index: 50;
+		padding: 12px 20px;
+		border-radius: 999px;
+		background-color: var(--color-accent);
+		color: #fff;
+		font-size: 0.875rem;
+		font-weight: 500;
+		text-decoration: none;
+		box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 40%, transparent);
+		transition: opacity 150ms ease, transform 150ms ease;
+	}
+
+	.mobile-fab:hover {
+		opacity: 0.9;
+		transform: translateY(-1px);
 	}
 </style>

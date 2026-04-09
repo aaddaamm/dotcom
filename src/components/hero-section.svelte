@@ -10,6 +10,7 @@
 		backend lean, I build systems that are meant to be maintained, extended, and handed off cleanly.
 		I ship user-facing products, untangle complex codebases, and care as much about the commit
 		history as the feature itself. Ten-plus years across fintech, healthcare, and enterprise.
+		When you work with me, you work directly with me — no agencies, no account managers.
 	</p>
 	<div class="hero-stats flex flex-wrap gap-6 mt-4 mb-2">
 		<div class="stat-item">
@@ -26,7 +27,12 @@
 		</div>
 	</div>
 
-	<div class="flex flex-col sm:flex-row gap-3 mt-6">
+	<div class="availability-badge mt-6 mb-1">
+		<span class="availability-dot" aria-hidden="true"></span>
+		<span>Available for new engagements — can typically start within a week or two</span>
+	</div>
+
+	<div class="flex flex-col sm:flex-row gap-3 mt-3">
 		<a href="/work" class="btn-primary text-center">See My Work</a>
 		<a href="/contact" class="btn-secondary text-center">Get In Touch</a>
 	</div>
@@ -83,5 +89,22 @@
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
 		margin-top: 0.25rem;
+	}
+
+	.availability-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 0.8rem;
+		color: var(--color-muted);
+	}
+
+	.availability-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background-color: #4ade80;
+		flex-shrink: 0;
+		box-shadow: 0 0 0 2px color-mix(in srgb, #4ade80 25%, transparent);
 	}
 </style>

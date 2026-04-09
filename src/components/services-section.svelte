@@ -39,7 +39,10 @@
 	</div>
 
 	<div class="mt-8 text-center">
-		<p class="body-text mb-4">Interested in working together? Let's talk.</p>
+		<p class="body-text mb-4">
+			Interested in working together? You'll deal directly with me — no middlemen, no ramp-up
+			delays. Most engagements can start within a week or two.
+		</p>
 		<a href="/contact" class="btn-primary">Get In Touch</a>
 	</div>
 </section>
