@@ -16,7 +16,7 @@
 
 <SeoHead
 	title="Adam Robinson — Senior Software Engineer"
-	description="Senior Software Engineer specializing in backend systems, developer tooling, and business automation."
+	description="Senior software engineer with ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning."
 	path="/"
 />
 

@@ -56,7 +56,7 @@
 </script>
 
 <SeoHead
-	title="Learning Resources — Adam Robinson | Best Places to Learn Programming"
+	title="Learning Resources — Adam Robinson"
 	description="Curated list of the best free and paid resources for learning programming, web development, and software engineering skills."
 	path="/teach"
 />

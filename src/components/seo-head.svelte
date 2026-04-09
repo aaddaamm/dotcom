@@ -14,7 +14,7 @@
 	<meta name="description" content={description} />
 	<meta
 		name="keywords"
-		content="freelance developer, software consultant, custom software, small business technology, web development, Rhode Island developer"
+		content="senior software engineer, full-stack engineer, staff augmentation, backend systems, TypeScript, React, Node.js, fintech, technical leadership"
 	/>
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
@@ -26,54 +26,25 @@
 	<meta name="twitter:image" content="{base}/og-card.png" />
 	<link rel="canonical" href={url} />
 	<meta name="author" content="Adam Robinson" />
-	<meta name="geo.region" content="US-RI" />
-	<meta name="geo.placename" content="Cranston, Rhode Island" />
 	<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",
-			"@type": ["LocalBusiness", "ProfessionalService"],
-			"name": "Adam Robinson - Freelance Developer",
-			"description": "Custom software development and technical consulting for small businesses in Cranston, Rhode Island. Serving local businesses throughout RI with affordable, personalized technology solutions.",
+			"@type": "Person",
+			"name": "Adam Robinson",
+			"jobTitle": "Senior Software Engineer",
+			"description": "Senior software engineer with ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning.",
 			"url": "https://adamrobinson.tech",
-			"telephone": "+1-401-555-0123",
 			"email": "adam@adamrobinson.tech",
-			"address": {
-				"@type": "PostalAddress",
-				"addressLocality": "Cranston",
-				"addressRegion": "RI",
-				"postalCode": "02920",
-				"addressCountry": "US"
-			},
-			"areaServed": [
-				{
-					"@type": "City",
-					"name": "Cranston, RI"
-				},
-				{
-					"@type": "City",
-					"name": "Providence, RI"
-				},
-				{
-					"@type": "City",
-					"name": "Warwick, RI"
-				},
-				{
-					"@type": "State",
-					"name": "Rhode Island"
-				}
-			],
-			"serviceType": [
-				"Custom Software Development",
-				"Website Development",
-				"Web Application Development",
-				"Technical Consulting",
-				"Small Business Technology Solutions",
-				"Software Debugging and Fixes"
-			],
-			"priceRange": "Project-based pricing",
-			"openingHours": "Mo-Fr 09:00-17:00",
-			"paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
-			"currenciesAccepted": "USD"
+			"knowsAbout": [
+				"Software Engineering",
+				"Backend Systems",
+				"TypeScript",
+				"React",
+				"Node.js",
+				"System Architecture",
+				"Technical Leadership",
+				"Staff Augmentation"
+			]
 		}
 	</script>
 </svelte:head>
