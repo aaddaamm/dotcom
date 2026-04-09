@@ -44,7 +44,12 @@
 </script>
 
 <svelte:head>
-	<link rel="alternate" type="application/rss+xml" title="Adam Robinson — Blog" href="/blog/rss.xml" />
+	<link
+		rel="alternate"
+		type="application/rss+xml"
+		title="Adam Robinson — Blog"
+		href="/blog/rss.xml"
+	/>
 </svelte:head>
 
 <div class="min-h-screen flex flex-col">
@@ -57,9 +62,7 @@
 </div>
 
 {#if page.url.pathname !== '/contact'}
-	<a href="/contact" class="mobile-fab sm:hidden" aria-label="Get In Touch">
-		Get In Touch
-	</a>
+	<a href="/contact" class="mobile-fab sm:hidden" aria-label="Get In Touch">Get In Touch</a>
 {/if}
 
 <style>
@@ -93,7 +96,9 @@
 		font-weight: 500;
 		text-decoration: none;
 		box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 40%, transparent);
-		transition: opacity 150ms ease, transform 150ms ease;
+		transition:
+			opacity 150ms ease,
+			transform 150ms ease;
 	}
 
 	.mobile-fab:hover {

@@ -13,18 +13,21 @@ Brand-aligned: dark background, teal prompt, monospace. But with whimsy.
 **Decision needed:** hidden easter egg vs. visible prompt.
 
 ### Option A — Hidden (recommended)
+
 Keydown listener on `window`. When the user starts typing anywhere (and isn't focused in a form/input), the terminal slides up and their keystrokes are captured as a command. Discoverable but not advertised — rewards curious visitors.
 
 - Pros: feels like a real terminal, stays minimal, doesn't clutter the UI
 - Cons: mobile users won't find it easily
 
 ### Option B — Visible prompt
+
 A faint `> _` blinking prompt visible somewhere on the homepage (below the hero stats, or in the footer). Clicking it opens the terminal.
 
 - Pros: more discoverable, works on mobile
 - Cons: adds a UI element that needs to earn its place per the style guide
 
 ### Option C — URL route
+
 `/terminal` or `?terminal=true` — shareable, easy to link to, could be referenced in a blog post or README.
 
 ---
@@ -47,36 +50,40 @@ Matches the existing code block style (`#111` bg, `#1a1a1a` border) and the bran
 ## Commands
 
 ### Core
-| Command | Output |
-|---|---|
-| `whoami` | Short bio — name, role, years experience, current engagement |
-| `help` | Lists all available commands with one-line descriptions |
-| `clear` | Clears terminal output |
-| `exit` / `quit` | Closes the terminal drawer |
+
+| Command         | Output                                                       |
+| --------------- | ------------------------------------------------------------ |
+| `whoami`        | Short bio — name, role, years experience, current engagement |
+| `help`          | Lists all available commands with one-line descriptions      |
+| `clear`         | Clears terminal output                                       |
+| `exit` / `quit` | Closes the terminal drawer                                   |
 
 ### Filesystem (fake)
-| Command | Output |
-|---|---|
-| `ls` | Lists top-level "directories": `work/`, `blog/`, `contact` |
-| `ls work` | Lists project slugs: `icapital`, `angi`, `shell`, `healthcasts` |
-| `cd work/icapital` | Changes fake prompt path to `~/work/icapital$`, unlocks `cat README.md` for that project |
-| `cat resume.txt` | Outputs a plain-text version of key resume info |
-| `cat work/icapital` | Brief on the engagement — role, stack, what was built |
+
+| Command             | Output                                                                                   |
+| ------------------- | ---------------------------------------------------------------------------------------- |
+| `ls`                | Lists top-level "directories": `work/`, `blog/`, `contact`                               |
+| `ls work`           | Lists project slugs: `icapital`, `angi`, `shell`, `healthcasts`                          |
+| `cd work/icapital`  | Changes fake prompt path to `~/work/icapital$`, unlocks `cat README.md` for that project |
+| `cat resume.txt`    | Outputs a plain-text version of key resume info                                          |
+| `cat work/icapital` | Brief on the engagement — role, stack, what was built                                    |
 
 ### Contact / Meta
-| Command | Output |
-|---|---|
-| `contact` | Outputs email + links (GitHub, LinkedIn) |
-| `open hire` | Prints a short pitch and a link to `/hire` |
+
+| Command       | Output                                       |
+| ------------- | -------------------------------------------- |
+| `contact`     | Outputs email + links (GitHub, LinkedIn)     |
+| `open hire`   | Prints a short pitch and a link to `/hire`   |
 | `echo $STACK` | Outputs tech stack as a comma-separated list |
 
 ### Easter egg within the easter egg
-| Command | Output |
-|---|---|
+
+| Command          | Output                                                          |
+| ---------------- | --------------------------------------------------------------- |
 | `sudo hire adam` | `Permission granted. Redirecting to /contact...` then navigates |
-| `git log` | Fake commit history with dry-humor commit messages |
-| `rm -rf .` | `Nice try.` |
-| `vim` | `You're already in a terminal. Don't push it.` |
+| `git log`        | Fake commit history with dry-humor commit messages              |
+| `rm -rf .`       | `Nice try.`                                                     |
+| `vim`            | `You're already in a terminal. Don't push it.`                  |
 
 ---
 
@@ -116,6 +123,7 @@ Inspired by Dragon Quest, Final Fantasy, and Zelda. The terminal stays monospace
 ### Tone examples
 
 **`whoami` in RPG mode:**
+
 ```
 ┌─────────────────────────────────────┐
 │  ADAM ROBINSON                      │
@@ -129,6 +137,7 @@ Inspired by Dragon Quest, Final Fantasy, and Zelda. The terminal stays monospace
 ```
 
 **`ls work` in RPG mode:**
+
 ```
   You open the chest.
   Inside you find:
@@ -140,6 +149,7 @@ Inspired by Dragon Quest, Final Fantasy, and Zelda. The terminal stays monospace
 ```
 
 **`cat work/healthcasts` in RPG mode:**
+
 ```
   HEALTHCASTS
   ════════════════════════════
@@ -152,6 +162,7 @@ Inspired by Dragon Quest, Final Fantasy, and Zelda. The terminal stays monospace
 ```
 
 **`sudo hire adam`:**
+
 ```
   ❯ HIRE ADAM?
     ▶ YES
@@ -164,6 +175,7 @@ Inspired by Dragon Quest, Final Fantasy, and Zelda. The terminal stays monospace
 ```
 
 **`git log` in RPG mode:**
+
 ```
   a3f9c12  fix: slew the null pointer demon (again)
   b812dd0  feat: forged the OAuth amulet
@@ -173,6 +185,7 @@ Inspired by Dragon Quest, Final Fantasy, and Zelda. The terminal stays monospace
 ```
 
 **`vim`:**
+
 ```
   A cursed editor. Many have entered.
   Few have exited.
@@ -180,6 +193,7 @@ Inspired by Dragon Quest, Final Fantasy, and Zelda. The terminal stays monospace
 ```
 
 **`rm -rf .`:**
+
 ```
   ⚠ DANGER
   This action would destroy the known world.

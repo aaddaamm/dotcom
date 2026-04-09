@@ -16,7 +16,7 @@ export const selectedWork = [
 		period: '2024–present',
 		role: 'Staff Augmentation / Senior Engineer',
 		description:
-			'Embedded with an engineering team building a subdomain of iCapital\'s alternative investment platform. Navigating a large, complex codebase independently to deliver full-stack solutions, while also contributing to communication practices and engineering culture.',
+			"Embedded with an engineering team building a subdomain of iCapital's alternative investment platform. Navigating a large, complex codebase independently to deliver full-stack solutions, while also contributing to communication practices and engineering culture.",
 		stack: ['React', 'TypeScript', 'Node.js'],
 		outcome: 'Ongoing contributor across multiple subdomains of an enterprise fintech platform'
 	},
@@ -25,9 +25,10 @@ export const selectedWork = [
 		period: '2021–2022',
 		role: 'Staff Augmentation / Senior Engineer',
 		description:
-			'Moved across three separate products — HomeAdvisor (Vue/Java), Handy (Ruby on Rails), and Angie\'s List (Next.js) — contributing to each on its own terms. Took engineering interns under my wing, exposing them to sound practices and involving them in meaningful domain design work.',
+			"Moved across three separate products — HomeAdvisor (Vue/Java), Handy (Ruby on Rails), and Angie's List (Next.js) — contributing to each on its own terms. Took engineering interns under my wing, exposing them to sound practices and involving them in meaningful domain design work.",
 		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js', 'Contentful'],
-		outcome: 'Cross-product delivery and intern mentorship across a newly merged home services platform'
+		outcome:
+			'Cross-product delivery and intern mentorship across a newly merged home services platform'
 	},
 	{
 		title: 'Shell — Oil Platform Decommissioning',
@@ -36,7 +37,8 @@ export const selectedWork = [
 		description:
 			'Built software to support the decommissioning of end-of-life oil platforms for Shell Techworks in Boston. Fast-paced MVP delivery with React and Node, structured around the Google Design Sprint process, including onsite collaboration sessions.',
 		stack: ['React', 'Node.js'],
-		outcome: 'MVP delivered on schedule using Design Sprint methodology with Shell engineering in Boston'
+		outcome:
+			'MVP delivered on schedule using Design Sprint methodology with Shell engineering in Boston'
 	},
 	{
 		title: 'Healthcasts — Platform Modernization',
@@ -95,7 +97,12 @@ export const services = [
 		icon: 'lightbulb',
 		description:
 			"Lead a team, review architecture, or help plan a complex initiative. I've led engineering teams through greenfield builds and legacy modernizations.",
-		examples: ['Team leadership', 'Architecture review', 'Technical planning', 'Engineering culture'],
+		examples: [
+			'Team leadership',
+			'Architecture review',
+			'Technical planning',
+			'Engineering culture'
+		],
 		outcome: 'Better decisions, faster delivery, stronger teams'
 	}
 ];

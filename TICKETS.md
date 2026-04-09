@@ -51,6 +51,7 @@
 - [ ] Include client industry and project size context
 
 **Candidate projects** (from Holocron allocation history):
+
 - iCapital: Integrated Offerings (2024–present) — fintech, most recent
 - Healthcasts (2022–2024) — ~18 month engagement
 - Angi: Partner Automations (2021–2022) — well-known brand, multiple projects
@@ -502,9 +503,10 @@
 **Priority**: Low
 **Effort**: 30 min
 **Description**: Two small gaps in the contact API's request handling:
+
 1. No `Content-Type` check — a non-JSON body causes `request.json()` to throw, returning a 500 instead of a 400.
 2. The IP address logged in the notification email (`x-forwarded-for` header, line 97) may differ from the IP used for rate limiting (`getClientAddress()`, line 37), making submissions hard to correlate in logs.
-**Acceptance Criteria**:
+   **Acceptance Criteria**:
 
 - [ ] Check `request.headers.get('content-type')` before parsing; return 400 if not `application/json`
 - [ ] Capture `clientIP` before the try block and reuse it in the email body instead of re-reading `x-forwarded-for`
@@ -673,35 +675,35 @@
 
 ## ✅ Completed
 
-| Ticket | Description | Completed |
-|--------|-------------|-----------|
-| TICKET-010 | Performance Optimization | 2026-03-29 |
-| TICKET-011 | Service Icons & Visual Hierarchy | 2026-03-29 |
-| TICKET-012 | Interactive Elements | 2026-03-29 |
-| TICKET-016 | Conversion Form Optimization | 2026-03-29 |
-| TICKET-017 | Project Budget Qualification | Already live on contact form |
-| TICKET-026 | Risk Reversal & Satisfaction Guarantees | Already live on homepage |
-| TICKET-028 | Process Transparency & Next Steps | Already live on contact page |
-| TICKET-029 | Concrete Business Metrics | Already live in hero section |
-| TICKET-030 | Speed-to-Market Positioning | 2026-04-09 |
-| TICKET-033 | Technical Competency Display | 2026-04-09 |
-| TICKET-037 | Sticky Mobile Contact CTA | 2026-04-09 |
-| TICKET-044 | Availability & Urgency Indicators | 2026-04-09 |
-| TICKET-053 | Service Worker Breaking App on New Deployments | 2026-04-08 |
-| TICKET-048 | Fix Rate-Limit Race Condition in Contact API | 2026-04-08 |
-| TICKET-049 | Fix Draft Blog Post Routing | 2026-04-08 |
-| TICKET-050 | Fix Schema Markup Inconsistencies in app.html | 2026-04-08 |
-| TICKET-051 | Remove Dead Code (email-templates.ts deleted; api-utils.ts is used) | 2026-04-08 |
-| TICKET-052 | Harden Goodreads Service | 2026-04-08 |
-| TICKET-054 | Fix sanitizeContactForm Dropping project Field | 2026-04-08 |
-| TICKET-055 | Consolidate Email Validation — Remove Duplicate Regex | 2026-04-08 |
-| TICKET-056 | Consolidate Duplicate ContactFormData Type | 2026-04-08 |
-| TICKET-057 | Harden Contact API Input Handling | 2026-04-08 |
+| Ticket     | Description                                                         | Completed                    |
+| ---------- | ------------------------------------------------------------------- | ---------------------------- |
+| TICKET-010 | Performance Optimization                                            | 2026-03-29                   |
+| TICKET-011 | Service Icons & Visual Hierarchy                                    | 2026-03-29                   |
+| TICKET-012 | Interactive Elements                                                | 2026-03-29                   |
+| TICKET-016 | Conversion Form Optimization                                        | 2026-03-29                   |
+| TICKET-017 | Project Budget Qualification                                        | Already live on contact form |
+| TICKET-026 | Risk Reversal & Satisfaction Guarantees                             | Already live on homepage     |
+| TICKET-028 | Process Transparency & Next Steps                                   | Already live on contact page |
+| TICKET-029 | Concrete Business Metrics                                           | Already live in hero section |
+| TICKET-030 | Speed-to-Market Positioning                                         | 2026-04-09                   |
+| TICKET-033 | Technical Competency Display                                        | 2026-04-09                   |
+| TICKET-037 | Sticky Mobile Contact CTA                                           | 2026-04-09                   |
+| TICKET-044 | Availability & Urgency Indicators                                   | 2026-04-09                   |
+| TICKET-053 | Service Worker Breaking App on New Deployments                      | 2026-04-08                   |
+| TICKET-048 | Fix Rate-Limit Race Condition in Contact API                        | 2026-04-08                   |
+| TICKET-049 | Fix Draft Blog Post Routing                                         | 2026-04-08                   |
+| TICKET-050 | Fix Schema Markup Inconsistencies in app.html                       | 2026-04-08                   |
+| TICKET-051 | Remove Dead Code (email-templates.ts deleted; api-utils.ts is used) | 2026-04-08                   |
+| TICKET-052 | Harden Goodreads Service                                            | 2026-04-08                   |
+| TICKET-054 | Fix sanitizeContactForm Dropping project Field                      | 2026-04-08                   |
+| TICKET-055 | Consolidate Email Validation — Remove Duplicate Regex               | 2026-04-08                   |
+| TICKET-056 | Consolidate Duplicate ContactFormData Type                          | 2026-04-08                   |
+| TICKET-057 | Harden Contact API Input Handling                                   | 2026-04-08                   |
 
 ## ❌ Rejected
 
-| Ticket | Description | Reason |
-|--------|-------------|--------|
+| Ticket     | Description                  | Reason                                 |
+| ---------- | ---------------------------- | -------------------------------------- |
 | TICKET-008 | Progressive Web App Features | No business value for a portfolio site |
 
 ---
@@ -713,6 +715,7 @@
 **Completed**: 18 | **Rejected**: 1
 
 ### Priority Breakdown
+
 - High: 7 tickets (~17-19 hours)
 - Medium: 17 tickets (~40-53 hours)
 - Low: 9 tickets (~5-6 hours)

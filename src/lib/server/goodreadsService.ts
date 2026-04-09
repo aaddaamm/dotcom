@@ -44,7 +44,11 @@ export namespace GoodreadsService {
 		};
 	}
 
-	async function fetchRSSPage(shelf: GOODREADS_SHELVES, page: number, fetch: typeof globalThis.fetch): Promise<GoodreadsBook[]> {
+	async function fetchRSSPage(
+		shelf: GOODREADS_SHELVES,
+		page: number,
+		fetch: typeof globalThis.fetch
+	): Promise<GoodreadsBook[]> {
 		const response = await fetch(`${RSS_BASE_URL}?shelf=${shelf}&page=${page}`);
 		const text = await response.text();
 		const xml = cheerio.load(text, { xmlMode: true });
@@ -58,7 +62,10 @@ export namespace GoodreadsService {
 		return books;
 	}
 
-	export async function getBooksFromShelf(shelf: GOODREADS_SHELVES, fetch: typeof globalThis.fetch): Promise<GoodreadsBook[]> {
+	export async function getBooksFromShelf(
+		shelf: GOODREADS_SHELVES,
+		fetch: typeof globalThis.fetch
+	): Promise<GoodreadsBook[]> {
 		try {
 			const cached = cache.get(shelf);
 			if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
