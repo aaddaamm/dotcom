@@ -7,14 +7,14 @@
 
 <SeoHead
 	title="Work With Me — Adam Robinson"
-	description="Available for freelance and contract software development. Custom websites, automation, and consulting for businesses."
+	description="Senior software engineer available for staff augmentation and contract engagements. Ten-plus years across fintech, healthcare, and enterprise."
 	path="/hire"
 />
 
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader
 		title="Work With Me"
-		description="Available for contract and freelance engagements. Let's talk about your project."
+		description="Available for contract and staff augmentation engagements. Ten-plus years embedded with engineering teams across fintech, healthcare, and enterprise."
 	/>
 
 	<ServicesSection />

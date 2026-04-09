@@ -38,32 +38,9 @@
 		{/each}
 	</div>
 
-	<!-- Consultation Guarantee -->
-	<div
-		class="consultation-guarantee mt-8 p-6 rounded-lg bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800"
-	>
-		<div class="flex items-start gap-4">
-			<div class="consultation-icon text-accent-500 mt-1" aria-hidden="true">
-				<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-					<path
-						d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-					/>
-				</svg>
-			</div>
-			<div>
-				<h3 class="font-semibold mb-2">Risk-Free Consultation</h3>
-				<p class="text-sm text-muted leading-relaxed">
-					Not sure if I'm the right fit? Book a free 15-minute consultation call. If you're not
-					completely satisfied with the value I provide, I'll refund the full cost of any paid
-					consultation.
-				</p>
-			</div>
-		</div>
-	</div>
-
 	<div class="mt-8 text-center">
-		<p class="body-text mb-4">Ready to get started? Let's talk about your project.</p>
-		<a href="/contact" class="btn-primary">Start a Conversation</a>
+		<p class="body-text mb-4">Interested in working together? Let's talk.</p>
+		<a href="/contact" class="btn-primary">Get In Touch</a>
 	</div>
 </section>
 

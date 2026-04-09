@@ -11,7 +11,7 @@ export const selectedWork = [
 		period: '2024–present',
 		role: 'Staff Augmentation / Senior Engineer',
 		description:
-			'Embedded with an engineering team building a subdomain of iCapital\'s alternative investment platform. Navigate a large, complex codebase independently to deliver solutions across the stack. Also work with the team on communication and engineering culture.',
+			'Embedded with an engineering team building a subdomain of iCapital\'s alternative investment platform. Navigating a large, complex codebase independently to deliver full-stack solutions, while also contributing to communication practices and engineering culture.',
 		stack: ['React', 'TypeScript', 'Node.js'],
 		outcome: 'Ongoing contributor across multiple subdomains of an enterprise fintech platform'
 	},
@@ -46,69 +46,65 @@ export const selectedWork = [
 
 export const services = [
 	{
-		title: 'Custom Software Development',
+		title: 'Embedded Engineering',
 		icon: 'code',
 		description:
-			'Build tools specific to your business needs - from simple automations to complete applications.',
+			'Join your team as a senior contributor. I navigate complex, unfamiliar codebases independently, deliver across the stack, and ramp up without heavy hand-holding.',
 		examples: [
-			'Inventory management systems',
-			'Customer portals',
-			'Data processing tools',
-			'API integrations'
+			'Feature development',
+			'Legacy modernization',
+			'Cross-team integration',
+			'Greenfield builds'
 		],
-		outcome: 'Save 10+ hours per week on manual tasks'
+		outcome: 'A senior engineer who ships from day one'
 	},
 	{
-		title: 'Website & Web App Help',
+		title: 'Platform & Backend Engineering',
 		icon: 'globe',
-		description: 'Fix bugs, add features, or modernize existing websites and web applications.',
-		examples: [
-			'Performance improvements',
-			'Security updates',
-			'New features',
-			'Mobile optimization'
-		],
-		outcome: 'Faster sites that convert better and rank higher'
+		description:
+			'Build or evolve the systems that power your product — APIs, authentication, data pipelines, and service architecture.',
+		examples: ['API design', 'Authentication systems', 'Service architecture', 'Performance work'],
+		outcome: 'Reliable, well-structured systems built to last'
 	},
 	{
-		title: 'Technical Consultation',
+		title: 'Technical Leadership',
 		icon: 'lightbulb',
 		description:
-			'Get guidance on technology decisions, code reviews, or planning software projects.',
-		examples: ['Technology stack advice', 'Code audits', 'Project planning', 'Team training'],
-		outcome: 'Make confident technical decisions and avoid costly mistakes'
+			"Lead a team, review architecture, or help plan a complex initiative. I've led engineering teams through greenfield builds and legacy modernizations.",
+		examples: ['Team leadership', 'Architecture review', 'Technical planning', 'Engineering culture'],
+		outcome: 'Better decisions, faster delivery, stronger teams'
 	}
 ];
 
 export const faqItems = [
 	{
-		question: 'How much do you charge?',
+		question: 'What kinds of engagements do you take on?',
 		answer:
-			'I work primarily on fixed-price project rates rather than hourly billing. Most small business projects range from $500-5000. I tailor pricing to fit what local businesses can actually afford and provide clear estimates upfront.'
+			"Primarily contract staff augmentation — embedded with an existing engineering team, contributing as a senior engineer. I'm also open to full-time roles for the right opportunity."
 	},
 	{
-		question: 'Why choose a local developer?',
+		question: 'How quickly can you get up to speed?',
 		answer:
-			'You get direct access to me, faster communication in your timezone, and someone who understands local business challenges. No middlemen or language barriers.'
+			"Quickly. I've navigated enough large, unfamiliar codebases to know how to orient fast, ask the right questions early, and start contributing without heavy ramp-up support."
 	},
 	{
-		question: 'How quickly can you start?',
+		question: 'Do you work remotely?',
 		answer:
-			'I typically have availability within 1-2 weeks for new projects. For urgent fixes or small tasks, I can often start within 24-48 hours.'
+			"Yes — all of my recent engagements have been fully remote. I'm comfortable with async communication, distributed teams, and working across time zones."
 	},
 	{
-		question: "What if I'm not satisfied with the work?",
+		question: "What's your current availability?",
 		answer:
-			"I offer a 100% satisfaction guarantee with unlimited revisions until you're completely happy with the results. For consultations, if you don't find value in our discussion, I'll provide a full refund. My goal is your success, not just completing tasks."
+			"I'm currently available for new engagements. Reach out and I can give you a clear picture of my timeline."
 	},
 	{
-		question: 'Do you work with non-technical clients?',
+		question: 'What size teams do you work well with?',
 		answer:
-			"Absolutely! Most of my clients are business owners who want to focus on running their business, not managing technology. I handle the technical stuff so you don't have to."
+			"I've worked with small product teams and large enterprise engineering organizations. I adapt to existing processes and culture rather than imposing my own."
 	},
 	{
-		question: 'What if my project is too small?',
+		question: "What's your rate?",
 		answer:
-			'No project is too small! I work with everything from simple website fixes to custom business applications. Small local businesses are exactly who I want to help.'
+			"I don't publish rates — they vary by engagement type, scope, and duration. Happy to have a direct conversation about it."
 	}
 ];
