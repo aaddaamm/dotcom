@@ -30,26 +30,32 @@
 			<span class="accent-dot" aria-hidden="true">.</span>
 		</h2>
 		<div class="stack-grid">
-			{#each techStack as group}
+			{#each techStack as group (group.category)}
 				<div class="stack-group">
 					<p class="stack-category">{group.category}</p>
 					<ul class="stack-items">
-						{#each group.items as item}
+						{#each group.items as item (item)}
 							<li>
 								<button
 									class="stack-item"
 									onclick={(e) => {
 										e.currentTarget.animate(
 											[
-												{ transform: 'scale(1)    translateY(0)',    color: 'var(--color-muted)' },
-												{ transform: 'scale(1.3)  translateY(-6px)', color: 'var(--color-accent)', offset: 0.35 },
-												{ transform: 'scale(1.15) translateY(-3px)',                              offset: 0.65 },
-												{ transform: 'scale(1)    translateY(0)',    color: 'var(--color-text)' }
+												{ transform: 'scale(1)    translateY(0)', color: 'var(--color-muted)' },
+												{
+													transform: 'scale(1.3)  translateY(-6px)',
+													color: 'var(--color-accent)',
+													offset: 0.35
+												},
+												{ transform: 'scale(1.15) translateY(-3px)', offset: 0.65 },
+												{ transform: 'scale(1)    translateY(0)', color: 'var(--color-text)' }
 											],
 											{ duration: 600, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }
 										);
 									}}
-								>{item}</button>
+								>
+									{item}
+								</button>
 							</li>
 						{/each}
 					</ul>
@@ -74,7 +80,7 @@
 					<p class="project-role mb-3">{project.role}</p>
 					<p class="muted-text mb-4">{project.description}</p>
 					<div class="flex flex-wrap gap-2">
-						{#each project.stack as tech}
+						{#each project.stack as tech (tech)}
 							<span class="tech-tag">{tech}</span>
 						{/each}
 					</div>
@@ -172,7 +178,6 @@
 	.stack-item:hover::after {
 		width: 100%;
 	}
-
 
 	.project-period {
 		font-size: 0.75rem;

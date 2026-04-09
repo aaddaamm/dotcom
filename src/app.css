@@ -92,8 +92,8 @@ p {
 }
 
 ::selection {
-	background-color: rgba(58, 175, 169, 0.3);
-	color: #ffffff;
+	background-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+	color: var(--color-text);
 }
 
 @keyframes blink {

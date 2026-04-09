@@ -53,12 +53,10 @@
 
 			if (response.ok && result.success) {
 				// Track successful form submission
-				if (typeof window !== 'undefined' && (window as { va?: { track: (e: string, p?: Record<string, string>) => void } }).va) {
-					(window as { va?: { track: (e: string, p?: Record<string, string>) => void } }).va!.track('Contact Form Submitted', {
-						project_type: project.trim(),
-						has_phone: phone.trim() ? 'yes' : 'no'
-					});
-				}
+				window.va?.track('Contact Form Submitted', {
+					project_type: project.trim(),
+					has_phone: phone.trim() ? 'yes' : 'no'
+				});
 
 				// Success - reset form and show success message
 				successMessage = result.message || "Thank you! I'll respond within 24 hours.";

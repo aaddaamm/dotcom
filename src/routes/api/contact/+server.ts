@@ -6,7 +6,12 @@ import type { RequestHandler } from './$types';
 import { validateEmail, type ContactFormData } from '$lib/validation';
 
 function escapeHtml(str: string): string {
-	return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+	return str
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#39;');
 }
 
 const RATE_LIMIT_WINDOW = 15 * 60; // 15 minutes in seconds
@@ -19,8 +24,8 @@ async function isRateLimited(ip: string): Promise<boolean> {
 			token: env.KV_REST_API_TOKEN
 		});
 		const key = `rate_limit:contact:${ip}`;
-		// Pipeline sends INCR + EXPIRE atomically — prevents keys from persisting
-		// indefinitely if the process dies between the two calls.
+		// Pipeline sends INCR + EXPIRE as a single atomic operation — if they ran
+		// separately a crash between them could leave a key with no expiry.
 		const [count] = (await redis.pipeline().incr(key).expire(key, RATE_LIMIT_WINDOW).exec()) as [
 			number,
 			number
@@ -54,7 +59,10 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 
 		// Honeypot check — bots fill fields humans don't see
 		if (data.website) {
-			return json({ success: true, message: "Thank you for your message! I'll respond within 24 hours." });
+			return json({
+				success: true,
+				message: "Thank you for your message! I'll respond within 24 hours."
+			});
 		}
 
 		// Basic validation
@@ -73,8 +81,7 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 			email: data.email.trim().slice(0, 100),
 			project: data.project.trim().slice(0, 100),
 			message: data.message.trim().slice(0, 2000),
-			phone: data.phone?.trim().slice(0, 20) || '',
-			budget: data.budget?.trim() || 'Not specified'
+			phone: data.phone?.trim().slice(0, 20) || ''
 		};
 
 		// Additional security validations
@@ -94,7 +101,6 @@ Name: ${sanitizedData.name}
 Email: ${sanitizedData.email}
 Phone: ${sanitizedData.phone || 'Not provided'}
 Project Type: ${sanitizedData.project}
-Budget Range: ${sanitizedData.budget}
 
 Message:
 ${sanitizedData.message}
@@ -143,7 +149,6 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 						<p><strong>Email:</strong> <a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></p>
 						${data.phone ? `<p><strong>Phone:</strong> <a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a></p>` : ''}
 						<p><strong>Project Type:</strong> ${escapeHtml(data.project ?? '')}</p>
-						<p><strong>Budget Range:</strong> ${escapeHtml(data.budget ?? '')}</p>
 					</div>
 
 					<div style="margin: 20px 0;">
@@ -182,15 +187,6 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 						</ul>
 					</div>
 
-					${
-						data.budget === 'Not Sure'
-							? `
-					<p style="background-color: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107;">
-						<strong>💡 Tip:</strong> Since you're not sure about budget, I'll include some typical project ranges in my response to help set expectations.
-					</p>
-					`
-							: ''
-					}
 
 					<p>In the meantime, feel free to check out some <a href="https://adamrobinson.tech/work" style="color: #2a7a7a;">recent projects</a> or <a href="https://adamrobinson.tech/blog" style="color: #2a7a7a;">technical articles</a> on my site.</p>
 

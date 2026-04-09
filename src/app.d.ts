@@ -8,6 +8,12 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
+
+	interface Window {
+		va?: {
+			track: (event: string, props?: Record<string, string>) => void;
+		};
+	}
 }
 
 export {};

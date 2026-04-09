@@ -45,6 +45,7 @@
 		url: `https://adamrobinson.tech/blog/${data.post.slug}`,
 		keywords: data.post.tags
 	})}</` + `script>`}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		'@context': 'https://schema.org',
 		'@type': 'BreadcrumbList',
@@ -191,15 +192,15 @@
 		color: var(--color-text);
 	}
 
-	/* Inline code */
-	.prose :global(code) {
+	/* Inline code — themes with the page */
+	.prose :global(code:not(pre code)) {
 		font-family: var(--font-mono);
 		font-size: 13px;
-		background-color: #111111;
-		color: #e8e8e8;
+		background-color: color-mix(in srgb, var(--color-accent) 8%, var(--color-bg));
+		color: var(--color-text);
 		padding: 2px 6px;
 		border-radius: 4px;
-		border: 1px solid #1a1a1a;
+		border: 1px solid var(--color-border);
 	}
 
 	/* Code blocks — terminal dark regardless of theme */

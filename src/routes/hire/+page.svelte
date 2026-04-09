@@ -26,7 +26,7 @@
 			<span class="accent-dot" aria-hidden="true">.</span>
 		</h2>
 		<div class="stack-list">
-			{#each techStack as group}
+			{#each techStack as group (group.category)}
 				<div class="stack-row">
 					<span class="stack-category">{group.category}</span>
 					<span class="stack-items">{group.items.join(', ')}</span>

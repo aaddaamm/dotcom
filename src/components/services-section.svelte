@@ -17,7 +17,7 @@
 						<ServiceIcon type={service.icon} size={40} />
 					</div>
 					<div class="flex-1 text-center sm:text-left">
-						<h3 class="mb-2 text-xl font-semibold" style="color: var(--color-text);">
+						<h3 class="service-title mb-2 text-xl font-semibold">
 							{service.title}
 						</h3>
 						<p class="body-text mb-3">{service.description}</p>

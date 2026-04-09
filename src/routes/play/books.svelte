@@ -19,7 +19,7 @@
 		<div class="flex items-baseline gap-3 mb-2">
 			<h2 class="section-title text-xl font-semibold tracking-tight">Currently Reading</h2>
 			{#if currentlyReading.length > 0}
-				<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-accent-500/10 accent-text">
+				<span class="badge badge-accent text-xs font-medium px-2 py-0.5 rounded-full">
 					{currentlyReading.length}
 				</span>
 			{/if}
@@ -27,7 +27,7 @@
 		<p class="text-sm muted-text mb-6">What I'm working through right now.</p>
 
 		{#if currentlyReading.length === 0}
-			<div class="rounded-lg border border-white/6 bg-white/2 p-8 text-center">
+			<div class="empty-state rounded-lg p-8 text-center">
 				<p class="muted-text">Not reading anything right now. Probably playing video games.</p>
 			</div>
 		{:else}
@@ -37,9 +37,9 @@
 						href={book.url}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="book-card group rounded-lg overflow-hidden border border-white/6 bg-white/2 hover:border-accent-500/20 transition-all"
+						class="book-card rounded-lg overflow-hidden transition-all"
 					>
-						<div class="aspect-2/3 overflow-hidden bg-white/3">
+						<div class="book-cover-bg aspect-2/3 overflow-hidden">
 							{#if book.cover}
 								<img
 									class="w-full h-full object-cover book-img"
@@ -69,7 +69,7 @@
 		<div class="flex items-baseline gap-3 mb-2">
 			<h2 class="section-title text-xl font-semibold tracking-tight">Read</h2>
 			{#if readBooks.length > 0}
-				<span class="text-xs font-medium px-2 py-0.5 rounded-full bg-white/6 muted-text">
+				<span class="badge badge-muted text-xs font-medium px-2 py-0.5 rounded-full">
 					{readBooks.length}
 				</span>
 			{/if}
@@ -77,7 +77,7 @@
 		<p class="text-sm muted-text mb-6">Everything I've finished — rated and shelved.</p>
 
 		{#if readBooks.length === 0}
-			<div class="rounded-lg border border-white/6 bg-white/2 p-8 text-center">
+			<div class="empty-state rounded-lg p-8 text-center">
 				<p class="muted-text">No books on the read shelf yet.</p>
 			</div>
 		{:else}
@@ -87,9 +87,9 @@
 						href={book.url}
 						target="_blank"
 						rel="noopener noreferrer"
-						class="book-card group rounded-lg overflow-hidden border border-white/6 bg-white/2 hover:border-accent-500/20 transition-all"
+						class="book-card rounded-lg overflow-hidden transition-all"
 					>
-						<div class="aspect-2/3 overflow-hidden bg-white/3">
+						<div class="book-cover-bg aspect-2/3 overflow-hidden">
 							{#if book.cover}
 								<img
 									class="w-full h-full object-cover book-img"
@@ -107,7 +107,12 @@
 							{#if book.rating}
 								<div class="flex gap-0.5 mt-1" aria-label="{book.rating} out of 5 stars">
 									{#each Array(5) as _, i (i)}
-										<span aria-hidden="true" class="text-[10px] {i < book.rating ? 'accent-text' : 'text-white/10'}">★</span>
+										<span
+											aria-hidden="true"
+											class="star text-[10px] {i < book.rating ? 'star-filled' : 'star-empty'}"
+										>
+											★
+										</span>
 									{/each}
 								</div>
 							{/if}
@@ -118,7 +123,7 @@
 			{#if readBooks.length > READ_PREVIEW_COUNT}
 				<div class="flex justify-center pt-8">
 					<button
-						class="show-all-btn text-sm px-4 py-2 rounded-lg border border-white/8 transition-colors"
+						class="show-all-btn text-sm px-4 py-2 rounded-lg border transition-colors"
 						onclick={() => (showAllRead = !showAllRead)}
 					>
 						{showAllRead ? 'Show less' : `Show all ${readBooks.length} books`}
@@ -130,17 +135,45 @@
 </div>
 
 <style>
+	.badge {
+		display: inline-block;
+	}
+
+	.badge-accent {
+		background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+		color: var(--color-accent);
+	}
+
+	.badge-muted {
+		background-color: color-mix(in srgb, var(--color-border) 40%, transparent);
+		color: var(--color-muted);
+	}
+
+	.empty-state {
+		border: 1px solid var(--color-border);
+		background-color: color-mix(in srgb, var(--color-surface) 20%, transparent);
+	}
+
 	.book-card {
-		transition: transform 0.2s ease;
+		border: 1px solid var(--color-border);
+		background-color: color-mix(in srgb, var(--color-surface) 20%, transparent);
+		transition:
+			transform 0.2s ease,
+			border-color 0.2s ease;
 	}
 
 	.book-card:hover {
 		transform: translateY(-3px);
+		border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
 	}
 
 	.book-card:hover .book-img {
 		transform: scale(1.05);
 		transition: transform 0.3s ease;
+	}
+
+	.book-cover-bg {
+		background-color: color-mix(in srgb, var(--color-border) 30%, transparent);
 	}
 
 	.book-img {
@@ -151,8 +184,17 @@
 		color: var(--color-text);
 	}
 
+	.star-filled {
+		color: var(--color-accent);
+	}
+
+	.star-empty {
+		color: color-mix(in srgb, var(--color-text) 15%, transparent);
+	}
+
 	.show-all-btn {
 		color: var(--color-muted);
+		border-color: var(--color-border);
 	}
 
 	.show-all-btn:hover {

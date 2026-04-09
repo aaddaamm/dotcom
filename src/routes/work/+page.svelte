@@ -28,7 +28,7 @@
 				<p class="body-text mt-3">{project.description}</p>
 				<div class="case-study-footer">
 					<div class="stack-tags">
-						{#each project.stack as tag}
+						{#each project.stack as tag (tag)}
 							<span class="stack-tag">{tag}</span>
 						{/each}
 					</div>
