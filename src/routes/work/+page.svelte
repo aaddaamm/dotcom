@@ -17,27 +17,20 @@
 		description="Selected engagements. Each one different — different stack, different problem, different team dynamic."
 	/>
 
-	<div class="work-stats">
-		<div class="work-stat">
-			<span class="work-stat-value">10+</span>
-			<span class="work-stat-label">Years</span>
+	<dl class="work-stats">
+		<div class="work-stat-row">
+			<dt class="work-stat-key">experience<span class="colon">:</span></dt>
+			<dd class="work-stat-val">10+ years</dd>
 		</div>
-		<span class="work-stat-divider" aria-hidden="true">·</span>
-		<div class="work-stat">
-			<span class="work-stat-value">Fintech</span>
-			<span class="work-stat-label">iCapital</span>
+		<div class="work-stat-row">
+			<dt class="work-stat-key">sectors<span class="colon">:</span></dt>
+			<dd class="work-stat-val">fintech <span class="dot">·</span> healthcare <span class="dot">·</span> enterprise</dd>
 		</div>
-		<span class="work-stat-divider" aria-hidden="true">·</span>
-		<div class="work-stat">
-			<span class="work-stat-value">Healthcare</span>
-			<span class="work-stat-label">Healthcasts</span>
+		<div class="work-stat-row">
+			<dt class="work-stat-key">clients<span class="colon">:</span></dt>
+			<dd class="work-stat-val">iCapital <span class="dot">·</span> Healthcasts <span class="dot">·</span> Angi <span class="dot">·</span> Shell</dd>
 		</div>
-		<span class="work-stat-divider" aria-hidden="true">·</span>
-		<div class="work-stat">
-			<span class="work-stat-value">Enterprise</span>
-			<span class="work-stat-label">Angi · Shell</span>
-		</div>
-	</div>
+	</dl>
 
 	<div class="grid gap-6">
 		{#each selectedWork as project (project.title)}
@@ -79,38 +72,37 @@
 <style>
 	.work-stats {
 		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: 0.75rem 1.25rem;
+		flex-direction: column;
+		gap: 0.35rem;
 		margin-bottom: 2rem;
 		padding-bottom: 1.5rem;
 		border-bottom: 1px solid var(--color-border);
 	}
 
-	.work-stat {
+	.work-stat-row {
 		display: flex;
-		flex-direction: column;
-		gap: 0.15rem;
-	}
-
-	.work-stat-value {
-		font-size: 0.85rem;
-		font-weight: 600;
-		color: var(--color-text);
+		gap: 1.5rem;
 		font-family: var(--font-mono);
+		font-size: 0.82rem;
 	}
 
-	.work-stat-label {
-		font-size: 0.7rem;
+	.work-stat-key {
+		color: var(--color-accent);
+		min-width: 8rem;
+		flex-shrink: 0;
+	}
+
+	.work-stat-val {
+		color: var(--color-text);
+		margin: 0;
+	}
+
+	.colon {
 		color: var(--color-muted);
-		letter-spacing: 0.3px;
 	}
 
-	.work-stat-divider {
-		color: var(--color-border);
-		font-size: 1rem;
-		line-height: 1;
-		align-self: center;
+	.dot {
+		color: var(--color-accent);
 	}
 
 	.case-study-header {
