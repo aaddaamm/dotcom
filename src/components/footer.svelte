@@ -1,6 +1,20 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
+	let emailCopied = $state(false);
+	let githubCopied = $state(false);
+
+	function copyToClipboard(text: string, which: 'email' | 'github') {
+		navigator.clipboard?.writeText(text).catch(() => {});
+		if (which === 'email') {
+			emailCopied = true;
+			setTimeout(() => (emailCopied = false), 1500);
+		} else {
+			githubCopied = true;
+			setTimeout(() => (githubCopied = false), 1500);
+		}
+	}
+
 	const cities = [
 		{ label: 'New York', tz: 'America/New_York' },
 		{ label: 'London', tz: 'Europe/London' },
@@ -47,6 +61,14 @@
 			<a href="/play" class="footer-link">Reading</a>
 			<a href="/teach" class="footer-link">Resources</a>
 			<a href="/contact" class="footer-link">Contact</a>
+			<button
+				class="footer-link copy-btn"
+				onclick={() => copyToClipboard('adam@adamrobinson.tech', 'email')}
+			>{emailCopied ? 'copied!' : 'adam@adamrobinson.tech'}</button>
+			<button
+				class="footer-link copy-btn"
+				onclick={() => copyToClipboard('https://github.com/aaddaamm', 'github')}
+			>{githubCopied ? 'copied!' : 'github'}</button>
 		</div>
 		<div class="footer-meta flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
 			<p>&copy; {new Date().getFullYear()} Adam Robinson</p>
@@ -84,5 +106,15 @@
 
 	.clock-time {
 		color: var(--color-text);
+	}
+
+	.copy-btn {
+		background: none;
+		border: none;
+		padding: 0;
+		margin: 0;
+		cursor: pointer;
+		font-size: inherit;
+		font-family: inherit;
 	}
 </style>
