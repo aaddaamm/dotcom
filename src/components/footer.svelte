@@ -1,22 +1,35 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
+	const cities = [
+		{ label: 'New York', tz: 'America/New_York' },
+		{ label: 'London', tz: 'Europe/London' },
+		{ label: 'Tokyo', tz: 'Asia/Tokyo' },
+		{ label: 'Berlin', tz: 'Europe/Berlin' },
+		{ label: 'São Paulo', tz: 'America/Sao_Paulo' },
+		{ label: 'Sydney', tz: 'Australia/Sydney' },
+		{ label: 'Singapore', tz: 'Asia/Singapore' },
+		{ label: 'Lagos', tz: 'Africa/Lagos' },
+		{ label: 'Toronto', tz: 'America/Toronto' },
+		{ label: 'Dubai', tz: 'Asia/Dubai' }
+	];
+
+	let city = $state(cities[0]);
 	let time = $state('');
-
-	const formatter = new Intl.DateTimeFormat('en-US', {
-		timeZone: 'America/New_York',
-		hour: '2-digit',
-		minute: '2-digit',
-		second: '2-digit',
-		hour12: false
-	});
-
 	let interval: ReturnType<typeof setInterval>;
 
 	onMount(() => {
-		time = formatter.format(new Date());
+		city = cities[Math.floor(Math.random() * cities.length)];
+		const fmt = new Intl.DateTimeFormat('en-US', {
+			timeZone: city.tz,
+			hour: '2-digit',
+			minute: '2-digit',
+			second: '2-digit',
+			hour12: false
+		});
+		time = fmt.format(new Date());
 		interval = setInterval(() => {
-			time = formatter.format(new Date());
+			time = fmt.format(new Date());
 		}, 1000);
 	});
 
@@ -38,7 +51,7 @@
 		<div class="footer-meta flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
 			<p>&copy; {new Date().getFullYear()} Adam Robinson</p>
 			{#if time}
-				<p class="clock">New York · <span class="clock-time">{time}</span></p>
+				<p class="clock">{city.label} · <span class="clock-time">{time}</span></p>
 			{/if}
 			<p>Built with SvelteKit</p>
 		</div>
