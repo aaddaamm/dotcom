@@ -51,6 +51,12 @@ export const selectedWork = [
 	}
 ];
 
+export const earlierWork = [
+	{ name: 'School of Motion', industry: 'Edtech', period: '2020' },
+	{ name: 'Amica Mutual', industry: 'Insurance', period: '2017–2018' },
+	{ name: 'AutoRaptor', industry: 'Automotive CRM', period: '2015' }
+];
+
 export const techStack = [
 	{
 		category: 'Frontend',

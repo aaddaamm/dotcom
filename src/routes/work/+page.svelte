@@ -2,7 +2,7 @@
 	import SeoHead from '../../components/seo-head.svelte';
 	import PageHeader from '../../components/page-header.svelte';
 	import Card from '../../components/card.svelte';
-	import { selectedWork } from '$lib/copy';
+	import { selectedWork, earlierWork } from '$lib/copy';
 </script>
 
 <SeoHead
@@ -16,6 +16,28 @@
 		title="Work"
 		description="Selected engagements. Each one different — different stack, different problem, different team dynamic."
 	/>
+
+	<div class="work-stats">
+		<div class="work-stat">
+			<span class="work-stat-value">10+</span>
+			<span class="work-stat-label">Years</span>
+		</div>
+		<span class="work-stat-divider" aria-hidden="true">·</span>
+		<div class="work-stat">
+			<span class="work-stat-value">Fintech</span>
+			<span class="work-stat-label">iCapital</span>
+		</div>
+		<span class="work-stat-divider" aria-hidden="true">·</span>
+		<div class="work-stat">
+			<span class="work-stat-value">Healthcare</span>
+			<span class="work-stat-label">Healthcasts</span>
+		</div>
+		<span class="work-stat-divider" aria-hidden="true">·</span>
+		<div class="work-stat">
+			<span class="work-stat-value">Enterprise</span>
+			<span class="work-stat-label">Angi · Shell</span>
+		</div>
+	</div>
 
 	<div class="grid gap-6">
 		{#each selectedWork as project (project.title)}
@@ -37,9 +59,60 @@
 			</Card>
 		{/each}
 	</div>
+
+	<section class="earlier-work" aria-labelledby="earlier-heading">
+		<h2 id="earlier-heading" class="earlier-heading">Earlier work</h2>
+		<ul class="earlier-list">
+			{#each earlierWork as engagement (engagement.name)}
+				<li class="earlier-item">
+					<span class="earlier-name">{engagement.name}</span>
+					<span class="earlier-meta">
+						<span class="earlier-industry">{engagement.industry}</span>
+						<span class="earlier-period">{engagement.period}</span>
+					</span>
+				</li>
+			{/each}
+		</ul>
+	</section>
 </div>
 
 <style>
+	.work-stats {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.75rem 1.25rem;
+		margin-bottom: 2rem;
+		padding-bottom: 1.5rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.work-stat {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+	}
+
+	.work-stat-value {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--color-text);
+		font-family: var(--font-mono);
+	}
+
+	.work-stat-label {
+		font-size: 0.7rem;
+		color: var(--color-muted);
+		letter-spacing: 0.3px;
+	}
+
+	.work-stat-divider {
+		color: var(--color-border);
+		font-size: 1rem;
+		line-height: 1;
+		align-self: center;
+	}
+
 	.case-study-header {
 		display: flex;
 		align-items: baseline;
@@ -97,5 +170,65 @@
 		font-size: 0.85rem;
 		color: var(--color-muted);
 		font-style: italic;
+	}
+
+	.earlier-work {
+		margin-top: 3rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.earlier-heading {
+		font-size: 0.7rem;
+		font-family: var(--font-mono);
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		color: var(--color-muted);
+		margin-bottom: 1rem;
+	}
+
+	.earlier-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.earlier-item {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.6rem 0;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.earlier-item:first-child {
+		border-top: 1px solid var(--color-border);
+	}
+
+	.earlier-name {
+		font-size: 0.9rem;
+		color: var(--color-text);
+	}
+
+	.earlier-meta {
+		display: flex;
+		align-items: baseline;
+		gap: 1rem;
+		flex-shrink: 0;
+	}
+
+	.earlier-industry {
+		font-size: 0.75rem;
+		color: var(--color-muted);
+	}
+
+	.earlier-period {
+		font-size: 0.75rem;
+		font-family: var(--font-mono);
+		color: var(--color-muted);
 	}
 </style>
