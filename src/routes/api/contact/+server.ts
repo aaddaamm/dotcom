@@ -123,7 +123,8 @@ User-Agent: ${request.headers.get('user-agent') || 'Unknown'}
 			await logFailedSubmission(sanitizedData, emailBody, clientIP);
 			return json({
 				success: true,
-				message: "Message received — there was a hiccup on our end but your submission was saved. I'll follow up shortly."
+				message:
+					"Message received — there was a hiccup on our end but your submission was saved. I'll follow up shortly."
 			});
 		}
 	} catch (error) {
@@ -132,11 +133,7 @@ User-Agent: ${request.headers.get('user-agent') || 'Unknown'}
 	}
 };
 
-async function logFailedSubmission(
-	data: ContactFormData,
-	body: string,
-	ip: string
-): Promise<void> {
+async function logFailedSubmission(data: ContactFormData, body: string, ip: string): Promise<void> {
 	try {
 		const redis = new Redis({
 			url: env.KV_REST_API_URL,
@@ -165,12 +162,12 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 
 	const resend = new Resend(RESEND_API_KEY);
 
-		// Send notification to you
-		await resend.emails.send({
-			from: 'contact@adamrobinson.tech',
-			to: 'adam@adamrobinson.tech',
-			subject: subject,
-			html: `
+	// Send notification to you
+	await resend.emails.send({
+		from: 'contact@adamrobinson.tech',
+		to: 'adam@adamrobinson.tech',
+		subject: subject,
+		html: `
 				<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
 					<h2 style="color: #2a7a7a;">New Contact Form Submission</h2>
 					
@@ -194,14 +191,14 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 					</div>
 				</div>
 			`
-		});
+	});
 
-		// Send auto-responder to prospect
-		await resend.emails.send({
-			from: 'Adam Robinson <adam@adamrobinson.tech>',
-			to: data.email,
-			subject: 'Thanks for reaching out! - Adam Robinson',
-			html: `
+	// Send auto-responder to prospect
+	await resend.emails.send({
+		from: 'Adam Robinson <adam@adamrobinson.tech>',
+		to: data.email,
+		subject: 'Thanks for reaching out! - Adam Robinson',
+		html: `
 				<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
 					<h2 style="color: #2a7a7a;">Thanks for reaching out, ${escapeHtml(data.name)}!</h2>
 					
@@ -232,7 +229,7 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 					</p>
 				</div>
 			`
-		});
+	});
 
-		console.log('📧 Emails sent successfully via Resend');
+	console.log('📧 Emails sent successfully via Resend');
 }

@@ -64,16 +64,23 @@
 			<button
 				class="footer-link copy-btn"
 				onclick={() => copyToClipboard('adam@adamrobinson.tech', 'email')}
-			>{emailCopied ? 'copied!' : 'adam@adamrobinson.tech'}</button>
+			>
+				{emailCopied ? 'copied!' : 'adam@adamrobinson.tech'}
+			</button>
 			<button
 				class="footer-link copy-btn"
 				onclick={() => copyToClipboard('https://github.com/aaddaamm', 'github')}
-			>{githubCopied ? 'copied!' : 'github'}</button>
+			>
+				{githubCopied ? 'copied!' : 'github'}
+			</button>
 		</div>
 		<div class="footer-meta flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
 			<p>&copy; {new Date().getFullYear()} Adam Robinson</p>
 			{#if time}
-				<p class="clock">{city.label} · <span class="clock-time">{time}</span></p>
+				<p class="clock">
+					{city.label} ·
+					<span class="clock-time">{time}</span>
+				</p>
 			{/if}
 			<p>Built with SvelteKit</p>
 		</div>

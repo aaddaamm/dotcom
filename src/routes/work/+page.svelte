@@ -19,16 +19,37 @@
 
 	<dl class="work-stats">
 		<div class="work-stat-row">
-			<dt class="work-stat-key">experience<span class="colon">:</span></dt>
+			<dt class="work-stat-key">
+				experience
+				<span class="colon">:</span>
+			</dt>
 			<dd class="work-stat-val">10+ years</dd>
 		</div>
 		<div class="work-stat-row">
-			<dt class="work-stat-key">sectors<span class="colon">:</span></dt>
-			<dd class="work-stat-val">fintech <span class="dot">·</span> healthcare <span class="dot">·</span> enterprise</dd>
+			<dt class="work-stat-key">
+				sectors
+				<span class="colon">:</span>
+			</dt>
+			<dd class="work-stat-val">
+				fintech <span class="dot">·</span>
+				healthcare
+				<span class="dot">·</span>
+				 enterprise
+			</dd>
 		</div>
 		<div class="work-stat-row">
-			<dt class="work-stat-key">clients<span class="colon">:</span></dt>
-			<dd class="work-stat-val">iCapital <span class="dot">·</span> Healthcasts <span class="dot">·</span> Angi <span class="dot">·</span> Shell</dd>
+			<dt class="work-stat-key">
+				clients
+				<span class="colon">:</span>
+			</dt>
+			<dd class="work-stat-val">
+				iCapital <span class="dot">·</span>
+				Healthcasts
+				<span class="dot">·</span>
+				Angi
+				<span class="dot">·</span>
+				 Shell
+			</dd>
 		</div>
 	</dl>
 
