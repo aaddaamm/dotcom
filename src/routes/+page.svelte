@@ -94,19 +94,6 @@
 </div>
 
 <style>
-	.section-border {
-		border-top: 1px solid var(--color-border);
-	}
-
-	.section-heading {
-		color: var(--color-text);
-		margin-bottom: 24px;
-	}
-
-	.accent-dot {
-		color: var(--color-accent);
-	}
-
 	.stack-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));

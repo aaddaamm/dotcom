@@ -203,10 +203,10 @@
 		border: 1px solid var(--color-border);
 	}
 
-	/* Code blocks — terminal dark regardless of theme */
+	/* Code blocks — theme-aware via CSS vars */
 	.prose :global(pre) {
-		background-color: #111111;
-		border: 1px solid #1a1a1a;
+		background-color: var(--color-code-bg);
+		border: 1px solid var(--color-code-border);
 		border-radius: 6px;
 		padding: 20px;
 		overflow-x: auto;
@@ -219,7 +219,7 @@
 		padding: 0;
 		font-size: 13px;
 		line-height: 1.6;
-		color: #e8e8e8;
+		color: var(--color-code-text);
 	}
 
 	.prose :global(ul) {

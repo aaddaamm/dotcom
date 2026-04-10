@@ -45,19 +45,6 @@
 </div>
 
 <style>
-	.section-border {
-		border-top: 1px solid var(--color-border);
-	}
-
-	.section-heading {
-		color: var(--color-text);
-		margin-bottom: 20px;
-	}
-
-	.accent-dot {
-		color: var(--color-accent);
-	}
-
 	.stack-list {
 		display: flex;
 		flex-direction: column;
