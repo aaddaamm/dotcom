@@ -4,14 +4,18 @@
 	let emailCopied = $state(false);
 	let githubCopied = $state(false);
 
-	function copyToClipboard(text: string, which: 'email' | 'github') {
-		navigator.clipboard?.writeText(text).catch(() => {});
-		if (which === 'email') {
-			emailCopied = true;
-			setTimeout(() => (emailCopied = false), 1500);
-		} else {
-			githubCopied = true;
-			setTimeout(() => (githubCopied = false), 1500);
+	async function copyToClipboard(text: string, which: 'email' | 'github') {
+		try {
+			await navigator.clipboard.writeText(text);
+			if (which === 'email') {
+				emailCopied = true;
+				setTimeout(() => (emailCopied = false), 1500);
+			} else {
+				githubCopied = true;
+				setTimeout(() => (githubCopied = false), 1500);
+			}
+		} catch {
+			// clipboard unavailable — no feedback shown
 		}
 	}
 
