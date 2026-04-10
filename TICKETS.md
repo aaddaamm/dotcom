@@ -100,6 +100,40 @@
 
 ## 📈 Medium Priority
 
+### TICKET-069: Terminal Easter Egg
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 4-6 hours
+**Description**: Hidden terminal drawer that activates when a visitor starts typing on any page. Supports commands like `whoami`, `help`, `ls`. Rewards curious engineers. Design spec in `tickets/TICKET-019-terminal-easter-egg.md`. Implement Option A (keydown → drawer) + Option C (`/terminal` route) using the same component.
+**Acceptance Criteria**:
+
+- [ ] Terminal drawer component: dark bg, teal prompt, monospace font
+- [ ] Commands: `whoami`, `help`, `ls`, `ls /work`, `ls /stack`, `clear`, `exit`
+- [ ] Keydown listener on `window` activates drawer — skips inputs, textareas, contenteditables, meta/ctrl combos
+- [ ] `Escape` or `exit` dismisses the drawer
+- [ ] `/terminal` route renders the same component full-screen (shareable, linkable)
+- [ ] FAB suppressed while drawer is open on mobile
+- [ ] Drawer slides up from bottom, covers ~50% of viewport
+
+---
+
+### TICKET-070: Stack Tag Filter on /work
+
+**Status**: Backlog
+**Priority**: Medium
+**Effort**: 1-2 hours
+**Description**: Click a tech stack tag to filter the project list to entries using that technology. Feels like a real dev tool — useful and interactive without being decorative.
+**Acceptance Criteria**:
+
+- [ ] Clicking a stack tag filters visible project cards to those using that tech
+- [ ] Active filter tag highlighted in teal
+- [ ] Clicking the active tag clears the filter
+- [ ] Smooth — no page reload, no layout shift
+- [ ] Works on `/work` (full list); home page preview is out of scope
+
+---
+
 ### TICKET-009: Analytics & Conversion Tracking
 
 **Status**: Backlog
@@ -199,6 +233,72 @@
 ---
 
 ## 🔧 Low Priority
+
+### TICKET-071: Copy-on-Click Contact Details
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 30 min
+**Description**: Email and GitHub handle in the footer copy to clipboard on click with a brief "copied!" flash. Standard engineer UX — small but noticed.
+**Acceptance Criteria**:
+
+- [ ] Click email → copies address, shows inline "copied!" for 1.5s
+- [ ] Click GitHub link → copies URL, shows inline "copied!" for 1.5s
+- [ ] Uses `navigator.clipboard` API with a graceful no-op fallback
+- [ ] No layout shift from the feedback state
+
+**File**: `src/components/footer.svelte`
+
+---
+
+### TICKET-072: Konami Code Easter Egg
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 1-2 hours
+**Description**: ↑↑↓↓←→←→BA triggers something. Options: navigate to `/terminal`, flash a brief glitch effect, or display a hidden message. Must not conflict with the terminal keydown listener (TICKET-069).
+**Acceptance Criteria**:
+
+- [ ] Konami sequence detected via `keydown` listener
+- [ ] On success: navigate to `/terminal` or trigger a brief visual effect
+- [ ] Sequence detection resets on any non-sequence key
+- [ ] Coexists cleanly with TICKET-069 keydown listener
+
+---
+
+### TICKET-073: git log-Style Work Timeline
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 2-3 hours
+**Description**: Render the work history as a fake `git log --oneline` — short SHAs, branch refs, commit-style one-liners. Signals engineering identity without explaining it.
+**Acceptance Criteria**:
+
+- [ ] Timeline section on `/work` (or a separate `/log` route)
+- [ ] Deterministic fake short SHA per entry (not random on each render)
+- [ ] Branch-ref labels: `HEAD → main` for current role, named branches for past ones
+- [ ] Mono font, muted SHA + date, teal branch refs
+- [ ] Each entry links to its case study if one exists
+
+---
+
+### TICKET-074: Live Clock in Footer
+
+**Status**: Backlog
+**Priority**: Low
+**Effort**: 30 min
+**Description**: Subtle live clock showing current New York time — `New York · 14:23:07` in mono. Ticking every second. Demonstrates the page is alive without adding noise.
+**Acceptance Criteria**:
+
+- [ ] Updates every second via `setInterval` in `onMount`
+- [ ] Interval cleared in `onDestroy`
+- [ ] Shows timezone label alongside time
+- [ ] Mono font, muted color
+- [ ] SSR-safe (initial value set client-side to avoid hydration mismatch)
+
+**File**: `src/components/footer.svelte`
+
+---
 
 ### TICKET-002: Google Business Profile Setup
 
@@ -644,15 +744,15 @@
 
 ## 📊 Summary
 
-**Last Updated**: 2026-04-09
-**Open**: 28 tickets
+**Last Updated**: 2026-04-10
+**Open**: 34 tickets
 **Completed**: 22 | **Rejected**: 1
 
 ### Priority Breakdown
 
 - High: 5 tickets (~15-17 hours)
-- Medium: 6 tickets (~6-8 hours)
-- Low: 17 tickets (mix of backlog, deferred, and done)
+- Medium: 8 tickets (~12-16 hours)
+- Low: 21 tickets (mix of backlog, deferred, and done)
 
 ### Deferred (resume if freelance pipeline needs attention)
 TICKET-002, TICKET-014, TICKET-019, TICKET-025, TICKET-036, TICKET-040, TICKET-047
