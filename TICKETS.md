@@ -55,11 +55,12 @@
 **Description**: Display logos of companies worked with (permission-based) — iCapital, Shell, Angi are strong credibility signals for technical evaluators
 **Acceptance Criteria**:
 
-- [ ] Obtain permission from past clients/employers
-- [ ] "Trusted by" section on homepage
+- [ ] For each company: obtain explicit written permission before displaying their logo (logos are trademarked — displaying without permission risks infringement even in a portfolio context)
+- [ ] If permission is granted: add "Trusted by" / "Where I've worked" section on homepage with logos
+- [ ] If permission is not granted: fall back to plain-text company names (achieves most of the same credibility signal without legal risk)
 - [ ] Link to case studies where available
 
-**Notes**: Upgraded from Medium — recognizable company names are a key trust signal for hiring managers scanning the page quickly.
+**Notes**: Upgraded from Medium — recognizable company names are a key trust signal for hiring managers. Logo use requires permission; plain-text name-dropping in case studies (TICKET-018) is the safe default in the meantime.
 
 ---
 

@@ -14,21 +14,65 @@ Brand-aligned: dark background, teal prompt, monospace. But with whimsy.
 
 ### Option A — Hidden (recommended)
 
-Keydown listener on `window`. When the user starts typing anywhere (and isn't focused in a form/input), the terminal slides up and their keystrokes are captured as a command. Discoverable but not advertised — rewards curious visitors.
+Keydown listener on `window`. When the user starts typing anywhere (and isn't focused in a form/input), the terminal slides up from the bottom as a drawer and their keystrokes are captured as a command. Discoverable but not advertised — rewards curious visitors.
+
+The page looks exactly as it does today — no new UI. A visitor scrolling, reading work history, types `whoami` on a whim. The drawer slides up over the mobile FAB, below the header:
+
+```
+[normal site content]
+[normal site content]
+════════════════════════════════════
+adam@adamrobinson.tech:~$ whoami█
+════════════════════════════════════
+```
+
+The drawer covers roughly the bottom half of the viewport. `Escape` dismisses it. Site content is still visible above.
+
+**Conflict to note:** the `mobile-fab` is fixed at `bottom: 24px`. The terminal drawer needs to sit above it or suppress it while open. On desktop this is fine; on mobile it's moot since there's no physical keyboard to trigger the easter egg.
 
 - Pros: feels like a real terminal, stays minimal, doesn't clutter the UI
-- Cons: mobile users won't find it easily
+- Cons: mobile users won't find it; keydown listener must carefully skip inputs, textareas, contenteditables, `[role="dialog"]`, and meta/ctrl key combos
 
 ### Option B — Visible prompt
 
-A faint `> _` blinking prompt visible somewhere on the homepage (below the hero stats, or in the footer). Clicking it opens the terminal.
+A faint `> _` blinking prompt placed somewhere persistent. Most natural fit is the footer, after the copyright line:
+
+```
+© 2026 Adam Robinson          Built with SvelteKit
+
+> _
+```
+
+The `> _` blinks (same animation as the hero cursor, but smaller — `12px` mono, `var(--color-muted)`). Clicking it opens the terminal drawer. Works on mobile via tap.
+
+Alternatively could live below the hero CTA buttons on the homepage only — keeps it contextual without appearing on every page (`/contact`, `/blog/[slug]`, etc.).
 
 - Pros: more discoverable, works on mobile
-- Cons: adds a UI element that needs to earn its place per the style guide
+- Cons: adds a third accent moment to the footer (footer-link hover is already teal); a blinking cursor in the footer of every page may feel mismatched on non-home routes; adds permanent UI to earn something Option A already does better
 
 ### Option C — URL route
 
-`/terminal` or `?terminal=true` — shareable, easy to link to, could be referenced in a blog post or README.
+`/terminal` — a dedicated full-screen page. Visiting it renders nothing but the terminal, pinned to the bottom or centered. No drawer animation — it just is the page.
+
+```
+URL: adamrobinson.tech/terminal
+
+┌─────────────────────────────────────────────────┐
+│                                                 │
+│  adam@adamrobinson.tech:~$ █                    │
+│                                                 │
+│                                                 │
+└─────────────────────────────────────────────────┘
+```
+
+Shareable and linkable — droppable in a README, LinkedIn post, or blog article. Sidesteps all trigger/conflict problems (no keydown hijacking, no footer element, no FAB collision). Uses the same component as Option A; `/terminal` just renders it open by default.
+
+- Pros: most shareable, zero trigger complexity, works on mobile
+- Cons: no surprise — finding it via a route is navigation, not discovery
+
+### Recommendation
+
+**A + C together.** A is the discovery path (rewards curious visitors who type). C is the shareable path (for README, blog posts, etc.). They use the same component. Option B isn't worth the tradeoff.
 
 ---
 
