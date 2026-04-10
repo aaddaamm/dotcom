@@ -1,7 +1,7 @@
 <script lang="ts">
 	import SeoHead from '../components/seo-head.svelte';
 	import HeroSection from '../components/hero-section.svelte';
-	import Card from '../components/card.svelte';
+	import WorkCard from '../components/work-card.svelte';
 	import { selectedWork, techStack } from '$lib/copy';
 	import { setupScrollAnimations } from '$lib/animations';
 	import { onMount } from 'svelte';
@@ -72,19 +72,7 @@
 		</h2>
 		<div class="grid gap-4">
 			{#each selectedWork as project (project.title)}
-				<Card variant="work" class="p-6">
-					<div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-1">
-						<h3 style="color: var(--color-text);">{project.title}</h3>
-						<span class="project-period">{project.period}</span>
-					</div>
-					<p class="project-role mb-3">{project.role}</p>
-					<p class="muted-text mb-4">{project.description}</p>
-					<div class="flex flex-wrap gap-2">
-						{#each project.stack as tech (tech)}
-							<span class="tech-tag">{tech}</span>
-						{/each}
-					</div>
-				</Card>
+				<WorkCard {project} variant="preview" />
 			{/each}
 		</div>
 		<a href="/work" class="inline-flex items-center gap-1 text-sm mt-6 accent-link link-underline">
@@ -166,28 +154,4 @@
 		width: 100%;
 	}
 
-	.project-period {
-		font-size: 0.75rem;
-		color: var(--color-muted);
-		font-family: var(--font-mono);
-		white-space: nowrap;
-	}
-
-	.project-role {
-		font-size: 0.75rem;
-		text-transform: uppercase;
-		letter-spacing: 0.5px;
-		color: var(--color-accent);
-		font-family: var(--font-mono);
-	}
-
-	.tech-tag {
-		font-size: 0.7rem;
-		font-family: var(--font-mono);
-		padding: 2px 8px;
-		border-radius: 3px;
-		background-color: color-mix(in srgb, var(--color-accent) 8%, var(--color-bg));
-		color: var(--color-muted);
-		border: 1px solid var(--color-border);
-	}
 </style>
