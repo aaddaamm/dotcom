@@ -284,7 +284,7 @@
 
 ### TICKET-074: Live Clock in Footer
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Low
 **Effort**: 30 min
 **Description**: Subtle live clock showing current New York time — `New York · 14:23:07` in mono. Ticking every second. Demonstrates the page is alive without adding noise.
@@ -733,6 +733,7 @@
 | TICKET-055 | Consolidate Email Validation — Remove Duplicate Regex               | 2026-04-08                   |
 | TICKET-056 | Consolidate Duplicate ContactFormData Type                          | 2026-04-08                   |
 | TICKET-057 | Harden Contact API Input Handling                                   | 2026-04-08                   |
+| TICKET-074 | Live Clock in Footer (random city, 24h)                             | 2026-04-10                   |
 
 ## ❌ Rejected
 
@@ -745,8 +746,8 @@
 ## 📊 Summary
 
 **Last Updated**: 2026-04-10
-**Open**: 34 tickets
-**Completed**: 22 | **Rejected**: 1
+**Open**: 33 tickets
+**Completed**: 23 | **Rejected**: 1
 
 ### Priority Breakdown
 
