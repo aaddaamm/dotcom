@@ -112,17 +112,48 @@ User-Agent: ${request.headers.get('user-agent') || 'Unknown'}
 `.trim();
 
 		// Send email notification (works in both dev and production)
-		await sendEmailNotification(sanitizedData, emailSubject, emailBody);
-
-		return json({
-			success: true,
-			message: "Thank you for your message! I'll respond within 24 hours."
-		});
+		try {
+			await sendEmailNotification(sanitizedData, emailSubject, emailBody);
+			return json({
+				success: true,
+				message: "Thank you for your message! I'll respond within 24 hours."
+			});
+		} catch (emailError) {
+			console.error('📧 Email delivery failed — logging submission to Redis:', emailError);
+			await logFailedSubmission(sanitizedData, emailBody, clientIP);
+			return json({
+				success: true,
+				message: "Message received — there was a hiccup on our end but your submission was saved. I'll follow up shortly."
+			});
+		}
 	} catch (error) {
 		console.error('Contact form error:', error);
 		return json({ error: 'Failed to process form submission' }, { status: 500 });
 	}
 };
+
+async function logFailedSubmission(
+	data: ContactFormData,
+	body: string,
+	ip: string
+): Promise<void> {
+	try {
+		const redis = new Redis({
+			url: env.KV_REST_API_URL,
+			token: env.KV_REST_API_TOKEN
+		});
+		const key = `failed_contact:${Date.now()}:${ip}`;
+		await redis.set(
+			key,
+			JSON.stringify({ name: data.name, email: data.email, project: data.project, body, ip }),
+			{ ex: 30 * 24 * 60 * 60 } // 30-day TTL
+		);
+		console.log(`📧 Failed submission logged to Redis under key: ${key}`);
+	} catch (redisError) {
+		console.error('📧 Redis logging also failed — submission may be lost:', redisError);
+		console.log('📧 Submission data:', { name: data.name, email: data.email, body });
+	}
+}
 
 async function sendEmailNotification(data: ContactFormData, subject: string, body: string) {
 	const RESEND_API_KEY = env.RESEND_API_KEY;
@@ -132,8 +163,7 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 		return;
 	}
 
-	try {
-		const resend = new Resend(RESEND_API_KEY);
+	const resend = new Resend(RESEND_API_KEY);
 
 		// Send notification to you
 		await resend.emails.send({
@@ -205,10 +235,4 @@ async function sendEmailNotification(data: ContactFormData, subject: string, bod
 		});
 
 		console.log('📧 Emails sent successfully via Resend');
-	} catch (error) {
-		console.error('📧 Resend email failed:', error);
-		// Don't fail the entire request if email fails
-		// Log the email content so you can still see the submission
-		console.log('📧 Failed email would have been:', { subject, body });
-	}
 }
