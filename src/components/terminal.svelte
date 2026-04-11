@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy, tick } from 'svelte';
+	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { terminalOpen } from '$lib/stores/terminal';
@@ -159,7 +160,7 @@
 	});
 
 	onDestroy(() => {
-		window.removeEventListener('keydown', handleWindowKeydown);
+		if (browser) window.removeEventListener('keydown', handleWindowKeydown);
 		if (!fullscreen) terminalOpen.set(false);
 	});
 
