@@ -3,7 +3,7 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { terminalOpen } from '$lib/stores/terminal';
+	import { terminalOpen, terminalOpenTrigger } from '$lib/stores/terminal';
 	import { runCommand, getCompletions } from '$lib/terminal-commands';
 	import type { Mode } from '$lib/terminal-commands';
 
@@ -157,6 +157,11 @@
 	onMount(() => {
 		window.addEventListener('keydown', handleWindowKeydown);
 		if (fullscreen) tick().then(() => inputEl?.focus());
+
+		const unsub = terminalOpenTrigger.subscribe((val) => {
+			if (val > 0 && !fullscreen) open();
+		});
+		return unsub;
 	});
 
 	onDestroy(() => {

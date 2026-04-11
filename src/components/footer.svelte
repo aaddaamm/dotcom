@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
+	import { terminalOpenTrigger } from '$lib/stores/terminal';
 
 	let emailCopied = $state(false);
 	let githubCopied = $state(false);
@@ -79,7 +80,14 @@
 			</button>
 		</div>
 		<div class="footer-meta flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
-			<p>&copy; {new Date().getFullYear()} Adam Robinson</p>
+			<p>
+				&copy; {new Date().getFullYear()} Adam Robinson
+				<button
+					class="terminal-hint"
+					onclick={() => terminalOpenTrigger.update((n) => n + 1)}
+					aria-label="Open terminal"
+				>&gt;_</button>
+			</p>
 			{#if time}
 				<p class="clock">
 					{city.label} ·
@@ -117,6 +125,24 @@
 
 	.clock-time {
 		color: var(--color-text);
+	}
+
+	.terminal-hint {
+		background: none;
+		border: none;
+		padding: 0 0 0 0.6em;
+		margin: 0;
+		cursor: pointer;
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-muted);
+		opacity: 0.4;
+		transition: opacity 150ms ease;
+	}
+
+	.terminal-hint:hover {
+		opacity: 1;
+		color: var(--color-accent);
 	}
 
 	.copy-btn {
