@@ -1,4 +1,5 @@
 import { getAllPosts } from '$lib/server/blog';
+import { escapeHtml as escapeXml } from '$lib/server/utils';
 
 export function GET() {
 	const posts = getAllPosts();
@@ -34,12 +35,4 @@ ${items}
 			'Cache-Control': 's-maxage=3600, stale-while-revalidate=600'
 		}
 	});
-}
-
-function escapeXml(str: string): string {
-	return str
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;');
 }

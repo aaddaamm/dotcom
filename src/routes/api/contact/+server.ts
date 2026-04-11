@@ -4,15 +4,7 @@ import { Redis } from '@upstash/redis';
 import { Resend } from 'resend';
 import type { RequestHandler } from './$types';
 import { validateEmail, type ContactFormData } from '$lib/validation';
-
-function escapeHtml(str: string): string {
-	return str
-		.replace(/&/g, '&amp;')
-		.replace(/</g, '&lt;')
-		.replace(/>/g, '&gt;')
-		.replace(/"/g, '&quot;')
-		.replace(/'/g, '&#39;');
-}
+import { escapeHtml } from '$lib/server/utils';
 
 const RATE_LIMIT_WINDOW = 15 * 60; // 15 minutes in seconds
 const RATE_LIMIT_MAX = 3;

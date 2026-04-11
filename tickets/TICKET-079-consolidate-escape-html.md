@@ -1,6 +1,6 @@
 # TICKET-079 — Consolidate Duplicate escapeHtml Implementations
 
-**Status**: Open
+**Status**: Done
 **Priority**: Medium
 **Effort**: 20 min
 
