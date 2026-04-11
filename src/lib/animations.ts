@@ -1,3 +1,37 @@
+export interface ElementObserverOptions {
+	className?: string;
+	threshold?: number;
+	rootMargin?: string;
+}
+
+// General-purpose configurable IntersectionObserver factory
+export function createElementObserver(options: ElementObserverOptions = {}) {
+	const { className = 'animate-in', threshold = 0.05, rootMargin = '0px' } = options;
+
+	const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	if (prefersReducedMotion) {
+		return { observe: () => {}, disconnect: () => {} };
+	}
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add(className);
+					observer.unobserve(entry.target);
+				}
+			});
+		},
+		{ threshold, rootMargin }
+	);
+
+	return {
+		observe: (element: Element) => observer.observe(element),
+		disconnect: () => observer.disconnect()
+	};
+}
+
 // Scroll-triggered animations with accessibility support
 export function createScrollObserver() {
 	// Check for reduced motion preference

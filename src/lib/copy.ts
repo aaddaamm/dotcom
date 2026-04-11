@@ -54,7 +54,68 @@ export const selectedWork = [
 export const earlierWork = [
 	{ name: 'School of Motion', industry: 'Edtech', period: '2020' },
 	{ name: 'Amica Mutual', industry: 'Insurance', period: '2017–2018' },
-	{ name: 'AutoRaptor', industry: 'Automotive CRM', period: '2015' }
+	{ name: 'AutoRaptor', industry: 'Automotive CRM', period: '2015' },
+	{ name: 'Beacon Mutual Insurance', industry: 'Insurance', period: '2013–2016' }
+];
+
+function sha(seed: string): string {
+	let h = 0x811c9dc5;
+	for (let i = 0; i < seed.length; i++) {
+		h ^= seed.charCodeAt(i);
+		h = Math.imul(h, 0x01000193) >>> 0;
+	}
+	return h.toString(16).slice(0, 7);
+}
+
+export const gitLog = [
+	{
+		sha: sha('icapital-2024'),
+		ref: 'HEAD → main',
+		message: 'feat(icapital): embed with fintech platform engineering team',
+		period: '2024–'
+	},
+	{
+		sha: sha('healthcasts-2022'),
+		ref: 'feat/healthcasts',
+		message: 'feat(healthcasts): lead platform modernization from legacy PHP',
+		period: '2022–2024'
+	},
+	{
+		sha: sha('angi-2021'),
+		ref: 'feat/angi',
+		message: 'feat(angi): deliver across three merged product codebases',
+		period: '2021–2022'
+	},
+	{
+		sha: sha('school-of-motion-2020'),
+		ref: 'feat/school-of-motion',
+		message: 'feat(school-of-motion): build edtech platform features',
+		period: '2020'
+	},
+	{
+		sha: sha('shell-2018'),
+		ref: 'feat/shell',
+		message: 'feat(shell): build decommissioning tooling for oil platforms',
+		period: '2018–2019'
+	},
+	{
+		sha: sha('amica-2017'),
+		ref: 'chore/amica',
+		message: 'chore(amica): maintain insurance backend systems',
+		period: '2017–2018'
+	},
+	{
+		sha: sha('autoraptor-2015'),
+		ref: 'feat/autoraptor',
+		message: 'feat(autoraptor): build automotive crm features',
+		period: '2015'
+	},
+	{
+		sha: sha('beacon-2013'),
+		ref: 'feat/beacon',
+		message: 'feat(beacon): build claims and policy management systems',
+		period: '2013–2016'
+	}
 ];
 
 export const techStack = [
@@ -64,15 +125,19 @@ export const techStack = [
 	},
 	{
 		category: 'Backend',
-		items: ['Node.js', 'Express', 'Ruby on Rails', 'Java', 'PHP']
+		items: ['Node.js', 'Ruby on Rails', 'Elixir / Phoenix', 'Express', 'Java', 'PHP', 'SQL']
 	},
 	{
 		category: 'Infrastructure',
-		items: ['AWS', 'Vercel', 'Auth0', 'Redis', 'PostgreSQL']
+		items: ['AWS', 'Vercel', 'Netlify', 'GitHub Actions', 'Auth0', 'Redis', 'PostgreSQL']
 	},
 	{
 		category: 'Tools',
-		items: ['Git', 'Docker', 'Contentful', 'Figma']
+		items: ['Git', 'Docker', 'Prisma', 'Contentful', 'Figma']
+	},
+	{
+		category: 'AI',
+		items: ['GitHub Copilot', 'Claude', 'AMP']
 	}
 ];
 

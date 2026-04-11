@@ -19,6 +19,7 @@ SvelteKit 2 (Svelte 5) + TypeScript. Tailwind CSS 4 via `@tailwindcss/vite` — 
 - Cursor blink animation on hero only — never in nav or other components
 - Preserve `/api/goodreads/*` and `/api/sitemap` — production endpoints
 - Run `npx vite build` before considering any task complete
+- To preview draft blog posts on Vercel: set `SHOW_DRAFTS=true` on the preview environment
 
 ## Commands
 

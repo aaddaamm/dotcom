@@ -1,6 +1,6 @@
 # TICKET-060 — Blog Draft Filtering Is Dev-Mode-Only, Not Build-Mode-Aware
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Low
 **Effort**: 30 min
 

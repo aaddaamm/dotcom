@@ -8,7 +8,7 @@
 
 <SeoHead
 	title="Work With Me — Adam Robinson"
-	description="Senior software engineer available for staff augmentation and contract engagements. Ten-plus years across fintech, healthcare, and enterprise."
+	description="Lead software engineer available for staff augmentation and contract engagements. Ten-plus years across fintech, healthcare, and enterprise."
 	path="/hire"
 />
 

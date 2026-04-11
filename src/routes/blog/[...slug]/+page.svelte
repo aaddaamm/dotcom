@@ -1,24 +1,18 @@
 <script lang="ts">
 	import SeoHead from '../../../components/seo-head.svelte';
+	import { createElementObserver } from '$lib/animations';
 	import { onMount } from 'svelte';
 
 	let { data } = $props();
 	let proseEl: HTMLElement;
 
 	onMount(() => {
-		const headings = proseEl.querySelectorAll('h2, h3');
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						entry.target.classList.add('animated');
-						observer.unobserve(entry.target);
-					}
-				});
-			},
-			{ rootMargin: '0px 0px -30% 0px', threshold: 0 }
-		);
-		headings.forEach((h) => observer.observe(h));
+		const observer = createElementObserver({
+			className: 'animated',
+			threshold: 0,
+			rootMargin: '0px 0px -30% 0px'
+		});
+		proseEl.querySelectorAll('h2, h3').forEach((h) => observer.observe(h));
 		return () => observer.disconnect();
 	});
 </script>

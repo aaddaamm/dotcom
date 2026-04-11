@@ -15,8 +15,8 @@
 </script>
 
 <SeoHead
-	title="Adam Robinson — Senior Software Engineer"
-	description="Senior software engineer with ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning."
+	title="Adam Robinson — Lead Software Engineer"
+	description="Lead software engineer with ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning."
 	path="/"
 />
 

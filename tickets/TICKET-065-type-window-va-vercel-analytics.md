@@ -1,6 +1,6 @@
 # TICKET-065 — Type window.va Vercel Analytics — Repeated Unsafe Cast
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Low
 **Effort**: 15 min
 

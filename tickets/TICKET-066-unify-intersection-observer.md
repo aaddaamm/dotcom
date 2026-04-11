@@ -1,6 +1,6 @@
 # TICKET-066 — Unify IntersectionObserver Pattern — animations.ts vs Blog Post
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Low
 **Effort**: 30 min
 
