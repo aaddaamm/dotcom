@@ -3,18 +3,6 @@
 @theme {
 	--font-sans: 'Inter', system-ui, sans-serif;
 	--font-mono: 'JetBrains Mono', 'Fira Mono', 'Courier New', monospace;
-
-	--color-accent-50: #f0fdfa;
-	--color-accent-100: #ccfbf1;
-	--color-accent-200: #99f6e4;
-	--color-accent-300: #5eead4;
-	--color-accent-400: #3aafa9;
-	--color-accent-500: #2a7a7a;
-	--color-accent-600: #1f5f5f;
-	--color-accent-700: #1a4a4a;
-	--color-accent-800: #153a3a;
-	--color-accent-900: #112e2e;
-	--color-accent-950: #0a1f1f;
 }
 
 @font-face {
@@ -35,14 +23,11 @@
 	--color-code-border: #dcdcdc;
 
 	/* Design tokens */
-	--transition-fast: 150ms;
 	--transition-normal: 300ms;
 	--transition-slow: 400ms;
-	--radius-sm: 4px;
 	--radius-md: 8px;
 	--radius-lg: 12px;
 	--lift-sm: -2px;
-	--lift-md: -3px;
 	--scale-hover: 1.02;
 }
 
@@ -217,14 +202,6 @@ p {
 	color: var(--color-text);
 }
 
-.contact-link {
-	color: var(--color-muted);
-}
-
-.contact-link:hover {
-	color: var(--color-text);
-}
-
 /* Scroll animations */
 .scroll-animate {
 	opacity: 0;
@@ -372,4 +349,158 @@ p {
 
 .accent-border-20 {
 	border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+/* Blog Prose Typography */
+.prose {
+	color: var(--color-text);
+	line-height: 1.8;
+}
+
+.prose h2 {
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 48px;
+	margin-bottom: 16px;
+	color: var(--color-text);
+	font-family: var(--font-mono);
+	letter-spacing: -0.3px;
+	position: relative;
+	padding-bottom: 10px;
+}
+
+.prose h2::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 1px;
+	background-color: var(--color-accent);
+	transition: width 500ms ease-out;
+}
+
+.prose h2.animated::after {
+	width: 100%;
+}
+
+.prose h3 {
+	font-size: 16px;
+	font-weight: 500;
+	margin-top: 32px;
+	margin-bottom: 12px;
+	color: var(--color-text);
+	font-family: var(--font-mono);
+	position: relative;
+	padding-bottom: 6px;
+}
+
+.prose h3::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 1px;
+	background-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+	transition: width 400ms ease-out;
+}
+
+.prose h3.animated::after {
+	width: 100%;
+}
+
+.prose p {
+	margin-bottom: 20px;
+	color: var(--color-text);
+}
+
+.prose strong {
+	font-weight: 600;
+	color: var(--color-text);
+}
+
+.prose a {
+	color: var(--color-accent);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.prose a:hover {
+	color: var(--color-text);
+}
+
+/* Inline code — themes with the page */
+.prose code:not(pre code) {
+	font-family: var(--font-mono);
+	font-size: 13px;
+	background-color: color-mix(in srgb, var(--color-accent) 8%, var(--color-bg));
+	color: var(--color-text);
+	padding: 2px 6px;
+	border-radius: 4px;
+	border: 1px solid var(--color-border);
+}
+
+/* Code blocks — theme-aware via CSS vars */
+.prose pre {
+	background-color: var(--color-code-bg);
+	border: 1px solid var(--color-code-border);
+	border-radius: 6px;
+	padding: 20px;
+	overflow-x: auto;
+	margin-bottom: 24px;
+}
+
+.prose pre code {
+	background: none;
+	border: none;
+	padding: 0;
+	font-size: 13px;
+	line-height: 1.6;
+	color: var(--color-code-text);
+}
+
+.prose ul {
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 20px;
+}
+
+.prose ul li {
+	position: relative;
+	padding-left: 20px;
+	margin-bottom: 8px;
+}
+
+.prose ul li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 10px;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background-color: var(--color-accent);
+}
+
+.prose ol {
+	padding-left: 20px;
+	margin-bottom: 20px;
+}
+
+.prose ol li {
+	margin-bottom: 8px;
+}
+
+.prose blockquote {
+	border-left: 2px solid var(--color-accent);
+	padding-left: 20px;
+	color: var(--color-muted);
+	margin-bottom: 20px;
+}
+
+.prose hr {
+	border: none;
+	border-top: 1px solid var(--color-border);
+	margin: 48px 0;
 }
