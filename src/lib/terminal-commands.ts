@@ -50,7 +50,7 @@ export function runCommand(rawInput: string, mode: Mode): CommandResult {
 		};
 	}
 
-	if (lower === 'help') {
+	if (lower === 'help' || lower === '-h' || lower === '--help') {
 		return {
 			lines: [
 				'available commands:',
@@ -261,7 +261,7 @@ const argMap: Record<string, string[]> = {
 };
 
 const topLevelCommands = [
-	'whoami', 'help', 'ls', 'cat', 'contact', 'open', 'echo',
+	'whoami', 'help', '-h', 'ls', 'cat', 'contact', 'open', 'echo',
 	'git', 'sudo', 'clear', 'exit', 'quit', 'rm', 'vim', 'vi',
 	'nano', 'emacs', 'mode', 'chocobo',
 ];
