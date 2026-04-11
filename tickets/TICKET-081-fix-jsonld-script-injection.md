@@ -1,6 +1,6 @@
 # TICKET-081 — Fix JSON-LD Script Tag Injection Risk
 
-**Status**: Open
+**Status**: Done
 **Priority**: Medium
 **Effort**: 20 min
 

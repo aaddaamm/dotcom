@@ -38,7 +38,7 @@
 		},
 		url: `https://adamrobinson.tech/blog/${data.post.slug}`,
 		keywords: data.post.tags
-	})}</` + `script>`}
+	}).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026')}</` + `script>`}
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html `<script type="application/ld+json">${JSON.stringify({
 		'@context': 'https://schema.org',
@@ -63,7 +63,7 @@
 				item: `https://adamrobinson.tech/blog/${data.post.slug}`
 			}
 		]
-	})}</` + `script>`}
+	}).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026')}</` + `script>`}
 </svelte:head>
 
 <article class="max-w-3xl mx-auto px-6">
