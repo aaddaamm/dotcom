@@ -1,6 +1,6 @@
 # TICKET-068 — Remove Unused `budget` and `phone` Fields from ContactFormData
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Low
 **Effort**: 15 min
 

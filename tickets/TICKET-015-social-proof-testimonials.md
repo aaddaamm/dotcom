@@ -11,7 +11,6 @@ Add testimonials, LinkedIn recommendations, and trust signals throughout the sit
 ## Acceptance Criteria
 
 - [ ] Create testimonials component with LinkedIn recommendations and client quotes (3-5 entries, names and companies)
-- [ ] Add client logo section on homepage (coordinate with TICKET-042)
 - [ ] Add testimonials near contact form on contact page
 - [ ] Schema markup for review snippets
 

@@ -1,6 +1,6 @@
 # TICKET-062 — Extract WorkCard Component — Duplicated Across Home and Work Pages
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Medium
 **Effort**: 1-2 hours
 

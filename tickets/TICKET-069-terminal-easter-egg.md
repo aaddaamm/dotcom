@@ -1,6 +1,6 @@
 # TICKET-069 — Terminal Easter Egg
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: Medium
 **Effort**: 4-6 hours
 

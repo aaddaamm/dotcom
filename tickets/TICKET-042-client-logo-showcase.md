@@ -1,6 +1,6 @@
 # TICKET-042 — Client Logo Showcase
 
-**Status**: Backlog
+**Status**: Rejected
 **Priority**: High
 **Effort**: 2-3 hours
 
@@ -17,4 +17,4 @@ Display logos of companies worked with (permission-based) — iCapital, Shell, A
 
 ## Notes
 
-Upgraded from Medium — recognizable company names are a key trust signal for hiring managers. Logo use requires permission; plain-text name-dropping in case studies (TICKET-018) is the safe default in the meantime.
+Rejected — not pursuing logo permissions. Plain-text company name-dropping in case studies (TICKET-018) achieves the same credibility signal.
