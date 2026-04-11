@@ -23,18 +23,3 @@ export function createApiResponse<T>(
 	});
 }
 
-export function createErrorResponse(message: string, status: number = 500) {
-	return createApiResponse({ error: message }, { status, statusText: getStatusText(status) });
-}
-
-function getStatusText(status: number): string {
-	const statusTexts: Record<number, string> = {
-		400: 'Bad Request',
-		401: 'Unauthorized',
-		403: 'Forbidden',
-		404: 'Not Found',
-		500: 'Internal Server Error'
-	};
-
-	return statusTexts[status] || 'Error';
-}

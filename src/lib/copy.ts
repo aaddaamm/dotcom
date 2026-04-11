@@ -3,13 +3,6 @@ export const availability = {
 	label: 'Available for new engagements — can typically start within a week or two'
 };
 
-export const approachItems = [
-	'Clear documentation and maintainable code',
-	'Building solutions that grow with your needs',
-	'Simple tools that solve real problems',
-	'Supporting you and your team long-term'
-];
-
 export const selectedWork = [
 	{
 		title: 'iCapital — Fintech Platform Engineering',
