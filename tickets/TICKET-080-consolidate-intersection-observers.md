@@ -1,6 +1,6 @@
 # TICKET-080 — Consolidate Duplicate IntersectionObserver Factories
 
-**Status**: Open
+**Status**: Done
 **Priority**: Medium
 **Effort**: 30 min
 
