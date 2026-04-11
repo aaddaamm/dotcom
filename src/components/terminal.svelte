@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { onMount, onDestroy, tick } from 'svelte';
-	import { browser } from '$app/environment';
+	import { onDestroy, tick } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
-	import { terminalOpen, terminalOpenTrigger } from '$lib/stores/terminal';
+	import { terminalOpen } from '$lib/stores/terminal';
 	import { runCommand, getCompletions } from '$lib/terminal-commands';
 	import type { Mode } from '$lib/terminal-commands';
 
@@ -17,18 +16,22 @@
 	let cmdHistory = $state<string[]>([]);
 	let cmdHistoryIndex = $state(-1);
 	let mode = $state<Mode>('terminal');
-	let rpgUnlocked = $state(false);
 
 	let inputEl: HTMLInputElement;
 	let scrollEl: HTMLElement;
 
+	// Sync isOpen → shared store so layout can hide the footer CTA
 	$effect(() => {
 		if (!fullscreen) terminalOpen.set(isOpen);
 	});
 
+	// Open when triggered externally (e.g. footer button sets terminalOpen)
 	$effect(() => {
-		// scroll to bottom whenever history changes
-		const _ = history.length;
+		if ($terminalOpen && !isOpen && !fullscreen) open();
+	});
+
+	$effect(() => {
+		history.length; // track history mutations for auto-scroll
 		tick().then(() => {
 			if (scrollEl) scrollEl.scrollTop = scrollEl.scrollHeight;
 		});
@@ -77,8 +80,6 @@
 		}
 
 		if (result.modeChange) mode = result.modeChange;
-		if (result.rpgUnlock) rpgUnlocked = true;
-
 		if (result.navigate) {
 			const dest = result.navigate;
 			setTimeout(() => {
@@ -154,18 +155,14 @@
 		open(e.key);
 	}
 
-	onMount(() => {
+	// $effect is browser-only — no window guard needed
+	$effect(() => {
 		window.addEventListener('keydown', handleWindowKeydown);
 		if (fullscreen) tick().then(() => inputEl?.focus());
-
-		const unsub = terminalOpenTrigger.subscribe((val) => {
-			if (val > 0 && !fullscreen) open();
-		});
-		return unsub;
+		return () => window.removeEventListener('keydown', handleWindowKeydown);
 	});
 
 	onDestroy(() => {
-		if (browser) window.removeEventListener('keydown', handleWindowKeydown);
 		if (!fullscreen) terminalOpen.set(false);
 	});
 

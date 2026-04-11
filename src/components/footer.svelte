@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import { terminalOpenTrigger } from '$lib/stores/terminal';
+	import { openTerminal } from '$lib/stores/terminal';
 
 	let emailCopied = $state(false);
 	let githubCopied = $state(false);
@@ -84,7 +84,7 @@
 				&copy; {new Date().getFullYear()} Adam Robinson
 				<button
 					class="terminal-hint"
-					onclick={() => terminalOpenTrigger.update((n) => n + 1)}
+					onclick={openTerminal}
 					aria-label="Open terminal"
 				>&gt;_</button>
 			</p>
