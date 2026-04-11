@@ -1,5 +1,4 @@
-import * as cheerio from 'cheerio';
-import type { AnyNode } from 'domhandler';
+import { XMLParser } from 'fast-xml-parser';
 import type { GoodreadsBook } from '$lib/types';
 import { GOODREADS_SHELVES } from '$lib/constants';
 import { Redis } from '@upstash/redis';
@@ -12,6 +11,8 @@ const PAGE_SIZE = 100;
 // L1: per-instance in-memory cache. L2: Upstash, shared across all instances.
 const memoryCache = new Map<string, { data: GoodreadsBook[]; timestamp: number }>();
 const CACHE_TTL_MS = CACHE_TTL_SECONDS * 1000;
+
+const parser = new XMLParser({ isArray: (name) => name === 'item' });
 
 let redisClient: Redis | null | undefined;
 
@@ -34,26 +35,21 @@ export namespace GoodreadsService {
 		return { title: rawTitle.trim() };
 	}
 
-	export function parseBookFromRSSItem(item: cheerio.Cheerio<AnyNode>): GoodreadsBook {
-		const rawTitle = item.find('title').text();
+	function parseBookFromItem(raw: Record<string, unknown>): GoodreadsBook {
+		const rawTitle = String(raw.title ?? '');
 		const { title, series } = parseTitleAndSeries(rawTitle);
-		const author = item.find('author_name').text();
-		const bookId = item.find('book_id').text();
-		const cover = item.find('book_large_image_url').text();
-		const isbn = item.find('isbn').text();
-		const rating = parseInt(item.find('user_rating').text()) || 0;
-		const dateAdded = item.find('user_date_added').text();
-		const url = `https://www.goodreads.com/book/show/${bookId}`;
+		const bookId = String(raw.book_id ?? '');
+		const rating = parseInt(String(raw.user_rating ?? '0')) || 0;
 
 		return {
-			cover,
+			cover: String(raw.book_large_image_url ?? ''),
 			title,
 			series,
-			author,
-			url,
+			author: String(raw.author_name ?? ''),
+			url: `https://www.goodreads.com/book/show/${bookId}`,
 			rating: rating || undefined,
-			isbn,
-			dateStarted: dateAdded,
+			isbn: String(raw.isbn ?? ''),
+			dateStarted: String(raw.user_date_added ?? ''),
 			goodreadsID: parseInt(bookId) || 0
 		};
 	}
@@ -65,15 +61,12 @@ export namespace GoodreadsService {
 	): Promise<{ books: GoodreadsBook[]; total: number }> {
 		const response = await fetch(`${RSS_BASE_URL}?shelf=${shelf}&page=${page}`);
 		const text = await response.text();
-		const xml = cheerio.load(text, { xmlMode: true });
+		const parsed = parser.parse(text);
 
-		const totalMatch = text.match(/<openSearch:totalResults>(\d+)<\/openSearch:totalResults>/);
-		const total = totalMatch ? parseInt(totalMatch[1]) : 0;
-
-		const books: GoodreadsBook[] = [];
-		xml('item').each((_, elem) => {
-			books.push(parseBookFromRSSItem(xml(elem)));
-		});
+		const channel = parsed?.rss?.channel ?? {};
+		const total = Number(channel['openSearch:totalResults'] ?? 0);
+		const items: unknown[] = channel.item ?? [];
+		const books = items.map((item) => parseBookFromItem(item as Record<string, unknown>));
 
 		return { books, total };
 	}

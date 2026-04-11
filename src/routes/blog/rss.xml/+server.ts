@@ -1,6 +1,8 @@
 import { getAllPosts } from '$lib/server/blog';
 import { escapeHtml as escapeXml } from '$lib/server/utils';
 
+export const prerender = true;
+
 export function GET() {
 	const posts = getAllPosts();
 	const base = 'https://adamrobinson.tech';
