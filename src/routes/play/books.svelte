@@ -151,12 +151,12 @@
 
 	.empty-state {
 		border: 1px solid var(--color-border);
-		background-color: color-mix(in srgb, var(--color-surface) 20%, transparent);
+		background-color: color-mix(in srgb, var(--color-bg) 20%, transparent);
 	}
 
 	.book-card {
 		border: 1px solid var(--color-border);
-		background-color: color-mix(in srgb, var(--color-surface) 20%, transparent);
+		background-color: color-mix(in srgb, var(--color-bg) 20%, transparent);
 		transition:
 			transform 0.2s ease,
 			border-color 0.2s ease;
