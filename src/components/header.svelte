@@ -7,7 +7,7 @@
 	<div class="max-w-3xl mx-auto flex items-center justify-between h-full header-inner">
 		<a href="/" aria-label="Adam Robinson — Home" class="flex items-center gap-3 shrink-0">
 			<img
-				src={$themeStore === 'dark' ? '/logo-dark.svg' : '/logo-light.svg'}
+				src="/logo-dark.svg"
 				alt="Adam Robinson"
 				class="h-10 hidden sm:block logo-wordmark"
 				loading="eager"
@@ -47,6 +47,10 @@
 
 	.logo-wordmark {
 		min-width: 240px;
+	}
+
+	:global([data-theme='light']) .logo-wordmark {
+		content: url('/logo-light.svg');
 	}
 
 	.nav-divider {

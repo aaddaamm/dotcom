@@ -1,6 +1,6 @@
 # TICKET-082 — Fix Logo Theme Flicker on First Paint
 
-**Status**: Open
+**Status**: Done
 **Priority**: Medium
 **Effort**: 30 min
 
