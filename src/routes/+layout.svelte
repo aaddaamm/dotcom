@@ -10,7 +10,9 @@
 	import '../app.css';
 	import Footer from '../components/footer.svelte';
 	import Header from '../components/header.svelte';
+	import Terminal from '../components/terminal.svelte';
 	import { themeStore } from '$lib/stores/theme';
+	import { terminalOpen } from '$lib/stores/terminal';
 	import { page } from '$app/state';
 
 	let { children }: { children: Snippet } = $props();
@@ -61,7 +63,11 @@
 	<Footer />
 </div>
 
-{#if page.url.pathname !== '/contact'}
+{#if page.url.pathname !== '/terminal'}
+	<Terminal />
+{/if}
+
+{#if page.url.pathname !== '/contact' && !$terminalOpen}
 	<a href="/contact" class="mobile-fab sm:hidden" aria-label="Get In Touch">Get In Touch</a>
 {/if}
 
