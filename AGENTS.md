@@ -50,7 +50,7 @@ src/
     +page.svelte     — Homepage (hero with cursor blink, about, approach, work, AI, outside, contact)
     +error.svelte    — Error page with status code and back link
     play/            — Reading page (SSR Goodreads integration via +page.server.ts)
-    teach/           — Interactive JS playground
+    teach/           — Learning resources and curated external links
     api/             — API routes (goodreads/, contact/, sitemap/)
 static/
   logo-dark.svg      — Dark-mode wordmark

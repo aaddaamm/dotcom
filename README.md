@@ -29,18 +29,12 @@ npm run dev
 
    Get your API key from: https://resend.com/api-keys
 
-2. **Optional - Database** (not currently used):
-   ```bash
-   DATABASE_URL="postgresql://<username>:<password>@localhost:5432/dotcom?schema=public"
-   npx prisma migrate dev
-   ```
-
 ## Development Commands
 
 | Command           | Purpose                      |
 | ----------------- | ---------------------------- |
 | `npm run dev`     | Dev server (opens browser)   |
-| `npm run build`   | Production build             |
+| `npx vite build`  | Production build             |
 | `npm run preview` | Preview production build     |
 | `npm run check`   | Svelte + TypeScript checking |
 | `npm run lint`    | Prettier + ESLint            |
