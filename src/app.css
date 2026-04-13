@@ -258,7 +258,7 @@ p {
 
 .btn-primary:hover {
 	background-color: color-mix(in srgb, var(--color-accent) 85%, white);
-	transform: var(--lift-sm);
+	transform: translateY(var(--lift-sm));
 	box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 25%, transparent);
 }
 
@@ -283,7 +283,7 @@ p {
 .btn-secondary:hover {
 	background-color: var(--color-accent);
 	color: white;
-	transform: var(--lift-sm);
+	transform: translateY(var(--lift-sm));
 	box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 25%, transparent);
 }
 
@@ -304,7 +304,7 @@ p {
 }
 
 .card-hover-lift:hover {
-	transform: var(--lift-sm);
+	transform: translateY(var(--lift-sm));
 	background-color: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
 	border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
 	box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 10%, transparent);
@@ -318,7 +318,7 @@ p {
 }
 
 .card-work:hover {
-	transform: var(--scale-hover);
+	transform: scale(var(--scale-hover));
 	background-color: color-mix(in srgb, var(--color-accent) 7%, var(--color-bg));
 	border-color: color-mix(in srgb, var(--color-accent) 50%, var(--color-border));
 	border-left-color: var(--color-accent);

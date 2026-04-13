@@ -32,6 +32,10 @@ export function validateContactForm(data: ContactFormData): ValidationResult {
 		errors.email = 'Please enter a valid email address';
 	}
 
+	if (!data.project || data.project.trim().length === 0) {
+		errors.project = 'Please select a project type';
+	}
+
 	if (!data.message || data.message.trim().length < 10) {
 		errors.message = 'Message must be at least 10 characters';
 	}

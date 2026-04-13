@@ -11,23 +11,26 @@
 	let submitted = $state(false);
 	let errorMessage = $state('');
 	let successMessage = $state('');
+	let fieldErrors = $state<Record<string, string>>({});
 
 	async function handleSubmit(event: Event) {
 		event.preventDefault();
 		isSubmitting = true;
 		errorMessage = '';
 		successMessage = '';
-		// Create form data object
+		fieldErrors = {};
+
+		// Validate form
 		const formData: ContactFormData = {
 			name: name.trim(),
 			email: email.trim(),
 			phone: phone.trim(),
-			message: `${project.trim()}\n\n${message.trim()}`
+			project: project.trim(),
+			message: message.trim()
 		};
-
-		// Validate form
 		const validation = validateContactForm(formData);
 		if (!validation.isValid) {
+			fieldErrors = validation.errors;
 			errorMessage = 'Please fix the errors below.';
 			isSubmitting = false;
 			return;
@@ -115,9 +118,11 @@
 					bind:value={name}
 					required
 					class="form-input"
+					class:field-error={fieldErrors.name}
 					placeholder="Your name"
 					disabled={isSubmitting}
 				/>
+				{#if fieldErrors.name}<p class="field-error-msg">{fieldErrors.name}</p>{/if}
 			</div>
 
 			<div class="form-group">
@@ -128,9 +133,11 @@
 					bind:value={email}
 					required
 					class="form-input"
+					class:field-error={fieldErrors.email}
 					placeholder="your@email.com"
 					disabled={isSubmitting}
 				/>
+				{#if fieldErrors.email}<p class="field-error-msg">{fieldErrors.email}</p>{/if}
 			</div>
 
 			<div class="form-group">
@@ -152,6 +159,7 @@
 					bind:value={project}
 					required
 					class="form-input"
+					class:field-error={fieldErrors.project}
 					disabled={isSubmitting}
 				>
 					<option value="">What brings you here...</option>
@@ -160,6 +168,7 @@
 					<option value="Technical consulting">Technical consulting</option>
 					<option value="Something else">Something else</option>
 				</select>
+				{#if fieldErrors.project}<p class="field-error-msg">{fieldErrors.project}</p>{/if}
 			</div>
 
 			<div class="form-group">
@@ -170,9 +179,11 @@
 					required
 					rows="4"
 					class="form-input"
+					class:field-error={fieldErrors.message}
 					placeholder="Tell me about your project, timeline, and any specific challenges you're facing..."
 					disabled={isSubmitting}
 				></textarea>
+				{#if fieldErrors.message}<p class="field-error-msg">{fieldErrors.message}</p>{/if}
 			</div>
 
 			<div class="honeypot" aria-hidden="true">
@@ -318,5 +329,15 @@
 		background-color: color-mix(in srgb, #ef4444 10%, var(--color-bg));
 		border: 1px solid color-mix(in srgb, #ef4444 20%, transparent);
 		color: #ef4444;
+	}
+
+	.form-input.field-error {
+		border-color: #ef4444;
+	}
+
+	.field-error-msg {
+		font-size: 0.8rem;
+		color: #ef4444;
+		margin: 0;
 	}
 </style>
