@@ -10,7 +10,8 @@
 
 	type HistoryEntry = { type: 'input'; text: string } | { type: 'output'; lines: string[] };
 
-	let isOpen = $state(fullscreen);
+	const _initOpen = fullscreen;
+	let isOpen = $state(_initOpen);
 	let input = $state('');
 	let history = $state<HistoryEntry[]>([]);
 	let cmdHistory = $state<string[]>([]);
