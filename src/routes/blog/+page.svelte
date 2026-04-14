@@ -10,15 +10,6 @@
 	path="/blog"
 />
 
-<svelte:head>
-	<link
-		rel="alternate"
-		type="application/rss+xml"
-		title="Adam Robinson — Blog"
-		href="/blog/rss.xml"
-	/>
-</svelte:head>
-
 <div class="max-w-3xl mx-auto px-6">
 	<section class="pt-20 sm:pt-28">
 		<a href="/" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">

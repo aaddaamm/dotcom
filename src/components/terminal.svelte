@@ -8,7 +8,8 @@
 
 	let { fullscreen = false }: { fullscreen?: boolean } = $props();
 
-	type HistoryEntry = { type: 'input'; text: string } | { type: 'output'; lines: string[] };
+	type HistoryEntry = { id: number; type: 'input'; text: string } | { id: number; type: 'output'; lines: string[] };
+	let nextId = 0;
 
 	const _initOpen = fullscreen;
 	let isOpen = $state(_initOpen);
@@ -60,7 +61,7 @@
 		input = '';
 		if (!cmd) return;
 
-		history = [...history, { type: 'input', text: cmd }];
+		history = [...history, { id: nextId++, type: 'input', text: cmd }];
 		cmdHistory = [cmd, ...cmdHistory.slice(0, 49)];
 		cmdHistoryIndex = -1;
 
@@ -77,7 +78,7 @@
 		}
 
 		if (result.lines.length > 0) {
-			history = [...history, { type: 'output', lines: result.lines }];
+			history = [...history, { id: nextId++, type: 'output', lines: result.lines }];
 		}
 
 		if (result.modeChange) mode = result.modeChange;
@@ -132,7 +133,7 @@
 					input = tokens.join(' ');
 				}
 			} else {
-				history = [...history, { type: 'output', lines: [completions.join('   ')] }];
+				history = [...history, { id: nextId++, type: 'output', lines: [completions.join('   ')] }];
 			}
 		}
 	}
@@ -192,7 +193,7 @@
 		{#if fullscreen && history.length === 0}
 			<div class="terminal-line output muted">type 'help' for available commands.</div>
 		{/if}
-		{#each history as entry (entry)}
+		{#each history as entry (entry.id)}
 			{#if entry.type === 'input'}
 				<div class="terminal-line"><span class="prompt">{PROMPT}</span>&nbsp;{entry.text}</div>
 			{:else}

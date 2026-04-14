@@ -4,6 +4,12 @@ import { env } from '$env/dynamic/private';
 const RATE_LIMIT_WINDOW = 15 * 60; // 15 minutes in seconds
 const RATE_LIMIT_MAX = 3;
 
+let redis: Redis | null = null;
+function getRedis(): Redis {
+	if (!redis) redis = new Redis({ url: env.KV_REST_API_URL, token: env.KV_REST_API_TOKEN });
+	return redis;
+}
+
 // In-memory fallback for when Redis is unavailable. Per-instance, resets on cold start,
 // but ensures some protection even if Upstash is down or env vars are missing.
 const memoryRateLimit = new Map<string, { count: number; resetAt: number }>();
@@ -21,10 +27,9 @@ function checkMemoryRateLimit(ip: string): boolean {
 
 export async function isRateLimited(ip: string): Promise<boolean> {
 	try {
-		const redis = new Redis({ url: env.KV_REST_API_URL, token: env.KV_REST_API_TOKEN });
 		const key = `rate_limit:contact:${ip}`;
-		const count = await redis.incr(key);
-		if (count === 1) await redis.expire(key, RATE_LIMIT_WINDOW);
+		const count = await getRedis().incr(key);
+		if (count === 1) await getRedis().expire(key, RATE_LIMIT_WINDOW);
 		return count > RATE_LIMIT_MAX;
 	} catch {
 		console.warn('Rate limit Redis unavailable — using in-memory fallback');

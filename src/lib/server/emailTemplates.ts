@@ -27,7 +27,7 @@ export function contactNotificationHtml(data: ContactFormData): string {
 			</div>
 
 			<div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid ${BORDER}; font-size: 0.9em; color: ${MUTED};">
-				<p>Submitted at: ${new Date().toLocaleString()}</p>
+				<p>Submitted at: ${new Date().toISOString()}</p>
 				<p>From: adamrobinson.tech contact form</p>
 			</div>
 		</div>
