@@ -9,10 +9,12 @@
 			<img
 				src="/logo-dark.svg"
 				alt="Adam Robinson"
+				width="240"
+				height="40"
 				class="h-10 hidden sm:block logo-wordmark"
 				loading="eager"
 			/>
-			<img src="/icon.svg" alt="Adam Robinson" class="h-10 block sm:hidden" loading="eager" />
+			<img src="/icon.svg" alt="Adam Robinson" width="40" height="40" class="h-10 block sm:hidden" loading="eager" />
 		</a>
 
 		<div class="flex items-center gap-6">

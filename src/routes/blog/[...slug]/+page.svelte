@@ -31,6 +31,8 @@
 		headline: data.post.title,
 		description: data.post.description,
 		datePublished: data.post.date,
+		dateModified: data.post.date,
+		image: 'https://adamrobinson.tech/og-card.png',
 		author: {
 			'@type': 'Person',
 			name: 'Adam Robinson',

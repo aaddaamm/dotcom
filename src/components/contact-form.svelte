@@ -121,8 +121,9 @@
 					class:field-error={fieldErrors.name}
 					placeholder="Your name"
 					disabled={isSubmitting}
+					aria-describedby={fieldErrors.name ? 'name-error' : undefined}
 				/>
-				{#if fieldErrors.name}<p class="field-error-msg">{fieldErrors.name}</p>{/if}
+				{#if fieldErrors.name}<p id="name-error" class="field-error-msg">{fieldErrors.name}</p>{/if}
 			</div>
 
 			<div class="form-group">
@@ -136,8 +137,9 @@
 					class:field-error={fieldErrors.email}
 					placeholder="your@email.com"
 					disabled={isSubmitting}
+					aria-describedby={fieldErrors.email ? 'email-error' : undefined}
 				/>
-				{#if fieldErrors.email}<p class="field-error-msg">{fieldErrors.email}</p>{/if}
+				{#if fieldErrors.email}<p id="email-error" class="field-error-msg">{fieldErrors.email}</p>{/if}
 			</div>
 
 			<div class="form-group">
@@ -161,6 +163,7 @@
 					class="form-input"
 					class:field-error={fieldErrors.project}
 					disabled={isSubmitting}
+					aria-describedby={fieldErrors.project ? 'project-error' : undefined}
 				>
 					<option value="">What brings you here...</option>
 					<option value="Full-time opportunity">Full-time opportunity</option>
@@ -168,7 +171,7 @@
 					<option value="Technical consulting">Technical consulting</option>
 					<option value="Something else">Something else</option>
 				</select>
-				{#if fieldErrors.project}<p class="field-error-msg">{fieldErrors.project}</p>{/if}
+				{#if fieldErrors.project}<p id="project-error" class="field-error-msg">{fieldErrors.project}</p>{/if}
 			</div>
 
 			<div class="form-group">
@@ -182,8 +185,9 @@
 					class:field-error={fieldErrors.message}
 					placeholder="Tell me about your project, timeline, and any specific challenges you're facing..."
 					disabled={isSubmitting}
+					aria-describedby={fieldErrors.message ? 'message-error' : undefined}
 				></textarea>
-				{#if fieldErrors.message}<p class="field-error-msg">{fieldErrors.message}</p>{/if}
+				{#if fieldErrors.message}<p id="message-error" class="field-error-msg">{fieldErrors.message}</p>{/if}
 			</div>
 
 			<div class="honeypot" aria-hidden="true">

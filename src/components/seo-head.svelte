@@ -19,6 +19,8 @@
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:image" content="{base}/og-card.png" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
 	<meta property="og:image:alt" content={title} />
 	<meta property="og:url" content={url} />
 	<meta name="twitter:card" content="summary_large_image" />

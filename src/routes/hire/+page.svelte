@@ -3,7 +3,7 @@
 	import PageHeader from '../../components/page-header.svelte';
 	import ServicesSection from '../../components/services-section.svelte';
 	import FaqSection from '../../components/faq-section.svelte';
-	import { techStack } from '$lib/copy';
+	import { techStack, faqItems } from '$lib/copy';
 </script>
 
 <SeoHead
