@@ -10,8 +10,15 @@ export const selectedWork = [
 		role: 'Staff Augmentation / Senior Engineer',
 		description:
 			"Embedded with an engineering team building a subdomain of iCapital's alternative investment platform. Navigating a large, complex codebase independently to deliver full-stack solutions, while also contributing to communication practices and engineering culture.",
-		stack: ['React', 'TypeScript', 'Node.js'],
-		outcome: 'Ongoing contributor across multiple subdomains of an enterprise fintech platform'
+		stack: ['React', 'TypeScript', 'Node.js', 'Rails'],
+		outcome: 'Ongoing contributor across multiple subdomains of an enterprise fintech platform',
+		caseStudy: {
+			situation:
+				"iCapital's platform handles alternative investment transactions for wealth managers at scale — a large, complex codebase with many specialized teams. Joined as a staff aug senior engineer, embedded with one of those teams and contributing across the full stack.",
+			work: "Expanded translation support across the platform — covering both static UI copy and dynamic, database-backed content using the Mobility gem for Rails. On the Nominee Investments project — a high-visibility initiative to unify several disparate nominee investment flows — co-designed and built a new Rails service to consolidate bulk processing for thousands of investments, with a clean API surface for frontend consumption. Also drove the team's migration from v1 to v2 of Supernova, their internal React component library — navigating breaking changes and coordinating back-and-forth with the library team when components needed fixes or new releases before the upgrade could proceed.",
+			outcome:
+				'Still engaged — trusted with backend service design, a cross-stack i18n rollout, and a component library migration on one of the more complex fintech platforms in the alternatives space.'
+		}
 	},
 	{
 		title: 'Angi — Multi-Platform Engineering',
@@ -21,7 +28,14 @@ export const selectedWork = [
 			"Moved across three separate products — HomeAdvisor (Vue/Java), Handy (Ruby on Rails), and Angie's List (Next.js) — contributing to each on its own terms. Took engineering interns under my wing, exposing them to sound practices and involving them in meaningful domain design work.",
 		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js', 'Contentful'],
 		outcome:
-			'Cross-product delivery and intern mentorship across a newly merged home services platform'
+			'Cross-product delivery and intern mentorship across a newly merged home services platform',
+		caseStudy: {
+			situation:
+				'Angi was in the middle of a merger — HomeAdvisor, Handy, and Angie\'s List operating as separate products under one roof, each with its own codebase, stack, and team.',
+			work: "On HomeAdvisor, worked in Vue and Java to unify the user quiz flow across the merging brands into a single Angi experience. On Handy, worked in Rails and React on professional assignment logic and job ingestion for Handy partner stores. On Angie's List, built out a CMS-driven content experience in Next.js — blog-style project descriptions with varied visual layouts. Along the way, found myself in a position to take on a team of interns: coached them through real development workflows using a live use case — a Careers page revamp — and by the end they had something real to demo. Brought in a colleague to help carry the work across the finish line before rotating off.",
+			outcome:
+				'Delivered across three separate products and stacks inside a single engagement — and left a cleaner codebase and a team of interns who shipped something they could be proud of.'
+		}
 	},
 	{
 		title: 'Shell — Oil Platform Decommissioning',
@@ -29,9 +43,15 @@ export const selectedWork = [
 		role: 'Software Engineer',
 		description:
 			'Built software to support the decommissioning of end-of-life oil platforms for Shell Techworks in Boston. Fast-paced MVP delivery with React and Node, structured around the Google Design Sprint process, including onsite collaboration sessions.',
-		stack: ['React', 'Node.js'],
+		stack: ['React', 'Node.js', 'Ant Design'],
 		outcome:
-			'MVP delivered on schedule using Design Sprint methodology with Shell engineering in Boston'
+			'MVP delivered on schedule using Design Sprint methodology with Shell engineering in Boston',
+		caseStudy: {
+			situation:
+				'Brought in to build tooling for Shell Techworks to support the decommissioning of end-of-life offshore oil platforms — a domain with real cost and logistical complexity.',
+			work: 'Built a full-stack application that ingested oil platform data and processed it to determine the optimal, least-cost decommissioning path. Frontend in React with Ant Design, backend in Node. Worked onsite with the Shell Techworks team in Boston, using the Google Design Sprint process to rapidly iterate and arrive at a clear MVP scope — compressing what could have been months of back-and-forth into focused, structured sessions.',
+			outcome: 'MVP delivered on schedule, with the Design Sprint process doing real work — not just ceremony.'
+		}
 	},
 	{
 		title: 'Healthcasts — Platform Modernization',
@@ -39,8 +59,15 @@ export const selectedWork = [
 		role: 'Team Lead',
 		description:
 			'Team lead debut: worked with the client to plan an MVP that modernized their core business deliverables. Dove into a legacy PHP application to surface business logic, then rebuilt around a new CMS, review workflow, and custom rendering layer. Completely overhauled authentication — ripping out a brittle custom solution and replacing it with OAuth via Auth0 — which required a full backend redesign and careful coordination across engineering teams to propagate the change between the legacy system and the new one without breaking production. Navigated tight deadlines and an AWS crash course throughout. The engagement succeeded and grew into a four-year collaboration.',
-		stack: ['React', 'Express', 'Auth0', 'AWS', 'PHP (legacy)'],
-		outcome: 'Successful MVP delivery that led to a four-year continued engagement'
+		stack: ['React', 'Express', 'Auth0', 'AWS', 'Strapi', 'PHP (legacy)'],
+		outcome: 'Successful MVP delivery that led to a four-year continued engagement',
+		caseStudy: {
+			situation:
+				'Brought in as tech lead to modernize Healthcasts\' core publication workflow and platform infrastructure.',
+			work: 'Built a new publishing pipeline around a headless CMS (Strapi) and a custom React rendering layer, dramatically reducing time-to-publish for their medical consensus deliverable — a structured question posed to their user base, condensed into a published document for readers. Updated their AWS infrastructure and migrated frameworks to current, supported versions. Then led a full authentication overhaul — unifying login across all their platforms with Auth0, moving to a single secure flow that also unblocked a parallel AI initiative dependent on a cleaner identity layer.',
+			outcome:
+				'The MVP engagement grew into a four-year collaboration — a rare signal that the work held up under real production conditions.'
+		}
 	}
 ];
 

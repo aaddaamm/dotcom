@@ -1,6 +1,6 @@
 # TICKET-018 — Portfolio Case Studies
 
-**Status**: Backlog
+**Status**: Done
 **Priority**: High
 **Effort**: 6-8 hours
 
@@ -10,10 +10,10 @@ Replace generic portfolio blurbs with real case studies showing client, problem,
 
 ## Acceptance Criteria
 
-- [ ] Write 3-4 case studies with problem, solution, outcome, and role
-- [ ] Add to /work page or create individual case study pages
+- [x] Write 3-4 case studies with problem, solution, outcome, and role
+- [x] Add to /work page or create individual case study pages
 - [ ] Include metrics where possible (time saved, performance gains, etc.)
-- [ ] Include client industry and project size context
+- [x] Include client industry and project size context
 
 ## Notes
 

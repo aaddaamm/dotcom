@@ -5,7 +5,7 @@
 
 <header class="sticky top-0 z-50 site-header align-middle">
 	<div class="max-w-3xl mx-auto flex items-center justify-between h-full header-inner">
-		<a href="/" aria-label="Adam Robinson — Home" class="flex items-center gap-3 shrink-0">
+		<a href="/" aria-label="Adam Robinson — Home" class="flex items-center gap-3 shrink-0 h-full">
 			<img
 				src="/logo-dark.svg"
 				alt="Adam Robinson"
@@ -64,7 +64,8 @@
 		background: none;
 		border: none;
 		cursor: pointer;
-		padding: 4px;
+		padding: 10px;
+		margin: -10px;
 		display: flex;
 		align-items: center;
 		transition: color 150ms ease;
