@@ -15,10 +15,35 @@
 </script>
 
 <SeoHead
-	title="Adam Robinson — Lead Software Engineer"
-	description="Lead software engineer with ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning."
+	title="Adam Robinson — Senior Software Engineer"
+	description="Senior software engineer available for contract and staff augmentation. Ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning."
 	path="/"
 />
+
+<svelte:head>
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Adam Robinson',
+		jobTitle: 'Senior Software Engineer',
+		url: 'https://adamrobinson.tech',
+		description:
+			'Senior software engineer available for contract and staff augmentation. Ten-plus years across fintech, healthcare, and enterprise.',
+		knowsAbout: [
+			'React',
+			'TypeScript',
+			'Node.js',
+			'Ruby on Rails',
+			'Vue',
+			'Next.js',
+			'Full-stack development',
+			'Backend engineering',
+			'Technical leadership',
+			'Staff augmentation',
+			'Platform modernization'
+		]
+	})}</script>`}
+</svelte:head>
 
 <div class="max-w-3xl mx-auto px-6" bind:this={mainContainer}>
 	<HeroSection />

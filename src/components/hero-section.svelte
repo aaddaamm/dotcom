@@ -10,8 +10,9 @@
 	</div>
 	<p class="hero-subtitle font-mono" role="doc-subtitle">SENIOR SOFTWARE ENGINEER</p>
 	<p class="body-text">
-		Full-stack engineer, backend-leaning. Ten-plus years across fintech, healthcare, and enterprise
-		— I ship working software, untangle complex codebases, and work directly with clients.
+		Companies hire me when they need a senior engineer — I join the team, learn the codebase, and
+		start delivering. Full-stack, backend-leaning, ten-plus years across fintech, healthcare, and
+		enterprise. You work directly with me, not an agency.
 	</p>
 	<div class="hero-stats flex flex-wrap gap-6 mt-4 mb-2">
 		<div class="stat-item">
