@@ -54,7 +54,7 @@
 
 	<div class="py-14 section-border">
 		<div class="text-center">
-			<a href="/contact" class="btn-primary px-8 py-4">Get In Touch</a>
+			<a href="/contact" class="btn-primary px-8 py-4" onclick={() => window.va?.track('CTA Clicked', { label: 'Get In Touch', location: 'hire' })}>Get In Touch</a>
 		</div>
 	</div>
 </div>

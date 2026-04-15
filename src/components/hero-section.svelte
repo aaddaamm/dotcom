@@ -37,8 +37,8 @@
 	{/if}
 
 	<div class="flex flex-col sm:flex-row gap-3 mt-3">
-		<a href="/work" class="btn-primary text-center">See My Work</a>
-		<a href="/contact" class="btn-secondary text-center">Get In Touch</a>
+		<a href="/work" class="btn-primary text-center" onclick={() => window.va?.track('CTA Clicked', { label: 'See My Work', location: 'hero' })}>See My Work</a>
+		<a href="/contact" class="btn-secondary text-center" onclick={() => window.va?.track('CTA Clicked', { label: 'Get In Touch', location: 'hero' })}>Get In Touch</a>
 	</div>
 </section>
 
