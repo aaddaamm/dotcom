@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy, tick } from 'svelte';
+	import { onDestroy, tick, untrack } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { terminalOpen } from '$lib/stores/terminal';
@@ -22,18 +22,27 @@
 	let inputEl: HTMLInputElement;
 	let scrollEl: HTMLElement;
 
-	// Sync isOpen → shared store so layout can hide the footer CTA
+	// Sync isOpen → shared store so layout can hide the footer CTA.
+	// untrack the write so this effect only re-runs when isOpen changes, not when the store changes.
 	$effect(() => {
-		if (!fullscreen) terminalOpen.set(isOpen);
+		const open = isOpen;
+		untrack(() => {
+			if (!fullscreen) terminalOpen.set(open);
+		});
 	});
 
-	// Open when triggered externally (e.g. footer button sets terminalOpen)
+	// Open when triggered externally (e.g. footer button sets terminalOpen).
+	// untrack the isOpen read so only $terminalOpen drives this effect.
 	$effect(() => {
-		if ($terminalOpen && !isOpen && !fullscreen) open();
+		if ($terminalOpen && !fullscreen) {
+			untrack(() => {
+				if (!isOpen) open();
+			});
+		}
 	});
 
 	$effect(() => {
-		history.length; // track history mutations for auto-scroll
+		if (history.length === 0) return;
 		tick().then(() => {
 			if (scrollEl) scrollEl.scrollTop = scrollEl.scrollHeight;
 		});
@@ -178,6 +187,10 @@
 	class:fullscreen
 	role="region"
 	aria-label="Terminal"
+	onclick={(e) => {
+		if (e.target === inputEl) return;
+		inputEl?.focus();
+	}}
 >
 	{#if !fullscreen}
 		<div class="terminal-bar">

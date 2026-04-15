@@ -1,6 +1,6 @@
 # TICKET-086 — Fix Svelte 5 Anti-patterns in terminal.svelte
 
-**Status**: Open
+**Status**: Done
 **Priority**: Low
 **Effort**: 1 hr
 
@@ -16,13 +16,13 @@
 
 ## Acceptance Criteria
 
-- [ ] `terminalOpenTrigger` replaced with an idiomatic Svelte 5 trigger mechanism
-- [ ] `$effect` state cycle risk resolved
-- [ ] `const _` hack replaced with proper `$effect` dependency tracking
-- [ ] `if (browser)` removed from `onDestroy`
-- [ ] `rpgUnlocked` either wired to actual UI or removed
-- [ ] Terminal still opens/closes/functions correctly
-- [ ] Build passes
+- [x] `terminalOpenTrigger` replaced with an idiomatic Svelte 5 trigger mechanism (already done in prior work — store is a boolean, not integer counter)
+- [x] `$effect` state cycle risk resolved — `untrack()` wraps writes in both sync effects so each depends on exactly one reactive source
+- [x] `const _` hack replaced with natural `history.length` read inside a meaningful condition
+- [x] `if (browser)` removed from `onDestroy` (was already absent)
+- [x] `rpgUnlocked` either wired to actual UI or removed (was already absent)
+- [x] Terminal still opens/closes/functions correctly
+- [x] Build passes
 
 ## Files
 
