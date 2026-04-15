@@ -8,14 +8,29 @@
 
 <SeoHead
 	title="Work With Me — Adam Robinson"
-	description="Lead software engineer available for staff augmentation and contract engagements. Ten-plus years across fintech, healthcare, and enterprise."
+	description="Senior software engineer available for contract engagements. Ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning."
 	path="/hire"
 />
+
+<svelte:head>
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'FAQPage',
+		mainEntity: faqItems.map((item) => ({
+			'@type': 'Question',
+			name: item.question,
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: item.answer
+			}
+		}))
+	})}</script>`}
+</svelte:head>
 
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader
 		title="Work With Me"
-		description="Available for contract and staff augmentation engagements. Ten-plus years embedded with engineering teams across fintech, healthcare, and enterprise."
+		description="Available for contract work. Ten-plus years embedded with engineering teams across fintech, healthcare, and enterprise."
 	/>
 
 	<ServicesSection />

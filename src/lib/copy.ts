@@ -166,7 +166,7 @@ export const services = [
 		title: 'Embedded Engineering',
 		icon: 'code',
 		description:
-			'Join your team as a senior contributor. I navigate complex, unfamiliar codebases independently, deliver across the stack, and ramp up without heavy hand-holding.',
+			'Join your team and start shipping. I get up to speed without heavy hand-holding, work across the full stack, and contribute from day one.',
 		examples: [
 			'Feature development',
 			'Legacy modernization',
@@ -179,7 +179,7 @@ export const services = [
 		title: 'Platform & Backend Engineering',
 		icon: 'globe',
 		description:
-			'Build or evolve the systems that power your product — APIs, authentication, data pipelines, and service architecture.',
+			'Build or improve the systems behind your product — the infrastructure, data flow, and backend services that keep things running.',
 		examples: ['API design', 'Authentication systems', 'Service architecture', 'Performance work'],
 		outcome: 'Reliable, well-structured systems built to last'
 	},
@@ -187,7 +187,7 @@ export const services = [
 		title: 'Technical Leadership',
 		icon: 'lightbulb',
 		description:
-			"Lead a team, review architecture, or help plan a complex initiative. I've led engineering teams through greenfield builds and legacy modernizations.",
+			"Lead a team, set technical direction, or help plan a complex initiative. I've led engineering teams through new builds and full platform overhauls.",
 		examples: [
 			'Team leadership',
 			'Architecture review',
@@ -202,7 +202,7 @@ export const faqItems = [
 	{
 		question: 'What kinds of engagements do you take on?',
 		answer:
-			"Primarily contract staff augmentation — embedded with an existing engineering team, contributing as a senior engineer. I'm also open to full-time roles for the right opportunity."
+			"Primarily contract work — embedded with an existing engineering team as a senior contributor. I'm also open to full-time roles for the right opportunity."
 	},
 	{
 		question: 'How quickly can you get up to speed?',
