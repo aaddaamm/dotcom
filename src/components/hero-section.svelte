@@ -10,11 +10,8 @@
 	</div>
 	<p class="hero-subtitle font-mono" role="doc-subtitle">SENIOR SOFTWARE ENGINEER</p>
 	<p class="body-text">
-		I don't just write software — I develop solutions to real problems. Full-stack engineer with a
-		backend lean, I build systems that are meant to be maintained, extended, and handed off cleanly.
-		I ship user-facing products, untangle complex codebases, and care as much about the commit
-		history as the feature itself. Ten-plus years across fintech, healthcare, and enterprise. When
-		you work with me, you work directly with me — no agencies, no account managers.
+		Full-stack engineer, backend-leaning. Ten-plus years across fintech, healthcare, and enterprise
+		— I ship working software, untangle complex codebases, and work directly with clients.
 	</p>
 	<div class="hero-stats flex flex-wrap gap-6 mt-4 mb-2">
 		<div class="stat-item">

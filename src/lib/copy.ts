@@ -9,7 +9,7 @@ export const selectedWork = [
 		period: '2024–present',
 		role: 'Staff Augmentation / Senior Engineer',
 		description:
-			"Embedded with an engineering team building a subdomain of iCapital's alternative investment platform. Navigating a large, complex codebase independently to deliver full-stack solutions, while also contributing to communication practices and engineering culture.",
+			"Embedded senior engineer on an alternative investment platform. Full-stack delivery across a large, complex enterprise codebase.",
 		stack: ['React', 'TypeScript', 'Node.js', 'Rails'],
 		outcome: 'Ongoing contributor across multiple subdomains of an enterprise fintech platform',
 		caseStudy: {
@@ -25,7 +25,7 @@ export const selectedWork = [
 		period: '2021–2022',
 		role: 'Staff Augmentation / Senior Engineer',
 		description:
-			"Moved across three separate products — HomeAdvisor (Vue/Java), Handy (Ruby on Rails), and Angie's List (Next.js) — contributing to each on its own terms. Took engineering interns under my wing, exposing them to sound practices and involving them in meaningful domain design work.",
+			"Contributed across three separate product codebases inside a single engagement. Also mentored a team of interns through their first real shipped feature.",
 		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js', 'Contentful'],
 		outcome:
 			'Cross-product delivery and intern mentorship across a newly merged home services platform',
@@ -42,7 +42,7 @@ export const selectedWork = [
 		period: '2018–2019',
 		role: 'Software Engineer',
 		description:
-			'Built software to support the decommissioning of end-of-life oil platforms for Shell Techworks in Boston. Fast-paced MVP delivery with React and Node, structured around the Google Design Sprint process, including onsite collaboration sessions.',
+			'Built decommissioning tooling for Shell Techworks in Boston. MVP delivered onsite using the Google Design Sprint process.',
 		stack: ['React', 'Node.js', 'Ant Design'],
 		outcome:
 			'MVP delivered on schedule using Design Sprint methodology with Shell engineering in Boston',
@@ -58,7 +58,7 @@ export const selectedWork = [
 		period: '2022–2024',
 		role: 'Team Lead',
 		description:
-			'Team lead debut: worked with the client to plan an MVP that modernized their core business deliverables. Dove into a legacy PHP application to surface business logic, then rebuilt around a new CMS, review workflow, and custom rendering layer. Completely overhauled authentication — ripping out a brittle custom solution and replacing it with OAuth via Auth0 — which required a full backend redesign and careful coordination across engineering teams to propagate the change between the legacy system and the new one without breaking production. Navigated tight deadlines and an AWS crash course throughout. The engagement succeeded and grew into a four-year collaboration.',
+			'Tech lead on a platform modernization that grew into a four-year collaboration. New CMS, custom rendering layer, and a full authentication overhaul — all shipped to production.',
 		stack: ['React', 'Express', 'Auth0', 'AWS', 'Strapi', 'PHP (legacy)'],
 		outcome: 'Successful MVP delivery that led to a four-year continued engagement',
 		caseStudy: {

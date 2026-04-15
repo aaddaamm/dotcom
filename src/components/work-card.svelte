@@ -141,17 +141,19 @@
 
 	.toggle {
 		background: none;
-		border: none;
-		padding: 0;
+		border: 1px solid var(--color-border);
+		border-radius: 4px;
+		padding: 0.3rem 0.7rem;
 		cursor: pointer;
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
-		color: var(--color-muted);
-		transition: color 150ms ease;
+		color: var(--color-text);
+		transition: color 150ms ease, border-color 150ms ease;
 	}
 
 	.toggle:hover {
 		color: var(--color-accent);
+		border-color: var(--color-accent);
 	}
 
 	.case-study {
