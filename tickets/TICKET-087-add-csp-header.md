@@ -1,6 +1,6 @@
 # TICKET-087 — Add Content Security Policy
 
-**Status**: Open
+**Status**: Done
 **Priority**: Low
 **Effort**: 1 hr
 

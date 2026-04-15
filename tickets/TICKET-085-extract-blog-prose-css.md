@@ -1,6 +1,6 @@
 # TICKET-085 — Extract Blog Prose Styles from Component to app.css
 
-**Status**: Open
+**Status**: Done
 **Priority**: Low
 **Effort**: 30 min
 

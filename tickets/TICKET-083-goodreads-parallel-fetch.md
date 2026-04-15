@@ -1,6 +1,6 @@
 # TICKET-083 — Parallelize Goodreads RSS Fetch + Share Cache via Upstash
 
-**Status**: Open
+**Status**: Done
 **Priority**: Medium
 **Effort**: 1–2 hr
 
