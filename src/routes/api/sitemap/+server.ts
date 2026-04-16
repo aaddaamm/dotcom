@@ -1,8 +1,9 @@
 import { SitemapStream, streamToPromise } from 'sitemap';
 import { getAllPosts } from '$lib/server/blog';
+import { SITE_URL } from '$lib/constants';
 
 export async function GET() {
-	const sitemap = new SitemapStream({ hostname: 'https://adamrobinson.tech' });
+	const sitemap = new SitemapStream({ hostname: SITE_URL });
 
 	const now = new Date().toISOString().split('T')[0];
 

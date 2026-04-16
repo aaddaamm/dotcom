@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { SITE_URL } from '$lib/constants';
+
 	let {
 		title,
 		description,
@@ -6,18 +8,13 @@
 		image = '/og-card.png'
 	}: { title: string; description: string; path?: string; image?: string } = $props();
 
-	const base = 'https://adamrobinson.tech';
-	let url = $derived(`${base}${path}`);
-	let imageUrl = $derived(image.startsWith('http') ? image : `${base}${image}`);
+	let url = $derived(`${SITE_URL}${path}`);
+	let imageUrl = $derived(image.startsWith('http') ? image : `${SITE_URL}${image}`);
 </script>
 
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={description} />
-	<meta
-		name="keywords"
-		content="senior software engineer, full-stack engineer, staff augmentation, backend systems, TypeScript, React, Node.js, fintech, technical leadership"
-	/>
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:image" content={imageUrl} />

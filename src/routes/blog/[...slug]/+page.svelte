@@ -1,7 +1,8 @@
 <script lang="ts">
 	import SeoHead from '../../../components/seo-head.svelte';
 	import { createElementObserver } from '$lib/animations';
-	import { jsonLd } from '$lib/utils';
+	import { jsonLd, breadcrumbList } from '$lib/utils';
+	import { SITE_URL } from '$lib/constants';
 	import { onMount } from 'svelte';
 
 	let { data } = $props();
@@ -33,43 +34,31 @@
 		headline: data.post.title,
 		description: data.post.description,
 		datePublished: data.post.date,
-		dateModified: data.post.date,
+		dateModified: data.post.updated ?? data.post.date,
 		inLanguage: 'en-US',
 		wordCount: data.post.wordCount,
-		image: data.post.image ?? 'https://adamrobinson.tech/og-card.png',
+		image: data.post.image ?? `${SITE_URL}/og-card.png`,
 		author: {
 			'@type': 'Person',
 			name: 'Adam Robinson',
-			url: 'https://adamrobinson.tech'
+			url: SITE_URL
 		},
-		url: `https://adamrobinson.tech/blog/${data.post.slug}`,
+		publisher: {
+			'@type': 'Person',
+			name: 'Adam Robinson',
+			url: SITE_URL
+		},
+		url: `${SITE_URL}/blog/${data.post.slug}`,
 		keywords: data.post.tags
 	})}</` + `script>`}
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${jsonLd({
-		'@context': 'https://schema.org',
-		'@type': 'BreadcrumbList',
-		itemListElement: [
-			{
-				'@type': 'ListItem',
-				position: 1,
-				name: 'Home',
-				item: 'https://adamrobinson.tech'
-			},
-			{
-				'@type': 'ListItem',
-				position: 2,
-				name: 'Blog',
-				item: 'https://adamrobinson.tech/blog'
-			},
-			{
-				'@type': 'ListItem',
-				position: 3,
-				name: data.post.title,
-				item: `https://adamrobinson.tech/blog/${data.post.slug}`
-			}
-		]
-	})}</` + `script>`}
+	{@html `<script type="application/ld+json">${jsonLd(
+		breadcrumbList([
+			{ name: 'Home', path: '/' },
+			{ name: 'Blog', path: '/blog' },
+			{ name: data.post.title, path: `/blog/${data.post.slug}` }
+		])
+	)}</` + `script>`}
 </svelte:head>
 
 <article class="max-w-3xl mx-auto px-6">

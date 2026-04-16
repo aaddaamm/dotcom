@@ -4,7 +4,7 @@
 	import ServicesSection from '../../components/services-section.svelte';
 	import FaqSection from '../../components/faq-section.svelte';
 	import { techStack, faqItems } from '$lib/copy';
-	import { jsonLd } from '$lib/utils';
+	import { jsonLd, breadcrumbList } from '$lib/utils';
 </script>
 
 <SeoHead
@@ -27,6 +27,13 @@
 			}
 		}))
 	})}</` + `script>`}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	{@html `<script type="application/ld+json">${jsonLd(
+		breadcrumbList([
+			{ name: 'Home', path: '/' },
+			{ name: 'Hire', path: '/hire' }
+		])
+	)}</` + `script>`}
 </svelte:head>
 
 <div class="max-w-3xl mx-auto px-6">

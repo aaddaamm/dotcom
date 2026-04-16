@@ -1,5 +1,6 @@
 <script lang="ts">
 	import SeoHead from '../../components/seo-head.svelte';
+	import { jsonLd, breadcrumbList } from '$lib/utils';
 
 	const learningResources = [
 		{
@@ -60,6 +61,16 @@
 	description="Curated list of the best free and paid resources for learning programming, web development, and software engineering skills."
 	path="/teach"
 />
+
+<svelte:head>
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	{@html `<script type="application/ld+json">${jsonLd(
+		breadcrumbList([
+			{ name: 'Home', path: '/' },
+			{ name: 'Learning Resources', path: '/teach' }
+		])
+	)}</` + `script>`}
+</svelte:head>
 
 <div class="max-w-4xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
 	<a href="/" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">

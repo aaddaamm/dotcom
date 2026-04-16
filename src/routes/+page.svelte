@@ -4,7 +4,6 @@
 	import WorkCard from '../components/work-card.svelte';
 	import { selectedWork, techStack } from '$lib/copy';
 	import { setupScrollAnimations } from '$lib/animations';
-	import { jsonLd } from '$lib/utils';
 	import { onMount } from 'svelte';
 
 	let mainContainer: HTMLElement;
@@ -20,32 +19,6 @@
 	description="Senior software engineer available for contract and staff augmentation. Ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning."
 	path="/"
 />
-
-<svelte:head>
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${jsonLd({
-		'@context': 'https://schema.org',
-		'@type': 'Person',
-		name: 'Adam Robinson',
-		jobTitle: 'Senior Software Engineer',
-		url: 'https://adamrobinson.tech',
-		description:
-			'Senior software engineer available for contract and staff augmentation. Ten-plus years across fintech, healthcare, and enterprise.',
-		knowsAbout: [
-			'React',
-			'TypeScript',
-			'Node.js',
-			'Ruby on Rails',
-			'Vue',
-			'Next.js',
-			'Full-stack development',
-			'Backend engineering',
-			'Technical leadership',
-			'Staff augmentation',
-			'Platform modernization'
-		]
-	})}</` + `script>`}
-</svelte:head>
 
 <div class="max-w-3xl mx-auto px-6" bind:this={mainContainer}>
 	<HeroSection />

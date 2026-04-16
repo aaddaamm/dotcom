@@ -9,6 +9,10 @@
 	path="/terminal"
 />
 
+<svelte:head>
+	<meta name="robots" content="noindex" />
+</svelte:head>
+
 <div class="terminal-page max-w-3xl mx-auto px-6 py-8">
 	<Terminal fullscreen />
 </div>

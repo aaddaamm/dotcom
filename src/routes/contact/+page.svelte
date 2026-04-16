@@ -1,7 +1,8 @@
 <script lang="ts">
 	import SeoHead from '../../components/seo-head.svelte';
 	import ContactForm from '../../components/contact-form.svelte';
-	import { jsonLd } from '$lib/utils';
+	import { jsonLd, breadcrumbList } from '$lib/utils';
+	import { SITE_URL } from '$lib/constants';
 </script>
 
 <SeoHead
@@ -16,7 +17,7 @@
 		'@context': 'https://schema.org',
 		'@type': 'ContactPage',
 		name: 'Contact Adam Robinson',
-		url: 'https://adamrobinson.tech/contact',
+		url: `${SITE_URL}/contact`,
 		mainEntity: {
 			'@type': 'Person',
 			name: 'Adam Robinson',
@@ -29,6 +30,13 @@
 			}
 		}
 	})}</` + `script>`}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	{@html `<script type="application/ld+json">${jsonLd(
+		breadcrumbList([
+			{ name: 'Home', path: '/' },
+			{ name: 'Contact', path: '/contact' }
+		])
+	)}</` + `script>`}
 </svelte:head>
 
 <div class="max-w-3xl mx-auto px-6">

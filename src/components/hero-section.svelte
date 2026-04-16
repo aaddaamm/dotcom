@@ -6,7 +6,10 @@
 <section aria-label="Introduction" class="pt-20 sm:pt-28 pb-10">
 	<div class="flex items-center gap-4 mb-4">
 		<div class="hero-cursor cursor-blink" aria-hidden="true"></div>
-		<h1 class="hero-name font-mono">adam robinson</h1>
+		<h1 class="hero-name font-mono">
+			adam robinson
+			<span class="sr-only">— Senior Software Engineer</span>
+		</h1>
 	</div>
 	<p class="hero-subtitle font-mono" role="doc-subtitle">SENIOR SOFTWARE ENGINEER</p>
 	<p class="body-text">

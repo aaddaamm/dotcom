@@ -3,6 +3,7 @@
 	import PageHeader from '../../components/page-header.svelte';
 	import WorkCard from '../../components/work-card.svelte';
 	import { selectedWork, earlierWork, gitLog } from '$lib/copy';
+	import { jsonLd, breadcrumbList } from '$lib/utils';
 </script>
 
 <SeoHead
@@ -10,6 +11,16 @@
 	description="Selected engineering engagements across fintech, enterprise, and platform work. Full-stack, backend-leaning, ten-plus years."
 	path="/work"
 />
+
+<svelte:head>
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	{@html `<script type="application/ld+json">${jsonLd(
+		breadcrumbList([
+			{ name: 'Home', path: '/' },
+			{ name: 'Work', path: '/work' }
+		])
+	)}</` + `script>`}
+</svelte:head>
 
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader

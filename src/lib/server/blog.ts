@@ -6,6 +6,7 @@ export type BlogPost = {
 	title: string;
 	description: string;
 	date: string;
+	updated?: string;
 	tags: string[];
 	published: boolean;
 	image?: string;
@@ -43,6 +44,7 @@ function parseEntry(
 		title: data.title,
 		description: data.description ?? '',
 		date: data.date,
+		updated: data.updated,
 		tags: data.tags ?? [],
 		published: data.published ?? false,
 		image: data.image,
