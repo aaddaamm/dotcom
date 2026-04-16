@@ -231,3 +231,11 @@ export const faqItems = [
 			"I don't publish rates — they vary by engagement type, scope, and duration. Happy to have a direct conversation about it."
 	}
 ];
+
+export const homepageMetrics = {
+	numbers: [
+		{ value: '10+', label: 'Years' },
+		{ value: '15+', label: 'Projects' }
+	],
+	industries: ['fintech', 'healthcare', 'enterprise']
+};
