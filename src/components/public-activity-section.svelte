@@ -3,7 +3,7 @@
 	import { GITHUB_USERNAME } from '$lib/constants';
 	import type { GithubActivity } from '$lib/types';
 
-	let activity: GithubActivity | null = $state(null);
+	let activity = $state<GithubActivity | null>(null);
 	let failed = $state(false);
 
 	onMount(async () => {
@@ -49,11 +49,12 @@
 		</div>
 		<a
 			href="https://github.com/{GITHUB_USERNAME}"
-			class="activity-link accent-link link-underline inline-flex items-center gap-1 text-sm mt-6"
-			rel="noopener"
+			class="activity-link inline-flex items-center gap-1 text-sm mt-6"
+			rel="noopener noreferrer"
 			target="_blank"
 		>
-			github.com/{GITHUB_USERNAME} &rarr;
+			github.com/{GITHUB_USERNAME}
+			<span class="activity-arrow" aria-hidden="true">&rarr;</span>
 		</a>
 	</section>
 {/if}
@@ -101,5 +102,19 @@
 		font-size: 0.85rem;
 		color: var(--color-text);
 		line-height: 1.5;
+	}
+
+	.activity-link {
+		color: var(--color-text);
+		text-decoration: none;
+		transition: opacity 0.2s ease;
+	}
+
+	.activity-link:hover {
+		opacity: 0.7;
+	}
+
+	.activity-arrow {
+		color: var(--color-accent);
 	}
 </style>
