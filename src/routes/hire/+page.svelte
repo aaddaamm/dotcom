@@ -2,6 +2,7 @@
 	import SeoHead from '../../components/seo-head.svelte';
 	import PageHeader from '../../components/page-header.svelte';
 	import ServicesSection from '../../components/services-section.svelte';
+	import PhilosophySection from '../../components/philosophy-section.svelte';
 	import FaqSection from '../../components/faq-section.svelte';
 	import { techStack, faqItems } from '$lib/copy';
 	import { jsonLd, breadcrumbList } from '$lib/utils';
@@ -43,6 +44,8 @@
 	/>
 
 	<ServicesSection />
+
+	<PhilosophySection />
 
 	<section aria-labelledby="stack-heading" class="py-14 section-border">
 		<h2 id="stack-heading" class="section-heading">
