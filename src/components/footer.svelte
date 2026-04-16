@@ -3,18 +3,12 @@
 	import { openTerminal } from '$lib/stores/terminal';
 
 	let emailCopied = $state(false);
-	let githubCopied = $state(false);
 
-	async function copyToClipboard(text: string, which: 'email' | 'github') {
+	async function copyToClipboard(text: string) {
 		try {
 			await navigator.clipboard.writeText(text);
-			if (which === 'email') {
-				emailCopied = true;
-				setTimeout(() => (emailCopied = false), 1500);
-			} else {
-				githubCopied = true;
-				setTimeout(() => (githubCopied = false), 1500);
-			}
+			emailCopied = true;
+			setTimeout(() => (emailCopied = false), 1500);
 		} catch {
 			// clipboard unavailable — no feedback shown
 		}
@@ -68,16 +62,11 @@
 			<a href="/contact" class="footer-link">Contact</a>
 			<button
 				class="footer-link copy-btn"
-				onclick={() => copyToClipboard('adam@adamrobinson.tech', 'email')}
+				onclick={() => copyToClipboard('adam@adamrobinson.tech')}
 			>
 				{emailCopied ? 'copied!' : 'adam@adamrobinson.tech'}
 			</button>
-			<button
-				class="footer-link copy-btn"
-				onclick={() => copyToClipboard('https://github.com/aaddaamm', 'github')}
-			>
-				{githubCopied ? 'copied!' : 'github'}
-			</button>
+			<a href="https://github.com/aaddaamm" class="footer-link" target="_blank" rel="noopener noreferrer">github</a>
 		</div>
 		<div class="footer-meta flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
 			<p>
