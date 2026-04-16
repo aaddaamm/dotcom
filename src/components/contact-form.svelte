@@ -139,7 +139,9 @@
 					disabled={isSubmitting}
 					aria-describedby={fieldErrors.email ? 'email-error' : undefined}
 				/>
-				{#if fieldErrors.email}<p id="email-error" class="field-error-msg">{fieldErrors.email}</p>{/if}
+				{#if fieldErrors.email}<p id="email-error" class="field-error-msg">
+						{fieldErrors.email}
+					</p>{/if}
 			</div>
 
 			<div class="form-group">
@@ -171,7 +173,9 @@
 					<option value="Technical consulting">Technical consulting</option>
 					<option value="Something else">Something else</option>
 				</select>
-				{#if fieldErrors.project}<p id="project-error" class="field-error-msg">{fieldErrors.project}</p>{/if}
+				{#if fieldErrors.project}<p id="project-error" class="field-error-msg">
+						{fieldErrors.project}
+					</p>{/if}
 			</div>
 
 			<div class="form-group">
@@ -187,7 +191,9 @@
 					disabled={isSubmitting}
 					aria-describedby={fieldErrors.message ? 'message-error' : undefined}
 				></textarea>
-				{#if fieldErrors.message}<p id="message-error" class="field-error-msg">{fieldErrors.message}</p>{/if}
+				{#if fieldErrors.message}<p id="message-error" class="field-error-msg">
+						{fieldErrors.message}
+					</p>{/if}
 			</div>
 
 			<div class="honeypot" aria-hidden="true">

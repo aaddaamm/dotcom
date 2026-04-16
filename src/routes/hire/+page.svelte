@@ -4,6 +4,7 @@
 	import ServicesSection from '../../components/services-section.svelte';
 	import FaqSection from '../../components/faq-section.svelte';
 	import { techStack, faqItems } from '$lib/copy';
+	import { jsonLd } from '$lib/utils';
 </script>
 
 <SeoHead
@@ -13,7 +14,8 @@
 />
 
 <svelte:head>
-	{@html `<script type="application/ld+json">${JSON.stringify({
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	{@html `<script type="application/ld+json">${jsonLd({
 		'@context': 'https://schema.org',
 		'@type': 'FAQPage',
 		mainEntity: faqItems.map((item) => ({
@@ -24,7 +26,7 @@
 				text: item.answer
 			}
 		}))
-	})}</script>`}
+	})}</` + `script>`}
 </svelte:head>
 
 <div class="max-w-3xl mx-auto px-6">
@@ -54,7 +56,13 @@
 
 	<div class="py-14 section-border">
 		<div class="text-center">
-			<a href="/contact" class="btn-primary px-8 py-4" onclick={() => window.va?.track('CTA Clicked', { label: 'Get In Touch', location: 'hire' })}>Get In Touch</a>
+			<a
+				href="/contact"
+				class="btn-primary px-8 py-4"
+				onclick={() => window.va?.track('CTA Clicked', { label: 'Get In Touch', location: 'hire' })}
+			>
+				Get In Touch
+			</a>
 		</div>
 	</div>
 </div>

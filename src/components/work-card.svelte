@@ -148,7 +148,9 @@
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
 		color: var(--color-text);
-		transition: color 150ms ease, border-color 150ms ease;
+		transition:
+			color 150ms ease,
+			border-color 150ms ease;
 	}
 
 	.toggle:hover {

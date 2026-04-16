@@ -38,8 +38,8 @@ const commands: Record<string, CommandDef> = {
 				'currently: staff aug at icapital (fintech)',
 				'past: healthcasts · angi · shell',
 				'',
-				"type 'help' for available commands.",
-			],
+				"type 'help' for available commands."
+			]
 		},
 		rpg: {
 			lines: [
@@ -51,9 +51,9 @@ const commands: Record<string, CommandDef> = {
 				'│  A wandering engineer of ten years. │',
 				'│  Backend-leaning. Ships clean code. │',
 				'│  Currently embedded at iCapital.    │',
-				'└─────────────────────────────────────┘',
-			],
-		},
+				'└─────────────────────────────────────┘'
+			]
+		}
 	},
 
 	help: {
@@ -71,8 +71,8 @@ const commands: Record<string, CommandDef> = {
 				'  echo $STACK     print tech stack',
 				'  git log         recent commit history',
 				'  clear           clear the terminal',
-				'  exit            close the terminal',
-			],
+				'  exit            close the terminal'
+			]
 		},
 		rpg: {
 			lines: [
@@ -87,13 +87,13 @@ const commands: Record<string, CommandDef> = {
 				'  contact         send a raven',
 				'  mode terminal   return to the real world',
 				'  clear           banish all text',
-				'  exit            close the portal',
-			],
-		},
+				'  exit            close the portal'
+			]
+		}
 	},
 
 	ls: {
-		terminal: { lines: ['work/   stack/   blog/   contact'] },
+		terminal: { lines: ['work/   stack/   blog/   contact'] }
 	},
 
 	'ls /work': {
@@ -106,13 +106,13 @@ const commands: Record<string, CommandDef> = {
 				'⚔  iCapital     — Fintech dungeon, still active',
 				'🏰  Healthcasts  — Legacy fortress, rebuilt from within',
 				"🌋  Shell        — Oil platform at world's edge",
-				'🗺  Angi         — Three kingdoms, one ranger',
-			],
-		},
+				'🗺  Angi         — Three kingdoms, one ranger'
+			]
+		}
 	},
 
 	'ls /stack': {
-		terminal: { lines: ['frontend/   backend/   infrastructure/   tools/   ai/'] },
+		terminal: { lines: ['frontend/   backend/   infrastructure/   tools/   ai/'] }
 	},
 
 	'cat resume.txt': {
@@ -137,9 +137,9 @@ const commands: Record<string, CommandDef> = {
 				'Contact',
 				'  adam@adamrobinson.tech',
 				'  github.com/aaddaamm',
-				'  adamrobinson.tech/hire',
-			],
-		},
+				'  adamrobinson.tech/hire'
+			]
+		}
 	},
 
 	contact: {
@@ -148,17 +148,17 @@ const commands: Record<string, CommandDef> = {
 				'email     adam@adamrobinson.tech',
 				'github    github.com/aaddaamm',
 				'linkedin  linkedin.com/in/adam-robinson-tech',
-				'hire      adamrobinson.tech/hire',
-			],
-		},
+				'hire      adamrobinson.tech/hire'
+			]
+		}
 	},
 
 	'open /hire': {
-		terminal: { lines: ['opening /hire...'], navigate: '/hire', navigateDelay: 600 },
+		terminal: { lines: ['opening /hire...'], navigate: '/hire', navigateDelay: 600 }
 	},
 
 	'echo $stack': {
-		terminal: { lines: [allStack.join(', ')] },
+		terminal: { lines: [allStack.join(', ')] }
 	},
 
 	'sudo hire adam': {
@@ -167,10 +167,10 @@ const commands: Record<string, CommandDef> = {
 				'[sudo] password for hiring_manager: ········',
 				'checking credentials...',
 				'permission granted.',
-				'redirecting to /contact...',
+				'redirecting to /contact...'
 			],
 			navigate: '/contact',
-			navigateDelay: 1500,
+			navigateDelay: 1500
 		},
 		rpg: {
 			lines: [
@@ -181,11 +181,11 @@ const commands: Record<string, CommandDef> = {
 				'...',
 				'',
 				'✨ Adam has joined the party!',
-				'redirecting to /contact...',
+				'redirecting to /contact...'
 			],
 			navigate: '/contact',
-			navigateDelay: 2000,
-		},
+			navigateDelay: 2000
+		}
 	},
 
 	'git log': {
@@ -197,8 +197,8 @@ const commands: Record<string, CommandDef> = {
 				'd009fe1  chore: resupply at the npm registry',
 				'e774a30  feat: survive the aws crash course',
 				'f1b2c33  fix: the legacy php stronghold holds one more day',
-				'g7h8i99  docs: write the readme nobody asked for',
-			],
+				'g7h8i99  docs: write the readme nobody asked for'
+			]
 		},
 		rpg: {
 			lines: [
@@ -206,9 +206,9 @@ const commands: Record<string, CommandDef> = {
 				'b812dd0  feat: forged the OAuth amulet',
 				'cc4491e  refactor: untangled the spaghetti dungeon',
 				'd009fe1  chore: resupplied at the npm inn',
-				'e774a30  docs: transcribed the ancient CLAUDE.md scrolls',
-			],
-		},
+				'e774a30  docs: transcribed the ancient CLAUDE.md scrolls'
+			]
+		}
 	},
 
 	'rm -rf .': {
@@ -217,9 +217,9 @@ const commands: Record<string, CommandDef> = {
 			lines: [
 				'⚠ DANGER',
 				'this action would destroy the known world.',
-				'the spirits of /bin refuse your request.',
-			],
-		},
+				'the spirits of /bin refuse your request.'
+			]
+		}
 	},
 
 	vim: {
@@ -228,9 +228,9 @@ const commands: Record<string, CommandDef> = {
 			lines: [
 				'a cursed editor. many have entered.',
 				'few have exited.',
-				'[ press :q to escape... if you can. ]',
-			],
-		},
+				'[ press :q to escape... if you can. ]'
+			]
+		}
 	},
 
 	'mode rpg': {
@@ -254,10 +254,10 @@ const commands: Record<string, CommandDef> = {
 				'',
 				'  *  .  *  .  *  .  *  .  *  .  *',
 				'',
-				'  the spirits of the console stir...',
+				'  the spirits of the console stir...'
 			],
-			modeChange: 'rpg',
-		},
+			modeChange: 'rpg'
+		}
 	},
 
 	'rpg mode': {
@@ -281,29 +281,34 @@ const commands: Record<string, CommandDef> = {
 				'',
 				'  *  .  *  .  *  .  *  .  *  .  *',
 				'',
-				'  the spirits of the console stir...',
+				'  the spirits of the console stir...'
 			],
-			modeChange: 'rpg',
-		},
+			modeChange: 'rpg'
+		}
 	},
 
 	'mode terminal': {
-		terminal: { lines: ['RPG mode disabled. back to reality.'], modeChange: 'terminal' },
+		terminal: { lines: ['RPG mode disabled. back to reality.'], modeChange: 'terminal' }
 	},
 
 	chocobo: {
 		terminal: {
-			lines: ['kweh!', '', 'a golden chocobo has appeared.', "RPG mode unlocked. type 'mode rpg' to activate."],
-			rpgUnlock: true,
-		},
+			lines: [
+				'kweh!',
+				'',
+				'a golden chocobo has appeared.',
+				"RPG mode unlocked. type 'mode rpg' to activate."
+			],
+			rpgUnlock: true
+		}
 	},
 
 	zelda: {
 		terminal: {
 			lines: ["it's dangerous to code alone. take this.", '', '  ⚔', ''],
-			rpgUnlock: true,
-		},
-	},
+			rpgUnlock: true
+		}
+	}
 };
 
 export function runCommand(rawInput: string, mode: Mode): CommandResult {
@@ -316,10 +321,10 @@ export function runCommand(rawInput: string, mode: Mode): CommandResult {
 
 	const key = normalize(lower);
 	const def = commands[key];
-	if (def) return (mode === 'rpg' && def.rpg) ? def.rpg : def.terminal;
+	if (def) return mode === 'rpg' && def.rpg ? def.rpg : def.terminal;
 
 	return {
-		lines: [`command not found: ${input}`, "type 'help' for available commands."],
+		lines: [`command not found: ${input}`, "type 'help' for available commands."]
 	};
 }
 
@@ -329,13 +334,30 @@ const argMap: Record<string, string[]> = {
 	open: ['hire', '/hire'],
 	git: ['log'],
 	mode: ['rpg', 'terminal'],
-	sudo: ['hire adam'],
+	sudo: ['hire adam']
 };
 
 const topLevelCommands = [
-	'whoami', 'help', '-h', 'ls', 'cat', 'contact', 'open', 'echo',
-	'git', 'sudo', 'clear', 'exit', 'quit', 'rm', 'vim', 'vi',
-	'nano', 'emacs', 'mode', 'chocobo',
+	'whoami',
+	'help',
+	'-h',
+	'ls',
+	'cat',
+	'contact',
+	'open',
+	'echo',
+	'git',
+	'sudo',
+	'clear',
+	'exit',
+	'quit',
+	'rm',
+	'vim',
+	'vi',
+	'nano',
+	'emacs',
+	'mode',
+	'chocobo'
 ];
 
 export function getCompletions(input: string): string[] {

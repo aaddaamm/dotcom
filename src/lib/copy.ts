@@ -9,7 +9,7 @@ export const selectedWork = [
 		period: '2024–present',
 		role: 'Staff Augmentation / Senior Engineer',
 		description:
-			"Embedded senior engineer on an alternative investment platform. Full-stack delivery across a large, complex enterprise codebase.",
+			'Embedded senior engineer on an alternative investment platform. Full-stack delivery across a large, complex enterprise codebase.',
 		stack: ['React', 'TypeScript', 'Node.js', 'Rails'],
 		outcome: 'Ongoing contributor across multiple subdomains of an enterprise fintech platform',
 		caseStudy: {
@@ -25,13 +25,13 @@ export const selectedWork = [
 		period: '2021–2022',
 		role: 'Staff Augmentation / Senior Engineer',
 		description:
-			"Contributed across three separate product codebases inside a single engagement. Also mentored a team of interns through their first real shipped feature.",
+			'Contributed across three separate product codebases inside a single engagement. Also mentored a team of interns through their first real shipped feature.',
 		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js', 'Contentful'],
 		outcome:
 			'Cross-product delivery and intern mentorship across a newly merged home services platform',
 		caseStudy: {
 			situation:
-				'Angi was in the middle of a merger — HomeAdvisor, Handy, and Angie\'s List operating as separate products under one roof, each with its own codebase, stack, and team.',
+				"Angi was in the middle of a merger — HomeAdvisor, Handy, and Angie's List operating as separate products under one roof, each with its own codebase, stack, and team.",
 			work: "On HomeAdvisor, worked in Vue and Java to unify the user quiz flow across the merging brands into a single Angi experience. On Handy, worked in Rails and React on professional assignment logic and job ingestion for Handy partner stores. On Angie's List, built out a CMS-driven content experience in Next.js — blog-style project descriptions with varied visual layouts. Along the way, found myself in a position to take on a team of interns: coached them through real development workflows using a live use case — a Careers page revamp — and by the end they had something real to demo. Brought in a colleague to help carry the work across the finish line before rotating off.",
 			outcome:
 				'Delivered across three separate products and stacks inside a single engagement — and left a cleaner codebase and a team of interns who shipped something they could be proud of.'
@@ -50,7 +50,8 @@ export const selectedWork = [
 			situation:
 				'Brought in to build tooling for Shell Techworks to support the decommissioning of end-of-life offshore oil platforms — a domain with real cost and logistical complexity.',
 			work: 'Built a full-stack application that ingested oil platform data and processed it to determine the optimal, least-cost decommissioning path. Frontend in React with Ant Design, backend in Node. Worked onsite with the Shell Techworks team in Boston, using the Google Design Sprint process to rapidly iterate and arrive at a clear MVP scope — compressing what could have been months of back-and-forth into focused, structured sessions.',
-			outcome: 'MVP delivered on schedule, with the Design Sprint process doing real work — not just ceremony.'
+			outcome:
+				'MVP delivered on schedule, with the Design Sprint process doing real work — not just ceremony.'
 		}
 	},
 	{
@@ -63,7 +64,7 @@ export const selectedWork = [
 		outcome: 'Successful MVP delivery that led to a four-year continued engagement',
 		caseStudy: {
 			situation:
-				'Brought in as tech lead to modernize Healthcasts\' core publication workflow and platform infrastructure.',
+				"Brought in as tech lead to modernize Healthcasts' core publication workflow and platform infrastructure.",
 			work: 'Built a new publishing pipeline around a headless CMS (Strapi) and a custom React rendering layer, dramatically reducing time-to-publish for their medical consensus deliverable — a structured question posed to their user base, condensed into a published document for readers. Updated their AWS infrastructure and migrated frameworks to current, supported versions. Then led a full authentication overhaul — unifying login across all their platforms with Auth0, moving to a single secure flow that also unblocked a parallel AI initiative dependent on a cleaner identity layer.',
 			outcome:
 				'The MVP engagement grew into a four-year collaboration — a rare signal that the work held up under real production conditions.'

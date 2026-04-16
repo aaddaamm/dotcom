@@ -10,7 +10,7 @@
 			emailCopied = true;
 			setTimeout(() => (emailCopied = false), 1500);
 		} catch {
-			// clipboard unavailable — no feedback shown
+			// noop
 		}
 	}
 
@@ -66,16 +66,21 @@
 			>
 				{emailCopied ? 'copied!' : 'adam@adamrobinson.tech'}
 			</button>
-			<a href="https://github.com/aaddaamm" class="footer-link" target="_blank" rel="noopener noreferrer">github</a>
+			<a
+				href="https://github.com/aaddaamm"
+				class="footer-link"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				github
+			</a>
 		</div>
 		<div class="footer-meta flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
 			<p>
 				&copy; {new Date().getFullYear()} Adam Robinson
-				<button
-					class="terminal-hint"
-					onclick={openTerminal}
-					aria-label="Open terminal"
-				>&gt;_</button>
+				<button class="terminal-hint" onclick={openTerminal} aria-label="Open terminal">
+					&gt;_
+				</button>
 			</p>
 			{#if time}
 				<p class="clock">
@@ -126,7 +131,9 @@
 		font-size: 0.75rem;
 		color: var(--color-muted);
 		animation: terminal-pulse 3s ease-in-out infinite;
-		transition: opacity 150ms ease, color 150ms ease;
+		transition:
+			opacity 150ms ease,
+			color 150ms ease;
 	}
 
 	.terminal-hint:hover {
@@ -136,8 +143,13 @@
 	}
 
 	@keyframes terminal-pulse {
-		0%, 100% { opacity: 0.25; }
-		50% { opacity: 0.6; }
+		0%,
+		100% {
+			opacity: 0.25;
+		}
+		50% {
+			opacity: 0.6;
+		}
 	}
 
 	.copy-btn {

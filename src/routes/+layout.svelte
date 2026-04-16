@@ -53,13 +53,17 @@
 	});
 
 	function onScroll() {
+		if (firedDepths.size === 4) return;
 		const scrolled = window.scrollY + window.innerHeight;
 		const total = document.documentElement.scrollHeight;
 		const pct = (scrolled / total) * 100;
 		for (const milestone of [25, 50, 75, 100]) {
 			if (pct >= milestone && !firedDepths.has(milestone)) {
 				firedDepths.add(milestone);
-				window.va?.track('Scroll Depth', { depth: `${milestone}%`, path: window.location.pathname });
+				window.va?.track('Scroll Depth', {
+					depth: `${milestone}%`,
+					path: window.location.pathname
+				});
 			}
 		}
 	}
@@ -88,7 +92,15 @@
 {/if}
 
 {#if page.url.pathname !== '/contact' && !$terminalOpen}
-	<a href="/contact" class="mobile-fab sm:hidden" aria-label="Get In Touch" onclick={() => window.va?.track('CTA Clicked', { label: 'Get In Touch', location: 'mobile-fab' })}>Get In Touch</a>
+	<a
+		href="/contact"
+		class="mobile-fab sm:hidden"
+		aria-label="Get In Touch"
+		onclick={() =>
+			window.va?.track('CTA Clicked', { label: 'Get In Touch', location: 'mobile-fab' })}
+	>
+		Get In Touch
+	</a>
 {/if}
 
 <style>

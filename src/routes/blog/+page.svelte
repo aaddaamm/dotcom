@@ -34,9 +34,7 @@
 								day: 'numeric'
 							})}
 						</time>
-						<h2
-							class="text-lg font-semibold mt-1 flex items-center gap-2 post-title"
-						>
+						<h2 class="text-lg font-semibold mt-1 flex items-center gap-2 post-title">
 							{post.title}
 							{#if !post.published}
 								<span class="draft-badge text-xs font-normal px-2 py-0.5 rounded">draft</span>

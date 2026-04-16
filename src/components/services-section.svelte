@@ -43,7 +43,14 @@
 			Interested in working together? You'll deal directly with me — no middlemen, no ramp-up
 			delays. Most engagements can start within a week or two.
 		</p>
-		<a href="/contact" class="btn-primary" onclick={() => window.va?.track('CTA Clicked', { label: 'Get In Touch', location: 'services' })}>Get In Touch</a>
+		<a
+			href="/contact"
+			class="btn-primary"
+			onclick={() =>
+				window.va?.track('CTA Clicked', { label: 'Get In Touch', location: 'services' })}
+		>
+			Get In Touch
+		</a>
 	</div>
 </section>
 

@@ -11,10 +11,11 @@
 />
 
 <svelte:head>
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html `<script type="application/ld+json">${jsonLd({
 		'@context': 'https://schema.org',
 		'@type': 'ContactPage',
-		name: "Contact Adam Robinson",
+		name: 'Contact Adam Robinson',
 		url: 'https://adamrobinson.tech/contact',
 		mainEntity: {
 			'@type': 'Person',

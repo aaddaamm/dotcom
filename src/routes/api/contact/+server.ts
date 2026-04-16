@@ -23,7 +23,10 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 
 		// Honeypot — bots fill fields humans don't see; fail silently
 		if (data.website) {
-			return json({ success: true, message: "Thank you for your message! I'll respond within 24 hours." });
+			return json({
+				success: true,
+				message: "Thank you for your message! I'll respond within 24 hours."
+			});
 		}
 
 		if (!data.name || !data.email || !data.project || !data.message) {
@@ -53,7 +56,10 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 
 		try {
 			await sendContactNotification(sanitized, subject);
-			return json({ success: true, message: "Thank you for your message! I'll respond within 24 hours." });
+			return json({
+				success: true,
+				message: "Thank you for your message! I'll respond within 24 hours."
+			});
 		} catch (emailError) {
 			console.error('📧 Email delivery failed — logging submission to Redis:', emailError);
 			const plainBody = [
@@ -73,7 +79,8 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 			await logFailedSubmission(sanitized, plainBody, clientIP);
 			return json({
 				success: true,
-				message: "Message received — there was a hiccup on our end but your submission was saved. I'll follow up shortly."
+				message:
+					"Message received — there was a hiccup on our end but your submission was saved. I'll follow up shortly."
 			});
 		}
 	} catch (error) {

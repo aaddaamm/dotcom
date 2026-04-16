@@ -8,7 +8,9 @@
 
 	let { fullscreen = false }: { fullscreen?: boolean } = $props();
 
-	type HistoryEntry = { id: number; type: 'input'; text: string } | { id: number; type: 'output'; lines: string[] };
+	type HistoryEntry =
+		| { id: number; type: 'input'; text: string }
+		| { id: number; type: 'output'; lines: string[] };
 	let nextId = 0;
 
 	const _initOpen = fullscreen;
@@ -208,7 +210,10 @@
 		{/if}
 		{#each history as entry (entry.id)}
 			{#if entry.type === 'input'}
-				<div class="terminal-line"><span class="prompt">{PROMPT}</span>&nbsp;{entry.text}</div>
+				<div class="terminal-line">
+					<span class="prompt">{PROMPT}</span>
+					&nbsp;{entry.text}
+				</div>
 			{:else}
 				{#each entry.lines as line}
 					<div class="terminal-line output">{line || '\u00a0'}</div>

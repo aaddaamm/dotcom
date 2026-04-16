@@ -4,6 +4,7 @@
 	import WorkCard from '../components/work-card.svelte';
 	import { selectedWork, techStack } from '$lib/copy';
 	import { setupScrollAnimations } from '$lib/animations';
+	import { jsonLd } from '$lib/utils';
 	import { onMount } from 'svelte';
 
 	let mainContainer: HTMLElement;
@@ -21,7 +22,8 @@
 />
 
 <svelte:head>
-	{@html `<script type="application/ld+json">${JSON.stringify({
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
+	{@html `<script type="application/ld+json">${jsonLd({
 		'@context': 'https://schema.org',
 		'@type': 'Person',
 		name: 'Adam Robinson',
@@ -42,7 +44,7 @@
 			'Staff augmentation',
 			'Platform modernization'
 		]
-	})}</script>`}
+	})}</` + `script>`}
 </svelte:head>
 
 <div class="max-w-3xl mx-auto px-6" bind:this={mainContainer}>
@@ -178,5 +180,4 @@
 	.stack-item:hover::after {
 		width: 100%;
 	}
-
 </style>

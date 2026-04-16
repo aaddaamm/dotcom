@@ -17,8 +17,16 @@ export type BlogPostWithContent = BlogPost & {
 };
 
 // Bundled at build time by Vite — works in Vercel serverless
-const publishedRaw = import.meta.glob('/src/content/blog/*.md', { query: '?raw', import: 'default', eager: true });
-const draftsRaw = import.meta.glob('/src/content/blog/drafts/*.md', { query: '?raw', import: 'default', eager: true });
+const publishedRaw = import.meta.glob('/src/content/blog/*.md', {
+	query: '?raw',
+	import: 'default',
+	eager: true
+});
+const draftsRaw = import.meta.glob('/src/content/blog/drafts/*.md', {
+	query: '?raw',
+	import: 'default',
+	eager: true
+});
 
 function parseEntry(
 	filepath: string,

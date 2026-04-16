@@ -34,7 +34,7 @@
 				fintech <span class="dot">·</span>
 				healthcare
 				<span class="dot">·</span>
-				 enterprise
+				enterprise
 			</dd>
 		</div>
 		<div class="work-stat-row">
@@ -48,7 +48,7 @@
 				<span class="dot">·</span>
 				Angi
 				<span class="dot">·</span>
-				 Shell
+				Shell
 			</dd>
 		</div>
 	</dl>
