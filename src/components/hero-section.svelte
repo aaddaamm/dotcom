@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { availability } from '$lib/copy';
+	import { availability, homepageMetrics } from '$lib/copy';
 </script>
 
 <!-- Hero -->
@@ -17,18 +17,20 @@
 		start delivering. Full-stack, backend-leaning, ten-plus years across fintech, healthcare, and
 		enterprise. You work directly with me, not an agency.
 	</p>
-	<div class="hero-stats flex flex-wrap gap-6 mt-4 mb-2">
-		<div class="stat-item">
-			<span class="stat-number">10+</span>
-			<span class="stat-label">Years Experience</span>
+	<div class="hero-stats mt-4 mb-2">
+		<div class="stats-numbers">
+			{#each homepageMetrics.numbers as metric (metric.label)}
+				<div class="stat-item">
+					<span class="stat-number">{metric.value}</span>
+					<span class="stat-label">{metric.label}</span>
+				</div>
+			{/each}
 		</div>
-		<div class="stat-item">
-			<span class="stat-number">Full</span>
-			<span class="stat-label">Stack</span>
-		</div>
-		<div class="stat-item">
-			<span class="stat-number">Team</span>
-			<span class="stat-label">Lead</span>
+		<div class="stats-industries" aria-label="Industries">
+			{#each homepageMetrics.industries as industry, i (industry)}
+				{#if i > 0}<span class="industry-sep" aria-hidden="true">/</span>{/if}
+				<span class="industry-tag">{industry}</span>
+			{/each}
 		</div>
 	</div>
 
@@ -84,13 +86,19 @@
 	}
 
 	.hero-stats {
-		margin-top: 1.5rem;
-		margin-bottom: 1rem;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: flex-start;
+	}
+
+	.stats-numbers {
+		display: flex;
+		gap: 32px;
 	}
 
 	.stat-item {
-		text-align: center;
-		min-width: 80px;
+		text-align: left;
 	}
 
 	.stat-number {
@@ -103,11 +111,31 @@
 
 	.stat-label {
 		display: block;
+		font-size: 0.7rem;
+		color: var(--color-muted);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		margin-top: 2px;
+	}
+
+	.stats-industries {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+		font-family: var(--font-mono);
 		font-size: 0.75rem;
 		color: var(--color-muted);
 		text-transform: uppercase;
-		letter-spacing: 0.5px;
-		margin-top: 0.25rem;
+		letter-spacing: 1.5px;
+	}
+
+	.industry-sep {
+		color: color-mix(in srgb, var(--color-muted) 40%, transparent);
+	}
+
+	.industry-tag {
+		color: var(--color-muted);
 	}
 
 	.availability-badge {
