@@ -15,6 +15,7 @@
 ## File Structure
 
 **Create:**
+
 - `src/components/headshot.svelte` — circular initials placeholder (accepts optional image src)
 - `src/components/philosophy-section.svelte` — `/hire` philosophy block (headshot + paragraph)
 - `src/components/public-activity-section.svelte` — `/hire` GitHub activity block (stat-block grid)
@@ -22,6 +23,7 @@
 - `src/routes/api/github/+server.ts` — API endpoint
 
 **Modify:**
+
 - `src/components/hero-section.svelte` — upgrade `.hero-stats` markup + styles to two-tier layout
 - `src/lib/copy.ts` — add `homepageMetrics` and `philosophy` exports
 - `src/lib/constants.ts` — add `GITHUB_USERNAME` constant
@@ -35,6 +37,7 @@
 ## Task 1: Homepage — upgrade hero-stats to two-tier metrics
 
 **Files:**
+
 - Modify: `src/components/hero-section.svelte:20-33` (markup) and `:86-111` (styles)
 - Modify: `src/lib/copy.ts` (add export)
 
@@ -76,9 +79,8 @@ Replace the `<div class="hero-stats ...">...</div>` block (currently lines 20-33
 	</div>
 	<div class="stats-industries" aria-label="Industries">
 		{#each homepageMetrics.industries as industry, i (industry)}
-			{#if i > 0}<span class="industry-sep" aria-hidden="true">/</span>{/if}<span
-				class="industry-tag">{industry}</span
-			>
+			{#if i > 0}<span class="industry-sep" aria-hidden="true">/</span>{/if}
+			<span class="industry-tag">{industry}</span>
 		{/each}
 	</div>
 </div>
@@ -146,14 +148,17 @@ In the `<style>` block of `src/components/hero-section.svelte`, replace the exis
 - [ ] **Step 4: Type-check + build**
 
 Run:
+
 ```bash
 npm run check && npx vite build
 ```
+
 Expected: `svelte-check found 0 errors` and a successful Vite build.
 
 - [ ] **Step 5: Manual visual check**
 
 Run `npm run dev` and open the homepage. Verify:
+
 - Hero now reads `10+ Years` and `15+ Projects` as the two numbers (accent-colored, mono)
 - Below them: `fintech / healthcare / enterprise` as small muted mono text
 - The filler "Full Stack" and "Team Lead" labels are gone
@@ -178,6 +183,7 @@ EOF
 ## Task 2: Headshot component + philosophy copy
 
 **Files:**
+
 - Create: `src/components/headshot.svelte`
 - Modify: `src/lib/copy.ts` (add `philosophy` export)
 
@@ -255,6 +261,7 @@ export const philosophy = {
 ```bash
 npm run check && npx vite build
 ```
+
 Expected: 0 errors, successful build.
 
 - [ ] **Step 4: Commit**
@@ -274,6 +281,7 @@ EOF
 ## Task 3: Philosophy section + `/hire` integration
 
 **Files:**
+
 - Create: `src/components/philosophy-section.svelte`
 - Modify: `src/routes/hire/+page.svelte`
 
@@ -351,11 +359,13 @@ becomes:
 ```bash
 npm run check && npx vite build
 ```
+
 Expected: 0 errors, successful build.
 
 - [ ] **Step 4: Manual visual check**
 
 Run `npm run dev`, navigate to `/hire`. Verify:
+
 - Section flow is: PageHeader → Services → Philosophy → Technologies → FAQ → CTA
 - Philosophy heading "How I work" with accent-dot matches other section headings
 - Headshot is a ~56px circle with "AR" in accent color
@@ -382,6 +392,7 @@ EOF
 ## Task 4: GitHub service layer (type, constant, service)
 
 **Files:**
+
 - Modify: `src/lib/types.ts` (add `GithubActivity` type)
 - Modify: `src/lib/constants.ts` (add `GITHUB_USERNAME`)
 - Create: `src/lib/server/githubService.ts`
@@ -576,6 +587,7 @@ Rationale: Mirrors the Goodreads service structurally. Returns `null` on any fai
 ```bash
 npm run check && npx vite build
 ```
+
 Expected: 0 errors, successful build.
 
 - [ ] **Step 5: Commit**
@@ -595,6 +607,7 @@ EOF
 ## Task 5: GitHub API route
 
 **Files:**
+
 - Create: `src/routes/api/github/+server.ts`
 
 - [ ] **Step 1: Create the route**
@@ -626,14 +639,17 @@ Rationale: Same pattern as the Goodreads routes (`src/routes/api/goodreads/curre
 ```bash
 npm run check && npx vite build
 ```
+
 Expected: 0 errors, successful build.
 
 - [ ] **Step 3: Manual smoke test**
 
 If `GITHUB_TOKEN` is set locally (check `.env`):
+
 ```bash
 npm run dev
 ```
+
 In another terminal: `curl http://localhost:5173/api/github` — should return JSON like `{"commitsLastYear":314,"publicRepos":24,"languages":["TypeScript","Svelte",...]}`.
 
 If `GITHUB_TOKEN` is not set: `curl` returns a 503 with `null` body. This is expected behavior — the section will simply not render in the next task. Note in the commit message that GITHUB_TOKEN needs to be added to Vercel's environment variables for production.
@@ -657,6 +673,7 @@ EOF
 ## Task 6: Public Activity section + `/hire` integration
 
 **Files:**
+
 - Create: `src/components/public-activity-section.svelte`
 - Modify: `src/routes/hire/+page.svelte`
 
@@ -805,6 +822,7 @@ becomes:
 ```bash
 npm run check && npx vite build
 ```
+
 Expected: 0 errors, successful build.
 
 - [ ] **Step 4: Manual visual check**
@@ -812,6 +830,7 @@ Expected: 0 errors, successful build.
 Run `npm run dev`, navigate to `/hire`. Verify:
 
 **If `GITHUB_TOKEN` is set:**
+
 - Section flow is: PageHeader → Services → Philosophy → Technologies → **Public activity** → FAQ → CTA
 - Three cards render: Commits (N / past year), Repos (N / public), Languages (comma-separated list)
 - Cards match the visual style of the Tech Stack cards on the homepage
@@ -819,6 +838,7 @@ Run `npm run dev`, navigate to `/hire`. Verify:
 - Clicking the link opens the profile in a new tab
 
 **If `GITHUB_TOKEN` is not set:**
+
 - The Public activity section is silently absent from the DOM
 - Section flow jumps directly from Technologies → FAQ with no gap
 
@@ -847,6 +867,7 @@ EOF
 ```bash
 npm run lint && npm run check && npx vite build
 ```
+
 Expected: lint passes (prettier + eslint clean), `svelte-check` reports 0 errors, Vite build succeeds.
 
 - [ ] **Step 2: Full walkthrough in dev**
@@ -875,6 +896,7 @@ The Upstash env vars are already documented in memory. The new requirement is `G
 ```bash
 git status
 ```
+
 Expected: working tree clean (memory lives outside the repo). If anything else is dirty, stage and commit with a short polish message before closing the ticket.
 
 - [ ] **Step 5: Close the GitHub issue**
