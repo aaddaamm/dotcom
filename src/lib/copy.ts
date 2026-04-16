@@ -239,3 +239,8 @@ export const homepageMetrics = {
 	],
 	industries: ['fintech', 'healthcare', 'enterprise']
 };
+
+export const philosophy = {
+	heading: 'How I work',
+	body: "The best engineers I've worked with weren't the ones with the strongest opinions — they were the ones who listened first. When I join a team, my job isn't to replace your culture, your patterns, or your conventions. It's to slot in, read the code before I write any, ask the questions a newcomer notices but regulars have stopped asking, and then ship reliably. I'd rather land one well-scoped change than three speculative ones. I treat every codebase as something other engineers will inherit from me — including the one I'm touching right now."
+};
