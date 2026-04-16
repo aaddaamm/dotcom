@@ -25,6 +25,7 @@
 	title="{data.post.title} — Adam Robinson"
 	description={data.post.description}
 	path="/blog/{data.post.slug}"
+	image={data.post.image}
 />
 
 <svelte:head>
@@ -36,7 +37,9 @@
 		description: data.post.description,
 		datePublished: data.post.date,
 		dateModified: data.post.date,
-		image: 'https://adamrobinson.tech/og-card.png',
+		inLanguage: 'en-US',
+		wordCount: data.post.wordCount,
+		image: data.post.image ?? 'https://adamrobinson.tech/og-card.png',
 		author: {
 			'@type': 'Person',
 			name: 'Adam Robinson',

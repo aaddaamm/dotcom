@@ -9,6 +9,26 @@
 	path="/contact"
 />
 
+<svelte:head>
+	{@html `<script type="application/ld+json">${JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'ContactPage',
+		name: "Contact Adam Robinson",
+		url: 'https://adamrobinson.tech/contact',
+		mainEntity: {
+			'@type': 'Person',
+			name: 'Adam Robinson',
+			email: 'adam@adamrobinson.tech',
+			contactPoint: {
+				'@type': 'ContactPoint',
+				contactType: 'professional inquiries',
+				email: 'adam@adamrobinson.tech',
+				availableLanguage: 'English'
+			}
+		}
+	}).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026')}</` + `script>`}
+</svelte:head>
+
 <div class="max-w-3xl mx-auto px-6">
 	<section class="pt-20 sm:pt-28">
 		<a href="/" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">

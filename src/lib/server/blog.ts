@@ -8,10 +8,12 @@ export type BlogPost = {
 	date: string;
 	tags: string[];
 	published: boolean;
+	image?: string;
 };
 
 export type BlogPostWithContent = BlogPost & {
 	content: string;
+	wordCount: number;
 };
 
 // Bundled at build time by Vite — works in Vercel serverless
@@ -35,6 +37,7 @@ function parseEntry(
 		date: data.date,
 		tags: data.tags ?? [],
 		published: data.published ?? false,
+		image: data.image,
 		_content: content
 	};
 }
@@ -76,8 +79,10 @@ export function getPostBySlug(slug: string, includeDrafts = false): BlogPostWith
 	if (!entry.published && !includeDrafts) return null;
 
 	const { _content, ...post } = entry;
+	const wordCount = _content.trim().split(/\s+/).length;
 	return {
 		...post,
-		content: marked.parse(_content, { async: false }) as string
+		content: marked.parse(_content, { async: false }) as string,
+		wordCount
 	};
 }
