@@ -9,3 +9,9 @@ export type GoodreadsBook = {
 	dateStarted?: string;
 	goodreadsID: number;
 };
+
+export type GithubActivity = {
+	commitsLastYear: number;
+	publicRepos: number;
+	languages: string[];
+};
