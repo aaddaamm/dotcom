@@ -40,13 +40,13 @@ Out of scope for this ticket: a dedicated `/about` page, conference talks or oth
 
 **New section flow** (insertions marked NEW):
 
-1. PageHeader *(unchanged)*
-2. ServicesSection *(unchanged)*
+1. PageHeader _(unchanged)_
+2. ServicesSection _(unchanged)_
 3. **NEW: Philosophy section** — "How I work" heading
-4. Technologies *(unchanged)*
+4. Technologies _(unchanged)_
 5. **NEW: Public activity section** — "Public activity" heading
-6. FaqSection *(unchanged)*
-7. CTA *(unchanged)*
+6. FaqSection _(unchanged)_
+7. CTA _(unchanged)_
 
 Rationale: Services answers "what do you do." Philosophy answers "how do you work" — placed before Technologies so the reader has a voice-based anchor before the technical proof cluster. Grouping both new sections back-to-back was rejected because it would feel grafted on.
 
@@ -70,11 +70,11 @@ Copy lives in `$lib/copy.ts` as a new exported constant (e.g. `philosophy`) so i
 
 **Layout:** Stat-block grid reusing the existing `stack-group` card pattern from the `/hire` Technologies section — same background gradient, border radius, padding, and typography. Three cards:
 
-| Card | Label (mono uppercase accent) | Value |
-| --- | --- | --- |
-| 1 | `Commits` | `314` — small muted label: *past year* |
-| 2 | `Repos` | `24` — small muted label: *public* |
-| 3 | `Languages` | comma-separated list: TS, Svelte, Ruby, Elixir, C++ |
+| Card | Label (mono uppercase accent) | Value                                               |
+| ---- | ----------------------------- | --------------------------------------------------- |
+| 1    | `Commits`                     | `314` — small muted label: _past year_              |
+| 2    | `Repos`                       | `24` — small muted label: _public_                  |
+| 3    | `Languages`                   | comma-separated list: TS, Svelte, Ruby, Elixir, C++ |
 
 **Below the grid:** single accent-colored link → `https://github.com/aaddaamm` with arrow glyph, matching other accent links on the site.
 
@@ -94,14 +94,14 @@ type GithubActivity = {
 
 ## Data & content summary
 
-| Content | Source | Owner |
-| --- | --- | --- |
-| Homepage metric numbers (10+, 15+) | Hardcoded in `copy.ts` | Adam (review annually) |
-| Industry tags | Derived from `copy.ts` work list | Automatic |
-| Philosophy paragraph | `copy.ts` exported constant | Drafted in this spec, Adam to revise |
-| Headshot | Initials placeholder component | Real photo deferred |
-| GitHub stats | Upstash-cached GitHub GraphQL fetch | Automatic, 24h TTL |
-| GitHub languages list | Curated subset of `copy.ts` tech stack intersected with GitHub API response | Automatic |
+| Content                            | Source                                                                      | Owner                                |
+| ---------------------------------- | --------------------------------------------------------------------------- | ------------------------------------ |
+| Homepage metric numbers (10+, 15+) | Hardcoded in `copy.ts`                                                      | Adam (review annually)               |
+| Industry tags                      | Derived from `copy.ts` work list                                            | Automatic                            |
+| Philosophy paragraph               | `copy.ts` exported constant                                                 | Drafted in this spec, Adam to revise |
+| Headshot                           | Initials placeholder component                                              | Real photo deferred                  |
+| GitHub stats                       | Upstash-cached GitHub GraphQL fetch                                         | Automatic, 24h TTL                   |
+| GitHub languages list              | Curated subset of `copy.ts` tech stack intersected with GitHub API response | Automatic                            |
 
 ## Out of scope
 
@@ -113,11 +113,11 @@ type GithubActivity = {
 
 ## Acceptance criteria mapping
 
-| Ticket criterion | Addressed by |
-| --- | --- |
-| Years of experience and projects completed count | Homepage metrics strip, `/hire` philosophy paragraph opens with "senior engineer" voice |
-| GitHub activity or tech stack expertise visually | `/hire` Public activity section (stat-block grid) |
-| Professional headshot and personal story | `/hire` Philosophy section — initials placeholder + ~95-word paragraph |
+| Ticket criterion                                                          | Addressed by                                                                                                                      |
+| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Years of experience and projects completed count                          | Homepage metrics strip, `/hire` philosophy paragraph opens with "senior engineer" voice                                           |
+| GitHub activity or tech stack expertise visually                          | `/hire` Public activity section (stat-block grid)                                                                                 |
+| Professional headshot and personal story                                  | `/hire` Philosophy section — initials placeholder + ~95-word paragraph                                                            |
 | Highlight open source contributions or public technical work if available | Languages range card acknowledges polyglot public work; blog already links from nav. External public work confirmed not to exist. |
 
 ## Risks
