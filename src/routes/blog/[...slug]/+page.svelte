@@ -6,6 +6,10 @@
 	let { data } = $props();
 	let proseEl: HTMLElement;
 
+	function jsonLd(obj: unknown): string {
+		return JSON.stringify(obj).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026');
+	}
+
 	onMount(() => {
 		const observer = createElementObserver({
 			className: 'animated',
@@ -25,7 +29,7 @@
 
 <svelte:head>
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${JSON.stringify({
+	{@html `<script type="application/ld+json">${jsonLd({
 		'@context': 'https://schema.org',
 		'@type': 'BlogPosting',
 		headline: data.post.title,
@@ -40,9 +44,9 @@
 		},
 		url: `https://adamrobinson.tech/blog/${data.post.slug}`,
 		keywords: data.post.tags
-	}).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026')}</` + `script>`}
+	})}</` + `script>`}
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${JSON.stringify({
+	{@html `<script type="application/ld+json">${jsonLd({
 		'@context': 'https://schema.org',
 		'@type': 'BreadcrumbList',
 		itemListElement: [
@@ -65,7 +69,7 @@
 				item: `https://adamrobinson.tech/blog/${data.post.slug}`
 			}
 		]
-	}).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026')}</` + `script>`}
+	})}</` + `script>`}
 </svelte:head>
 
 <article class="max-w-3xl mx-auto px-6">

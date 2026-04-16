@@ -35,8 +35,7 @@
 							})}
 						</time>
 						<h2
-							class="text-lg font-semibold mt-1 flex items-center gap-2"
-							style="color: var(--color-text);"
+							class="text-lg font-semibold mt-1 flex items-center gap-2 post-title"
 						>
 							{post.title}
 							{#if !post.published}
@@ -59,6 +58,10 @@
 </div>
 
 <style>
+	.post-title {
+		color: var(--color-text);
+	}
+
 	.post-card {
 		border: 1px solid var(--color-border);
 		border-left: 2px solid var(--color-accent);

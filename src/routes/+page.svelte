@@ -91,7 +91,7 @@
 
 	<!-- Selected Work -->
 	<section id="work" aria-labelledby="work-heading" class="py-14 section-border">
-		<h2 id="work-heading" class="section-heading" style="margin-bottom: 32px;">
+		<h2 id="work-heading" class="section-heading mb-8">
 			Selected Work
 			<span class="accent-dot" aria-hidden="true">.</span>
 		</h2>
