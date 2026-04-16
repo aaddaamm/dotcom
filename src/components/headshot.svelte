@@ -15,12 +15,11 @@
 <div
 	class="headshot"
 	style="width: {size}px; height: {size}px; font-size: {Math.round(size * 0.38)}px;"
-	aria-label={alt}
 >
 	{#if src}
 		<img {src} {alt} width={size} height={size} loading="lazy" />
 	{:else}
-		<span class="initials" aria-hidden="true">{initials}</span>
+		<span class="initials" role="img" aria-label={alt}>{initials}</span>
 	{/if}
 </div>
 
