@@ -35,6 +35,8 @@
 		return () => window.removeEventListener('scroll', onScroll);
 	});
 
+	const firedDepths = new Set<number>();
+
 	afterNavigate((navigation) => {
 		const hash = navigation.to?.url.hash;
 		if (hash) {
@@ -49,8 +51,6 @@
 		// Reset scroll depth tracking on each navigation
 		firedDepths.clear();
 	});
-
-	const firedDepths = new Set<number>();
 
 	function onScroll() {
 		const scrolled = window.scrollY + window.innerHeight;

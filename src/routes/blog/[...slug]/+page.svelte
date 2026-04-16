@@ -1,14 +1,11 @@
 <script lang="ts">
 	import SeoHead from '../../../components/seo-head.svelte';
 	import { createElementObserver } from '$lib/animations';
+	import { jsonLd } from '$lib/utils';
 	import { onMount } from 'svelte';
 
 	let { data } = $props();
 	let proseEl: HTMLElement;
-
-	function jsonLd(obj: unknown): string {
-		return JSON.stringify(obj).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026');
-	}
 
 	onMount(() => {
 		const observer = createElementObserver({

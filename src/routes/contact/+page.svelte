@@ -1,6 +1,7 @@
 <script lang="ts">
 	import SeoHead from '../../components/seo-head.svelte';
 	import ContactForm from '../../components/contact-form.svelte';
+	import { jsonLd } from '$lib/utils';
 </script>
 
 <SeoHead
@@ -10,7 +11,7 @@
 />
 
 <svelte:head>
-	{@html `<script type="application/ld+json">${JSON.stringify({
+	{@html `<script type="application/ld+json">${jsonLd({
 		'@context': 'https://schema.org',
 		'@type': 'ContactPage',
 		name: "Contact Adam Robinson",
@@ -26,7 +27,7 @@
 				availableLanguage: 'English'
 			}
 		}
-	}).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026')}</` + `script>`}
+	})}</` + `script>`}
 </svelte:head>
 
 <div class="max-w-3xl mx-auto px-6">
