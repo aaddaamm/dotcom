@@ -4,6 +4,7 @@
 	import ServicesSection from '../../components/services-section.svelte';
 	import PhilosophySection from '../../components/philosophy-section.svelte';
 	import FaqSection from '../../components/faq-section.svelte';
+	import PublicActivitySection from '../../components/public-activity-section.svelte';
 	import { techStack, faqItems } from '$lib/copy';
 	import { jsonLd, breadcrumbList } from '$lib/utils';
 </script>
@@ -61,6 +62,8 @@
 			{/each}
 		</div>
 	</section>
+
+	<PublicActivitySection />
 
 	<FaqSection />
 
