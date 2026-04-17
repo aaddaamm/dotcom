@@ -2,6 +2,7 @@
 	import { slide, fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 	import Card from './card.svelte';
+	import { getFilter, toggle } from '$lib/stores/work-filter.svelte';
 
 	interface CaseStudy {
 		situation: string;
@@ -34,7 +35,15 @@
 	<div class="footer">
 		<div class="stack-tags">
 			{#each project.stack as tag (tag)}
-				<span class="stack-tag" class:muted={variant === 'preview'}>{tag}</span>
+				{#if variant === 'full'}
+					<button
+						class="stack-tag"
+						class:active={getFilter() === tag}
+						onclick={() => toggle(tag)}
+					>{tag}</button>
+				{:else}
+					<span class="stack-tag muted">{tag}</span>
+				{/if}
 			{/each}
 		</div>
 		{#if variant === 'full'}
@@ -125,6 +134,22 @@
 	.stack-tag.muted {
 		border-color: var(--color-border);
 		color: var(--color-muted);
+	}
+
+	button.stack-tag {
+		cursor: pointer;
+		line-height: inherit;
+		appearance: none;
+	}
+
+	button.stack-tag:hover {
+		background-color: color-mix(in srgb, var(--color-accent) 15%, var(--color-bg));
+		border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+	}
+
+	.stack-tag.active {
+		background-color: color-mix(in srgb, var(--color-accent) 20%, var(--color-bg));
+		border-color: var(--color-accent);
 	}
 
 	.outcome {
