@@ -26,13 +26,15 @@ The logo is a **teal cursor block** paired with the name in monospace. Together 
 
 ### Variants
 
-| File                    | Use                                 |
-| ----------------------- | ----------------------------------- |
-| `assets/logo-dark.svg`  | Dark backgrounds, nav bar (default) |
-| `assets/logo-light.svg` | Light backgrounds                   |
-| `assets/icon.svg`       | App icon, 64px+ contexts            |
-| `assets/favicon.svg`    | Browser favicon, 32px               |
-| `assets/og-card.svg`    | Social sharing / Open Graph         |
+All brand assets live in `/static/` and are referenced from the site root (e.g. `/logo-dark.svg`).
+
+| File             | Use                                    |
+| ---------------- | -------------------------------------- |
+| `logo-dark.svg`  | Dark backgrounds, nav bar (default)    |
+| `logo-light.svg` | Light backgrounds                      |
+| `icon.svg`       | Standalone cursor mark, 64px+          |
+| `favicon.svg`    | Browser favicon                        |
+| `og-card.png`    | Social sharing / Open Graph (1200×630) |
 
 ### Rules
 
@@ -102,7 +104,7 @@ Maintain clear space equal to the height of the cursor block on all sides of the
 | **Display / Logo** | JetBrains Mono | Fira Mono → Courier New → monospace |
 | **Body / UI**      | Any clean sans | system-ui → sans-serif              |
 
-The monospace font is load-bearing to the brand. It appears in: the logo wordmark, the subtitle ("LEAD SOFTWARE ENGINEER"), code blocks, and any terminal-style UI elements.
+The monospace font is load-bearing to the brand. It appears in: the logo wordmark, the subtitle ("SENIOR SOFTWARE ENGINEER"), code blocks, and any terminal-style UI elements.
 
 Body copy uses a clean system sans — the contrast between monospace headlines and sans body creates the right tension between technical and human.
 
@@ -121,7 +123,7 @@ Label:    10px / 500 / tracking 3px     → ALL CAPS labels (monospace only)
 ### Rules
 
 - The name "adam robinson" is always **lowercase** in the wordmark and in body copy when used as a brand element
-- The subtitle "LEAD SOFTWARE ENGINEER" is always **uppercase monospace with 3px letter-spacing**
+- The subtitle "SENIOR SOFTWARE ENGINEER" is always **uppercase monospace with 3px letter-spacing**
 - Headings use **negative tracking** at large sizes (−1 to −2px). Never positive tracking on large text.
 - Body text uses **1.7 line-height** for readability
 
@@ -239,4 +241,4 @@ The site copy matches the visual brand: **direct, minimal, no hype.**
 
 ---
 
-_Assets live in `/src/lib/assets/brand/`. The logo SVGs are framework-agnostic and import directly in SvelteKit._
+_Assets live in `/static/` and are served from the site root. The logo SVGs are framework-agnostic and reference-able as `/logo-dark.svg` etc._

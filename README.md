@@ -1,6 +1,6 @@
 # adamrobinson.tech
 
-Personal website for Adam Robinson, Freelance Developer & Software Consultant.
+Personal website for Adam Robinson, Senior Software Engineer.
 
 ## Stack
 
@@ -45,10 +45,11 @@ npm run dev
 - ⚡ **Performance**: Optimized fonts, images, and bundle size
 - 🎨 **Design**: Custom dark/light theme with terminal-inspired aesthetic
 - 📱 **Responsive**: Mobile-first design with accessibility features
-- 📧 **Contact Form**: Secure contact form with email notifications
-- 📖 **Reading List**: Live Goodreads integration
-- 🔍 **SEO**: Comprehensive meta tags, schema markup, and sitemap
-- 🛡️ **Security**: XSS protection, rate limiting, input validation
+- 📧 **Contact Form**: Resend-backed contact form with auto-responder and Upstash rate limiting
+- 📖 **Reading List**: Live Goodreads integration (cached)
+- 💻 **Public Activity**: Cached GitHub activity summary on the hire page
+- 🔍 **SEO**: Comprehensive meta tags, JSON-LD schema, and sitemap
+- 🛡️ **Security**: CSP headers, rate limiting, input validation
 
 ## Project Structure
 
@@ -60,4 +61,7 @@ Deployed to Vercel with automatic deployments from `main` branch.
 
 Environment variables must be configured in Vercel dashboard:
 
-- `RESEND_API_KEY`
+- `RESEND_API_KEY` — contact form email delivery
+- `KV_REST_API_URL` / `KV_REST_API_TOKEN` — Upstash Redis (rate limiting, GitHub/Goodreads cache)
+- `GITHUB_TOKEN` — required for `/api/github` public activity endpoint
+- `SHOW_DRAFTS` — set to `true` on preview environments to surface draft blog posts

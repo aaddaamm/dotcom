@@ -17,7 +17,8 @@ SvelteKit 2 (Svelte 5) + TypeScript. Tailwind CSS 4 via `@tailwindcss/vite` — 
 - Accent color in exactly two places per view: cursor mark + one element. Never scattered.
 - Theme persists via localStorage — inline script in `app.html` prevents FOUC; do not remove it
 - Cursor blink animation on hero only — never in nav or other components
-- Preserve `/api/goodreads/*` and `/api/sitemap` — production endpoints
+- Preserve production endpoints: `/api/goodreads/*`, `/api/sitemap`, `/api/contact`, `/api/github`
+- CSP headers are set in `src/hooks.server.ts` — update the policy there when adding new third-party origins
 - Run `npx vite build` before considering any task complete
 - To preview draft blog posts on Vercel: set `SHOW_DRAFTS=true` on the preview environment
 
