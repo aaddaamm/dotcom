@@ -39,8 +39,11 @@
 					<button
 						class="stack-tag"
 						class:active={getFilter() === tag}
+						aria-pressed={getFilter() === tag}
 						onclick={() => toggle(tag)}
-					>{tag}</button>
+					>
+						{tag}
+					</button>
 				{:else}
 					<span class="stack-tag muted">{tag}</span>
 				{/if}

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte'
-	import { reset } from '$lib/stores/work-filter.svelte'
+	import { onDestroy } from 'svelte';
+	import { reset } from '$lib/stores/work-filter.svelte';
 
-	let { children } = $props()
+	let { children } = $props();
 
-	onDestroy(reset)
+	onDestroy(reset);
 </script>
 
 {@render children()}

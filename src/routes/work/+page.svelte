@@ -7,8 +7,8 @@
 	import { getFilter } from '$lib/stores/work-filter.svelte';
 
 	const filteredWork = $derived.by(() => {
-		const f = getFilter()
-		return f ? selectedWork.filter((p) => p.stack.includes(f)) : selectedWork
+		const f = getFilter();
+		return f ? selectedWork.filter((p) => p.stack.includes(f)) : selectedWork;
 	});
 </script>
 
