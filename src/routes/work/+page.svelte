@@ -4,6 +4,11 @@
 	import WorkCard from '../../components/work-card.svelte';
 	import { selectedWork, earlierWork, gitLog } from '$lib/copy';
 	import { jsonLd, breadcrumbList } from '$lib/utils';
+	import { getFilter } from '$lib/stores/work-filter.svelte';
+
+	const filteredWork = $derived(
+		getFilter() ? selectedWork.filter((p) => p.stack.includes(getFilter()!)) : selectedWork
+	);
 </script>
 
 <SeoHead
@@ -65,7 +70,7 @@
 	</dl>
 
 	<div class="grid gap-6">
-		{#each selectedWork as project (project.title)}
+		{#each filteredWork as project (project.title)}
 			<WorkCard {project} />
 		{/each}
 	</div>
