@@ -6,9 +6,10 @@
 	import { jsonLd, breadcrumbList } from '$lib/utils';
 	import { getFilter } from '$lib/stores/work-filter.svelte';
 
-	const filteredWork = $derived(
-		getFilter() ? selectedWork.filter((p) => p.stack.includes(getFilter()!)) : selectedWork
-	);
+	const filteredWork = $derived.by(() => {
+		const f = getFilter()
+		return f ? selectedWork.filter((p) => p.stack.includes(f)) : selectedWork
+	});
 </script>
 
 <SeoHead
