@@ -13,19 +13,26 @@ export class TerminalState {
 	cmdHistoryIndex = $state(-1);
 	mode = $state<Mode>('terminal');
 	#nextId = 0;
+	#fullscreen: boolean;
+	#navigate: (path: string) => Promise<void>;
+
+	constructor(fullscreen = false, navigate: (path: string) => Promise<void> = goto) {
+		this.#fullscreen = fullscreen;
+		this.#navigate = navigate;
+	}
 
 	open(initialChar = '') {
 		this.isOpen = true;
 		this.input = initialChar;
 	}
 
-	close(fullscreen: boolean) {
-		if (fullscreen) return;
+	close() {
+		if (this.#fullscreen) return;
 		this.isOpen = false;
 		this.input = '';
 	}
 
-	submit(fullscreen: boolean) {
+	submit() {
 		const cmd = this.input.trim();
 		this.input = '';
 		if (!cmd) return;
@@ -42,7 +49,7 @@ export class TerminalState {
 		}
 
 		if (result.close) {
-			this.close(fullscreen);
+			this.close();
 			return;
 		}
 
@@ -55,8 +62,8 @@ export class TerminalState {
 		if (result.navigate) {
 			const dest = result.navigate;
 			setTimeout(() => {
-				goto(dest);
-				if (!fullscreen) this.close(fullscreen);
+				this.#navigate(dest);
+				if (!this.#fullscreen) this.close();
 			}, result.navigateDelay ?? 0);
 		}
 	}
