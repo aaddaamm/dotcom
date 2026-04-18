@@ -43,11 +43,7 @@
 	{/if}
 
 	<div class="flex flex-col sm:flex-row gap-3 mt-3">
-		<a
-			href="/work"
-			class="btn-primary text-center"
-			onclick={() => trackCTA('See My Work', 'hero')}
-		>
+		<a href="/work" class="btn-primary text-center" onclick={() => trackCTA('See My Work', 'hero')}>
 			See My Work
 		</a>
 		<a

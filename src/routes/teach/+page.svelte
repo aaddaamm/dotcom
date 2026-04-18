@@ -148,8 +148,7 @@
 		<a
 			href="/contact"
 			class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block"
-			onclick={() =>
-				trackCTA('Get Learning Advice', 'teach')}
+			onclick={() => trackCTA('Get Learning Advice', 'teach')}
 		>
 			Get Learning Advice
 		</a>
