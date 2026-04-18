@@ -1,25 +1,12 @@
 <script lang="ts">
 	import { onDestroy, tick, untrack } from 'svelte';
-	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import { terminalOpen } from '$lib/stores/terminal';
-	import { runCommand, getCompletions } from '$lib/terminal-commands';
-	import type { Mode } from '$lib/terminal-commands';
+	import { TerminalState } from '$lib/terminal-state.svelte';
 
 	let { fullscreen = false }: { fullscreen?: boolean } = $props();
 
-	type HistoryEntry =
-		| { id: number; type: 'input'; text: string }
-		| { id: number; type: 'output'; lines: string[] };
-	let nextId = 0;
-
-	const _initOpen = fullscreen;
-	let isOpen = $state(_initOpen);
-	let input = $state('');
-	let history = $state<HistoryEntry[]>([]);
-	let cmdHistory = $state<string[]>([]);
-	let cmdHistoryIndex = $state(-1);
-	let mode = $state<Mode>('terminal');
+	const state = new TerminalState(fullscreen);
 
 	let inputEl: HTMLInputElement;
 	let scrollEl: HTMLElement;
@@ -27,7 +14,7 @@
 	// Sync isOpen → shared store so layout can hide the footer CTA.
 	// untrack the write so this effect only re-runs when isOpen changes, not when the store changes.
 	$effect(() => {
-		const open = isOpen;
+		const open = state.isOpen;
 		untrack(() => {
 			if (!fullscreen) terminalOpen.set(open);
 		});
@@ -38,119 +25,55 @@
 	$effect(() => {
 		if ($terminalOpen && !fullscreen) {
 			untrack(() => {
-				if (!isOpen) open();
+				if (!state.isOpen) openAndFocus();
 			});
 		}
 	});
 
 	$effect(() => {
-		if (history.length === 0) return;
+		if (state.history.length === 0) return;
 		tick().then(() => {
 			if (scrollEl) scrollEl.scrollTop = scrollEl.scrollHeight;
 		});
 	});
 
-	function open(initialChar = '') {
-		isOpen = true;
-		input = initialChar;
+	function openAndFocus(initialChar = '') {
+		state.open(initialChar);
 		tick().then(() => {
 			if (inputEl) {
 				inputEl.focus();
-				inputEl.setSelectionRange(input.length, input.length);
+				inputEl.setSelectionRange(state.input.length, state.input.length);
 			}
 		});
 	}
 
-	function close() {
-		if (fullscreen) return;
-		isOpen = false;
-		input = '';
-	}
-
-	function submit() {
-		const cmd = input.trim();
-		input = '';
-		if (!cmd) return;
-
-		history = [...history, { id: nextId++, type: 'input', text: cmd }];
-		cmdHistory = [cmd, ...cmdHistory.slice(0, 49)];
-		cmdHistoryIndex = -1;
-
-		const result = runCommand(cmd, mode);
-
-		if (result.clear) {
-			history = [];
-			return;
-		}
-
-		if (result.close) {
-			close();
-			return;
-		}
-
-		if (result.lines.length > 0) {
-			history = [...history, { id: nextId++, type: 'output', lines: result.lines }];
-		}
-
-		if (result.modeChange) mode = result.modeChange;
-		if (result.navigate) {
-			const dest = result.navigate;
-			setTimeout(() => {
-				goto(dest);
-				if (!fullscreen) close();
-			}, result.navigateDelay ?? 0);
-		}
-	}
-
 	function handleKeydown(e: KeyboardEvent) {
 		if (e.key === 'Enter') {
-			submit();
+			state.submit();
 			return;
 		}
-
 		if (e.key === 'Escape') {
-			close();
+			state.close();
 			return;
 		}
-
 		if (e.key === 'ArrowUp') {
 			e.preventDefault();
-			const next = Math.min(cmdHistoryIndex + 1, cmdHistory.length - 1);
-			cmdHistoryIndex = next;
-			if (cmdHistory[next] !== undefined) input = cmdHistory[next];
+			state.navigateHistory('up');
 			return;
 		}
-
 		if (e.key === 'ArrowDown') {
 			e.preventDefault();
-			const next = cmdHistoryIndex - 1;
-			cmdHistoryIndex = next;
-			input = next < 0 ? '' : (cmdHistory[next] ?? '');
+			state.navigateHistory('down');
 			return;
 		}
-
 		if (e.key === 'Tab') {
 			e.preventDefault();
-			const completions = getCompletions(input);
-			if (completions.length === 0) return;
-			if (completions.length === 1) {
-				const tokens = input.split(' ');
-				const argCommands = ['ls', 'cat', 'open', 'git', 'sudo', 'mode', 'echo'];
-				if (tokens.length === 1) {
-					input = completions[0];
-					if (argCommands.includes(completions[0])) input += ' ';
-				} else {
-					tokens[tokens.length - 1] = completions[0];
-					input = tokens.join(' ');
-				}
-			} else {
-				history = [...history, { id: nextId++, type: 'output', lines: [completions.join('   ')] }];
-			}
+			state.tabComplete();
 		}
 	}
 
 	function handleWindowKeydown(e: KeyboardEvent) {
-		if (isOpen || fullscreen) return;
+		if (state.isOpen || fullscreen) return;
 		if (page.url.pathname === '/terminal') return;
 		if (e.metaKey || e.ctrlKey || e.altKey) return;
 		if (e.key.length !== 1) return;
@@ -165,7 +88,7 @@
 			return;
 
 		e.preventDefault();
-		open(e.key);
+		openAndFocus(e.key);
 	}
 
 	// $effect is browser-only — no window guard needed
@@ -185,7 +108,7 @@
 <div
 	class="terminal"
 	class:drawer={!fullscreen}
-	class:open={isOpen}
+	class:open={state.isOpen}
 	class:fullscreen
 	role="region"
 	aria-label="Terminal"
@@ -197,10 +120,10 @@
 	{#if !fullscreen}
 		<div class="terminal-bar">
 			<span class="terminal-bar-title">{PROMPT.split(':')[0]}</span>
-			{#if mode === 'rpg'}
+			{#if state.mode === 'rpg'}
 				<span class="rpg-badge">RPG</span>
 			{/if}
-			<button class="close-btn" onclick={close} aria-label="Close terminal">×</button>
+			<button class="close-btn" onclick={() => state.close()} aria-label="Close terminal">×</button>
 		</div>
 	{/if}
 
@@ -208,14 +131,14 @@
 		{#if fullscreen && history.length === 0}
 			<div class="terminal-line output muted">type 'help' for available commands.</div>
 		{/if}
-		{#each history as entry (entry.id)}
+		{#each state.history as entry (entry.id)}
 			{#if entry.type === 'input'}
 				<div class="terminal-line">
 					<span class="prompt">{PROMPT}</span>
 					&nbsp;{entry.text}
 				</div>
 			{:else}
-				{#each entry.lines as line}
+				{#each entry.lines as line, i (i)}
 					<div class="terminal-line output">{line || '\u00a0'}</div>
 				{/each}
 			{/if}
@@ -226,7 +149,7 @@
 		<span class="prompt">{PROMPT}</span>
 		<input
 			bind:this={inputEl}
-			bind:value={input}
+			bind:value={state.input}
 			type="text"
 			class="terminal-input"
 			autocomplete="off"

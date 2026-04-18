@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { SvelteSet } from 'svelte/reactivity';
 	import { dev } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
@@ -36,7 +37,7 @@
 		return () => window.removeEventListener('scroll', onScroll);
 	});
 
-	const firedDepths = new Set<number>();
+	const firedDepths = new SvelteSet<number>();
 
 	afterNavigate((navigation) => {
 		const hash = navigation.to?.url.hash;
