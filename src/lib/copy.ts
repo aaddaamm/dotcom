@@ -5,6 +5,7 @@ export const availability = {
 
 export const selectedWork = [
 	{
+		slug: 'icapital',
 		title: 'iCapital — Fintech Platform Engineering',
 		period: '2024–present',
 		role: 'Staff Augmentation / Senior Engineer',
@@ -21,6 +22,7 @@ export const selectedWork = [
 		}
 	},
 	{
+		slug: 'angi',
 		title: 'Angi — Multi-Platform Engineering',
 		period: '2021–2022',
 		role: 'Staff Augmentation / Senior Engineer',
@@ -38,6 +40,7 @@ export const selectedWork = [
 		}
 	},
 	{
+		slug: 'shell',
 		title: 'Shell — Oil Platform Decommissioning',
 		period: '2018–2019',
 		role: 'Software Engineer',
@@ -55,6 +58,7 @@ export const selectedWork = [
 		}
 	},
 	{
+		slug: 'healthcasts',
 		title: 'Healthcasts — Platform Modernization',
 		period: '2022–2024',
 		role: 'Team Lead',
