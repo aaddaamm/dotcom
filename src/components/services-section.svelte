@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { track } from '@vercel/analytics';
+	import { trackCTA } from '$lib/analytics';
 	import ServiceIcon from './service-icon.svelte';
 	import { services } from '$lib/copy';
 </script>
@@ -48,7 +48,7 @@
 			href="/contact"
 			class="btn-primary"
 			onclick={() =>
-				track('CTA Clicked', { label: 'Get In Touch', location: 'services' })}
+				trackCTA('Get In Touch', 'services')}
 		>
 			Get In Touch
 		</a>

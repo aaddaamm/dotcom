@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { track } from '@vercel/analytics';
+	import { trackFormSubmit } from '$lib/analytics';
 	import { validateContactForm, type ContactFormData } from '$lib/validation';
 
 	let name = $state('');
@@ -57,10 +57,7 @@
 
 			if (response.ok && result.success) {
 				// Track successful form submission
-				track('Contact Form Submitted', {
-					project_type: project.trim(),
-					has_phone: phone.trim() ? 'yes' : 'no'
-				});
+				trackFormSubmit(project.trim(), phone.trim() ? 'yes' : 'no');
 
 				// Success - reset form and show success message
 				successMessage = result.message || "Thank you! I'll respond within 24 hours.";

@@ -3,7 +3,8 @@
 	import { dev } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
-	import { inject, track } from '@vercel/analytics';
+	import { inject } from '@vercel/analytics';
+	import { trackCTA, trackScrollDepth } from '$lib/analytics';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import '@fontsource/jetbrains-mono/latin-400.css';
 	import '@fontsource/jetbrains-mono/latin-500.css';
@@ -60,10 +61,7 @@
 		for (const milestone of [25, 50, 75, 100]) {
 			if (pct >= milestone && !firedDepths.has(milestone)) {
 				firedDepths.add(milestone);
-				track('Scroll Depth', {
-					depth: `${milestone}%`,
-					path: window.location.pathname
-				});
+				trackScrollDepth(`${milestone}%`, window.location.pathname);
 			}
 		}
 	}
@@ -96,8 +94,7 @@
 		href="/contact"
 		class="mobile-fab sm:hidden"
 		aria-label="Get In Touch"
-		onclick={() =>
-			track('CTA Clicked', { label: 'Get In Touch', location: 'mobile-fab' })}
+		onclick={() => trackCTA('Get In Touch', 'mobile-fab')}
 	>
 		Get In Touch
 	</a>

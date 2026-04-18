@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { track } from '@vercel/analytics';
+	import { trackCTA } from '$lib/analytics';
 	import SeoHead from '../../components/seo-head.svelte';
 	import PageHeader from '../../components/page-header.svelte';
 	import ServicesSection from '../../components/services-section.svelte';
@@ -73,7 +73,7 @@
 			<a
 				href="/contact"
 				class="btn-primary px-8 py-4"
-				onclick={() => track('CTA Clicked', { label: 'Get In Touch', location: 'hire' })}
+				onclick={() => trackCTA('Get In Touch', 'hire')}
 			>
 				Get In Touch
 			</a>
