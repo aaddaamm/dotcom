@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { track } from '@vercel/analytics';
 	import SeoHead from '../../components/seo-head.svelte';
 	import { jsonLd, breadcrumbList } from '$lib/utils';
 
@@ -148,7 +149,7 @@
 			href="/contact"
 			class="cta-button px-6 py-3 rounded-lg font-semibold transition-colors inline-block"
 			onclick={() =>
-				window.va?.track('CTA Clicked', { label: 'Get Learning Advice', location: 'teach' })}
+				track('CTA Clicked', { label: 'Get Learning Advice', location: 'teach' })}
 		>
 			Get Learning Advice
 		</a>

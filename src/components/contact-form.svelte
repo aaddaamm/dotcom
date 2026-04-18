@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { track } from '@vercel/analytics';
 	import { validateContactForm, type ContactFormData } from '$lib/validation';
 
 	let name = $state('');
@@ -56,7 +57,7 @@
 
 			if (response.ok && result.success) {
 				// Track successful form submission
-				window.va?.track('Contact Form Submitted', {
+				track('Contact Form Submitted', {
 					project_type: project.trim(),
 					has_phone: phone.trim() ? 'yes' : 'no'
 				});

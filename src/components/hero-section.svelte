@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { track } from '@vercel/analytics';
 	import { availability, homepageMetrics } from '$lib/copy';
 </script>
 
@@ -45,14 +46,14 @@
 		<a
 			href="/work"
 			class="btn-primary text-center"
-			onclick={() => window.va?.track('CTA Clicked', { label: 'See My Work', location: 'hero' })}
+			onclick={() => track('CTA Clicked', { label: 'See My Work', location: 'hero' })}
 		>
 			See My Work
 		</a>
 		<a
 			href="/contact"
 			class="btn-secondary text-center"
-			onclick={() => window.va?.track('CTA Clicked', { label: 'Get In Touch', location: 'hero' })}
+			onclick={() => track('CTA Clicked', { label: 'Get In Touch', location: 'hero' })}
 		>
 			Get In Touch
 		</a>
