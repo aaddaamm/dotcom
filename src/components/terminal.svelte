@@ -128,7 +128,7 @@
 	{/if}
 
 	<div class="terminal-output" bind:this={scrollEl}>
-		{#if fullscreen && history.length === 0}
+		{#if fullscreen && state.history.length === 0}
 			<div class="terminal-line output muted">type 'help' for available commands.</div>
 		{/if}
 		{#each state.history as entry (entry.id)}
