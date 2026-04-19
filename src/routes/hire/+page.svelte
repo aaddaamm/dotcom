@@ -42,7 +42,7 @@
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader
 		title="Work With Me"
-		description="Available for contract work. Ten-plus years embedded with engineering teams across fintech, healthcare, and enterprise."
+		description="Ten-plus years embedded with engineering teams across fintech, healthcare, and enterprise. Open to contract engagements and full-time roles for the right opportunity."
 	/>
 
 	<ServicesSection />
