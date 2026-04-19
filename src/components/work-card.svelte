@@ -51,6 +51,10 @@
 		{/if}
 	</div>
 
+	{#if variant === 'preview' && project.description}
+		<p class="body-text">{project.description}</p>
+	{/if}
+
 	{#if project.caseStudy && variant === 'full'}
 		<div class="case-study">
 			<div class="cs-section">
@@ -115,6 +119,13 @@
 		gap: 0.4rem;
 		flex: 1;
 		min-width: 0;
+	}
+
+	.body-text {
+		font-size: 0.9rem;
+		color: var(--color-text);
+		line-height: 1.7;
+		margin: 0 0 1rem;
 	}
 
 	.stack-tag {
