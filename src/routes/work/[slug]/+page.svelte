@@ -9,12 +9,18 @@
 	let prev = $derived(data.prev);
 	let next = $derived(data.next);
 
-	let companyName = $derived(project.title.split('—')[0].trim());
-	let seoDescription = $derived(project.caseStudy?.situation.split('.')[0] + '.');
+	function companyName(title: string) {
+		return title.split('—')[0].trim();
+	}
+
+	let projectCompany = $derived(companyName(project.title));
+	let seoDescription = $derived(
+		project.caseStudy ? project.caseStudy.situation.split(/\.\s/)[0] + '.' : null
+	);
 </script>
 
 <SeoHead
-	title="{companyName} Case Study — Adam Robinson"
+	title="{projectCompany} Case Study — Adam Robinson"
 	description={seoDescription ?? project.description}
 	path="/work/{project.slug}"
 />
@@ -25,7 +31,7 @@
 		breadcrumbList([
 			{ name: 'Home', path: '/' },
 			{ name: 'Work', path: '/work' },
-			{ name: companyName, path: `/work/${project.slug}` }
+			{ name: projectCompany, path: `/work/${project.slug}` }
 		])
 	)}</` + `script>`}
 </svelte:head>
@@ -66,14 +72,14 @@
 			{#if prev}
 				<a href="/work/{prev.slug}" class="nav-link">
 					<span class="nav-arrow">←</span>
-					<span class="nav-label">{prev.title.split('—')[0].trim()}</span>
+					<span class="nav-label">{companyName(prev.title)}</span>
 				</a>
 			{/if}
 		</div>
 		<div class="nav-next">
 			{#if next}
 				<a href="/work/{next.slug}" class="nav-link">
-					<span class="nav-label">{next.title.split('—')[0].trim()}</span>
+					<span class="nav-label">{companyName(next.title)}</span>
 					<span class="nav-arrow">→</span>
 				</a>
 			{/if}
@@ -94,9 +100,9 @@
 		font-family: var(--font-mono);
 		padding: 0.2rem 0.6rem;
 		border-radius: 4px;
-		background-color: color-mix(in srgb, var(--color-accent) 8%, var(--color-bg));
-		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
-		color: var(--color-accent);
+		background-color: transparent;
+		border: 1px solid var(--color-border);
+		color: var(--color-muted);
 	}
 
 	.case-study {
