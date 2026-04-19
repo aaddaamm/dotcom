@@ -12,7 +12,7 @@
 
 <SeoHead
 	title="Work With Me — Adam Robinson"
-	description="Senior software engineer available for contract engagements. Ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning."
+	description="Senior software engineer open to contract engagements and full-time roles. Ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning."
 	path="/hire"
 />
 
