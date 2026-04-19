@@ -77,11 +77,32 @@
 			>
 				Get In Touch
 			</a>
+			<p class="resume-link-row">
+				<a href="/adam_robinson.pdf" target="_blank" rel="noopener" class="resume-link">
+					Download resume (PDF) ↓
+				</a>
+			</p>
 		</div>
 	</div>
 </div>
 
 <style>
+	.resume-link-row {
+		margin-top: 1rem;
+	}
+
+	.resume-link {
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+		color: var(--color-muted);
+		text-decoration: none;
+		transition: color 150ms ease;
+	}
+
+	.resume-link:hover {
+		color: var(--color-accent);
+	}
+
 	.stack-list {
 		display: flex;
 		flex-direction: column;
