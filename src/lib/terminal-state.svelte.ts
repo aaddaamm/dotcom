@@ -12,6 +12,7 @@ export class TerminalState {
 	cmdHistory = $state<string[]>([]);
 	cmdHistoryIndex = $state(-1);
 	mode = $state<Mode>('terminal');
+	rpgUnlocked = $state(false);
 	#nextId = 0;
 	#fullscreen: boolean;
 	#navigate: (path: string) => Promise<void>;
@@ -57,6 +58,7 @@ export class TerminalState {
 			this.history = [...this.history, { id: this.#nextId++, type: 'output', lines: result.lines }];
 		}
 
+		if (result.rpgUnlock) this.rpgUnlocked = true;
 		if (result.modeChange) this.mode = result.modeChange;
 
 		if (result.navigate) {

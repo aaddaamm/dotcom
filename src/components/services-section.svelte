@@ -78,7 +78,7 @@
 		width: 20px;
 		height: 20px;
 		background-color: var(--color-accent);
-		color: white;
+		color: var(--color-on-accent);
 		border-radius: 50%;
 		font-size: 12px;
 		font-weight: bold;

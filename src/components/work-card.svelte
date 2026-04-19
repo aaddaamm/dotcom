@@ -14,6 +14,7 @@
 		period: string;
 		role: string;
 		description?: string;
+		seoDescription?: string;
 		stack: string[];
 		outcome?: string;
 		caseStudy?: CaseStudy;

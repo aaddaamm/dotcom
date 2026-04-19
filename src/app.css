@@ -15,7 +15,9 @@
 	--color-bg: #fafafa;
 	--color-text: #0a0a0a;
 	--color-accent: #2a7a7a;
-	--color-muted: #aaaaaa;
+	--color-muted: #6b6b6b;
+	--color-on-accent: #ffffff;
+	--color-error: #cc2929;
 	--color-border: #ebebeb;
 	--color-code-bg: #f0f0f0;
 	--color-code-text: #1a1a1a;
@@ -39,6 +41,8 @@
 	--color-code-bg: #111111;
 	--color-code-text: #e8e8e8;
 	--color-code-border: #1a1a1a;
+	--color-on-accent: #0a0a0a;
+	--color-error: #e53e3e;
 }
 
 html {
@@ -244,7 +248,7 @@ p {
 /* Button Styles */
 .btn-primary {
 	background-color: var(--color-accent);
-	color: white;
+	color: var(--color-on-accent);
 	padding: 12px 24px;
 	border-radius: var(--radius-md);
 	font-weight: 600;
@@ -281,7 +285,7 @@ p {
 
 .btn-secondary:hover {
 	background-color: var(--color-accent);
-	color: white;
+	color: var(--color-on-accent);
 	transform: translateY(var(--lift-sm));
 	box-shadow: 0 4px 16px color-mix(in srgb, var(--color-accent) 25%, transparent);
 }

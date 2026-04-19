@@ -86,19 +86,13 @@
 
 	<div class="mb-8">
 		<h2 class="text-lg font-semibold mb-4">Filter by Category</h2>
-		<div
-			class="flex flex-wrap gap-2"
-			role="tablist"
-			aria-label="Filter learning resources by category"
-		>
+		<div class="flex flex-wrap gap-2" role="group" aria-label="Filter learning resources by category">
 			{#each categories as category (category)}
 				<button
 					class="category-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors"
 					class:active={selectedCategory === category}
 					onclick={() => (selectedCategory = category)}
-					role="tab"
-					aria-selected={selectedCategory === category}
-					aria-controls="resources-grid"
+					aria-pressed={selectedCategory === category}
 				>
 					{category}
 				</button>
@@ -106,7 +100,7 @@
 		</div>
 	</div>
 
-	<div class="grid gap-6 md:grid-cols-2" id="resources-grid" role="tabpanel">
+	<div class="grid gap-6 md:grid-cols-2" id="resources-grid">
 		{#each filteredResources as resource (resource.title)}
 			<article class="resource-card p-6 rounded-lg border transition-all duration-300">
 				<div class="flex items-start justify-between mb-3">
@@ -169,7 +163,7 @@
 
 	.category-btn.active {
 		background-color: var(--color-accent);
-		color: white;
+		color: var(--color-on-accent);
 		border-color: var(--color-accent);
 	}
 
@@ -210,7 +204,7 @@
 
 	.cta-button {
 		background-color: var(--color-accent);
-		color: white;
+		color: var(--color-on-accent);
 		border: none;
 	}
 

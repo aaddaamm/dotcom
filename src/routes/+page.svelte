@@ -16,7 +16,7 @@
 
 <SeoHead
 	title="Adam Robinson — Senior Software Engineer"
-	description="Senior software engineer available for contract and staff augmentation. Ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning."
+	description="Senior software engineer in Providence, RI. Rails, Node.js, TypeScript. Available for contract engagements and full-time roles. Ten-plus years in fintech, healthcare, and enterprise."
 	path="/"
 />
 

@@ -33,7 +33,8 @@
 			<nav aria-label="Main navigation" class="flex items-center gap-6">
 				<a href="/work" class="nav-link link-underline">work</a>
 				<a href="/blog" class="nav-link link-underline">blog</a>
-				<a href="/contact" class="nav-link link-underline contact-nav">contact</a>
+				<a href="/hire" class="nav-link link-underline hire-nav">hire me</a>
+				<a href="/contact" class="nav-link link-underline">contact</a>
 			</nav>
 			<button
 				onclick={themeStore.toggle}
@@ -99,7 +100,7 @@
 		border-radius: 2px;
 	}
 
-	.contact-nav {
+	.hire-nav {
 		color: var(--color-accent);
 		font-weight: 500;
 	}

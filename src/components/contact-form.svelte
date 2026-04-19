@@ -298,7 +298,7 @@
 
 	.submit-button {
 		background-color: var(--color-accent);
-		color: white;
+		color: var(--color-on-accent);
 		border: none;
 		cursor: pointer;
 	}
@@ -334,18 +334,18 @@
 	}
 
 	.error-message {
-		background-color: color-mix(in srgb, #ef4444 10%, var(--color-bg));
-		border: 1px solid color-mix(in srgb, #ef4444 20%, transparent);
-		color: #ef4444;
+		background-color: color-mix(in srgb, var(--color-error) 10%, var(--color-bg));
+		border: 1px solid color-mix(in srgb, var(--color-error) 20%, transparent);
+		color: var(--color-error);
 	}
 
 	.form-input.field-error {
-		border-color: #ef4444;
+		border-color: var(--color-error);
 	}
 
 	.field-error-msg {
 		font-size: 0.8rem;
-		color: #ef4444;
+		color: var(--color-error);
 		margin: 0;
 	}
 </style>

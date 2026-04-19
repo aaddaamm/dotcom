@@ -27,7 +27,7 @@
 			<div class="space-y-6">
 				{#each data.posts as post (post.slug)}
 					<a href="/blog/{post.slug}" class="post-card block rounded-lg p-6">
-						<time class="text-xs muted-text">
+						<time class="text-xs muted-text" datetime={post.date}>
 							{new Date(post.date).toLocaleDateString('en-US', {
 								year: 'numeric',
 								month: 'long',

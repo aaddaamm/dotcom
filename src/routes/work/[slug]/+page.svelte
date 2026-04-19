@@ -15,7 +15,7 @@
 
 	let projectCompany = $derived(companyName(project.title));
 	let seoDescription = $derived(
-		project.caseStudy ? project.caseStudy.situation.split(/\.\s/)[0].replace(/\.$/, '') + '.' : null
+		project.seoDescription ?? project.description
 	);
 </script>
 
@@ -66,6 +66,11 @@
 			</div>
 		</div>
 	{/if}
+
+	<div class="cs-cta">
+		<a href="/contact" class="btn-primary">Get In Touch</a>
+		<a href="/hire" class="btn-secondary">See How I Work</a>
+	</div>
 
 	<nav class="case-study-nav" aria-label="Case study navigation">
 		<div class="nav-prev">
@@ -130,6 +135,13 @@
 		color: var(--color-text);
 		line-height: 1.8;
 		margin: 0;
+	}
+
+	.cs-cta {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+		margin-top: 3rem;
 	}
 
 	.case-study-nav {

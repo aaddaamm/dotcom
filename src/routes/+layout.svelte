@@ -127,7 +127,7 @@
 		padding: 12px 20px;
 		border-radius: 999px;
 		background-color: var(--color-accent);
-		color: white;
+		color: var(--color-on-accent);
 		font-size: 0.875rem;
 		font-weight: 500;
 		text-decoration: none;

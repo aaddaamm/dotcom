@@ -68,7 +68,7 @@
 			Blog
 		</a>
 		<div class="post-header">
-			<time class="text-xs muted-text">
+			<time class="text-xs muted-text" datetime={data.post.date}>
 				{new Date(data.post.date).toLocaleDateString('en-US', {
 					year: 'numeric',
 					month: 'long',
