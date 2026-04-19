@@ -39,7 +39,7 @@
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader
 		title={project.title}
-		description="via MojoTech · {project.period}"
+		description="{project.role} · {project.period}"
 		backHref="/work"
 		backLabel="back to work"
 	/>
