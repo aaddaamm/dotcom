@@ -3,6 +3,10 @@ import { selectedWork } from '$lib/copy';
 
 export const prerender = true;
 
+export function entries() {
+	return selectedWork.map((work) => ({ slug: work.slug }));
+}
+
 export function load({ params }) {
 	const index = selectedWork.findIndex((w) => w.slug === params.slug);
 
