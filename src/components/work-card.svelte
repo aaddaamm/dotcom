@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { slide, fly } from 'svelte/transition';
-	import { cubicOut } from 'svelte/easing';
 	import Card from './card.svelte';
 	import { getFilter, toggle } from '$lib/stores/work-filter.svelte';
 
@@ -22,8 +20,6 @@
 	}
 
 	let { project, variant = 'full' }: { project: WorkItem; variant?: 'preview' | 'full' } = $props();
-
-	let expanded = $state(false);
 </script>
 
 <Card variant="work" class="p-6">
@@ -31,10 +27,10 @@
 		<h3 class="title">{project.title}</h3>
 		<span class="period">{project.period}</span>
 	</div>
-	<p class="role">{project.role}</p>
-	<p class="body-text mt-3">{project.description}</p>
-	<div class="footer">
-		<div class="stack-tags">
+
+	<div class="meta-row">
+		<span class="meta-role">{project.role}</span>
+		<div class="meta-stack">
 			{#each project.stack as tag (tag)}
 				{#if variant === 'full'}
 					<button
@@ -50,37 +46,26 @@
 				{/if}
 			{/each}
 		</div>
-		{#if variant === 'full'}
-			<p class="outcome">↳ {project.outcome}</p>
+		{#if project.slug && variant === 'full'}
+			<a href="/work/{project.slug}" class="case-study-link">full case study →</a>
 		{/if}
 	</div>
 
-	{#if project.caseStudy && variant === 'full'}
-		<div class="toggle-row">
-			<button class="toggle" onclick={() => (expanded = !expanded)}>
-				{expanded ? '↑ collapse' : '↓ case study'}
-			</button>
-			{#if project.slug}
-				<a href="/work/{project.slug}" class="case-study-link">full case study →</a>
-			{/if}
-		</div>
-
-		{#if expanded}
-			<div class="case-study" transition:slide={{ duration: 300, easing: cubicOut }}>
-				<div class="cs-section" in:fly={{ y: 10, duration: 220, delay: 80, easing: cubicOut }}>
-					<span class="cs-label">situation</span>
-					<p class="cs-body">{project.caseStudy.situation}</p>
-				</div>
-				<div class="cs-section" in:fly={{ y: 10, duration: 220, delay: 160, easing: cubicOut }}>
-					<span class="cs-label">work</span>
-					<p class="cs-body">{project.caseStudy.work}</p>
-				</div>
-				<div class="cs-section" in:fly={{ y: 10, duration: 220, delay: 240, easing: cubicOut }}>
-					<span class="cs-label">outcome</span>
-					<p class="cs-body">{project.caseStudy.outcome}</p>
-				</div>
+	{#if project.caseStudy}
+		<div class="case-study">
+			<div class="cs-section">
+				<span class="cs-label">situation</span>
+				<p class="cs-body">{project.caseStudy.situation}</p>
 			</div>
-		{/if}
+			<div class="cs-section">
+				<span class="cs-label">work</span>
+				<p class="cs-body">{project.caseStudy.work}</p>
+			</div>
+			<div class="cs-section">
+				<span class="cs-label">outcome</span>
+				<p class="cs-body">{project.caseStudy.outcome}</p>
+			</div>
+		</div>
 	{/if}
 </Card>
 
@@ -91,7 +76,7 @@
 		justify-content: space-between;
 		gap: 1rem;
 		flex-wrap: wrap;
-		margin-bottom: 0.25rem;
+		margin-bottom: 0.5rem;
 	}
 
 	.title {
@@ -107,25 +92,29 @@
 		white-space: nowrap;
 	}
 
-	.role {
+	.meta-row {
+		display: flex;
+		align-items: baseline;
+		flex-wrap: wrap;
+		gap: 0.5rem 1rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.meta-role {
 		font-size: 0.8rem;
 		font-weight: 500;
 		color: var(--color-accent);
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
+		white-space: nowrap;
 	}
 
-	.footer {
-		margin-top: 1.25rem;
-		display: flex;
-		flex-direction: column;
-		gap: 0.75rem;
-	}
-
-	.stack-tags {
+	.meta-stack {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.5rem;
+		gap: 0.4rem;
+		flex: 1;
+		min-width: 0;
 	}
 
 	.stack-tag {
@@ -159,46 +148,14 @@
 		border-color: var(--color-accent);
 	}
 
-	.outcome {
-		font-size: 0.85rem;
-		color: var(--color-muted);
-		font-style: italic;
-	}
-
-	.toggle-row {
-		margin-top: 1.25rem;
-		padding-top: 1rem;
-		border-top: 1px solid var(--color-border);
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-	}
-
-	.toggle {
-		background: none;
-		border: 1px solid var(--color-border);
-		border-radius: 4px;
-		padding: 0.3rem 0.7rem;
-		cursor: pointer;
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		color: var(--color-text);
-		transition:
-			color 150ms ease,
-			border-color 150ms ease;
-	}
-
-	.toggle:hover {
-		color: var(--color-accent);
-		border-color: var(--color-accent);
-	}
-
 	.case-study-link {
 		font-family: var(--font-mono);
 		font-size: 0.75rem;
 		color: var(--color-muted);
 		text-decoration: none;
 		transition: color 150ms ease;
+		white-space: nowrap;
+		margin-left: auto;
 	}
 
 	.case-study-link:hover {
@@ -206,7 +163,6 @@
 	}
 
 	.case-study {
-		margin-top: 1.25rem;
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
