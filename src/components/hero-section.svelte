@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { trackCTA } from '$lib/analytics';
-	import { availability, homepageMetrics } from '$lib/copy';
+	import { homepageMetrics } from '$lib/copy';
 </script>
 
 <!-- Hero -->
@@ -34,13 +34,6 @@
 			{/each}
 		</div>
 	</div>
-
-	{#if availability.available}
-		<div class="availability-badge mt-6 mb-1">
-			<span class="availability-dot" aria-hidden="true"></span>
-			<span>{availability.label}</span>
-		</div>
-	{/if}
 
 	<div class="flex flex-col sm:flex-row gap-3 mt-3">
 		<a href="/work" class="btn-primary text-center" onclick={() => trackCTA('See My Work', 'hero')}>
@@ -133,22 +126,5 @@
 
 	.industry-tag {
 		color: var(--color-muted);
-	}
-
-	.availability-badge {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		font-size: 0.8rem;
-		color: var(--color-muted);
-	}
-
-	.availability-dot {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background-color: var(--color-available);
-		flex-shrink: 0;
-		box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-available) 25%, transparent);
 	}
 </style>

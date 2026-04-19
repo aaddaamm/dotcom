@@ -1,8 +1,3 @@
-export const availability = {
-	available: true,
-	label: 'Available for new engagements — can typically start within a week or two'
-};
-
 export const selectedWork = [
 	{
 		slug: 'icapital',
