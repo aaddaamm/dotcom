@@ -13,9 +13,9 @@
 		title: string;
 		period: string;
 		role: string;
-		description: string;
+		description?: string;
 		stack: string[];
-		outcome: string;
+		outcome?: string;
 		caseStudy?: CaseStudy;
 	}
 
@@ -51,7 +51,7 @@
 		{/if}
 	</div>
 
-	{#if project.caseStudy}
+	{#if project.caseStudy && variant === 'full'}
 		<div class="case-study">
 			<div class="cs-section">
 				<span class="cs-label">situation</span>
