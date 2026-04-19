@@ -30,25 +30,26 @@
 
 	<div class="meta-row">
 		<span class="meta-role">{project.role}</span>
-		<div class="meta-stack">
-			{#each project.stack as tag (tag)}
-				{#if variant === 'full'}
-					<button
-						class="stack-tag"
-						class:active={getFilter() === tag}
-						aria-pressed={getFilter() === tag}
-						onclick={() => toggle(tag)}
-					>
-						{tag}
-					</button>
-				{:else}
-					<span class="stack-tag muted">{tag}</span>
-				{/if}
-			{/each}
-		</div>
 		{#if project.slug && variant === 'full'}
 			<a href="/work/{project.slug}" class="case-study-link">full case study →</a>
 		{/if}
+	</div>
+
+	<div class="meta-stack">
+		{#each project.stack as tag (tag)}
+			{#if variant === 'full'}
+				<button
+					class="stack-tag"
+					class:active={getFilter() === tag}
+					aria-pressed={getFilter() === tag}
+					onclick={() => toggle(tag)}
+				>
+					{tag}
+				</button>
+			{:else}
+				<span class="stack-tag muted">{tag}</span>
+			{/if}
+		{/each}
 	</div>
 
 	{#if variant === 'preview' && project.description}
@@ -99,9 +100,9 @@
 	.meta-row {
 		display: flex;
 		align-items: baseline;
-		flex-wrap: wrap;
-		gap: 0.5rem 1rem;
-		margin-bottom: 1.25rem;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 0.5rem;
 	}
 
 	.meta-role {
@@ -110,15 +111,13 @@
 		color: var(--color-accent);
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
-		white-space: nowrap;
 	}
 
 	.meta-stack {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.4rem;
-		flex: 1;
-		min-width: 0;
+		margin-bottom: 1.25rem;
 	}
 
 	.body-text {
