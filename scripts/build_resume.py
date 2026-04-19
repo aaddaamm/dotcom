@@ -120,6 +120,40 @@ def add_role_header(doc, company, title, period, location=None):
     r3.font.color.rgb = MUTED
 
 
+def add_client_entry(doc, company, title, period, desc):
+    p = doc.add_paragraph()
+    clear_paragraph_spacing(p)
+    p.paragraph_format.space_before = Pt(5)
+    p.paragraph_format.space_after = Pt(1)
+    p.paragraph_format.left_indent = Inches(0.18)
+
+    r1 = p.add_run('▸  ')
+    r1.font.name = 'Calibri'
+    r1.font.size = Pt(9)
+    r1.font.color.rgb = TEAL
+
+    r2 = p.add_run(company)
+    r2.font.name = 'Calibri'
+    r2.font.size = Pt(9.5)
+    r2.font.bold = True
+    r2.font.color.rgb = BLACK
+
+    r3 = p.add_run(f'  ·  {title}  ·  {period}')
+    r3.font.name = 'Calibri'
+    r3.font.size = Pt(9)
+    r3.font.bold = False
+    r3.font.color.rgb = MUTED
+
+    p2 = doc.add_paragraph()
+    clear_paragraph_spacing(p2)
+    p2.paragraph_format.space_after = Pt(3)
+    p2.paragraph_format.left_indent = Inches(0.35)
+    r4 = p2.add_run(desc)
+    r4.font.name = 'Calibri'
+    r4.font.size = Pt(9.5)
+    r4.font.color.rgb = BLACK
+
+
 def add_bullet(doc, text):
     p = doc.add_paragraph(style='List Bullet')
     clear_paragraph_spacing(p)
@@ -183,35 +217,39 @@ def build():
         space_after=6
     )
 
-    add_role_header(doc, 'iCapital', 'Staff Augmentation / Senior Engineer', '2024 – present')
-    add_body(doc,
-        'Embedded on a large-scale alternative investment platform serving wealth managers. '
-        'Expanded i18n support across static and database-backed content, co-designed a Rails '
-        'service for bulk nominee investment processing, and led a component library migration '
-        '(Supernova v1 → v2).'
-    )
+    clients = [
+        ('iCapital', 'Staff Augmentation / Senior Engineer', '2024 – present',
+         'Embedded on a large-scale alternative investment platform serving wealth managers. '
+         'Expanded i18n support across static and database-backed content, co-designed a Rails '
+         'service for bulk nominee investment processing, and led a component library migration '
+         '(Supernova v1 → v2).'),
+        ('Healthcasts', 'Technical Lead', '2022 – 2024',
+         'Led platform modernization for a medical publishing company. Built a headless CMS '
+         'publishing pipeline (Strapi + React), rebuilt AWS infrastructure, and delivered an '
+         'Auth0 authentication overhaul unifying login across all platforms — unblocking a '
+         'parallel AI initiative in the process.'),
+        ('Angi', 'Staff Augmentation / Senior Engineer', '2021 – 2022',
+         "Delivered across three separate codebases (HomeAdvisor, Handy, Angie's List) in a "
+         'single engagement — Vue/Java, Rails/React, and Next.js/Contentful. Mentored a team '
+         'of interns through their first fully shipped feature.'),
+        ('Shell Techworks', 'Software Engineer', '2018 – 2019',
+         'Built decommissioning tooling for end-of-life offshore oil platforms. Full-stack '
+         'React/Node application. Used the Google Design Sprint process to compress scope '
+         'and deliver MVP on schedule onsite in Boston.'),
+    ]
+    for company, title, period, desc in clients:
+        add_client_entry(doc, company, title, period, desc)
 
-    add_role_header(doc, 'Healthcasts', 'Technical Lead', '2022 – 2024')
-    add_body(doc,
-        'Led platform modernization for a medical publishing company. Built a headless CMS '
-        'publishing pipeline (Strapi + React), rebuilt AWS infrastructure, and delivered an '
-        'Auth0 authentication overhaul unifying login across all platforms — unblocking a '
-        'parallel AI initiative in the process.'
-    )
-
-    add_role_header(doc, 'Angi', 'Staff Augmentation / Senior Engineer', '2021 – 2022')
-    add_body(doc,
-        'Delivered across three separate codebases (HomeAdvisor, Handy, Angie\'s List) in a '
-        'single engagement — Vue/Java, Rails/React, and Next.js/Contentful. Mentored a team '
-        'of interns through their first fully shipped feature.'
-    )
-
-    add_role_header(doc, 'Shell Techworks', 'Software Engineer', '2018 – 2019')
-    add_body(doc,
-        'Built decommissioning tooling for end-of-life offshore oil platforms. Full-stack '
-        'React/Node application. Used the Google Design Sprint process to compress scope '
-        'and deliver MVP on schedule onsite in Boston.'
-    )
+    p = doc.add_paragraph()
+    clear_paragraph_spacing(p)
+    p.paragraph_format.space_before = Pt(6)
+    p.paragraph_format.space_after = Pt(6)
+    p.paragraph_format.left_indent = Inches(0.35)
+    r = p.add_run('Earlier clients include School of Motion, Amica Mutual, and AutoRaptor.')
+    r.font.name = 'Calibri'
+    r.font.size = Pt(9)
+    r.font.italic = True
+    r.font.color.rgb = MUTED
 
     add_role_header(doc, 'Beacon Mutual Insurance', 'Software Engineer', '2013 – 2016', 'Warwick, RI')
     add_body(doc,
