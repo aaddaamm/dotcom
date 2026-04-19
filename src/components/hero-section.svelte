@@ -16,7 +16,7 @@
 	<p class="body-text">
 		Companies hire me when they need a senior engineer — I join the team, learn the codebase, and
 		start delivering. Full-stack, backend-leaning, ten-plus years across fintech, healthcare, and
-		enterprise. You work directly with me, not an agency.
+		enterprise.
 	</p>
 	<div class="hero-stats mt-4 mb-2">
 		<div class="stats-numbers">
