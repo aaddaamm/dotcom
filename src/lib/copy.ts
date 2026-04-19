@@ -200,6 +200,11 @@ export const services = [
 
 export const faqItems = [
 	{
+		question: 'Are you open to full-time roles?',
+		answer:
+			"Yes — primarily I take on contract work, but I'm open to full-time for the right team and problem. If you're building something interesting and want someone who can operate as a senior IC or tech lead, reach out."
+	},
+	{
 		question: 'What kinds of engagements do you take on?',
 		answer:
 			"Primarily contract work — embedded with an existing engineering team as a senior contributor. I'm also open to full-time roles for the right opportunity."
