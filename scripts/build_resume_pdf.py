@@ -75,7 +75,7 @@ def build():
     # Header
     story.append(Paragraph('adam robinson', st['name']))
     story.append(Paragraph('SENIOR SOFTWARE ENGINEER', st['subtitle']))
-    story.append(Paragraph('Providence, RI  ·  Open to relocation', st['meta']))
+    story.append(Paragraph('Providence, RI', st['meta']))
     story.append(Paragraph(
         'adamrobinson.tech  ·  github.com/aaddaamm  ·  '
         'linkedin.com/in/adam-robinson-software  ·  adam@adamrobinson.tech',

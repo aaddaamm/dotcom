@@ -54,7 +54,7 @@ def add_name_block(doc):
     p3 = doc.add_paragraph()
     clear_paragraph_spacing(p3)
     p3.paragraph_format.space_after = Pt(2)
-    run3 = p3.add_run('Providence, RI  ·  Open to relocation')
+    run3 = p3.add_run('Providence, RI')
     run3.font.name = 'Calibri'
     run3.font.size = Pt(10)
     run3.font.color.rgb = MUTED
