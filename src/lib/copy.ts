@@ -11,7 +11,7 @@ export const selectedWork = [
 		caseStudy: {
 			situation:
 				"iCapital's platform handles alternative investment transactions for wealth managers at scale — a large, complex codebase with many specialized teams. Joined as a staff aug senior engineer, embedded with one of those teams and contributing across the full stack.",
-			work: "Expanded translation support across the platform — covering both static UI copy and dynamic, database-backed content using the Mobility gem for Rails. On the Nominee Investments project — a high-visibility initiative to unify several disparate nominee investment flows — co-designed and built a new Rails service to consolidate bulk processing for thousands of investments, with a clean API surface for frontend consumption. Also drove the team's migration from v1 to v2 of Supernova, their internal React component library — navigating breaking changes and coordinating back-and-forth with the library team when components needed fixes or new releases before the upgrade could proceed.",
+			work: "Expanded translation support across the platform, covering both static UI copy and dynamic database-backed content using the Mobility gem. On the Nominee Investments project — a high-visibility initiative to unify several disparate nominee investment flows — co-designed and built a new Rails service to consolidate bulk processing for thousands of investments. Also drove the team's migration from Supernova v1 to v2, navigating breaking changes and coordinating with the library team when components needed fixes before the upgrade could proceed.",
 			outcome:
 				'Still engaged — trusted with backend service design, a cross-stack i18n rollout, and a component library migration on one of the more complex fintech platforms in the alternatives space.'
 		}
@@ -29,7 +29,7 @@ export const selectedWork = [
 		caseStudy: {
 			situation:
 				"Angi was in the middle of a merger — HomeAdvisor, Handy, and Angie's List operating as separate products under one roof, each with its own codebase, stack, and team.",
-			work: "On HomeAdvisor, worked in Vue and Java to unify the user quiz flow across the merging brands into a single Angi experience. On Handy, worked in Rails and React on professional assignment logic and job ingestion for Handy partner stores. On Angie's List, built out a CMS-driven content experience in Next.js — blog-style project descriptions with varied visual layouts. Along the way, found myself in a position to take on a team of interns: coached them through real development workflows using a live use case — a Careers page revamp — and by the end they had something real to demo. Brought in a colleague to help carry the work across the finish line before rotating off.",
+			work: "On HomeAdvisor, worked in Vue and Java to unify the user quiz flow across the merging brands into a single Angi experience. On Handy, worked in Rails and React on professional assignment logic and job ingestion for Handy partner stores. On Angie's List, built out a CMS-driven content experience in Next.js — blog-style project descriptions with varied visual layouts. Along the way, took on a team of interns: coached them through real development workflows using a live use case — a Careers page revamp — and by the end they had something real to demo.",
 			outcome:
 				'Delivered across three separate products and stacks inside a single engagement — and left a cleaner codebase and a team of interns who shipped something they could be proud of.'
 		}
@@ -47,7 +47,7 @@ export const selectedWork = [
 		caseStudy: {
 			situation:
 				'Brought in to build tooling for Shell Techworks to support the decommissioning of end-of-life offshore oil platforms — a domain with real cost and logistical complexity.',
-			work: 'Built a full-stack application that ingested oil platform data and processed it to determine the optimal, least-cost decommissioning path. Frontend in React with Ant Design, backend in Node. Worked onsite with the Shell Techworks team in Boston, using the Google Design Sprint process to rapidly iterate and arrive at a clear MVP scope — compressing what could have been months of back-and-forth into focused, structured sessions.',
+			work: 'Built a full-stack application that ingested oil platform data and determined the optimal, least-cost decommissioning path. Frontend in React with Ant Design, backend in Node. Worked onsite with the Shell Techworks team in Boston, using the Google Design Sprint process to rapidly iterate and arrive at a clear MVP scope — compressing months of potential back-and-forth into focused, structured sessions.',
 			outcome:
 				'MVP delivered on schedule, with the Design Sprint process doing real work — not just ceremony.'
 		}
@@ -64,7 +64,7 @@ export const selectedWork = [
 		caseStudy: {
 			situation:
 				"Brought in as tech lead to modernize Healthcasts' core publication workflow and platform infrastructure.",
-			work: 'Built a new publishing pipeline around a headless CMS (Strapi) and a custom React rendering layer, dramatically reducing time-to-publish for their medical consensus deliverable — a structured question posed to their user base, condensed into a published document for readers. Updated their AWS infrastructure and migrated frameworks to current, supported versions. Then led a full authentication overhaul — unifying login across all their platforms with Auth0, moving to a single secure flow that also unblocked a parallel AI initiative dependent on a cleaner identity layer.',
+			work: 'Built a new publishing pipeline around a headless CMS (Strapi) and a custom React rendering layer, dramatically reducing time-to-publish for their core medical consensus deliverable. Updated AWS infrastructure and migrated frameworks to current, supported versions. Then led a full authentication overhaul — unifying login across all their platforms with Auth0, moving to a single secure flow that also unblocked a parallel AI initiative dependent on a cleaner identity layer.',
 			outcome:
 				'The MVP engagement grew into a four-year collaboration — a rare signal that the work held up under real production conditions.'
 		}
