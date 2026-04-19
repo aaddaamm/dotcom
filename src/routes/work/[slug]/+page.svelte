@@ -15,7 +15,7 @@
 
 	let projectCompany = $derived(companyName(project.title));
 	let seoDescription = $derived(
-		project.caseStudy ? project.caseStudy.situation.split(/\.\s/)[0] + '.' : null
+		project.caseStudy ? project.caseStudy.situation.split(/\.\s/)[0].replace(/\.$/, '') + '.' : null
 	);
 </script>
 
