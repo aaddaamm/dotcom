@@ -11,6 +11,7 @@
 	}
 
 	interface WorkItem {
+		slug?: string;
 		title: string;
 		period: string;
 		role: string;
@@ -59,6 +60,9 @@
 			<button class="toggle" onclick={() => (expanded = !expanded)}>
 				{expanded ? '↑ collapse' : '↓ case study'}
 			</button>
+			{#if project.slug}
+				<a href="/work/{project.slug}" class="case-study-link">full case study →</a>
+			{/if}
 		</div>
 
 		{#if expanded}
@@ -165,6 +169,9 @@
 		margin-top: 1.25rem;
 		padding-top: 1rem;
 		border-top: 1px solid var(--color-border);
+		display: flex;
+		align-items: center;
+		gap: 1rem;
 	}
 
 	.toggle {
@@ -184,6 +191,18 @@
 	.toggle:hover {
 		color: var(--color-accent);
 		border-color: var(--color-accent);
+	}
+
+	.case-study-link {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-muted);
+		text-decoration: none;
+		transition: color 150ms ease;
+	}
+
+	.case-study-link:hover {
+		color: var(--color-accent);
 	}
 
 	.case-study {
