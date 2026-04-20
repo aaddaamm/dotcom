@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
+	import type { Component, Snippet } from 'svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 	import { dev } from '$app/environment';
 	import { onMount } from 'svelte';
@@ -12,17 +12,21 @@
 	import '../app.css';
 	import Footer from '../components/footer.svelte';
 	import Header from '../components/header.svelte';
-	import Terminal from '../components/terminal.svelte';
 	import { initTheme } from '$lib/stores/theme.svelte';
 	import { getTerminalOpen } from '$lib/stores/terminal.svelte';
 	import { page } from '$app/state';
 
 	let { children }: { children: Snippet } = $props();
+	let TerminalComponent = $state<Component | null>(null);
 
 	onMount(() => {
 		initTheme();
 		injectSpeedInsights();
 		inject({ mode: dev ? 'development' : 'production' });
+
+		void import('../components/terminal.svelte').then((module) => {
+			TerminalComponent = module.default;
+		});
 
 		// Unregister any previously installed service worker
 		if ('serviceWorker' in navigator) {
@@ -86,8 +90,8 @@
 	<Footer />
 </div>
 
-{#if page.url.pathname !== '/terminal'}
-	<Terminal />
+{#if page.url.pathname !== '/terminal' && TerminalComponent}
+	<TerminalComponent />
 {/if}
 
 {#if page.url.pathname !== '/contact' && !getTerminalOpen()}
