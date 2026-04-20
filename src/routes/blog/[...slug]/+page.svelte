@@ -72,7 +72,8 @@
 				{new Date(data.post.date).toLocaleDateString('en-US', {
 					year: 'numeric',
 					month: 'long',
-					day: 'numeric'
+					day: 'numeric',
+					timeZone: 'UTC'
 				})}
 			</time>
 			<h1 class="page-title text-3xl font-semibold tracking-tight mt-2 mb-3">{data.post.title}</h1>

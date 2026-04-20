@@ -44,6 +44,13 @@
 			description:
 				'Interactive coding lessons with hands-on practice in various programming languages.',
 			category: 'Interactive Learning'
+		},
+		{
+			title: 'IndyDevDan',
+			url: 'https://www.youtube.com/@indydevdan',
+			description:
+				'YouTube channel covering AI-powered development workflows, coding agents, and practical developer tooling.',
+			category: 'Video Content'
 		}
 	];
 

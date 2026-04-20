@@ -31,7 +31,8 @@
 							{new Date(post.date).toLocaleDateString('en-US', {
 								year: 'numeric',
 								month: 'long',
-								day: 'numeric'
+								day: 'numeric',
+								timeZone: 'UTC'
 							})}
 						</time>
 						<h2 class="text-lg font-semibold mt-1 flex items-center gap-2 post-title">
