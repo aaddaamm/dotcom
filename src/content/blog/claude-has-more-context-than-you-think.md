@@ -1,6 +1,6 @@
 ---
 title: 'Your AI Agent Is Reading More Than You Think'
-description: "Claude Code and other agentic tools gather far more context than you explicitly hand them. Here's how the CLAUDE.md hierarchy works — and what to do about it."
+description: "Claude Code gathers far more context than you explicitly hand it. Here's how the CLAUDE.md hierarchy works, what it costs you, and what to do about it."
 date: '2026-04-03'
 tags: ['ai', 'developer-tools', 'claude']
 published: true
@@ -36,30 +36,62 @@ What you haven't realized yet is that you haven't reduced context — you've dis
 
 ## The Reveal
 
-When the agent traverses your repository to work on a task, it doesn't pick one file and ignore the rest. It loads your root file first, then picks up each domain file as it enters that folder. Touch six domains in a single task and you've silently loaded seven files before the agent has written a single line of code. That 400-line file you broke up into ten 40-line files? The agent may load all ten. You've gone from one big file to ten smaller ones that collectively add up to more than you started with.
+When the agent traverses your repository to work on a task, it doesn't pick one file and ignore the rest. It loads your root file first, then picks up each domain file as it reads files in that folder. Touch six domains in a single task and you've silently loaded seven instruction files before the agent has written a single line of code. That 400-line file you broke up into ten 40-line files? The agent may load all ten. You've gone from one big file to ten smaller ones that collectively add up to more than you started with.
 
 The problem was never the size of the file. It was never even the number of files. It's what's in them, and when they get loaded.
 
-## How the Hierarchy Works
+## How the Loading Actually Works
 
-Here's the hierarchy. At the root of your repository sits your main CLAUDE.md — the agent loads this first, every time. As it moves into subfolders, it picks up any CLAUDE.md file it finds there too. Go deeper and the same thing happens again. Root → domain → subdomain. Every folder entered is another file added to the stack, and the stack grows silently as the agent works.
+There are two distinct behaviors depending on where a file sits.
+
+**At launch**, Claude loads your user-level file (`~/.claude/CLAUDE.md`) and your project root CLAUDE.md. These load before you send a single prompt, every time.
+
+**On demand**, as Claude reads files in subdirectories below your project root, it picks up any CLAUDE.md it finds there. The trigger is a file read — not a write, not a command execution. Go deeper and the same thing happens again. Root → domain → subdomain.
+
+The stack is additive. On any non-trivial task, the agent reads files across many directories, and each one is another instruction file added to the context. The stack grows silently as the agent works.
+
+One caveat worth noting: subdirectory loading hasn't always been perfectly consistent in practice. Some users have reported nested CLAUDE.md files not loading as expected across different versions. Treat it as the intended behavior, but don't be surprised if it doesn't fire reliably in all cases.
 
 ## The Visibility Problem
 
-Here's the uncomfortable part. You have no easy way to see what the agent has loaded. There's no list that appears at the start of a session, no indicator showing how much of your context window is already occupied before you've typed a single prompt. The agent is working with instructions you wrote, plus instructions you forgot about, plus instructions from domain files you haven't touched in weeks. It's all in there, and it's all influencing what the agent does.
+You can see what's loaded — the `/memory` command lists all CLAUDE.md and rules files currently active in your session. That's step one.
+
+What you don't get is a token breakdown. There's no indicator showing how much of your context window is already occupied before you've typed anything. You can see the file names, but not the cost. If you want to estimate it, you'll need to find the files listed by `/memory`, sum their sizes, and convert to approximate token counts manually.
+
+Worth keeping in mind: according to [humanlayer.dev's analysis](https://www.humanlayer.dev/blog/writing-a-good-claude-md), Claude Code's own system prompt already consumes a significant portion of the available context budget before your CLAUDE.md is even factored in. You have less headroom than you might assume. Between the system prompt and your instruction files, a meaningful slice of your context window is spoken for before the real work begins.
+
+The agent is working with instructions you wrote, plus instructions you forgot about, plus instructions from domain files you haven't touched in weeks. Stale or contradictory instructions compound silently — and that's the real problem.
 
 ## So What Can You Do?
 
 Quite a lot, it turns out.
 
-The official guidance from Anthropic is blunt on this point: keep your CLAUDE.md short and human-readable, and for each line ask yourself "would removing this cause Claude to make mistakes?" — if not, cut it. That's the first lever. A lean file that gets loaded everywhere does less damage than a bloated one.
+### Trim aggressively
 
-The second lever is how you scope your tasks. The agent only loads domain files in folders it actually enters — so a tightly scoped task naturally limits accumulation. Before you send a prompt, ask yourself which parts of the codebase the agent actually needs to touch. The answer is usually smaller than your instinct suggests.
+The official guidance from Anthropic is blunt: keep your CLAUDE.md short and human-readable, and for each line ask yourself "would removing this cause Claude to make mistakes?" If not, cut it. Instructions that feel useful but aren't load-bearing just burn budget. A lean file that gets loaded everywhere does less damage than a bloated one.
 
-The third lever is context management during a session. Running `/clear` between unrelated tasks resets the context window entirely. If you notice the agent starting to drift or repeat mistakes, that's often a sign the context is cluttered — not that the agent is broken. A fresh session with a better prompt will almost always outperform a long session with accumulated noise. If you're mid-task and don't want to start over, `/compact` is a middle ground — it summarizes the conversation so far and replaces it with that summary, keeping enough context to continue without carrying the full weight of everything that came before.
+### Scope your tasks tightly
 
-And finally, for tasks that require genuine exploration across many domains, subagents are one of the most powerful tools available — they run in separate context windows and report back summaries, keeping your main conversation clean. The exploration happens, but the cost doesn't come out of your primary context.
+The agent only loads subdirectory files when it reads files there. A well-scoped task that touches two domains loads three instruction files total (root + two). Before you send a prompt, ask yourself which parts of the codebase the agent actually needs to touch. The answer is usually smaller than your instinct suggests.
+
+### Use `/clear` between unrelated tasks
+
+This resets the context window entirely. If you notice the agent starting to drift or repeat mistakes, that's often a sign the context is cluttered — not that the agent is broken. A fresh session with a better prompt will almost always outperform a long session with accumulated noise.
+
+### Use `/compact` when you need continuity
+
+If you're mid-task and don't want to start over, `/compact` summarizes the conversation so far and replaces it with that summary — keeping enough context to continue without carrying the full token weight of every prior exchange. One detail worth knowing: your project-root CLAUDE.md is re-read from disk after compaction, so root-level instructions survive. It's conversation history and nested instruction files that get compressed away.
+
+### Use `.claude/rules/` for scoped instructions
+
+If you need domain-scoped instructions that don't all load at once, `.claude/rules/` with `paths:` frontmatter is the better tool. Rules defined there only load when Claude reads a file matching the specified path pattern — so you get scoped instructions without the accumulation problem. It's what subdirectory CLAUDE.md files are supposed to do, but with explicit control over when they fire.
+
+This is the real fix for the splitting problem. Instead of ten CLAUDE.md files scattered across your repo that all load on broad tasks, you write rules that only activate for the specific file patterns they're relevant to.
+
+### Reach for subagents on broad tasks
+
+For tasks that genuinely need to span many domains, subagents run in isolated context windows and report back summaries. The exploration still happens — it just doesn't consume your primary context doing it. Your main conversation stays clean while the broad work happens in parallel.
 
 ---
 
-The mental model shift is simple but important: every folder the agent enters is a file it may read. That changes how you should think about scoping tasks, structuring instructions, and what you put in those files in the first place.
+The mental model shift is simple but important: every directory where the agent reads a file is a potential context load. Once that's clear, decisions about file structure, task scope, and session hygiene all follow naturally.
