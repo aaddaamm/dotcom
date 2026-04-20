@@ -6,7 +6,7 @@
 
 <SeoHead
 	title="Blog — Adam Robinson"
-	description="Writing about backend systems, workflow design, and software engineering by Adam Robinson."
+	description="Writing on backend engineering, Rails, Node.js, and TypeScript — practical insights from ten-plus years across fintech, healthcare, and enterprise."
 	path="/blog"
 />
 

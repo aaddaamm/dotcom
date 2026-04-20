@@ -6,23 +6,21 @@ import { SITE_URL } from '$lib/constants';
 export async function GET() {
 	const sitemap = new SitemapStream({ hostname: SITE_URL });
 
-	const now = new Date().toISOString().split('T')[0];
-
-	sitemap.write({ url: '/', changefreq: 'monthly', priority: 1.0, lastmod: now });
-	sitemap.write({ url: '/work', changefreq: 'monthly', priority: 0.8, lastmod: now });
+	sitemap.write({ url: '/', changefreq: 'monthly', priority: 1.0, lastmod: '2026-04-19' });
+	sitemap.write({ url: '/work', changefreq: 'monthly', priority: 0.8, lastmod: '2026-04-19' });
 
 	for (const project of selectedWork) {
 		sitemap.write({
 			url: `/work/${project.slug}`,
 			changefreq: 'monthly',
 			priority: 0.7,
-			lastmod: now
+			lastmod: '2026-04-19'
 		});
 	}
 
-	sitemap.write({ url: '/contact', changefreq: 'monthly', priority: 0.9, lastmod: now });
-	sitemap.write({ url: '/hire', changefreq: 'monthly', priority: 0.9, lastmod: now });
-	sitemap.write({ url: '/blog', changefreq: 'weekly', priority: 0.8, lastmod: now });
+	sitemap.write({ url: '/contact', changefreq: 'monthly', priority: 0.9, lastmod: '2026-04-19' });
+	sitemap.write({ url: '/hire', changefreq: 'monthly', priority: 0.9, lastmod: '2026-04-19' });
+	sitemap.write({ url: '/blog', changefreq: 'weekly', priority: 0.8, lastmod: '2026-04-19' });
 
 	for (const post of getAllPosts()) {
 		sitemap.write({
@@ -33,8 +31,8 @@ export async function GET() {
 		});
 	}
 
-	sitemap.write({ url: '/play', changefreq: 'weekly', priority: 0.6, lastmod: now });
-	sitemap.write({ url: '/teach', changefreq: 'monthly', priority: 0.7, lastmod: now });
+	sitemap.write({ url: '/play', changefreq: 'weekly', priority: 0.6 });
+	sitemap.write({ url: '/teach', changefreq: 'monthly', priority: 0.7, lastmod: '2025-11-01' });
 
 	sitemap.end();
 

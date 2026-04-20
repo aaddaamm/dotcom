@@ -7,7 +7,7 @@
 
 <SeoHead
 	title="Let's Talk — Adam Robinson"
-	description="Get in touch with Adam Robinson. Open to full-time roles, contract work, and technical consulting."
+	description="Get in touch with Adam Robinson — senior software engineer in Providence, RI. Available for contract and full-time roles in Rails, Node.js, and TypeScript."
 	path="/contact"
 />
 

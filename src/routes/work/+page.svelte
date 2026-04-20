@@ -14,7 +14,7 @@
 
 <SeoHead
 	title="Work — Adam Robinson"
-	description="Selected engineering engagements across fintech, enterprise, and platform work. Full-stack, backend-leaning, ten-plus years."
+	description="Ten-plus years of engineering work across fintech, healthcare, and enterprise. Rails, Node.js, TypeScript. Staff augmentation and technical leadership."
 	path="/work"
 />
 
