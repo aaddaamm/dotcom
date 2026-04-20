@@ -1,7 +1,8 @@
 <script lang="ts">
 	import SeoHead from '../../../components/seo-head.svelte';
 	import { createElementObserver } from '$lib/animations';
-	import { jsonLd, breadcrumbList } from '$lib/utils';
+	import JsonLd from '../../../components/json-ld.svelte';
+	import { breadcrumbList } from '$lib/utils';
 	import { SITE_URL } from '$lib/constants';
 	import { onMount } from 'svelte';
 
@@ -26,9 +27,8 @@
 	image={data.post.image}
 />
 
-<svelte:head>
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${jsonLd({
+<JsonLd
+	data={{
 		'@context': 'https://schema.org',
 		'@type': 'BlogPosting',
 		headline: data.post.title,
@@ -50,16 +50,16 @@
 		},
 		url: `${SITE_URL}/blog/${data.post.slug}`,
 		keywords: data.post.tags
-	})}</` + `script>`}
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${jsonLd(
-		breadcrumbList([
-			{ name: 'Home', path: '/' },
-			{ name: 'Blog', path: '/blog' },
-			{ name: data.post.title, path: `/blog/${data.post.slug}` }
-		])
-	)}</` + `script>`}
-</svelte:head>
+	}}
+/>
+
+<JsonLd
+	data={breadcrumbList([
+		{ name: 'Home', path: '/' },
+		{ name: 'Blog', path: '/blog' },
+		{ name: data.post.title, path: `/blog/${data.post.slug}` }
+	])}
+/>
 
 <article class="max-w-3xl mx-auto px-6">
 	<div class="pt-20 sm:pt-28">

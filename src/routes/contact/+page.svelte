@@ -1,7 +1,8 @@
 <script lang="ts">
 	import SeoHead from '../../components/seo-head.svelte';
 	import ContactForm from '../../components/contact-form.svelte';
-	import { jsonLd, breadcrumbList } from '$lib/utils';
+	import JsonLd from '../../components/json-ld.svelte';
+	import { breadcrumbList } from '$lib/utils';
 	import { SITE_URL } from '$lib/constants';
 </script>
 
@@ -11,9 +12,8 @@
 	path="/contact"
 />
 
-<svelte:head>
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${jsonLd({
+<JsonLd
+	data={{
 		'@context': 'https://schema.org',
 		'@type': 'ContactPage',
 		name: 'Contact Adam Robinson',
@@ -29,15 +29,15 @@
 				availableLanguage: 'English'
 			}
 		}
-	})}</` + `script>`}
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${jsonLd(
-		breadcrumbList([
-			{ name: 'Home', path: '/' },
-			{ name: 'Contact', path: '/contact' }
-		])
-	)}</` + `script>`}
-</svelte:head>
+	}}
+/>
+
+<JsonLd
+	data={breadcrumbList([
+		{ name: 'Home', path: '/' },
+		{ name: 'Contact', path: '/contact' }
+	])}
+/>
 
 <div class="max-w-3xl mx-auto px-6">
 	<section class="pt-20 sm:pt-28">

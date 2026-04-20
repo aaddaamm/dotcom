@@ -7,7 +7,8 @@
 	import FaqSection from '../../components/faq-section.svelte';
 	import PublicActivitySection from '../../components/public-activity-section.svelte';
 	import { techStack, faqItems } from '$lib/copy';
-	import { jsonLd, breadcrumbList } from '$lib/utils';
+	import JsonLd from '../../components/json-ld.svelte';
+	import { breadcrumbList } from '$lib/utils';
 </script>
 
 <SeoHead
@@ -16,9 +17,8 @@
 	path="/hire"
 />
 
-<svelte:head>
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${jsonLd({
+<JsonLd
+	data={{
 		'@context': 'https://schema.org',
 		'@type': 'FAQPage',
 		mainEntity: faqItems.map((item) => ({
@@ -29,15 +29,15 @@
 				text: item.answer
 			}
 		}))
-	})}</` + `script>`}
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${jsonLd(
-		breadcrumbList([
-			{ name: 'Home', path: '/' },
-			{ name: 'Hire', path: '/hire' }
-		])
-	)}</` + `script>`}
-</svelte:head>
+	}}
+/>
+
+<JsonLd
+	data={breadcrumbList([
+		{ name: 'Home', path: '/' },
+		{ name: 'Hire', path: '/hire' }
+	])}
+/>
 
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader

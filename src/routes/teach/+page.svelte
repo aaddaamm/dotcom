@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { trackCTA } from '$lib/analytics';
 	import SeoHead from '../../components/seo-head.svelte';
-	import { jsonLd, breadcrumbList } from '$lib/utils';
+	import JsonLd from '../../components/json-ld.svelte';
+	import { breadcrumbList } from '$lib/utils';
 
 	const learningResources = [
 		{
@@ -70,15 +71,12 @@
 	path="/teach"
 />
 
-<svelte:head>
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${jsonLd(
-		breadcrumbList([
-			{ name: 'Home', path: '/' },
-			{ name: 'Learning Resources', path: '/teach' }
-		])
-	)}</` + `script>`}
-</svelte:head>
+<JsonLd
+	data={breadcrumbList([
+		{ name: 'Home', path: '/' },
+		{ name: 'Learning Resources', path: '/teach' }
+	])}
+/>
 
 <div class="max-w-4xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
 	<a href="/" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
@@ -93,7 +91,11 @@
 
 	<div class="mb-8">
 		<h2 class="text-lg font-semibold mb-4">Filter by Category</h2>
-		<div class="flex flex-wrap gap-2" role="group" aria-label="Filter learning resources by category">
+		<div
+			class="flex flex-wrap gap-2"
+			role="group"
+			aria-label="Filter learning resources by category"
+		>
 			{#each categories as category (category)}
 				<button
 					class="category-btn px-4 py-2 rounded-lg text-sm font-medium transition-colors"

@@ -1,7 +1,8 @@
 <script lang="ts">
 	import SeoHead from '../../../components/seo-head.svelte';
 	import PageHeader from '../../../components/page-header.svelte';
-	import { jsonLd, breadcrumbList } from '$lib/utils';
+	import JsonLd from '../../../components/json-ld.svelte';
+	import { breadcrumbList } from '$lib/utils';
 
 	let { data } = $props();
 
@@ -14,9 +15,7 @@
 	}
 
 	let projectCompany = $derived(companyName(project.title));
-	let seoDescription = $derived(
-		project.seoDescription ?? project.description
-	);
+	let seoDescription = $derived(project.seoDescription ?? project.description);
 </script>
 
 <SeoHead
@@ -25,16 +24,13 @@
 	path="/work/{project.slug}"
 />
 
-<svelte:head>
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${jsonLd(
-		breadcrumbList([
-			{ name: 'Home', path: '/' },
-			{ name: 'Work', path: '/work' },
-			{ name: projectCompany, path: `/work/${project.slug}` }
-		])
-	)}</` + `script>`}
-</svelte:head>
+<JsonLd
+	data={breadcrumbList([
+		{ name: 'Home', path: '/' },
+		{ name: 'Work', path: '/work' },
+		{ name: projectCompany, path: `/work/${project.slug}` }
+	])}
+/>
 
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader

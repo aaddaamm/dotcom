@@ -3,7 +3,8 @@
 	import PageHeader from '../../components/page-header.svelte';
 	import WorkCard from '../../components/work-card.svelte';
 	import { selectedWork, earlierWork, gitLog } from '$lib/copy';
-	import { jsonLd, breadcrumbList } from '$lib/utils';
+	import JsonLd from '../../components/json-ld.svelte';
+	import { breadcrumbList } from '$lib/utils';
 	import { getFilter } from '$lib/stores/work-filter.svelte';
 
 	const filteredWork = $derived.by(() => {
@@ -18,15 +19,12 @@
 	path="/work"
 />
 
-<svelte:head>
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html `<script type="application/ld+json">${jsonLd(
-		breadcrumbList([
-			{ name: 'Home', path: '/' },
-			{ name: 'Work', path: '/work' }
-		])
-	)}</` + `script>`}
-</svelte:head>
+<JsonLd
+	data={breadcrumbList([
+		{ name: 'Home', path: '/' },
+		{ name: 'Work', path: '/work' }
+	])}
+/>
 
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader
