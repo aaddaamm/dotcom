@@ -7,7 +7,7 @@
 		class: className = '',
 		children
 	}: {
-		variant?: 'base' | 'work' | 'service' | 'benefit';
+		variant?: 'base' | 'work';
 		hover?: boolean;
 		class?: string;
 		children: Snippet;
@@ -15,9 +15,7 @@
 
 	const variantClasses = {
 		base: 'card-base',
-		work: 'card-work',
-		service: 'card-base card-accent-border',
-		benefit: 'card-base'
+		work: 'card-work'
 	};
 
 	const classes = $derived(
