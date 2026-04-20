@@ -15,11 +15,14 @@ export class TerminalState {
 	mode = $state<Mode>('terminal');
 	rpgUnlocked = $state(false);
 	#nextId = 0;
-	#fullscreen: boolean;
+	#fullscreen: () => boolean;
 	#navigate: (path: string) => Promise<void>;
 
-	constructor(fullscreen = false, navigate: (path: string) => Promise<void> = goto) {
-		this.#fullscreen = fullscreen;
+	constructor(
+		fullscreen: boolean | (() => boolean) = false,
+		navigate: (path: string) => Promise<void> = goto
+	) {
+		this.#fullscreen = typeof fullscreen === 'function' ? fullscreen : () => fullscreen;
 		this.#navigate = navigate;
 	}
 
@@ -30,7 +33,7 @@ export class TerminalState {
 	}
 
 	close() {
-		if (this.#fullscreen) return;
+		if (this.#fullscreen()) return;
 		this.isOpen = false;
 		this.input = '';
 	}
@@ -49,7 +52,12 @@ export class TerminalState {
 		const result = runCommand(cmd, this.mode);
 
 		// Track recognized commands only — avoid logging free-text typos
-		if (lower === 'clear' || lower === 'exit' || lower === 'quit' || !result.lines[0]?.startsWith('command not found')) {
+		if (
+			lower === 'clear' ||
+			lower === 'exit' ||
+			lower === 'quit' ||
+			!result.lines[0]?.startsWith('command not found')
+		) {
 			trackTerminalCommand(key, this.mode);
 		}
 
@@ -77,7 +85,7 @@ export class TerminalState {
 			const dest = result.navigate;
 			setTimeout(() => {
 				this.#navigate(dest);
-				if (!this.#fullscreen) this.close();
+				if (!this.#fullscreen()) this.close();
 			}, result.navigateDelay ?? 0);
 		}
 	}

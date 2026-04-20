@@ -5,9 +5,9 @@
 	import { TerminalState } from '$lib/terminal-state.svelte';
 	import { trackTerminalOpen } from '$lib/analytics';
 
-	let { fullscreen = false }: { fullscreen?: boolean } = $props();
+	const { fullscreen = false }: { fullscreen?: boolean } = $props();
 
-	const state = new TerminalState(fullscreen);
+	const state = new TerminalState(() => fullscreen);
 
 	let inputEl: HTMLInputElement;
 	let scrollEl: HTMLElement;
@@ -116,10 +116,6 @@
 	class:fullscreen
 	role="region"
 	aria-label="Terminal"
-	onclick={(e) => {
-		if (e.target === inputEl) return;
-		inputEl?.focus();
-	}}
 >
 	{#if !fullscreen}
 		<div class="terminal-bar">
