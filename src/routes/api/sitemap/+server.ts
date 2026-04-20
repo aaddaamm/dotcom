@@ -3,36 +3,47 @@ import { getAllPosts } from '$lib/server/blog';
 import { selectedWork } from '$lib/copy';
 import { SITE_URL } from '$lib/constants';
 
+const STATIC_LASTMOD = new Date().toISOString().slice(0, 10);
+
+const staticRoutes: Array<{
+	url: string;
+	changefreq: 'weekly' | 'monthly';
+	priority: number;
+	lastmod?: string;
+}> = [
+	{ url: '/', changefreq: 'monthly', priority: 1.0, lastmod: STATIC_LASTMOD },
+	{ url: '/work', changefreq: 'monthly', priority: 0.8, lastmod: STATIC_LASTMOD },
+	{ url: '/contact', changefreq: 'monthly', priority: 0.9, lastmod: STATIC_LASTMOD },
+	{ url: '/hire', changefreq: 'monthly', priority: 0.9, lastmod: STATIC_LASTMOD },
+	{ url: '/blog', changefreq: 'weekly', priority: 0.8, lastmod: STATIC_LASTMOD },
+	{ url: '/play', changefreq: 'weekly', priority: 0.6 },
+	{ url: '/teach', changefreq: 'monthly', priority: 0.7, lastmod: STATIC_LASTMOD }
+];
+
 export async function GET() {
 	const sitemap = new SitemapStream({ hostname: SITE_URL });
 
-	sitemap.write({ url: '/', changefreq: 'monthly', priority: 1.0, lastmod: '2026-04-19' });
-	sitemap.write({ url: '/work', changefreq: 'monthly', priority: 0.8, lastmod: '2026-04-19' });
+	for (const route of staticRoutes) {
+		sitemap.write(route);
+	}
 
 	for (const project of selectedWork) {
 		sitemap.write({
 			url: `/work/${project.slug}`,
 			changefreq: 'monthly',
 			priority: 0.7,
-			lastmod: '2026-04-19'
+			lastmod: STATIC_LASTMOD
 		});
 	}
-
-	sitemap.write({ url: '/contact', changefreq: 'monthly', priority: 0.9, lastmod: '2026-04-19' });
-	sitemap.write({ url: '/hire', changefreq: 'monthly', priority: 0.9, lastmod: '2026-04-19' });
-	sitemap.write({ url: '/blog', changefreq: 'weekly', priority: 0.8, lastmod: '2026-04-19' });
 
 	for (const post of getAllPosts()) {
 		sitemap.write({
 			url: `/blog/${post.slug}`,
 			changefreq: 'yearly',
 			priority: 0.7,
-			lastmod: post.date
+			lastmod: post.updated ?? post.date
 		});
 	}
-
-	sitemap.write({ url: '/play', changefreq: 'weekly', priority: 0.6 });
-	sitemap.write({ url: '/teach', changefreq: 'monthly', priority: 0.7, lastmod: '2025-11-01' });
 
 	sitemap.end();
 
