@@ -395,22 +395,22 @@ p {
 	color: var(--color-text);
 	font-family: var(--font-mono);
 	position: relative;
-	padding-bottom: 6px;
+	padding-left: 12px;
 }
 
-.prose h3::after {
+.prose h3::before {
 	content: '';
 	position: absolute;
-	bottom: 0;
+	top: 2px;
 	left: 0;
-	width: 0;
-	height: 1px;
-	background-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
-	transition: width 400ms ease-out;
+	width: 2px;
+	height: 0;
+	background-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+	transition: height 400ms ease-out;
 }
 
-.prose h3.animated::after {
-	width: 100%;
+.prose h3.animated::before {
+	height: 100%;
 }
 
 .prose p {
