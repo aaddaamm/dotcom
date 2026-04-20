@@ -61,8 +61,8 @@ Maintain clear space equal to the height of the cursor block on all sides of the
 | **Teal Dark**    | `#2A7A7A` | Cursor mark, accent, links (light mode)           |
 | **White**        | `#FFFFFF` | Primary text (dark mode)                          |
 | **Off-white**    | `#FAFAFA` | Primary background (light mode)                   |
-| **Muted**        | `#444444` | Secondary text (dark mode)                        |
-| **Muted Light**  | `#AAAAAA` | Secondary text (light mode)                       |
+| **Muted**        | `#888888` | Secondary text (dark mode)                        |
+| **Muted Light**  | `#6B6B6B` | Secondary text (light mode) — WCAG AA on #FAFAFA  |
 | **Border Dark**  | `#1A1A1A` | Borders, dividers (dark mode)                     |
 | **Border Light** | `#EBEBEB` | Borders, dividers (light mode)                    |
 | **Grid**         | `#111111` | Subtle background grid (dark only)                |
@@ -74,7 +74,7 @@ Maintain clear space equal to the height of the cursor block on all sides of the
 	--color-bg: #fafafa;
 	--color-text: #0a0a0a;
 	--color-accent: #2a7a7a;
-	--color-muted: #aaaaaa;
+	--color-muted: #6b6b6b;
 	--color-border: #ebebeb;
 }
 
@@ -82,7 +82,7 @@ Maintain clear space equal to the height of the cursor block on all sides of the
 	--color-bg: #0a0a0a;
 	--color-text: #ffffff;
 	--color-accent: #3aafa9;
-	--color-muted: #444444;
+	--color-muted: #888888;
 	--color-border: #1a1a1a;
 }
 ```

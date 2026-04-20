@@ -21,7 +21,7 @@
 
 <SeoHead
 	title="{projectCompany} Case Study — Adam Robinson"
-	description={seoDescription ?? project.description}
+	description={seoDescription}
 	path="/work/{project.slug}"
 />
 

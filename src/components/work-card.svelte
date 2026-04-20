@@ -166,7 +166,6 @@
 		text-decoration: none;
 		transition: color 150ms ease;
 		white-space: nowrap;
-		margin-left: auto;
 	}
 
 	.case-study-link:hover {
