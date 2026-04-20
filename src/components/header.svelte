@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { themeStore } from '$lib/stores/theme';
+	import { getTheme, toggleTheme } from '$lib/stores/theme.svelte';
 	import Icon from './icon.svelte';
 </script>
 
@@ -37,11 +37,11 @@
 				<a href="/contact" class="nav-link link-underline">contact</a>
 			</nav>
 			<button
-				onclick={themeStore.toggle}
-				aria-label={$themeStore === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+				onclick={toggleTheme}
+				aria-label={getTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
 				class="theme-toggle"
 			>
-				<Icon name={$themeStore === 'dark' ? 'sun' : 'moon'} />
+				<Icon name={getTheme() === 'dark' ? 'sun' : 'moon'} />
 			</button>
 		</div>
 	</div>

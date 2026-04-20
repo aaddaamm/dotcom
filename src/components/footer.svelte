@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import { openTerminal } from '$lib/stores/terminal';
+	import { openTerminal } from '$lib/stores/terminal.svelte';
 
 	let emailCopied = $state(false);
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, tick, untrack } from 'svelte';
 	import { page } from '$app/state';
-	import { terminalOpen } from '$lib/stores/terminal';
+	import { getTerminalOpen, setTerminalOpen } from '$lib/stores/terminal.svelte';
 	import { TerminalState } from '$lib/terminal-state.svelte';
 	import { trackTerminalOpen } from '$lib/analytics';
 
@@ -17,14 +17,14 @@
 	$effect(() => {
 		const open = state.isOpen;
 		untrack(() => {
-			if (!fullscreen) terminalOpen.set(open);
+			if (!fullscreen) setTerminalOpen(open);
 		});
 	});
 
 	// Open when triggered externally (e.g. footer button sets terminalOpen).
-	// untrack the isOpen read so only $terminalOpen drives this effect.
+	// untrack the isOpen read so only terminalOpen drives this effect.
 	$effect(() => {
-		if ($terminalOpen && !fullscreen) {
+		if (getTerminalOpen() && !fullscreen) {
 			untrack(() => {
 				if (!state.isOpen) openAndFocus('button');
 			});
@@ -103,7 +103,7 @@
 	});
 
 	onDestroy(() => {
-		if (!fullscreen) terminalOpen.set(false);
+		if (!fullscreen) setTerminalOpen(false);
 	});
 
 	const PROMPT = 'adam@adamrobinson.tech:~$';
