@@ -15,8 +15,8 @@
 </script>
 
 <SeoHead
-	title="Adam Robinson — Senior Software Engineer"
-	description="Senior software engineer in Providence, RI. Rails, Node.js, TypeScript. Available for contract engagements and full-time roles. Ten-plus years in fintech, healthcare, and enterprise."
+	title="Adam Robinson — Senior Software Engineer, Providence RI"
+	description="Senior software engineer in Providence, RI. Rails, Node.js, TypeScript. Contract and full-time. Ten-plus years in fintech, healthcare, and enterprise."
 	path="/"
 />
 

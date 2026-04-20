@@ -11,8 +11,8 @@
 </script>
 
 <SeoHead
-	title="Work With Me — Adam Robinson"
-	description="Senior software engineer open to contract and full-time roles. Rails, Node.js, TypeScript. Ten-plus years in fintech, healthcare, and enterprise."
+	title="Hire Adam Robinson — Senior Software Engineer"
+	description="Senior software engineer in Providence, RI. Open to contract and full-time roles. Rails, Node.js, TypeScript. Ten-plus years across fintech and healthcare."
 	path="/hire"
 />
 
