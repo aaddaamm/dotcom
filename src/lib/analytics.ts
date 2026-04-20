@@ -11,3 +11,15 @@ export function trackScrollDepth(depth: string, path: string) {
 export function trackFormSubmit(projectType: string, hasPhone: 'yes' | 'no') {
 	track('Contact Form Submitted', { project_type: projectType, has_phone: hasPhone });
 }
+
+export function trackTerminalOpen(source: 'keyboard' | 'button' | 'page') {
+	track('Terminal Opened', { source });
+}
+
+export function trackTerminalCommand(command: string, mode: string) {
+	track('Terminal Command', { command, mode });
+}
+
+export function trackTerminalModeChange(to: string) {
+	track('Terminal Mode Changed', { to });
+}

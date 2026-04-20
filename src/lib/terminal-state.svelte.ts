@@ -1,5 +1,6 @@
 import { goto } from '$app/navigation';
-import { runCommand, getCompletions, type Mode } from '$lib/terminal-commands';
+import { runCommand, normalize, getCompletions, type Mode } from '$lib/terminal-commands';
+import { trackTerminalOpen, trackTerminalCommand, trackTerminalModeChange } from '$lib/analytics';
 
 export type HistoryEntry =
 	| { id: number; type: 'input'; text: string }
@@ -22,9 +23,10 @@ export class TerminalState {
 		this.#navigate = navigate;
 	}
 
-	open(initialChar = '') {
+	open(source: 'keyboard' | 'button' | 'page' = 'keyboard', initialChar = '') {
 		this.isOpen = true;
 		this.input = initialChar;
+		trackTerminalOpen(source);
 	}
 
 	close() {
@@ -42,7 +44,14 @@ export class TerminalState {
 		this.cmdHistory = [cmd, ...this.cmdHistory.slice(0, 49)];
 		this.cmdHistoryIndex = -1;
 
+		const lower = cmd.toLowerCase();
+		const key = normalize(lower);
 		const result = runCommand(cmd, this.mode);
+
+		// Track recognized commands only — avoid logging free-text typos
+		if (lower === 'clear' || lower === 'exit' || lower === 'quit' || !result.lines[0]?.startsWith('command not found')) {
+			trackTerminalCommand(key, this.mode);
+		}
 
 		if (result.clear) {
 			this.history = [];
@@ -59,7 +68,10 @@ export class TerminalState {
 		}
 
 		if (result.rpgUnlock) this.rpgUnlocked = true;
-		if (result.modeChange) this.mode = result.modeChange;
+		if (result.modeChange) {
+			trackTerminalModeChange(result.modeChange);
+			this.mode = result.modeChange;
+		}
 
 		if (result.navigate) {
 			const dest = result.navigate;

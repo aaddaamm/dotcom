@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import { terminalOpen } from '$lib/stores/terminal';
 	import { TerminalState } from '$lib/terminal-state.svelte';
+	import { trackTerminalOpen } from '$lib/analytics';
 
 	let { fullscreen = false }: { fullscreen?: boolean } = $props();
 
@@ -25,7 +26,7 @@
 	$effect(() => {
 		if ($terminalOpen && !fullscreen) {
 			untrack(() => {
-				if (!state.isOpen) openAndFocus();
+				if (!state.isOpen) openAndFocus('button');
 			});
 		}
 	});
@@ -37,8 +38,8 @@
 		});
 	});
 
-	function openAndFocus(initialChar = '') {
-		state.open(initialChar);
+	function openAndFocus(source: 'keyboard' | 'button' | 'page' = 'keyboard', initialChar = '') {
+		state.open(source, initialChar);
 		tick().then(() => {
 			if (inputEl) {
 				inputEl.focus();
@@ -88,13 +89,16 @@
 			return;
 
 		e.preventDefault();
-		openAndFocus(e.key);
+		openAndFocus('keyboard', e.key);
 	}
 
 	// $effect is browser-only — no window guard needed
 	$effect(() => {
 		window.addEventListener('keydown', handleWindowKeydown);
-		if (fullscreen) tick().then(() => inputEl?.focus());
+		if (fullscreen) {
+			trackTerminalOpen('page');
+			tick().then(() => inputEl?.focus());
+		}
 		return () => window.removeEventListener('keydown', handleWindowKeydown);
 	});
 

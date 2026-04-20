@@ -16,7 +16,7 @@ type CommandDef = { terminal: CommandResult; rpg?: CommandResult };
 
 const allStack = techStack.flatMap((g) => g.items);
 
-function normalize(lower: string): string {
+export function normalize(lower: string): string {
 	if (lower === '-h' || lower === '--help') return 'help';
 	if (lower === 'ls /') return 'ls';
 	if (lower === 'ls work') return 'ls /work';
