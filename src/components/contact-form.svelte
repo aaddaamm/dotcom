@@ -44,14 +44,7 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({
-					name: name.trim(),
-					email: email.trim(),
-					project: project.trim(),
-					message: message.trim(),
-					phone: phone.trim(),
-					website
-				})
+				body: JSON.stringify({ ...formData, website })
 			});
 
 			const result = await response.json();
