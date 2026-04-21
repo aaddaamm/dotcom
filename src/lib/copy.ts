@@ -7,7 +7,7 @@ export const selectedWork = [
 		description:
 			'Embedded senior engineer on an alternative investment platform. Full-stack delivery across a large, complex enterprise codebase.',
 		seoDescription:
-			'Senior staff-aug engineer on iCapital\'s fintech platform. Rails, React, TypeScript — i18n, bulk nominee investment processing, and a component library migration on a complex enterprise codebase.',
+			"Senior staff-aug engineer on iCapital's fintech platform. Rails, React, TypeScript — i18n, bulk nominee investment processing, and a component library migration on a complex enterprise codebase.",
 		stack: ['React', 'TypeScript', 'Node.js', 'Rails'],
 		outcome: 'Ongoing contributor across multiple subdomains of an enterprise fintech platform',
 		caseStudy: {
@@ -26,7 +26,7 @@ export const selectedWork = [
 		description:
 			'Contributed across three separate product codebases inside a single engagement. Also mentored a team of interns through their first real shipped feature.',
 		seoDescription:
-			'Senior staff-aug engineer across three merged codebases in a single engagement — Vue/Java, Rails/React, and Next.js/Contentful across HomeAdvisor, Handy, and Angie\'s List.',
+			"Senior staff-aug engineer across three merged codebases in a single engagement — Vue/Java, Rails/React, and Next.js/Contentful across HomeAdvisor, Handy, and Angie's List.",
 		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js', 'Contentful'],
 		outcome:
 			'Cross-product delivery and intern mentorship across a newly merged home services platform',
@@ -251,6 +251,64 @@ export const homepageMetrics = {
 	],
 	industries: ['fintech', 'healthcare', 'enterprise']
 };
+
+export type LearningResource = {
+	title: string;
+	url: string;
+	description: string;
+	category: string;
+};
+
+export const learningResources: LearningResource[] = [
+	{
+		title: 'Exercism',
+		url: 'https://exercism.org',
+		description:
+			'Practice coding with mentorship in 70+ programming languages. Free, hands-on exercises with real human feedback.',
+		category: 'Interactive Practice'
+	},
+	{
+		title: 'freeCodeCamp',
+		url: 'https://freecodecamp.org',
+		description:
+			'Comprehensive full-stack web development curriculum with projects and certifications.',
+		category: 'Full Curriculum'
+	},
+	{
+		title: 'The Odin Project',
+		url: 'https://theodinproject.com',
+		description:
+			'Open-source curriculum for learning web development with a focus on building real projects.',
+		category: 'Full Curriculum'
+	},
+	{
+		title: 'MDN Web Docs',
+		url: 'https://developer.mozilla.org',
+		description:
+			'Comprehensive documentation and tutorials for web technologies (HTML, CSS, JavaScript).',
+		category: 'Reference & Tutorials'
+	},
+	{
+		title: 'LeetCode',
+		url: 'https://leetcode.com',
+		description: 'Algorithm and data structure problems for technical interview preparation.',
+		category: 'Problem Solving'
+	},
+	{
+		title: 'Codecademy',
+		url: 'https://codecademy.com',
+		description:
+			'Interactive coding lessons with hands-on practice in various programming languages.',
+		category: 'Interactive Learning'
+	},
+	{
+		title: 'IndyDevDan',
+		url: 'https://www.youtube.com/@indydevdan',
+		description:
+			'YouTube channel covering AI-powered development workflows, coding agents, and practical developer tooling.',
+		category: 'Video Content'
+	}
+];
 
 export const philosophy = {
 	heading: 'How I work',
