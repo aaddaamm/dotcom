@@ -1,5 +1,6 @@
 <script lang="ts">
-	let { type, size = 32 }: { type: string; size?: number } = $props();
+	import type { ServiceIconType } from '$lib/copy';
+	let { type, size = 32 }: { type: ServiceIconType; size?: number } = $props();
 </script>
 
 <div class="service-icon" style="width: {size}px; height: {size}px;">

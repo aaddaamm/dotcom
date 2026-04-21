@@ -169,7 +169,15 @@ export const techStack = [
 	}
 ];
 
-export const services = [
+export type ServiceIconType = 'code' | 'globe' | 'lightbulb';
+
+export const services: Array<{
+	title: string;
+	icon: ServiceIconType;
+	description: string;
+	examples: string[];
+	outcome: string;
+}> = [
 	{
 		title: 'Embedded Engineering',
 		icon: 'code',
