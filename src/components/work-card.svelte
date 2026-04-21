@@ -1,8 +1,9 @@
 <script lang="ts">
 	import Card from './card.svelte';
+	import CaseStudy from './case-study.svelte';
 	import { getFilter, toggle } from '$lib/stores/work-filter.svelte';
 
-	interface CaseStudy {
+	interface CaseStudyData {
 		situation: string;
 		work: string;
 		outcome: string;
@@ -17,7 +18,7 @@
 		seoDescription?: string;
 		stack: string[];
 		outcome?: string;
-		caseStudy?: CaseStudy;
+		caseStudy?: CaseStudyData;
 	}
 
 	let { project, variant = 'full' }: { project: WorkItem; variant?: 'preview' | 'full' } = $props();
@@ -58,20 +59,11 @@
 	{/if}
 
 	{#if project.caseStudy && variant === 'full'}
-		<div class="case-study">
-			<div class="cs-section">
-				<span class="cs-label">situation</span>
-				<p class="cs-body">{project.caseStudy.situation}</p>
-			</div>
-			<div class="cs-section">
-				<span class="cs-label">work</span>
-				<p class="cs-body">{project.caseStudy.work}</p>
-			</div>
-			<div class="cs-section">
-				<span class="cs-label">outcome</span>
-				<p class="cs-body">{project.caseStudy.outcome}</p>
-			</div>
-		</div>
+		<CaseStudy
+			situation={project.caseStudy.situation}
+			work={project.caseStudy.work}
+			outcome={project.caseStudy.outcome}
+		/>
 	{/if}
 </Card>
 
@@ -170,32 +162,5 @@
 
 	.case-study-link:hover {
 		color: var(--color-accent);
-	}
-
-	.case-study {
-		display: flex;
-		flex-direction: column;
-		gap: 1.25rem;
-	}
-
-	.cs-section {
-		display: flex;
-		flex-direction: column;
-		gap: 0.4rem;
-	}
-
-	.cs-label {
-		font-family: var(--font-mono);
-		font-size: 0.7rem;
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		color: var(--color-muted);
-	}
-
-	.cs-body {
-		font-size: 0.9rem;
-		color: var(--color-text);
-		line-height: 1.7;
-		margin: 0;
 	}
 </style>

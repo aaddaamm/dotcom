@@ -1,6 +1,7 @@
 <script lang="ts">
 	import SeoHead from '../../../components/seo-head.svelte';
 	import PageHeader from '../../../components/page-header.svelte';
+	import CaseStudy from '../../../components/case-study.svelte';
 	import JsonLd from '../../../components/json-ld.svelte';
 	import { breadcrumbList } from '$lib/utils';
 
@@ -47,20 +48,11 @@
 	</div>
 
 	{#if project.caseStudy}
-		<div class="case-study">
-			<div class="cs-section">
-				<span class="cs-label">situation</span>
-				<p class="cs-body">{project.caseStudy.situation}</p>
-			</div>
-			<div class="cs-section">
-				<span class="cs-label">work</span>
-				<p class="cs-body">{project.caseStudy.work}</p>
-			</div>
-			<div class="cs-section">
-				<span class="cs-label">outcome</span>
-				<p class="cs-body">{project.caseStudy.outcome}</p>
-			</div>
-		</div>
+		<CaseStudy
+			situation={project.caseStudy.situation}
+			work={project.caseStudy.work}
+			outcome={project.caseStudy.outcome}
+		/>
 	{/if}
 
 	<div class="cs-cta">
@@ -104,33 +96,6 @@
 		background-color: transparent;
 		border: 1px solid var(--color-border);
 		color: var(--color-muted);
-	}
-
-	.case-study {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-	}
-
-	.cs-section {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
-	.cs-label {
-		font-family: var(--font-mono);
-		font-size: 0.7rem;
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		color: var(--color-muted);
-	}
-
-	.cs-body {
-		font-size: 1rem;
-		color: var(--color-text);
-		line-height: 1.8;
-		margin: 0;
 	}
 
 	.cs-cta {
