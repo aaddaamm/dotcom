@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { trackFormSubmit } from '$lib/analytics';
 	import { validateContactForm, type ContactFormData } from '$lib/validation';
+	import { EMAIL } from '$lib/constants';
 
 	let name = $state('');
 	let email = $state('');
@@ -94,7 +95,7 @@
 			</p>
 			<p class="text-sm muted-text mb-4">
 				If you need to reach me urgently, you can also email me directly at
-				<a href="mailto:adam@adamrobinson.tech" class="accent-link">adam@adamrobinson.tech</a>
+				<a href="mailto:{EMAIL}" class="accent-link">{EMAIL}</a>
 			</p>
 			<button class="text-sm accent-link underline" onclick={() => (submitted = false)}>
 				Send Another Message

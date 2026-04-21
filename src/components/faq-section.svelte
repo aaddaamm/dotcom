@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { faqItems } from '$lib/copy';
+	import { EMAIL } from '$lib/constants';
 </script>
 
 <!-- FAQ Section -->
@@ -20,9 +21,7 @@
 	</div>
 	<div class="mt-8 text-center">
 		<p class="body-text mb-4">Have a different question?</p>
-		<a href="mailto:adam@adamrobinson.tech?subject=Project Inquiry" class="btn-primary">
-			Ask Me Directly
-		</a>
+		<a href="mailto:{EMAIL}?subject=Project Inquiry" class="btn-primary">Ask Me Directly</a>
 	</div>
 </section>
 

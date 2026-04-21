@@ -1,6 +1,7 @@
 import { Resend } from 'resend';
 import { Redis } from '@upstash/redis';
 import { env } from '$env/dynamic/private';
+import { EMAIL } from '$lib/constants';
 import type { ContactFormData } from '$lib/validation';
 import { contactNotificationHtml } from '$lib/server/emailTemplates';
 
@@ -10,14 +11,14 @@ export async function sendContactNotification(
 ): Promise<void> {
 	if (!env.RESEND_API_KEY) {
 		console.log('📧 RESEND_API_KEY not configured — email notification skipped');
-		console.log('📧 Email would send:', { subject, to: 'adam@adamrobinson.tech' });
+		console.log('📧 Email would send:', { subject, to: EMAIL });
 		return;
 	}
 
 	const resend = new Resend(env.RESEND_API_KEY);
 	await resend.emails.send({
 		from: 'contact@adamrobinson.tech',
-		to: 'adam@adamrobinson.tech',
+		to: EMAIL,
 		subject,
 		html: contactNotificationHtml(data)
 	});
