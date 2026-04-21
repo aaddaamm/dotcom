@@ -1,6 +1,6 @@
 import { Resend } from 'resend';
-import { Redis } from '@upstash/redis';
 import { env } from '$env/dynamic/private';
+import { getRedis } from '$lib/server/redis';
 import { EMAIL } from '$lib/constants';
 import type { ContactFormData } from '$lib/validation';
 import { contactNotificationHtml } from '$lib/server/emailTemplates';
@@ -31,9 +31,9 @@ export async function logFailedSubmission(
 	body: string,
 	ip: string
 ): Promise<void> {
+	const redis = getRedis();
 	try {
-		if (!env.KV_REST_API_URL || !env.KV_REST_API_TOKEN) throw new Error('Redis env vars not set');
-		const redis = new Redis({ url: env.KV_REST_API_URL, token: env.KV_REST_API_TOKEN });
+		if (!redis) throw new Error('Redis unavailable');
 		const key = `failed_contact:${Date.now()}:${ip}`;
 		await redis.set(
 			key,

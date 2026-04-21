@@ -1,7 +1,7 @@
 import { XMLParser } from 'fast-xml-parser';
 import type { GoodreadsBook } from '$lib/types';
 import { GOODREADS_SHELVES } from '$lib/constants';
-import { Redis } from '@upstash/redis';
+import { getRedis } from '$lib/server/redis';
 import { env } from '$env/dynamic/private';
 
 const RSS_BASE_URL = 'https://www.goodreads.com/review/list_rss/92024399';
@@ -13,18 +13,6 @@ const memoryCache = new Map<string, { data: GoodreadsBook[]; timestamp: number }
 const CACHE_TTL_MS = CACHE_TTL_SECONDS * 1000;
 
 const parser = new XMLParser({ isArray: (name) => name === 'item' });
-
-let redisClient: Redis | null | undefined;
-
-function getRedis(): Redis | null {
-	if (redisClient !== undefined) return redisClient;
-	if (!env.KV_REST_API_URL || !env.KV_REST_API_TOKEN) return (redisClient = null);
-	try {
-		return (redisClient = new Redis({ url: env.KV_REST_API_URL, token: env.KV_REST_API_TOKEN }));
-	} catch {
-		return (redisClient = null);
-	}
-}
 
 export namespace GoodreadsService {
 	export function parseTitleAndSeries(rawTitle: string): { title: string; series?: string } {
