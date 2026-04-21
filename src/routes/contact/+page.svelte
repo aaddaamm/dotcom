@@ -3,7 +3,7 @@
 	import ContactForm from '../../components/contact-form.svelte';
 	import JsonLd from '../../components/json-ld.svelte';
 	import { breadcrumbList } from '$lib/utils';
-	import { SITE_URL } from '$lib/constants';
+	import { SITE_URL, EMAIL } from '$lib/constants';
 </script>
 
 <SeoHead
@@ -21,11 +21,11 @@
 		mainEntity: {
 			'@type': 'Person',
 			name: 'Adam Robinson',
-			email: 'adam@adamrobinson.tech',
+			email: EMAIL,
 			contactPoint: {
 				'@type': 'ContactPoint',
 				contactType: 'professional inquiries',
-				email: 'adam@adamrobinson.tech',
+				email: EMAIL,
 				availableLanguage: 'English'
 			}
 		}
