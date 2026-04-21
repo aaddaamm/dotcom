@@ -1,6 +1,6 @@
 import type { GithubActivity } from '$lib/types';
 import { GITHUB_USERNAME } from '$lib/constants';
-import { Redis } from '@upstash/redis';
+import { getRedis } from '$lib/server/redis';
 import { env } from '$env/dynamic/private';
 
 const CACHE_TTL_SECONDS = 60 * 60 * 24; // 24 hours
@@ -25,21 +25,6 @@ const memoryCache: { data: GithubActivity | null; timestamp: number } = {
 	data: null,
 	timestamp: 0
 };
-
-let redisClient: Redis | null | undefined;
-
-function getRedis(): Redis | null {
-	if (redisClient !== undefined) return redisClient;
-	if (!env.KV_REST_API_URL || !env.KV_REST_API_TOKEN) return (redisClient = null);
-	try {
-		return (redisClient = new Redis({
-			url: env.KV_REST_API_URL,
-			token: env.KV_REST_API_TOKEN
-		}));
-	} catch {
-		return (redisClient = null);
-	}
-}
 
 async function fetchFromGithub(fetch: typeof globalThis.fetch): Promise<GithubActivity | null> {
 	if (!env.GITHUB_TOKEN) {
