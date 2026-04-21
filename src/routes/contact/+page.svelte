@@ -52,15 +52,5 @@
 		</p>
 
 		<ContactForm />
-
-		<div class="mt-12 pt-8 border-t border-[var(--color-border)]">
-			<h2 class="text-xl font-semibold mb-4">Additional Information</h2>
-			<div class="space-y-3">
-				<p class="body-text">
-					<strong>Response time:</strong>
-					Typically within 24 hours
-				</p>
-			</div>
-		</div>
 	</section>
 </div>
