@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import { openTerminal } from '$lib/stores/terminal.svelte';
+	import { EMAIL, GITHUB_USERNAME } from '$lib/constants';
 
 	let emailCopied = $state(false);
 
@@ -60,14 +61,11 @@
 			<a href="/play" class="footer-link">Reading</a>
 			<a href="/teach" class="footer-link">Resources</a>
 			<a href="/contact" class="footer-link">Contact</a>
-			<button
-				class="footer-link copy-btn"
-				onclick={() => copyToClipboard('adam@adamrobinson.tech')}
-			>
-				{emailCopied ? 'copied!' : 'adam@adamrobinson.tech'}
+			<button class="footer-link copy-btn" onclick={() => copyToClipboard(EMAIL)}>
+				{emailCopied ? 'copied!' : EMAIL}
 			</button>
 			<a
-				href="https://github.com/aaddaamm"
+				href="https://github.com/{GITHUB_USERNAME}"
 				class="footer-link"
 				target="_blank"
 				rel="noopener noreferrer"

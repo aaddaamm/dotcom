@@ -4,6 +4,7 @@
 	import { getTerminalOpen, setTerminalOpen } from '$lib/stores/terminal.svelte';
 	import { TerminalState } from '$lib/terminal-state.svelte';
 	import { trackTerminalOpen } from '$lib/analytics';
+	import { EMAIL } from '$lib/constants';
 
 	const { fullscreen = false }: { fullscreen?: boolean } = $props();
 
@@ -106,7 +107,7 @@
 		if (!fullscreen) setTerminalOpen(false);
 	});
 
-	const PROMPT = 'adam@adamrobinson.tech:~$';
+	const PROMPT = `${EMAIL}:~$`;
 </script>
 
 <div

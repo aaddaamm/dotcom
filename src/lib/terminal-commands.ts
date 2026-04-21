@@ -1,4 +1,5 @@
 import { techStack } from '$lib/copy';
+import { EMAIL, GITHUB_USERNAME, LINKEDIN_HANDLE } from '$lib/constants';
 
 export type Mode = 'terminal' | 'rpg';
 
@@ -135,8 +136,8 @@ const commands: Record<string, CommandDef> = {
 				'  AWS · Auth0 · PostgreSQL · Redis',
 				'',
 				'Contact',
-				'  adam@adamrobinson.tech',
-				'  github.com/aaddaamm',
+				`  ${EMAIL}`,
+				`  github.com/${GITHUB_USERNAME}`,
 				'  adamrobinson.tech/hire'
 			]
 		}
@@ -145,9 +146,9 @@ const commands: Record<string, CommandDef> = {
 	contact: {
 		terminal: {
 			lines: [
-				'email     adam@adamrobinson.tech',
-				'github    github.com/aaddaamm',
-				'linkedin  linkedin.com/in/adam-robinson-tech',
+				`email     ${EMAIL}`,
+				`github    github.com/${GITHUB_USERNAME}`,
+				`linkedin  linkedin.com/in/${LINKEDIN_HANDLE}`,
 				'hire      adamrobinson.tech/hire'
 			]
 		}
