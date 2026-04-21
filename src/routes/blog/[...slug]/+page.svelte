@@ -2,7 +2,7 @@
 	import SeoHead from '../../../components/seo-head.svelte';
 	import { createElementObserver } from '$lib/animations';
 	import JsonLd from '../../../components/json-ld.svelte';
-	import { breadcrumbList } from '$lib/utils';
+	import { breadcrumbList, formatPostDate } from '$lib/utils';
 	import { SITE_URL } from '$lib/constants';
 	import { onMount } from 'svelte';
 
@@ -69,12 +69,7 @@
 		</a>
 		<div class="post-header">
 			<time class="text-xs muted-text" datetime={data.post.date}>
-				{new Date(data.post.date).toLocaleDateString('en-US', {
-					year: 'numeric',
-					month: 'long',
-					day: 'numeric',
-					timeZone: 'UTC'
-				})}
+				{formatPostDate(data.post.date)}
 			</time>
 			<h1 class="page-title text-3xl font-semibold tracking-tight mt-2 mb-3">{data.post.title}</h1>
 			{#if data.post.tags.length > 0}

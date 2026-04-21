@@ -1,5 +1,6 @@
 <script lang="ts">
 	import SeoHead from '../../components/seo-head.svelte';
+	import { formatPostDate } from '$lib/utils';
 
 	let { data } = $props();
 </script>
@@ -28,12 +29,7 @@
 				{#each data.posts as post (post.slug)}
 					<a href="/blog/{post.slug}" class="post-card block rounded-lg p-6">
 						<time class="text-xs muted-text" datetime={post.date}>
-							{new Date(post.date).toLocaleDateString('en-US', {
-								year: 'numeric',
-								month: 'long',
-								day: 'numeric',
-								timeZone: 'UTC'
-							})}
+							{formatPostDate(post.date)}
 						</time>
 						<h2 class="text-lg font-semibold mt-1 flex items-center gap-2 post-title">
 							{post.title}
