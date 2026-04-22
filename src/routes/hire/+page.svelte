@@ -100,7 +100,7 @@
 			>
 				Get In Touch
 			</a>
-			<p class="resume-link-row">
+			<div class="resume-link-row" aria-label="Resume download options">
 				<a
 					href="/adam_robinson.pdf"
 					target="_blank"
@@ -108,9 +108,19 @@
 					class="resume-link"
 					onclick={() => trackResumeDownload('hire-page', 'pdf')}
 				>
-					Download resume (PDF) ↓
+					Download resume (PDF)
 				</a>
-			</p>
+				<span class="resume-sep" aria-hidden="true">·</span>
+				<a
+					href="/adam_robinson.docx"
+					target="_blank"
+					rel="noopener"
+					class="resume-link"
+					onclick={() => trackResumeDownload('hire-page', 'docx')}
+				>
+					DOCX
+				</a>
+			</div>
 		</div>
 	</div>
 </div>
@@ -118,6 +128,9 @@
 <style>
 	.resume-link-row {
 		margin-top: 1rem;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 
 	.resume-link {
@@ -130,6 +143,10 @@
 
 	.resume-link:hover {
 		color: var(--color-accent);
+	}
+
+	.resume-sep {
+		color: var(--color-muted);
 	}
 
 	.cta-row {
