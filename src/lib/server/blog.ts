@@ -10,6 +10,9 @@ export type BlogPost = {
 	updated?: string;
 	tags: string[];
 	published: boolean;
+	featured?: boolean;
+	status?: 'idea' | 'draft' | 'review' | 'ready';
+	reviewed?: boolean;
 	image?: string;
 };
 
@@ -48,6 +51,9 @@ function parseEntry(
 		updated: data.updated,
 		tags: data.tags ?? [],
 		published: data.published ?? false,
+		featured: data.featured ?? false,
+		status: data.status,
+		reviewed: data.reviewed ?? false,
 		image: data.image,
 		_content: content
 	};

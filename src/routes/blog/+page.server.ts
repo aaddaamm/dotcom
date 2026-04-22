@@ -6,5 +6,11 @@ export const prerender = true;
 
 export function load() {
 	const showDrafts = dev || env.SHOW_DRAFTS === 'true';
-	return { posts: getAllPosts(showDrafts) };
+	const posts = getAllPosts(showDrafts).sort((a, b) => {
+		if ((a.featured ?? false) !== (b.featured ?? false)) {
+			return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
+		}
+		return new Date(b.date).getTime() - new Date(a.date).getTime();
+	});
+	return { posts };
 }

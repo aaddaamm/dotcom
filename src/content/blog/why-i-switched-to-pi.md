@@ -4,6 +4,9 @@ description: "Most CLI coding agents ship opinionated features you can't change.
 date: '2026-04-20'
 tags: ['ai', 'developer-tools', 'productivity']
 published: true
+featured: true
+status: 'ready'
+reviewed: true
 ---
 
 There's a moment with every CLI coding agent where the tool stops fitting and starts shaping. You hit a wall — a permission flow you can't customize, a context strategy you can't override, a provider you're locked into. The tool was designed for someone's workflow, and it isn't yours.

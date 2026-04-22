@@ -33,6 +33,9 @@
 						</time>
 						<h2 class="text-lg font-semibold mt-1 flex items-center gap-2 post-title">
 							{post.title}
+							{#if post.featured}
+								<span class="featured-badge text-xs font-normal px-2 py-0.5 rounded">featured</span>
+							{/if}
 							{#if !post.published}
 								<span class="draft-badge text-xs font-normal px-2 py-0.5 rounded">draft</span>
 							{/if}
@@ -85,6 +88,12 @@
 	.tag {
 		color: var(--color-accent);
 		background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+	}
+
+	.featured-badge {
+		color: var(--color-accent);
+		background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);
+		border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
 	}
 
 	.draft-badge {

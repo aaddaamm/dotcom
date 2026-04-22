@@ -4,6 +4,8 @@ description: "Claude Code gathers far more context than you explicitly hand it. 
 date: '2026-04-03'
 tags: ['ai', 'developer-tools', 'claude']
 published: true
+status: 'ready'
+reviewed: true
 ---
 
 So you have this brand new tool: Claude Code. Maybe you're late to the game, maybe you only just got it approved for use at your company. Either way, it's time to dig in. You've been running agentic operations from your editor for a while, so you have plenty of experience communicating with LLMs. You tag files, explain what you want, and review the edits.
