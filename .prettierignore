@@ -7,3 +7,6 @@ yarn.lock
 build/
 .svelte-kit/
 .vercel/
+
+# Local agent config
+.pi/
