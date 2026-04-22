@@ -37,7 +37,15 @@ export async function logFailedSubmission(
 		const key = `failed_contact:${Date.now()}:${ip}`;
 		await redis.set(
 			key,
-			JSON.stringify({ name: data.name, email: data.email, project: data.project, body, ip }),
+			JSON.stringify({
+				name: data.name,
+				email: data.email,
+				project: data.project,
+				timeline: data.timeline,
+				budget: data.budget,
+				body,
+				ip
+			}),
 			{ ex: 30 * 24 * 60 * 60 }
 		);
 		console.log(`📧 Failed submission logged to Redis under key: ${key}`);

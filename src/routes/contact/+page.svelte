@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { trackCTA } from '$lib/analytics';
 	import SeoHead from '../../components/seo-head.svelte';
 	import ContactForm from '../../components/contact-form.svelte';
 	import JsonLd from '../../components/json-ld.svelte';
@@ -46,11 +47,37 @@
 			Back
 		</a>
 		<h1 class="page-title text-3xl font-semibold tracking-tight mb-3">Let's Talk</h1>
-		<p class="page-description leading-relaxed mb-8">
+		<p class="page-description leading-relaxed mb-6">
 			Whether you're hiring, have a project, or just want to connect — reach out and I'll get back
 			to you within 24 hours.
 		</p>
 
+		<div class="cta-row" aria-label="Contact page actions">
+			<a
+				href="/hire"
+				class="btn-secondary"
+				onclick={() => trackCTA('See How I Work', 'contact-top-secondary')}
+			>
+				See How I Work
+			</a>
+			<a
+				href="/work"
+				class="btn-secondary"
+				onclick={() => trackCTA('See My Work', 'contact-top-secondary-work')}
+			>
+				See My Work
+			</a>
+		</div>
+
 		<ContactForm />
 	</section>
 </div>
+
+<style>
+	.cta-row {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+		margin-bottom: 1.25rem;
+	}
+</style>

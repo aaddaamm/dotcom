@@ -36,15 +36,19 @@
 	</div>
 
 	<div class="flex flex-col sm:flex-row gap-3 mt-3">
-		<a href="/work" class="btn-primary text-center" onclick={() => trackCTA('See My Work', 'hero')}>
-			See My Work
-		</a>
 		<a
 			href="/contact"
-			class="btn-secondary text-center"
-			onclick={() => trackCTA('Get In Touch', 'hero')}
+			class="btn-primary text-center"
+			onclick={() => trackCTA('Get In Touch', 'home-hero-primary')}
 		>
 			Get In Touch
+		</a>
+		<a
+			href="/hire"
+			class="btn-secondary text-center"
+			onclick={() => trackCTA('See How I Work', 'home-hero-secondary')}
+		>
+			See How I Work
 		</a>
 	</div>
 </section>

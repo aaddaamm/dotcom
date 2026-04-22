@@ -47,10 +47,17 @@ export namespace GoodreadsService {
 		fetch: typeof globalThis.fetch
 	): Promise<{ books: GoodreadsBook[]; total: number }> {
 		const response = await fetch(`${RSS_BASE_URL}?shelf=${shelf}&page=${page}`);
+		if (!response.ok) {
+			throw new Error(`Goodreads RSS fetch failed with status ${response.status}`);
+		}
+
 		const text = await response.text();
 		const parsed = parser.parse(text);
+		const channel = parsed?.rss?.channel;
+		if (!channel) {
+			throw new Error('Goodreads RSS response did not contain rss.channel');
+		}
 
-		const channel = parsed?.rss?.channel ?? {};
 		const total = Number(channel['openSearch:totalResults'] ?? 0);
 		const items: unknown[] = channel.item ?? [];
 		const books = items.map((item) => parseBookFromItem(item as Record<string, unknown>));

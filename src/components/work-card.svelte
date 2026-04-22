@@ -21,12 +21,20 @@
 		caseStudy?: CaseStudyData;
 	}
 
-	let { project, variant = 'full' }: { project: WorkItem; variant?: 'preview' | 'full' } = $props();
+	let {
+		project,
+		variant = 'full',
+		headingTag = 'h3'
+	}: {
+		project: WorkItem;
+		variant?: 'preview' | 'full';
+		headingTag?: 'h2' | 'h3';
+	} = $props();
 </script>
 
 <Card variant="work" class="p-6">
 	<div class="header">
-		<h3 class="title">{project.title}</h3>
+		<svelte:element this={headingTag} class="title">{project.title}</svelte:element>
 		<span class="period">{project.period}</span>
 	</div>
 

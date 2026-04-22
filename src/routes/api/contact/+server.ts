@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { validateEmail, type ContactFormData } from '$lib/validation';
+import { validateEmail, validateContactForm, type ContactFormData } from '$lib/validation';
 import { isRateLimited } from '$lib/server/rateLimit';
 import { sendContactNotification, logFailedSubmission } from '$lib/server/contactEmail';
 
@@ -41,15 +41,16 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 			name: data.name.trim().slice(0, 100),
 			email: data.email.trim().slice(0, 100),
 			project: data.project.trim().slice(0, 100),
+			timeline: data.timeline?.trim().slice(0, 60) || '',
+			budget: data.budget?.trim().slice(0, 60) || '',
 			message: data.message.trim().slice(0, 2000),
 			phone: data.phone?.trim().slice(0, 20) || ''
 		};
 
-		if (sanitized.name.length === 0) {
-			return json({ error: 'Name must be 1-100 characters' }, { status: 400 });
-		}
-		if (sanitized.message.length === 0) {
-			return json({ error: 'Message must be 1-2000 characters' }, { status: 400 });
+		const validation = validateContactForm(sanitized);
+		if (!validation.isValid) {
+			const firstError = Object.values(validation.errors)[0] || 'Invalid form data';
+			return json({ error: firstError }, { status: 400 });
 		}
 
 		const subject = `New Project Inquiry from ${sanitized.name}`;
@@ -68,6 +69,8 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 				`Email: ${sanitized.email}`,
 				`Phone: ${sanitized.phone || 'Not provided'}`,
 				`Project Type: ${sanitized.project}`,
+				`Timeline: ${sanitized.timeline || 'Not provided'}`,
+				`Budget: ${sanitized.budget || 'Not provided'}`,
 				'',
 				'Message:',
 				sanitized.message,

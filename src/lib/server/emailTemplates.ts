@@ -17,6 +17,8 @@ export function contactNotificationHtml(data: ContactFormData): string {
 				<p><strong>Email:</strong> <a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></p>
 				${data.phone ? `<p><strong>Phone:</strong> <a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a></p>` : ''}
 				<p><strong>Project Type:</strong> ${escapeHtml(data.project ?? '')}</p>
+				${data.timeline ? `<p><strong>Preferred Timeline:</strong> ${escapeHtml(data.timeline)}</p>` : ''}
+				${data.budget ? `<p><strong>Budget Range:</strong> ${escapeHtml(data.budget)}</p>` : ''}
 			</div>
 
 			<div style="margin: 20px 0;">

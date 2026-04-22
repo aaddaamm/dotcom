@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { trackFormSubmit } from '$lib/analytics';
+	import { trackFormStart, trackFormSubmit, trackFormValidationError } from '$lib/analytics';
 	import { validateContactForm, type ContactFormData } from '$lib/validation';
 	import { EMAIL } from '$lib/constants';
 
 	let name = $state('');
 	let email = $state('');
 	let project = $state('');
+	let timeline = $state('');
+	let budget = $state('');
 	let message = $state('');
 	let phone = $state('');
 	let website = $state(''); // honeypot
@@ -14,6 +16,13 @@
 	let errorMessage = $state('');
 	let successMessage = $state('');
 	let fieldErrors = $state<Record<string, string>>({});
+	let trackedStart = $state(false);
+
+	function trackStart() {
+		if (trackedStart) return;
+		trackedStart = true;
+		trackFormStart('contact-page');
+	}
 
 	async function handleSubmit(event: Event) {
 		event.preventDefault();
@@ -28,12 +37,15 @@
 			email: email.trim(),
 			phone: phone.trim(),
 			project: project.trim(),
+			timeline: timeline.trim(),
+			budget: budget.trim(),
 			message: message.trim()
 		};
 		const validation = validateContactForm(formData);
 		if (!validation.isValid) {
 			fieldErrors = validation.errors;
 			errorMessage = 'Please fix the errors below.';
+			trackFormValidationError(Object.keys(validation.errors).length);
 			isSubmitting = false;
 			return;
 		}
@@ -50,22 +62,27 @@
 			const result = await response.json();
 
 			if (response.ok && result.success) {
-				// Track successful form submission
-				trackFormSubmit(project.trim(), phone.trim() ? 'yes' : 'no');
+				trackFormSubmit(
+					project.trim(),
+					phone.trim() ? 'yes' : 'no',
+					timeline.trim() ? 'yes' : 'no',
+					budget.trim() ? 'yes' : 'no'
+				);
 
-				// Success - reset form and show success message
 				successMessage = result.message || "Thank you! I'll respond within 24 hours.";
 				name = '';
 				email = '';
 				project = '';
+				timeline = '';
+				budget = '';
 				message = '';
 				phone = '';
 				submitted = true;
 
-				// Hide success message after 8 seconds
 				setTimeout(() => {
 					submitted = false;
 					successMessage = '';
+					trackedStart = false;
 				}, 8000);
 			} else {
 				errorMessage = result.error || 'Something went wrong. Please try again.';
@@ -83,9 +100,13 @@
 	{#if submitted && successMessage}
 		<div role="status" aria-live="polite" class="success-message p-6 rounded-lg text-center">
 			<h3 class="text-xl font-semibold mb-2">Message Sent Successfully!</h3>
-			<p class="body-text mb-4">
-				{successMessage}
-			</p>
+			<p class="body-text mb-4">{successMessage}</p>
+			<p class="text-sm muted-text mb-2">What happens next:</p>
+			<ul class="next-steps mb-4" aria-label="Next steps">
+				<li>I review your message and reply within 24 hours.</li>
+				<li>We align on goals, timeline, and constraints.</li>
+				<li>If it’s a fit, I’ll propose clear next steps.</li>
+			</ul>
 			<p class="text-sm muted-text mb-4">
 				If you need to reach me urgently, you can also email me directly at
 				<a href="mailto:{EMAIL}" class="accent-link">{EMAIL}</a>
@@ -113,6 +134,7 @@
 					class:field-error={fieldErrors.name}
 					placeholder="Your name"
 					disabled={isSubmitting}
+					onfocus={trackStart}
 					aria-describedby={fieldErrors.name ? 'name-error' : undefined}
 				/>
 				{#if fieldErrors.name}<p id="name-error" class="field-error-msg">{fieldErrors.name}</p>{/if}
@@ -129,6 +151,7 @@
 					class:field-error={fieldErrors.email}
 					placeholder="your@email.com"
 					disabled={isSubmitting}
+					onfocus={trackStart}
 					aria-describedby={fieldErrors.email ? 'email-error' : undefined}
 				/>
 				{#if fieldErrors.email}<p id="email-error" class="field-error-msg">
@@ -145,6 +168,7 @@
 					class="form-input"
 					placeholder="(401) 555-0123"
 					disabled={isSubmitting}
+					onfocus={trackStart}
 				/>
 			</div>
 
@@ -157,6 +181,7 @@
 					class="form-input"
 					class:field-error={fieldErrors.project}
 					disabled={isSubmitting}
+					onfocus={trackStart}
 					aria-describedby={fieldErrors.project ? 'project-error' : undefined}
 				>
 					<option value="">What brings you here...</option>
@@ -171,6 +196,40 @@
 			</div>
 
 			<div class="form-group">
+				<label for="timeline" class="form-label">Preferred Timeline (Optional)</label>
+				<select
+					id="timeline"
+					bind:value={timeline}
+					class="form-input"
+					disabled={isSubmitting}
+					onfocus={trackStart}
+				>
+					<option value="">No preference yet</option>
+					<option value="ASAP">ASAP</option>
+					<option value="2-4 weeks">2-4 weeks</option>
+					<option value="1-2 months">1-2 months</option>
+					<option value="2+ months">2+ months</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="budget" class="form-label">Budget Range (Optional)</label>
+				<select
+					id="budget"
+					bind:value={budget}
+					class="form-input"
+					disabled={isSubmitting}
+					onfocus={trackStart}
+				>
+					<option value="">Prefer not to say</option>
+					<option value="Under $5k">Under $5k</option>
+					<option value="$5k-$15k">$5k-$15k</option>
+					<option value="$15k-$50k">$15k-$50k</option>
+					<option value="$50k+">$50k+</option>
+				</select>
+			</div>
+
+			<div class="form-group">
 				<label for="message" class="form-label">Project Details *</label>
 				<textarea
 					id="message"
@@ -179,8 +238,9 @@
 					rows="4"
 					class="form-input"
 					class:field-error={fieldErrors.message}
-					placeholder="Tell me about your project, timeline, and any specific challenges you're facing..."
+					placeholder="Tell me about your project and any specific challenges you're facing..."
 					disabled={isSubmitting}
+					onfocus={trackStart}
 					aria-describedby={fieldErrors.message ? 'message-error' : undefined}
 				></textarea>
 				{#if fieldErrors.message}<p id="message-error" class="field-error-msg">
@@ -325,6 +385,18 @@
 
 	.success-message h3 {
 		color: var(--color-text);
+	}
+
+	.next-steps {
+		text-align: left;
+		list-style: disc;
+		padding-left: 1.25rem;
+		color: var(--color-muted);
+		font-size: 0.875rem;
+	}
+
+	.next-steps li + li {
+		margin-top: 0.25rem;
 	}
 
 	.error-message {

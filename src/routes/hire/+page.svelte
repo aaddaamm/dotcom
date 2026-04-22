@@ -45,6 +45,23 @@
 		description="Ten-plus years embedded with engineering teams across fintech, healthcare, and enterprise. Open to contract engagements and full-time roles for the right opportunity."
 	/>
 
+	<div class="cta-row">
+		<a
+			href="/contact"
+			class="btn-primary"
+			onclick={() => trackCTA('Get In Touch', 'hire-top-primary')}
+		>
+			Get In Touch
+		</a>
+		<a
+			href="/work"
+			class="btn-secondary"
+			onclick={() => trackCTA('See My Work', 'hire-top-secondary')}
+		>
+			See My Work
+		</a>
+	</div>
+
 	<ServicesSection />
 
 	<PhilosophySection />
@@ -101,6 +118,14 @@
 
 	.resume-link:hover {
 		color: var(--color-accent);
+	}
+
+	.cta-row {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+		margin-top: -1.5rem;
+		margin-bottom: 2rem;
 	}
 
 	.stack-list {

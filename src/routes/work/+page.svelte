@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { trackCTA } from '$lib/analytics';
 	import SeoHead from '../../components/seo-head.svelte';
 	import PageHeader from '../../components/page-header.svelte';
 	import WorkCard from '../../components/work-card.svelte';
@@ -31,6 +32,23 @@
 		title="Work"
 		description="Selected engagements. Each one different — different stack, different problem, different team dynamic."
 	/>
+
+	<div class="cta-row" aria-label="Work page actions">
+		<a
+			href="/contact"
+			class="btn-primary"
+			onclick={() => trackCTA('Get In Touch', 'work-top-primary')}
+		>
+			Get In Touch
+		</a>
+		<a
+			href="/hire"
+			class="btn-secondary"
+			onclick={() => trackCTA('See How I Work', 'work-top-secondary')}
+		>
+			See How I Work
+		</a>
+	</div>
 
 	<dl class="work-stats">
 		<div class="work-stat-row">
@@ -70,7 +88,7 @@
 
 	<div class="grid gap-6">
 		{#each filteredWork as project (project.title)}
-			<WorkCard {project} />
+			<WorkCard {project} headingTag="h2" />
 		{/each}
 	</div>
 
@@ -105,6 +123,14 @@
 </div>
 
 <style>
+	.cta-row {
+		display: flex;
+		gap: 0.75rem;
+		flex-wrap: wrap;
+		margin-top: -1.5rem;
+		margin-bottom: 2rem;
+	}
+
 	.work-stats {
 		display: flex;
 		flex-direction: column;

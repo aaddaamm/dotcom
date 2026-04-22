@@ -10,6 +10,8 @@ export interface ContactFormData {
 	email: string;
 	phone?: string;
 	project?: string;
+	timeline?: string;
+	budget?: string;
 	message: string;
 	website?: string; // honeypot — must remain empty
 }

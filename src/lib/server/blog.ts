@@ -1,5 +1,6 @@
 import matter from 'gray-matter';
-import { marked } from 'marked';
+import { marked, Renderer } from 'marked';
+import { escapeHtml } from '$lib/server/utils';
 
 export type BlogPost = {
 	slug: string;
@@ -90,9 +91,11 @@ export function getPostBySlug(slug: string, includeDrafts = false): BlogPostWith
 
 	const { _content, ...post } = entry;
 	const wordCount = _content.trim().split(/\s+/).length;
+	const renderer = new Renderer();
+	renderer.html = ({ text }) => escapeHtml(text);
 	return {
 		...post,
-		content: marked.parse(_content, { async: false }) as string,
+		content: marked.parse(_content, { async: false, renderer }) as string,
 		wordCount
 	};
 }

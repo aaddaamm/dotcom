@@ -279,7 +279,7 @@
 	}
 
 	.terminal-line.output.muted {
-		color: #555;
+		color: #8a8a8a;
 	}
 
 	/* Input row */
