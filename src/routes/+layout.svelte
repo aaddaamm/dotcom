@@ -44,15 +44,16 @@
 	const firedDepths = new SvelteSet<number>();
 
 	afterNavigate((navigation) => {
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		const hash = navigation.to?.url.hash;
 		if (hash) {
 			const el = document.querySelector(hash);
 			if (el) {
-				el.scrollIntoView({ behavior: 'smooth' });
+				el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
 				return;
 			}
 		}
-		window.scrollTo({ top: 0 });
+		window.scrollTo({ top: 0, behavior: 'auto' });
 
 		// Reset scroll depth tracking on each navigation
 		firedDepths.clear();

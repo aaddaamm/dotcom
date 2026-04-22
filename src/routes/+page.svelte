@@ -43,6 +43,10 @@
 								<button
 									class="stack-item"
 									onclick={(e) => {
+										const reduceMotion = window.matchMedia(
+											'(prefers-reduced-motion: reduce)'
+										).matches;
+										if (reduceMotion) return;
 										e.currentTarget.animate(
 											[
 												{ transform: 'scale(1)    translateY(0)', color: 'var(--color-muted)' },

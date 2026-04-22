@@ -1,6 +1,11 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import { getTheme, toggleTheme } from '$lib/stores/theme.svelte';
 	import Icon from './icon.svelte';
+
+	function isActive(path: string) {
+		return page.url.pathname === path || page.url.pathname.startsWith(`${path}/`);
+	}
 </script>
 
 <header class="sticky top-0 z-50 site-header align-middle">
@@ -31,14 +36,39 @@
 		<div class="flex items-center gap-6">
 			<div class="hidden sm:block nav-divider" aria-hidden="true"></div>
 			<nav aria-label="Main navigation" class="flex items-center gap-6">
-				<a href="/work" class="nav-link link-underline">work</a>
-				<a href="/blog" class="nav-link link-underline">blog</a>
-				<a href="/hire" class="nav-link link-underline hire-nav">hire me</a>
-				<a href="/contact" class="nav-link link-underline">contact</a>
+				<a
+					href="/work"
+					class="nav-link link-underline"
+					aria-current={isActive('/work') ? 'page' : undefined}
+				>
+					work
+				</a>
+				<a
+					href="/blog"
+					class="nav-link link-underline"
+					aria-current={isActive('/blog') ? 'page' : undefined}
+				>
+					blog
+				</a>
+				<a
+					href="/hire"
+					class="nav-link link-underline hire-nav"
+					aria-current={isActive('/hire') ? 'page' : undefined}
+				>
+					hire me
+				</a>
+				<a
+					href="/contact"
+					class="nav-link link-underline"
+					aria-current={isActive('/contact') ? 'page' : undefined}
+				>
+					contact
+				</a>
 			</nav>
 			<button
 				onclick={toggleTheme}
 				aria-label={getTheme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+				aria-pressed={getTheme() === 'dark'}
 				class="theme-toggle"
 			>
 				<Icon name={getTheme() === 'dark' ? 'sun' : 'moon'} />
