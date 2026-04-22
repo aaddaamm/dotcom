@@ -23,7 +23,7 @@
 	.case-study {
 		display: flex;
 		flex-direction: column;
-		gap: 1.5rem;
+		gap: 2rem;
 	}
 
 	.cs-section {
@@ -41,7 +41,7 @@
 	}
 
 	.cs-body {
-		font-size: 0.95rem;
+		font-size: 1rem;
 		color: var(--color-text);
 		line-height: 1.8;
 		margin: 0;
