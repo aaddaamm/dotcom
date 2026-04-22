@@ -11,7 +11,8 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"check:lighthouse": "node scripts/lighthouse-check.mjs",
-		"check:bundle-budget": "node scripts/bundle-budget-check.mjs"
+		"check:bundle-budget": "node scripts/bundle-budget-check.mjs",
+		"check:links": "node scripts/link-check.mjs"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
