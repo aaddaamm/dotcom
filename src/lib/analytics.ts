@@ -1,6 +1,22 @@
 import { track } from '@vercel/analytics';
 
-export function trackCTA(label: string, location: string) {
+export type CtaLocation =
+	| 'home-hero-primary'
+	| 'home-hero-secondary'
+	| 'services'
+	| 'mobile-fab'
+	| 'contact-top-secondary'
+	| 'contact-top-secondary-work'
+	| 'hire-top-primary'
+	| 'hire-top-secondary'
+	| 'hire'
+	| 'work-top-primary'
+	| 'work-top-secondary'
+	| 'teach';
+
+export type ResumeDownloadLocation = 'hire-page';
+
+export function trackCTA(label: string, location: CtaLocation) {
 	track('CTA Clicked', { label, location });
 }
 
@@ -8,7 +24,7 @@ export function trackScrollDepth(depth: string, path: string) {
 	track('Scroll Depth', { depth, path });
 }
 
-export function trackFormStart(source: string) {
+export function trackFormStart(source: 'contact-page') {
 	track('Contact Form Started', { source });
 }
 
@@ -42,6 +58,9 @@ export function trackTerminalModeChange(to: string) {
 	track('Terminal Mode Changed', { to });
 }
 
-export function trackResumeDownload(location: string, fileType: 'pdf' | 'docx' = 'pdf') {
+export function trackResumeDownload(
+	location: ResumeDownloadLocation,
+	fileType: 'pdf' | 'docx' = 'pdf'
+) {
 	track('Resume Downloaded', { location, file_type: fileType });
 }
