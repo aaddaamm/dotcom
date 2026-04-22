@@ -1,10 +1,11 @@
+import type { PageServerLoad } from './$types';
 import { dev } from '$app/environment';
 import { env } from '$env/dynamic/private';
 import { getAllPosts } from '$lib/server/blog';
 
 export const prerender = true;
 
-export function load() {
+export const load: PageServerLoad = () => {
 	const showDrafts = dev || env.SHOW_DRAFTS === 'true';
 	const posts = getAllPosts(showDrafts).sort((a, b) => {
 		if ((a.featured ?? false) !== (b.featured ?? false)) {
@@ -13,4 +14,4 @@ export function load() {
 		return new Date(b.date).getTime() - new Date(a.date).getTime();
 	});
 	return { posts };
-}
+};
