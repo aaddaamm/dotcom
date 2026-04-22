@@ -84,6 +84,32 @@
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html data.post.content}
 		</div>
+
+		<section class="related-section" aria-labelledby="related-posts-heading">
+			<h2 id="related-posts-heading" class="related-heading">Related posts</h2>
+			<ul class="related-list">
+				{#each data.relatedPosts as post (post.slug)}
+					<li class="related-item">
+						<a href="/blog/{post.slug}" class="related-link link-underline">{post.title}</a>
+						<span class="related-meta">{formatPostDate(post.date)}</span>
+					</li>
+				{/each}
+			</ul>
+		</section>
+
+		{#if data.relatedWork.length > 0}
+			<section class="related-section" aria-labelledby="related-work-heading">
+				<h2 id="related-work-heading" class="related-heading">Related work</h2>
+				<ul class="related-list">
+					{#each data.relatedWork as project (project.slug)}
+						<li class="related-item">
+							<a href="/work/{project.slug}" class="related-link link-underline">{project.title}</a>
+							<span class="related-meta">{project.role}</span>
+						</li>
+					{/each}
+				</ul>
+			</section>
+		{/if}
 	</div>
 </article>
 
@@ -97,5 +123,54 @@
 	.tag {
 		color: var(--color-accent);
 		background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+	}
+
+	.related-section {
+		margin-top: 2.5rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.related-heading {
+		font-size: 0.75rem;
+		font-family: var(--font-mono);
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		color: var(--color-muted);
+		margin-bottom: 0.9rem;
+	}
+
+	.related-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.related-item {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		align-items: baseline;
+		padding: 0.55rem 0;
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.related-item:first-child {
+		border-top: 1px solid var(--color-border);
+	}
+
+	.related-link {
+		color: var(--color-text);
+		text-decoration: none;
+		font-size: 0.95rem;
+	}
+
+	.related-meta {
+		color: var(--color-muted);
+		font-size: 0.75rem;
+		font-family: var(--font-mono);
+		flex-shrink: 0;
 	}
 </style>

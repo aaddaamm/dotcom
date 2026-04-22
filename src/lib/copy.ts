@@ -79,6 +79,15 @@ export const selectedWork = [
 	}
 ];
 
+export const blogTagToWorkSlugs: Record<string, string[]> = {
+	ai: ['icapital', 'healthcasts'],
+	'developer-tools': ['icapital'],
+	productivity: ['icapital'],
+	hiring: ['angi', 'healthcasts'],
+	freelancing: ['healthcasts', 'shell'],
+	'small-business': ['healthcasts']
+};
+
 export const earlierWork = [
 	{ name: 'School of Motion', industry: 'Edtech', period: '2020' },
 	{ name: 'Amica Mutual', industry: 'Insurance', period: '2017–2018' },
