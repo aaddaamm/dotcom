@@ -6,7 +6,8 @@ import { getPostBySlug } from '$lib/server/blog';
 export const prerender = true;
 
 export function load({ params }) {
-	const post = getPostBySlug(params.slug, dev || !!env.SHOW_DRAFTS);
+	const showDrafts = dev || env.SHOW_DRAFTS === 'true';
+	const post = getPostBySlug(params.slug, showDrafts);
 
 	if (!post) {
 		error(404, 'Post not found');
