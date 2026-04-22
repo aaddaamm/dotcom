@@ -28,8 +28,8 @@
 			TerminalComponent = module.default;
 		});
 
-		// Unregister any previously installed service worker
-		if ('serviceWorker' in navigator) {
+		// In dev only, clear old service workers to avoid stale-cache confusion.
+		if (dev && 'serviceWorker' in navigator) {
 			navigator.serviceWorker.getRegistrations().then((registrations) => {
 				for (const registration of registrations) {
 					registration.unregister();

@@ -5,5 +5,6 @@ import { getAllPosts } from '$lib/server/blog';
 export const prerender = true;
 
 export function load() {
-	return { posts: getAllPosts(dev || !!env.SHOW_DRAFTS) };
+	const showDrafts = dev || env.SHOW_DRAFTS === 'true';
+	return { posts: getAllPosts(showDrafts) };
 }
