@@ -41,3 +41,7 @@ export function trackTerminalCommand(command: string, mode: string) {
 export function trackTerminalModeChange(to: string) {
 	track('Terminal Mode Changed', { to });
 }
+
+export function trackResumeDownload(location: string, fileType: 'pdf' | 'docx' = 'pdf') {
+	track('Resume Downloaded', { location, file_type: fileType });
+}

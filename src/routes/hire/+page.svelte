@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { trackCTA } from '$lib/analytics';
+	import { trackCTA, trackResumeDownload } from '$lib/analytics';
 	import SeoHead from '../../components/seo-head.svelte';
 	import PageHeader from '../../components/page-header.svelte';
 	import ServicesSection from '../../components/services-section.svelte';
@@ -101,7 +101,13 @@
 				Get In Touch
 			</a>
 			<p class="resume-link-row">
-				<a href="/adam_robinson.pdf" target="_blank" rel="noopener" class="resume-link">
+				<a
+					href="/adam_robinson.pdf"
+					target="_blank"
+					rel="noopener"
+					class="resume-link"
+					onclick={() => trackResumeDownload('hire-page', 'pdf')}
+				>
 					Download resume (PDF) ↓
 				</a>
 			</p>
