@@ -276,6 +276,27 @@ export const trustProofItems = [
 	{ label: 'Mode', value: 'Embedded senior IC / tech lead' }
 ];
 
+export const outcomeProofPoints = [
+	{
+		headline: 'iCapital — nominee investment processing + i18n rollout',
+		detail:
+			'Co-designed a Rails service for bulk nominee investment processing and expanded translation support across static and database-backed content.',
+		href: '/work/icapital'
+	},
+	{
+		headline: 'Healthcasts — publishing + auth modernization',
+		detail:
+			'Led platform modernization with a Strapi + React publishing pipeline and Auth0 unification across platforms.',
+		href: '/work/healthcasts'
+	},
+	{
+		headline: 'Angi — delivery across three codebases in one engagement',
+		detail:
+			'Shipped across Vue/Java, Rails/React, and Next.js/Contentful while mentoring interns through their first production launch.',
+		href: '/work/angi'
+	}
+];
+
 export const recentShipped = [
 	{
 		title: 'iCapital — bulk nominee investment processing + i18n rollout',

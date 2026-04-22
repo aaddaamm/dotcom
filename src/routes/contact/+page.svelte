@@ -2,6 +2,7 @@
 	import { trackCTA } from '$lib/analytics';
 	import SeoHead from '../../components/seo-head.svelte';
 	import ContactForm from '../../components/contact-form.svelte';
+	import OutcomeProof from '../../components/outcome-proof.svelte';
 	import JsonLd from '../../components/json-ld.svelte';
 	import { breadcrumbList } from '$lib/utils';
 	import { SITE_URL, EMAIL } from '$lib/constants';
@@ -68,6 +69,8 @@
 				See My Work
 			</a>
 		</div>
+
+		<OutcomeProof />
 
 		<ContactForm />
 	</section>
