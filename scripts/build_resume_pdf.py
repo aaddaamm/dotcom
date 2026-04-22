@@ -36,8 +36,8 @@ def styles():
                     spaceAfter=3, leading=12),
         'body': s('body', fontName='Helvetica', fontSize=9.5, textColor=BLACK,
                   spaceAfter=4, leading=14),
-        'skill_row': s('skill_row', fontName='Helvetica', fontSize=9.5, textColor=BLACK,
-                       spaceAfter=3, leading=14),
+        'skill_row': s('skill_row', fontName='Helvetica', fontSize=9, textColor=BLACK,
+                       spaceAfter=2, leading=12),
         'client': s('client', fontName='Helvetica-Bold', fontSize=9.5, textColor=BLACK,
                     spaceBefore=6, spaceAfter=1, leading=13, leftIndent=12),
         'client_period': s('client_period', fontName='Helvetica', fontSize=8.5, textColor=MUTED,
@@ -146,7 +146,7 @@ def build():
         '<i><font color="#555555">Earlier clients include School of Motion, Amica Mutual, and AutoRaptor.</font></i>',
         st['client_body']
     ))
-    story.append(Spacer(1, 4))
+    story.append(Spacer(1, 2))
 
     story.append(Paragraph(company_line('Beacon Mutual Insurance', 'Software Engineer'), st['company']))
     story.append(Paragraph('2013 – 2016  ·  Warwick, RI', st['period']))
