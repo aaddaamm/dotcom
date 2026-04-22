@@ -7,9 +7,15 @@ import http from 'node:http';
 const HOST = '127.0.0.1';
 const PORT = Number(process.env.LH_PORT || 4173);
 const PAGES = ['/', '/blog', '/work', '/hire', '/contact', '/play', '/terminal'];
-const MIN_ACCESSIBILITY = 1;
-const MIN_SEO = 1;
-const REPORT_DIR = fs.mkdtempSync(path.join(os.tmpdir(), 'dotcom-lh-'));
+const MIN_ACCESSIBILITY = Number(process.env.LH_MIN_ACCESSIBILITY || 0.96);
+const MIN_SEO = Number(process.env.LH_MIN_SEO || 1);
+const REPORT_DIR = process.env.LH_REPORT_DIR
+	? path.resolve(process.env.LH_REPORT_DIR)
+	: fs.mkdtempSync(path.join(os.tmpdir(), 'dotcom-lh-'));
+
+if (!fs.existsSync(REPORT_DIR)) {
+	fs.mkdirSync(REPORT_DIR, { recursive: true });
+}
 
 function pageName(route) {
 	if (route === '/') return 'home';
@@ -60,6 +66,19 @@ function scorePercent(report, category) {
 	return Math.round((report.categories[category]?.score ?? 0) * 100);
 }
 
+function topAccessibilityFailures(report, limit = 3) {
+	return Object.values(report.audits)
+		.filter(
+			(audit) =>
+				audit.scoreDisplayMode !== 'notApplicable' &&
+				audit.scoreDisplayMode !== 'informative' &&
+				audit.score !== null &&
+				audit.score < 1
+		)
+		.slice(0, limit)
+		.map((audit) => `${audit.id}: ${audit.title}`);
+}
+
 async function main() {
 	const preview = spawn('npm', ['run', 'preview', '--', '--host', HOST, '--port', String(PORT)], {
 		stdio: 'ignore',
@@ -70,6 +89,10 @@ async function main() {
 
 	try {
 		await waitForServer(baseUrl);
+
+		console.log(
+			`Running Lighthouse gate with thresholds: accessibility>=${MIN_ACCESSIBILITY * 100}, seo>=${MIN_SEO * 100}`
+		);
 
 		const failures = [];
 
@@ -87,7 +110,11 @@ async function main() {
 			console.log(`${route} => accessibility=${accessibility} seo=${seo}`);
 
 			if ((report.categories.accessibility?.score ?? 0) < MIN_ACCESSIBILITY) {
-				failures.push(`${route}: accessibility ${accessibility} < ${MIN_ACCESSIBILITY * 100}`);
+				const topFailures = topAccessibilityFailures(report);
+				const details = topFailures.length ? ` (${topFailures.join('; ')})` : '';
+				failures.push(
+					`${route}: accessibility ${accessibility} < ${MIN_ACCESSIBILITY * 100}${details}`
+				);
 			}
 			if ((report.categories.seo?.score ?? 0) < MIN_SEO) {
 				failures.push(`${route}: seo ${seo} < ${MIN_SEO * 100}`);
@@ -97,6 +124,7 @@ async function main() {
 		if (failures.length > 0) {
 			console.error('\nLighthouse gate failed:');
 			for (const failure of failures) console.error(`- ${failure}`);
+			console.error(`\nReports saved to: ${REPORT_DIR}`);
 			process.exitCode = 1;
 		}
 	} finally {

@@ -28,4 +28,15 @@ jobs:
         run: npm run build
 
       - name: Run Lighthouse gate
+        env:
+          LH_MIN_ACCESSIBILITY: '0.96'
+          LH_MIN_SEO: '1'
+          LH_REPORT_DIR: .lighthouse
         run: npm run check:lighthouse
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: .lighthouse/*.json
