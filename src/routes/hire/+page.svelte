@@ -6,6 +6,8 @@
 	import PhilosophySection from '../../components/philosophy-section.svelte';
 	import FaqSection from '../../components/faq-section.svelte';
 	import PublicActivitySection from '../../components/public-activity-section.svelte';
+	import TrustStrip from '../../components/trust-strip.svelte';
+	import RecentlyShipped from '../../components/recently-shipped.svelte';
 	import { techStack, faqItems } from '$lib/copy';
 	import JsonLd from '../../components/json-ld.svelte';
 	import { breadcrumbList } from '$lib/utils';
@@ -62,6 +64,8 @@
 		</a>
 	</div>
 
+	<TrustStrip />
+
 	<ServicesSection />
 
 	<PhilosophySection />
@@ -82,6 +86,8 @@
 	</section>
 
 	<PublicActivitySection />
+
+	<RecentlyShipped />
 
 	<FaqSection />
 

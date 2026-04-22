@@ -260,6 +260,36 @@ export const homepageMetrics = {
 	industries: ['fintech', 'healthcare', 'enterprise']
 };
 
+export const trustProofItems = [
+	{ label: 'Experience', value: '10+ years' },
+	{ label: 'Sectors', value: 'Fintech · Healthcare · Enterprise' },
+	{ label: 'Engagements', value: '15+ delivered' },
+	{ label: 'Mode', value: 'Embedded senior IC / tech lead' }
+];
+
+export const recentShipped = [
+	{
+		title: 'iCapital — bulk nominee investment processing + i18n rollout',
+		href: '/work/icapital',
+		type: 'Work'
+	},
+	{
+		title: 'Healthcasts — publishing pipeline + auth modernization',
+		href: '/work/healthcasts',
+		type: 'Work'
+	},
+	{
+		title: 'Why I switched to Pi for coding agent work',
+		href: '/blog/why-i-switched-to-pi',
+		type: 'Writing'
+	},
+	{
+		title: 'Claude has more context than you think',
+		href: '/blog/claude-has-more-context-than-you-think',
+		type: 'Writing'
+	}
+];
+
 export type LearningResource = {
 	title: string;
 	url: string;

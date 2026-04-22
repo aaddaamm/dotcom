@@ -2,6 +2,8 @@
 	import SeoHead from '../components/seo-head.svelte';
 	import HeroSection from '../components/hero-section.svelte';
 	import WorkCard from '../components/work-card.svelte';
+	import TrustStrip from '../components/trust-strip.svelte';
+	import RecentlyShipped from '../components/recently-shipped.svelte';
 	import { selectedWork, techStack } from '$lib/copy';
 	import { setupScrollAnimations } from '$lib/animations';
 	import { onMount } from 'svelte';
@@ -22,6 +24,8 @@
 
 <div class="max-w-3xl mx-auto px-6" bind:this={mainContainer}>
 	<HeroSection />
+	<TrustStrip />
+	<RecentlyShipped />
 
 	<!-- Tech Stack -->
 	<section aria-labelledby="stack-heading" class="py-14 section-border">
