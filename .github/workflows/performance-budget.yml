@@ -1,0 +1,36 @@
+name: Performance Budget
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  bundle-budget:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Check bundle budgets
+        env:
+          BUDGET_TOTAL_JS: '220000'
+          BUDGET_TOTAL_CSS: '60000'
+          BUDGET_SINGLE_JS: '100000'
+          BUDGET_SINGLE_CSS: '30000'
+        run: npm run check:bundle-budget
