@@ -4,6 +4,8 @@ description: 'Honest guide to DIY vs professional web development for Rhode Isla
 date: '2026-04-10'
 tags: ['web-development', 'small-business', 'rhode-island']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 DIY website builders are genuinely good tools. I don't try to talk anyone out of them when they're the right fit. But they're not always the right fit, and knowing the difference saves a lot of time and money.

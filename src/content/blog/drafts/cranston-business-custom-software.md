@@ -4,6 +4,8 @@ description: 'Local trends in custom software adoption among Cranston and greate
 date: '2026-05-10'
 tags: ['small-business', 'rhode-island', 'cranston', 'automation']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 Something has shifted in the last couple of years. More local businesses — not tech companies, not startups, just regular businesses in Cranston and the greater Providence area — are investing in custom software tools. Here's what's driving it.

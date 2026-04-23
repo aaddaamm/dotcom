@@ -4,6 +4,8 @@ description: "Warning signs to watch for when hiring a software developer. From 
 date: '2026-03-29'
 tags: ['freelancing', 'small-business', 'hiring']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 After a decade-plus helping Rhode Island businesses with their software, I've spent a good chunk of that time cleaning up after bad development experiences. The clients who come to me in that situation aren't careless — they just didn't know what to look for. So here's what I've learned to watch for.

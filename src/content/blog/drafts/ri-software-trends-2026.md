@@ -4,6 +4,8 @@ description: 'Not every tech trend is relevant to small businesses. Here are the
 date: '2026-05-05'
 tags: ['small-business', 'technology', 'rhode-island', 'ai']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 Technology moves fast. Most of it isn't relevant to a 15-person service business in Cranston. The trick is figuring out which developments are actually useful versus which ones are just noise from people trying to sell you something.

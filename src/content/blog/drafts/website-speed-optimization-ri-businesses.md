@@ -4,6 +4,8 @@ description: 'Cutting through the noise on website performance. What speed metri
 date: '2026-04-20'
 tags: ['web-development', 'small-business', 'seo']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 There's no shortage of advice about website speed. Most of it is technically accurate and practically irrelevant for a small local business. Here's what actually matters.

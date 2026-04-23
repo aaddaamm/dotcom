@@ -4,6 +4,8 @@ description: 'A practical guide to software budgeting for Rhode Island small bus
 date: '2026-04-01'
 tags: ['small-business', 'budgeting', 'rhode-island']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 "How much should we be spending on software?" is one of the most common questions I get from small business owners. There's no single right answer, but there are some useful anchors.

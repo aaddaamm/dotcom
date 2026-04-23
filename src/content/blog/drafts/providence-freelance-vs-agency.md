@@ -4,6 +4,8 @@ description: 'An honest comparison of your options when hiring a developer in Rh
 date: '2026-05-15'
 tags: ['hiring', 'small-business', 'rhode-island', 'freelancing']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 I should say upfront: I'm a freelancer. I have an obvious stake in how this comparison comes out. I'm going to try to be fair anyway, because the honest answer is that the right choice genuinely depends on your project.

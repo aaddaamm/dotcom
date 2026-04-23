@@ -11,7 +11,7 @@ export type BlogPost = {
 	tags: string[];
 	published: boolean;
 	featured?: boolean;
-	status?: 'idea' | 'draft' | 'review' | 'ready';
+	status?: 'draft' | 'review' | 'ready';
 	reviewed?: boolean;
 	image?: string;
 };

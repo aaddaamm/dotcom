@@ -2,8 +2,10 @@
 title: 'Hello World'
 description: "A first post — why I'm starting to write, and what to expect."
 date: '2026-03-22'
-tags: ['meta']
+tags: ['meta', 'writing']
 published: true
+status: 'draft'
+reviewed: false
 ---
 
 This is the beginning of something I've been meaning to do for a while: write about the things I think about while building software.

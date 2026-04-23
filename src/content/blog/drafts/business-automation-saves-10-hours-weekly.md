@@ -4,6 +4,8 @@ description: 'Three proven automation approaches that consistently deliver the b
 date: '2026-04-15'
 tags: ['automation', 'small-business', 'rhode-island']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 Time is the thing most small business owners have least of. Not money, not ideas — time. The work is always there. The hours aren't.

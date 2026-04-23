@@ -4,6 +4,8 @@ description: 'Is your small business drowning in manual tasks? Learn the 5 warni
 date: '2026-03-30'
 tags: ['small-business', 'automation', 'rhode-island']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 Most small business owners I talk to around Providence and Cranston know something isn't working. They just aren't sure if it's bad enough to do something about. The honest answer: if it's costing you time every single day, it probably is.

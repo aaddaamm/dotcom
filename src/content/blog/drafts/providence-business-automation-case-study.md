@@ -4,6 +4,8 @@ description: 'How a Providence service business went from 4 hours of daily admin
 date: '2026-04-05'
 tags: ['automation', 'case-study', 'rhode-island', 'providence']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 The best way I can explain what this kind of work actually looks like is to walk through a typical engagement. Here's one that sticks with me.

@@ -4,6 +4,8 @@ description: 'Why the cheapest fix often costs more in the long run. What to wat
 date: '2026-04-25'
 tags: ['web-development', 'small-business', 'hiring']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 "We had it fixed for $200, but now we have bigger problems." This comes up more than you'd think. A business owner notices something broken on their site, finds someone cheap to patch it, and a few weeks later they're dealing with something worse than the original issue.

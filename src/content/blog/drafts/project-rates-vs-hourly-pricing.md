@@ -4,6 +4,8 @@ description: 'The case for project-based pricing over hourly billing — and why
 date: '2026-05-01'
 tags: ['freelancing', 'pricing', 'small-business']
 published: false
+status: 'draft'
+reviewed: false
 ---
 
 Most people, before they hire a developer, want to know what it's going to cost. That's a reasonable thing to want. Hourly billing makes it nearly impossible to answer.
