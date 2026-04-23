@@ -4,7 +4,6 @@ description: "Most CLI coding agents ship opinionated features you can't change.
 date: '2026-04-20'
 tags: ['ai', 'developer-tools', 'productivity']
 published: true
-featured: true
 status: 'ready'
 reviewed: true
 ---
