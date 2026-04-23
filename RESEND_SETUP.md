@@ -37,9 +37,9 @@
 ### Option A: Use Resend's Domain (Quick Start)
 
 - You can start sending emails immediately using `onboarding@resend.dev`
-- Update the "from" email in `/src/routes/api/contact/+server.ts`:
-  ```javascript
-  from: 'onboarding@resend.dev',  // Use this for testing
+- Update the sender email in `/src/lib/server/contactEmail.ts`:
+  ```ts
+  from: 'onboarding@resend.dev'; // Use this for testing
   ```
 
 ### Option B: Use Your Custom Domain (Recommended)
@@ -48,9 +48,9 @@
 2. Add your domain: `adamrobinson.tech`
 3. Add the required DNS records to your domain provider
 4. Verify the domain
-5. Update the "from" email to use your domain:
-   ```javascript
-   from: 'contact@adamrobinson.tech',  // Your custom domain
+5. Update the sender email to use your domain:
+   ```ts
+   from: 'contact@adamrobinson.tech'; // Your custom domain
    ```
 
 ## 4. Test the Setup
@@ -67,16 +67,12 @@
 
 ## 5. What Happens When Someone Submits the Form
 
-1. **You receive** a nicely formatted email with:
+1. **Rate limiting + validation run first**
+2. **You receive** a formatted notification email with:
    - Contact details (name, email, phone, budget)
    - Project type and message
    - Timestamp and submission details
-
-2. **The prospect receives** an auto-responder email with:
-   - Professional thank you message
-   - Clear next steps
-   - Helpful tips based on their budget selection
-   - Links to your work and blog
+3. If email delivery fails, the submission is logged to Redis for recovery
 
 ## 6. Troubleshooting
 
@@ -89,4 +85,4 @@
 
 - The form will work even if Resend fails (graceful degradation)
 - All form submissions are logged to the console as backup
-- The system sends both a notification to you AND an auto-responder to the prospect
+- Current implementation sends a notification to you (no auto-responder is sent)
