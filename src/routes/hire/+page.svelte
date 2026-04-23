@@ -1,17 +1,17 @@
 <script lang="ts">
-import { trackCTA, trackResumeDownload } from "$lib/analytics";
-import { faqItems, techStack } from "$lib/copy";
-import { breadcrumbList } from "$lib/utils";
-import FaqSection from "../../components/faq-section.svelte";
-import JsonLd from "../../components/json-ld.svelte";
-import OutcomeProof from "../../components/outcome-proof.svelte";
-import PageHeader from "../../components/page-header.svelte";
-import PhilosophySection from "../../components/philosophy-section.svelte";
-import PublicActivitySection from "../../components/public-activity-section.svelte";
-import RecentlyShipped from "../../components/recently-shipped.svelte";
-import SeoHead from "../../components/seo-head.svelte";
-import ServicesSection from "../../components/services-section.svelte";
-import TrustStrip from "../../components/trust-strip.svelte";
+	import { trackCTA, trackResumeDownload } from '$lib/analytics';
+	import { faqItems, techStack } from '$lib/copy';
+	import { breadcrumbList } from '$lib/utils';
+	import FaqSection from '../../components/faq-section.svelte';
+	import JsonLd from '../../components/json-ld.svelte';
+	import OutcomeProof from '../../components/outcome-proof.svelte';
+	import PageHeader from '../../components/page-header.svelte';
+	import PhilosophySection from '../../components/philosophy-section.svelte';
+	import PublicActivitySection from '../../components/public-activity-section.svelte';
+	import RecentlyShipped from '../../components/recently-shipped.svelte';
+	import SeoHead from '../../components/seo-head.svelte';
+	import ServicesSection from '../../components/services-section.svelte';
+	import TrustStrip from '../../components/trust-strip.svelte';
 </script>
 
 <SeoHead

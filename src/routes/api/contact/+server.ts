@@ -19,7 +19,12 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 			);
 		}
 
-		const data: ContactFormData = await request.json();
+		let data: ContactFormData;
+		try {
+			data = await request.json();
+		} catch {
+			return json({ error: 'Invalid JSON body' }, { status: 400 });
+		}
 
 		// Honeypot — bots fill fields humans don't see; fail silently
 		if (data.website) {
@@ -79,7 +84,16 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 				`IP: ${clientIP}`,
 				`User-Agent: ${request.headers.get('user-agent') || 'Unknown'}`
 			].join('\n');
-			await logFailedSubmission(sanitized, plainBody, clientIP);
+			const logged = await logFailedSubmission(sanitized, plainBody, clientIP);
+			if (!logged) {
+				return json(
+					{
+						error:
+							'Email delivery failed and the submission could not be saved. Please email me directly.'
+					},
+					{ status: 503 }
+				);
+			}
 			return json({
 				success: true,
 				message:

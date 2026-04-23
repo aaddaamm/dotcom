@@ -1,11 +1,11 @@
 <script lang="ts">
-import { trackCTA } from "$lib/analytics";
-import { EMAIL, SITE_URL } from "$lib/constants";
-import { breadcrumbList } from "$lib/utils";
-import ContactForm from "../../components/contact-form.svelte";
-import JsonLd from "../../components/json-ld.svelte";
-import OutcomeProof from "../../components/outcome-proof.svelte";
-import SeoHead from "../../components/seo-head.svelte";
+	import { trackCTA } from '$lib/analytics';
+	import { EMAIL, SITE_URL } from '$lib/constants';
+	import { breadcrumbList } from '$lib/utils';
+	import ContactForm from '../../components/contact-form.svelte';
+	import JsonLd from '../../components/json-ld.svelte';
+	import OutcomeProof from '../../components/outcome-proof.svelte';
+	import SeoHead from '../../components/seo-head.svelte';
 </script>
 
 <SeoHead

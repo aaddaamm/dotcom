@@ -8,5 +8,6 @@ build/
 .svelte-kit/
 .vercel/
 
-# Local agent config
+# Local agent/cache files
 .pi/
+.pi-lens/

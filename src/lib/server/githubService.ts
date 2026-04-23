@@ -35,7 +35,12 @@ async function fetchFromGithub(fetch: typeof globalThis.fetch): Promise<GithubAc
 	const query = `
 		query($login: String!) {
 			user(login: $login) {
-				publicRepos: repositories(privacy: PUBLIC, ownerAffiliations: OWNER, isFork: false) {
+				publicRepos: repositories(
+					first: 100,
+					privacy: PUBLIC,
+					ownerAffiliations: OWNER,
+					isFork: false
+				) {
 					totalCount
 					nodes {
 						primaryLanguage { name }
@@ -73,7 +78,16 @@ async function fetchFromGithub(fetch: typeof globalThis.fetch): Promise<GithubAc
 					contributionsCollection?: { totalCommitContributions: number };
 				};
 			};
+			errors?: Array<{ message: string }>;
 		};
+
+		if (json.errors?.length) {
+			console.error(
+				'GithubService: GraphQL errors:',
+				json.errors.map((err) => err.message)
+			);
+			return null;
+		}
 
 		const user = json.data?.user;
 		if (!user) return null;
