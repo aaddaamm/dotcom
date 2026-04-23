@@ -1,105 +1,138 @@
 <script lang="ts">
-	import { trackFormStart, trackFormSubmit, trackFormValidationError } from '$lib/analytics';
-	import { validateContactForm, type ContactFormData } from '$lib/validation';
-	import { EMAIL } from '$lib/constants';
+import {
+	trackFormStart,
+	trackFormSubmit,
+	trackFormValidationError,
+} from "$lib/analytics";
+import { EMAIL } from "$lib/constants";
+import { type ContactFormData, validateContactForm } from "$lib/validation";
 
-	let name = $state('');
-	let email = $state('');
-	let project = $state('');
-	let timeline = $state('');
-	let budget = $state('');
-	let message = $state('');
-	let phone = $state('');
-	let website = $state(''); // honeypot
-	let isSubmitting = $state(false);
-	let submitted = $state(false);
-	let errorMessage = $state('');
-	let successMessage = $state('');
-	let fieldErrors = $state<Record<string, string>>({});
-	let trackedStart = $state(false);
+let name = $state("");
+let email = $state("");
+let project = $state("");
+let timeline = $state("");
+let budget = $state("");
+let message = $state("");
+let phone = $state("");
+let website = $state(""); // honeypot
+let isSubmitting = $state(false);
+let submitted = $state(false);
+let errorMessage = $state("");
+let successMessage = $state("");
+let fieldErrors = $state<Record<string, string>>({});
+let trackedStart = $state(false);
 
-	function trackStart() {
-		if (trackedStart) return;
-		trackedStart = true;
-		trackFormStart('contact-page');
+function trackStart() {
+	if (trackedStart) return;
+	trackedStart = true;
+	trackFormStart("contact-page");
+}
+
+function getFriendlyErrorMessage(message: string, status?: number): string {
+	if (
+		status === 429 ||
+		message.toLowerCase().includes("too many submissions")
+	) {
+		return "You’ve hit the submission limit for now. Please wait 15 minutes, then try again.";
 	}
 
-	async function handleSubmit(event: Event) {
-		event.preventDefault();
-		isSubmitting = true;
-		errorMessage = '';
-		successMessage = '';
-		fieldErrors = {};
+	if (
+		status === 400 &&
+		(message.toLowerCase().includes("missing required") ||
+			message.toLowerCase().includes("invalid"))
+	) {
+		return "Please review your details and try again.";
+	}
 
-		// Validate form
-		const formData: ContactFormData = {
-			name: name.trim(),
-			email: email.trim(),
-			phone: phone.trim(),
-			project: project.trim(),
-			timeline: timeline.trim(),
-			budget: budget.trim(),
-			message: message.trim()
-		};
-		const validation = validateContactForm(formData);
-		if (!validation.isValid) {
-			fieldErrors = validation.errors;
-			errorMessage = 'Please fix the errors below.';
-			trackFormValidationError(Object.keys(validation.errors).length);
-			isSubmitting = false;
-			return;
-		}
+	if (status && status >= 500) {
+		return "Thanks — something broke on my side, but your message may still have been received. Please retry or email me directly.";
+	}
 
-		try {
-			const response = await fetch('/api/contact', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ ...formData, website })
-			});
+	return message || "Something went wrong. Please try again.";
+}
 
-			const result = await response.json();
+async function handleSubmit(event: Event) {
+	event.preventDefault();
+	isSubmitting = true;
+	errorMessage = "";
+	successMessage = "";
+	fieldErrors = {};
 
-			if (response.ok && result.success) {
-				trackFormSubmit(
-					project.trim(),
-					phone.trim() ? 'yes' : 'no',
-					timeline.trim() ? 'yes' : 'no',
-					budget.trim() ? 'yes' : 'no'
-				);
-
-				successMessage = result.message || "Thank you! I'll respond within 24 hours.";
-				name = '';
-				email = '';
-				project = '';
-				timeline = '';
-				budget = '';
-				message = '';
-				phone = '';
-				submitted = true;
-
-				setTimeout(() => {
-					submitted = false;
-					successMessage = '';
-					trackedStart = false;
-				}, 8000);
-			} else {
-				errorMessage = result.error || 'Something went wrong. Please try again.';
-			}
-		} catch (error) {
-			console.error('Form submission error:', error);
-			errorMessage = 'Network error. Please check your connection and try again.';
-		}
-
+	// Validate form
+	const formData: ContactFormData = {
+		name: name.trim(),
+		email: email.trim(),
+		phone: phone.trim(),
+		project: project.trim(),
+		timeline: timeline.trim(),
+		budget: budget.trim(),
+		message: message.trim(),
+	};
+	const validation = validateContactForm(formData);
+	if (!validation.isValid) {
+		fieldErrors = validation.errors;
+		errorMessage = "Please fix the errors below.";
+		trackFormValidationError(Object.keys(validation.errors).length);
 		isSubmitting = false;
+		return;
 	}
+
+	try {
+		const response = await fetch("/api/contact", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ ...formData, website }),
+		});
+
+		const result = await response.json();
+
+		if (response.ok && result.success) {
+			trackFormSubmit(
+				project.trim(),
+				phone.trim() ? "yes" : "no",
+				timeline.trim() ? "yes" : "no",
+				budget.trim() ? "yes" : "no",
+			);
+
+			successMessage =
+				result.message ||
+				"Thanks — message received. I'll follow up within 24 hours with next steps.";
+			name = "";
+			email = "";
+			project = "";
+			timeline = "";
+			budget = "";
+			message = "";
+			phone = "";
+			submitted = true;
+
+			setTimeout(() => {
+				submitted = false;
+				successMessage = "";
+				trackedStart = false;
+			}, 8000);
+		} else {
+			errorMessage = getFriendlyErrorMessage(
+				result.error || "",
+				response.status,
+			);
+		}
+	} catch (error) {
+		console.error("Form submission error:", error);
+		errorMessage =
+			"Network issue while submitting. Please check your connection and try again, or email me directly.";
+	}
+
+	isSubmitting = false;
+}
 </script>
 
 <div class="contact-form-container">
 	{#if submitted && successMessage}
 		<div role="status" aria-live="polite" class="success-message p-6 rounded-lg text-center">
-			<h3 class="text-xl font-semibold mb-2">Message Sent Successfully!</h3>
+			<h3 class="text-xl font-semibold mb-2">Thanks — your message is in.</h3>
 			<p class="body-text mb-4">{successMessage}</p>
 			<p class="text-sm muted-text mb-2">What happens next:</p>
 			<ul class="next-steps mb-4" aria-label="Next steps">
@@ -112,7 +145,7 @@
 				<a href="mailto:{EMAIL}" class="accent-link">{EMAIL}</a>
 			</p>
 			<button class="text-sm accent-link underline" onclick={() => (submitted = false)}>
-				Send Another Message
+				Send another message
 			</button>
 		</div>
 	{:else}
@@ -282,17 +315,15 @@
 								d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
 							/>
 						</svg>
-						Sending Message...
+						Sending message...
 					{:else}
-						Send Message
+						Send project details
 					{/if}
 				</span>
 			</button>
 
 			<div class="form-note text-sm mt-4">
-				<p class="mb-2">
-					I typically respond within 24 hours with next steps and a rough timeline.
-				</p>
+				<p class="mb-2">I reply within 24 hours with clear next steps and a rough timeline.</p>
 				<p class="text-xs muted-text">All information is kept confidential. No spam, ever.</p>
 			</div>
 		</form>

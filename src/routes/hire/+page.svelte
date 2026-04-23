@@ -1,22 +1,22 @@
 <script lang="ts">
-	import { trackCTA, trackResumeDownload } from '$lib/analytics';
-	import SeoHead from '../../components/seo-head.svelte';
-	import PageHeader from '../../components/page-header.svelte';
-	import ServicesSection from '../../components/services-section.svelte';
-	import PhilosophySection from '../../components/philosophy-section.svelte';
-	import FaqSection from '../../components/faq-section.svelte';
-	import PublicActivitySection from '../../components/public-activity-section.svelte';
-	import TrustStrip from '../../components/trust-strip.svelte';
-	import OutcomeProof from '../../components/outcome-proof.svelte';
-	import RecentlyShipped from '../../components/recently-shipped.svelte';
-	import { techStack, faqItems } from '$lib/copy';
-	import JsonLd from '../../components/json-ld.svelte';
-	import { breadcrumbList } from '$lib/utils';
+import { trackCTA, trackResumeDownload } from "$lib/analytics";
+import { faqItems, techStack } from "$lib/copy";
+import { breadcrumbList } from "$lib/utils";
+import FaqSection from "../../components/faq-section.svelte";
+import JsonLd from "../../components/json-ld.svelte";
+import OutcomeProof from "../../components/outcome-proof.svelte";
+import PageHeader from "../../components/page-header.svelte";
+import PhilosophySection from "../../components/philosophy-section.svelte";
+import PublicActivitySection from "../../components/public-activity-section.svelte";
+import RecentlyShipped from "../../components/recently-shipped.svelte";
+import SeoHead from "../../components/seo-head.svelte";
+import ServicesSection from "../../components/services-section.svelte";
+import TrustStrip from "../../components/trust-strip.svelte";
 </script>
 
 <SeoHead
-	title="Hire Adam Robinson — Senior Software Engineer"
-	description="Senior software engineer in Providence, RI. Open to contract and full-time roles. Rails, Node.js, TypeScript. Ten-plus years across fintech and healthcare."
+	title="Hire Adam Robinson — Senior Software Engineer for Product Teams"
+	description="Senior software engineer in Providence, RI. I help product teams ship reliable web products faster through contract and advisory engagements."
 	path="/hire"
 />
 
@@ -43,27 +43,30 @@
 />
 
 <div class="max-w-3xl mx-auto px-6">
+	<p class="eyebrow">Senior Software Engineer • SvelteKit / TypeScript</p>
+
 	<PageHeader
-		title="Work With Me"
-		description="Ten-plus years embedded with engineering teams across fintech, healthcare, and enterprise. Open to contract engagements and full-time roles for the right opportunity."
+		title="I help teams ship reliable web products faster."
+		description="I partner with founders and product teams to design, build, and stabilize high-impact web experiences. From new features to legacy cleanup, I focus on measurable outcomes: faster delivery, fewer regressions, and better performance."
 	/>
 
 	<div class="cta-row">
 		<a
 			href="/contact"
 			class="btn-primary"
-			onclick={() => trackCTA('Get In Touch', 'hire-top-primary')}
+			onclick={() => trackCTA('Start a project', 'hire-top-primary')}
 		>
-			Get In Touch
+			Start a project
 		</a>
 		<a
 			href="/work"
-			class="btn-secondary"
-			onclick={() => trackCTA('See My Work', 'hire-top-secondary')}
+			class="secondary-link link-underline"
+			onclick={() => trackCTA('View selected work', 'hire-top-secondary')}
 		>
-			See My Work
+			View selected work
 		</a>
 	</div>
+	<p class="availability-note">Available for contract and advisory engagements.</p>
 
 	<TrustStrip />
 	<OutcomeProof />
@@ -98,9 +101,9 @@
 			<a
 				href="/contact"
 				class="btn-primary px-8 py-4"
-				onclick={() => trackCTA('Get In Touch', 'hire')}
+				onclick={() => trackCTA('Start a project', 'hire-bottom-primary')}
 			>
-				Get In Touch
+				Start a project
 			</a>
 			<div class="resume-link-row" aria-label="Resume download options">
 				<a
@@ -128,6 +131,16 @@
 </div>
 
 <style>
+	.eyebrow {
+		margin-top: 5rem;
+		margin-bottom: -4.5rem;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--color-muted);
+	}
+
 	.resume-link-row {
 		margin-top: 1rem;
 		display: inline-flex;
@@ -153,10 +166,23 @@
 
 	.cta-row {
 		display: flex;
-		gap: 0.75rem;
+		gap: 1rem;
 		flex-wrap: wrap;
+		align-items: center;
 		margin-top: -1.5rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.secondary-link {
+		font-family: var(--font-mono);
+		font-size: 0.9rem;
+		color: var(--color-muted);
+	}
+
+	.availability-note {
 		margin-bottom: 2rem;
+		font-size: 0.875rem;
+		color: var(--color-muted);
 	}
 
 	.stack-list {

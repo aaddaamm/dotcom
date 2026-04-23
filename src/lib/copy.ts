@@ -278,21 +278,21 @@ export const trustProofItems = [
 
 export const outcomeProofPoints = [
 	{
-		headline: 'iCapital — nominee investment processing + i18n rollout',
+		headline: 'iCapital — bulk processing designed for thousands of investments',
 		detail:
-			'Co-designed a Rails service for bulk nominee investment processing and expanded translation support across static and database-backed content.',
+			'Co-designed a Rails bulk-processing service for nominee investments and expanded i18n coverage across both static UI copy and database-backed content.',
 		href: '/work/icapital'
 	},
 	{
-		headline: 'Healthcasts — publishing + auth modernization',
+		headline: 'Healthcasts — MVP modernization that grew into a 4-year engagement',
 		detail:
-			'Led platform modernization with a Strapi + React publishing pipeline and Auth0 unification across platforms.',
+			'Led a Strapi + React publishing pipeline and Auth0 unification across platforms, reducing publishing friction and creating a stronger identity foundation.',
 		href: '/work/healthcasts'
 	},
 	{
-		headline: 'Angi — delivery across three codebases in one engagement',
+		headline: 'Angi — shipped across 3 product codebases in one engagement',
 		detail:
-			'Shipped across Vue/Java, Rails/React, and Next.js/Contentful while mentoring interns through their first production launch.',
+			'Delivered production work in Vue/Java, Rails/React, and Next.js/Contentful while mentoring interns through their first real launch.',
 		href: '/work/angi'
 	}
 ];

@@ -1,16 +1,16 @@
 <script lang="ts">
-	import { trackCTA } from '$lib/analytics';
-	import SeoHead from '../../components/seo-head.svelte';
-	import ContactForm from '../../components/contact-form.svelte';
-	import OutcomeProof from '../../components/outcome-proof.svelte';
-	import JsonLd from '../../components/json-ld.svelte';
-	import { breadcrumbList } from '$lib/utils';
-	import { SITE_URL, EMAIL } from '$lib/constants';
+import { trackCTA } from "$lib/analytics";
+import { EMAIL, SITE_URL } from "$lib/constants";
+import { breadcrumbList } from "$lib/utils";
+import ContactForm from "../../components/contact-form.svelte";
+import JsonLd from "../../components/json-ld.svelte";
+import OutcomeProof from "../../components/outcome-proof.svelte";
+import SeoHead from "../../components/seo-head.svelte";
 </script>
 
 <SeoHead
-	title="Let's Talk — Adam Robinson"
-	description="Get in touch with Adam Robinson — senior software engineer in Providence, RI. Available for contract and full-time roles in Rails, Node.js, and TypeScript."
+	title="Start a Project — Adam Robinson"
+	description="Start a project with Adam Robinson, senior software engineer in Providence, RI. Contract and advisory support for product teams shipping with confidence."
 	path="/contact"
 />
 
@@ -47,26 +47,26 @@
 			<span aria-hidden="true">&larr;</span>
 			Back
 		</a>
-		<h1 class="page-title text-3xl font-semibold tracking-tight mb-3">Let's Talk</h1>
+		<h1 class="page-title text-3xl font-semibold tracking-tight mb-3">Start a project</h1>
 		<p class="page-description leading-relaxed mb-6">
-			Whether you're hiring, have a project, or just want to connect — reach out and I'll get back
-			to you within 24 hours.
+			Tell me what you're building, what's blocked, and the timeline you have in mind. I review
+			every message personally and reply within 24 hours with clear next steps.
 		</p>
 
 		<div class="cta-row" aria-label="Contact page actions">
 			<a
 				href="/hire"
 				class="btn-secondary"
-				onclick={() => trackCTA('See How I Work', 'contact-top-secondary')}
+				onclick={() => trackCTA('See how I work', 'contact-top-secondary')}
 			>
-				See How I Work
+				See how I work
 			</a>
 			<a
 				href="/work"
 				class="btn-secondary"
-				onclick={() => trackCTA('See My Work', 'contact-top-secondary-work')}
+				onclick={() => trackCTA('View selected work', 'contact-top-secondary-work')}
 			>
-				See My Work
+				View selected work
 			</a>
 		</div>
 
