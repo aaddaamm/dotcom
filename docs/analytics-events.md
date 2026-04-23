@@ -23,7 +23,7 @@ Allowed `location` values:
 - `contact-top-secondary-work`
 - `hire-top-primary`
 - `hire-top-secondary`
-- `hire`
+- `hire-bottom-primary`
 - `work-top-primary`
 - `work-top-secondary`
 - `teach`
