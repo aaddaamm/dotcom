@@ -39,56 +39,52 @@ Refer to `STYLEGUIDE.md` for the full brand specification. Key points:
 
 ```
 src/
-  app.css              — Tailwind import, @theme, CSS variables, global typography, blink animation
-  app.html             — HTML shell (data-theme="dark", favicon, JSON-LD, theme init script)
-  hooks.server.ts      — Server hook that sets CSP headers on every response
-  components/          — Shared Svelte components
-    card.svelte, work-card.svelte, hero-section.svelte, header.svelte, footer.svelte,
-    headshot.svelte, icon.svelte, page-header.svelte, philosophy-section.svelte,
-    services-section.svelte, service-icon.svelte, faq-section.svelte, terminal.svelte,
-    public-activity-section.svelte, contact-form.svelte, seo-head.svelte
+  app.css                — Tailwind import, @theme, CSS variables, global typography, blink animation
+  app.html               — HTML shell (data-theme="dark", favicon, JSON-LD, theme init script)
+  hooks.server.ts        — Server hook that sets CSP headers on every response
+  components/            — Shared Svelte components
+    hero-section.svelte, header.svelte, footer.svelte, seo-head.svelte,
+    card.svelte, work-card.svelte, case-study.svelte, outcome-proof.svelte,
+    recently-shipped.svelte, trust-strip.svelte, contact-form.svelte,
+    page-header.svelte, services-section.svelte, service-icon.svelte,
+    philosophy-section.svelte, faq-section.svelte, public-activity-section.svelte,
+    headshot.svelte, icon.svelte, json-ld.svelte, terminal.svelte
   content/
-    blog/              — Markdown blog posts (+ drafts/ subfolder gated by SHOW_DRAFTS)
+    blog/                — Markdown blog posts (+ drafts/ subfolder gated by SHOW_DRAFTS)
   lib/
-    types.ts           — Shared types (GoodreadsBook, GithubActivity, etc.)
-    constants.ts       — Site-wide constants (Goodreads shelves, GITHUB_USERNAME, etc.)
-    copy.ts            — Structured content (tech stack groups, selected work)
-    utils.ts           — Client-safe helpers
-    validation.ts      — Contact form validation
-    animations.ts      — Scroll-in animation setup
-    terminal-commands.ts — Command registry for the /terminal route
-    stores/            — Svelte stores (theme.ts, terminal.ts)
-    server/            — Server-only modules
-      api-utils.ts, utils.ts       — Shared server helpers
-      blog.ts                      — Markdown parsing + draft gating
-      contactEmail.ts, emailTemplates.ts — Resend integration
-      goodreadsService.ts          — Goodreads RSS → cached JSON
-      githubService.ts             — GitHub API → cached activity summary
-      rateLimit.ts                 — Upstash-backed rate limiting
+    types.ts             — Shared types
+    constants.ts         — Site-wide constants
+    copy.ts              — Structured content
+    utils.ts             — Client-safe helpers
+    validation.ts        — Contact form validation
+    animations.ts        — Scroll-in animation setup
+    analytics.ts         — Typed analytics event helpers
+    terminal-commands.ts — Command registry for /terminal
+    terminal-state.svelte.ts — Terminal runtime state
+    stores/              — Svelte stores
+      theme.svelte.ts, terminal.svelte.ts, work-filter.svelte.ts
+    server/              — Server-only modules
+      api-utils.ts, utils.ts, redis.ts, blog.ts,
+      contactEmail.ts, emailTemplates.ts,
+      goodreadsService.ts, githubService.ts, rateLimit.ts
   routes/
-    +layout.svelte     — Root layout: sticky nav, theme toggle, skip-to-content, Vercel analytics
-    +page.svelte / +page.ts — Homepage (hero + tech stack + selected work)
-    +error.svelte      — Error page with status code and back link
-    blog/              — Blog index, RSS feed, and [...slug] post pages (SSR via +page.server.ts)
-    work/              — Case studies / selected work index
-    hire/              — Hire-me page with services, philosophy, FAQ, public activity
-    contact/           — Contact form page
-    play/              — Reading page (SSR Goodreads integration)
-    teach/             — Learning resources and curated external links
-    terminal/          — Interactive terminal easter egg
-    api/               — API routes: contact/, github/, goodreads/, sitemap/
+    +layout.svelte, +page.svelte, +page.ts, +error.svelte
+    blog/                — Index, RSS, and [...slug] pages
+    work/                — Selected work index + [slug] pages
+    hire/                — Hire-me page
+    contact/             — Contact form page
+    play/                — Reading page (SSR Goodreads integration)
+    teach/               — Learning resources and links
+    terminal/            — Interactive terminal easter egg
+    api/                 — contact/, github/, goodreads/*, sitemap/
+    sitemap.xml/+server.ts — 301 redirect shim to /api/sitemap
 static/
-  logo-dark.svg        — Dark-mode wordmark
-  logo-light.svg       — Light-mode wordmark
-  icon.svg             — Standalone cursor mark icon
-  favicon.svg          — Browser favicon (SVG)
-  apple-touch-icon.png — iOS home screen icon
-  og-card.png          — Open Graph image (1200×630)
-  manifest.json        — PWA manifest
-  sw.js                — Service worker
-  fonts/               — Inter variable font
-  robots.txt           — Crawl rules + sitemap reference
-  adam_robinson.docx   — Downloadable résumé
+  logo-dark.svg, logo-light.svg, icon.svg
+  favicon.svg, apple-touch-icon.png, og-card.png
+  manifest.json, sw.js, robots.txt
+  fonts/                — Inter + JetBrains Mono files
+  adam_robinson.pdf     — Downloadable résumé (primary)
+  adam_robinson.docx    — Downloadable résumé (alt format)
 ```
 
 ## SEO & Accessibility
@@ -104,12 +100,12 @@ static/
 
 ## API Routes
 
-| Route            | Purpose                                                                 |
-| ---------------- | ----------------------------------------------------------------------- |
-| `/api/contact`   | Resend-backed contact form submission; Upstash rate limited (3 / 15min) |
-| `/api/github`    | Cached public GitHub activity for the hire page                         |
-| `/api/goodreads` | Cached Goodreads RSS → JSON for the reading page                        |
-| `/api/sitemap`   | Dynamically-generated XML sitemap                                       |
+| Route              | Purpose                                                                 |
+| ------------------ | ----------------------------------------------------------------------- |
+| `/api/contact`     | Resend-backed contact form submission; Upstash rate limited (3 / 15min) |
+| `/api/github`      | Cached public GitHub activity for the hire page                         |
+| `/api/goodreads/*` | Cached Goodreads RSS → JSON for the reading page                        |
+| `/api/sitemap`     | Dynamically-generated XML sitemap                                       |
 
 ## Environment Variables
 

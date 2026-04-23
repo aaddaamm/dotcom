@@ -10,6 +10,10 @@ Scope:
 - `/play`
 - `/terminal`
 
+Out of scope for this pass:
+
+- `/teach` (route exists; include in next scheduled audit)
+
 ## Automated checks
 
 - Lighthouse accessibility: 100 on audited routes

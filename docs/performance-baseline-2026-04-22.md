@@ -38,10 +38,10 @@ Script:
 
 ## Current baseline snapshot (latest local build)
 
-- JS total: ~190 KB
+- JS total: ~192 KB
 - Largest JS chunk: ~85 KB
-- CSS total: ~50 KB
-- Largest CSS chunk: ~28 KB
+- CSS total: ~50.7 KB
+- Largest CSS chunk: ~27.6 KB
 
 ## Follow-up
 
