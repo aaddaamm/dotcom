@@ -1,10 +1,10 @@
 <script lang="ts">
-	import SeoHead from '../../../components/seo-head.svelte';
-	import { createElementObserver } from '$lib/animations';
-	import JsonLd from '../../../components/json-ld.svelte';
-	import { breadcrumbList, formatPostDate } from '$lib/utils';
-	import { SITE_URL } from '$lib/constants';
 	import { onMount } from 'svelte';
+	import { createElementObserver } from '$lib/animations';
+	import { SITE_URL } from '$lib/constants';
+	import { breadcrumbList, formatPostDate } from '$lib/utils';
+	import JsonLd from '../../../components/json-ld.svelte';
+	import SeoHead from '../../../components/seo-head.svelte';
 
 	let { data } = $props();
 	let proseEl: HTMLElement;
@@ -25,6 +25,10 @@
 	description={data.post.description}
 	path="/blog/{data.post.slug}"
 	image={data.post.image}
+	type="article"
+	publishedTime={data.post.date}
+	modifiedTime={data.post.updated ?? data.post.date}
+	tags={data.post.tags}
 />
 
 <JsonLd
