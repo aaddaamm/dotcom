@@ -10,10 +10,7 @@ import {
 	trackTerminalCommand,
 	trackTerminalModeChange,
 } from "$lib/analytics";
-import {
-	getSeveranceMode,
-	setSeveranceMode,
-} from "$lib/stores/severance.svelte";
+import { getSeveranceMode, setSeveranceMode } from "$lib/stores/severance";
 
 export type HistoryEntry =
 	| { id: number; type: "input"; text: string }
@@ -31,6 +28,13 @@ export class TerminalState {
 	#navigate: (path: string) => Promise<void>;
 	#mdrActive = false;
 	#mdrScore = { woe: 0, frolic: 0, dread: 0, malice: 0 };
+	#memory: Record<
+		"outie" | "innie",
+		{ history: HistoryEntry[]; cmdHistory: string[] }
+	> = {
+		outie: { history: [], cmdHistory: [] },
+		innie: { history: [], cmdHistory: [] },
+	};
 
 	constructor(
 		fullscreen: boolean | (() => boolean) = false,
@@ -40,6 +44,7 @@ export class TerminalState {
 			typeof fullscreen === "function" ? fullscreen : () => fullscreen;
 		this.#navigate = navigate;
 		this.mode = getSeveranceMode() === "innie" ? "innie" : "terminal";
+		this.#loadMemory(this.#modeMemoryKey(this.mode));
 	}
 
 	open(source: "keyboard" | "button" | "page" = "keyboard", initialChar = "") {
@@ -112,10 +117,12 @@ export class TerminalState {
 		}
 
 		if (result.modeChange) {
+			const previousMode = this.mode;
 			trackTerminalModeChange(result.modeChange);
 			this.mode = result.modeChange;
 			if (result.modeChange === "innie") setSeveranceMode("innie");
 			if (result.modeChange === "terminal") setSeveranceMode("outie");
+			this.#switchMemoryIfNeeded(previousMode, result.modeChange);
 		}
 
 		if (result.navigate) {
@@ -182,6 +189,42 @@ export class TerminalState {
 			...this.history,
 			{ id: this.#nextId++, type: "output", lines },
 		];
+	}
+
+	#modeMemoryKey(mode: Mode): "outie" | "innie" {
+		return mode === "innie" ? "innie" : "outie";
+	}
+
+	#saveMemory(key: "outie" | "innie") {
+		this.#memory[key] = {
+			history: [...this.history],
+			cmdHistory: [...this.cmdHistory],
+		};
+	}
+
+	#loadMemory(key: "outie" | "innie") {
+		this.history = [...this.#memory[key].history];
+		this.cmdHistory = [...this.#memory[key].cmdHistory];
+		this.cmdHistoryIndex = -1;
+	}
+
+	#switchMemoryIfNeeded(previousMode: Mode, nextMode: Mode) {
+		const prevKey = this.#modeMemoryKey(previousMode);
+		const nextKey = this.#modeMemoryKey(nextMode);
+		if (prevKey === nextKey) return;
+		this.#saveMemory(prevKey);
+		this.#loadMemory(nextKey);
+		if (nextKey === "innie" && this.history.length === 0) {
+			this.#pushOutput([
+				"memory partition complete.",
+				"type 'macrodata' to begin refinement.",
+			]);
+		}
+		if (nextKey === "outie" && this.history.length === 0) {
+			this.#pushOutput([
+				"outie memory restored. no retained innie logs visible.",
+			]);
+		}
 	}
 
 	#handleMacrodataFlow(lower: string): boolean {

@@ -7,6 +7,7 @@
 	import { selectedWork, techStack } from '$lib/copy';
 	import { setupScrollAnimations } from '$lib/animations';
 	import { onMount } from 'svelte';
+	import { unlockSeveredRoute } from '$lib/stores/severance';
 
 	let mainContainer: HTMLElement;
 	let showRuneToast = false;
@@ -38,6 +39,7 @@
 	}
 
 	function triggerRuneReveal() {
+		unlockSeveredRoute();
 		showRuneToast = true;
 		playRuneChime();
 		if (runeToastTimer) clearTimeout(runeToastTimer);

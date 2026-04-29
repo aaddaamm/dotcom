@@ -85,6 +85,7 @@ const commands: Record<string, CommandDef> = {
 				"  git log         recent commit history",
 				"  ritual          reveal arcane easter eggs",
 				"  summon          list summonable endpoints",
+				"  severed         open the severed floor",
 				"  translate <incantation>  decode an incantation",
 				"  clear           clear the terminal",
 				"  exit            close the terminal",
@@ -416,6 +417,19 @@ const commands: Record<string, CommandDef> = {
 			],
 		},
 	},
+
+	severed: {
+		terminal: {
+			lines: ["elevator descending to /severed..."],
+			navigate: "/severed",
+			navigateDelay: 700,
+		},
+		innie: {
+			lines: ["badge accepted. descending to /severed..."],
+			navigate: "/severed",
+			navigateDelay: 700,
+		},
+	},
 };
 
 export function runCommand(rawInput: string, mode: Mode): CommandResult {
@@ -468,6 +482,7 @@ const argMap: Record<string, string[]> = {
 	outie: [],
 	macrodata: [],
 	waffleparty: [],
+	severed: [],
 };
 
 const topLevelCommands = [
@@ -498,6 +513,7 @@ const topLevelCommands = [
 	"outie",
 	"macrodata",
 	"waffleparty",
+	"severed",
 ];
 
 export function getCompletions(input: string): string[] {

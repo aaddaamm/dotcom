@@ -14,7 +14,7 @@
 	import Header from '../components/header.svelte';
 	import { initTheme } from '$lib/stores/theme.svelte';
 	import { getTerminalOpen } from '$lib/stores/terminal.svelte';
-	import { getSeveranceMode, initSeveranceMode } from '$lib/stores/severance.svelte';
+	import { getSeveranceMode, initSeveranceMode } from '$lib/stores/severance';
 	import { page } from '$app/state';
 
 	let { children }: { children: Snippet } = $props();
