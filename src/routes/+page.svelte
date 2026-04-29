@@ -31,10 +31,16 @@
 		const onKeydown = (event: KeyboardEvent) => {
 			const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
 			const expected = konami[progress];
+			const isKonamiKey = konami.includes(key);
 
 			if (key !== expected) {
 				progress = key === konami[0] ? 1 : 0;
 				return;
+			}
+
+			if (isKonamiKey) {
+				event.preventDefault();
+				event.stopImmediatePropagation();
 			}
 
 			progress += 1;
@@ -48,10 +54,10 @@
 			}, 4200);
 		};
 
-		window.addEventListener('keydown', onKeydown);
+		window.addEventListener('keydown', onKeydown, { capture: true });
 
 		return () => {
-			window.removeEventListener('keydown', onKeydown);
+			window.removeEventListener('keydown', onKeydown, { capture: true });
 			if (runeToastTimer) clearTimeout(runeToastTimer);
 			cleanup();
 		};
@@ -139,8 +145,9 @@
 <style>
 	.rune-toast {
 		position: fixed;
-		right: 16px;
-		bottom: 16px;
+		left: 50%;
+		top: 84px;
+		transform: translateX(-50%);
 		z-index: 300;
 		padding: 10px 12px;
 		border: 1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
