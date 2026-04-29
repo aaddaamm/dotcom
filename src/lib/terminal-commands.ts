@@ -17,6 +17,10 @@ type CommandDef = { terminal: CommandResult; rpg?: CommandResult };
 
 const allStack = techStack.flatMap((g) => g.items);
 
+const INCANTATIONS: Record<string, string> = {
+	"ex codice lumen": "from code, light",
+};
+
 export function normalize(lower: string): string {
 	if (lower === "-h" || lower === "--help") return "help";
 	if (lower === "ls /") return "ls";
@@ -27,6 +31,7 @@ export function normalize(lower: string): string {
 	if (lower === "rm -rf /" || lower === "rm -rf ~") return "rm -rf .";
 	if (lower === "vi" || lower === "nano" || lower === "emacs") return "vim";
 	if (lower === "hyrule") return "zelda";
+	if (lower in INCANTATIONS) return `translate ${lower}`;
 	return lower;
 }
 
@@ -73,6 +78,7 @@ const commands: Record<string, CommandDef> = {
 				"  git log         recent commit history",
 				"  ritual          reveal arcane easter eggs",
 				"  summon          list summonable endpoints",
+				"  translate <incantation>  decode an incantation",
 				"  clear           clear the terminal",
 				"  exit            close the terminal",
 			],
@@ -328,11 +334,18 @@ const commands: Record<string, CommandDef> = {
 				"✶ THE HIDDEN RUNES ✶",
 				"konami whisper: ↑ ↑ ↓ ↓ ← → ← → B A",
 				"secret phrase: ex codice lumen",
+				`translation: "${INCANTATIONS["ex codice lumen"]}"`,
 				"rune coordinates: 41.78°N, 71.44°W",
 				"codex: v3.1.7",
 				"last rite (hex): 0x680F4E00",
 				"moon phase: Waxing Gibbous",
 			],
+		},
+	},
+
+	"translate ex codice lumen": {
+		terminal: {
+			lines: ['ex codice lumen → "from code, light"'],
 		},
 	},
 
@@ -357,6 +370,18 @@ export function runCommand(rawInput: string, mode: Mode): CommandResult {
 	if (lower === "clear") return { lines: [], clear: true };
 	if (lower === "exit" || lower === "quit") return { lines: [], close: true };
 
+	if (lower.startsWith("translate ")) {
+		const phrase = lower.slice("translate ".length).trim();
+		const translation = INCANTATIONS[phrase];
+		if (translation) return { lines: [`${phrase} → "${translation}"`] };
+		return {
+			lines: [
+				`unknown incantation: ${phrase}`,
+				"try: translate ex codice lumen",
+			],
+		};
+	}
+
 	const key = normalize(lower);
 	const def = commands[key];
 	if (def) return mode === "rpg" && def.rpg ? def.rpg : def.terminal;
@@ -378,6 +403,7 @@ const argMap: Record<string, string[]> = {
 	sudo: ["hire adam"],
 	ritual: [],
 	summon: [],
+	translate: Object.keys(INCANTATIONS),
 };
 
 const topLevelCommands = [
@@ -403,6 +429,7 @@ const topLevelCommands = [
 	"chocobo",
 	"ritual",
 	"summon",
+	"translate",
 ];
 
 export function getCompletions(input: string): string[] {
