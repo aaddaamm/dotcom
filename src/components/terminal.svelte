@@ -108,6 +108,10 @@
 	});
 
 	const PROMPT = `${EMAIL}:~$`;
+
+	function isIncantationLine(line: string) {
+		return line.includes('→ "') || line.includes('translation: "');
+	}
 </script>
 
 <div
@@ -140,7 +144,9 @@
 				</div>
 			{:else}
 				{#each entry.lines as line, i (i)}
-					<div class="terminal-line output">{line || '\u00a0'}</div>
+					<div class="terminal-line output" class:incantation={isIncantationLine(line)}>
+						{line || '\u00a0'}
+					</div>
 				{/each}
 			{/if}
 		{/each}
@@ -280,6 +286,51 @@
 
 	.terminal-line.output.muted {
 		color: #8a8a8a;
+	}
+
+	.terminal-line.output.incantation {
+		color: var(--color-accent);
+		position: relative;
+		overflow: hidden;
+		animation: incantation-reveal 700ms ease-out;
+	}
+
+	.terminal-line.output.incantation::after {
+		content: '';
+		position: absolute;
+		inset: -2px;
+		background: radial-gradient(
+			circle at 0% 50%,
+			color-mix(in srgb, var(--color-accent) 35%, transparent),
+			transparent 55%
+		);
+		animation: incantation-light 900ms ease-out;
+		pointer-events: none;
+	}
+
+	@keyframes incantation-reveal {
+		0% {
+			opacity: 0;
+			transform: translateY(6px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@keyframes incantation-light {
+		0% {
+			transform: translateX(-20%);
+			opacity: 0;
+		}
+		35% {
+			opacity: 1;
+		}
+		100% {
+			transform: translateX(110%);
+			opacity: 0;
+		}
 	}
 
 	/* Input row */

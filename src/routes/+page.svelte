@@ -166,6 +166,7 @@
 		</a>
 	</section>
 	{#if showRuneToast}
+		<div class="rune-light" aria-hidden="true"></div>
 		<div class="rune-toast" role="status" aria-live="polite">
 			<span class="rune-ring" aria-hidden="true"></span>
 			<span class="spark spark-1" aria-hidden="true">✦</span>
@@ -178,6 +179,24 @@
 </div>
 
 <style>
+	.rune-light {
+		position: fixed;
+		left: 50%;
+		top: 96px;
+		width: 520px;
+		height: 220px;
+		transform: translateX(-50%);
+		background: radial-gradient(
+			circle at 50% 0%,
+			color-mix(in srgb, var(--color-accent) 32%, transparent),
+			transparent 70%
+		);
+		filter: blur(10px);
+		pointer-events: none;
+		z-index: 280;
+		animation: rune-light-emerge 1000ms ease-out;
+	}
+
 	.rune-toast {
 		position: fixed;
 		left: 50%;
@@ -260,6 +279,17 @@
 		}
 	}
 
+	@keyframes rune-light-emerge {
+		0% {
+			opacity: 0;
+			transform: translateX(-50%) scale(0.7);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(-50%) scale(1);
+		}
+	}
+
 	@keyframes rune-enter {
 		0% {
 			opacity: 0;
@@ -321,6 +351,7 @@
 	}
 
 	@media (prefers-reduced-motion: reduce) {
+		.rune-light,
 		.rune-toast,
 		.rune-glow :global(section:first-of-type),
 		.rune-ring,
