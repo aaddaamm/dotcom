@@ -45,7 +45,7 @@ npm run dev
 - ⚡ **Performance**: Optimized fonts, images, and bundle size
 - 🎨 **Design**: Custom dark/light theme with terminal-inspired aesthetic
 - 📱 **Responsive**: Mobile-first design with accessibility features
-- 📧 **Contact Form**: Resend-backed contact form with auto-responder and Upstash rate limiting
+- 📧 **Contact Form**: Resend-backed contact notifications with Upstash rate limiting
 - 📖 **Reading List**: Live Goodreads integration (cached)
 - 💻 **Public Activity**: Cached GitHub activity summary on the hire page
 - 🔍 **SEO**: Comprehensive meta tags, JSON-LD schema, and sitemap
