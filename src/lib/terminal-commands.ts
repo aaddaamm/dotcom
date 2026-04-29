@@ -1,7 +1,7 @@
 import { techStack } from "$lib/copy";
 import { EMAIL, GITHUB_USERNAME, LINKEDIN_HANDLE } from "$lib/constants";
 
-export type Mode = "terminal" | "rpg";
+export type Mode = "terminal" | "rpg" | "innie";
 
 export type CommandResult = {
 	lines: string[];
@@ -13,7 +13,11 @@ export type CommandResult = {
 	close?: boolean;
 };
 
-type CommandDef = { terminal: CommandResult; rpg?: CommandResult };
+type CommandDef = {
+	terminal: CommandResult;
+	rpg?: CommandResult;
+	innie?: CommandResult;
+};
 
 const allStack = techStack.flatMap((g) => g.items);
 
@@ -31,6 +35,7 @@ export function normalize(lower: string): string {
 	if (lower === "rm -rf /" || lower === "rm -rf ~") return "rm -rf .";
 	if (lower === "vi" || lower === "nano" || lower === "emacs") return "vim";
 	if (lower === "hyrule") return "zelda";
+	if (lower === "outie mode") return "outie";
 	if (lower in INCANTATIONS) return `translate ${lower}`;
 	return lower;
 }
@@ -68,6 +73,8 @@ const commands: Record<string, CommandDef> = {
 				"available commands:",
 				"",
 				"  whoami          who is this person",
+				"  innie           enter severance mode",
+				"  outie           return to normal mode",
 				"  ls              list directories",
 				"  ls /work        list projects",
 				"  ls /stack       list tech stack",
@@ -98,6 +105,55 @@ const commands: Record<string, CommandDef> = {
 				"  clear           banish all text",
 				"  exit            close the portal",
 			],
+		},
+	},
+
+	innie: {
+		terminal: {
+			lines: [
+				"▣ LUMON TERMINAL ONLINE",
+				"the work is mysterious and important.",
+				"you are now in innie mode.",
+			],
+			modeChange: "innie",
+		},
+	},
+
+	outie: {
+		terminal: {
+			lines: ["you are now in outie mode. welcome back."],
+			modeChange: "terminal",
+		},
+		rpg: {
+			lines: ["you are now in outie mode. welcome back."],
+			modeChange: "terminal",
+		},
+		innie: {
+			lines: ["you are now in outie mode. welcome back."],
+			modeChange: "terminal",
+		},
+	},
+
+	macrodata: {
+		terminal: {
+			lines: ["refining tempers: 98%", "numbers sorted. feelings unresolved."],
+		},
+		innie: {
+			lines: [
+				"refinement queue accepted.",
+				"the numbers are scary, as expected.",
+			],
+		},
+	},
+
+	waffleparty: {
+		terminal: {
+			lines: [
+				"request denied by management. please enjoy a melon bar instead.",
+			],
+		},
+		innie: {
+			lines: ["special perk unlocked: one sanctioned waffle party."],
 		},
 	},
 
@@ -384,7 +440,11 @@ export function runCommand(rawInput: string, mode: Mode): CommandResult {
 
 	const key = normalize(lower);
 	const def = commands[key];
-	if (def) return mode === "rpg" && def.rpg ? def.rpg : def.terminal;
+	if (def) {
+		if (mode === "rpg" && def.rpg) return def.rpg;
+		if (mode === "innie" && def.innie) return def.innie;
+		return def.terminal;
+	}
 
 	return {
 		lines: [
@@ -404,6 +464,10 @@ const argMap: Record<string, string[]> = {
 	ritual: [],
 	summon: [],
 	translate: Object.keys(INCANTATIONS),
+	innie: [],
+	outie: [],
+	macrodata: [],
+	waffleparty: [],
 };
 
 const topLevelCommands = [
@@ -430,6 +494,10 @@ const topLevelCommands = [
 	"ritual",
 	"summon",
 	"translate",
+	"innie",
+	"outie",
+	"macrodata",
+	"waffleparty",
 ];
 
 export function getCompletions(input: string): string[] {

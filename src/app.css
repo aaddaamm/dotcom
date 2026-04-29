@@ -45,6 +45,11 @@
 	--color-error: #e53e3e;
 }
 
+[data-severance='innie'] {
+	--color-accent: #7ee7d3;
+	--color-muted: color-mix(in srgb, var(--color-muted) 86%, #a7b0ad);
+}
+
 html {
 	scroll-behavior: smooth;
 }

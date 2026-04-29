@@ -109,6 +109,10 @@
 
 	const PROMPT = `${EMAIL}:~$`;
 
+	function getPrompt() {
+		return state.isInnieMode() ? 'lumon@macrodata:~$' : PROMPT;
+	}
+
 	function isIncantationLine(line: string) {
 		return line.includes('→ "') || line.includes('translation: "');
 	}
@@ -119,14 +123,17 @@
 	class:drawer={!fullscreen}
 	class:open={state.isOpen}
 	class:fullscreen
+	class:innie-mode={state.isInnieMode()}
 	role="region"
 	aria-label="Terminal"
 >
 	{#if !fullscreen}
 		<div class="terminal-bar">
-			<span class="terminal-bar-title">{PROMPT.split(':')[0]}</span>
-			{#if state.mode === 'rpg'}
+			<span class="terminal-bar-title">{getPrompt().split(':')[0]}</span>
+			{#if state.isRpgMode()}
 				<span class="rpg-badge">RPG</span>
+			{:else if state.isInnieMode()}
+				<span class="rpg-badge innie-badge">INNIE</span>
 			{/if}
 			<button class="close-btn" onclick={() => state.close()} aria-label="Close terminal">×</button>
 		</div>
@@ -134,12 +141,16 @@
 
 	<div class="terminal-output" bind:this={scrollEl}>
 		{#if fullscreen && state.history.length === 0}
-			<div class="terminal-line output muted">type 'help' for available commands.</div>
+			<div class="terminal-line output muted">
+				{state.isInnieMode()
+					? "lumon ready. type 'macrodata' to begin refinement."
+					: "type 'help' for available commands."}
+			</div>
 		{/if}
 		{#each state.history as entry (entry.id)}
 			{#if entry.type === 'input'}
 				<div class="terminal-line">
-					<span class="prompt">{PROMPT}</span>
+					<span class="prompt">{getPrompt()}</span>
 					&nbsp;{entry.text}
 				</div>
 			{:else}
@@ -153,7 +164,7 @@
 	</div>
 
 	<div class="terminal-input-row">
-		<span class="prompt">{PROMPT}</span>
+		<span class="prompt">{getPrompt()}</span>
 		<input
 			bind:this={inputEl}
 			bind:value={state.input}
@@ -228,6 +239,13 @@
 		background: color-mix(in srgb, var(--color-accent) 20%, transparent);
 		color: var(--color-accent);
 		border: 1px solid color-mix(in srgb, var(--color-accent) 30%, transparent);
+	}
+
+	.innie-badge {
+		letter-spacing: 1px;
+		background: color-mix(in srgb, #7ee7d3 22%, transparent);
+		color: #7ee7d3;
+		border-color: color-mix(in srgb, #7ee7d3 36%, transparent);
 	}
 
 	.close-btn {
@@ -359,5 +377,9 @@
 		margin-left: 0.4em;
 		caret-color: var(--color-accent);
 		padding: 0;
+	}
+
+	.innie-mode {
+		filter: saturate(0.85) contrast(1.05);
 	}
 </style>

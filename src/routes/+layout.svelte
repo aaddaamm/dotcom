@@ -14,6 +14,7 @@
 	import Header from '../components/header.svelte';
 	import { initTheme } from '$lib/stores/theme.svelte';
 	import { getTerminalOpen } from '$lib/stores/terminal.svelte';
+	import { getSeveranceMode, initSeveranceMode } from '$lib/stores/severance.svelte';
 	import { page } from '$app/state';
 
 	let { children }: { children: Snippet } = $props();
@@ -21,6 +22,7 @@
 
 	onMount(() => {
 		initTheme();
+		initSeveranceMode();
 		injectSpeedInsights();
 		inject({ mode: dev ? 'development' : 'production' });
 
@@ -82,7 +84,7 @@
 	/>
 </svelte:head>
 
-<div class="min-h-screen flex flex-col">
+<div class="min-h-screen flex flex-col" class:severed={getSeveranceMode() === 'innie'}>
 	<a href="#main-content" class="skip-link">Skip to content</a>
 	<Header />
 	<main id="main-content" class="flex-1">
@@ -145,5 +147,9 @@
 	.mobile-fab:hover {
 		opacity: 0.9;
 		transform: translateY(-1px);
+	}
+
+	.severed {
+		filter: saturate(0.94) contrast(1.03);
 	}
 </style>
