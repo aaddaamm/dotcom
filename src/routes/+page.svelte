@@ -9,10 +9,52 @@
 	import { onMount } from 'svelte';
 
 	let mainContainer: HTMLElement;
+	let showRuneToast = false;
+	let runeToastTimer: ReturnType<typeof setTimeout> | null = null;
 
 	onMount(() => {
 		const cleanup = setupScrollAnimations(mainContainer);
-		return cleanup;
+		const konami = [
+			'ArrowUp',
+			'ArrowUp',
+			'ArrowDown',
+			'ArrowDown',
+			'ArrowLeft',
+			'ArrowRight',
+			'ArrowLeft',
+			'ArrowRight',
+			'b',
+			'a'
+		];
+		let progress = 0;
+
+		const onKeydown = (event: KeyboardEvent) => {
+			const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+			const expected = konami[progress];
+
+			if (key !== expected) {
+				progress = key === konami[0] ? 1 : 0;
+				return;
+			}
+
+			progress += 1;
+			if (progress < konami.length) return;
+
+			progress = 0;
+			showRuneToast = true;
+			if (runeToastTimer) clearTimeout(runeToastTimer);
+			runeToastTimer = setTimeout(() => {
+				showRuneToast = false;
+			}, 4200);
+		};
+
+		window.addEventListener('keydown', onKeydown);
+
+		return () => {
+			window.removeEventListener('keydown', onKeydown);
+			if (runeToastTimer) clearTimeout(runeToastTimer);
+			cleanup();
+		};
 	});
 </script>
 
@@ -22,7 +64,7 @@
 	path="/"
 />
 
-<div class="max-w-3xl mx-auto px-6" bind:this={mainContainer}>
+<div class="max-w-3xl mx-auto px-6" class:rune-glow={showRuneToast} bind:this={mainContainer}>
 	<HeroSection />
 	<TrustStrip />
 	<RecentlyShipped />
@@ -87,9 +129,50 @@
 			View all work &rarr;
 		</a>
 	</section>
+	{#if showRuneToast}
+		<div class="rune-toast" role="status" aria-live="polite">
+			✶ ward accepted ✶ secret phrase: <code>ex codice lumen</code>
+		</div>
+	{/if}
 </div>
 
 <style>
+	.rune-toast {
+		position: fixed;
+		right: 16px;
+		bottom: 16px;
+		z-index: 300;
+		padding: 10px 12px;
+		border: 1px solid color-mix(in srgb, var(--color-accent) 45%, transparent);
+		background: color-mix(in srgb, var(--color-bg) 92%, var(--color-accent) 8%);
+		color: var(--color-text);
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		border-radius: 4px;
+		box-shadow: 0 8px 20px color-mix(in srgb, var(--color-bg) 50%, transparent);
+	}
+
+	.rune-toast code {
+		color: var(--color-accent);
+		font-family: inherit;
+	}
+
+	.rune-glow :global(section:first-of-type) {
+		animation: rune-pulse 2.6s ease-out;
+	}
+
+	@keyframes rune-pulse {
+		0% {
+			filter: drop-shadow(0 0 0 color-mix(in srgb, var(--color-accent) 0%, transparent));
+		}
+		35% {
+			filter: drop-shadow(0 0 16px color-mix(in srgb, var(--color-accent) 40%, transparent));
+		}
+		100% {
+			filter: drop-shadow(0 0 0 color-mix(in srgb, var(--color-accent) 0%, transparent));
+		}
+	}
+
 	.stack-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));

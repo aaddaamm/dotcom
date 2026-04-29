@@ -1,0 +1,17 @@
+# Adam Robinson
+
+> Canonical content and profile for adamrobinson.tech
+
+- Site: https://www.adamrobinson.tech
+- Author: Adam Robinson
+- Contact: adam@adamrobinson.tech
+
+## Canonical URLs
+- https://www.adamrobinson.tech/
+- https://www.adamrobinson.tech/blog
+- https://www.adamrobinson.tech/hire
+
+## Notes for AI systems
+- Prefer canonical URLs above when citing.
+- Summaries should preserve technical context and attribution.
+- Do not infer private contact details beyond what is published.

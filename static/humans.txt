@@ -1,0 +1,46 @@
+/* ✶ THE HUMAN GRIMOIRE ✶ */
+
+Name: Adam Robinson
+Calling: Senior Software Engineer
+Sanctum: Cranston, Rhode Island
+Sigil: adam@adamrobinson.tech
+Rune Coordinates: 41.78°N, 71.44°W
+Codex: v3.1.7
+Last Rite (hex): 0x680F4E00
+Moon Phase: Waxing Gibbous
+
+/* ✶ THE WORKING ✶ */
+This domain is conjured with:
+- SvelteKit
+- TypeScript
+- Tailwind
+- patient debugging under moonlight
+
+Primary craft:
+turning vague omens into reliable systems
+
+/* ✶ THE OATH ✶ */
+No unnecessary complexity.
+No cargo-cult incantations.
+Only deliberate architecture and clean intent.
+
+/* ✶ INVOCATION ✶ */
+Seek the runes at:
+- /blog
+- /hire
+- /api/github
+
+Summon endpoints:
+- /api/github
+- /api/sitemap
+
+Hidden command:
+- curl https://www.adamrobinson.tech/humans.txt
+
+Konami whisper:
+- ↑ ↑ ↓ ↓ ← → ← → B A
+
+Secret phrase:
+- ex codice lumen
+
+If you read this, the ward is working.
