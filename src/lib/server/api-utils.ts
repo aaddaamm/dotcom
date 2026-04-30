@@ -1,3 +1,7 @@
+export type ApiErrorResponse = {
+	error: string;
+};
+
 export function createApiResponse<T>(
 	data: T,
 	options?: {
@@ -21,4 +25,15 @@ export function createApiResponse<T>(
 		statusText,
 		headers
 	});
+}
+
+export function createApiErrorResponse(
+	error: string,
+	options?: {
+		status?: number;
+		statusText?: string;
+		cacheControl?: string;
+	}
+) {
+	return createApiResponse<ApiErrorResponse>({ error }, options);
 }
