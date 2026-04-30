@@ -1,4 +1,5 @@
 import matter from 'gray-matter';
+import { dev } from '$app/environment';
 
 export function filenameToSlug(filepath: string): string | null {
 	const filename = filepath.split('/').pop();
@@ -32,4 +33,9 @@ export function asStringArray(value: unknown): string[] {
 
 export function asBoolean(value: unknown, fallback = false): boolean {
 	return typeof value === 'boolean' ? value : fallback;
+}
+
+export function reportFrontmatterIssue(filepath: string, reason: string) {
+	if (!dev) return;
+	console.warn(`[frontmatter] ${filepath}: ${reason}`);
 }

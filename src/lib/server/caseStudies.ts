@@ -2,7 +2,8 @@ import {
 	filenameToSlug,
 	parseMarkdownFrontmatter,
 	asNonEmptyString,
-	isRecord
+	isRecord,
+	reportFrontmatterIssue
 } from '$lib/server/content-frontmatter';
 
 export type AnonymizedCaseStudy = {
@@ -33,8 +34,11 @@ export function getAnonymizedCaseStudies(): AnonymizedCaseStudy[] {
 		outcome: string;
 	};
 
-	function toCaseStudyFrontmatter(data: unknown): CaseStudyFrontmatter | null {
-		if (!isRecord(data)) return null;
+	function toCaseStudyFrontmatter(data: unknown): {
+		frontmatter: CaseStudyFrontmatter | null;
+		reason?: string;
+	} {
+		if (!isRecord(data)) return { frontmatter: null, reason: 'frontmatter is not an object' };
 		const record = data;
 		const title = asNonEmptyString(record.title);
 		const audience = asNonEmptyString(record.audience);
@@ -51,16 +55,21 @@ export function getAnonymizedCaseStudies(): AnonymizedCaseStudy[] {
 			!outcome ||
 			confidentiality !== 'anonymized'
 		) {
-			return null;
+			return {
+				frontmatter: null,
+				reason: 'missing required anonymized case-study fields'
+			};
 		}
 
 		return {
-			title,
-			audience,
-			confidentiality,
-			situation,
-			approach,
-			outcome
+			frontmatter: {
+				title,
+				audience,
+				confidentiality,
+				situation,
+				approach,
+				outcome
+			}
 		};
 	}
 
@@ -69,8 +78,11 @@ export function getAnonymizedCaseStudies(): AnonymizedCaseStudy[] {
 		if (!slug) continue;
 
 		const { data } = parseMarkdownFrontmatter<unknown>(raw as string);
-		const frontmatter = toCaseStudyFrontmatter(data);
-		if (!frontmatter) continue;
+		const { frontmatter, reason } = toCaseStudyFrontmatter(data);
+		if (!frontmatter) {
+			reportFrontmatterIssue(filepath, reason ?? 'invalid frontmatter');
+			continue;
+		}
 
 		studies.push({
 			slug,

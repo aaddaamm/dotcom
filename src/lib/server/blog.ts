@@ -5,7 +5,8 @@ import {
 	asNonEmptyString,
 	asStringArray,
 	asBoolean,
-	isRecord
+	isRecord,
+	reportFrontmatterIssue
 } from '$lib/server/content-frontmatter';
 
 export type BlogPost = {
@@ -58,24 +59,29 @@ function isBlogStatus(value: unknown): value is BlogStatus {
 	return value === 'draft' || value === 'review' || value === 'ready';
 }
 
-function toBlogFrontmatter(data: unknown): BlogFrontmatter | null {
-	if (!isRecord(data)) return null;
+function toBlogFrontmatter(data: unknown): {
+	frontmatter: BlogFrontmatter | null;
+	reason?: string;
+} {
+	if (!isRecord(data)) return { frontmatter: null, reason: 'frontmatter is not an object' };
 	const record = data;
 	const title = asNonEmptyString(record.title);
 	const date = asNonEmptyString(record.date);
-	if (!title || !date) return null;
+	if (!title || !date) return { frontmatter: null, reason: 'missing required title/date' };
 
 	return {
-		title,
-		description: asNonEmptyString(record.description) ?? '',
-		date,
-		updated: asNonEmptyString(record.updated) ?? undefined,
-		tags: asStringArray(record.tags),
-		published: asBoolean(record.published, false),
-		featured: asBoolean(record.featured, false),
-		status: isBlogStatus(record.status) ? record.status : undefined,
-		reviewed: asBoolean(record.reviewed, false),
-		image: asNonEmptyString(record.image) ?? undefined
+		frontmatter: {
+			title,
+			description: asNonEmptyString(record.description) ?? '',
+			date,
+			updated: asNonEmptyString(record.updated) ?? undefined,
+			tags: asStringArray(record.tags),
+			published: asBoolean(record.published, false),
+			featured: asBoolean(record.featured, false),
+			status: isBlogStatus(record.status) ? record.status : undefined,
+			reviewed: asBoolean(record.reviewed, false),
+			image: asNonEmptyString(record.image) ?? undefined
+		}
 	};
 }
 
@@ -88,8 +94,11 @@ function parseEntry(
 	if (!baseSlug) return null;
 	const slug = slugPrefix + baseSlug;
 	const { data, content } = parseMarkdownFrontmatter<unknown>(raw);
-	const frontmatter = toBlogFrontmatter(data);
-	if (!frontmatter) return null;
+	const { frontmatter, reason } = toBlogFrontmatter(data);
+	if (!frontmatter) {
+		reportFrontmatterIssue(filepath, reason ?? 'invalid frontmatter');
+		return null;
+	}
 	return {
 		slug,
 		title: frontmatter.title,
