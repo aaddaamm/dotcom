@@ -6,7 +6,8 @@ import {
 	asStringArray,
 	asBoolean,
 	isRecord,
-	reportFrontmatterIssue
+	reportFrontmatterIssue,
+	type FrontmatterValidationResult
 } from '$lib/server/content-frontmatter';
 
 export type BlogPost = {
@@ -59,10 +60,7 @@ function isBlogStatus(value: unknown): value is BlogStatus {
 	return value === 'draft' || value === 'review' || value === 'ready';
 }
 
-function toBlogFrontmatter(data: unknown): {
-	frontmatter: BlogFrontmatter | null;
-	reason?: string;
-} {
+function toBlogFrontmatter(data: unknown): FrontmatterValidationResult<BlogFrontmatter> {
 	if (!isRecord(data)) return { frontmatter: null, reason: 'frontmatter is not an object' };
 	const record = data;
 	const title = asNonEmptyString(record.title);

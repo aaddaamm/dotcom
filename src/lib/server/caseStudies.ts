@@ -3,7 +3,8 @@ import {
 	parseMarkdownFrontmatter,
 	asNonEmptyString,
 	isRecord,
-	reportFrontmatterIssue
+	reportFrontmatterIssue,
+	type FrontmatterValidationResult
 } from '$lib/server/content-frontmatter';
 
 export type AnonymizedCaseStudy = {
@@ -31,10 +32,7 @@ type CaseStudyFrontmatter = {
 	outcome: string;
 };
 
-function toCaseStudyFrontmatter(data: unknown): {
-	frontmatter: CaseStudyFrontmatter | null;
-	reason?: string;
-} {
+function toCaseStudyFrontmatter(data: unknown): FrontmatterValidationResult<CaseStudyFrontmatter> {
 	if (!isRecord(data)) return { frontmatter: null, reason: 'frontmatter is not an object' };
 	const record = data;
 	const title = asNonEmptyString(record.title);

@@ -35,6 +35,11 @@ export function asBoolean(value: unknown, fallback = false): boolean {
 	return typeof value === 'boolean' ? value : fallback;
 }
 
+export type FrontmatterValidationResult<T> = {
+	frontmatter: T | null;
+	reason?: string;
+};
+
 export function reportFrontmatterIssue(filepath: string, reason: string) {
 	if (!dev) return;
 	console.warn(`[frontmatter] ${filepath}: ${reason}`);
