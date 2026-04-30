@@ -1,10 +1,14 @@
 import type { RequestHandler } from './$types';
 import GithubService from '$lib/server/githubService';
-import { createApiResponse, createApiErrorResponse } from '$lib/server/api-utils';
+import {
+	createApiResponse,
+	createApiErrorResponse,
+	withExternalApiFallback
+} from '$lib/server/api-utils';
 import { CACHE_CONTROL } from '$lib/server/cache-control';
 
 export const GET: RequestHandler = async ({ fetch }) => {
-	try {
+	return withExternalApiFallback(async () => {
 		const activity = await GithubService.getActivity(fetch);
 
 		if (!activity) {
@@ -17,10 +21,5 @@ export const GET: RequestHandler = async ({ fetch }) => {
 		return createApiResponse(activity, {
 			cacheControl: CACHE_CONTROL.DAY
 		});
-	} catch {
-		return createApiErrorResponse('GitHub activity unavailable', {
-			status: 503,
-			statusText: 'GitHub activity unavailable'
-		});
-	}
+	}, 'GitHub activity unavailable');
 };

@@ -37,3 +37,18 @@ export function createApiErrorResponse(
 ) {
 	return createApiResponse<ApiErrorResponse>({ error }, options);
 }
+
+export async function withExternalApiFallback(
+	operation: () => Promise<Response>,
+	error: string,
+	statusText = error
+) {
+	try {
+		return await operation();
+	} catch {
+		return createApiErrorResponse(error, {
+			status: 503,
+			statusText
+		});
+	}
+}
