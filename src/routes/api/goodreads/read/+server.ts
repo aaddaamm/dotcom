@@ -1,13 +1,12 @@
 import type { RequestHandler } from './$types';
 import GoodreadsService from '$lib/server/goodreadsService';
-import { createApiResponse, withExternalApiFallback } from '$lib/server/api-utils';
-import { CACHE_CONTROL } from '$lib/server/cache-control';
+import { createGoodreadsHandler } from '$lib/server/goodreads-route';
+
+const getReadShelf = createGoodreadsHandler(
+	(fetchFn) => GoodreadsService.fetchReadShelf(fetchFn),
+	'Goodreads read shelf unavailable'
+);
 
 export const GET: RequestHandler = async ({ fetch }) => {
-	return withExternalApiFallback(async () => {
-		const books = await GoodreadsService.fetchReadShelf(fetch);
-		return createApiResponse(books, {
-			cacheControl: CACHE_CONTROL.HOUR
-		});
-	}, 'Goodreads read shelf unavailable');
+	return getReadShelf(fetch);
 };
