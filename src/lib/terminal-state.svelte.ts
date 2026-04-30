@@ -9,6 +9,17 @@ export type HistoryEntry =
 	| { id: number; type: 'input'; text: string }
 	| { id: number; type: 'output'; lines: string[] };
 
+const ARGUMENT_EXPECTING_COMMANDS = [
+	'ls',
+	'cat',
+	'open',
+	'git',
+	'sudo',
+	'mode',
+	'echo',
+	'translate'
+];
+
 export class TerminalState {
 	isOpen = $state(false);
 	input = $state('');
@@ -130,10 +141,9 @@ export class TerminalState {
 		if (completions.length === 0) return;
 		if (completions.length === 1) {
 			const tokens = this.input.split(' ');
-			const argCommands = ['ls', 'cat', 'open', 'git', 'sudo', 'mode', 'echo', 'translate'];
 			if (tokens.length === 1) {
 				this.input = completions[0];
-				if (argCommands.includes(completions[0])) this.input += ' ';
+				if (ARGUMENT_EXPECTING_COMMANDS.includes(completions[0])) this.input += ' ';
 			} else {
 				tokens[tokens.length - 1] = completions[0];
 				this.input = tokens.join(' ');
