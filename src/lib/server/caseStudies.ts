@@ -1,4 +1,4 @@
-import matter from 'gray-matter';
+import { filenameToSlug, parseMarkdownFrontmatter } from '$lib/server/content-frontmatter';
 
 export type AnonymizedCaseStudy = {
 	slug: string;
@@ -19,12 +19,20 @@ const caseStudyRaw = import.meta.glob('/src/content/case-studies/*.md', {
 export function getAnonymizedCaseStudies(): AnonymizedCaseStudy[] {
 	const studies: AnonymizedCaseStudy[] = [];
 
-	for (const [filepath, raw] of Object.entries(caseStudyRaw)) {
-		const filename = filepath.split('/').pop();
-		if (!filename) continue;
+	type CaseStudyFrontmatter = {
+		title?: string;
+		audience?: string;
+		confidentiality?: string;
+		situation?: string;
+		approach?: string;
+		outcome?: string;
+	};
 
-		const slug = filename.replace(/\.md$/, '');
-		const { data } = matter(raw as string);
+	for (const [filepath, raw] of Object.entries(caseStudyRaw)) {
+		const slug = filenameToSlug(filepath);
+		if (!slug) continue;
+
+		const { data } = parseMarkdownFrontmatter<CaseStudyFrontmatter>(raw as string);
 		if (
 			!data.title ||
 			!data.audience ||

@@ -1,5 +1,5 @@
-import matter from 'gray-matter';
 import { renderMarkdown } from '$lib/server/markdown';
+import { filenameToSlug, parseMarkdownFrontmatter } from '$lib/server/content-frontmatter';
 
 export type BlogPost = {
 	slug: string;
@@ -32,15 +32,28 @@ const draftsRaw = import.meta.glob('/src/content/blog/drafts/*.md', {
 	eager: true
 });
 
+type BlogFrontmatter = {
+	title?: string;
+	description?: string;
+	date?: string;
+	updated?: string;
+	tags?: string[];
+	published?: boolean;
+	featured?: boolean;
+	status?: 'draft' | 'review' | 'ready';
+	reviewed?: boolean;
+	image?: string;
+};
+
 function parseEntry(
 	filepath: string,
 	raw: string,
 	slugPrefix = ''
 ): (BlogPost & { _content: string }) | null {
-	const filename = filepath.split('/').pop();
-	if (!filename) return null;
-	const slug = slugPrefix + filename.replace(/\.md$/, '');
-	const { data, content } = matter(raw);
+	const baseSlug = filenameToSlug(filepath);
+	if (!baseSlug) return null;
+	const slug = slugPrefix + baseSlug;
+	const { data, content } = parseMarkdownFrontmatter<BlogFrontmatter>(raw);
 	if (!data.title || !data.date) return null;
 	return {
 		slug,
@@ -48,7 +61,7 @@ function parseEntry(
 		description: data.description ?? '',
 		date: data.date,
 		updated: data.updated,
-		tags: data.tags ?? [],
+		tags: Array.isArray(data.tags) ? data.tags : [],
 		published: data.published ?? false,
 		featured: data.featured ?? false,
 		status: data.status,
