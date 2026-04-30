@@ -2,14 +2,13 @@ export type ApiErrorResponse = {
 	error: string;
 };
 
-export function createApiResponse<T>(
-	data: T,
-	options?: {
-		status?: number;
-		statusText?: string;
-		cacheControl?: string;
-	}
-) {
+export type ApiResponseOptions = {
+	status?: number;
+	statusText?: string;
+	cacheControl?: string;
+};
+
+export function createApiResponse<T>(data: T, options?: ApiResponseOptions) {
 	const { status = 200, statusText = 'OK', cacheControl } = options || {};
 
 	const headers: Record<string, string> = {
@@ -27,14 +26,7 @@ export function createApiResponse<T>(
 	});
 }
 
-export function createApiErrorResponse(
-	error: string,
-	options?: {
-		status?: number;
-		statusText?: string;
-		cacheControl?: string;
-	}
-) {
+export function createApiErrorResponse(error: string, options?: ApiResponseOptions) {
 	return createApiResponse<ApiErrorResponse>({ error }, options);
 }
 
