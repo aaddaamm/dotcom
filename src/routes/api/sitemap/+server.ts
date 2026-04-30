@@ -3,6 +3,7 @@ import { SitemapStream, streamToPromise } from 'sitemap';
 import { getAllPosts } from '$lib/server/blog';
 import { selectedWork } from '$lib/copy';
 import { SITE_URL } from '$lib/constants';
+import { CACHE_CONTROL } from '$lib/server/cache-control';
 
 const STATIC_LASTMOD = new Date().toISOString().slice(0, 10);
 
@@ -79,7 +80,7 @@ export const GET: RequestHandler = async () => {
 		status: 200,
 		headers: {
 			'Content-Type': 'application/xml',
-			'Cache-Control': 's-maxage=86400, stale-while-revalidate=3600'
+			'Cache-Control': CACHE_CONTROL.DAY
 		}
 	});
 };

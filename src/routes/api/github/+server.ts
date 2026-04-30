@@ -1,6 +1,7 @@
 import type { RequestHandler } from './$types';
 import GithubService from '$lib/server/githubService';
 import { createApiResponse, createApiErrorResponse } from '$lib/server/api-utils';
+import { CACHE_CONTROL } from '$lib/server/cache-control';
 
 export const GET: RequestHandler = async ({ fetch }) => {
 	try {
@@ -14,7 +15,7 @@ export const GET: RequestHandler = async ({ fetch }) => {
 		}
 
 		return createApiResponse(activity, {
-			cacheControl: 's-maxage=86400, stale-while-revalidate=3600'
+			cacheControl: CACHE_CONTROL.DAY
 		});
 	} catch {
 		return createApiErrorResponse('GitHub activity unavailable', {
