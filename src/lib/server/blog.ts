@@ -113,25 +113,35 @@ function parseEntry(
 	};
 }
 
+function appendParsedPosts(
+	posts: BlogPost[],
+	source: Record<string, unknown>,
+	options?: {
+		slugPrefix?: string;
+		includeUnpublished?: boolean;
+	}
+) {
+	const { slugPrefix = '', includeUnpublished = false } = options ?? {};
+
+	for (const [filepath, raw] of Object.entries(source)) {
+		const entry = parseEntry(filepath, raw as string, slugPrefix);
+		if (!entry) continue;
+		if (!entry.published && !includeUnpublished) continue;
+		const { _content: _, ...post } = entry;
+		posts.push(post);
+	}
+}
+
 export function getAllPosts(includeDrafts = false): BlogPost[] {
 	const posts: BlogPost[] = [];
 
-	for (const [filepath, raw] of Object.entries(publishedRaw)) {
-		const entry = parseEntry(filepath, raw as string);
-		if (entry && (entry.published || includeDrafts)) {
-			const { _content: _, ...post } = entry;
-			posts.push(post);
-		}
-	}
+	appendParsedPosts(posts, publishedRaw, { includeUnpublished: includeDrafts });
 
 	if (includeDrafts) {
-		for (const [filepath, raw] of Object.entries(draftsRaw)) {
-			const entry = parseEntry(filepath, raw as string, 'drafts/');
-			if (entry) {
-				const { _content: _, ...post } = entry;
-				posts.push(post);
-			}
-		}
+		appendParsedPosts(posts, draftsRaw, {
+			slugPrefix: 'drafts/',
+			includeUnpublished: true
+		});
 	}
 
 	return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
