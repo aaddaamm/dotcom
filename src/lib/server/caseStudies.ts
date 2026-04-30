@@ -22,56 +22,56 @@ const caseStudyRaw = import.meta.glob('/src/content/case-studies/*.md', {
 	eager: true
 });
 
-export function getAnonymizedCaseStudies(): AnonymizedCaseStudy[] {
-	const studies: AnonymizedCaseStudy[] = [];
+type CaseStudyFrontmatter = {
+	title: string;
+	audience: string;
+	confidentiality: 'anonymized';
+	situation: string;
+	approach: string;
+	outcome: string;
+};
 
-	type CaseStudyFrontmatter = {
-		title: string;
-		audience: string;
-		confidentiality: 'anonymized';
-		situation: string;
-		approach: string;
-		outcome: string;
-	};
+function toCaseStudyFrontmatter(data: unknown): {
+	frontmatter: CaseStudyFrontmatter | null;
+	reason?: string;
+} {
+	if (!isRecord(data)) return { frontmatter: null, reason: 'frontmatter is not an object' };
+	const record = data;
+	const title = asNonEmptyString(record.title);
+	const audience = asNonEmptyString(record.audience);
+	const situation = asNonEmptyString(record.situation);
+	const approach = asNonEmptyString(record.approach);
+	const outcome = asNonEmptyString(record.outcome);
+	const confidentiality = record.confidentiality;
 
-	function toCaseStudyFrontmatter(data: unknown): {
-		frontmatter: CaseStudyFrontmatter | null;
-		reason?: string;
-	} {
-		if (!isRecord(data)) return { frontmatter: null, reason: 'frontmatter is not an object' };
-		const record = data;
-		const title = asNonEmptyString(record.title);
-		const audience = asNonEmptyString(record.audience);
-		const situation = asNonEmptyString(record.situation);
-		const approach = asNonEmptyString(record.approach);
-		const outcome = asNonEmptyString(record.outcome);
-		const confidentiality = record.confidentiality;
-
-		if (
-			!title ||
-			!audience ||
-			!situation ||
-			!approach ||
-			!outcome ||
-			confidentiality !== 'anonymized'
-		) {
-			return {
-				frontmatter: null,
-				reason: 'missing required anonymized case-study fields'
-			};
-		}
-
+	if (
+		!title ||
+		!audience ||
+		!situation ||
+		!approach ||
+		!outcome ||
+		confidentiality !== 'anonymized'
+	) {
 		return {
-			frontmatter: {
-				title,
-				audience,
-				confidentiality,
-				situation,
-				approach,
-				outcome
-			}
+			frontmatter: null,
+			reason: 'missing required anonymized case-study fields'
 		};
 	}
+
+	return {
+		frontmatter: {
+			title,
+			audience,
+			confidentiality,
+			situation,
+			approach,
+			outcome
+		}
+	};
+}
+
+export function getAnonymizedCaseStudies(): AnonymizedCaseStudy[] {
+	const studies: AnonymizedCaseStudy[] = [];
 
 	for (const [filepath, raw] of Object.entries(caseStudyRaw)) {
 		const slug = filenameToSlug(filepath);
