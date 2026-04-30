@@ -1,4 +1,8 @@
-import { filenameToSlug, parseMarkdownFrontmatter } from '$lib/server/content-frontmatter';
+import {
+	filenameToSlug,
+	parseMarkdownFrontmatter,
+	asNonEmptyString
+} from '$lib/server/content-frontmatter';
 
 export type AnonymizedCaseStudy = {
 	slug: string;
@@ -20,38 +24,60 @@ export function getAnonymizedCaseStudies(): AnonymizedCaseStudy[] {
 	const studies: AnonymizedCaseStudy[] = [];
 
 	type CaseStudyFrontmatter = {
-		title?: string;
-		audience?: string;
-		confidentiality?: string;
-		situation?: string;
-		approach?: string;
-		outcome?: string;
+		title: string;
+		audience: string;
+		confidentiality: 'anonymized';
+		situation: string;
+		approach: string;
+		outcome: string;
 	};
+
+	function toCaseStudyFrontmatter(data: unknown): CaseStudyFrontmatter | null {
+		const record = data as Record<string, unknown>;
+		const title = asNonEmptyString(record.title);
+		const audience = asNonEmptyString(record.audience);
+		const situation = asNonEmptyString(record.situation);
+		const approach = asNonEmptyString(record.approach);
+		const outcome = asNonEmptyString(record.outcome);
+		const confidentiality = record.confidentiality;
+
+		if (
+			!title ||
+			!audience ||
+			!situation ||
+			!approach ||
+			!outcome ||
+			confidentiality !== 'anonymized'
+		) {
+			return null;
+		}
+
+		return {
+			title,
+			audience,
+			confidentiality,
+			situation,
+			approach,
+			outcome
+		};
+	}
 
 	for (const [filepath, raw] of Object.entries(caseStudyRaw)) {
 		const slug = filenameToSlug(filepath);
 		if (!slug) continue;
 
-		const { data } = parseMarkdownFrontmatter<CaseStudyFrontmatter>(raw as string);
-		if (
-			!data.title ||
-			!data.audience ||
-			!data.situation ||
-			!data.approach ||
-			!data.outcome ||
-			data.confidentiality !== 'anonymized'
-		) {
-			continue;
-		}
+		const { data } = parseMarkdownFrontmatter<unknown>(raw as string);
+		const frontmatter = toCaseStudyFrontmatter(data);
+		if (!frontmatter) continue;
 
 		studies.push({
 			slug,
-			title: data.title,
-			audience: data.audience,
+			title: frontmatter.title,
+			audience: frontmatter.audience,
 			confidentiality: 'anonymized',
-			situation: data.situation,
-			approach: data.approach,
-			outcome: data.outcome
+			situation: frontmatter.situation,
+			approach: frontmatter.approach,
+			outcome: frontmatter.outcome
 		});
 	}
 

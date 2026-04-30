@@ -16,3 +16,20 @@ export function parseMarkdownFrontmatter<T>(raw: string): {
 		content
 	};
 }
+
+export function isRecord(value: unknown): value is Record<string, unknown> {
+	return typeof value === 'object' && value !== null;
+}
+
+export function asNonEmptyString(value: unknown): string | null {
+	return typeof value === 'string' && value.trim().length > 0 ? value : null;
+}
+
+export function asStringArray(value: unknown): string[] {
+	if (!Array.isArray(value)) return [];
+	return value.filter((item): item is string => typeof item === 'string');
+}
+
+export function asBoolean(value: unknown, fallback = false): boolean {
+	return typeof value === 'boolean' ? value : fallback;
+}

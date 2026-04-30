@@ -1,5 +1,11 @@
 import { renderMarkdown } from '$lib/server/markdown';
-import { filenameToSlug, parseMarkdownFrontmatter } from '$lib/server/content-frontmatter';
+import {
+	filenameToSlug,
+	parseMarkdownFrontmatter,
+	asNonEmptyString,
+	asStringArray,
+	asBoolean
+} from '$lib/server/content-frontmatter';
 
 export type BlogPost = {
 	slug: string;
@@ -32,18 +38,44 @@ const draftsRaw = import.meta.glob('/src/content/blog/drafts/*.md', {
 	eager: true
 });
 
+type BlogStatus = 'draft' | 'review' | 'ready';
+
 type BlogFrontmatter = {
-	title?: string;
-	description?: string;
-	date?: string;
+	title: string;
+	description: string;
+	date: string;
 	updated?: string;
-	tags?: string[];
-	published?: boolean;
-	featured?: boolean;
-	status?: 'draft' | 'review' | 'ready';
-	reviewed?: boolean;
+	tags: string[];
+	published: boolean;
+	featured: boolean;
+	status?: BlogStatus;
+	reviewed: boolean;
 	image?: string;
 };
+
+function isBlogStatus(value: unknown): value is BlogStatus {
+	return value === 'draft' || value === 'review' || value === 'ready';
+}
+
+function toBlogFrontmatter(data: unknown): BlogFrontmatter | null {
+	const record = data as Record<string, unknown>;
+	const title = asNonEmptyString(record.title);
+	const date = asNonEmptyString(record.date);
+	if (!title || !date) return null;
+
+	return {
+		title,
+		description: asNonEmptyString(record.description) ?? '',
+		date,
+		updated: asNonEmptyString(record.updated) ?? undefined,
+		tags: asStringArray(record.tags),
+		published: asBoolean(record.published, false),
+		featured: asBoolean(record.featured, false),
+		status: isBlogStatus(record.status) ? record.status : undefined,
+		reviewed: asBoolean(record.reviewed, false),
+		image: asNonEmptyString(record.image) ?? undefined
+	};
+}
 
 function parseEntry(
 	filepath: string,
@@ -53,20 +85,21 @@ function parseEntry(
 	const baseSlug = filenameToSlug(filepath);
 	if (!baseSlug) return null;
 	const slug = slugPrefix + baseSlug;
-	const { data, content } = parseMarkdownFrontmatter<BlogFrontmatter>(raw);
-	if (!data.title || !data.date) return null;
+	const { data, content } = parseMarkdownFrontmatter<unknown>(raw);
+	const frontmatter = toBlogFrontmatter(data);
+	if (!frontmatter) return null;
 	return {
 		slug,
-		title: data.title,
-		description: data.description ?? '',
-		date: data.date,
-		updated: data.updated,
-		tags: Array.isArray(data.tags) ? data.tags : [],
-		published: data.published ?? false,
-		featured: data.featured ?? false,
-		status: data.status,
-		reviewed: data.reviewed ?? false,
-		image: data.image,
+		title: frontmatter.title,
+		description: frontmatter.description,
+		date: frontmatter.date,
+		updated: frontmatter.updated,
+		tags: frontmatter.tags,
+		published: frontmatter.published,
+		featured: frontmatter.featured,
+		status: frontmatter.status,
+		reviewed: frontmatter.reviewed,
+		image: frontmatter.image,
 		_content: content
 	};
 }
