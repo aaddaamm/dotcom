@@ -13,3 +13,5 @@ vite.config.ts.timestamp-*
 /.vscode/tasks.json
 .superpowers/
 docs/superpowers/
+
+.context/
