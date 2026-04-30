@@ -3,6 +3,7 @@ import { runCommand, normalize, getCompletions, type Mode } from '$lib/terminal-
 import { trackTerminalOpen, trackTerminalCommand, trackTerminalModeChange } from '$lib/analytics';
 import { getSeveranceMode, setSeveranceMode } from '$lib/stores/severance';
 import { MacrodataSession } from '$lib/terminal-macrodata';
+import { TerminalMemory } from '$lib/terminal-memory';
 
 export type HistoryEntry =
 	| { id: number; type: 'input'; text: string }
@@ -19,10 +20,7 @@ export class TerminalState {
 	#fullscreen: () => boolean;
 	#navigate: (path: string) => Promise<void>;
 	#macrodata = new MacrodataSession();
-	#memory: Record<'outie' | 'innie', { history: HistoryEntry[]; cmdHistory: string[] }> = {
-		outie: { history: [], cmdHistory: [] },
-		innie: { history: [], cmdHistory: [] }
-	};
+	#memory = new TerminalMemory<HistoryEntry>();
 
 	constructor(
 		fullscreen: boolean | (() => boolean) = false,
@@ -31,7 +29,7 @@ export class TerminalState {
 		this.#fullscreen = typeof fullscreen === 'function' ? fullscreen : () => fullscreen;
 		this.#navigate = navigate;
 		this.mode = getSeveranceMode() === 'innie' ? 'innie' : 'terminal';
-		this.#loadMemory(this.#modeMemoryKey(this.mode));
+		this.#loadMemory(this.#memory.modeMemoryKey(this.mode));
 	}
 
 	open(source: 'keyboard' | 'button' | 'page' = 'keyboard', initialChar = '') {
@@ -156,26 +154,20 @@ export class TerminalState {
 		this.history = [...this.history, { id: this.#nextId++, type: 'output', lines }];
 	}
 
-	#modeMemoryKey(mode: Mode): 'outie' | 'innie' {
-		return mode === 'innie' ? 'innie' : 'outie';
-	}
-
 	#saveMemory(key: 'outie' | 'innie') {
-		this.#memory[key] = {
-			history: [...this.history],
-			cmdHistory: [...this.cmdHistory]
-		};
+		this.#memory.save(key, this.history, this.cmdHistory);
 	}
 
 	#loadMemory(key: 'outie' | 'innie') {
-		this.history = [...this.#memory[key].history];
-		this.cmdHistory = [...this.#memory[key].cmdHistory];
+		const snapshot = this.#memory.load(key);
+		this.history = snapshot.history;
+		this.cmdHistory = snapshot.cmdHistory;
 		this.cmdHistoryIndex = -1;
 	}
 
 	#switchMemoryIfNeeded(previousMode: Mode, nextMode: Mode) {
-		const prevKey = this.#modeMemoryKey(previousMode);
-		const nextKey = this.#modeMemoryKey(nextMode);
+		const prevKey = this.#memory.modeMemoryKey(previousMode);
+		const nextKey = this.#memory.modeMemoryKey(nextMode);
 		if (prevKey === nextKey) return;
 		this.#saveMemory(prevKey);
 		this.#loadMemory(nextKey);
