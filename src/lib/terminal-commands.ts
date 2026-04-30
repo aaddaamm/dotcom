@@ -39,7 +39,8 @@ const NORMALIZED_ALIASES: Record<string, string> = {
 	nano: 'vim',
 	emacs: 'vim',
 	hyrule: 'zelda',
-	'outie mode': 'outie'
+	'outie mode': 'outie',
+	'rpg mode': 'mode rpg'
 };
 
 const OUTIE_MODE_RESULT: CommandResult = {
@@ -326,13 +327,6 @@ const commands: Record<string, CommandDef> = {
 	},
 
 	'mode rpg': {
-		terminal: {
-			lines: RPG_MODE_LINES,
-			modeChange: 'rpg'
-		}
-	},
-
-	'rpg mode': {
 		terminal: {
 			lines: RPG_MODE_LINES,
 			modeChange: 'rpg'
