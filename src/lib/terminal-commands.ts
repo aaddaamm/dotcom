@@ -42,6 +42,11 @@ const NORMALIZED_ALIASES: Record<string, string> = {
 	'outie mode': 'outie'
 };
 
+const OUTIE_MODE_RESULT: CommandResult = {
+	lines: ['you are now in outie mode. welcome back.'],
+	modeChange: 'terminal'
+};
+
 const RPG_MODE_LINES = [
 	'',
 	'  *  .  *  .  *  .  *  .  *  .  *',
@@ -150,18 +155,9 @@ const commands: Record<string, CommandDef> = {
 	},
 
 	outie: {
-		terminal: {
-			lines: ['you are now in outie mode. welcome back.'],
-			modeChange: 'terminal'
-		},
-		rpg: {
-			lines: ['you are now in outie mode. welcome back.'],
-			modeChange: 'terminal'
-		},
-		innie: {
-			lines: ['you are now in outie mode. welcome back.'],
-			modeChange: 'terminal'
-		}
+		terminal: OUTIE_MODE_RESULT,
+		rpg: OUTIE_MODE_RESULT,
+		innie: OUTIE_MODE_RESULT
 	},
 
 	macrodata: {
