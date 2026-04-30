@@ -3,16 +3,7 @@
 
 	type SeoType = 'website' | 'article';
 
-	let {
-		title,
-		description,
-		path = '',
-		image = '/og-card.png',
-		type = 'website',
-		publishedTime,
-		modifiedTime,
-		tags = []
-	}: {
+	interface SeoHeadProps {
 		title: string;
 		description: string;
 		path?: string;
@@ -21,10 +12,27 @@
 		publishedTime?: string;
 		modifiedTime?: string;
 		tags?: string[];
-	} = $props();
+	}
 
-	let url = $derived(`${SITE_URL}${path}`);
-	let imageUrl = $derived(image.startsWith('http') ? image : `${SITE_URL}${image}`);
+	const DEFAULT_IMAGE_PATH = '/og-card.png';
+
+	function toAbsoluteUrl(value: string): string {
+		return value.startsWith('http') ? value : `${SITE_URL}${value}`;
+	}
+
+	let {
+		title,
+		description,
+		path = '',
+		image = DEFAULT_IMAGE_PATH,
+		type = 'website',
+		publishedTime,
+		modifiedTime,
+		tags = []
+	}: SeoHeadProps = $props();
+
+	let url = $derived(toAbsoluteUrl(path));
+	let imageUrl = $derived(toAbsoluteUrl(image));
 </script>
 
 <svelte:head>
