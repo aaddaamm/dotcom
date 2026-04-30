@@ -25,6 +25,28 @@ const INCANTATIONS: Record<string, string> = {
 	'ex codice lumen': 'from code, light'
 };
 
+const RPG_MODE_LINES = [
+	'',
+	'  *  .  *  .  *  .  *  .  *  .  *',
+	'',
+	'  __     /\\  /\\  /\\     __',
+	' /o \\~  /  \\/  \\/  \\  ~/o \\',
+	'/____\\ |____________| /____\\',
+	'  ||                    ||',
+	'',
+	'    ____  ____   ____ ',
+	'   |  _ \\|  _ \\ / ___|',
+	'   | |_) | |_) || |  _',
+	'   |  _ <|  __/ | |_| |',
+	'   |_| \\_\\|_|   \\____|',
+	'',
+	'            M O D E',
+	'',
+	'  *  .  *  .  *  .  *  .  *  .  *',
+	'',
+	'  the spirits of the console stir...'
+];
+
 export function normalize(lower: string): string {
 	if (lower === '-h' || lower === '--help') return 'help';
 	if (lower === 'ls /') return 'ls';
@@ -302,54 +324,14 @@ const commands: Record<string, CommandDef> = {
 
 	'mode rpg': {
 		terminal: {
-			lines: [
-				'',
-				'  *  .  *  .  *  .  *  .  *  .  *',
-				'',
-				'  __     /\\  /\\  /\\     __',
-				' /o \\~  /  \\/  \\/  \\  ~/o \\',
-				'/____\\ |____________| /____\\',
-				'  ||                    ||',
-				'',
-				'    ____  ____   ____ ',
-				'   |  _ \\|  _ \\ / ___|',
-				'   | |_) | |_) || |  _',
-				'   |  _ <|  __/ | |_| |',
-				'   |_| \\_\\|_|   \\____|',
-				'',
-				'            M O D E',
-				'',
-				'  *  .  *  .  *  .  *  .  *  .  *',
-				'',
-				'  the spirits of the console stir...'
-			],
+			lines: RPG_MODE_LINES,
 			modeChange: 'rpg'
 		}
 	},
 
 	'rpg mode': {
 		terminal: {
-			lines: [
-				'',
-				'  *  .  *  .  *  .  *  .  *  .  *',
-				'',
-				'  __     /\\  /\\  /\\     __',
-				' /o \\~  /  \\/  \\/  \\  ~/o \\',
-				'/____\\ |____________| /____\\',
-				'  ||                    ||',
-				'',
-				'    ____  ____   ____ ',
-				'   |  _ \\|  _ \\ / ___|',
-				'   | |_) | |_) || |  _',
-				'   |  _ <|  __/ | |_| |',
-				'   |_| \\_\\|_|   \\____|',
-				'',
-				'            M O D E',
-				'',
-				'  *  .  *  .  *  .  *  .  *  .  *',
-				'',
-				'  the spirits of the console stir...'
-			],
+			lines: RPG_MODE_LINES,
 			modeChange: 'rpg'
 		}
 	},
