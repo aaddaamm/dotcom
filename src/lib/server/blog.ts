@@ -4,7 +4,8 @@ import {
 	parseMarkdownFrontmatter,
 	asNonEmptyString,
 	asStringArray,
-	asBoolean
+	asBoolean,
+	isRecord
 } from '$lib/server/content-frontmatter';
 
 export type BlogPost = {
@@ -58,7 +59,8 @@ function isBlogStatus(value: unknown): value is BlogStatus {
 }
 
 function toBlogFrontmatter(data: unknown): BlogFrontmatter | null {
-	const record = data as Record<string, unknown>;
+	if (!isRecord(data)) return null;
+	const record = data;
 	const title = asNonEmptyString(record.title);
 	const date = asNonEmptyString(record.date);
 	if (!title || !date) return null;

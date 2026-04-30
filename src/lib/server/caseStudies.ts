@@ -1,7 +1,8 @@
 import {
 	filenameToSlug,
 	parseMarkdownFrontmatter,
-	asNonEmptyString
+	asNonEmptyString,
+	isRecord
 } from '$lib/server/content-frontmatter';
 
 export type AnonymizedCaseStudy = {
@@ -33,7 +34,8 @@ export function getAnonymizedCaseStudies(): AnonymizedCaseStudy[] {
 	};
 
 	function toCaseStudyFrontmatter(data: unknown): CaseStudyFrontmatter | null {
-		const record = data as Record<string, unknown>;
+		if (!isRecord(data)) return null;
+		const record = data;
 		const title = asNonEmptyString(record.title);
 		const audience = asNonEmptyString(record.audience);
 		const situation = asNonEmptyString(record.situation);
