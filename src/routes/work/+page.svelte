@@ -1,12 +1,30 @@
 <script lang="ts">
+	import type { PageData } from './$types';
 	import { trackCTA } from '$lib/analytics';
 	import SeoHead from '../../components/seo-head.svelte';
 	import PageHeader from '../../components/page-header.svelte';
 	import WorkCard from '../../components/work-card.svelte';
+	import CaseStudy from '../../components/case-study.svelte';
 	import { selectedWork, earlierWork, gitLog } from '$lib/copy';
 	import JsonLd from '../../components/json-ld.svelte';
 	import { breadcrumbList } from '$lib/utils';
 	import { getFilter } from '$lib/stores/work-filter.svelte';
+
+	type AnonymizedCaseStudyView = {
+		slug: string;
+		title: string;
+		audience: string;
+		confidentiality: string;
+		situation: string;
+		approach: string;
+		outcome: string;
+	};
+
+	let { data }: { data: PageData } = $props();
+	const anonymizedCaseStudies = $derived(
+		((data as { anonymizedCaseStudies?: AnonymizedCaseStudyView[] }).anonymizedCaseStudies ??
+			[]) as AnonymizedCaseStudyView[]
+	);
 
 	const filteredWork = $derived.by(() => {
 		const f = getFilter();
@@ -92,6 +110,19 @@
 		{/each}
 	</div>
 
+	<section class="anonymized-work" aria-labelledby="anon-heading">
+		<h2 id="anon-heading" class="earlier-heading">Anonymized case studies</h2>
+		<div class="grid gap-6">
+			{#each anonymizedCaseStudies as study (study.slug)}
+				<article class="trust-item">
+					<h3 class="text-lg mb-1">{study.title}</h3>
+					<p class="muted-text text-sm mb-4">{study.audience} · {study.confidentiality}</p>
+					<CaseStudy situation={study.situation} work={study.approach} outcome={study.outcome} />
+				</article>
+			{/each}
+		</div>
+	</section>
+
 	<section class="earlier-work" aria-labelledby="earlier-heading">
 		<h2 id="earlier-heading" class="earlier-heading">Earlier work</h2>
 		<ul class="earlier-list">
@@ -164,6 +195,12 @@
 
 	.dot {
 		color: var(--color-accent);
+	}
+
+	.anonymized-work {
+		margin-top: 3rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--color-border);
 	}
 
 	.earlier-work {

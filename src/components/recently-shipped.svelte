@@ -4,7 +4,7 @@
 
 <section aria-labelledby="recent-heading" class="py-10 section-border">
 	<h2 id="recent-heading" class="section-heading mb-6">
-		Recently shipped
+		Recent signals
 		<span class="accent-dot" aria-hidden="true">.</span>
 	</h2>
 	<ul class="recent-list" aria-label="Recently shipped work and writing">
