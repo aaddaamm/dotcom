@@ -1,15 +1,12 @@
 <script lang="ts">
 	import SeoHead from '../../components/seo-head.svelte';
 	import { formatPostDate } from '$lib/utils';
+	import { pageSeo } from '$lib/seo';
 
 	let { data } = $props();
 </script>
 
-<SeoHead
-	title="Blog — Adam Robinson"
-	description="Writing on backend engineering, Rails, Node.js, and TypeScript — practical insights from ten-plus years across fintech, healthcare, and enterprise."
-	path="/blog"
-/>
+<SeoHead {...pageSeo.blog} />
 
 <div class="max-w-3xl mx-auto px-6">
 	<section class="pt-20 sm:pt-28">

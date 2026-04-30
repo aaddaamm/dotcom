@@ -4,6 +4,7 @@
 	import JsonLd from '../../components/json-ld.svelte';
 	import { breadcrumbList } from '$lib/utils';
 	import { learningResources } from '$lib/copy';
+	import { pageSeo } from '$lib/seo';
 
 	const categories = ['All', ...new Set(learningResources.map((r) => r.category))];
 	let selectedCategory = $state('All');
@@ -15,11 +16,7 @@
 	);
 </script>
 
-<SeoHead
-	title="Learning Resources — Adam Robinson"
-	description="Curated list of the best free and paid resources for learning programming, web development, and software engineering skills."
-	path="/teach"
-/>
+<SeoHead {...pageSeo.teach} />
 
 <JsonLd
 	data={breadcrumbList([

@@ -12,13 +12,10 @@
 	import SeoHead from '../../components/seo-head.svelte';
 	import ServicesSection from '../../components/services-section.svelte';
 	import TrustStrip from '../../components/trust-strip.svelte';
+	import { pageSeo } from '$lib/seo';
 </script>
 
-<SeoHead
-	title="Hire Adam Robinson — Senior Software Engineer for Product Teams"
-	description="Senior software engineer in Providence, RI. I help product teams ship reliable web products faster through contract and advisory engagements."
-	path="/hire"
-/>
+<SeoHead {...pageSeo.hire} />
 
 <JsonLd
 	data={{

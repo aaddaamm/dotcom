@@ -6,13 +6,10 @@
 	import JsonLd from '../../components/json-ld.svelte';
 	import OutcomeProof from '../../components/outcome-proof.svelte';
 	import SeoHead from '../../components/seo-head.svelte';
+	import { pageSeo } from '$lib/seo';
 </script>
 
-<SeoHead
-	title="Start a Project — Adam Robinson"
-	description="Start a project with Adam Robinson, senior software engineer in Providence, RI. Contract and advisory support for product teams shipping with confidence."
-	path="/contact"
-/>
+<SeoHead {...pageSeo.contact} />
 
 <JsonLd
 	data={{

@@ -2,15 +2,12 @@
 	import Books from './books.svelte';
 	import SeoHead from '../../components/seo-head.svelte';
 	import type { PageData } from './$types';
+	import { pageSeo } from '$lib/seo';
 
 	let { data }: { data: PageData } = $props();
 </script>
 
-<SeoHead
-	title="Reading — Adam Robinson"
-	description="Books Adam Robinson is currently reading and recently finished — a curated reading list spanning software engineering, design, and more."
-	path="/play"
-/>
+<SeoHead {...pageSeo.play} />
 
 <div class="max-w-4xl mx-auto px-6">
 	<section class="pt-20 sm:pt-28">

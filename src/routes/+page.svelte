@@ -9,6 +9,7 @@
 	import { setupScrollAnimations } from '$lib/animations';
 	import { onMount } from 'svelte';
 	import { unlockSeveredRoute } from '$lib/stores/severance';
+	import { pageSeo } from '$lib/seo';
 
 	let mainContainer: HTMLElement;
 	let showRuneToast = false;
@@ -97,11 +98,7 @@
 	});
 </script>
 
-<SeoHead
-	title="Adam Robinson — Senior Software Engineer, Providence RI"
-	description="Senior software engineer in Providence, RI. Rails, Node.js, TypeScript. Contract and full-time. Ten-plus years in fintech, healthcare, and enterprise."
-	path="/"
-/>
+<SeoHead {...pageSeo.home} />
 
 <div class="max-w-3xl mx-auto px-6" class:rune-glow={showRuneToast} bind:this={mainContainer}>
 	<HeroSection />

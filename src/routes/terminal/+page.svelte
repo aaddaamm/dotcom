@@ -1,13 +1,10 @@
 <script lang="ts">
 	import SeoHead from '../../components/seo-head.svelte';
 	import Terminal from '../../components/terminal.svelte';
+	import { pageSeo } from '$lib/seo';
 </script>
 
-<SeoHead
-	title="Terminal — Adam Robinson"
-	description="An interactive terminal for the curious. Try whoami, ls /work, or sudo hire adam."
-	path="/terminal"
-/>
+<SeoHead {...pageSeo.terminal} />
 
 <svelte:head>
 	<meta name="robots" content="noindex" />

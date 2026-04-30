@@ -9,6 +9,7 @@
 	import JsonLd from '../../components/json-ld.svelte';
 	import { breadcrumbList } from '$lib/utils';
 	import { getFilter } from '$lib/stores/work-filter.svelte';
+	import { pageSeo } from '$lib/seo';
 
 	type AnonymizedCaseStudyView = {
 		slug: string;
@@ -32,11 +33,7 @@
 	});
 </script>
 
-<SeoHead
-	title="Work — Adam Robinson"
-	description="Ten-plus years of engineering work across fintech, healthcare, and enterprise. Rails, Node.js, TypeScript. Staff augmentation and technical leadership."
-	path="/work"
-/>
+<SeoHead {...pageSeo.work} />
 
 <JsonLd
 	data={breadcrumbList([
