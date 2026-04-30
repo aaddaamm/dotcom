@@ -1,5 +1,5 @@
-import { redirect } from '@sveltejs/kit';
+import { redirect, type RequestHandler } from '@sveltejs/kit';
 
-export function GET() {
+export const GET: RequestHandler = () => {
 	redirect(301, '/api/sitemap');
-}
+};

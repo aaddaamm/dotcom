@@ -1,3 +1,4 @@
+import type { RequestHandler } from './$types';
 import { SitemapStream, streamToPromise } from 'sitemap';
 import { getAllPosts } from '$lib/server/blog';
 import { selectedWork } from '$lib/copy';
@@ -12,15 +13,40 @@ const staticRoutes: Array<{
 	lastmod?: string;
 }> = [
 	{ url: '/', changefreq: 'monthly', priority: 1.0, lastmod: STATIC_LASTMOD },
-	{ url: '/work', changefreq: 'monthly', priority: 0.8, lastmod: STATIC_LASTMOD },
-	{ url: '/contact', changefreq: 'monthly', priority: 0.9, lastmod: STATIC_LASTMOD },
-	{ url: '/hire', changefreq: 'monthly', priority: 0.9, lastmod: STATIC_LASTMOD },
-	{ url: '/blog', changefreq: 'weekly', priority: 0.8, lastmod: STATIC_LASTMOD },
+	{
+		url: '/work',
+		changefreq: 'monthly',
+		priority: 0.8,
+		lastmod: STATIC_LASTMOD
+	},
+	{
+		url: '/contact',
+		changefreq: 'monthly',
+		priority: 0.9,
+		lastmod: STATIC_LASTMOD
+	},
+	{
+		url: '/hire',
+		changefreq: 'monthly',
+		priority: 0.9,
+		lastmod: STATIC_LASTMOD
+	},
+	{
+		url: '/blog',
+		changefreq: 'weekly',
+		priority: 0.8,
+		lastmod: STATIC_LASTMOD
+	},
 	{ url: '/play', changefreq: 'weekly', priority: 0.6 },
-	{ url: '/teach', changefreq: 'monthly', priority: 0.7, lastmod: STATIC_LASTMOD }
+	{
+		url: '/teach',
+		changefreq: 'monthly',
+		priority: 0.7,
+		lastmod: STATIC_LASTMOD
+	}
 ];
 
-export async function GET() {
+export const GET: RequestHandler = async () => {
 	const sitemap = new SitemapStream({ hostname: SITE_URL });
 
 	for (const route of staticRoutes) {
@@ -56,4 +82,4 @@ export async function GET() {
 			'Cache-Control': 's-maxage=86400, stale-while-revalidate=3600'
 		}
 	});
-}
+};
