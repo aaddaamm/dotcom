@@ -147,15 +147,26 @@ export function getAllPosts(includeDrafts = false): BlogPost[] {
 	return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
-export function getPostBySlug(slug: string, includeDrafts = false): BlogPostWithContent | null {
+function resolvePostSource(slug: string): {
+	source: Record<string, unknown>;
+	actualSlug: string;
+	slugPrefix: string;
+} {
 	const isDraft = slug.startsWith('drafts/');
-	const actualSlug = isDraft ? slug.slice('drafts/'.length) : slug;
-	const source = isDraft ? draftsRaw : publishedRaw;
+	return {
+		source: isDraft ? draftsRaw : publishedRaw,
+		actualSlug: isDraft ? slug.slice('drafts/'.length) : slug,
+		slugPrefix: isDraft ? 'drafts/' : ''
+	};
+}
+
+export function getPostBySlug(slug: string, includeDrafts = false): BlogPostWithContent | null {
+	const { source, actualSlug, slugPrefix } = resolvePostSource(slug);
 
 	const filepath = Object.keys(source).find((f) => f.endsWith(`/${actualSlug}.md`));
 	if (!filepath) return null;
 
-	const entry = parseEntry(filepath, source[filepath] as string, isDraft ? 'drafts/' : '');
+	const entry = parseEntry(filepath, source[filepath] as string, slugPrefix);
 	if (!entry) return null;
 	if (!entry.published && !includeDrafts) return null;
 
