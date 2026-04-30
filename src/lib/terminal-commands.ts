@@ -25,6 +25,23 @@ const INCANTATIONS: Record<string, string> = {
 	'ex codice lumen': 'from code, light'
 };
 
+const NORMALIZED_ALIASES: Record<string, string> = {
+	'-h': 'help',
+	'--help': 'help',
+	'ls /': 'ls',
+	'ls work': 'ls /work',
+	'ls stack': 'ls /stack',
+	'open hire': 'open /hire',
+	quit: 'exit',
+	'rm -rf /': 'rm -rf .',
+	'rm -rf ~': 'rm -rf .',
+	vi: 'vim',
+	nano: 'vim',
+	emacs: 'vim',
+	hyrule: 'zelda',
+	'outie mode': 'outie'
+};
+
 const RPG_MODE_LINES = [
 	'',
 	'  *  .  *  .  *  .  *  .  *  .  *',
@@ -48,18 +65,8 @@ const RPG_MODE_LINES = [
 ];
 
 export function normalize(lower: string): string {
-	if (lower === '-h' || lower === '--help') return 'help';
-	if (lower === 'ls /') return 'ls';
-	if (lower === 'ls work') return 'ls /work';
-	if (lower === 'ls stack') return 'ls /stack';
-	if (lower === 'open hire') return 'open /hire';
-	if (lower === 'quit') return 'exit';
-	if (lower === 'rm -rf /' || lower === 'rm -rf ~') return 'rm -rf .';
-	if (lower === 'vi' || lower === 'nano' || lower === 'emacs') return 'vim';
-	if (lower === 'hyrule') return 'zelda';
-	if (lower === 'outie mode') return 'outie';
 	if (lower in INCANTATIONS) return `translate ${lower}`;
-	return lower;
+	return NORMALIZED_ALIASES[lower] ?? lower;
 }
 
 const commands: Record<string, CommandDef> = {
