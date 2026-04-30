@@ -7,6 +7,4 @@ const getReadShelf = createGoodreadsHandler(
 	'Goodreads read shelf unavailable'
 );
 
-export const GET: RequestHandler = async ({ fetch }) => {
-	return getReadShelf(fetch);
-};
+export const GET: RequestHandler = ({ fetch }) => getReadShelf(fetch);

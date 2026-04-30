@@ -7,6 +7,4 @@ const getCurrentlyReading = createGoodreadsHandler(
 	'Goodreads currently-reading unavailable'
 );
 
-export const GET: RequestHandler = async ({ fetch }) => {
-	return getCurrentlyReading(fetch);
-};
+export const GET: RequestHandler = ({ fetch }) => getCurrentlyReading(fetch);
