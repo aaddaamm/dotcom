@@ -1,52 +1,139 @@
 <script lang="ts">
 	import { outcomeProofPoints } from '$lib/copy';
+
+	let activeIndex = $state(0);
+	let reduceMotion = $state(false);
+
+	$effect(() => {
+		if (typeof window === 'undefined') return;
+		reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	});
+
+	function activate(index: number) {
+		activeIndex = index;
+	}
+
+	const activePoint = $derived(outcomeProofPoints[activeIndex]);
 </script>
 
 <section aria-labelledby="outcomes-heading" class="py-10 section-border">
 	<h2 id="outcomes-heading" class="section-heading mb-6">
-		Recent outcomes
+		Outcome timeline
 		<span class="accent-dot" aria-hidden="true">.</span>
 	</h2>
-	<ul class="outcome-list" aria-label="Recent delivery outcomes">
-		{#each outcomeProofPoints as point (point.headline)}
-			<li class="outcome-item">
-				<a href={point.href} class="outcome-headline link-underline">{point.headline}</a>
-				<p class="outcome-detail">{point.detail}</p>
-			</li>
-		{/each}
-	</ul>
+
+	<div class="outcomes-grid">
+		<div role="tablist" aria-label="Outcome timeline" class="timeline-list">
+			{#each outcomeProofPoints as point, index (point.headline)}
+				<button
+					id={`timeline-tab-${index}`}
+					role="tab"
+					type="button"
+					class="timeline-tab"
+					class:is-active={index === activeIndex}
+					aria-selected={index === activeIndex}
+					aria-controls={`timeline-panel-${index}`}
+					onclick={() => activate(index)}
+				>
+					<span class="timeline-dot" aria-hidden="true"></span>
+					<span>{point.headline}</span>
+				</button>
+			{/each}
+		</div>
+
+		<div
+			id={`timeline-panel-${activeIndex}`}
+			role="tabpanel"
+			aria-labelledby={`timeline-tab-${activeIndex}`}
+			class="timeline-panel"
+			class:reduced-motion={reduceMotion}
+		>
+			<h3 class="panel-title">{activePoint.headline}</h3>
+			<p class="panel-detail">{activePoint.detail}</p>
+			<a href={activePoint.href} class="panel-link link-underline">Read related work →</a>
+		</div>
+	</div>
 </section>
 
 <style>
-	.outcome-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 0;
+	.outcomes-grid {
+		display: grid;
+		gap: 1rem;
 	}
 
-	.outcome-item {
-		padding: 0.75rem 0;
+	.timeline-list {
+		display: grid;
+		gap: 0.5rem;
+	}
+
+	.timeline-tab {
+		display: flex;
+		align-items: baseline;
+		gap: 0.55rem;
+		width: 100%;
+		text-align: left;
+		padding: 0.5rem 0;
+		border: none;
+		background: transparent;
+		color: var(--color-muted);
+		cursor: pointer;
 		border-bottom: 1px solid var(--color-border);
 	}
 
-	.outcome-item:first-child {
+	.timeline-tab:first-child {
 		border-top: 1px solid var(--color-border);
 	}
 
-	.outcome-headline {
-		font-size: 0.92rem;
-		font-weight: 500;
+	.timeline-dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+		flex-shrink: 0;
+	}
+
+	.timeline-tab.is-active {
+		color: var(--color-text);
+	}
+
+	.timeline-tab.is-active .timeline-dot {
+		background: var(--color-accent);
+	}
+
+	.timeline-panel {
+		border: 1px solid var(--color-border);
+		border-radius: 4px;
+		padding: 0.9rem;
+		background: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
+		transition: transform 180ms ease;
+	}
+
+	.timeline-panel:not(.reduced-motion) {
+		transform: translateY(-1px);
+	}
+
+	.panel-title {
+		font-size: 1rem;
+		margin: 0 0 0.45rem 0;
+	}
+
+	.panel-detail {
+		font-size: 0.88rem;
+		line-height: 1.6;
+		color: var(--color-muted);
+		margin: 0 0 0.7rem 0;
+	}
+
+	.panel-link {
+		font-size: 0.82rem;
 		color: var(--color-text);
 		text-decoration: none;
 	}
 
-	.outcome-detail {
-		font-size: 0.85rem;
-		line-height: 1.6;
-		color: var(--color-muted);
-		margin-top: 0.35rem;
+	@media (min-width: 860px) {
+		.outcomes-grid {
+			grid-template-columns: 1fr 1fr;
+			align-items: start;
+		}
 	}
 </style>

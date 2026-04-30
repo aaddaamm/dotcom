@@ -15,8 +15,11 @@
 	<p class="hero-subtitle font-mono" role="doc-subtitle">SENIOR SOFTWARE ENGINEER</p>
 	<p class="body-text">
 		Companies hire me when they need a senior engineer — I join the team, learn the codebase, and
-		start delivering. Full-stack, backend-leaning, ten-plus years across fintech, healthcare, and
-		enterprise.
+		start delivering. Available for full-time leadership tracks and contract execution support.
+	</p>
+	<p class="audience-line">
+		<span>Hiring manager? I can slot in as a senior IC/tech lead.</span>
+		<span>Need contract help? I can embed fast and ship with your team.</span>
 	</p>
 	<div class="hero-stats mt-4 mb-2">
 		<div class="stats-numbers">
@@ -39,16 +42,23 @@
 		<a
 			href="/contact"
 			class="btn-primary text-center"
-			onclick={() => trackCTA('Get In Touch', 'home-hero-primary')}
+			onclick={() => trackCTA('Start a conversation', 'home-hero-primary')}
 		>
-			Get In Touch
+			Start a conversation
 		</a>
 		<a
 			href="/hire"
 			class="btn-secondary text-center"
-			onclick={() => trackCTA('See How I Work', 'home-hero-secondary')}
+			onclick={() => trackCTA('See hiring fit', 'home-hero-secondary')}
 		>
-			See How I Work
+			See hiring fit
+		</a>
+		<a
+			href="/adam_robinson.pdf"
+			class="btn-secondary text-center"
+			onclick={() => trackCTA('Download résumé', 'home-hero-secondary')}
+		>
+			Download résumé
 		</a>
 	</div>
 </section>
@@ -129,6 +139,14 @@
 	}
 
 	.industry-tag {
+		color: var(--color-muted);
+	}
+
+	.audience-line {
+		display: grid;
+		gap: 0.5rem;
+		margin-top: 0.75rem;
+		font-size: 0.9rem;
 		color: var(--color-muted);
 	}
 </style>

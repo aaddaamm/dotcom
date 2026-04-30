@@ -1,21 +1,35 @@
-import { json } from '@sveltejs/kit';
-import type { RequestHandler } from './$types';
-import { validateEmail, validateContactForm, type ContactFormData } from '$lib/validation';
-import { isRateLimited } from '$lib/server/rateLimit';
-import { sendContactNotification, logFailedSubmission } from '$lib/server/contactEmail';
+import { json } from "@sveltejs/kit";
+import type { RequestHandler } from "./$types";
+import {
+	validateEmail,
+	validateContactForm,
+	type ContactFormData,
+} from "$lib/validation";
+import { isRateLimited } from "$lib/server/rateLimit";
+import {
+	sendContactNotification,
+	logFailedSubmission,
+	formatInquirySubject,
+} from "$lib/server/contactEmail";
 
 export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 	const clientIP = getClientAddress();
 
 	try {
-		if (!request.headers.get('content-type')?.includes('application/json')) {
-			return json({ error: 'Content-Type must be application/json' }, { status: 400 });
+		if (!request.headers.get("content-type")?.includes("application/json")) {
+			return json(
+				{ error: "Content-Type must be application/json" },
+				{ status: 400 },
+			);
 		}
 
 		if (await isRateLimited(clientIP)) {
 			return json(
-				{ error: 'Too many submissions. Please wait 15 minutes before trying again.' },
-				{ status: 429 }
+				{
+					error:
+						"Too many submissions. Please wait 15 minutes before trying again.",
+				},
+				{ status: 429 },
 			);
 		}
 
@@ -23,85 +37,95 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 		try {
 			data = await request.json();
 		} catch {
-			return json({ error: 'Invalid JSON body' }, { status: 400 });
+			return json({ error: "Invalid JSON body" }, { status: 400 });
 		}
 
 		// Honeypot — bots fill fields humans don't see; fail silently
 		if (data.website) {
 			return json({
 				success: true,
-				message: "Thank you for your message! I'll respond within 24 hours."
+				message: "Thank you for your message! I'll respond within 24 hours.",
 			});
 		}
 
 		if (!data.name || !data.email || !data.project || !data.message) {
-			return json({ error: 'Missing required fields' }, { status: 400 });
+			return json({ error: "Missing required fields" }, { status: 400 });
 		}
 
 		if (!validateEmail(data.email)) {
-			return json({ error: 'Invalid email format' }, { status: 400 });
+			return json({ error: "Invalid email format" }, { status: 400 });
 		}
 
 		const sanitized: ContactFormData = {
 			name: data.name.trim().slice(0, 100),
 			email: data.email.trim().slice(0, 100),
 			project: data.project.trim().slice(0, 100),
-			timeline: data.timeline?.trim().slice(0, 60) || '',
-			budget: data.budget?.trim().slice(0, 60) || '',
+			timeline: data.timeline?.trim().slice(0, 60) || "",
+			budget: data.budget?.trim().slice(0, 60) || "",
 			message: data.message.trim().slice(0, 2000),
-			phone: data.phone?.trim().slice(0, 20) || ''
+			phone: data.phone?.trim().slice(0, 20) || "",
 		};
 
 		const validation = validateContactForm(sanitized);
 		if (!validation.isValid) {
-			const firstError = Object.values(validation.errors)[0] || 'Invalid form data';
+			const firstError =
+				Object.values(validation.errors)[0] || "Invalid form data";
 			return json({ error: firstError }, { status: 400 });
 		}
 
-		const subject = `New Project Inquiry from ${sanitized.name}`;
+		const subject = formatInquirySubject(
+			sanitized.name,
+			sanitized.project || "",
+		);
 
 		try {
 			await sendContactNotification(sanitized, subject);
 			return json({
 				success: true,
-				message: "Thank you for your message! I'll respond within 24 hours."
+				message: "Thank you for your message! I'll respond within 24 hours.",
 			});
 		} catch (emailError) {
-			console.error('📧 Email delivery failed — logging submission to Redis:', emailError);
+			console.error(
+				"📧 Email delivery failed — logging submission to Redis:",
+				emailError,
+			);
 			const plainBody = [
-				'New contact form submission from adamrobinson.tech:',
+				"New contact form submission from adamrobinson.tech:",
 				`Name: ${sanitized.name}`,
 				`Email: ${sanitized.email}`,
-				`Phone: ${sanitized.phone || 'Not provided'}`,
+				`Phone: ${sanitized.phone || "Not provided"}`,
 				`Project Type: ${sanitized.project}`,
-				`Timeline: ${sanitized.timeline || 'Not provided'}`,
-				`Budget: ${sanitized.budget || 'Not provided'}`,
-				'',
-				'Message:',
+				`Timeline: ${sanitized.timeline || "Not provided"}`,
+				`Budget: ${sanitized.budget || "Not provided"}`,
+				"",
+				"Message:",
 				sanitized.message,
-				'---',
+				"---",
 				`Submitted at: ${new Date().toISOString()}`,
 				`IP: ${clientIP}`,
-				`User-Agent: ${request.headers.get('user-agent') || 'Unknown'}`
-			].join('\n');
+				`User-Agent: ${request.headers.get("user-agent") || "Unknown"}`,
+			].join("\n");
 			const logged = await logFailedSubmission(sanitized, plainBody, clientIP);
 			if (!logged) {
 				return json(
 					{
 						error:
-							'Email delivery failed and the submission could not be saved. Please email me directly.'
+							"Email delivery failed and the submission could not be saved. Please email me directly.",
 					},
-					{ status: 503 }
+					{ status: 503 },
 				);
 			}
 			return json({
 				success: true,
 				message:
-					"Message received — there was a hiccup on our end but your submission was saved. I'll follow up shortly."
+					"Message received — there was a hiccup on our end but your submission was saved. I'll follow up shortly.",
 			});
 		}
 	} catch (error) {
-		console.error('Contact form error:', error);
-		return json({ error: 'Failed to process form submission' }, { status: 500 });
+		console.error("Contact form error:", error);
+		return json(
+			{ error: "Failed to process form submission" },
+			{ status: 500 },
+		);
 	}
 };
