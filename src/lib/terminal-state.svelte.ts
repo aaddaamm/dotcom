@@ -2,6 +2,7 @@ import { goto } from '$app/navigation';
 import { runCommand, normalize, getCompletions, type Mode } from '$lib/terminal-commands';
 import { trackTerminalOpen, trackTerminalCommand, trackTerminalModeChange } from '$lib/analytics';
 import { getSeveranceMode, setSeveranceMode } from '$lib/stores/severance';
+import { MacrodataSession } from '$lib/terminal-macrodata';
 
 export type HistoryEntry =
 	| { id: number; type: 'input'; text: string }
@@ -17,8 +18,7 @@ export class TerminalState {
 	#nextId = 0;
 	#fullscreen: () => boolean;
 	#navigate: (path: string) => Promise<void>;
-	#mdrActive = false;
-	#mdrScore = { woe: 0, frolic: 0, dread: 0, malice: 0 };
+	#macrodata = new MacrodataSession();
 	#memory: Record<'outie' | 'innie', { history: HistoryEntry[]; cmdHistory: string[] }> = {
 		outie: { history: [], cmdHistory: [] },
 		innie: { history: [], cmdHistory: [] }
@@ -65,7 +65,7 @@ export class TerminalState {
 
 		const lower = cmd.toLowerCase();
 
-		if (this.mode === 'innie' && this.#handleMacrodataFlow(lower)) {
+		if (this.mode === 'innie' && this.#macrodata.handle(lower, this.#pushOutput.bind(this))) {
 			trackTerminalCommand('macrodata', this.mode);
 			return;
 		}
@@ -185,57 +185,5 @@ export class TerminalState {
 		if (nextKey === 'outie' && this.history.length === 0) {
 			this.#pushOutput(['outie memory restored. no retained innie logs visible.']);
 		}
-	}
-
-	#handleMacrodataFlow(lower: string): boolean {
-		if (!this.#mdrActive && lower !== 'macrodata') return false;
-		if (!this.#mdrActive && lower === 'macrodata') {
-			this.#mdrActive = true;
-			this.#mdrScore = { woe: 0, frolic: 0, dread: 0, malice: 0 };
-			this.#pushOutput([
-				'MDR SESSION STARTED',
-				'sort with: refine <woe|frolic|dread|malice> <1-40>',
-				'complete 100 total to finish. type abort to exit.'
-			]);
-			return true;
-		}
-
-		if (lower === 'abort') {
-			this.#mdrActive = false;
-			this.#pushOutput(['refinement session closed.']);
-			return true;
-		}
-
-		const match = lower.match(/^refine\s+(woe|frolic|dread|malice)\s+(\d{1,2})$/);
-		if (!match) {
-			this.#pushOutput([
-				'invalid refinement input.',
-				'usage: refine <woe|frolic|dread|malice> <1-40>'
-			]);
-			return true;
-		}
-
-		type MdrBucket = 'woe' | 'frolic' | 'dread' | 'malice';
-		const bucket = match[1] as MdrBucket;
-		const amount = Number(match[2]);
-		if (amount < 1 || amount > 40) {
-			this.#pushOutput(['refinement amount out of range. use 1-40.']);
-			return true;
-		}
-
-		this.#mdrScore[bucket] += amount;
-		const total = Object.values(this.#mdrScore).reduce((sum, value) => sum + value, 0);
-
-		if (total >= 100) {
-			this.#mdrActive = false;
-			this.#pushOutput([
-				`refinement complete at ${total} points.`,
-				'the work remains mysterious and important.'
-			]);
-			return true;
-		}
-
-		this.#pushOutput([`${bucket} +${amount} accepted.`, `progress: ${total}/100`]);
-		return true;
 	}
 }
