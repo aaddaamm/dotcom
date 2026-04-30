@@ -1,23 +1,23 @@
-export type SeveranceMode = "outie" | "innie";
+export type SeveranceMode = 'outie' | 'innie';
 
-const STORAGE_KEY = "severance-mode";
-const UNLOCK_KEY = "severed-unlocked";
+const STORAGE_KEY = 'severance-mode';
+const UNLOCK_KEY = 'severed-unlocked';
 
-let mode: SeveranceMode = "outie";
+let mode: SeveranceMode = 'outie';
 let unlocked = false;
 
 function applyModeToDom(value: SeveranceMode) {
-	if (typeof document === "undefined") return;
-	document.documentElement.setAttribute("data-severance", value);
+	if (typeof document === 'undefined') return;
+	document.documentElement.setAttribute('data-severance', value);
 }
 
 export function initSeveranceMode() {
-	if (typeof window === "undefined") return;
+	if (typeof window === 'undefined') return;
 	const saved = window.localStorage.getItem(STORAGE_KEY);
-	if (saved === "innie" || saved === "outie") {
+	if (saved === 'innie' || saved === 'outie') {
 		mode = saved;
 	}
-	unlocked = window.localStorage.getItem(UNLOCK_KEY) === "true";
+	unlocked = window.localStorage.getItem(UNLOCK_KEY) === 'true';
 	applyModeToDom(mode);
 }
 
@@ -27,7 +27,7 @@ export function getSeveranceMode() {
 
 export function setSeveranceMode(value: SeveranceMode) {
 	mode = value;
-	if (typeof window !== "undefined") {
+	if (typeof window !== 'undefined') {
 		window.localStorage.setItem(STORAGE_KEY, value);
 	}
 	applyModeToDom(value);
@@ -35,8 +35,8 @@ export function setSeveranceMode(value: SeveranceMode) {
 
 export function unlockSeveredRoute() {
 	unlocked = true;
-	if (typeof window !== "undefined") {
-		window.localStorage.setItem(UNLOCK_KEY, "true");
+	if (typeof window !== 'undefined') {
+		window.localStorage.setItem(UNLOCK_KEY, 'true');
 	}
 }
 
