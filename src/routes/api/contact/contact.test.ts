@@ -17,11 +17,18 @@ const mockIsRateLimited = vi.mocked(isRateLimited);
 const mockSendContactNotification = vi.mocked(sendContactNotification);
 const mockLogFailedSubmission = vi.mocked(logFailedSubmission);
 
-function postContact(body: string, contentType = 'application/json') {
+function postContact(
+	body: string,
+	contentType = 'application/json',
+	extraHeaders?: Record<string, string>
+) {
 	return POST({
 		request: new Request('https://adamrobinson.tech/api/contact', {
 			method: 'POST',
-			headers: { 'content-type': contentType },
+			headers: {
+				'content-type': contentType,
+				...extraHeaders
+			},
 			body
 		}),
 		getClientAddress: () => '203.0.113.10'
@@ -51,6 +58,17 @@ describe('/api/contact POST', () => {
 
 		expect(response.status).toBe(400);
 		expect(body).toEqual({ error: 'Invalid JSON body' });
+		expect(mockSendContactNotification).not.toHaveBeenCalled();
+	});
+
+	it('returns 403 for invalid cross-site origin', async () => {
+		const response = await postContact(JSON.stringify(validPayload()), 'application/json', {
+			origin: 'https://evil.example'
+		});
+		const body = await response.json();
+
+		expect(response.status).toBe(403);
+		expect(body).toEqual({ error: 'Invalid request origin' });
 		expect(mockSendContactNotification).not.toHaveBeenCalled();
 	});
 

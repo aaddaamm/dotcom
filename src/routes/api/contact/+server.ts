@@ -8,6 +8,7 @@ import {
 } from '$lib/server/contactEmail';
 import {
 	badRequest,
+	forbidden,
 	ok,
 	serverError,
 	serviceUnavailable,
@@ -20,10 +21,19 @@ import {
 	isValidContactEmail,
 	sanitizeContactData
 } from '$lib/server/contactSubmission';
+import { SITE_URL } from '$lib/constants';
+import { dev } from '$app/environment';
 
 const SUCCESS_MESSAGE = "Thank you for your message! I'll respond within 24 hours.";
 const FALLBACK_SUCCESS_MESSAGE =
 	"Message received — there was a hiccup on our end but your submission was saved. I'll follow up shortly.";
+
+function isAllowedOrigin(origin: string | null): boolean {
+	if (!origin) return true;
+	if (origin === SITE_URL) return true;
+	if (!dev) return false;
+	return origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:');
+}
 
 export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 	const clientIP = getClientAddress();
@@ -31,6 +41,10 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 	try {
 		if (!request.headers.get('content-type')?.includes('application/json')) {
 			return badRequest('Content-Type must be application/json');
+		}
+
+		if (!isAllowedOrigin(request.headers.get('origin'))) {
+			return forbidden('Invalid request origin');
 		}
 
 		if (await isRateLimited(clientIP)) {

@@ -37,8 +37,12 @@
 		"vitest": "^4.1.5"
 	},
 	"type": "module",
+	"overrides": {
+		"cookie": "^1.0.2"
+	},
 	"dependencies": {
 		"@fontsource/jetbrains-mono": "^5.2.8",
+		"@react-email/render": "^2.0.8",
 		"@sveltejs/adapter-vercel": "^6.3.3",
 		"@tailwindcss/vite": "^4.2.2",
 		"@upstash/redis": "^1.37.0",
