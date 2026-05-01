@@ -5,6 +5,8 @@ import { getRedis } from '$lib/server/redis';
 
 const RSS_BASE_URL = 'https://www.goodreads.com/review/list_rss/92024399';
 const CACHE_TTL_SECONDS = 60 * 60; // 1 hour
+const STALE_CACHE_TTL_SECONDS = 24 * 60 * 60; // 24 hours
+const CACHE_FETCH_TIMEOUT_MS = 5000;
 const PAGE_SIZE = 100;
 
 // L1: per-instance in-memory cache. L2: Upstash, shared across all instances.
@@ -13,8 +15,42 @@ const CACHE_TTL_MS = CACHE_TTL_SECONDS * 1000;
 
 const parser = new XMLParser({ isArray: (name) => name === 'item' });
 
+function getStaleMemoryData(shelf: GOODREADS_SHELVES): GoodreadsBook[] | null {
+	const cached = memoryCache.get(shelf);
+	if (cached?.data?.length) return cached.data;
+	return null;
+}
+
+async function getStaleSharedData(shelf: GOODREADS_SHELVES): Promise<GoodreadsBook[] | null> {
+	const redis = getRedis();
+	if (!redis) return null;
+
+	try {
+		const staleData = await redis.get<GoodreadsBook[]>(`goodreads:stale:${shelf}`);
+		if (staleData?.length) {
+			memoryCache.set(shelf, { data: staleData, timestamp: Date.now() });
+			return staleData;
+		}
+	} catch {
+		// noop
+	}
+
+	return null;
+}
+
+async function getStaleData(shelf: GOODREADS_SHELVES): Promise<GoodreadsBook[]> {
+	const memoryData = getStaleMemoryData(shelf);
+	if (memoryData) return memoryData;
+
+	const sharedData = await getStaleSharedData(shelf);
+	return sharedData ?? [];
+}
+
 export namespace GoodreadsService {
-	export function parseTitleAndSeries(rawTitle: string): { title: string; series?: string } {
+	export function parseTitleAndSeries(rawTitle: string): {
+		title: string;
+		series?: string;
+	} {
 		const match = rawTitle.match(/^(.+?)\s*\((.+)\)\s*$/);
 		if (match) {
 			return { title: match[1].trim(), series: match[2].trim() };
@@ -46,7 +82,9 @@ export namespace GoodreadsService {
 		page: number,
 		fetch: typeof globalThis.fetch
 	): Promise<{ books: GoodreadsBook[]; total: number }> {
-		const response = await fetch(`${RSS_BASE_URL}?shelf=${shelf}&page=${page}`);
+		const response = await fetch(`${RSS_BASE_URL}?shelf=${shelf}&page=${page}`, {
+			signal: AbortSignal.timeout(CACHE_FETCH_TIMEOUT_MS)
+		});
 		if (!response.ok) {
 			throw new Error(`Goodreads RSS fetch failed with status ${response.status}`);
 		}
@@ -69,6 +107,7 @@ export namespace GoodreadsService {
 		shelf: GOODREADS_SHELVES,
 		fetch: typeof globalThis.fetch
 	): Promise<GoodreadsBook[]> {
+		const redis = getRedis();
 		try {
 			// L1: in-memory cache
 			const cached = memoryCache.get(shelf);
@@ -77,7 +116,6 @@ export namespace GoodreadsService {
 			}
 
 			// L2: Upstash Redis (shared across instances)
-			const redis = getRedis();
 			if (redis) {
 				const redisData = await redis.get<GoodreadsBook[]>(`goodreads:${shelf}`);
 				if (redisData) {
@@ -110,13 +148,18 @@ export namespace GoodreadsService {
 			// Write to both caches
 			memoryCache.set(shelf, { data: allBooks, timestamp: Date.now() });
 			if (redis) {
-				await redis.set(`goodreads:${shelf}`, allBooks, { ex: CACHE_TTL_SECONDS });
+				await Promise.all([
+					redis.set(`goodreads:${shelf}`, allBooks, { ex: CACHE_TTL_SECONDS }),
+					redis.set(`goodreads:stale:${shelf}`, allBooks, {
+						ex: STALE_CACHE_TTL_SECONDS
+					})
+				]);
 			}
 
 			return allBooks;
 		} catch (err) {
 			console.error(`GoodreadsService: failed to fetch shelf "${shelf}":`, err);
-			return [];
+			return getStaleData(shelf);
 		}
 	}
 

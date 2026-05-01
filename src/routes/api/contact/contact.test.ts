@@ -58,6 +58,22 @@ describe('/api/contact POST', () => {
 
 		expect(response.status).toBe(400);
 		expect(body).toEqual({ error: 'Invalid JSON body' });
+		expect(mockIsRateLimited).not.toHaveBeenCalled();
+		expect(mockSendContactNotification).not.toHaveBeenCalled();
+	});
+
+	it('does not consume rate-limit quota for honeypot submissions', async () => {
+		const response = await postContact(
+			JSON.stringify({
+				...validPayload(),
+				website: 'https://spam.example'
+			})
+		);
+		const body = await response.json();
+
+		expect(response.status).toBe(200);
+		expect(body.success).toBe(true);
+		expect(mockIsRateLimited).not.toHaveBeenCalled();
 		expect(mockSendContactNotification).not.toHaveBeenCalled();
 	});
 

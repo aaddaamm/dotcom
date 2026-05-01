@@ -53,10 +53,6 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 			return forbidden('Invalid request origin');
 		}
 
-		if (await isRateLimited(clientIP)) {
-			return tooManyRequests('Too many submissions. Please wait 15 minutes before trying again.');
-		}
-
 		let data: ContactFormData;
 		try {
 			data = await request.json();
@@ -64,9 +60,13 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 			return badRequest('Invalid JSON body');
 		}
 
-		// Honeypot — bots fill fields humans don't see; fail silently
+		// Honeypot — bots fill fields humans don't see; fail silently and do not consume rate-limit quota
 		if (data.website) {
 			return ok({ success: true, message: SUCCESS_MESSAGE });
+		}
+
+		if (await isRateLimited(clientIP)) {
+			return tooManyRequests('Too many submissions. Please wait 15 minutes before trying again.');
 		}
 
 		if (!hasRequiredContactFields(data)) {
