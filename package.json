@@ -18,8 +18,8 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
-		"@sveltejs/kit": "^2.5.8",
-		"@sveltejs/vite-plugin-svelte": "^5.1.1",
+		"@sveltejs/kit": "^2.59.0",
+		"@sveltejs/vite-plugin-svelte": "^7.0.0",
 		"@types/eslint": "^9.6.1",
 		"@types/node": "^25.5.0",
 		"@types/sanitize-html": "^2.16.1",
@@ -30,15 +30,17 @@
 		"prettier": "^3.3.3",
 		"prettier-plugin-svelte": "^3.2.7",
 		"svelte": "^5.53.13",
-		"svelte-check": "^4.0.5",
-		"typescript": "^5.7.2",
+		"svelte-check": "^4.3.3",
+		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.57.1",
-		"vite": "^6.4.1",
+		"vite": "^8.0.10",
 		"vitest": "^4.1.5"
 	},
 	"type": "module",
 	"overrides": {
-		"cookie": "^1.0.2"
+		"cookie": "^1.0.2",
+		"svix": "^1.92.2",
+		"uuid": "^14.0.0"
 	},
 	"dependencies": {
 		"@fontsource/jetbrains-mono": "^5.2.8",
@@ -50,8 +52,8 @@
 		"@vercel/speed-insights": "^2.0.0",
 		"fast-xml-parser": "^5.5.11",
 		"gray-matter": "^4.0.3",
-		"marked": "^17.0.5",
-		"resend": "^6.9.4",
+		"marked": "^18.0.3",
+		"resend": "^6.12.2",
 		"sanitize-html": "^2.17.3",
 		"sitemap": "^9.0.1",
 		"tailwindcss": "^4.2.2"
