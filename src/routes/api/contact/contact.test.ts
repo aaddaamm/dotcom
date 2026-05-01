@@ -72,6 +72,17 @@ describe('/api/contact POST', () => {
 		expect(mockSendContactNotification).not.toHaveBeenCalled();
 	});
 
+	it('allows trusted www origin', async () => {
+		const response = await postContact(JSON.stringify(validPayload()), 'application/json', {
+			origin: 'https://www.adamrobinson.tech'
+		});
+		const body = await response.json();
+
+		expect(response.status).toBe(200);
+		expect(body.success).toBe(true);
+		expect(mockSendContactNotification).toHaveBeenCalledOnce();
+	});
+
 	it('returns success when email delivery succeeds', async () => {
 		const response = await postContact(JSON.stringify(validPayload()));
 		const body = await response.json();

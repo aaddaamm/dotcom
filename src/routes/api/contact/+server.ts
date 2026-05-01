@@ -30,7 +30,13 @@ const FALLBACK_SUCCESS_MESSAGE =
 
 function isAllowedOrigin(origin: string | null): boolean {
 	if (!origin) return true;
-	if (origin === SITE_URL) return true;
+
+	const allowedOrigins = new Set([SITE_URL]);
+	if (SITE_URL.startsWith('https://') && !SITE_URL.includes('://www.')) {
+		allowedOrigins.add(SITE_URL.replace('https://', 'https://www.'));
+	}
+
+	if (allowedOrigins.has(origin)) return true;
 	if (!dev) return false;
 	return origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:');
 }
