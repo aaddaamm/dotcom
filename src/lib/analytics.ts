@@ -24,6 +24,10 @@ export function trackScrollDepth(depth: string, path: string) {
 	track('Scroll Depth', { depth, path });
 }
 
+export function trackFormView(source: 'contact-page') {
+	track('Contact Form Viewed', { source });
+}
+
 export function trackFormStart(source: 'contact-page') {
 	track('Contact Form Started', { source });
 }
@@ -32,18 +36,27 @@ export function trackFormValidationError(fieldCount: number) {
 	track('Contact Form Validation Error', { field_count: fieldCount });
 }
 
+export type ContactIntent = 'full-time' | 'contract' | 'consulting' | 'general';
+
 export function trackFormSubmit(
-	projectType: string,
+	intent: ContactIntent,
 	hasPhone: 'yes' | 'no',
 	hasTimeline: 'yes' | 'no',
 	hasBudget: 'yes' | 'no'
 ) {
 	track('Contact Form Submitted', {
-		project_type: projectType,
+		intent,
 		has_phone: hasPhone,
 		has_timeline: hasTimeline,
 		has_budget: hasBudget
 	});
+}
+
+export function trackFormSubmitOutcome(
+	status: 'success' | 'fallback' | 'error',
+	intent: ContactIntent
+) {
+	track('Contact Form Submit Outcome', { status, intent });
 }
 
 export function trackTerminalOpen(source: 'keyboard' | 'button' | 'page') {

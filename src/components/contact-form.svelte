@@ -1,5 +1,13 @@
 <script lang="ts">
-	import { trackFormStart, trackFormSubmit, trackFormValidationError } from '$lib/analytics';
+	import {
+		trackFormView,
+		trackFormStart,
+		trackFormSubmit,
+		trackFormSubmitOutcome,
+		trackFormValidationError,
+		type ContactIntent
+	} from '$lib/analytics';
+	import { onMount } from 'svelte';
 	import { EMAIL } from '$lib/constants';
 	import { type ContactFormData, validateContactForm } from '$lib/validation';
 
@@ -17,6 +25,23 @@
 	let successMessage = $state('');
 	let fieldErrors = $state<Record<string, string>>({});
 	let trackedStart = $state(false);
+
+	onMount(() => {
+		trackFormView('contact-page');
+	});
+
+	function inferIntent(projectType: string): ContactIntent {
+		const value = projectType.trim().toLowerCase();
+		if (value.includes('full-time')) return 'full-time';
+		if (value.includes('contract') || value.includes('freelance')) return 'contract';
+		if (value.includes('consulting')) return 'consulting';
+		return 'general';
+	}
+
+	function isFallbackSuccessMessage(message: string): boolean {
+		const value = message.toLowerCase();
+		return value.includes('submission was saved') || value.includes('hiccup on our end');
+	}
 
 	function trackStart() {
 		if (trackedStart) return;
@@ -70,6 +95,8 @@
 			return;
 		}
 
+		const intent = inferIntent(project);
+
 		try {
 			const response = await fetch('/api/contact', {
 				method: 'POST',
@@ -83,10 +110,14 @@
 
 			if (response.ok && result.success) {
 				trackFormSubmit(
-					project.trim(),
+					intent,
 					phone.trim() ? 'yes' : 'no',
 					timeline.trim() ? 'yes' : 'no',
 					budget.trim() ? 'yes' : 'no'
+				);
+				trackFormSubmitOutcome(
+					isFallbackSuccessMessage(result.message || '') ? 'fallback' : 'success',
+					intent
 				);
 
 				successMessage =
@@ -107,10 +138,12 @@
 					trackedStart = false;
 				}, 8000);
 			} else {
+				trackFormSubmitOutcome('error', intent);
 				errorMessage = getFriendlyErrorMessage(result.error || '', response.status);
 			}
 		} catch (error) {
 			console.error('Form submission error:', error);
+			trackFormSubmitOutcome('error', intent);
 			errorMessage =
 				'Network issue while submitting. Please check your connection and try again, or email me directly.';
 		}
