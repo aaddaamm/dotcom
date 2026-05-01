@@ -34,7 +34,10 @@ export async function sendContactNotification(
 	data: ContactFormData,
 	subject: string
 ): Promise<void> {
-	if (!env.RESEND_API_KEY) {
+	const resendKey = env.RESEND_API_KEY;
+	const hasResendKey = Boolean(resendKey && resendKey.trim().length > 0);
+
+	if (!hasResendKey) {
 		if (dev) {
 			console.log('📧 RESEND_API_KEY not configured — email notification skipped');
 			console.log('📧 Email would send:', { subject, to: EMAIL });
@@ -43,7 +46,7 @@ export async function sendContactNotification(
 		throw new Error('RESEND_API_KEY is not configured');
 	}
 
-	const resend = new Resend(env.RESEND_API_KEY);
+	const resend = new Resend(resendKey);
 	await resend.emails.send({
 		from: 'contact@adamrobinson.tech',
 		to: EMAIL,
