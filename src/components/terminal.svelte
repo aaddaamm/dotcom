@@ -5,6 +5,7 @@
 	import { TerminalState } from '$lib/terminal-state.svelte';
 	import { trackTerminalOpen } from '$lib/analytics';
 	import { EMAIL } from '$lib/constants';
+	import { isIncantationLine, shouldCaptureTerminalShortcut } from '$lib/terminal-view';
 
 	const { fullscreen = false }: { fullscreen?: boolean } = $props();
 
@@ -75,20 +76,7 @@
 	}
 
 	function handleWindowKeydown(e: KeyboardEvent) {
-		if (state.isOpen || fullscreen) return;
-		if (page.url.pathname === '/terminal') return;
-		if (e.metaKey || e.ctrlKey || e.altKey) return;
-		if (e.key.length !== 1) return;
-
-		const target = e.target as HTMLElement;
-		if (
-			target instanceof HTMLInputElement ||
-			target instanceof HTMLTextAreaElement ||
-			target instanceof HTMLSelectElement ||
-			target.isContentEditable
-		)
-			return;
-
+		if (!shouldCaptureTerminalShortcut(e, state.isOpen, fullscreen, page.url.pathname)) return;
 		e.preventDefault();
 		openAndFocus('keyboard', e.key);
 	}
@@ -111,10 +99,6 @@
 
 	function getPrompt() {
 		return state.isInnieMode() ? 'lumon@macrodata:~$' : PROMPT;
-	}
-
-	function isIncantationLine(line: string) {
-		return line.includes('→ "') || line.includes('translation: "');
 	}
 </script>
 

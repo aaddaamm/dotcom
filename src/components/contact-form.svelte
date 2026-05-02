@@ -4,11 +4,18 @@
 		trackFormStart,
 		trackFormSubmit,
 		trackFormSubmitOutcome,
-		trackFormValidationError,
-		type ContactIntent
+		trackFormValidationError
 	} from '$lib/analytics';
 	import { onMount } from 'svelte';
 	import { EMAIL } from '$lib/constants';
+	import {
+		budgetOptions,
+		getFriendlyErrorMessage,
+		inferIntent,
+		isFallbackSuccessMessage,
+		projectTypeOptions,
+		timelineOptions
+	} from '$lib/contact-form';
 	import { type ContactFormData, validateContactForm } from '$lib/validation';
 
 	let name = $state('');
@@ -30,43 +37,10 @@
 		trackFormView('contact-page');
 	});
 
-	function inferIntent(projectType: string): ContactIntent {
-		const value = projectType.trim().toLowerCase();
-		if (value.includes('full-time')) return 'full-time';
-		if (value.includes('contract') || value.includes('freelance')) return 'contract';
-		if (value.includes('consulting')) return 'consulting';
-		return 'general';
-	}
-
-	function isFallbackSuccessMessage(message: string): boolean {
-		const value = message.toLowerCase();
-		return value.includes('submission was saved') || value.includes('hiccup on our end');
-	}
-
 	function trackStart() {
 		if (trackedStart) return;
 		trackedStart = true;
 		trackFormStart('contact-page');
-	}
-
-	function getFriendlyErrorMessage(message: string, status?: number): string {
-		if (status === 429 || message.toLowerCase().includes('too many submissions')) {
-			return 'You’ve hit the submission limit for now. Please wait 15 minutes, then try again.';
-		}
-
-		if (
-			status === 400 &&
-			(message.toLowerCase().includes('missing required') ||
-				message.toLowerCase().includes('invalid'))
-		) {
-			return 'Please review your details and try again.';
-		}
-
-		if (status && status >= 500) {
-			return 'Thanks — something broke on my side, but your message may still have been received. Please retry or email me directly.';
-		}
-
-		return message || 'Something went wrong. Please try again.';
 	}
 
 	async function handleSubmit(event: Event) {
@@ -241,10 +215,9 @@
 					aria-describedby={fieldErrors.project ? 'project-error' : undefined}
 				>
 					<option value="">What brings you here...</option>
-					<option value="Full-time opportunity">Full-time opportunity</option>
-					<option value="Contract / Freelance project">Contract / Freelance project</option>
-					<option value="Technical consulting">Technical consulting</option>
-					<option value="Something else">Something else</option>
+					{#each projectTypeOptions as option (option)}
+						<option value={option}>{option}</option>
+					{/each}
 				</select>
 				{#if fieldErrors.project}<p id="project-error" class="field-error-msg">
 						{fieldErrors.project}
@@ -261,10 +234,9 @@
 					onfocus={trackStart}
 				>
 					<option value="">No preference yet</option>
-					<option value="ASAP">ASAP</option>
-					<option value="2-4 weeks">2-4 weeks</option>
-					<option value="1-2 months">1-2 months</option>
-					<option value="2+ months">2+ months</option>
+					{#each timelineOptions as option (option)}
+						<option value={option}>{option}</option>
+					{/each}
 				</select>
 			</div>
 
@@ -278,10 +250,9 @@
 					onfocus={trackStart}
 				>
 					<option value="">Prefer not to say</option>
-					<option value="Under $5k">Under $5k</option>
-					<option value="$5k-$15k">$5k-$15k</option>
-					<option value="$15k-$50k">$15k-$50k</option>
-					<option value="$50k+">$50k+</option>
+					{#each budgetOptions as option (option)}
+						<option value={option}>{option}</option>
+					{/each}
 				</select>
 			</div>
 

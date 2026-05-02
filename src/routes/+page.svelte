@@ -10,6 +10,7 @@
 	import { onMount } from 'svelte';
 	import { unlockSeveredRoute } from '$lib/stores/severance';
 	import { pageSeo } from '$lib/seo';
+	import { KONAMI_SEQUENCE, normalizeKey } from '$lib/home-easter-egg';
 
 	let mainContainer: HTMLElement;
 	let showRuneToast = false;
@@ -52,27 +53,15 @@
 
 	onMount(() => {
 		const cleanup = setupScrollAnimations(mainContainer);
-		const konami = [
-			'ArrowUp',
-			'ArrowUp',
-			'ArrowDown',
-			'ArrowDown',
-			'ArrowLeft',
-			'ArrowRight',
-			'ArrowLeft',
-			'ArrowRight',
-			'b',
-			'a'
-		];
 		let progress = 0;
 
 		const onKeydown = (event: KeyboardEvent) => {
-			const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
-			const expected = konami[progress];
-			const isKonamiKey = konami.includes(key);
+			const key = normalizeKey(event.key);
+			const expected = KONAMI_SEQUENCE[progress];
+			const isKonamiKey = KONAMI_SEQUENCE.includes(key);
 
 			if (key !== expected) {
-				progress = key === konami[0] ? 1 : 0;
+				progress = key === KONAMI_SEQUENCE[0] ? 1 : 0;
 				return;
 			}
 
@@ -82,7 +71,7 @@
 			}
 
 			progress += 1;
-			if (progress < konami.length) return;
+			if (progress < KONAMI_SEQUENCE.length) return;
 
 			progress = 0;
 			triggerRuneReveal();

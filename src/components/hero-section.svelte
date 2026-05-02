@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { trackCTA } from '$lib/analytics';
-	import { homepageMetrics } from '$lib/copy';
+	import { heroMessaging, homepageMetrics } from '$lib/copy';
 </script>
 
 <!-- Hero -->
@@ -20,6 +20,10 @@
 	<p class="audience-line">
 		<span>Hiring manager? I can slot in as a senior IC/tech lead.</span>
 		<span>Need contract help? I can embed fast and ship with your team.</span>
+	</p>
+	<p class="availability-line" aria-label="Current availability">
+		<span class="availability-dot" aria-hidden="true"></span>
+		{heroMessaging.availability}
 	</p>
 	<div class="hero-stats mt-4 mb-2">
 		<div class="stats-numbers">
@@ -148,5 +152,25 @@
 		margin-top: 0.75rem;
 		font-size: 0.9rem;
 		color: var(--color-muted);
+	}
+
+	.availability-line {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 0.75rem;
+		font-family: var(--font-mono);
+		font-size: 0.78rem;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		color: var(--color-text);
+	}
+
+	.availability-dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 999px;
+		background: var(--color-accent);
+		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
 	}
 </style>

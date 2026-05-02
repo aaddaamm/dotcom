@@ -5,6 +5,7 @@ import { getRedis } from '$lib/server/redis';
 import { EMAIL } from '$lib/constants';
 import type { ContactFormData } from '$lib/validation';
 import { contactNotificationHtml } from '$lib/server/emailTemplates';
+import { logger } from '$lib/server/logger';
 
 export type InquiryIntent = 'full-time' | 'contract' | 'consulting' | 'general';
 
@@ -39,8 +40,10 @@ export async function sendContactNotification(
 
 	if (!hasResendKey) {
 		if (dev) {
-			console.log('📧 RESEND_API_KEY not configured — email notification skipped');
-			console.log('📧 Email would send:', { subject, to: EMAIL });
+			logger.info('📧 RESEND_API_KEY not configured — email notification skipped', {
+				subject,
+				to: EMAIL
+			});
 			return;
 		}
 		throw new Error('RESEND_API_KEY is not configured');
@@ -54,7 +57,7 @@ export async function sendContactNotification(
 		html: contactNotificationHtml(data)
 	});
 
-	console.log('📧 Email sent successfully via Resend');
+	logger.info('📧 Email sent successfully via Resend');
 }
 
 export async function logFailedSubmission(
@@ -79,11 +82,13 @@ export async function logFailedSubmission(
 			}),
 			{ ex: 30 * 24 * 60 * 60 }
 		);
-		console.log(`📧 Failed submission logged to Redis under key: ${key}`);
+		logger.info('📧 Failed submission logged to Redis', { key });
 		return true;
 	} catch (redisError) {
-		console.error('📧 Redis logging also failed — submission may be lost:', redisError);
-		console.log('📧 Submission data:', { name: data.name, email: data.email });
+		logger.error('📧 Redis logging also failed — submission may be lost', redisError, {
+			hasBody: Boolean(body),
+			project: data.project
+		});
 		return false;
 	}
 }
