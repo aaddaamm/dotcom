@@ -47,8 +47,8 @@
 	<meta property="og:image:alt" content={title} />
 	<meta property="og:url" content={url} />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@aaddaamm" />
-	<meta name="twitter:creator" content="@aaddaamm" />
+	<meta name="twitter:site" content="@Adam623753" />
+	<meta name="twitter:creator" content="@Adam623753" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content={imageUrl} />

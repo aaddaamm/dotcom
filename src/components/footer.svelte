@@ -72,6 +72,22 @@
 			>
 				github
 			</a>
+			<a
+				href="https://x.com/Adam623753"
+				class="footer-link"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				x
+			</a>
+			<a
+				href="https://www.instagram.com/adamrobinson7251/"
+				class="footer-link"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				instagram
+			</a>
 		</div>
 		<div class="footer-meta flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
 			<p>
