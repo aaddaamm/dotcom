@@ -42,6 +42,25 @@
 	])}
 />
 
+<JsonLd
+	data={{
+		'@context': 'https://schema.org',
+		'@type': 'CollectionPage',
+		name: 'Adam Robinson Work',
+		description: pageSeo.work.description,
+		url: 'https://adamrobinson.tech/work',
+		mainEntity: {
+			'@type': 'ItemList',
+			itemListElement: selectedWork.map((project, index) => ({
+				'@type': 'ListItem',
+				position: index + 1,
+				url: `https://adamrobinson.tech/work/${project.slug}`,
+				name: project.title
+			}))
+		}
+	}}
+/>
+
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader
 		title="Work"

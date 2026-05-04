@@ -2,11 +2,32 @@
 	import SeoHead from '../../components/seo-head.svelte';
 	import { formatPostDate } from '$lib/utils';
 	import { pageSeo } from '$lib/seo';
+	import JsonLd from '../../components/json-ld.svelte';
+	import { SITE_URL } from '$lib/constants';
 
 	let { data } = $props();
 </script>
 
 <SeoHead {...pageSeo.blog} />
+
+<JsonLd
+	data={{
+		'@context': 'https://schema.org',
+		'@type': 'CollectionPage',
+		name: 'Adam Robinson Blog',
+		description: pageSeo.blog.description,
+		url: `${SITE_URL}/blog`,
+		mainEntity: {
+			'@type': 'ItemList',
+			itemListElement: data.posts.map((post, index) => ({
+				'@type': 'ListItem',
+				position: index + 1,
+				url: `${SITE_URL}/blog/${post.slug}`,
+				name: post.title
+			}))
+		}
+	}}
+/>
 
 <div class="max-w-3xl mx-auto px-6">
 	<section class="pt-20 sm:pt-28">
