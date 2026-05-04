@@ -54,7 +54,7 @@
 
 <footer class="footer py-10 px-6 mt-8">
 	<div class="max-w-3xl mx-auto">
-		<div class="flex flex-wrap gap-6 mb-6 text-sm">
+		<div class="footer-nav mb-4 text-sm">
 			<a href="/blog" class="footer-link">Blog</a>
 			<a href="/work" class="footer-link">Work</a>
 			<a href="/hire" class="footer-link">Hire</a>
@@ -64,29 +64,49 @@
 			<button class="footer-link copy-btn" onclick={() => copyToClipboard(EMAIL)}>
 				{emailCopied ? 'copied!' : EMAIL}
 			</button>
+		</div>
+
+		<div class="footer-social mb-6 text-sm" aria-label="Social links">
+			<span class="footer-label">Social</span>
 			<a
 				href="https://github.com/{GITHUB_USERNAME}"
-				class="footer-link"
+				class="footer-link social-link"
 				target="_blank"
 				rel="noopener noreferrer"
+				aria-label="GitHub"
 			>
-				github
+				<span class="social-full">github</span>
+				<span class="social-compact" aria-hidden="true">gh</span>
 			</a>
 			<a
 				href="https://x.com/Adam623753"
-				class="footer-link"
+				class="footer-link social-link"
 				target="_blank"
 				rel="noopener noreferrer"
+				aria-label="X"
 			>
-				x
+				<span class="social-full">x</span>
+				<span class="social-compact" aria-hidden="true">x</span>
 			</a>
 			<a
 				href="https://www.instagram.com/adamrobinson7251/"
-				class="footer-link"
+				class="footer-link social-link"
 				target="_blank"
 				rel="noopener noreferrer"
+				aria-label="Instagram"
 			>
-				instagram
+				<span class="social-full">instagram</span>
+				<span class="social-compact" aria-hidden="true">ig</span>
+			</a>
+			<a
+				href="https://www.facebook.com/profile.php?id=61573468237603"
+				class="footer-link social-link"
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label="Facebook"
+			>
+				<span class="social-full">facebook</span>
+				<span class="social-compact" aria-hidden="true">fb</span>
 			</a>
 		</div>
 		<div class="footer-meta flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
@@ -116,10 +136,53 @@
 		color: var(--color-muted);
 	}
 
+	.footer-nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.5rem;
+	}
+
+	.footer-social {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+	}
+
+	.footer-label {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
+		color: var(--color-muted);
+		margin-right: 0.35rem;
+	}
+
 	.footer-link {
 		color: var(--color-muted);
 		text-decoration: none;
 		transition: color 150ms ease;
+	}
+
+	.social-compact {
+		display: none;
+	}
+
+	@media (max-width: 640px) {
+		.social-full {
+			display: none;
+		}
+
+		.social-compact {
+			display: inline;
+			text-transform: uppercase;
+		}
+
+		.social-link {
+			padding: 0.2rem 0.35rem;
+			border: 1px solid var(--color-border);
+			border-radius: 0.25rem;
+		}
 	}
 
 	.footer-link:hover {
