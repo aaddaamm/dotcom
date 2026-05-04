@@ -246,6 +246,11 @@ p {
 
 .accent-dot {
 	color: var(--color-accent);
+	display: inline-block;
+	line-height: 1;
+	position: relative;
+	top: 0em;
+	margin-left: -0.22em;
 }
 
 /* Design System Utilities */
