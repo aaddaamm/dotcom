@@ -5,29 +5,11 @@
 	import { breadcrumbList, formatPostDate } from '$lib/utils';
 	import JsonLd from '../../../components/json-ld.svelte';
 	import SeoHead from '../../../components/seo-head.svelte';
+	import ShareLinks from '../../../components/share-links.svelte';
 
 	let { data } = $props();
 	let proseEl: HTMLElement;
-	let copied = $state(false);
-
 	let postUrl = $derived(`${SITE_URL}/blog/${data.post.slug}`);
-	let shareText = $derived(`${data.post.title} — Adam Robinson`);
-	let xShareUrl = $derived(
-		`https://x.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(postUrl)}`
-	);
-	let linkedInShareUrl = $derived(
-		`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`
-	);
-
-	async function copyPostLink() {
-		try {
-			await navigator.clipboard.writeText(postUrl);
-			copied = true;
-			setTimeout(() => (copied = false), 1500);
-		} catch {
-			// noop
-		}
-	}
 
 	onMount(() => {
 		const observer = createElementObserver({
@@ -109,18 +91,7 @@
 			{@html data.post.content}
 		</div>
 
-		<section class="share-section" aria-label="Share this post">
-			<p class="share-heading">Share this post</p>
-			<div class="share-links">
-				<a href={xShareUrl} target="_blank" rel="noopener noreferrer" class="share-link">X</a>
-				<a href={linkedInShareUrl} target="_blank" rel="noopener noreferrer" class="share-link">
-					LinkedIn
-				</a>
-				<button class="share-link share-button" onclick={copyPostLink}>
-					{copied ? 'Copied' : 'Copy link'}
-				</button>
-			</div>
-		</section>
+		<ShareLinks title={data.post.title} url={postUrl} />
 
 		<section class="related-section" aria-labelledby="related-posts-heading">
 			<h2 id="related-posts-heading" class="related-heading">Related posts</h2>
@@ -160,51 +131,6 @@
 	.tag {
 		color: var(--color-accent);
 		background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
-	}
-
-	.share-section {
-		margin-top: 2rem;
-		padding-top: 1.25rem;
-		border-top: 1px solid var(--color-border);
-	}
-
-	.share-heading {
-		font-size: 0.75rem;
-		font-family: var(--font-mono);
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		color: var(--color-muted);
-		margin-bottom: 0.9rem;
-	}
-
-	.share-links {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.65rem;
-	}
-
-	.share-link {
-		text-decoration: none;
-		font-size: 0.75rem;
-		font-family: var(--font-mono);
-		text-transform: uppercase;
-		letter-spacing: 1.5px;
-		color: var(--color-muted);
-		padding: 0.35rem 0.6rem;
-		border: 1px solid var(--color-border);
-		background: transparent;
-		transition:
-			color 150ms ease,
-			border-color 150ms ease;
-	}
-
-	.share-link:hover {
-		color: var(--color-accent);
-		border-color: var(--color-accent);
-	}
-
-	.share-button {
-		cursor: pointer;
 	}
 
 	.related-section {
