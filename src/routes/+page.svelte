@@ -5,6 +5,7 @@
 	import TrustStrip from '../components/trust-strip.svelte';
 	import RecentlyShipped from '../components/recently-shipped.svelte';
 	import OutcomeProof from '../components/outcome-proof.svelte';
+	import ProofRail from '../components/proof-rail.svelte';
 	import { selectedWork, techStack } from '$lib/copy';
 	import { setupScrollAnimations } from '$lib/animations';
 	import { onMount } from 'svelte';
@@ -92,6 +93,7 @@
 <div class="max-w-3xl mx-auto px-6" class:rune-glow={showRuneToast} bind:this={mainContainer}>
 	<HeroSection />
 	<TrustStrip />
+	<ProofRail />
 	<OutcomeProof />
 	<RecentlyShipped />
 

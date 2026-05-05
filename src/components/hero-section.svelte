@@ -14,12 +14,12 @@
 	</div>
 	<p class="hero-subtitle font-mono" role="doc-subtitle">SENIOR SOFTWARE ENGINEER</p>
 	<p class="body-text">
-		Companies hire me when they need a senior engineer — I join the team, learn the codebase, and
-		start delivering. Available for full-time leadership tracks and contract execution support.
+		I help product teams ship faster by embedding as a senior IC/tech lead who ramps quickly,
+		reduces delivery risk, and ships measurable production outcomes.
 	</p>
 	<p class="audience-line">
-		<span>Hiring manager? I can slot in as a senior IC/tech lead.</span>
-		<span>Need contract help? I can embed fast and ship with your team.</span>
+		<span>• Hiring manager: senior IC/tech lead ownership for full-time roles.</span>
+		<span>• Contract team: fast embed, clear execution, reliable shipping cadence.</span>
 	</p>
 	<p class="availability-line" aria-label="Current availability">
 		<span class="availability-dot" aria-hidden="true"></span>
@@ -46,14 +46,14 @@
 		<a
 			href="/contact"
 			class="btn-primary text-center"
-			onclick={() => trackCTA('Start a conversation', 'home-hero-primary')}
+			onclick={() => trackCTA('Start a conversation (hiring)', 'home-hero-primary')}
 		>
 			Start a conversation
 		</a>
 		<a
 			href="/hire"
 			class="btn-secondary text-center"
-			onclick={() => trackCTA('See hiring fit', 'home-hero-secondary')}
+			onclick={() => trackCTA('See hiring fit (contract)', 'home-hero-secondary')}
 		>
 			See hiring fit
 		</a>
