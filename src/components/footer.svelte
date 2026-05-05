@@ -1,7 +1,10 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
+	import { EMAIL } from '$lib/constants';
 	import { openTerminal } from '$lib/stores/terminal.svelte';
-	import { EMAIL, SOCIAL_URLS } from '$lib/constants';
+	import FooterMeta from './footer-meta.svelte';
+	import FooterNav from './footer-nav.svelte';
+	import FooterSocial from './footer-social.svelte';
 
 	let emailCopied = $state(false);
 
@@ -54,188 +57,14 @@
 
 <footer class="footer py-10 px-6 mt-8">
 	<div class="max-w-3xl mx-auto">
-		<div class="footer-nav mb-4 text-sm">
-			<a href="/blog" class="footer-link">Blog</a>
-			<a href="/work" class="footer-link">Work</a>
-			<a href="/hire" class="footer-link">Hire</a>
-			<a href="/play" class="footer-link">Reading</a>
-			<a href="/teach" class="footer-link">Resources</a>
-			<a href="/contact" class="footer-link">Contact</a>
-			<button class="footer-link copy-btn" onclick={() => copyToClipboard(EMAIL)}>
-				{emailCopied ? 'copied!' : EMAIL}
-			</button>
-		</div>
-
-		<div class="footer-social mb-6 text-sm" aria-label="Social links">
-			<span class="footer-label">Social</span>
-			<a
-				href={SOCIAL_URLS.github}
-				class="footer-link social-link"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="GitHub"
-			>
-				<span class="social-full">github</span>
-				<span class="social-compact" aria-hidden="true">gh</span>
-			</a>
-			<a
-				href={SOCIAL_URLS.x}
-				class="footer-link social-link"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="X"
-			>
-				<span class="social-full">x</span>
-				<span class="social-compact" aria-hidden="true">x</span>
-			</a>
-			<a
-				href={SOCIAL_URLS.instagram}
-				class="footer-link social-link"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="Instagram"
-			>
-				<span class="social-full">instagram</span>
-				<span class="social-compact" aria-hidden="true">ig</span>
-			</a>
-			<a
-				href={SOCIAL_URLS.facebook}
-				class="footer-link social-link"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="Facebook"
-			>
-				<span class="social-full">facebook</span>
-				<span class="social-compact" aria-hidden="true">fb</span>
-			</a>
-		</div>
-		<div class="footer-meta flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
-			<p>
-				&copy; {new Date().getFullYear()} Adam Robinson
-				<button class="terminal-hint" onclick={openTerminal} aria-label="Open terminal">
-					&gt;_
-				</button>
-			</p>
-			{#if time}
-				<p class="clock">
-					{city.label} ·
-					<span class="clock-time">{time}</span>
-				</p>
-			{/if}
-			<p>Built with SvelteKit</p>
-		</div>
+		<FooterNav email={EMAIL} {emailCopied} onCopyEmail={() => copyToClipboard(EMAIL)} />
+		<FooterSocial />
+		<FooterMeta cityLabel={city.label} {time} onOpenTerminal={openTerminal} />
 	</div>
 </footer>
 
 <style>
 	.footer {
 		border-top: 1px solid var(--color-border);
-	}
-
-	.footer-meta {
-		color: var(--color-muted);
-	}
-
-	.footer-nav {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 1.5rem;
-	}
-
-	.footer-social {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		gap: 0.75rem;
-	}
-
-	.footer-label {
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		text-transform: uppercase;
-		letter-spacing: 1.5px;
-		color: var(--color-muted);
-		margin-right: 0.35rem;
-	}
-
-	.footer-link {
-		color: var(--color-muted);
-		text-decoration: none;
-		transition: color 150ms ease;
-	}
-
-	.social-compact {
-		display: none;
-	}
-
-	@media (max-width: 640px) {
-		.social-full {
-			display: none;
-		}
-
-		.social-compact {
-			display: inline;
-			text-transform: uppercase;
-		}
-
-		.social-link {
-			padding: 0.2rem 0.35rem;
-			border: 1px solid var(--color-border);
-			border-radius: 0.25rem;
-		}
-	}
-
-	.footer-link:hover {
-		color: var(--color-accent);
-	}
-
-	.clock {
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-	}
-
-	.clock-time {
-		color: var(--color-text);
-	}
-
-	.terminal-hint {
-		background: none;
-		border: none;
-		padding: 0 0 0 0.6em;
-		margin: 0;
-		cursor: pointer;
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		color: var(--color-muted);
-		animation: terminal-pulse 3s ease-in-out infinite;
-		transition:
-			opacity 150ms ease,
-			color 150ms ease;
-	}
-
-	.terminal-hint:hover {
-		opacity: 1;
-		color: var(--color-accent);
-		animation: none;
-	}
-
-	@keyframes terminal-pulse {
-		0%,
-		100% {
-			opacity: 0.25;
-		}
-		50% {
-			opacity: 0.6;
-		}
-	}
-
-	.copy-btn {
-		background: none;
-		border: none;
-		padding: 0;
-		margin: 0;
-		cursor: pointer;
-		font-size: inherit;
-		font-family: inherit;
 	}
 </style>
