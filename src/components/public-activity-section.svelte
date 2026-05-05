@@ -29,7 +29,7 @@
 	<section aria-labelledby="activity-heading" class="py-14 section-border">
 		<h2 id="activity-heading" class="section-heading mb-8">
 			Public activity
-			<span class="accent-dot" aria-hidden="true">.</span>
+			<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 		</h2>
 		<div class="activity-grid">
 			<div class="activity-card">

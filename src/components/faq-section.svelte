@@ -7,7 +7,7 @@
 <section id="faq" aria-labelledby="faq-heading" class="py-14 section-border">
 	<h2 id="faq-heading" class="section-heading">
 		Frequently Asked Questions
-		<span class="accent-dot" aria-hidden="true">.</span>
+		<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 	</h2>
 	<div class="grid gap-6">
 		{#each faqItems as faq (faq.question)}

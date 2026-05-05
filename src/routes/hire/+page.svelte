@@ -75,7 +75,7 @@
 	<section aria-labelledby="stack-heading" class="py-14 section-border">
 		<h2 id="stack-heading" class="section-heading">
 			Technologies
-			<span class="accent-dot" aria-hidden="true">.</span>
+			<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 		</h2>
 		<div class="stack-list">
 			{#each techStack as group (group.category)}

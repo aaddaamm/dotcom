@@ -99,7 +99,7 @@
 	<section aria-labelledby="stack-heading" class="py-14 section-border">
 		<h2 id="stack-heading" class="section-heading">
 			Stack
-			<span class="accent-dot" aria-hidden="true">.</span>
+			<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 		</h2>
 		<div class="stack-grid">
 			{#each techStack as group (group.category)}
@@ -144,7 +144,7 @@
 	<section id="work" aria-labelledby="work-heading" class="py-14 section-border">
 		<h2 id="work-heading" class="section-heading mb-8">
 			Selected Work
-			<span class="accent-dot" aria-hidden="true">.</span>
+			<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 		</h2>
 		<div class="grid gap-4">
 			{#each selectedWork as project (project.title)}

@@ -17,7 +17,7 @@
 <section aria-labelledby="outcomes-heading" class="py-10 section-border">
 	<h2 id="outcomes-heading" class="section-heading mb-6">
 		Outcome timeline
-		<span class="accent-dot" aria-hidden="true">.</span>
+		<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 	</h2>
 
 	<div class="outcomes-grid">

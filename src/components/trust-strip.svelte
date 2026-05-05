@@ -5,7 +5,7 @@
 <section aria-labelledby="trust-heading" class="py-10 section-border">
 	<h2 id="trust-heading" class="section-heading mb-6">
 		Proof points
-		<span class="accent-dot" aria-hidden="true">.</span>
+		<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 	</h2>
 	<ul class="trust-grid" aria-label="Trust indicators">
 		{#each trustProofItems as item (item.label)}

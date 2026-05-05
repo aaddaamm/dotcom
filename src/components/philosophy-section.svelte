@@ -6,7 +6,7 @@
 <section aria-labelledby="philosophy-heading" class="py-14 section-border">
 	<h2 id="philosophy-heading" class="section-heading mb-8">
 		{philosophy.heading}
-		<span class="accent-dot" aria-hidden="true">.</span>
+		<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 	</h2>
 	<div class="philosophy-body">
 		<Headshot size={56} />

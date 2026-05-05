@@ -246,10 +246,13 @@ p {
 
 .accent-dot {
 	color: var(--color-accent);
+}
+
+.heading-accent-dot {
 	display: inline-block;
 	line-height: 1;
 	position: relative;
-	top: 0em;
+	top: 0;
 	margin-left: -0.22em;
 }
 
