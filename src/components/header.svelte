@@ -51,6 +51,13 @@
 					blog
 				</a>
 				<a
+					href="/now"
+					class="nav-link link-underline"
+					aria-current={isActive('/now') ? 'page' : undefined}
+				>
+					now
+				</a>
+				<a
 					href="/hire"
 					class="nav-link link-underline hire-nav"
 					aria-current={isActive('/hire') ? 'page' : undefined}

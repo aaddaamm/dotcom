@@ -11,6 +11,7 @@
 <div class="footer-nav mb-4 text-sm">
 	<a href="/blog" class="footer-link">Blog</a>
 	<a href="/work" class="footer-link">Work</a>
+	<a href="/now" class="footer-link">Now</a>
 	<a href="/hire" class="footer-link">Hire</a>
 	<a href="/play" class="footer-link">Reading</a>
 	<a href="/teach" class="footer-link">Resources</a>

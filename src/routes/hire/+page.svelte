@@ -44,7 +44,7 @@
 
 	<PageHeader
 		title="I help teams ship reliable web products faster."
-		description="I partner with founders and product teams to design, build, and stabilize high-impact web experiences. From new features to legacy cleanup, I focus on measurable outcomes: faster delivery, fewer regressions, and better performance."
+		description="I partner with founders and product teams to design, build, and stabilize high-impact web experiences. From new features to legacy cleanup, I focus on measurable outcomes: faster delivery, fewer regressions, and stronger production performance."
 	/>
 
 	<div class="cta-row">
@@ -63,7 +63,9 @@
 			View selected work
 		</a>
 	</div>
-	<p class="availability-note">Available for contract and advisory engagements.</p>
+	<p class="availability-note">
+		Available for full-time senior/staff roles and select contract/advisory engagements.
+	</p>
 
 	<TrustStrip />
 	<OutcomeProof />
