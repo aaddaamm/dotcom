@@ -1,11 +1,5 @@
 import { techStack } from "$lib/copy";
-import {
-	EMAIL,
-	GITHUB_USERNAME,
-	INSTAGRAM_HANDLE,
-	LINKEDIN_HANDLE,
-	X_HANDLE,
-} from "$lib/constants";
+import { EMAIL, SOCIAL_URLS } from "$lib/constants";
 import type { CommandDef, CommandResult, Mode } from "$lib/terminal-types";
 
 const allStack = techStack.flatMap((g) => g.items);
@@ -219,7 +213,7 @@ const commands: Record<string, CommandDef> = {
 				"",
 				"Contact",
 				`  ${EMAIL}`,
-				`  github.com/${GITHUB_USERNAME}`,
+				`  ${SOCIAL_URLS.github.replace("https://", "")}`,
 				"  adamrobinson.tech/hire",
 			],
 		},
@@ -229,10 +223,11 @@ const commands: Record<string, CommandDef> = {
 		terminal: {
 			lines: [
 				`email     ${EMAIL}`,
-				`github    github.com/${GITHUB_USERNAME}`,
-				`linkedin  linkedin.com/in/${LINKEDIN_HANDLE}`,
-				`x         x.com/${X_HANDLE}`,
-				`instagram instagram.com/${INSTAGRAM_HANDLE}`,
+				`github    ${SOCIAL_URLS.github.replace("https://", "")}`,
+				`linkedin  ${SOCIAL_URLS.linkedin.replace("https://", "")}`,
+				`x         ${SOCIAL_URLS.x.replace("https://", "")}`,
+				`instagram ${SOCIAL_URLS.instagram.replace("https://", "").replace(/\/$/, "")}`,
+				`facebook  ${SOCIAL_URLS.facebook.replace("https://", "")}`,
 				"hire      adamrobinson.tech/hire",
 			],
 		},

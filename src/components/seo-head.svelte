@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SITE_URL } from '$lib/constants';
+	import { SITE_URL, TWITTER_HANDLE } from '$lib/constants';
 
 	type SeoType = 'website' | 'article';
 
@@ -47,8 +47,8 @@
 	<meta property="og:image:alt" content={title} />
 	<meta property="og:url" content={url} />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@Adam623753" />
-	<meta name="twitter:creator" content="@Adam623753" />
+	<meta name="twitter:site" content={TWITTER_HANDLE} />
+	<meta name="twitter:creator" content={TWITTER_HANDLE} />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content={imageUrl} />

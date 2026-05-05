@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import { openTerminal } from '$lib/stores/terminal.svelte';
-	import { EMAIL, GITHUB_USERNAME } from '$lib/constants';
+	import { EMAIL, SOCIAL_URLS } from '$lib/constants';
 
 	let emailCopied = $state(false);
 
@@ -69,7 +69,7 @@
 		<div class="footer-social mb-6 text-sm" aria-label="Social links">
 			<span class="footer-label">Social</span>
 			<a
-				href="https://github.com/{GITHUB_USERNAME}"
+				href={SOCIAL_URLS.github}
 				class="footer-link social-link"
 				target="_blank"
 				rel="noopener noreferrer"
@@ -79,7 +79,7 @@
 				<span class="social-compact" aria-hidden="true">gh</span>
 			</a>
 			<a
-				href="https://x.com/Adam623753"
+				href={SOCIAL_URLS.x}
 				class="footer-link social-link"
 				target="_blank"
 				rel="noopener noreferrer"
@@ -89,7 +89,7 @@
 				<span class="social-compact" aria-hidden="true">x</span>
 			</a>
 			<a
-				href="https://www.instagram.com/adamrobinson7251/"
+				href={SOCIAL_URLS.instagram}
 				class="footer-link social-link"
 				target="_blank"
 				rel="noopener noreferrer"
@@ -99,7 +99,7 @@
 				<span class="social-compact" aria-hidden="true">ig</span>
 			</a>
 			<a
-				href="https://www.facebook.com/profile.php?id=61573468237603"
+				href={SOCIAL_URLS.facebook}
 				class="footer-link social-link"
 				target="_blank"
 				rel="noopener noreferrer"
