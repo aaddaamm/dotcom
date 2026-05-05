@@ -7,6 +7,7 @@ import {
 	topLevelCommands,
 } from "$lib/terminal-command-data";
 import { EMAIL, SOCIAL_URLS } from "$lib/constants";
+import { socialLinks, toDisplayUrl } from "$lib/social-links";
 import type { CommandDef, CommandResult, Mode } from "$lib/terminal-types";
 
 const allStack = techStack.flatMap((g) => g.items);
@@ -176,7 +177,7 @@ const commands: Record<string, CommandDef> = {
 				"",
 				"Contact",
 				`  ${EMAIL}`,
-				`  ${SOCIAL_URLS.github.replace("https://", "")}`,
+				`  ${toDisplayUrl(SOCIAL_URLS.github)}`,
 				"  adamrobinson.tech/hire",
 			],
 		},
@@ -186,11 +187,10 @@ const commands: Record<string, CommandDef> = {
 		terminal: {
 			lines: [
 				`email     ${EMAIL}`,
-				`github    ${SOCIAL_URLS.github.replace("https://", "")}`,
-				`linkedin  ${SOCIAL_URLS.linkedin.replace("https://", "")}`,
-				`x         ${SOCIAL_URLS.x.replace("https://", "")}`,
-				`instagram ${SOCIAL_URLS.instagram.replace("https://", "").replace(/\/$/, "")}`,
-				`facebook  ${SOCIAL_URLS.facebook.replace("https://", "")}`,
+				...socialLinks.map(
+					(social) =>
+						`${social.label.padEnd(9, " ")} ${toDisplayUrl(social.url)}`,
+				),
 				"hire      adamrobinson.tech/hire",
 			],
 		},

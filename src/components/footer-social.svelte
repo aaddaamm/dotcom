@@ -1,49 +1,21 @@
 <script lang="ts">
-	import { GITHUB_USERNAME, INSTAGRAM_HANDLE, X_HANDLE } from '$lib/constants';
+	import { socialLinks } from '$lib/social-links';
 </script>
 
 <div class="footer-social mb-6 text-sm" aria-label="Social links">
 	<span class="footer-label">Social</span>
-	<a
-		href="https://github.com/{GITHUB_USERNAME}"
-		class="footer-link social-link"
-		target="_blank"
-		rel="noopener noreferrer"
-		aria-label="GitHub"
-	>
-		<span class="social-full">github</span>
-		<span class="social-compact" aria-hidden="true">gh</span>
-	</a>
-	<a
-		href="https://x.com/{X_HANDLE}"
-		class="footer-link social-link"
-		target="_blank"
-		rel="noopener noreferrer"
-		aria-label="X"
-	>
-		<span class="social-full">x</span>
-		<span class="social-compact" aria-hidden="true">x</span>
-	</a>
-	<a
-		href="https://www.instagram.com/{INSTAGRAM_HANDLE}/"
-		class="footer-link social-link"
-		target="_blank"
-		rel="noopener noreferrer"
-		aria-label="Instagram"
-	>
-		<span class="social-full">instagram</span>
-		<span class="social-compact" aria-hidden="true">ig</span>
-	</a>
-	<a
-		href="https://www.facebook.com/profile.php?id=61573468237603"
-		class="footer-link social-link"
-		target="_blank"
-		rel="noopener noreferrer"
-		aria-label="Facebook"
-	>
-		<span class="social-full">facebook</span>
-		<span class="social-compact" aria-hidden="true">fb</span>
-	</a>
+	{#each socialLinks as social (social.key)}
+		<a
+			href={social.url}
+			class="footer-link social-link"
+			target="_blank"
+			rel="noopener noreferrer"
+			aria-label={social.label}
+		>
+			<span class="social-full">{social.label}</span>
+			<span class="social-compact" aria-hidden="true">{social.compactLabel}</span>
+		</a>
+	{/each}
 </div>
 
 <style>
