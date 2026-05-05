@@ -1,19 +1,17 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	import { outcomeProofPoints } from '$lib/copy';
+	import { createOutcomeTimeline } from '$lib/outcome-timeline.svelte';
 
-	let activeIndex = $state(0);
 	let reduceMotion = $state(false);
+	const timeline = createOutcomeTimeline(outcomeProofPoints.length);
 
 	$effect(() => {
 		if (typeof window === 'undefined') return;
 		reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	});
 
-	function activate(index: number) {
-		activeIndex = index;
-	}
-
-	const activePoint = $derived(outcomeProofPoints[activeIndex]);
+	const activePoint = $derived(outcomeProofPoints[timeline.activeIndex]);
 </script>
 
 <section aria-labelledby="outcomes-heading" class="py-10 section-border">
@@ -30,10 +28,11 @@
 					role="tab"
 					type="button"
 					class="timeline-tab"
-					class:is-active={index === activeIndex}
-					aria-selected={index === activeIndex}
+					class:is-active={index === timeline.activeIndex}
+					aria-selected={index === timeline.activeIndex}
 					aria-controls={`timeline-panel-${index}`}
-					onclick={() => activate(index)}
+					onclick={() => timeline.activate(index)}
+					onkeydown={(event) => timeline.onTabKeydown(event, index)}
 				>
 					<span class="timeline-dot" aria-hidden="true"></span>
 					<span>{point.headline}</span>
@@ -42,15 +41,22 @@
 		</div>
 
 		<div
-			id={`timeline-panel-${activeIndex}`}
+			id={`timeline-panel-${timeline.activeIndex}`}
 			role="tabpanel"
-			aria-labelledby={`timeline-tab-${activeIndex}`}
+			aria-labelledby={`timeline-tab-${timeline.activeIndex}`}
 			class="timeline-panel"
 			class:reduced-motion={reduceMotion}
 		>
-			<h3 class="panel-title">{activePoint.headline}</h3>
-			<p class="panel-detail">{activePoint.detail}</p>
-			<a href={activePoint.href} class="panel-link link-underline">Read related work →</a>
+			{#key timeline.activeIndex}
+				<div
+					class="panel-content"
+					in:fly={{ y: reduceMotion ? 0 : 8, duration: reduceMotion ? 0 : 220 }}
+				>
+					<h3 class="panel-title">{activePoint.headline}</h3>
+					<p class="panel-detail">{activePoint.detail}</p>
+					<a href={activePoint.href} class="panel-link link-underline">Read related work →</a>
+				</div>
+			{/key}
 		</div>
 	</div>
 </section>
@@ -90,6 +96,7 @@
 		border-radius: 999px;
 		background: color-mix(in srgb, var(--color-accent) 30%, transparent);
 		flex-shrink: 0;
+		transition: transform 200ms ease;
 	}
 
 	.timeline-tab.is-active {
@@ -98,6 +105,7 @@
 
 	.timeline-tab.is-active .timeline-dot {
 		background: var(--color-accent);
+		transform: scale(1.18);
 	}
 
 	.timeline-panel {
@@ -106,6 +114,10 @@
 		padding: 0.9rem;
 		background: color-mix(in srgb, var(--color-accent) 5%, var(--color-bg));
 		transition: transform 180ms ease;
+	}
+
+	.panel-content {
+		will-change: transform, opacity;
 	}
 
 	.timeline-panel:not(.reduced-motion) {
