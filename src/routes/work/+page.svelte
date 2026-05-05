@@ -64,7 +64,7 @@
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader
 		title="Work"
-		description="Selected engagements. Each one different — different stack, different problem, different team dynamic."
+		description="Selected case studies focused on measurable outcomes: faster delivery, lower risk, and production impact across different stacks and team contexts."
 	/>
 
 	<div class="cta-row" aria-label="Work page actions">

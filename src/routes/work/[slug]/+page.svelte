@@ -5,11 +5,30 @@
 	import JsonLd from '../../../components/json-ld.svelte';
 	import { breadcrumbList } from '$lib/utils';
 
+	type CaseStudyProject = {
+		title: string;
+		slug: string;
+		role: string;
+		period: string;
+		description: string;
+		seoDescription?: string;
+		stack: string[];
+		caseStudy?: {
+			situation: string;
+			work: string;
+			outcome: string;
+		};
+		constraints?: string[];
+		decisions?: string[];
+		tradeoffs?: string[];
+		results?: string[];
+	};
+
 	let { data } = $props();
 
-	let project = $derived(data.project);
-	let prev = $derived(data.prev);
-	let next = $derived(data.next);
+	let project = $derived(data.project as CaseStudyProject);
+	let prev = $derived(data.prev as CaseStudyProject | null);
+	let next = $derived(data.next as CaseStudyProject | null);
 
 	function companyName(title: string) {
 		return title.split('—')[0].trim();
@@ -55,6 +74,50 @@
 		/>
 	{/if}
 
+	{#if project.constraints?.length}
+		<section class="detail-block" aria-labelledby="constraints-heading">
+			<h2 id="constraints-heading" class="detail-heading">Constraints</h2>
+			<ul class="detail-list">
+				{#each project.constraints as item (item)}
+					<li>{item}</li>
+				{/each}
+			</ul>
+		</section>
+	{/if}
+
+	{#if project.decisions?.length}
+		<section class="detail-block" aria-labelledby="decisions-heading">
+			<h2 id="decisions-heading" class="detail-heading">Key decisions</h2>
+			<ul class="detail-list">
+				{#each project.decisions as item (item)}
+					<li>{item}</li>
+				{/each}
+			</ul>
+		</section>
+	{/if}
+
+	{#if project.tradeoffs?.length}
+		<section class="detail-block" aria-labelledby="tradeoffs-heading">
+			<h2 id="tradeoffs-heading" class="detail-heading">Tradeoffs</h2>
+			<ul class="detail-list">
+				{#each project.tradeoffs as item (item)}
+					<li>{item}</li>
+				{/each}
+			</ul>
+		</section>
+	{/if}
+
+	{#if project.results?.length}
+		<section class="detail-block" aria-labelledby="results-heading">
+			<h2 id="results-heading" class="detail-heading">Results</h2>
+			<ul class="detail-list">
+				{#each project.results as item (item)}
+					<li>{item}</li>
+				{/each}
+			</ul>
+		</section>
+	{/if}
+
 	<div class="cs-cta">
 		<a href="/contact" class="btn-primary">Get In Touch</a>
 		<a href="/hire" class="btn-secondary">See How I Work</a>
@@ -96,6 +159,30 @@
 		background-color: transparent;
 		border: 1px solid var(--color-border);
 		color: var(--color-muted);
+	}
+
+	.detail-block {
+		margin-top: 1.5rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.detail-heading {
+		font-size: 0.75rem;
+		font-family: var(--font-mono);
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
+		color: var(--color-muted);
+		margin-bottom: 0.6rem;
+	}
+
+	.detail-list {
+		margin: 0;
+		padding-left: 1rem;
+		display: grid;
+		gap: 0.4rem;
+		font-size: 0.9rem;
+		color: var(--color-text);
 	}
 
 	.cs-cta {

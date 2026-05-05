@@ -18,6 +18,7 @@
 		seoDescription?: string;
 		stack: string[];
 		outcome?: string;
+		impactMetric?: string;
 		caseStudy?: CaseStudyData;
 	}
 
@@ -64,6 +65,10 @@
 
 	{#if variant === 'preview' && project.description}
 		<p class="body-text">{project.description}</p>
+	{/if}
+
+	{#if project.impactMetric}
+		<p class="impact-metric">Impact: {project.impactMetric}</p>
 	{/if}
 
 	{#if project.caseStudy && variant === 'full'}
@@ -125,6 +130,13 @@
 		font-size: 0.9rem;
 		color: var(--color-text);
 		line-height: 1.7;
+		margin: 0 0 1rem;
+	}
+
+	.impact-metric {
+		font-size: 0.8rem;
+		font-family: var(--font-mono);
+		color: var(--color-accent);
 		margin: 0 0 1rem;
 	}
 
