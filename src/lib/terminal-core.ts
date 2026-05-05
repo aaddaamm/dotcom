@@ -1,57 +1,20 @@
 import { techStack } from "$lib/copy";
+import {
+	getArgMap,
+	INCANTATIONS,
+	NORMALIZED_ALIASES,
+	RPG_MODE_LINES,
+	topLevelCommands,
+} from "$lib/terminal-command-data";
 import { EMAIL, SOCIAL_URLS } from "$lib/constants";
 import type { CommandDef, CommandResult, Mode } from "$lib/terminal-types";
 
 const allStack = techStack.flatMap((g) => g.items);
 
-const INCANTATIONS: Record<string, string> = {
-	"ex codice lumen": "from code, light",
-};
-
-const NORMALIZED_ALIASES: Record<string, string> = {
-	"-h": "help",
-	"--help": "help",
-	"ls /": "ls",
-	"ls work": "ls /work",
-	"ls stack": "ls /stack",
-	"open hire": "open /hire",
-	quit: "exit",
-	"rm -rf /": "rm -rf .",
-	"rm -rf ~": "rm -rf .",
-	vi: "vim",
-	nano: "vim",
-	emacs: "vim",
-	hyrule: "zelda",
-	"outie mode": "outie",
-	"rpg mode": "mode rpg",
-};
-
 const OUTIE_MODE_RESULT: CommandResult = {
 	lines: ["you are now in outie mode. welcome back."],
 	modeChange: "terminal",
 };
-
-const RPG_MODE_LINES = [
-	"",
-	"  *  .  *  .  *  .  *  .  *  .  *",
-	"",
-	"  __     /\\  /\\  /\\     __",
-	" /o \\~  /  \\/  \\/  \\  ~/o \\",
-	"/____\\ |____________| /____\\",
-	"  ||                    ||",
-	"",
-	"    ____  ____   ____ ",
-	"   |  _ \\|  _ \\ / ___|",
-	"   | |_) | |_) || |  _",
-	"   |  _ <|  __/ | |_| |",
-	"   |_| \\_\\|_|   \\____|",
-	"",
-	"            M O D E",
-	"",
-	"  *  .  *  .  *  .  *  .  *  .  *",
-	"",
-	"  the spirits of the console stir...",
-];
 
 export function normalize(lower: string): string {
 	if (lower in INCANTATIONS) return `translate ${lower}`;
@@ -433,53 +396,7 @@ export function runCommand(rawInput: string, mode: Mode): CommandResult {
 	};
 }
 
-const argMap: Record<string, string[]> = {
-	ls: ["work", "/work", "stack", "/stack"],
-	cat: ["resume.txt"],
-	open: ["hire", "/hire"],
-	git: ["log"],
-	mode: ["rpg", "terminal"],
-	sudo: ["hire adam"],
-	ritual: [],
-	summon: [],
-	translate: Object.keys(INCANTATIONS),
-	innie: [],
-	outie: [],
-	macrodata: [],
-	waffleparty: [],
-	severed: [],
-};
-
-const topLevelCommands = [
-	"whoami",
-	"help",
-	"-h",
-	"ls",
-	"cat",
-	"contact",
-	"open",
-	"echo",
-	"git",
-	"sudo",
-	"clear",
-	"exit",
-	"quit",
-	"rm",
-	"vim",
-	"vi",
-	"nano",
-	"emacs",
-	"mode",
-	"chocobo",
-	"ritual",
-	"summon",
-	"translate",
-	"innie",
-	"outie",
-	"macrodata",
-	"waffleparty",
-	"severed",
-];
+const argMap = getArgMap();
 
 export function getCompletions(input: string): string[] {
 	const tokens = input.split(" ");
