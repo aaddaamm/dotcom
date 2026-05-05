@@ -12,6 +12,9 @@
 	import '../app.css';
 	import Footer from '../components/footer.svelte';
 	import Header from '../components/header.svelte';
+	import JsonLd from '../components/json-ld.svelte';
+	import { EMAIL, SITE_URL } from '$lib/constants';
+	import { socialLinks } from '$lib/social-links';
 	import { initTheme } from '$lib/stores/theme.svelte';
 	import { getTerminalOpen } from '$lib/stores/terminal.svelte';
 	import { getSeveranceMode, initSeveranceMode } from '$lib/stores/severance';
@@ -44,6 +47,7 @@
 	});
 
 	const firedDepths = new SvelteSet<number>();
+	const sameAs = socialLinks.map((social) => social.url);
 
 	afterNavigate((navigation) => {
 		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -83,6 +87,64 @@
 		href="/blog/rss.xml"
 	/>
 </svelte:head>
+
+<JsonLd
+	data={{
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Adam Robinson',
+		jobTitle: 'Senior Software Engineer',
+		hasOccupation: {
+			'@type': 'Occupation',
+			name: 'Senior Software Engineer',
+			skills:
+				'TypeScript, SvelteKit, React, Node.js, Ruby on Rails, backend engineering, platform modernization'
+		},
+		description:
+			'Senior software engineer with ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning.',
+		url: SITE_URL,
+		email: EMAIL,
+		address: {
+			'@type': 'PostalAddress',
+			addressLocality: 'Providence',
+			addressRegion: 'RI',
+			addressCountry: 'US'
+		},
+		knowsAbout: [
+			'TypeScript',
+			'SvelteKit',
+			'React',
+			'Node.js',
+			'Ruby on Rails',
+			'Vue',
+			'Next.js',
+			'Full-stack development',
+			'Backend engineering',
+			'Software architecture',
+			'Technical leadership',
+			'Staff augmentation',
+			'Platform modernization',
+			'AI developer tools'
+		],
+		sameAs
+	}}
+/>
+
+<JsonLd
+	data={{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'Adam Robinson',
+		url: SITE_URL,
+		description:
+			'Senior software engineer with ten-plus years across fintech, healthcare, and enterprise.',
+		inLanguage: 'en-US',
+		author: {
+			'@type': 'Person',
+			name: 'Adam Robinson'
+		}
+	}}
+/>
 
 <div class="min-h-screen flex flex-col" class:severed={getSeveranceMode() === 'innie'}>
 	<a href="#main-content" class="skip-link">Skip to content</a>
