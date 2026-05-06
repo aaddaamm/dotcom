@@ -39,7 +39,13 @@ export function trackFormValidationError(fieldCount: number) {
 	track("Contact Form Validation Error", { field_count: fieldCount });
 }
 
-export type ContactIntent = "full-time" | "contract" | "consulting" | "general";
+export type ContactIntent =
+	| "full-time"
+	| "contract"
+	| "consulting"
+	| "speaking"
+	| "collaboration"
+	| "general";
 
 export function trackFormSubmit(
 	intent: ContactIntent,

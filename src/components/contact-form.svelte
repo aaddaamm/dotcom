@@ -12,6 +12,7 @@
 		budgetOptions,
 		getFriendlyErrorMessage,
 		inferIntent,
+		inquiryIntentOptions,
 		isFallbackSuccessMessage,
 		projectTypeOptions,
 		timelineOptions
@@ -20,6 +21,7 @@
 
 	let name = $state('');
 	let email = $state('');
+	let intent = $state('');
 	let project = $state('');
 	let timeline = $state('');
 	let budget = $state('');
@@ -54,6 +56,7 @@
 		const formData: ContactFormData = {
 			name: name.trim(),
 			email: email.trim(),
+			intent: intent.trim(),
 			phone: phone.trim(),
 			project: project.trim(),
 			timeline: timeline.trim(),
@@ -69,7 +72,7 @@
 			return;
 		}
 
-		const intent = inferIntent(project);
+		const normalizedIntent = inferIntent(intent, project);
 
 		try {
 			const response = await fetch('/api/contact', {
@@ -84,14 +87,14 @@
 
 			if (response.ok && result.success) {
 				trackFormSubmit(
-					intent,
+					normalizedIntent,
 					phone.trim() ? 'yes' : 'no',
 					timeline.trim() ? 'yes' : 'no',
 					budget.trim() ? 'yes' : 'no'
 				);
 				trackFormSubmitOutcome(
 					isFallbackSuccessMessage(result.message || '') ? 'fallback' : 'success',
-					intent
+					normalizedIntent
 				);
 
 				successMessage =
@@ -103,6 +106,7 @@
 				timeline = '';
 				budget = '';
 				message = '';
+				intent = '';
 				phone = '';
 				submitted = true;
 
@@ -112,12 +116,12 @@
 					trackedStart = false;
 				}, 8000);
 			} else {
-				trackFormSubmitOutcome('error', intent);
+				trackFormSubmitOutcome('error', normalizedIntent);
 				errorMessage = getFriendlyErrorMessage(result.error || '', response.status);
 			}
 		} catch (error) {
 			console.error('Form submission error:', error);
-			trackFormSubmitOutcome('error', intent);
+			trackFormSubmitOutcome('error', normalizedIntent);
 			errorMessage =
 				'Network issue while submitting. Please check your connection and try again, or email me directly.';
 		}
@@ -200,6 +204,28 @@
 					disabled={isSubmitting}
 					onfocus={trackStart}
 				/>
+			</div>
+
+			<div class="form-group">
+				<label for="intent" class="form-label">Inquiry Type *</label>
+				<select
+					id="intent"
+					bind:value={intent}
+					required
+					class="form-input"
+					class:field-error={fieldErrors.intent}
+					disabled={isSubmitting}
+					onfocus={trackStart}
+					aria-describedby={fieldErrors.intent ? 'intent-error' : undefined}
+				>
+					<option value="">What kind of inquiry is this...</option>
+					{#each inquiryIntentOptions as option (option)}
+						<option value={option}>{option}</option>
+					{/each}
+				</select>
+				{#if fieldErrors.intent}<p id="intent-error" class="field-error-msg">
+						{fieldErrors.intent}
+					</p>{/if}
 			</div>
 
 			<div class="form-group">
@@ -289,7 +315,7 @@
 
 			<button
 				type="submit"
-				disabled={isSubmitting || !name || !email || !project || !message}
+				disabled={isSubmitting || !name || !email || !intent || !project || !message}
 				class="submit-button w-full px-6 py-3 rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
 			>
 				<span class="flex items-center justify-center gap-2">

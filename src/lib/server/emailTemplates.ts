@@ -1,11 +1,11 @@
-import { escapeHtml } from '$lib/server/utils';
-import type { ContactFormData } from '$lib/validation';
+import { escapeHtml } from "$lib/server/utils";
+import type { ContactFormData } from "$lib/validation";
 
 // Email-safe color tokens (CSS custom properties are not supported in email clients)
-const ACCENT = '#2a7a7a';
-const SURFACE = '#f8f9fa';
-const BORDER = '#e9ecef';
-const MUTED = '#6c757d';
+const ACCENT = "#2a7a7a";
+const SURFACE = "#f8f9fa";
+const BORDER = "#e9ecef";
+const MUTED = "#6c757d";
 
 export function contactNotificationHtml(data: ContactFormData): string {
 	return `
@@ -15,16 +15,17 @@ export function contactNotificationHtml(data: ContactFormData): string {
 			<div style="background-color: ${SURFACE}; padding: 20px; border-radius: 8px; margin: 20px 0;">
 				<p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
 				<p><strong>Email:</strong> <a href="mailto:${escapeHtml(data.email)}">${escapeHtml(data.email)}</a></p>
-				${data.phone ? `<p><strong>Phone:</strong> <a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a></p>` : ''}
-				<p><strong>Project Type:</strong> ${escapeHtml(data.project ?? '')}</p>
-				${data.timeline ? `<p><strong>Preferred Timeline:</strong> ${escapeHtml(data.timeline)}</p>` : ''}
-				${data.budget ? `<p><strong>Budget Range:</strong> ${escapeHtml(data.budget)}</p>` : ''}
+				${data.phone ? `<p><strong>Phone:</strong> <a href="tel:${escapeHtml(data.phone)}">${escapeHtml(data.phone)}</a></p>` : ""}
+				<p><strong>Inquiry Type:</strong> ${escapeHtml(data.intent ?? "")}</p>
+				<p><strong>Project Type:</strong> ${escapeHtml(data.project ?? "")}</p>
+				${data.timeline ? `<p><strong>Preferred Timeline:</strong> ${escapeHtml(data.timeline)}</p>` : ""}
+				${data.budget ? `<p><strong>Budget Range:</strong> ${escapeHtml(data.budget)}</p>` : ""}
 			</div>
 
 			<div style="margin: 20px 0;">
 				<h3 style="color: ${ACCENT};">Message:</h3>
 				<div style="background-color: #ffffff; padding: 15px; border-left: 4px solid ${ACCENT}; margin: 10px 0;">
-					${escapeHtml(data.message).replace(/\n/g, '<br>')}
+					${escapeHtml(data.message).replace(/\n/g, "<br>")}
 				</div>
 			</div>
 
