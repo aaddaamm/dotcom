@@ -77,8 +77,7 @@
 
 	function handleWindowKeydown(e: KeyboardEvent) {
 		if (!shouldCaptureTerminalShortcut(e, state.isOpen, fullscreen, page.url.pathname)) return;
-		e.preventDefault();
-		openAndFocus('keyboard', e.key);
+		openAndFocus('keyboard');
 	}
 
 	// $effect is browser-only — no window guard needed

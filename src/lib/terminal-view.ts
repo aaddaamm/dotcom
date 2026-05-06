@@ -2,12 +2,12 @@ export function shouldCaptureTerminalShortcut(
 	event: KeyboardEvent,
 	isOpen: boolean,
 	fullscreen: boolean,
-	pathname: string
+	pathname: string,
 ): boolean {
 	if (isOpen || fullscreen) return false;
-	if (pathname === '/terminal') return false;
+	if (pathname === "/terminal") return false;
 	if (event.metaKey || event.ctrlKey || event.altKey) return false;
-	if (event.key.length !== 1) return false;
+	if (event.key !== "`" && event.key !== "~") return false;
 
 	const target = event.target as HTMLElement;
 	if (

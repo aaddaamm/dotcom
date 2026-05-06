@@ -11,7 +11,14 @@
 <div class="footer-meta flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
 	<p>
 		&copy; {new Date().getFullYear()} Adam Robinson
-		<button class="terminal-hint" onclick={onOpenTerminal} aria-label="Open terminal">&gt;_</button>
+		<button
+			class="terminal-hint"
+			onclick={onOpenTerminal}
+			aria-label="Open terminal (shortcut: backtick)"
+			title="Open terminal (shortcut: `)"
+		>
+			&gt;_
+		</button>
 	</p>
 	{#if time}
 		<p class="clock">
