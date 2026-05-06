@@ -33,9 +33,9 @@
 		</h2>
 		<div class="activity-grid">
 			<div class="activity-card">
-				<p class="activity-label">Commits</p>
+				<p class="activity-label">GitHub commits</p>
 				<p class="activity-value">{activity.commitsLastYear}</p>
-				<p class="activity-caption">past year</p>
+				<p class="activity-caption">last 12 months · source: GitHub</p>
 			</div>
 			<div class="activity-card">
 				<p class="activity-label">Repos</p>
