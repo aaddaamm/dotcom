@@ -3,6 +3,7 @@
 	import { EMAIL, SITE_URL } from '$lib/constants';
 	import { breadcrumbList } from '$lib/utils';
 	import ContactForm from '../../components/contact-form.svelte';
+	import ContactProcess from '../../components/contact-process.svelte';
 	import JsonLd from '../../components/json-ld.svelte';
 	import OutcomeProof from '../../components/outcome-proof.svelte';
 	import SeoHead from '../../components/seo-head.svelte';
@@ -66,6 +67,8 @@
 				View selected work
 			</a>
 		</div>
+
+		<ContactProcess />
 
 		<OutcomeProof />
 

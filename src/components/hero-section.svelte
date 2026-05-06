@@ -65,6 +65,16 @@
 			Download résumé
 		</a>
 	</div>
+
+	<div class="mini-cta-links" aria-label="Choose your path">
+		<a href="/hire" onclick={() => trackCTA('Hiring manager mini-CTA', 'home-hero-hiring')}>
+			Hiring manager?
+		</a>
+		<span aria-hidden="true">•</span>
+		<a href="/contact" onclick={() => trackCTA('Contract help mini-CTA', 'home-hero-contract')}>
+			Need contract help?
+		</a>
+	</div>
 </section>
 
 <style>
@@ -172,5 +182,25 @@
 		border-radius: 999px;
 		background: var(--color-accent);
 		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
+	}
+
+	.mini-cta-links {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		margin-top: 0.75rem;
+		font-size: 0.82rem;
+		color: var(--color-muted);
+	}
+
+	.mini-cta-links a {
+		color: var(--color-muted);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+		transition: color 0.2s ease;
+	}
+
+	.mini-cta-links a:hover {
+		color: var(--color-text);
 	}
 </style>
