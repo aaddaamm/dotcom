@@ -1,12 +1,12 @@
 <script lang="ts">
 	import SeoHead from '../components/seo-head.svelte';
 	import HeroSection from '../components/hero-section.svelte';
-	import WorkCard from '../components/work-card.svelte';
 	import TrustStrip from '../components/trust-strip.svelte';
 	import RecentlyShipped from '../components/recently-shipped.svelte';
 	import OutcomeProof from '../components/outcome-proof.svelte';
 	import ProofRail from '../components/proof-rail.svelte';
-	import { selectedWork, techStack } from '$lib/copy';
+	import HomeStackSection from '../components/home-stack-section.svelte';
+	import HomeSelectedWorkSection from '../components/home-selected-work-section.svelte';
 	import { setupScrollAnimations } from '$lib/animations';
 	import { onMount } from 'svelte';
 	import { unlockSeveredRoute } from '$lib/stores/severance';
@@ -97,66 +97,8 @@
 	<OutcomeProof />
 	<RecentlyShipped />
 
-	<!-- Tech Stack -->
-	<section aria-labelledby="stack-heading" class="py-14 section-border">
-		<h2 id="stack-heading" class="section-heading">
-			Stack
-			<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
-		</h2>
-		<div class="stack-grid">
-			{#each techStack as group (group.category)}
-				<div class="stack-group">
-					<p class="stack-category">{group.category}</p>
-					<ul class="stack-items">
-						{#each group.items as item (item)}
-							<li>
-								<button
-									class="stack-item"
-									onclick={(e) => {
-										const reduceMotion = window.matchMedia(
-											'(prefers-reduced-motion: reduce)'
-										).matches;
-										if (reduceMotion) return;
-										e.currentTarget.animate(
-											[
-												{ transform: 'scale(1)    translateY(0)', color: 'var(--color-muted)' },
-												{
-													transform: 'scale(1.3)  translateY(-6px)',
-													color: 'var(--color-accent)',
-													offset: 0.35
-												},
-												{ transform: 'scale(1.15) translateY(-3px)', offset: 0.65 },
-												{ transform: 'scale(1)    translateY(0)', color: 'var(--color-text)' }
-											],
-											{ duration: 600, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' }
-										);
-									}}
-								>
-									{item}
-								</button>
-							</li>
-						{/each}
-					</ul>
-				</div>
-			{/each}
-		</div>
-	</section>
-
-	<!-- Selected Work -->
-	<section id="work" aria-labelledby="work-heading" class="py-14 section-border">
-		<h2 id="work-heading" class="section-heading mb-8">
-			Selected Work
-			<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
-		</h2>
-		<div class="grid gap-4">
-			{#each selectedWork as project (project.title)}
-				<WorkCard {project} variant="preview" />
-			{/each}
-		</div>
-		<a href="/work" class="inline-flex items-center gap-1 text-sm mt-6 accent-link link-underline">
-			View all work &rarr;
-		</a>
-	</section>
+	<HomeStackSection />
+	<HomeSelectedWorkSection />
 	{#if showRuneToast}
 		<div class="rune-light" aria-hidden="true"></div>
 		<div class="rune-toast" role="status" aria-live="polite">
@@ -350,77 +292,5 @@
 		.spark {
 			animation: none;
 		}
-	}
-
-	.stack-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-		gap: 24px;
-	}
-
-	.stack-group {
-		background: linear-gradient(
-			135deg,
-			color-mix(in srgb, var(--color-accent) 8%, var(--color-bg)),
-			var(--color-bg)
-		);
-		border-radius: 4px;
-		padding: 16px;
-	}
-
-	.stack-category {
-		font-size: 0.7rem;
-		font-family: var(--font-mono);
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		color: var(--color-accent);
-		margin-bottom: 10px;
-	}
-
-	.stack-items {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 6px;
-	}
-
-	.stack-items li {
-		font-size: 0.875rem;
-	}
-
-	.stack-item {
-		background: none;
-		border: none;
-		padding: 0;
-		margin: 0;
-		cursor: pointer;
-		font-size: 0.875rem;
-		font-family: inherit;
-		color: var(--color-muted);
-		transition: color 150ms ease;
-		display: inline-block;
-		text-align: left;
-		position: relative;
-	}
-
-	.stack-item::after {
-		content: '';
-		position: absolute;
-		bottom: -1px;
-		left: 0;
-		width: 0;
-		height: 1px;
-		background-color: var(--color-accent);
-		transition: width 400ms ease;
-	}
-
-	.stack-item:hover {
-		color: var(--color-text);
-	}
-
-	.stack-item:hover::after {
-		width: 100%;
 	}
 </style>
