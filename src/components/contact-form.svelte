@@ -10,14 +10,11 @@
 	import { EMAIL } from '$lib/constants';
 	import {
 		budgetOptions,
-		getFriendlyErrorMessage,
-		inferIntent,
 		inquiryIntentOptions,
-		isFallbackSuccessMessage,
 		projectTypeOptions,
 		timelineOptions
 	} from '$lib/contact-form';
-	import { type ContactFormData, validateContactForm } from '$lib/validation';
+	import { submitContactForm } from '$lib/contact-form-logic';
 
 	let name = $state('');
 	let email = $state('');
@@ -45,6 +42,17 @@
 		trackFormStart('contact-page');
 	}
 
+	function resetForm() {
+		name = '';
+		email = '';
+		project = '';
+		timeline = '';
+		budget = '';
+		message = '';
+		intent = '';
+		phone = '';
+	}
+
 	async function handleSubmit(event: Event) {
 		event.preventDefault();
 		isSubmitting = true;
@@ -52,79 +60,48 @@
 		successMessage = '';
 		fieldErrors = {};
 
-		// Validate form
-		const formData: ContactFormData = {
-			name: name.trim(),
-			email: email.trim(),
-			intent: intent.trim(),
-			phone: phone.trim(),
-			project: project.trim(),
-			timeline: timeline.trim(),
-			budget: budget.trim(),
-			message: message.trim()
-		};
-		const validation = validateContactForm(formData);
-		if (!validation.isValid) {
-			fieldErrors = validation.errors;
-			errorMessage = 'Please fix the errors below.';
-			trackFormValidationError(Object.keys(validation.errors).length);
+		const result = await submitContactForm({
+			name,
+			email,
+			intent,
+			phone,
+			project,
+			timeline,
+			budget,
+			message,
+			website
+		});
+
+		if (!result.ok) {
+			if (result.reason === 'validation') {
+				fieldErrors = result.fieldErrors;
+				errorMessage = result.errorMessage;
+				trackFormValidationError(Object.keys(result.fieldErrors).length);
+			} else {
+				trackFormSubmitOutcome('error', result.normalizedIntent);
+				errorMessage = result.errorMessage;
+			}
 			isSubmitting = false;
 			return;
 		}
 
-		const normalizedIntent = inferIntent(intent, project);
+		trackFormSubmit(
+			result.normalizedIntent,
+			result.submittedPayload.phone ? 'yes' : 'no',
+			result.submittedPayload.timeline ? 'yes' : 'no',
+			result.submittedPayload.budget ? 'yes' : 'no'
+		);
+		trackFormSubmitOutcome(result.outcome, result.normalizedIntent);
 
-		try {
-			const response = await fetch('/api/contact', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ ...formData, website })
-			});
+		successMessage = result.successMessage;
+		resetForm();
+		submitted = true;
 
-			const result = await response.json();
-
-			if (response.ok && result.success) {
-				trackFormSubmit(
-					normalizedIntent,
-					phone.trim() ? 'yes' : 'no',
-					timeline.trim() ? 'yes' : 'no',
-					budget.trim() ? 'yes' : 'no'
-				);
-				trackFormSubmitOutcome(
-					isFallbackSuccessMessage(result.message || '') ? 'fallback' : 'success',
-					normalizedIntent
-				);
-
-				successMessage =
-					result.message ||
-					"Thanks — message received. I'll follow up within 24 hours with next steps.";
-				name = '';
-				email = '';
-				project = '';
-				timeline = '';
-				budget = '';
-				message = '';
-				intent = '';
-				phone = '';
-				submitted = true;
-
-				setTimeout(() => {
-					submitted = false;
-					successMessage = '';
-					trackedStart = false;
-				}, 8000);
-			} else {
-				trackFormSubmitOutcome('error', normalizedIntent);
-				errorMessage = getFriendlyErrorMessage(result.error || '', response.status);
-			}
-		} catch (error) {
-			console.error('Form submission error:', error);
-			trackFormSubmitOutcome('error', normalizedIntent);
-			errorMessage =
-				'Network issue while submitting. Please check your connection and try again, or email me directly.';
-		}
+		setTimeout(() => {
+			submitted = false;
+			successMessage = '';
+			trackedStart = false;
+		}, 8000);
 
 		isSubmitting = false;
 	}
@@ -157,149 +134,157 @@
 				</div>
 			{/if}
 
-			<div class="form-group">
-				<label for="name" class="form-label">Name *</label>
-				<input
-					type="text"
-					id="name"
-					bind:value={name}
-					required
-					class="form-input"
-					class:field-error={fieldErrors.name}
-					placeholder="Your name"
-					disabled={isSubmitting}
-					onfocus={trackStart}
-					aria-describedby={fieldErrors.name ? 'name-error' : undefined}
-				/>
-				{#if fieldErrors.name}<p id="name-error" class="field-error-msg">{fieldErrors.name}</p>{/if}
-			</div>
+			<fieldset class="form-section">
+				<legend class="section-legend">Contact details</legend>
+				<div class="form-group">
+					<label for="name" class="form-label">Name *</label>
+					<input
+						type="text"
+						id="name"
+						bind:value={name}
+						required
+						class="form-input"
+						class:field-error={fieldErrors.name}
+						placeholder="Your name"
+						disabled={isSubmitting}
+						onfocus={trackStart}
+						aria-describedby={fieldErrors.name ? 'name-error' : undefined}
+					/>
+					{#if fieldErrors.name}<p id="name-error" class="field-error-msg">
+							{fieldErrors.name}
+						</p>{/if}
+				</div>
 
-			<div class="form-group">
-				<label for="email" class="form-label">Email *</label>
-				<input
-					type="email"
-					id="email"
-					bind:value={email}
-					required
-					class="form-input"
-					class:field-error={fieldErrors.email}
-					placeholder="your@email.com"
-					disabled={isSubmitting}
-					onfocus={trackStart}
-					aria-describedby={fieldErrors.email ? 'email-error' : undefined}
-				/>
-				{#if fieldErrors.email}<p id="email-error" class="field-error-msg">
-						{fieldErrors.email}
-					</p>{/if}
-			</div>
+				<div class="form-group">
+					<label for="email" class="form-label">Email *</label>
+					<input
+						type="email"
+						id="email"
+						bind:value={email}
+						required
+						class="form-input"
+						class:field-error={fieldErrors.email}
+						placeholder="your@email.com"
+						disabled={isSubmitting}
+						onfocus={trackStart}
+						aria-describedby={fieldErrors.email ? 'email-error' : undefined}
+					/>
+					{#if fieldErrors.email}<p id="email-error" class="field-error-msg">
+							{fieldErrors.email}
+						</p>{/if}
+				</div>
 
-			<div class="form-group">
-				<label for="phone" class="form-label">Phone (Optional)</label>
-				<input
-					type="tel"
-					id="phone"
-					bind:value={phone}
-					class="form-input"
-					placeholder="(401) 555-0123"
-					disabled={isSubmitting}
-					onfocus={trackStart}
-				/>
-			</div>
+				<div class="form-group">
+					<label for="phone" class="form-label">Phone (Optional)</label>
+					<input
+						type="tel"
+						id="phone"
+						bind:value={phone}
+						class="form-input"
+						placeholder="(401) 555-0123"
+						disabled={isSubmitting}
+						onfocus={trackStart}
+					/>
+				</div>
+			</fieldset>
 
-			<div class="form-group">
-				<label for="intent" class="form-label">Inquiry Type *</label>
-				<select
-					id="intent"
-					bind:value={intent}
-					required
-					class="form-input"
-					class:field-error={fieldErrors.intent}
-					disabled={isSubmitting}
-					onfocus={trackStart}
-					aria-describedby={fieldErrors.intent ? 'intent-error' : undefined}
-				>
-					<option value="">What kind of inquiry is this...</option>
-					{#each inquiryIntentOptions as option (option)}
-						<option value={option}>{option}</option>
-					{/each}
-				</select>
-				{#if fieldErrors.intent}<p id="intent-error" class="field-error-msg">
-						{fieldErrors.intent}
-					</p>{/if}
-			</div>
+			<fieldset class="form-section">
+				<legend class="section-legend">Project details</legend>
+				<div class="form-group">
+					<label for="intent" class="form-label">Inquiry Type *</label>
+					<select
+						id="intent"
+						bind:value={intent}
+						required
+						class="form-input"
+						class:field-error={fieldErrors.intent}
+						disabled={isSubmitting}
+						onfocus={trackStart}
+						aria-describedby={fieldErrors.intent ? 'intent-error' : undefined}
+					>
+						<option value="">What kind of inquiry is this...</option>
+						{#each inquiryIntentOptions as option (option)}
+							<option value={option}>{option}</option>
+						{/each}
+					</select>
+					{#if fieldErrors.intent}<p id="intent-error" class="field-error-msg">
+							{fieldErrors.intent}
+						</p>{/if}
+				</div>
 
-			<div class="form-group">
-				<label for="project" class="form-label">Project Type *</label>
-				<select
-					id="project"
-					bind:value={project}
-					required
-					class="form-input"
-					class:field-error={fieldErrors.project}
-					disabled={isSubmitting}
-					onfocus={trackStart}
-					aria-describedby={fieldErrors.project ? 'project-error' : undefined}
-				>
-					<option value="">What brings you here...</option>
-					{#each projectTypeOptions as option (option)}
-						<option value={option}>{option}</option>
-					{/each}
-				</select>
-				{#if fieldErrors.project}<p id="project-error" class="field-error-msg">
-						{fieldErrors.project}
-					</p>{/if}
-			</div>
+				<div class="form-group">
+					<label for="project" class="form-label">Project Type *</label>
+					<select
+						id="project"
+						bind:value={project}
+						required
+						class="form-input"
+						class:field-error={fieldErrors.project}
+						disabled={isSubmitting}
+						onfocus={trackStart}
+						aria-describedby={fieldErrors.project ? 'project-error' : undefined}
+					>
+						<option value="">What brings you here...</option>
+						{#each projectTypeOptions as option (option)}
+							<option value={option}>{option}</option>
+						{/each}
+					</select>
+					{#if fieldErrors.project}<p id="project-error" class="field-error-msg">
+							{fieldErrors.project}
+						</p>{/if}
+				</div>
 
-			<div class="form-group">
-				<label for="timeline" class="form-label">Preferred Timeline (Optional)</label>
-				<select
-					id="timeline"
-					bind:value={timeline}
-					class="form-input"
-					disabled={isSubmitting}
-					onfocus={trackStart}
-				>
-					<option value="">No preference yet</option>
-					{#each timelineOptions as option (option)}
-						<option value={option}>{option}</option>
-					{/each}
-				</select>
-			</div>
+				<div class="form-group">
+					<label for="timeline" class="form-label">Preferred Timeline (Optional)</label>
+					<select
+						id="timeline"
+						bind:value={timeline}
+						class="form-input"
+						disabled={isSubmitting}
+						onfocus={trackStart}
+					>
+						<option value="">No preference yet</option>
+						{#each timelineOptions as option (option)}
+							<option value={option}>{option}</option>
+						{/each}
+					</select>
+				</div>
 
-			<div class="form-group">
-				<label for="budget" class="form-label">Budget Range (Optional)</label>
-				<select
-					id="budget"
-					bind:value={budget}
-					class="form-input"
-					disabled={isSubmitting}
-					onfocus={trackStart}
-				>
-					<option value="">Prefer not to say</option>
-					{#each budgetOptions as option (option)}
-						<option value={option}>{option}</option>
-					{/each}
-				</select>
-			</div>
+				<div class="form-group">
+					<label for="budget" class="form-label">Budget Range (Optional)</label>
+					<select
+						id="budget"
+						bind:value={budget}
+						class="form-input"
+						disabled={isSubmitting}
+						onfocus={trackStart}
+					>
+						<option value="">Prefer not to say</option>
+						{#each budgetOptions as option (option)}
+							<option value={option}>{option}</option>
+						{/each}
+					</select>
+				</div>
 
-			<div class="form-group">
-				<label for="message" class="form-label">Project Details *</label>
-				<textarea
-					id="message"
-					bind:value={message}
-					required
-					rows="4"
-					class="form-input"
-					class:field-error={fieldErrors.message}
-					placeholder="Tell me about your project and any specific challenges you're facing..."
-					disabled={isSubmitting}
-					onfocus={trackStart}
-					aria-describedby={fieldErrors.message ? 'message-error' : undefined}
-				></textarea>
-				{#if fieldErrors.message}<p id="message-error" class="field-error-msg">
-						{fieldErrors.message}
-					</p>{/if}
-			</div>
+				<div class="form-group">
+					<label for="message" class="form-label">Project Details *</label>
+					<textarea
+						id="message"
+						bind:value={message}
+						required
+						rows="4"
+						class="form-input"
+						class:field-error={fieldErrors.message}
+						placeholder="Tell me about your project and any specific challenges you're facing..."
+						disabled={isSubmitting}
+						onfocus={trackStart}
+						aria-describedby={fieldErrors.message ? 'message-error' : undefined}
+					></textarea>
+					{#if fieldErrors.message}<p id="message-error" class="field-error-msg">
+							{fieldErrors.message}
+						</p>{/if}
+				</div>
+			</fieldset>
 
 			<div class="honeypot" aria-hidden="true">
 				<label for="website">Website</label>
@@ -359,6 +344,23 @@
 	.contact-form {
 		display: grid;
 		gap: 1.5rem;
+	}
+
+	.form-section {
+		border: 1px solid var(--color-border);
+		border-radius: 0.75rem;
+		padding: 1rem;
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.section-legend {
+		padding: 0 0.4rem;
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
+		color: var(--color-muted);
 	}
 
 	.form-group {
