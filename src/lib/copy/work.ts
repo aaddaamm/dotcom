@@ -48,7 +48,7 @@ export const selectedWork: WorkItem[] = [
 		outcome:
 			"Ongoing contributor across multiple subdomains of an enterprise fintech platform",
 		impactMetric:
-			"Enabled bulk nominee processing for thousands of investments in a single flow.",
+			"Baseline: fragmented nominee flows → intervention: centralized Rails bulk-processing service → outcome: thousands of investments handled in one flow.",
 		constraints: [
 			"Large enterprise codebase with multiple specialized teams",
 			"High-visibility nominee investments initiative",
@@ -89,7 +89,7 @@ export const selectedWork: WorkItem[] = [
 		outcome:
 			"Cross-product delivery and intern mentorship across a newly merged home services platform",
 		impactMetric:
-			"Shipped production work across 3 product codebases in one engagement.",
+			"Baseline: siloed post-merger product streams → intervention: shipped across 3 codebases (Vue/Java, Rails/React, Next.js) → outcome: unified delivery across brands.",
 		constraints: [
 			"Post-merger environment with separate stacks and teams",
 			"Need to deliver while context-switching between codebases",
@@ -128,7 +128,7 @@ export const selectedWork: WorkItem[] = [
 		outcome:
 			"MVP delivered on schedule using Design Sprint methodology with Shell engineering in Boston",
 		impactMetric:
-			"Delivered the MVP on schedule after a rapid onsite Design Sprint cycle.",
+			"Baseline: months of planning ambiguity → intervention: rapid onsite Design Sprint + full-stack build → outcome: MVP delivered on schedule.",
 		constraints: [
 			"Complex domain with high operational and cost implications",
 			"Tight timeline for MVP definition and delivery",
@@ -164,7 +164,7 @@ export const selectedWork: WorkItem[] = [
 		outcome:
 			"Successful MVP delivery that led to a four-year continued engagement",
 		impactMetric:
-			"MVP modernization expanded into a 4-year delivery partnership.",
+			"Baseline: slow publishing + fragmented auth → intervention: Strapi/React pipeline + Auth0 unification → outcome: engagement extended into a 4-year partnership.",
 		constraints: [
 			"Legacy platform and publishing workflow friction",
 			"Auth fragmentation across multiple product surfaces",

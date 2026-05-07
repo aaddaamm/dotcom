@@ -13,6 +13,7 @@
 		description: string;
 		seoDescription?: string;
 		stack: string[];
+		impactMetric?: string;
 		caseStudy?: {
 			situation: string;
 			work: string;
@@ -65,6 +66,10 @@
 			<span class="stack-tag">{tag}</span>
 		{/each}
 	</div>
+
+	{#if project.impactMetric}
+		<p class="impact-metric">Impact: {project.impactMetric}</p>
+	{/if}
 
 	{#if project.caseStudy}
 		<CaseStudy
@@ -148,7 +153,14 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
-		margin-bottom: 2.5rem;
+		margin-bottom: 1.25rem;
+	}
+
+	.impact-metric {
+		font-size: 0.82rem;
+		font-family: var(--font-mono);
+		color: var(--color-accent);
+		margin: 0 0 2rem;
 	}
 
 	.stack-tag {
