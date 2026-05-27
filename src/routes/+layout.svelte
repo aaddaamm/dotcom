@@ -22,7 +22,6 @@
 		initTheme();
 		initSeveranceMode();
 
-
 		// In dev only, clear old service workers to avoid stale-cache confusion.
 		if (dev && 'serviceWorker' in navigator) {
 			navigator.serviceWorker.getRegistrations().then((registrations) => {
