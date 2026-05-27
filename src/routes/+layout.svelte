@@ -1,14 +1,10 @@
 <script lang="ts">
-	import type { Component, Snippet } from 'svelte';
+	import type { Snippet } from 'svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 	import { dev } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
-	import { inject } from '@vercel/analytics';
 	import { trackCTA, trackScrollDepth } from '$lib/analytics';
-	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-	import '@fontsource/jetbrains-mono/latin-400.css';
-	import '@fontsource/jetbrains-mono/latin-500.css';
 	import '../app.css';
 	import Footer from '../components/footer.svelte';
 	import Header from '../components/header.svelte';
@@ -16,22 +12,16 @@
 	import { EMAIL, SITE_URL } from '$lib/constants';
 	import { socialLinks } from '$lib/social-links';
 	import { initTheme } from '$lib/stores/theme.svelte';
-	import { getTerminalOpen } from '$lib/stores/terminal.svelte';
+
 	import { getSeveranceMode, initSeveranceMode } from '$lib/stores/severance';
 	import { page } from '$app/state';
 
 	let { children }: { children: Snippet } = $props();
-	let TerminalComponent = $state<Component | null>(null);
 
 	onMount(() => {
 		initTheme();
 		initSeveranceMode();
-		injectSpeedInsights();
-		inject({ mode: dev ? 'development' : 'production' });
 
-		void import('../components/terminal.svelte').then((module) => {
-			TerminalComponent = module.default;
-		});
 
 		// In dev only, clear old service workers to avoid stale-cache confusion.
 		if (dev && 'serviceWorker' in navigator) {
@@ -155,11 +145,7 @@
 	<Footer />
 </div>
 
-{#if page.url.pathname !== '/terminal' && TerminalComponent}
-	<TerminalComponent />
-{/if}
-
-{#if page.url.pathname !== '/contact' && !getTerminalOpen()}
+{#if page.url.pathname !== '/contact'}
 	<a
 		href="/contact"
 		class="mobile-fab sm:hidden"

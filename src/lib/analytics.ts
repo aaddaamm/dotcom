@@ -1,88 +1,96 @@
-import { track } from "@vercel/analytics";
+type VaEventPayload = Record<string, string | number | boolean>;
+
+function track(name: string, data?: VaEventPayload) {
+	if (typeof window === 'undefined') return;
+	const normalized = data
+		? Object.fromEntries(Object.entries(data).map(([key, value]) => [key, String(value)]))
+		: undefined;
+	window.va?.track(name, normalized);
+}
 
 export type CtaLocation =
-	| "home-hero-primary"
-	| "home-hero-secondary"
-	| "home-hero-hiring"
-	| "home-hero-contract"
-	| "home-hero-resume"
-	| "services"
-	| "mobile-fab"
-	| "contact-top-secondary"
-	| "contact-top-secondary-work"
-	| "hire-top-primary"
-	| "hire-top-secondary"
-	| "hire-bottom-primary"
-	| "work-top-primary"
-	| "work-top-secondary"
-	| "teach";
+	| 'home-hero-primary'
+	| 'home-hero-secondary'
+	| 'home-hero-hiring'
+	| 'home-hero-contract'
+	| 'home-hero-resume'
+	| 'services'
+	| 'mobile-fab'
+	| 'contact-top-secondary'
+	| 'contact-top-secondary-work'
+	| 'hire-top-primary'
+	| 'hire-top-secondary'
+	| 'hire-bottom-primary'
+	| 'work-top-primary'
+	| 'work-top-secondary'
+	| 'teach';
 
-export type ResumeDownloadLocation = "hire-page";
+export type ResumeDownloadLocation = 'hire-page';
 
 export function trackCTA(label: string, location: CtaLocation) {
-	track("CTA Clicked", { label, location });
+	track('CTA Clicked', { label, location });
 }
 
 export function trackScrollDepth(depth: string, path: string) {
-	track("Scroll Depth", { depth, path });
+	track('Scroll Depth', { depth, path });
 }
 
-export function trackFormView(source: "contact-page") {
-	track("Contact Form Viewed", { source });
+export function trackFormView(source: 'contact-page') {
+	track('Contact Form Viewed', { source });
 }
 
-export function trackFormStart(source: "contact-page") {
-	track("Contact Form Started", { source });
+export function trackFormStart(source: 'contact-page') {
+	track('Contact Form Started', { source });
 }
 
 export function trackFormValidationError(fieldCount: number) {
-	track("Contact Form Validation Error", { field_count: fieldCount });
+	track('Contact Form Validation Error', { field_count: fieldCount });
 }
 
 export type ContactIntent =
-	| "full-time"
-	| "contract"
-	| "consulting"
-	| "speaking"
-	| "collaboration"
-	| "general";
+	| 'full-time'
+	| 'contract'
+	| 'consulting'
+	| 'speaking'
+	| 'collaboration'
+	| 'general';
 
 export function trackFormSubmit(
 	intent: ContactIntent,
-	hasPhone: "yes" | "no",
-	hasTimeline: "yes" | "no",
-	hasBudget: "yes" | "no",
+	hasPhone: 'yes' | 'no',
+	hasTimeline: 'yes' | 'no',
+	hasBudget: 'yes' | 'no'
 ) {
-	track("Contact Form Submitted", {
+	track('Contact Form Submitted', {
 		intent,
 		has_phone: hasPhone,
 		has_timeline: hasTimeline,
-		has_budget: hasBudget,
+		has_budget: hasBudget
 	});
 }
 
 export function trackFormSubmitOutcome(
-	status: "success" | "fallback" | "error",
-	intent: ContactIntent,
+	status: 'success' | 'fallback' | 'error',
+	intent: ContactIntent
 ) {
-	track("Contact Form Submit Outcome", { status, intent });
+	track('Contact Form Submit Outcome', { status, intent });
 }
 
-export function trackTerminalOpen(source: "keyboard" | "button" | "page") {
-	track("Terminal Opened", { source });
+export function trackTerminalOpen(source: 'keyboard' | 'button' | 'page') {
+	track('Terminal Opened', { source });
 }
 
 export function trackTerminalCommand(command: string, mode: string) {
-	track("Terminal Command", { command, mode });
+	track('Terminal Command', { command, mode });
 }
 
 export function trackTerminalModeChange(to: string) {
-	track("Terminal Mode Changed", { to });
+	track('Terminal Mode Changed', { to });
 }
 
 export function trackResumeDownload(
 	location: ResumeDownloadLocation,
-	fileType: "pdf" | "docx" = "pdf",
+	fileType: 'pdf' | 'docx' = 'pdf'
 ) {
-	track("Resume Downloaded", { location, file_type: fileType });
+	track('Resume Downloaded', { location, file_type: fileType });
 }
