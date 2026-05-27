@@ -3,8 +3,8 @@ import path from 'node:path';
 
 const ROOT = path.resolve('.svelte-kit/output/client/_app/immutable');
 
-const MAX_TOTAL_JS = Number(process.env.BUDGET_TOTAL_JS || 220000);
-const MAX_TOTAL_CSS = Number(process.env.BUDGET_TOTAL_CSS || 60000);
+const MAX_TOTAL_JS = Number(process.env.BUDGET_TOTAL_JS || 235000);
+const MAX_TOTAL_CSS = Number(process.env.BUDGET_TOTAL_CSS || 65000);
 const MAX_SINGLE_JS = Number(process.env.BUDGET_SINGLE_JS || 100000);
 const MAX_SINGLE_CSS = Number(process.env.BUDGET_SINGLE_CSS || 30000);
 

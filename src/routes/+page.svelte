@@ -2,7 +2,6 @@
 	import SeoHead from '../components/seo-head.svelte';
 	import HeroSection from '../components/hero-section.svelte';
 	import TrustStrip from '../components/trust-strip.svelte';
-	import ServicesSection from '../components/services-section.svelte';
 	import RecentlyShipped from '../components/recently-shipped.svelte';
 	import OutcomeProof from '../components/outcome-proof.svelte';
 	import ProofRail from '../components/proof-rail.svelte';
@@ -94,7 +93,6 @@
 <div class="max-w-3xl mx-auto px-6" class:rune-glow={showRuneToast} bind:this={mainContainer}>
 	<HeroSection />
 	<TrustStrip />
-	<ServicesSection />
 	<ProofRail />
 	<OutcomeProof />
 	<RecentlyShipped />
