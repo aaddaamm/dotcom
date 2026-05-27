@@ -1,6 +1,5 @@
 <script lang="ts">
 	import SeoHead from '../../components/seo-head.svelte';
-	import Terminal from '../../components/terminal.svelte';
 	import { pageSeo } from '$lib/seo';
 </script>
 
@@ -10,13 +9,7 @@
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
-<div class="terminal-page max-w-3xl mx-auto px-6 py-8">
-	<Terminal fullscreen />
+<div class="max-w-3xl mx-auto px-6 py-16">
+	<h1 class="section-heading mb-4">Terminal</h1>
+	<p class="body-text">The interactive terminal is currently offline while the site is being optimized.</p>
 </div>
-
-<style>
-	.terminal-page {
-		display: flex;
-		flex-direction: column;
-	}
-</style>
