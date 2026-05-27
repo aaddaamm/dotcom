@@ -10,9 +10,7 @@
 	};
 
 	let input = $state('');
-	let history = $state<Entry[]>([
-		{ type: 'output', text: "type 'help' for available commands." }
-	]);
+	let history = $state<Entry[]>([{ type: 'output', text: "type 'help' for available commands." }]);
 	let inputEl: HTMLInputElement;
 	let scrollEl: HTMLDivElement;
 
@@ -83,11 +81,16 @@
 		<div style="flex: 1; overflow: auto; padding: 1rem;" bind:this={scrollEl}>
 			{#each history as entry, i (`${entry.type}-${i}-${entry.text}`)}
 				{#if entry.type === 'input'}
-					<div style="font-size: 0.82rem; line-height: 1.55; word-break: break-word; color: var(--color-text);">
-						<span style="color: var(--color-accent);">{prompt}</span> {entry.text}
+					<div
+						style="font-size: 0.82rem; line-height: 1.55; word-break: break-word; color: var(--color-text);"
+					>
+						<span style="color: var(--color-accent);">{prompt}</span>
+						{entry.text}
 					</div>
 				{:else}
-					<div style="font-size: 0.82rem; line-height: 1.55; word-break: break-word; color: var(--color-muted);">
+					<div
+						style="font-size: 0.82rem; line-height: 1.55; word-break: break-word; color: var(--color-muted);"
+					>
 						{entry.text}
 					</div>
 				{/if}
