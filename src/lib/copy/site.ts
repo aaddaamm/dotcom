@@ -74,7 +74,12 @@ export const services: Array<{
 		icon: 'globe',
 		description:
 			'Partner with your agency team as a senior engineer for high-trust client work, technical scoping, and production delivery across modern web stacks.',
-		examples: ['Client project support', 'Technical discovery', 'Backend/API work', 'Launch support'],
+		examples: [
+			'Client project support',
+			'Technical discovery',
+			'Backend/API work',
+			'Launch support'
+		],
 		outcome: 'Reliable technical execution your clients can trust'
 	},
 	{

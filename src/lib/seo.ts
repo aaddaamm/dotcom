@@ -6,57 +6,57 @@ export type SeoConfig = {
 
 export const pageSeo = {
 	home: {
-		title: "Adam Robinson — Freelance Engineer for Startups & Agencies",
+		title: 'Adam Robinson — Freelance Engineer for Startups & Agencies',
 		description:
-			"Providence-based freelance senior software engineer for startups and agencies. SvelteKit, TypeScript, Rails, and Node.js delivery with production-ready outcomes.",
-		path: "/",
+			'Providence-based freelance senior software engineer for startups and agencies. SvelteKit, TypeScript, Rails, and Node.js delivery with production-ready outcomes.',
+		path: '/'
 	},
 	hire: {
-		title: "Hire Adam Robinson — Freelance Engineer for Startups & Agencies",
+		title: 'Hire Adam Robinson — Freelance Engineer for Startups & Agencies',
 		description:
-			"Freelance senior software engineer in Providence, RI. I help startup and agency teams ship reliable web products faster through embedded contract engagements.",
-		path: "/hire",
+			'Freelance senior software engineer in Providence, RI. I help startup and agency teams ship reliable web products faster through embedded contract engagements.',
+		path: '/hire'
 	},
 	contact: {
-		title: "Book a Project Call — Adam Robinson",
+		title: 'Book a Project Call — Adam Robinson',
 		description:
-			"Book a project call with Adam Robinson, Providence-based freelance senior engineer for startups and agencies. Contract support for teams shipping with confidence.",
-		path: "/contact",
+			'Book a project call with Adam Robinson, Providence-based freelance senior engineer for startups and agencies. Contract support for teams shipping with confidence.',
+		path: '/contact'
 	},
 	work: {
-		title: "Work — Adam Robinson",
+		title: 'Work — Adam Robinson',
 		description:
-			"Ten-plus years of engineering work across fintech, healthcare, and enterprise. Rails, Node.js, TypeScript. Staff augmentation and technical leadership.",
-		path: "/work",
+			'Ten-plus years of engineering work across fintech, healthcare, and enterprise. Rails, Node.js, TypeScript. Staff augmentation and technical leadership.',
+		path: '/work'
 	},
 	now: {
-		title: "Now — Adam Robinson",
+		title: 'Now — Adam Robinson',
 		description:
-			"What I am focused on now: current engineering work, experiments, writing themes, and collaboration openings.",
-		path: "/now",
+			'What I am focused on now: current engineering work, experiments, writing themes, and collaboration openings.',
+		path: '/now'
 	},
 	blog: {
-		title: "Blog — Adam Robinson",
+		title: 'Blog — Adam Robinson',
 		description:
-			"Writing on backend engineering, Rails, Node.js, and TypeScript — practical insights from ten-plus years across fintech, healthcare, and enterprise.",
-		path: "/blog",
+			'Writing on backend engineering, Rails, Node.js, and TypeScript — practical insights from ten-plus years across fintech, healthcare, and enterprise.',
+		path: '/blog'
 	},
 	teach: {
-		title: "Learning Resources — Adam Robinson",
+		title: 'Learning Resources — Adam Robinson',
 		description:
-			"Curated list of the best free and paid resources for learning programming, web development, and software engineering skills.",
-		path: "/teach",
+			'Curated list of the best free and paid resources for learning programming, web development, and software engineering skills.',
+		path: '/teach'
 	},
 	play: {
-		title: "Reading — Adam Robinson",
+		title: 'Reading — Adam Robinson',
 		description:
-			"Books Adam Robinson is currently reading and recently finished — a curated reading list spanning software engineering, design, and more.",
-		path: "/play",
+			'Books Adam Robinson is currently reading and recently finished — a curated reading list spanning software engineering, design, and more.',
+		path: '/play'
 	},
 	terminal: {
-		title: "Terminal — Adam Robinson",
+		title: 'Terminal — Adam Robinson',
 		description:
-			"An interactive terminal for the curious. Try whoami, ls /work, or sudo hire adam.",
-		path: "/terminal",
-	},
+			'An interactive terminal for the curious. Try whoami, ls /work, or sudo hire adam.',
+		path: '/terminal'
+	}
 } as const satisfies Record<string, SeoConfig>;

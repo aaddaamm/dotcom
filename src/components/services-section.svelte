@@ -44,7 +44,11 @@
 			You work directly with me from kickoff to handoff — clear scope, weekly progress, and
 			production-ready delivery. Most engagements can start within one to two weeks.
 		</p>
-		<a href="/contact" class="btn-primary" onclick={() => trackCTA('Book a project call', 'services')}>
+		<a
+			href="/contact"
+			class="btn-primary"
+			onclick={() => trackCTA('Book a project call', 'services')}
+		>
 			Book a project call
 		</a>
 	</div>
