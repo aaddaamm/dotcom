@@ -7,7 +7,7 @@
 <!-- Services -->
 <section id="services" aria-labelledby="services-heading" class="py-14 section-border">
 	<h2 id="services-heading" class="section-heading mb-8">
-		How I Can Help
+		Freelance Services for Startups & Agencies
 		<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 	</h2>
 	<div class="grid gap-8">
@@ -41,11 +41,11 @@
 
 	<div class="mt-8 text-center">
 		<p class="body-text mb-4">
-			Interested in working together? You'll deal directly with me — no middlemen, no ramp-up
-			delays. Most engagements can start within a week or two.
+			You work directly with me from kickoff to handoff — clear scope, weekly progress, and
+			production-ready delivery. Most engagements can start within one to two weeks.
 		</p>
-		<a href="/contact" class="btn-primary" onclick={() => trackCTA('Get In Touch', 'services')}>
-			Get In Touch
+		<a href="/contact" class="btn-primary" onclick={() => trackCTA('Book a project call', 'services')}>
+			Book a project call
 		</a>
 	</div>
 </section>

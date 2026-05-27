@@ -57,38 +57,38 @@ export const services: Array<{
 	outcome: string;
 }> = [
 	{
-		title: 'Embedded Engineering',
+		title: 'Startup Product Delivery',
 		icon: 'code',
 		description:
-			'Join your team and start shipping. I get up to speed without heavy hand-holding, work across the full stack, and contribute from day one.',
+			'Embed quickly with your product team to unblock roadmap work, ship core features, and reduce technical drag without adding management overhead.',
 		examples: [
-			'Feature development',
-			'Legacy modernization',
-			'Cross-team integration',
-			'Greenfield builds'
+			'MVP feature delivery',
+			'Full-stack execution',
+			'Tech debt cleanup',
+			'Ship-ready handoff'
 		],
-		outcome: 'A senior engineer who ships from day one'
+		outcome: 'Faster shipping velocity with senior-level ownership'
 	},
 	{
-		title: 'Platform & Backend Engineering',
+		title: 'Agency Delivery Partner',
 		icon: 'globe',
 		description:
-			'Build or improve the systems behind your product — the infrastructure, data flow, and backend services that keep things running.',
-		examples: ['API design', 'Authentication systems', 'Service architecture', 'Performance work'],
-		outcome: 'Reliable, well-structured systems built to last'
+			'Partner with your agency team as a senior engineer for high-trust client work, technical scoping, and production delivery across modern web stacks.',
+		examples: ['Client project support', 'Technical discovery', 'Backend/API work', 'Launch support'],
+		outcome: 'Reliable technical execution your clients can trust'
 	},
 	{
-		title: 'Technical Leadership',
+		title: 'Platform Stabilization & Modernization',
 		icon: 'lightbulb',
 		description:
-			"Lead a team, set technical direction, or help plan a complex initiative. I've led engineering teams through new builds and full platform overhauls.",
+			'Fix fragile systems, modernize legacy areas, and make your stack easier to maintain so your team can ship confidently after the engagement.',
 		examples: [
-			'Team leadership',
-			'Architecture review',
-			'Technical planning',
-			'Engineering culture'
+			'Legacy modernization',
+			'Architecture guidance',
+			'Performance and reliability',
+			'Cross-team enablement'
 		],
-		outcome: 'Better decisions, faster delivery, stronger teams'
+		outcome: 'A healthier platform with clearer execution paths'
 	}
 ];
 
@@ -131,9 +131,9 @@ export const faqItems: FaqItem[] = [
 ];
 
 export const heroMessaging: HeroMessaging = {
-	audienceKeywords: ['full-time', 'contract', 'Hiring manager', 'Need contract help'],
-	availability: 'Actively available for full-time senior roles and select contract engagements.',
-	ctaOrder: ['Start a conversation', 'See hiring fit', 'Download résumé']
+	audienceKeywords: ['local', 'startups', 'agencies', 'Book a project call'],
+	availability: 'Now booking select freelance engagements for startups and agencies.',
+	ctaOrder: ['Book a project call', 'See services fit', 'Download résumé']
 };
 
 export const homepageMetrics: {

@@ -12,14 +12,14 @@
 			<span class="sr-only">— Senior Software Engineer</span>
 		</h1>
 	</div>
-	<p class="hero-subtitle font-mono" role="doc-subtitle">SENIOR SOFTWARE ENGINEER</p>
+	<p class="hero-subtitle font-mono" role="doc-subtitle">LOCAL FREELANCE ENGINEER</p>
 	<p class="body-text">
-		I help product teams ship faster by embedding as a senior IC/tech lead who ramps quickly,
-		reduces delivery risk, and ships measurable production outcomes.
+		Providence-based senior engineer helping startups and agencies ship production-ready
+		SvelteKit/TypeScript work faster — from product delivery to platform modernization.
 	</p>
 	<p class="audience-line">
-		<span>• Hiring manager: senior IC/tech lead ownership for full-time roles.</span>
-		<span>• Contract team: fast embed, clear execution, reliable shipping cadence.</span>
+		<span>• Startups: senior execution to move roadmap work from blocked to launched.</span>
+		<span>• Agencies: trusted technical partner for high-stakes client delivery.</span>
 	</p>
 	<p class="availability-line" aria-label="Current availability">
 		<span class="availability-dot" aria-hidden="true"></span>
@@ -46,16 +46,16 @@
 		<a
 			href="/contact"
 			class="btn-primary text-center"
-			onclick={() => trackCTA('Start a conversation (hiring)', 'home-hero-primary')}
+			onclick={() => trackCTA('Book a project call', 'home-hero-primary')}
 		>
-			Start a conversation
+			Book a project call
 		</a>
 		<a
 			href="/hire"
 			class="btn-secondary text-center"
-			onclick={() => trackCTA('See hiring fit (contract)', 'home-hero-secondary')}
+			onclick={() => trackCTA('See services fit', 'home-hero-secondary')}
 		>
-			See hiring fit
+			See services fit
 		</a>
 		<a
 			href="/adam_robinson.pdf"
@@ -67,12 +67,12 @@
 	</div>
 
 	<div class="mini-cta-links" aria-label="Choose your path">
-		<a href="/hire" onclick={() => trackCTA('Hiring manager mini-CTA', 'home-hero-hiring')}>
-			Hiring manager?
+		<a href="/contact" onclick={() => trackCTA('Startup mini-CTA', 'home-hero-hiring')}>
+			Building a startup?
 		</a>
 		<span aria-hidden="true">•</span>
-		<a href="/contact" onclick={() => trackCTA('Contract help mini-CTA', 'home-hero-contract')}>
-			Need contract help?
+		<a href="/contact" onclick={() => trackCTA('Agency mini-CTA', 'home-hero-contract')}>
+			Running an agency team?
 		</a>
 	</div>
 </section>
