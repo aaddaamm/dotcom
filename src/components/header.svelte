@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { ROLE_TITLE } from '$lib/constants';
 	import { getTheme, toggleTheme } from '$lib/stores/theme.svelte';
 	import Icon from './icon.svelte';
 
@@ -18,7 +19,7 @@
 			<span class="header-cursor" aria-hidden="true"></span>
 			<span class="header-wordmark">
 				<span class="header-name">adam robinson</span>
-				<span class="header-subtitle">senior software engineer</span>
+				<span class="header-subtitle">{ROLE_TITLE}</span>
 			</span>
 		</a>
 

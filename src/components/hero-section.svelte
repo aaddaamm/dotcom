@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { trackCTA } from '$lib/analytics';
 	import { heroMessaging, homepageMetrics } from '$lib/copy';
+	import { ROLE_TITLE } from '$lib/constants';
 </script>
 
 <!-- Hero -->
@@ -9,10 +10,10 @@
 		<div class="hero-cursor cursor-blink" aria-hidden="true"></div>
 		<h1 class="hero-name font-mono">
 			adam robinson
-			<span class="sr-only">— Senior Software Engineer</span>
+			<span class="sr-only">— {ROLE_TITLE}</span>
 		</h1>
 	</div>
-	<p class="hero-subtitle font-mono" role="doc-subtitle">LOCAL FREELANCE ENGINEER</p>
+	<p class="hero-subtitle font-mono" role="doc-subtitle">{ROLE_TITLE}</p>
 	<p class="body-text">
 		Providence-based senior engineer helping teams ship production-ready software faster — from
 		product delivery to platform modernization.

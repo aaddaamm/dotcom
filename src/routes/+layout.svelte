@@ -9,7 +9,7 @@
 	import Footer from '../components/footer.svelte';
 	import Header from '../components/header.svelte';
 	import JsonLd from '../components/json-ld.svelte';
-	import { EMAIL, SITE_URL } from '$lib/constants';
+	import { EMAIL, ROLE_TITLE, SITE_URL } from '$lib/constants';
 	import { socialLinks } from '$lib/social-links';
 	import { initTheme } from '$lib/stores/theme.svelte';
 
@@ -82,10 +82,10 @@
 		'@context': 'https://schema.org',
 		'@type': 'Person',
 		name: 'Adam Robinson',
-		jobTitle: 'Senior Software Engineer',
+		jobTitle: ROLE_TITLE,
 		hasOccupation: {
 			'@type': 'Occupation',
-			name: 'Senior Software Engineer',
+			name: ROLE_TITLE,
 			skills:
 				'TypeScript, SvelteKit, React, Node.js, Ruby on Rails, backend engineering, platform modernization'
 		},
