@@ -13,9 +13,14 @@ const handlers = {
 	)
 } as const;
 
+type Shelf = keyof typeof handlers;
+
+function isShelf(value: string): value is Shelf {
+	return value === 'read' || value === 'currently-reading';
+}
+
 export const GET: RequestHandler = ({ fetch, params }) => {
-	const handler = handlers[params.shelf as keyof typeof handlers];
-	if (!handler) {
+	if (!isShelf(params.shelf)) {
 		return new Response(JSON.stringify({ error: 'Shelf not found' }), {
 			status: 404,
 			headers: {
@@ -23,5 +28,5 @@ export const GET: RequestHandler = ({ fetch, params }) => {
 			}
 		});
 	}
-	return handler(fetch);
+	return handlers[params.shelf](fetch);
 };

@@ -1,4 +1,5 @@
 import { getRedis } from '$lib/server/redis';
+import { contactLogger } from '$lib/server/contact-logger';
 
 const RATE_LIMIT_WINDOW = 15 * 60; // 15 minutes in seconds
 const RATE_LIMIT_MAX = 3;
@@ -21,7 +22,7 @@ function checkMemoryRateLimit(ip: string): boolean {
 export async function isRateLimited(ip: string): Promise<boolean> {
 	const redis = getRedis();
 	if (!redis) {
-		console.warn('Rate limit Redis unavailable — using in-memory fallback');
+		contactLogger.warn('Rate limit Redis unavailable — using in-memory fallback');
 		return checkMemoryRateLimit(ip);
 	}
 	try {
@@ -30,7 +31,7 @@ export async function isRateLimited(ip: string): Promise<boolean> {
 		if (count === 1) await redis.expire(key, RATE_LIMIT_WINDOW);
 		return count > RATE_LIMIT_MAX;
 	} catch {
-		console.warn('Rate limit Redis error — using in-memory fallback');
+		contactLogger.warn('Rate limit Redis error — using in-memory fallback');
 		return checkMemoryRateLimit(ip);
 	}
 }
