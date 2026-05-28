@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { onDestroy, tick, untrack } from 'svelte';
 	import { page } from '$app/state';
-	import { getTerminalOpen, setTerminalClosed, syncTerminalOpen } from '$lib/stores/terminal.svelte';
+	import {
+		getTerminalOpen,
+		setTerminalClosed,
+		syncTerminalOpen
+	} from '$lib/stores/terminal.svelte';
 	import { TerminalState } from '$lib/terminal-state.svelte';
 	import { trackTerminalOpen } from '$lib/analytics';
 	import { EMAIL } from '$lib/constants';

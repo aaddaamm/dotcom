@@ -1,8 +1,19 @@
 import type { RequestHandler } from './$types';
 import { validateEmail, type ContactFormData } from '$lib/validation';
 import { isRateLimited } from '$lib/server/rateLimit';
-import { sendContactNotification, logFailedSubmission, formatInquirySubject } from '$lib/server/contactEmail';
-import { badRequest, forbidden, ok, serverError, serviceUnavailable, tooManyRequests } from '$lib/server/api-response';
+import {
+	sendContactNotification,
+	logFailedSubmission,
+	formatInquirySubject
+} from '$lib/server/contactEmail';
+import {
+	badRequest,
+	forbidden,
+	ok,
+	serverError,
+	serviceUnavailable,
+	tooManyRequests
+} from '$lib/server/api-response';
 import {
 	buildFailedSubmissionBody,
 	getContactValidationError,
@@ -13,8 +24,9 @@ import { SITE_URL } from '$lib/constants';
 import { dev } from '$app/environment';
 import { contactLogger } from '$lib/server/contact-logger';
 
-const SUCCESS_MESSAGE = "Thank you for your message! I'll respond within 24 hours.";
-const FALLBACK_SUCCESS_MESSAGE = "Message received — there was a hiccup on our end but your submission was saved. I'll follow up shortly.";
+const SUCCESS_MESSAGE = 'Thank you for your message! I\'ll respond within 24 hours.';
+const FALLBACK_SUCCESS_MESSAGE =
+	'Message received — there was a hiccup on our end but your submission was saved. I\'ll follow up shortly.';
 
 function isAllowedOrigin(origin: string | null): boolean {
 	if (!origin) return true;
@@ -26,10 +38,7 @@ function isAllowedOrigin(origin: string | null): boolean {
 
 	if (allowedOrigins.has(origin)) return true;
 	if (!dev) return false;
-	return (
-		origin.startsWith("http://localhost:") ||
-		origin.startsWith("http://127.0.0.1:")
-	);
+	return origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:');
 }
 
 export const POST: RequestHandler = async ({ request, getClientAddress }) => {
@@ -92,11 +101,13 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 			);
 			const logged = await logFailedSubmission(sanitized, plainBody, clientIP);
 			if (!logged) {
-				return serviceUnavailable('Email delivery failed and the submission could not be saved. Please email me directly.');
+				return serviceUnavailable(
+					'Email delivery failed and the submission could not be saved. Please email me directly.'
+				);
 			}
 			return ok({
 				success: true,
-				message: FALLBACK_SUCCESS_MESSAGE,
+				message: FALLBACK_SUCCESS_MESSAGE
 			});
 		}
 	} catch (error) {
