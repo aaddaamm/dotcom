@@ -83,7 +83,10 @@ async function fetchFromGithub(fetch: typeof globalThis.fetch): Promise<GithubAc
 		};
 
 		if (json.errors?.length) {
-			contactLogger.error('GithubService: GraphQL errors:', json.errors.map((err) => err.message));
+			contactLogger.error(
+				'GithubService: GraphQL errors:',
+				json.errors.map((err) => err.message)
+			);
 			return null;
 		}
 

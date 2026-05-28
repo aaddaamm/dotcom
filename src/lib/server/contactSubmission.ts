@@ -8,17 +8,11 @@ type RequiredContactFields = ContactFormData & {
 	message: string;
 };
 
-export function hasRequiredContactFields(
-	data: ContactFormData,
-): data is RequiredContactFields {
-	return Boolean(
-		data.name && data.email && data.intent && data.project && data.message,
-	);
+export function hasRequiredContactFields(data: ContactFormData): data is RequiredContactFields {
+	return Boolean(data.name && data.email && data.intent && data.project && data.message);
 }
 
-export function sanitizeContactData(
-	data: RequiredContactFields,
-): ContactFormData {
+export function sanitizeContactData(data: RequiredContactFields): ContactFormData {
 	return {
 		name: data.name.trim().slice(0, 100),
 		email: data.email.trim().slice(0, 100),
@@ -31,9 +25,7 @@ export function sanitizeContactData(
 	};
 }
 
-export function getContactValidationError(
-	data: ContactFormData,
-): string | null {
+export function getContactValidationError(data: ContactFormData): string | null {
 	const validation = validateContactForm(data);
 	if (validation.isValid) return null;
 	return Object.values(validation.errors)[0] || 'Invalid form data';
@@ -42,7 +34,7 @@ export function getContactValidationError(
 export function buildFailedSubmissionBody(
 	data: ContactFormData,
 	ip: string,
-	userAgent: string | null,
+	userAgent: string | null
 ): string {
 	return [
 		'New contact form submission from adamrobinson.tech:',
