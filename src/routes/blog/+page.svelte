@@ -104,13 +104,13 @@
 	}
 
 	.tag {
-		color: var(--color-accent);
-		background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+		color: var(--color-text);
+		background-color: color-mix(in srgb, var(--color-accent) 12%, var(--color-bg));
 	}
 
 	.featured-badge {
-		color: var(--color-accent);
-		background-color: color-mix(in srgb, var(--color-accent) 12%, transparent);
+		color: var(--color-text);
+		background-color: color-mix(in srgb, var(--color-accent) 14%, var(--color-bg));
 		border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
 	}
 

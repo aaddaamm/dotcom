@@ -140,8 +140,8 @@
 	}
 
 	.badge-accent {
-		background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
-		color: var(--color-accent);
+		background-color: color-mix(in srgb, var(--color-accent) 14%, var(--color-bg));
+		color: var(--color-text);
 	}
 
 	.badge-muted {
@@ -185,7 +185,7 @@
 	}
 
 	.star-filled {
-		color: var(--color-accent);
+		color: var(--color-text);
 	}
 
 	.star-empty {
