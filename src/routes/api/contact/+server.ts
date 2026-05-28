@@ -1,5 +1,5 @@
 import type { RequestHandler } from './$types';
-import type { ContactFormData } from '$lib/validation';
+import { validateEmail, type ContactFormData } from '$lib/validation';
 import { isRateLimited } from '$lib/server/rateLimit';
 import { sendContactNotification, logFailedSubmission, formatInquirySubject } from '$lib/server/contactEmail';
 import { badRequest, forbidden, ok, serverError, serviceUnavailable, tooManyRequests } from '$lib/server/api-response';
@@ -7,7 +7,6 @@ import {
 	buildFailedSubmissionBody,
 	getContactValidationError,
 	hasRequiredContactFields,
-	isValidContactEmail,
 	sanitizeContactData
 } from '$lib/server/contactSubmission';
 import { SITE_URL } from '$lib/constants';
@@ -65,7 +64,7 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 			return badRequest('Missing required fields');
 		}
 
-		if (!isValidContactEmail(data.email)) {
+		if (!validateEmail(data.email)) {
 			return badRequest('Invalid email format');
 		}
 
