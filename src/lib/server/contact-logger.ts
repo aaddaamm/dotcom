@@ -1,4 +1,5 @@
 import { dev } from '$app/environment';
+import { inspect } from 'node:util';
 
 type Meta = Record<string, unknown>;
 
@@ -12,12 +13,20 @@ function redact(meta: Meta): Meta {
 	return clone;
 }
 
+function writeLine(stream: NodeJS.WriteStream, message: string, parts: unknown[] = []) {
+	const tail = parts.length ? ` ${parts.map((part) => inspect(part, { depth: 3 })).join(' ')}` : '';
+	stream.write(`${message}${tail}\n`);
+}
+
 export const contactLogger = {
 	info(message: string, meta?: Meta) {
 		if (!dev) return;
-		console.log(message, meta ? redact(meta) : undefined);
+		writeLine(process.stdout, message, meta ? [redact(meta)] : []);
+	},
+	warn(message: string, meta?: Meta) {
+		writeLine(process.stderr, message, meta ? [redact(meta)] : []);
 	},
 	error(message: string, error?: unknown, meta?: Meta) {
-		console.error(message, error, meta ? redact(meta) : undefined);
+		writeLine(process.stderr, message, [error, ...(meta ? [redact(meta)] : [])]);
 	}
 };

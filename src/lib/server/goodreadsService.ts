@@ -2,6 +2,7 @@ import { XMLParser } from 'fast-xml-parser';
 import type { GoodreadsBook } from '$lib/types';
 import { GOODREADS_SHELVES } from '$lib/constants';
 import { getRedis } from '$lib/server/redis';
+import { contactLogger } from '$lib/server/contact-logger';
 
 const RSS_BASE_URL = 'https://www.goodreads.com/review/list_rss/92024399';
 const CACHE_TTL_SECONDS = 60 * 60; // 1 hour
@@ -158,7 +159,7 @@ export namespace GoodreadsService {
 
 			return allBooks;
 		} catch (err) {
-			console.error(`GoodreadsService: failed to fetch shelf "${shelf}":`, err);
+			contactLogger.error(`GoodreadsService: failed to fetch shelf "${shelf}":`, err);
 			return getStaleData(shelf);
 		}
 	}

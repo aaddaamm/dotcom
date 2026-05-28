@@ -2,6 +2,7 @@ import type { GithubActivity } from '$lib/types';
 import { GITHUB_USERNAME } from '$lib/constants';
 import { getRedis } from '$lib/server/redis';
 import { env } from '$env/dynamic/private';
+import { contactLogger } from '$lib/server/contact-logger';
 
 const CACHE_TTL_SECONDS = 60 * 60 * 24; // 24 hours
 const CACHE_TTL_MS = CACHE_TTL_SECONDS * 1000;
@@ -28,7 +29,7 @@ const memoryCache: { data: GithubActivity | null; timestamp: number } = {
 
 async function fetchFromGithub(fetch: typeof globalThis.fetch): Promise<GithubActivity | null> {
 	if (!env.GITHUB_TOKEN) {
-		console.warn('GithubService: GITHUB_TOKEN not set — skipping fetch');
+		contactLogger.warn('GithubService: GITHUB_TOKEN not set — skipping fetch');
 		return null;
 	}
 
@@ -64,7 +65,7 @@ async function fetchFromGithub(fetch: typeof globalThis.fetch): Promise<GithubAc
 		});
 
 		if (!response.ok) {
-			console.error(`GithubService: fetch failed with status ${response.status}`);
+			contactLogger.error(`GithubService: fetch failed with status ${response.status}`);
 			return null;
 		}
 
@@ -82,10 +83,7 @@ async function fetchFromGithub(fetch: typeof globalThis.fetch): Promise<GithubAc
 		};
 
 		if (json.errors?.length) {
-			console.error(
-				'GithubService: GraphQL errors:',
-				json.errors.map((err) => err.message)
-			);
+			contactLogger.error('GithubService: GraphQL errors:', json.errors.map((err) => err.message));
 			return null;
 		}
 
@@ -106,7 +104,7 @@ async function fetchFromGithub(fetch: typeof globalThis.fetch): Promise<GithubAc
 			languages: [...languageSet]
 		};
 	} catch (err) {
-		console.error('GithubService: fetch threw:', err);
+		contactLogger.error('GithubService: fetch threw:', err);
 		return null;
 	}
 }
@@ -131,7 +129,7 @@ export namespace GithubService {
 					return cached;
 				}
 			} catch (err) {
-				console.error('GithubService: Redis read failed:', err);
+				contactLogger.error('GithubService: Redis read failed:', err);
 			}
 		}
 
@@ -146,7 +144,7 @@ export namespace GithubService {
 			try {
 				await redis.set(CACHE_KEY, fresh, { ex: CACHE_TTL_SECONDS });
 			} catch (err) {
-				console.error('GithubService: Redis write failed:', err);
+				contactLogger.error('GithubService: Redis write failed:', err);
 			}
 		}
 

@@ -1,5 +1,6 @@
 import matter from 'gray-matter';
 import { dev } from '$app/environment';
+import { contactLogger } from '$lib/server/contact-logger';
 
 export function filenameToSlug(filepath: string): string | null {
 	const filename = filepath.split('/').pop();
@@ -42,5 +43,5 @@ export type FrontmatterValidationResult<T> = {
 
 export function reportFrontmatterIssue(filepath: string, reason: string) {
 	if (!dev) return;
-	console.warn(`[frontmatter] ${filepath}: ${reason}`);
+	contactLogger.warn(`[frontmatter] ${filepath}: ${reason}`);
 }
