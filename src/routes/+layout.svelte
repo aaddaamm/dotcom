@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { trackCTA, trackScrollDepth } from '$lib/analytics';
+	import { getReachedMilestones } from '$lib/scroll-depth';
 	import '../app.css';
 	import Footer from '../components/footer.svelte';
 	import Header from '../components/header.svelte';
@@ -60,11 +61,9 @@
 		const scrolled = window.scrollY + window.innerHeight;
 		const total = document.documentElement.scrollHeight;
 		const pct = (scrolled / total) * 100;
-		for (const milestone of [25, 50, 75, 100]) {
-			if (pct >= milestone && !firedDepths.has(milestone)) {
-				firedDepths.add(milestone);
-				trackScrollDepth(`${milestone}%`, window.location.pathname);
-			}
+		for (const milestone of getReachedMilestones(pct, firedDepths)) {
+			firedDepths.add(milestone);
+			trackScrollDepth(`${milestone}%`, window.location.pathname);
 		}
 	}
 </script>

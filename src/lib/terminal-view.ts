@@ -28,6 +28,21 @@ export function shouldCaptureTerminalShortcut({
 	return true;
 }
 
+export function terminalInputAction(key: string):
+	| 'submit'
+	| 'close'
+	| 'history-up'
+	| 'history-down'
+	| 'tab-complete'
+	| null {
+	if (key === 'Enter') return 'submit';
+	if (key === 'Escape') return 'close';
+	if (key === 'ArrowUp') return 'history-up';
+	if (key === 'ArrowDown') return 'history-down';
+	if (key === 'Tab') return 'tab-complete';
+	return null;
+}
+
 export function isIncantationLine(line: string): boolean {
 	return line.includes('→ "') || line.includes('translation: "');
 }
