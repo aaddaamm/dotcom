@@ -29,7 +29,7 @@ Current default budgets:
 - Total client JS: `220000` bytes
 - Largest JS chunk: `100000` bytes
 - Total client CSS: `60000` bytes
-- Largest CSS chunk: `30000` bytes
+- Largest CSS chunk: `31000` bytes
 
 Script:
 

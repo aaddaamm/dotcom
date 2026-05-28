@@ -2,8 +2,6 @@ import type { EntryGenerator, PageLoad } from './$types';
 import { error } from '@sveltejs/kit';
 import { selectedWork } from '$lib/copy';
 
-export const prerender = true;
-
 export const entries: EntryGenerator = () => {
 	return selectedWork.map((work) => ({ slug: work.slug }));
 };

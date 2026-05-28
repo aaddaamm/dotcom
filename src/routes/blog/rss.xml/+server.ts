@@ -1,5 +1,5 @@
 import { getAllPosts } from '$lib/server/blog';
-import { escapeHtml as escapeXml } from '$lib/server/utils';
+import { escapeHtml as escapeXml } from '$lib/server/http';
 import { SITE_URL as base } from '$lib/constants';
 
 export const prerender = true;
