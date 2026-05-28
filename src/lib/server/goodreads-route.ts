@@ -1,5 +1,5 @@
 import { createApiResponse, withExternalApiFallback } from '$lib/server/api-utils';
-import { CACHE_CONTROL } from '$lib/server/cache-control';
+import { CACHE_CONTROL } from '$lib/server/http';
 
 export function createGoodreadsHandler<T>(
 	fetchBooks: (fetchFn: typeof fetch) => Promise<T>,

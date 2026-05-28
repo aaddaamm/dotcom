@@ -12,7 +12,7 @@ function redact(meta: Meta): Meta {
 	return clone;
 }
 
-export const logger = {
+export const contactLogger = {
 	info(message: string, meta?: Meta) {
 		if (!dev) return;
 		console.log(message, meta ? redact(meta) : undefined);

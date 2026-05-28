@@ -1,6 +1,6 @@
 import sanitizeHtml from 'sanitize-html';
 import { marked, Renderer } from 'marked';
-import { escapeHtml } from '$lib/server/utils';
+import { escapeHtml } from '$lib/server/http';
 
 const renderer = new Renderer();
 renderer.html = ({ text }) => escapeHtml(text);

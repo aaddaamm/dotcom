@@ -15,6 +15,11 @@ Internal documentation for operational checks, content workflow, and quality bas
 - `performance-baseline-2026-04-22.md`
   - Core Web Vitals targets + bundle budget baseline
 
+## Archive
+
+- Historical planning/spec artifacts are stored under `docs/archive/`.
+- Keep root `docs/` focused on actively maintained operational documentation.
+
 ## Maintenance notes
 
 - Date-stamped docs (`*-YYYY-MM-DD.md`) are snapshots and should be updated or superseded after major site changes.

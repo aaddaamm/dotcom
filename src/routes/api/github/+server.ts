@@ -5,7 +5,7 @@ import {
 	createApiErrorResponse,
 	withExternalApiFallback
 } from '$lib/server/api-utils';
-import { CACHE_CONTROL } from '$lib/server/cache-control';
+import { CACHE_CONTROL } from '$lib/server/http';
 
 const GITHUB_UNAVAILABLE = 'GitHub activity unavailable';
 
