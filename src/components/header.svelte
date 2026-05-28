@@ -15,22 +15,11 @@
 			aria-label="Adam Robinson — Home"
 			class="flex items-center gap-3 shrink-0 h-full logo-link"
 		>
-			<img
-				src="/logo-dark.svg"
-				alt="Adam Robinson"
-				width="240"
-				height="40"
-				class="h-10 hidden sm:block logo-wordmark"
-				loading="eager"
-			/>
-			<img
-				src="/icon.svg"
-				alt="Adam Robinson"
-				width="40"
-				height="40"
-				class="h-10 block sm:hidden"
-				loading="eager"
-			/>
+			<span class="header-cursor" aria-hidden="true"></span>
+			<span class="header-wordmark">
+				<span class="header-name">adam robinson</span>
+				<span class="header-subtitle">senior software engineer</span>
+			</span>
 		</a>
 
 		<div class="flex items-center gap-6">
@@ -101,12 +90,51 @@
 		cursor: pointer;
 	}
 
-	.logo-wordmark {
-		min-width: 240px;
+	.header-cursor {
+		width: 12px;
+		height: 42px;
+		border-radius: 3px;
+		background-color: var(--color-accent);
+		flex-shrink: 0;
 	}
 
-	:global([data-theme='light']) .logo-wordmark {
-		content: url('/logo-light.svg');
+	.header-wordmark {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		line-height: 1;
+	}
+
+	.header-name {
+		font-family: var(--font-mono);
+		font-size: 22px;
+		font-weight: 500;
+		letter-spacing: 0;
+		color: var(--color-text);
+	}
+
+	.header-subtitle {
+		margin-top: 6px;
+		font-family: var(--font-mono);
+		font-size: 10px;
+		letter-spacing: 5px;
+		text-transform: uppercase;
+		color: var(--color-accent);
+	}
+
+	@media (max-width: 640px) {
+		.header-cursor {
+			height: 32px;
+			width: 10px;
+		}
+
+		.header-name {
+			font-size: 17px;
+		}
+
+		.header-subtitle {
+			display: none;
+		}
 	}
 
 	.nav-divider {
