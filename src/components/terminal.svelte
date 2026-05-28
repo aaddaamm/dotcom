@@ -9,7 +9,11 @@
 	import { TerminalState } from '$lib/terminal-state.svelte';
 	import { trackTerminalOpen } from '$lib/analytics';
 	import { EMAIL } from '$lib/constants';
-	import { isIncantationLine, shouldCaptureTerminalShortcut } from '$lib/terminal-view';
+	import {
+		isIncantationLine,
+		shouldCaptureTerminalShortcut,
+		terminalInputAction
+	} from '$lib/terminal-view';
 
 	const { fullscreen = false }: { fullscreen?: boolean } = $props();
 
@@ -55,28 +59,21 @@
 	}
 
 	function handleKeydown(e: KeyboardEvent) {
-		switch (e.key) {
-			case 'Enter':
-				state.submit();
-				return;
-			case 'Escape':
-				state.close();
-				return;
-			case 'ArrowUp':
-				e.preventDefault();
-				state.navigateHistory('up');
-				return;
-			case 'ArrowDown':
-				e.preventDefault();
-				state.navigateHistory('down');
-				return;
-			case 'Tab':
-				e.preventDefault();
-				state.tabComplete();
-				return;
-			default:
-				return;
+		const action = terminalInputAction(e.key);
+		if (!action) return;
+
+		if (action === 'submit') return state.submit();
+		if (action === 'close') return state.close();
+		if (action === 'history-up') {
+			e.preventDefault();
+			return state.navigateHistory('up');
 		}
+		if (action === 'history-down') {
+			e.preventDefault();
+			return state.navigateHistory('down');
+		}
+		e.preventDefault();
+		state.tabComplete();
 	}
 
 	function handleWindowKeydown(e: KeyboardEvent) {
