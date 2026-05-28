@@ -2,10 +2,11 @@ type VaEventPayload = Record<string, string | number | boolean>;
 
 function track(name: string, data?: VaEventPayload) {
 	if (typeof window === 'undefined') return;
+	if (typeof window.va?.track !== 'function') return;
 	const normalized = data
 		? Object.fromEntries(Object.entries(data).map(([key, value]) => [key, String(value)]))
 		: undefined;
-	window.va?.track(name, normalized);
+	window.va.track(name, normalized);
 }
 
 export type CtaLocation =

@@ -8,6 +8,7 @@
 	import '../app.css';
 	import Footer from '../components/footer.svelte';
 	import Header from '../components/header.svelte';
+	import Terminal from '../components/terminal.svelte';
 	import JsonLd from '../components/json-ld.svelte';
 	import { EMAIL, ROLE_TITLE, SITE_URL } from '$lib/constants';
 	import { socialLinks } from '$lib/social-links';
@@ -142,6 +143,7 @@
 		{@render children()}
 	</main>
 	<Footer />
+	<Terminal />
 </div>
 
 {#if page.url.pathname !== '/contact'}
