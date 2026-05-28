@@ -31,6 +31,11 @@
 	let successMessage = $state('');
 	let fieldErrors = $state<Record<string, string>>({});
 	let trackedStart = $state(false);
+	const SUCCESS_RESET_MS = 8000;
+
+	const isSubmitDisabled = $derived(
+		isSubmitting || !name || !email || !intent || !project || !message
+	);
 
 	onMount(() => {
 		trackFormView('contact-page');
@@ -40,6 +45,10 @@
 		if (trackedStart) return;
 		trackedStart = true;
 		trackFormStart('contact-page');
+	}
+
+	function getErrorId(field: string) {
+		return fieldErrors[field] ? `${field}-error` : undefined;
 	}
 
 	function resetForm() {
@@ -101,7 +110,7 @@
 			submitted = false;
 			successMessage = '';
 			trackedStart = false;
-		}, 8000);
+		}, SUCCESS_RESET_MS);
 
 		isSubmitting = false;
 	}
@@ -148,7 +157,7 @@
 						placeholder="Your name"
 						disabled={isSubmitting}
 						onfocus={trackStart}
-						aria-describedby={fieldErrors.name ? 'name-error' : undefined}
+						aria-describedby={getErrorId('name')}
 					/>
 					{#if fieldErrors.name}<p id="name-error" class="field-error-msg">
 							{fieldErrors.name}
@@ -167,7 +176,7 @@
 						placeholder="your@email.com"
 						disabled={isSubmitting}
 						onfocus={trackStart}
-						aria-describedby={fieldErrors.email ? 'email-error' : undefined}
+						aria-describedby={getErrorId('email')}
 					/>
 					{#if fieldErrors.email}<p id="email-error" class="field-error-msg">
 							{fieldErrors.email}
@@ -200,7 +209,7 @@
 						class:field-error={fieldErrors.intent}
 						disabled={isSubmitting}
 						onfocus={trackStart}
-						aria-describedby={fieldErrors.intent ? 'intent-error' : undefined}
+						aria-describedby={getErrorId('intent')}
 					>
 						<option value="">What kind of inquiry is this...</option>
 						{#each inquiryIntentOptions as option (option)}
@@ -222,7 +231,7 @@
 						class:field-error={fieldErrors.project}
 						disabled={isSubmitting}
 						onfocus={trackStart}
-						aria-describedby={fieldErrors.project ? 'project-error' : undefined}
+						aria-describedby={getErrorId('project')}
 					>
 						<option value="">What brings you here...</option>
 						{#each projectTypeOptions as option (option)}
@@ -278,7 +287,7 @@
 						placeholder="Tell me about your project and any specific challenges you're facing..."
 						disabled={isSubmitting}
 						onfocus={trackStart}
-						aria-describedby={fieldErrors.message ? 'message-error' : undefined}
+						aria-describedby={getErrorId('message')}
 					></textarea>
 					{#if fieldErrors.message}<p id="message-error" class="field-error-msg">
 							{fieldErrors.message}
@@ -300,7 +309,7 @@
 
 			<button
 				type="submit"
-				disabled={isSubmitting || !name || !email || !intent || !project || !message}
+				disabled={isSubmitDisabled}
 				class="submit-button w-full px-6 py-3 rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
 			>
 				<span class="flex items-center justify-center gap-2">
