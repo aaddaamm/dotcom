@@ -1,13 +1,20 @@
-export function shouldCaptureTerminalShortcut(
-	event: KeyboardEvent,
-	isOpen: boolean,
-	fullscreen: boolean,
-	pathname: string,
-): boolean {
+type TerminalShortcutContext = {
+	event: KeyboardEvent;
+	isOpen: boolean;
+	fullscreen: boolean;
+	pathname: string;
+};
+
+export function shouldCaptureTerminalShortcut({
+	event,
+	isOpen,
+	fullscreen,
+	pathname
+}: TerminalShortcutContext): boolean {
 	if (isOpen || fullscreen) return false;
-	if (pathname === "/terminal") return false;
+	if (pathname === '/terminal') return false;
 	if (event.metaKey || event.ctrlKey || event.altKey) return false;
-	if (event.key !== "`" && event.key !== "~") return false;
+	if (event.key !== '`' && event.key !== '~') return false;
 
 	const target = event.target as HTMLElement;
 	if (

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, tick, untrack } from 'svelte';
 	import { page } from '$app/state';
-	import { getTerminalOpen, setTerminalOpen } from '$lib/stores/terminal.svelte';
+	import { getTerminalOpen, setTerminalClosed, syncTerminalOpen } from '$lib/stores/terminal.svelte';
 	import { TerminalState } from '$lib/terminal-state.svelte';
 	import { trackTerminalOpen } from '$lib/analytics';
 	import { EMAIL } from '$lib/constants';
@@ -19,7 +19,7 @@
 	$effect(() => {
 		const open = state.isOpen;
 		untrack(() => {
-			if (!fullscreen) setTerminalOpen(open);
+			if (!fullscreen) syncTerminalOpen(open);
 		});
 	});
 
@@ -76,7 +76,15 @@
 	}
 
 	function handleWindowKeydown(e: KeyboardEvent) {
-		if (!shouldCaptureTerminalShortcut(e, state.isOpen, fullscreen, page.url.pathname)) return;
+		if (
+			!shouldCaptureTerminalShortcut({
+				event: e,
+				isOpen: state.isOpen,
+				fullscreen,
+				pathname: page.url.pathname
+			})
+		)
+			return;
 		openAndFocus('keyboard');
 	}
 
@@ -91,7 +99,7 @@
 	});
 
 	onDestroy(() => {
-		if (!fullscreen) setTerminalOpen(false);
+		if (!fullscreen) setTerminalClosed();
 	});
 
 	const PROMPT = `${EMAIL}:~$`;

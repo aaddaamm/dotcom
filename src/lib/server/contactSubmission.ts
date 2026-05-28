@@ -1,8 +1,4 @@
-import {
-	validateEmail,
-	validateContactForm,
-	type ContactFormData,
-} from "$lib/validation";
+import { validateContactForm, type ContactFormData } from '$lib/validation';
 
 type RequiredContactFields = ContactFormData & {
 	name: string;
@@ -20,10 +16,6 @@ export function hasRequiredContactFields(
 	);
 }
 
-export function isValidContactEmail(email: string): boolean {
-	return validateEmail(email);
-}
-
 export function sanitizeContactData(
 	data: RequiredContactFields,
 ): ContactFormData {
@@ -32,10 +24,10 @@ export function sanitizeContactData(
 		email: data.email.trim().slice(0, 100),
 		intent: data.intent.trim().slice(0, 60),
 		project: data.project.trim().slice(0, 100),
-		timeline: data.timeline?.trim().slice(0, 60) || "",
-		budget: data.budget?.trim().slice(0, 60) || "",
+		timeline: data.timeline?.trim().slice(0, 60) || '',
+		budget: data.budget?.trim().slice(0, 60) || '',
 		message: data.message.trim().slice(0, 2000),
-		phone: data.phone?.trim().slice(0, 20) || "",
+		phone: data.phone?.trim().slice(0, 20) || ''
 	};
 }
 
@@ -44,7 +36,7 @@ export function getContactValidationError(
 ): string | null {
 	const validation = validateContactForm(data);
 	if (validation.isValid) return null;
-	return Object.values(validation.errors)[0] || "Invalid form data";
+	return Object.values(validation.errors)[0] || 'Invalid form data';
 }
 
 export function buildFailedSubmissionBody(
@@ -53,20 +45,20 @@ export function buildFailedSubmissionBody(
 	userAgent: string | null,
 ): string {
 	return [
-		"New contact form submission from adamrobinson.tech:",
+		'New contact form submission from adamrobinson.tech:',
 		`Name: ${data.name}`,
 		`Email: ${data.email}`,
-		`Phone: ${data.phone || "Not provided"}`,
-		`Inquiry Type: ${data.intent || "Not provided"}`,
+		`Phone: ${data.phone || 'Not provided'}`,
+		`Inquiry Type: ${data.intent || 'Not provided'}`,
 		`Project Type: ${data.project}`,
-		`Timeline: ${data.timeline || "Not provided"}`,
-		`Budget: ${data.budget || "Not provided"}`,
-		"",
-		"Message:",
+		`Timeline: ${data.timeline || 'Not provided'}`,
+		`Budget: ${data.budget || 'Not provided'}`,
+		'',
+		'Message:',
 		data.message,
-		"---",
+		'---',
 		`Submitted at: ${new Date().toISOString()}`,
 		`IP: ${ip}`,
-		`User-Agent: ${userAgent || "Unknown"}`,
-	].join("\n");
+		`User-Agent: ${userAgent || 'Unknown'}`
+	].join('\n');
 }
