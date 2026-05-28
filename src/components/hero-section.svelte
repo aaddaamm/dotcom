@@ -14,8 +14,8 @@
 	</div>
 	<p class="hero-subtitle font-mono" role="doc-subtitle">LOCAL FREELANCE ENGINEER</p>
 	<p class="body-text">
-		Providence-based senior engineer helping startups and agencies ship production-ready
-		SvelteKit/TypeScript work faster — from product delivery to platform modernization.
+		Providence-based senior engineer helping teams ship production-ready software faster — from
+		product delivery to platform modernization.
 	</p>
 	<p class="audience-line">
 		<span>• Startups: senior execution to move roadmap work from blocked to launched.</span>

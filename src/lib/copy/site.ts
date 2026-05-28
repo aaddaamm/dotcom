@@ -137,7 +137,7 @@ export const faqItems: FaqItem[] = [
 
 export const heroMessaging: HeroMessaging = {
 	audienceKeywords: ['local', 'startups', 'agencies', 'Book a project call'],
-	availability: 'Now booking select freelance engagements for startups and agencies.',
+	availability: 'Available for select freelance engagements.',
 	ctaOrder: ['Book a project call', 'See services fit', 'Download résumé']
 };
 
