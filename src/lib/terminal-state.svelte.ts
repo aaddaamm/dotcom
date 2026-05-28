@@ -68,27 +68,15 @@ export class TerminalState {
 		this.input = '';
 		if (!cmd) return;
 
-		this.history = [...this.history, { id: this.#nextId++, type: 'input', text: cmd }];
-		this.cmdHistory = [cmd, ...this.cmdHistory.slice(0, 49)];
-		this.cmdHistoryIndex = -1;
-
+		this.#recordInput(cmd);
 		const lower = cmd.toLowerCase();
 
-		if (this.mode === 'innie' && this.#macrodata.handle(lower, this.#pushOutput.bind(this))) {
-			trackTerminalCommand('macrodata', this.mode);
-			return;
-		}
+		if (this.#handleInnieMacrodata(lower)) return;
 
 		const key = normalize(lower);
 		const result = runCommand(cmd, this.mode);
 
-		// Track recognized commands only — avoid logging free-text typos
-		if (
-			lower === 'clear' ||
-			lower === 'exit' ||
-			lower === 'quit' ||
-			!result.lines[0]?.startsWith('command not found')
-		) {
+		if (this.#shouldTrackCommand(lower, result.lines[0])) {
 			trackTerminalCommand(key, this.mode);
 		}
 
@@ -103,24 +91,15 @@ export class TerminalState {
 		}
 
 		if (result.lines.length > 0) {
-			this.history = [...this.history, { id: this.#nextId++, type: 'output', lines: result.lines }];
+			this.#pushOutput(result.lines);
 		}
 
 		if (result.modeChange) {
-			const previousMode = this.mode;
-			trackTerminalModeChange(result.modeChange);
-			this.mode = result.modeChange;
-			if (result.modeChange === 'innie') setSeveranceMode('innie');
-			if (result.modeChange === 'terminal') setSeveranceMode('outie');
-			this.#switchMemoryIfNeeded(previousMode, result.modeChange);
+			this.#applyModeChange(result.modeChange);
 		}
 
 		if (result.navigate) {
-			const dest = result.navigate;
-			setTimeout(() => {
-				this.#navigate(dest);
-				if (!this.#fullscreen()) this.close();
-			}, result.navigateDelay ?? 0);
+			this.#navigateWithOptionalClose(result.navigate, result.navigateDelay ?? 0);
 		}
 	}
 
@@ -158,6 +137,44 @@ export class TerminalState {
 				}
 			];
 		}
+	}
+
+	#recordInput(cmd: string) {
+		this.history = [...this.history, { id: this.#nextId++, type: 'input', text: cmd }];
+		this.cmdHistory = [cmd, ...this.cmdHistory.slice(0, 49)];
+		this.cmdHistoryIndex = -1;
+	}
+
+	#handleInnieMacrodata(lower: string) {
+		if (this.mode !== 'innie') return false;
+		if (!this.#macrodata.handle(lower, this.#pushOutput.bind(this))) return false;
+		trackTerminalCommand('macrodata', this.mode);
+		return true;
+	}
+
+	#shouldTrackCommand(lower: string, firstLine?: string) {
+		return (
+			lower === 'clear' ||
+			lower === 'exit' ||
+			lower === 'quit' ||
+			!firstLine?.startsWith('command not found')
+		);
+	}
+
+	#applyModeChange(nextMode: Mode) {
+		const previousMode = this.mode;
+		trackTerminalModeChange(nextMode);
+		this.mode = nextMode;
+		if (nextMode === 'innie') setSeveranceMode('innie');
+		if (nextMode === 'terminal') setSeveranceMode('outie');
+		this.#switchMemoryIfNeeded(previousMode, nextMode);
+	}
+
+	#navigateWithOptionalClose(dest: string, delay: number) {
+		setTimeout(() => {
+			this.#navigate(dest);
+			if (!this.#fullscreen()) this.close();
+		}, delay);
 	}
 
 	#pushOutput(lines: string[]) {
