@@ -12,18 +12,19 @@
 
 ## Files Modified
 
-| File | Change |
-|------|--------|
-| `src/components/header.svelte` | Remove hire nav link |
+| File                                 | Change                                            |
+| ------------------------------------ | ------------------------------------------------- |
+| `src/components/header.svelte`       | Remove hire nav link                              |
 | `src/components/hero-section.svelte` | Remove availability badge block + import + styles |
-| `src/lib/copy.ts` | Remove `availability` export; add FAQ item |
-| `src/routes/hire/+page.svelte` | Update PageHeader description prop |
+| `src/lib/copy.ts`                    | Remove `availability` export; add FAQ item        |
+| `src/routes/hire/+page.svelte`       | Update PageHeader description prop                |
 
 ---
 
 ## Task 1: Remove hire from main nav
 
 **Files:**
+
 - Modify: `src/components/header.svelte`
 
 - [ ] **Step 1: Remove the hire nav link**
@@ -64,6 +65,7 @@ git commit -m "feat: remove hire from main nav"
 ## Task 2: Remove availability badge from homepage
 
 **Files:**
+
 - Modify: `src/components/hero-section.svelte`
 - Modify: `src/lib/copy.ts`
 
@@ -148,6 +150,7 @@ git commit -m "feat: remove homepage availability badge"
 ## Task 3: Update /hire page header description
 
 **Files:**
+
 - Modify: `src/routes/hire/+page.svelte`
 
 - [ ] **Step 1: Update PageHeader description**
@@ -190,6 +193,7 @@ git commit -m "feat: update hire page description for dual contract/FTE position
 ## Task 4: Add full-time FAQ item
 
 **Files:**
+
 - Modify: `src/lib/copy.ts`
 
 - [ ] **Step 1: Add FAQ entry as first item**

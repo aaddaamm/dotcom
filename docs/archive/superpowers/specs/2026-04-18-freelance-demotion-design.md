@@ -21,6 +21,7 @@ Remove the `<a href="/hire">` nav link. The footer already links to `/hire` and 
 **Files:** `src/components/hero-section.svelte`, `src/lib/copy.ts`
 
 Remove the green dot availability badge from the hero section. This includes:
+
 - The `{#if availability.available}` block and badge markup in `hero-section.svelte`
 - The `availability` export from `copy.ts` (unused once the badge is gone)
 
@@ -63,9 +64,9 @@ Placement: add as the first item in `faqItems` so it surfaces prominently on the
 
 ## Files touched
 
-| File | Change |
-|------|--------|
-| `src/components/header.svelte` | Remove hire nav link |
-| `src/components/hero-section.svelte` | Remove availability badge block |
-| `src/lib/copy.ts` | Remove `availability` export; add FAQ item |
-| `src/routes/hire/+page.svelte` | Update PageHeader description |
+| File                                 | Change                                     |
+| ------------------------------------ | ------------------------------------------ |
+| `src/components/header.svelte`       | Remove hire nav link                       |
+| `src/components/hero-section.svelte` | Remove availability badge block            |
+| `src/lib/copy.ts`                    | Remove `availability` export; add FAQ item |
+| `src/routes/hire/+page.svelte`       | Update PageHeader description              |

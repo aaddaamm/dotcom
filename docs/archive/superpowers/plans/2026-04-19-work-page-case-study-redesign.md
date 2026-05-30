@@ -12,17 +12,18 @@
 
 ## File Map
 
-| File | Change |
-|------|--------|
-| `src/lib/copy.ts` | Rewrite `caseStudy.work` for all 4 projects |
-| `src/components/work-card.svelte` | Remove toggle/expand/description/outcome; add always-visible case study + meta row |
-| `src/routes/work/[slug]/+page.svelte` | Replace "via MojoTech" with role in PageHeader description |
+| File                                  | Change                                                                             |
+| ------------------------------------- | ---------------------------------------------------------------------------------- |
+| `src/lib/copy.ts`                     | Rewrite `caseStudy.work` for all 4 projects                                        |
+| `src/components/work-card.svelte`     | Remove toggle/expand/description/outcome; add always-visible case study + meta row |
+| `src/routes/work/[slug]/+page.svelte` | Replace "via MojoTech" with role in PageHeader description                         |
 
 ---
 
 ## Task 1: Rewrite case study `work` copy
 
 **Files:**
+
 - Modify: `src/lib/copy.ts`
 
 - [ ] **Step 1: Update iCapital `caseStudy.work`**
@@ -77,6 +78,7 @@ git commit -m "copy: tighten case study work sections for scannability"
 ## Task 2: Redesign work card
 
 **Files:**
+
 - Modify: `src/components/work-card.svelte`
 
 The current card has an expand toggle, a `description` paragraph, and an `outcome` summary line. The case study renders inside a conditional `{#if expanded}` block with slide/fly animations. All of that goes away. The new card always shows the case study and consolidates role + stack + slug link into a single meta row.
@@ -299,6 +301,7 @@ git commit -m "feat: show case study content by default, remove expand toggle"
 ## Task 3: Fix slug page header
 
 **Files:**
+
 - Modify: `src/routes/work/[slug]/+page.svelte`
 
 The `PageHeader` currently shows `"via MojoTech · {project.period}"` as its description. Replace with the project's role.
@@ -345,6 +348,7 @@ npx vite build
 ```
 
 Expected: build completes with no errors. You'll see output like:
+
 ```
 ✓ built in Xs
 ```
@@ -358,6 +362,7 @@ npm run dev
 ```
 
 Open `http://localhost:5173/work` and verify:
+
 - Each card shows situation/work/outcome without needing to click anything
 - Role and stack tags appear in a single compact row below the title
 - "full case study →" link is visible on each card

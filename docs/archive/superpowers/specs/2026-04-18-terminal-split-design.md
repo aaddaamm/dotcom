@@ -14,10 +14,10 @@ Svelte 5 class with `$state` fields (Option A). Each `terminal.svelte` instance 
 
 ## File Split
 
-| File | Role |
-|------|------|
+| File                               | Role                                                                                              |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `src/lib/terminal-state.svelte.ts` | **New.** `TerminalState` class + `HistoryEntry` type. Owns all reactive state and business logic. |
-| `src/components/terminal.svelte` | **Modified.** DOM refs, effects, event handlers, template, styles. Instantiates `TerminalState`. |
+| `src/components/terminal.svelte`   | **Modified.** DOM refs, effects, event handlers, template, styles. Instantiates `TerminalState`.  |
 
 `terminal-commands.ts` is unchanged. `Mode` type stays there.
 
@@ -76,12 +76,12 @@ export class TerminalState {
 
 ## Line Count Target
 
-| Section | Before | After |
-|---------|--------|-------|
-| `<script>` | ~183 lines | ~65 lines |
-| Template | ~57 lines | ~57 lines (unchanged) |
-| `<style>` | ~147 lines | ~147 lines (unchanged) |
-| **Script + template** | **~240 lines** | **~122 lines** |
+| Section               | Before         | After                  |
+| --------------------- | -------------- | ---------------------- |
+| `<script>`            | ~183 lines     | ~65 lines              |
+| Template              | ~57 lines      | ~57 lines (unchanged)  |
+| `<style>`             | ~147 lines     | ~147 lines (unchanged) |
+| **Script + template** | **~240 lines** | **~122 lines**         |
 
 Target: <150 lines of script + template. ✅
 

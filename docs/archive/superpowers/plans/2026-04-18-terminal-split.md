@@ -13,104 +13,105 @@
 ### Task 1: Create terminal-state.svelte.ts
 
 **Files:**
+
 - Create: `src/lib/terminal-state.svelte.ts`
 
 - [ ] **Step 1: Create the file**
 
 ```ts
-import { goto } from '$app/navigation'
-import { runCommand, getCompletions, type Mode } from '$lib/terminal-commands'
+import { goto } from '$app/navigation';
+import { runCommand, getCompletions, type Mode } from '$lib/terminal-commands';
 
 export type HistoryEntry =
 	| { id: number; type: 'input'; text: string }
-	| { id: number; type: 'output'; lines: string[] }
+	| { id: number; type: 'output'; lines: string[] };
 
 export class TerminalState {
-	isOpen = $state(false)
-	input = $state('')
-	history = $state<HistoryEntry[]>([])
-	cmdHistory = $state<string[]>([])
-	cmdHistoryIndex = $state(-1)
-	mode = $state<Mode>('terminal')
-	#nextId = 0
+	isOpen = $state(false);
+	input = $state('');
+	history = $state<HistoryEntry[]>([]);
+	cmdHistory = $state<string[]>([]);
+	cmdHistoryIndex = $state(-1);
+	mode = $state<Mode>('terminal');
+	#nextId = 0;
 
 	open(initialChar = '') {
-		this.isOpen = true
-		this.input = initialChar
+		this.isOpen = true;
+		this.input = initialChar;
 	}
 
 	close(fullscreen: boolean) {
-		if (fullscreen) return
-		this.isOpen = false
-		this.input = ''
+		if (fullscreen) return;
+		this.isOpen = false;
+		this.input = '';
 	}
 
 	submit(fullscreen: boolean) {
-		const cmd = this.input.trim()
-		this.input = ''
-		if (!cmd) return
+		const cmd = this.input.trim();
+		this.input = '';
+		if (!cmd) return;
 
-		this.history = [...this.history, { id: this.#nextId++, type: 'input', text: cmd }]
-		this.cmdHistory = [cmd, ...this.cmdHistory.slice(0, 49)]
-		this.cmdHistoryIndex = -1
+		this.history = [...this.history, { id: this.#nextId++, type: 'input', text: cmd }];
+		this.cmdHistory = [cmd, ...this.cmdHistory.slice(0, 49)];
+		this.cmdHistoryIndex = -1;
 
-		const result = runCommand(cmd, this.mode)
+		const result = runCommand(cmd, this.mode);
 
 		if (result.clear) {
-			this.history = []
-			return
+			this.history = [];
+			return;
 		}
 
 		if (result.close) {
-			this.close(fullscreen)
-			return
+			this.close(fullscreen);
+			return;
 		}
 
 		if (result.lines.length > 0) {
-			this.history = [...this.history, { id: this.#nextId++, type: 'output', lines: result.lines }]
+			this.history = [...this.history, { id: this.#nextId++, type: 'output', lines: result.lines }];
 		}
 
-		if (result.modeChange) this.mode = result.modeChange
+		if (result.modeChange) this.mode = result.modeChange;
 
 		if (result.navigate) {
-			const dest = result.navigate
+			const dest = result.navigate;
 			setTimeout(() => {
-				goto(dest)
-				if (!fullscreen) this.close(fullscreen)
-			}, result.navigateDelay ?? 0)
+				goto(dest);
+				if (!fullscreen) this.close(fullscreen);
+			}, result.navigateDelay ?? 0);
 		}
 	}
 
 	navigateHistory(direction: 'up' | 'down') {
 		if (direction === 'up') {
-			const next = Math.min(this.cmdHistoryIndex + 1, this.cmdHistory.length - 1)
-			this.cmdHistoryIndex = next
-			if (this.cmdHistory[next] !== undefined) this.input = this.cmdHistory[next]
+			const next = Math.min(this.cmdHistoryIndex + 1, this.cmdHistory.length - 1);
+			this.cmdHistoryIndex = next;
+			if (this.cmdHistory[next] !== undefined) this.input = this.cmdHistory[next];
 		} else {
-			const next = this.cmdHistoryIndex - 1
-			this.cmdHistoryIndex = next
-			this.input = next < 0 ? '' : (this.cmdHistory[next] ?? '')
+			const next = this.cmdHistoryIndex - 1;
+			this.cmdHistoryIndex = next;
+			this.input = next < 0 ? '' : (this.cmdHistory[next] ?? '');
 		}
 	}
 
 	tabComplete() {
-		const completions = getCompletions(this.input)
-		if (completions.length === 0) return
+		const completions = getCompletions(this.input);
+		if (completions.length === 0) return;
 		if (completions.length === 1) {
-			const tokens = this.input.split(' ')
-			const argCommands = ['ls', 'cat', 'open', 'git', 'sudo', 'mode', 'echo']
+			const tokens = this.input.split(' ');
+			const argCommands = ['ls', 'cat', 'open', 'git', 'sudo', 'mode', 'echo'];
 			if (tokens.length === 1) {
-				this.input = completions[0]
-				if (argCommands.includes(completions[0])) this.input += ' '
+				this.input = completions[0];
+				if (argCommands.includes(completions[0])) this.input += ' ';
 			} else {
-				tokens[tokens.length - 1] = completions[0]
-				this.input = tokens.join(' ')
+				tokens[tokens.length - 1] = completions[0];
+				this.input = tokens.join(' ');
 			}
 		} else {
 			this.history = [
 				...this.history,
 				{ id: this.#nextId++, type: 'output', lines: [completions.join('   ')] }
-			]
+			];
 		}
 	}
 }
@@ -138,6 +139,7 @@ git commit -m "feat(terminal): add TerminalState class with reactive state and b
 ### Task 2: Update terminal.svelte to use TerminalState
 
 **Files:**
+
 - Modify: `src/components/terminal.svelte` (script block only — template and styles unchanged)
 
 Replace the entire `<script>` block (lines 1–183) with the following. The template (`<div class="terminal">…`) and `<style>` block are **not touched**.
@@ -146,93 +148,108 @@ Replace the entire `<script>` block (lines 1–183) with the following. The temp
 
 ```svelte
 <script lang="ts">
-	import { onDestroy, tick, untrack } from 'svelte'
-	import { page } from '$app/state'
-	import { terminalOpen } from '$lib/stores/terminal'
-	import { TerminalState } from '$lib/terminal-state.svelte'
+	import { onDestroy, tick, untrack } from 'svelte';
+	import { page } from '$app/state';
+	import { terminalOpen } from '$lib/stores/terminal';
+	import { TerminalState } from '$lib/terminal-state.svelte';
 
-	let { fullscreen = false }: { fullscreen?: boolean } = $props()
+	let { fullscreen = false }: { fullscreen?: boolean } = $props();
 
-	const state = new TerminalState()
-	state.isOpen = fullscreen
+	const state = new TerminalState();
+	state.isOpen = fullscreen;
 
-	let inputEl: HTMLInputElement
-	let scrollEl: HTMLElement
+	let inputEl: HTMLInputElement;
+	let scrollEl: HTMLElement;
 
 	function openAndFocus(initialChar = '') {
-		state.open(initialChar)
+		state.open(initialChar);
 		tick().then(() => {
 			if (inputEl) {
-				inputEl.focus()
-				inputEl.setSelectionRange(state.input.length, state.input.length)
+				inputEl.focus();
+				inputEl.setSelectionRange(state.input.length, state.input.length);
 			}
-		})
+		});
 	}
 
 	// Sync isOpen → shared store so layout can hide the footer CTA.
 	// untrack the write so this effect only re-runs when isOpen changes, not when the store changes.
 	$effect(() => {
-		const open = state.isOpen
+		const open = state.isOpen;
 		untrack(() => {
-			if (!fullscreen) terminalOpen.set(open)
-		})
-	})
+			if (!fullscreen) terminalOpen.set(open);
+		});
+	});
 
 	// Open when triggered externally (e.g. footer button sets terminalOpen).
 	// untrack the isOpen read so only $terminalOpen drives this effect.
 	$effect(() => {
 		if ($terminalOpen && !fullscreen) {
 			untrack(() => {
-				if (!state.isOpen) openAndFocus()
-			})
+				if (!state.isOpen) openAndFocus();
+			});
 		}
-	})
+	});
 
 	$effect(() => {
-		if (state.history.length === 0) return
+		if (state.history.length === 0) return;
 		tick().then(() => {
-			if (scrollEl) scrollEl.scrollTop = scrollEl.scrollHeight
-		})
-	})
+			if (scrollEl) scrollEl.scrollTop = scrollEl.scrollHeight;
+		});
+	});
 
 	$effect(() => {
-		window.addEventListener('keydown', handleWindowKeydown)
-		if (fullscreen) tick().then(() => inputEl?.focus())
-		return () => window.removeEventListener('keydown', handleWindowKeydown)
-	})
+		window.addEventListener('keydown', handleWindowKeydown);
+		if (fullscreen) tick().then(() => inputEl?.focus());
+		return () => window.removeEventListener('keydown', handleWindowKeydown);
+	});
 
 	function handleKeydown(e: KeyboardEvent) {
-		if (e.key === 'Enter') { state.submit(fullscreen); return }
-		if (e.key === 'Escape') { state.close(fullscreen); return }
-		if (e.key === 'ArrowUp') { e.preventDefault(); state.navigateHistory('up'); return }
-		if (e.key === 'ArrowDown') { e.preventDefault(); state.navigateHistory('down'); return }
+		if (e.key === 'Enter') {
+			state.submit(fullscreen);
+			return;
+		}
+		if (e.key === 'Escape') {
+			state.close(fullscreen);
+			return;
+		}
+		if (e.key === 'ArrowUp') {
+			e.preventDefault();
+			state.navigateHistory('up');
+			return;
+		}
+		if (e.key === 'ArrowDown') {
+			e.preventDefault();
+			state.navigateHistory('down');
+			return;
+		}
 		if (e.key === 'Tab') {
-			e.preventDefault()
-			state.tabComplete()
+			e.preventDefault();
+			state.tabComplete();
 		}
 	}
 
 	function handleWindowKeydown(e: KeyboardEvent) {
-		if (state.isOpen || fullscreen) return
-		if (page.url.pathname === '/terminal') return
-		if (e.metaKey || e.ctrlKey || e.altKey) return
-		if (e.key.length !== 1) return
-		const target = e.target as HTMLElement
+		if (state.isOpen || fullscreen) return;
+		if (page.url.pathname === '/terminal') return;
+		if (e.metaKey || e.ctrlKey || e.altKey) return;
+		if (e.key.length !== 1) return;
+		const target = e.target as HTMLElement;
 		if (
 			target instanceof HTMLInputElement ||
 			target instanceof HTMLTextAreaElement ||
 			target instanceof HTMLSelectElement ||
 			target.isContentEditable
-		) return
-		e.preventDefault()
-		openAndFocus(e.key)
+		)
+			return;
+		e.preventDefault();
+		openAndFocus(e.key);
 	}
 
 	onDestroy(() => {
-		if (!fullscreen) terminalOpen.set(false)
-	})
+		if (!fullscreen) terminalOpen.set(false);
+	});
 
-	const PROMPT = 'adam@adamrobinson.tech:~$'
+	const PROMPT = 'adam@adamrobinson.tech:~$';
 </script>
 ```
 
@@ -240,18 +257,18 @@ Replace the entire `<script>` block (lines 1–183) with the following. The temp
 
 The template uses bare variable names (`isOpen`, `input`, `history`, `mode`). Update each reference to use `state.*`. Find and replace these in the template section only (lines 185–240 in the original file):
 
-| Old | New |
-|-----|-----|
-| `class:open={isOpen}` | `class:open={state.isOpen}` |
-| `{#if !fullscreen}` | unchanged |
-| `{#if mode === 'rpg'}` | `{#if state.mode === 'rpg'}` |
-| `onclick={close}` | `onclick={() => state.close(fullscreen)}` |
-| `bind:this={scrollEl}` | unchanged |
+| Old                                        | New                                              |
+| ------------------------------------------ | ------------------------------------------------ |
+| `class:open={isOpen}`                      | `class:open={state.isOpen}`                      |
+| `{#if !fullscreen}`                        | unchanged                                        |
+| `{#if mode === 'rpg'}`                     | `{#if state.mode === 'rpg'}`                     |
+| `onclick={close}`                          | `onclick={() => state.close(fullscreen)}`        |
+| `bind:this={scrollEl}`                     | unchanged                                        |
 | `{#if fullscreen && history.length === 0}` | `{#if fullscreen && state.history.length === 0}` |
-| `{#each history as entry (entry.id)}` | `{#each state.history as entry (entry.id)}` |
-| `bind:this={inputEl}` | unchanged |
-| `bind:value={input}` | `bind:value={state.input}` |
-| `onkeydown={handleKeydown}` | unchanged |
+| `{#each history as entry (entry.id)}`      | `{#each state.history as entry (entry.id)}`      |
+| `bind:this={inputEl}`                      | unchanged                                        |
+| `bind:value={input}`                       | `bind:value={state.input}`                       |
+| `onkeydown={handleKeydown}`                | unchanged                                        |
 
 - [ ] **Step 3: Run type check**
 
@@ -295,6 +312,7 @@ npm run dev
 ```
 
 Verify in browser at `http://localhost:5173`:
+
 - Pressing any key on the home page opens the terminal drawer
 - Typing a command and pressing Enter runs it (try `help`)
 - Arrow Up/Down cycles command history

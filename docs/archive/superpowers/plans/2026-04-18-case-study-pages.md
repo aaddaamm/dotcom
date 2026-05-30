@@ -12,18 +12,19 @@
 
 ## File Map
 
-| File | Action | Purpose |
-|---|---|---|
-| `src/lib/copy.ts` | Modify | Add `slug` field to each `selectedWork` entry |
-| `src/routes/work/[slug]/+page.ts` | Create | Load function — looks up by slug, returns project + prev/next |
-| `src/routes/work/[slug]/+page.svelte` | Create | Case study page — header, prose sections, prev/next nav |
-| `src/components/work-card.svelte` | Modify | Add `slug?: string` to interface, render "full case study →" link |
+| File                                  | Action | Purpose                                                           |
+| ------------------------------------- | ------ | ----------------------------------------------------------------- |
+| `src/lib/copy.ts`                     | Modify | Add `slug` field to each `selectedWork` entry                     |
+| `src/routes/work/[slug]/+page.ts`     | Create | Load function — looks up by slug, returns project + prev/next     |
+| `src/routes/work/[slug]/+page.svelte` | Create | Case study page — header, prose sections, prev/next nav           |
+| `src/components/work-card.svelte`     | Modify | Add `slug?: string` to interface, render "full case study →" link |
 
 ---
 
 ## Task 1: Add slugs to `selectedWork`
 
 **Files:**
+
 - Modify: `src/lib/copy.ts`
 
 - [ ] **Step 1: Add `slug` field to each entry**
@@ -34,22 +35,22 @@ In `src/lib/copy.ts`, add `slug` as the first field of each object in `selectedW
 export const selectedWork = [
 	{
 		slug: 'icapital',
-		title: 'iCapital — Fintech Platform Engineering',
+		title: 'iCapital — Fintech Platform Engineering'
 		// ... rest unchanged
 	},
 	{
 		slug: 'angi',
-		title: 'Angi — Multi-Platform Engineering',
+		title: 'Angi — Multi-Platform Engineering'
 		// ... rest unchanged
 	},
 	{
 		slug: 'shell',
-		title: 'Shell — Oil Platform Decommissioning',
+		title: 'Shell — Oil Platform Decommissioning'
 		// ... rest unchanged
 	},
 	{
 		slug: 'healthcasts',
-		title: 'Healthcasts — Platform Modernization',
+		title: 'Healthcasts — Platform Modernization'
 		// ... rest unchanged
 	}
 ];
@@ -75,6 +76,7 @@ git commit -m "feat(work): add slug field to selectedWork entries"
 ## Task 2: Create the load function
 
 **Files:**
+
 - Create: `src/routes/work/[slug]/+page.ts`
 
 - [ ] **Step 1: Create the file**
@@ -122,6 +124,7 @@ git commit -m "feat(work): add case study slug route load function"
 ## Task 3: Create the case study page
 
 **Files:**
+
 - Create: `src/routes/work/[slug]/+page.svelte`
 
 - [ ] **Step 1: Create the page**
@@ -325,6 +328,7 @@ git commit -m "feat(work): add case study dedicated page"
 ## Task 4: Add "full case study →" link to work card
 
 **Files:**
+
 - Modify: `src/components/work-card.svelte`
 
 - [ ] **Step 1: Add `slug` to the `WorkItem` interface**
@@ -436,6 +440,7 @@ git commit -m "feat(work): add full case study link to work card"
 ## Self-Review
 
 **Spec coverage:**
+
 - ✅ `/work/[slug]` dynamic route with 404 handling
 - ✅ `PageHeader` with title, "via MojoTech · period" description, back link
 - ✅ Stack tags (non-interactive)

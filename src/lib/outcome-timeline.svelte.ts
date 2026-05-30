@@ -13,27 +13,27 @@ export function createOutcomeTimeline(length: number) {
 
 	function onTabKeydown(event: KeyboardEvent, index: number) {
 		if (
-			event.key !== "ArrowDown" &&
-			event.key !== "ArrowUp" &&
-			event.key !== "Home" &&
-			event.key !== "End"
+			event.key !== 'ArrowDown' &&
+			event.key !== 'ArrowUp' &&
+			event.key !== 'Home' &&
+			event.key !== 'End'
 		) {
 			return;
 		}
 
 		event.preventDefault();
 
-		if (event.key === "Home") {
+		if (event.key === 'Home') {
 			activeIndex = 0;
 			return;
 		}
 
-		if (event.key === "End") {
+		if (event.key === 'End') {
 			activeIndex = length - 1;
 			return;
 		}
 
-		const delta = event.key === "ArrowDown" ? 1 : -1;
+		const delta = event.key === 'ArrowDown' ? 1 : -1;
 		activeIndex = clamp(index + delta);
 	}
 
@@ -42,6 +42,6 @@ export function createOutcomeTimeline(length: number) {
 			return activeIndex;
 		},
 		activate,
-		onTabKeydown,
+		onTabKeydown
 	};
 }
