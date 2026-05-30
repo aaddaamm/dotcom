@@ -80,6 +80,27 @@ export class TerminalState {
 			trackTerminalCommand(key, this.mode);
 		}
 
+		this.#applyCommandResult(result);
+	}
+
+	navigateHistory(direction: 'up' | 'down') {
+		const next = this.#nextHistoryIndex(direction);
+		this.cmdHistoryIndex = next;
+		this.input = this.#historyInputForIndex(next);
+	}
+
+	tabComplete() {
+		const completions = getCompletions(this.input);
+		if (completions.length === 0) return;
+		if (completions.length === 1) {
+			this.#applySingleCompletion(completions[0]);
+			return;
+		}
+
+		this.#pushOutput([completions.join('   ')]);
+	}
+
+	#applyCommandResult(result: ReturnType<typeof runCommand>) {
 		if (result.clear) {
 			this.history = [];
 			return;
@@ -90,53 +111,22 @@ export class TerminalState {
 			return;
 		}
 
-		if (result.lines.length > 0) {
-			this.#pushOutput(result.lines);
-		}
-
-		if (result.modeChange) {
-			this.#applyModeChange(result.modeChange);
-		}
-
-		if (result.navigate) {
+		if (result.lines.length > 0) this.#pushOutput(result.lines);
+		if (result.modeChange) this.#applyModeChange(result.modeChange);
+		if (result.navigate)
 			this.#navigateWithOptionalClose(result.navigate, result.navigateDelay ?? 0);
-		}
 	}
 
-	navigateHistory(direction: 'up' | 'down') {
-		if (direction === 'up') {
-			const next = Math.min(this.cmdHistoryIndex + 1, this.cmdHistory.length - 1);
-			this.cmdHistoryIndex = next;
-			if (this.cmdHistory[next] !== undefined) this.input = this.cmdHistory[next];
-		} else {
-			const next = this.cmdHistoryIndex - 1;
-			this.cmdHistoryIndex = next;
-			this.input = next < 0 ? '' : (this.cmdHistory[next] ?? '');
+	#applySingleCompletion(completion: string) {
+		const tokens = this.input.split(' ');
+		if (tokens.length === 1) {
+			this.input = completion;
+			if (ARGUMENT_EXPECTING_COMMANDS.includes(completion)) this.input += ' ';
+			return;
 		}
-	}
 
-	tabComplete() {
-		const completions = getCompletions(this.input);
-		if (completions.length === 0) return;
-		if (completions.length === 1) {
-			const tokens = this.input.split(' ');
-			if (tokens.length === 1) {
-				this.input = completions[0];
-				if (ARGUMENT_EXPECTING_COMMANDS.includes(completions[0])) this.input += ' ';
-			} else {
-				tokens[tokens.length - 1] = completions[0];
-				this.input = tokens.join(' ');
-			}
-		} else {
-			this.history = [
-				...this.history,
-				{
-					id: this.#nextId++,
-					type: 'output',
-					lines: [completions.join('   ')]
-				}
-			];
-		}
+		tokens[tokens.length - 1] = completion;
+		this.input = tokens.join(' ');
 	}
 
 	#recordInput(cmd: string) {
@@ -165,8 +155,7 @@ export class TerminalState {
 		const previousMode = this.mode;
 		trackTerminalModeChange(nextMode);
 		this.mode = nextMode;
-		if (nextMode === 'innie') setSeveranceMode('innie');
-		if (nextMode === 'terminal') setSeveranceMode('outie');
+		this.#syncSeveranceMode(nextMode);
 		this.#switchMemoryIfNeeded(previousMode, nextMode);
 	}
 
@@ -192,16 +181,35 @@ export class TerminalState {
 		this.cmdHistoryIndex = -1;
 	}
 
+	#nextHistoryIndex(direction: 'up' | 'down') {
+		if (direction === 'up') {
+			return Math.min(this.cmdHistoryIndex + 1, this.cmdHistory.length - 1);
+		}
+		return this.cmdHistoryIndex - 1;
+	}
+
+	#historyInputForIndex(index: number) {
+		if (index < 0) return '';
+		return this.cmdHistory[index] ?? '';
+	}
+
+	#syncSeveranceMode(nextMode: Mode) {
+		if (nextMode === 'innie') setSeveranceMode('innie');
+		if (nextMode === 'terminal') setSeveranceMode('outie');
+	}
+
 	#switchMemoryIfNeeded(previousMode: Mode, nextMode: Mode) {
 		const prevKey = this.#memory.modeMemoryKey(previousMode);
 		const nextKey = this.#memory.modeMemoryKey(nextMode);
 		if (prevKey === nextKey) return;
 		this.#saveMemory(prevKey);
 		this.#loadMemory(nextKey);
-		if (nextKey === 'innie' && this.history.length === 0) {
+		if (this.history.length > 0) return;
+		if (nextKey === 'innie') {
 			this.#pushOutput(['memory partition complete.', "type 'macrodata' to begin refinement."]);
+			return;
 		}
-		if (nextKey === 'outie' && this.history.length === 0) {
+		if (nextKey === 'outie') {
 			this.#pushOutput(['outie memory restored. no retained innie logs visible.']);
 		}
 	}

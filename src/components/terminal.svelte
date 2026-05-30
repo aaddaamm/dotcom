@@ -55,27 +55,27 @@
 	}
 
 	function handleKeydown(e: KeyboardEvent) {
-		if (e.key === 'Enter') {
-			state.submit();
-			return;
-		}
-		if (e.key === 'Escape') {
-			state.close();
-			return;
-		}
-		if (e.key === 'ArrowUp') {
-			e.preventDefault();
-			state.navigateHistory('up');
-			return;
-		}
-		if (e.key === 'ArrowDown') {
-			e.preventDefault();
-			state.navigateHistory('down');
-			return;
-		}
-		if (e.key === 'Tab') {
-			e.preventDefault();
-			state.tabComplete();
+		switch (e.key) {
+			case 'Enter':
+				state.submit();
+				return;
+			case 'Escape':
+				state.close();
+				return;
+			case 'ArrowUp':
+				e.preventDefault();
+				state.navigateHistory('up');
+				return;
+			case 'ArrowDown':
+				e.preventDefault();
+				state.navigateHistory('down');
+				return;
+			case 'Tab':
+				e.preventDefault();
+				state.tabComplete();
+				return;
+			default:
+				return;
 		}
 	}
 
@@ -107,10 +107,15 @@
 	});
 
 	const PROMPT = `${EMAIL}:~$`;
+	const INNIE_PROMPT = 'lumon@macrodata:~$';
 
-	function getPrompt() {
-		return state.isInnieMode() ? 'lumon@macrodata:~$' : PROMPT;
-	}
+	const prompt = $derived(state.isInnieMode() ? INNIE_PROMPT : PROMPT);
+	const drawerTitle = $derived(prompt.split(':')[0]);
+	const fullscreenEmptyStateLine = $derived(
+		state.isInnieMode()
+			? "lumon ready. type 'macrodata' to begin refinement."
+			: "type 'help' for available commands."
+	);
 </script>
 
 <div
@@ -124,7 +129,7 @@
 >
 	{#if !fullscreen}
 		<div class="terminal-bar">
-			<span class="terminal-bar-title">{getPrompt().split(':')[0]}</span>
+			<span class="terminal-bar-title">{drawerTitle}</span>
 			{#if state.isRpgMode()}
 				<span class="rpg-badge">RPG</span>
 			{:else if state.isInnieMode()}
@@ -136,16 +141,12 @@
 
 	<div class="terminal-output" bind:this={scrollEl}>
 		{#if fullscreen && state.history.length === 0}
-			<div class="terminal-line output muted">
-				{state.isInnieMode()
-					? "lumon ready. type 'macrodata' to begin refinement."
-					: "type 'help' for available commands."}
-			</div>
+			<div class="terminal-line output muted">{fullscreenEmptyStateLine}</div>
 		{/if}
 		{#each state.history as entry (entry.id)}
 			{#if entry.type === 'input'}
 				<div class="terminal-line">
-					<span class="prompt">{getPrompt()}</span>
+					<span class="prompt">{prompt}</span>
 					&nbsp;{entry.text}
 				</div>
 			{:else}
@@ -159,7 +160,7 @@
 	</div>
 
 	<div class="terminal-input-row">
-		<span class="prompt">{getPrompt()}</span>
+		<span class="prompt">{prompt}</span>
 		<input
 			bind:this={inputEl}
 			bind:value={state.input}
