@@ -5,7 +5,7 @@ import { escapeHtml } from '$lib/server/http';
 const renderer = new Renderer();
 renderer.html = ({ text }) => escapeHtml(text);
 
-export const MARKDOWN_ALLOWED_TAGS = [
+const MARKDOWN_ALLOWED_TAGS = [
 	'a',
 	'blockquote',
 	'br',

@@ -112,47 +112,53 @@ async function fetchFromGithub(fetch: typeof globalThis.fetch): Promise<GithubAc
 	}
 }
 
-export namespace GithubService {
-	export async function getActivity(
-		fetch: typeof globalThis.fetch
-	): Promise<GithubActivity | null> {
-		// L1: in-memory cache
-		if (memoryCache.data && Date.now() - memoryCache.timestamp < CACHE_TTL_MS) {
-			return memoryCache.data;
-		}
+async function getCachedActivity(): Promise<GithubActivity | null> {
+	if (memoryCache.data && Date.now() - memoryCache.timestamp < CACHE_TTL_MS) {
+		return memoryCache.data;
+	}
 
-		// L2: Upstash
-		const redis = getRedis();
-		if (redis) {
-			try {
-				const cached = await redis.get<GithubActivity>(CACHE_KEY);
-				if (cached) {
-					memoryCache.data = cached;
-					memoryCache.timestamp = Date.now();
-					return cached;
-				}
-			} catch (err) {
-				contactLogger.error('GithubService: Redis read failed:', err);
-			}
-		}
+	const redis = getRedis();
+	if (!redis) return null;
 
-		// Fetch from GitHub
-		const fresh = await fetchFromGithub(fetch);
-		if (!fresh) return null;
-
-		// Populate both caches
-		memoryCache.data = fresh;
+	try {
+		const cached = await redis.get<GithubActivity>(CACHE_KEY);
+		if (!cached) return null;
+		memoryCache.data = cached;
 		memoryCache.timestamp = Date.now();
-		if (redis) {
-			try {
-				await redis.set(CACHE_KEY, fresh, { ex: CACHE_TTL_SECONDS });
-			} catch (err) {
-				contactLogger.error('GithubService: Redis write failed:', err);
-			}
-		}
-
-		return fresh;
+		return cached;
+	} catch (err) {
+		contactLogger.error('GithubService: Redis read failed:', err);
+		return null;
 	}
 }
 
-export default GithubService;
+async function setCachedActivity(activity: GithubActivity) {
+	memoryCache.data = activity;
+	memoryCache.timestamp = Date.now();
+
+	const redis = getRedis();
+	if (!redis) return;
+
+	try {
+		await redis.set(CACHE_KEY, activity, { ex: CACHE_TTL_SECONDS });
+	} catch (err) {
+		contactLogger.error('GithubService: Redis write failed:', err);
+	}
+}
+
+async function getActivity(fetch: typeof globalThis.fetch): Promise<GithubActivity | null> {
+	const cached = await getCachedActivity();
+	if (cached) return cached;
+
+	const fresh = await fetchFromGithub(fetch);
+	if (!fresh) return null;
+
+	await setCachedActivity(fresh);
+	return fresh;
+}
+
+const githubService = {
+	getActivity
+};
+
+export default githubService;

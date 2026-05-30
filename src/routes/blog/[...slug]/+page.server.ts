@@ -7,39 +7,44 @@ import { blogTagToWorkSlugs, selectedWork } from '$lib/copy';
 
 export const prerender = true;
 
-export const load: PageServerLoad = ({ params }) => {
-	const showDrafts = dev || env.SHOW_DRAFTS === 'true';
-	const post = getPostBySlug(params.slug, showDrafts);
-
-	if (!post) {
-		error(404, 'Post not found');
-	}
-
-	const allPosts = getAllPosts(showDrafts).filter((candidate) => candidate.slug !== post.slug);
-	const postTags = new Set(post.tags);
-	const relatedByTag = allPosts
-		.map((candidate) => {
-			const overlap = candidate.tags.filter((tag) => postTags.has(tag)).length;
-			return { candidate, overlap };
-		})
-		.filter((entry) => entry.overlap > 0)
+function rankRelatedPosts(showDrafts: boolean, currentSlug: string, tags: string[]) {
+	const allPosts = getAllPosts(showDrafts).filter((candidate) => candidate.slug !== currentSlug);
+	const postTags = new Set(tags);
+	const scored = allPosts
+		.map((candidate) => ({
+			candidate,
+			overlap: candidate.tags.filter((tag) => postTags.has(tag)).length
+		}))
 		.sort((a, b) => {
 			if (b.overlap !== a.overlap) return b.overlap - a.overlap;
 			return new Date(b.candidate.date).getTime() - new Date(a.candidate.date).getTime();
-		})
-		.map((entry) => entry.candidate);
-	const fallbackPosts = allPosts
-		.filter((candidate) => !relatedByTag.some((related) => related.slug === candidate.slug))
+		});
+
+	const relatedByTag = scored.filter((entry) => entry.overlap > 0).map((entry) => entry.candidate);
+	const fallbackPosts = scored
+		.filter((entry) => entry.overlap === 0)
+		.map((entry) => entry.candidate)
 		.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-	const relatedPosts = [...relatedByTag, ...fallbackPosts].slice(0, 3);
 
+	return [...relatedByTag, ...fallbackPosts].slice(0, 3);
+}
+
+function getRelatedWork(tags: string[]) {
 	const workSlugSet = new Set<string>();
-	for (const tag of post.tags) {
-		for (const slug of blogTagToWorkSlugs[tag] ?? []) {
-			workSlugSet.add(slug);
-		}
+	for (const tag of tags) {
+		for (const slug of blogTagToWorkSlugs[tag] ?? []) workSlugSet.add(slug);
 	}
-	const relatedWork = selectedWork.filter((project) => workSlugSet.has(project.slug));
+	return selectedWork.filter((project) => workSlugSet.has(project.slug));
+}
 
-	return { post, relatedPosts, relatedWork };
+export const load: PageServerLoad = ({ params }) => {
+	const showDrafts = dev || env.SHOW_DRAFTS === 'true';
+	const post = getPostBySlug(params.slug, showDrafts);
+	if (!post) error(404, 'Post not found');
+
+	return {
+		post,
+		relatedPosts: rankRelatedPosts(showDrafts, post.slug, post.tags),
+		relatedWork: getRelatedWork(post.tags)
+	};
 };
