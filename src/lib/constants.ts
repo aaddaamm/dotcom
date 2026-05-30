@@ -2,10 +2,10 @@ export const SITE_URL = 'https://adamrobinson.tech';
 export const EMAIL = 'adam@adamrobinson.tech';
 export const ROLE_TITLE = 'Senior Software Engineer';
 export const GITHUB_USERNAME = 'aaddaamm';
-export const LINKEDIN_HANDLE = 'adam-robinson-tech';
-export const X_HANDLE = 'Adam623753';
-export const INSTAGRAM_HANDLE = 'adamrobinson7251';
-export const FACEBOOK_PROFILE_ID = '61573468237603';
+const LINKEDIN_HANDLE = 'adam-robinson-tech';
+const X_HANDLE = 'Adam623753';
+const INSTAGRAM_HANDLE = 'adamrobinson7251';
+const FACEBOOK_PROFILE_ID = '61573468237603';
 
 export const SOCIAL_URLS = {
 	github: `https://github.com/${GITHUB_USERNAME}`,

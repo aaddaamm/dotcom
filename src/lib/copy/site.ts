@@ -136,7 +136,7 @@ export const faqItems: FaqItem[] = [
 ];
 
 export const heroMessaging: HeroMessaging = {
-	audienceKeywords: ['local', 'startups', 'agencies', 'Book a project call'],
+	audienceKeywords: ['Startups', 'Agencies', 'Book a project call'],
 	availability: 'Available for select freelance engagements.',
 	ctaOrder: ['Book a project call', 'See services fit', 'Download résumé']
 };

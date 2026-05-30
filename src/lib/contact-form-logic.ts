@@ -1,9 +1,5 @@
-import {
-	getFriendlyErrorMessage,
-	inferIntent,
-	isFallbackSuccessMessage,
-} from "$lib/contact-form";
-import { type ContactFormData, validateContactForm } from "$lib/validation";
+import { getFriendlyErrorMessage, inferIntent, isFallbackSuccessMessage } from '$lib/contact-form';
+import { type ContactFormData, validateContactForm } from '$lib/validation';
 
 export type ContactFormState = {
 	name: string;
@@ -23,22 +19,22 @@ export type ContactFormSubmitResult =
 			normalizedIntent: ReturnType<typeof inferIntent>;
 			submittedPayload: ContactFormData;
 			successMessage: string;
-			outcome: "success" | "fallback";
+			outcome: 'success' | 'fallback';
 	  }
 	| {
 			ok: false;
-			reason: "validation";
+			reason: 'validation';
 			fieldErrors: Record<string, string>;
 			errorMessage: string;
 	  }
 	| {
 			ok: false;
-			reason: "api" | "network";
+			reason: 'api' | 'network';
 			normalizedIntent: ReturnType<typeof inferIntent>;
 			errorMessage: string;
 	  };
 
-export function toContactPayload(state: ContactFormState): ContactFormData {
+function toContactPayload(state: ContactFormState): ContactFormData {
 	return {
 		name: state.name.trim(),
 		email: state.email.trim(),
@@ -47,37 +43,32 @@ export function toContactPayload(state: ContactFormState): ContactFormData {
 		project: state.project.trim(),
 		timeline: state.timeline.trim(),
 		budget: state.budget.trim(),
-		message: state.message.trim(),
+		message: state.message.trim()
 	};
 }
 
-export async function submitContactForm(
-	state: ContactFormState,
-): Promise<ContactFormSubmitResult> {
+export async function submitContactForm(state: ContactFormState): Promise<ContactFormSubmitResult> {
 	const payload = toContactPayload(state);
 	const validation = validateContactForm(payload);
 
 	if (!validation.isValid) {
 		return {
 			ok: false,
-			reason: "validation",
+			reason: 'validation',
 			fieldErrors: validation.errors,
-			errorMessage: "Please fix the errors below.",
+			errorMessage: 'Please fix the errors below.'
 		};
 	}
 
-	const normalizedIntent = inferIntent(
-		payload.intent ?? "",
-		payload.project ?? "",
-	);
+	const normalizedIntent = inferIntent(payload.intent ?? '', payload.project ?? '');
 
 	try {
-		const response = await fetch("/api/contact", {
-			method: "POST",
+		const response = await fetch('/api/contact', {
+			method: 'POST',
 			headers: {
-				"Content-Type": "application/json",
+				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ ...payload, website: state.website }),
+			body: JSON.stringify({ ...payload, website: state.website })
 		});
 
 		const result = (await response.json()) as {
@@ -85,7 +76,7 @@ export async function submitContactForm(
 			message?: string;
 			error?: string;
 		};
-		const resultMessage = result.message ?? "";
+		const resultMessage = result.message ?? '';
 
 		if (response.ok && result.success) {
 			return {
@@ -95,28 +86,23 @@ export async function submitContactForm(
 				successMessage:
 					result.message ||
 					"Thanks — message received. I'll follow up within 24 hours with next steps.",
-				outcome: isFallbackSuccessMessage(resultMessage)
-					? "fallback"
-					: "success",
+				outcome: isFallbackSuccessMessage(resultMessage) ? 'fallback' : 'success'
 			};
 		}
 
 		return {
 			ok: false,
-			reason: "api",
+			reason: 'api',
 			normalizedIntent,
-			errorMessage: getFriendlyErrorMessage(
-				result.error || "",
-				response.status,
-			),
+			errorMessage: getFriendlyErrorMessage(result.error || '', response.status)
 		};
 	} catch {
 		return {
 			ok: false,
-			reason: "network",
+			reason: 'network',
 			normalizedIntent,
 			errorMessage:
-				"Network issue while submitting. Please check your connection and try again, or email me directly.",
+				'Network issue while submitting. Please check your connection and try again, or email me directly.'
 		};
 	}
 }

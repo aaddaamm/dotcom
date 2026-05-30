@@ -27,6 +27,7 @@ function postContact(
 			method: 'POST',
 			headers: {
 				'content-type': contentType,
+				origin: 'https://adamrobinson.tech',
 				...extraHeaders
 			},
 			body
@@ -39,6 +40,7 @@ function validPayload() {
 	return {
 		name: 'Ada Lovelace',
 		email: 'ada@example.com',
+		intent: 'Contract work',
 		project: 'Technical consulting',
 		message: 'I need help stabilizing a SvelteKit application.'
 	};

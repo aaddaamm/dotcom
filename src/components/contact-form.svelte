@@ -62,14 +62,8 @@
 		phone = '';
 	}
 
-	async function handleSubmit(event: Event) {
-		event.preventDefault();
-		isSubmitting = true;
-		errorMessage = '';
-		successMessage = '';
-		fieldErrors = {};
-
-		const result = await submitContactForm({
+	function buildFormState() {
+		return {
 			name,
 			email,
 			intent,
@@ -79,21 +73,26 @@
 			budget,
 			message,
 			website
-		});
+		};
+	}
 
-		if (!result.ok) {
-			if (result.reason === 'validation') {
-				fieldErrors = result.fieldErrors;
-				errorMessage = result.errorMessage;
-				trackFormValidationError(Object.keys(result.fieldErrors).length);
-			} else {
-				trackFormSubmitOutcome('error', result.normalizedIntent);
-				errorMessage = result.errorMessage;
-			}
-			isSubmitting = false;
+	function handleFailedSubmit(
+		result: Extract<Awaited<ReturnType<typeof submitContactForm>>, { ok: false }>
+	) {
+		if (result.reason === 'validation') {
+			fieldErrors = result.fieldErrors;
+			errorMessage = result.errorMessage;
+			trackFormValidationError(Object.keys(result.fieldErrors).length);
 			return;
 		}
 
+		trackFormSubmitOutcome('error', result.normalizedIntent);
+		errorMessage = result.errorMessage;
+	}
+
+	function handleSuccessfulSubmit(
+		result: Extract<Awaited<ReturnType<typeof submitContactForm>>, { ok: true }>
+	) {
 		trackFormSubmit(
 			result.normalizedIntent,
 			result.submittedPayload.phone ? 'yes' : 'no',
@@ -105,13 +104,28 @@
 		successMessage = result.successMessage;
 		resetForm();
 		submitted = true;
-
 		setTimeout(() => {
 			submitted = false;
 			successMessage = '';
 			trackedStart = false;
 		}, SUCCESS_RESET_MS);
+	}
 
+	async function handleSubmit(event: Event) {
+		event.preventDefault();
+		isSubmitting = true;
+		errorMessage = '';
+		successMessage = '';
+		fieldErrors = {};
+
+		const result = await submitContactForm(buildFormState());
+		if (!result.ok) {
+			handleFailedSubmit(result);
+			isSubmitting = false;
+			return;
+		}
+
+		handleSuccessfulSubmit(result);
 		isSubmitting = false;
 	}
 </script>
