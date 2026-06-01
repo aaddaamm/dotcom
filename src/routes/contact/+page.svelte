@@ -5,6 +5,7 @@
 	import ContactForm from '../../components/contact-form.svelte';
 	import ContactProcess from '../../components/contact-process.svelte';
 	import JsonLd from '../../components/json-ld.svelte';
+	import PageHeader from '../../components/page-header.svelte';
 	import OutcomeProof from '../../components/outcome-proof.svelte';
 	import SeoHead from '../../components/seo-head.svelte';
 	import { pageSeo } from '$lib/seo';
@@ -40,16 +41,12 @@
 />
 
 <div class="max-w-3xl mx-auto px-6">
-	<section class="pt-20 sm:pt-28">
-		<a href="/" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
-			<span aria-hidden="true">&larr;</span>
-			Back
-		</a>
-		<h1 class="page-title text-3xl font-semibold tracking-tight mb-3">Start a project</h1>
-		<p class="page-description leading-relaxed mb-6">
-			Tell me what you're building, what's blocked, and the timeline you have in mind. I review
-			every message personally and reply within 24 hours with clear next steps.
-		</p>
+	<section>
+		<PageHeader
+			title="Start a project"
+			description="Tell me what you're building, what's blocked, and the timeline you have in mind. I review every message personally and reply within 24 hours with clear next steps."
+			descriptionClass="mb-6"
+		/>
 
 		<div class="cta-row" aria-label="Contact page actions">
 			<a

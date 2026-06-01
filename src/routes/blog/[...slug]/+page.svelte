@@ -3,6 +3,7 @@
 	import { createElementObserver } from '$lib/animations';
 	import { SITE_URL } from '$lib/constants';
 	import { breadcrumbList, formatPostDate } from '$lib/utils';
+	import BackLink from '../../../components/back-link.svelte';
 	import JsonLd from '../../../components/json-ld.svelte';
 	import SeoHead from '../../../components/seo-head.svelte';
 	import ShareLinks from '../../../components/share-links.svelte';
@@ -69,10 +70,7 @@
 
 <article class="max-w-3xl mx-auto px-6">
 	<div class="pt-20 sm:pt-28">
-		<a href="/blog" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
-			<span aria-hidden="true">&larr;</span>
-			Blog
-		</a>
+		<BackLink href="/blog" label="Blog" />
 		<div class="post-header">
 			<time class="text-xs muted-text" datetime={data.post.date}>
 				{formatPostDate(data.post.date)}

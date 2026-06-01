@@ -3,6 +3,7 @@
 	import { formatPostDate } from '$lib/utils';
 	import { pageSeo } from '$lib/seo';
 	import JsonLd from '../../components/json-ld.svelte';
+	import PageHeader from '../../components/page-header.svelte';
 	import { SITE_URL } from '$lib/constants';
 
 	let { data } = $props();
@@ -30,15 +31,11 @@
 />
 
 <div class="max-w-3xl mx-auto px-6">
-	<section class="pt-20 sm:pt-28">
-		<a href="/" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
-			<span aria-hidden="true">&larr;</span>
-			Back
-		</a>
-		<h1 class="page-title text-3xl font-semibold tracking-tight mb-3">Blog</h1>
-		<p class="page-description leading-relaxed mb-12">
-			Writing about systems, tools, and how software gets built.
-		</p>
+	<section>
+		<PageHeader
+			title="Blog"
+			description="Writing about systems, tools, and how software gets built."
+		/>
 
 		{#if data.posts.length === 0}
 			<p class="muted-text">Nothing here yet — check back soon.</p>

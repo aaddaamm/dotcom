@@ -5,6 +5,7 @@
 	import { breadcrumbList } from '$lib/utils';
 	import { learningResources } from '$lib/copy';
 	import { pageSeo } from '$lib/seo';
+	import PageHeader from '../../components/page-header.svelte';
 
 	const categories = ['All', ...new Set(learningResources.map((r) => r.category))];
 	let selectedCategory = $state('All');
@@ -26,15 +27,10 @@
 />
 
 <div class="max-w-4xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
-	<a href="/" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
-		<span aria-hidden="true">&larr;</span>
-		Back
-	</a>
-	<h1 class="page-title text-3xl font-semibold tracking-tight mb-3">Learning Resources</h1>
-	<p class="page-description leading-relaxed mb-8">
-		The best places to learn programming and develop your skills, curated from years of experience
-		in the field.
-	</p>
+	<PageHeader
+		title="Learning Resources"
+		description="The best places to learn programming and develop your skills, curated from years of experience in the field."
+	/>
 
 	<div class="mb-8">
 		<h2 class="text-lg font-semibold mb-4">Filter by Category</h2>
