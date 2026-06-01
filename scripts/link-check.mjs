@@ -18,6 +18,8 @@ execFileSync(
 		'tel:.*',
 		'--skip',
 		'https://(www\\.)?linkedin\\.com/.*',
+		'--skip',
+		'https://(www\\.)?instagram\\.com/.*',
 		'--timeout',
 		'15000',
 		'--concurrency',
