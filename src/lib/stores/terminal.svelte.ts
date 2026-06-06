@@ -12,6 +12,6 @@ export function openTerminal() {
 	open = true;
 }
 
-export function syncTerminalOpen(nextOpen: boolean) {
+export function syncTerminalOpenState({ open: nextOpen }: { open: boolean }) {
 	open = nextOpen;
 }

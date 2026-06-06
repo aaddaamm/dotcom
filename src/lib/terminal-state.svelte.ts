@@ -1,13 +1,17 @@
 import { goto } from '$app/navigation';
 import { runCommand, normalize, getCompletions, type Mode } from '$lib/terminal-commands';
+import {
+	historyInputAt,
+	initialModeLines,
+	inputEntry,
+	nextHistoryIndex,
+	outputEntry
+} from '$lib/terminal-history';
+import type { HistoryEntry } from '$lib/terminal-types';
 import { trackTerminalOpen, trackTerminalCommand, trackTerminalModeChange } from '$lib/analytics';
 import { getSeveranceMode, setSeveranceMode } from '$lib/stores/severance';
 import { MacrodataSession } from '$lib/terminal-macrodata';
 import { TerminalMemory } from '$lib/terminal-memory';
-
-export type HistoryEntry =
-	| { id: number; type: 'input'; text: string }
-	| { id: number; type: 'output'; lines: string[] };
 
 const ARGUMENT_EXPECTING_COMMANDS = [
 	'ls',
@@ -84,9 +88,9 @@ export class TerminalState {
 	}
 
 	navigateHistory(direction: 'up' | 'down') {
-		const next = this.#nextHistoryIndex(direction);
+		const next = nextHistoryIndex(this.cmdHistoryIndex, this.cmdHistory.length, direction);
 		this.cmdHistoryIndex = next;
-		this.input = this.#historyInputForIndex(next);
+		this.input = historyInputAt(this.cmdHistory, next);
 	}
 
 	tabComplete() {
@@ -130,7 +134,7 @@ export class TerminalState {
 	}
 
 	#recordInput(cmd: string) {
-		this.history = [...this.history, { id: this.#nextId++, type: 'input', text: cmd }];
+		this.history = [...this.history, inputEntry(this.#nextId++, cmd)];
 		this.cmdHistory = [cmd, ...this.cmdHistory.slice(0, 49)];
 		this.cmdHistoryIndex = -1;
 	}
@@ -167,7 +171,7 @@ export class TerminalState {
 	}
 
 	#pushOutput(lines: string[]) {
-		this.history = [...this.history, { id: this.#nextId++, type: 'output', lines }];
+		this.history = [...this.history, outputEntry(this.#nextId++, lines)];
 	}
 
 	#saveMemory(key: 'outie' | 'innie') {
@@ -179,18 +183,6 @@ export class TerminalState {
 		this.history = snapshot.history;
 		this.cmdHistory = snapshot.cmdHistory;
 		this.cmdHistoryIndex = -1;
-	}
-
-	#nextHistoryIndex(direction: 'up' | 'down') {
-		if (direction === 'up') {
-			return Math.min(this.cmdHistoryIndex + 1, this.cmdHistory.length - 1);
-		}
-		return this.cmdHistoryIndex - 1;
-	}
-
-	#historyInputForIndex(index: number) {
-		if (index < 0) return '';
-		return this.cmdHistory[index] ?? '';
 	}
 
 	#syncSeveranceMode(nextMode: Mode) {
@@ -205,12 +197,6 @@ export class TerminalState {
 		this.#saveMemory(prevKey);
 		this.#loadMemory(nextKey);
 		if (this.history.length > 0) return;
-		if (nextKey === 'innie') {
-			this.#pushOutput(['memory partition complete.', "type 'macrodata' to begin refinement."]);
-			return;
-		}
-		if (nextKey === 'outie') {
-			this.#pushOutput(['outie memory restored. no retained innie logs visible.']);
-		}
+		this.#pushOutput(initialModeLines(nextKey));
 	}
 }

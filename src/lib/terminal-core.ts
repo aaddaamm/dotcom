@@ -1,4 +1,4 @@
-import { techStack } from '$lib/copy';
+import { techStack, type TechStackGroup } from '$lib/copy';
 import {
 	getArgMap,
 	INCANTATIONS,
@@ -7,10 +7,10 @@ import {
 	topLevelCommands
 } from '$lib/terminal-command-data';
 import { EMAIL, SOCIAL_URLS } from '$lib/constants';
-import { socialLinks, toDisplayUrl } from '$lib/social-links';
+import { socialLinks, toDisplayUrl, type SocialLink } from '$lib/social-links';
 import type { CommandDef, CommandResult, Mode } from '$lib/terminal-types';
 
-const allStack = techStack.flatMap((g) => g.items);
+const allStack = techStack.flatMap((group: TechStackGroup) => group.items);
 const CONTROL_COMMANDS = new Set(['clear', 'exit', 'quit']);
 
 const OUTIE_MODE_RESULT: CommandResult = {
@@ -184,7 +184,7 @@ const commands: Record<string, CommandDef> = {
 			lines: [
 				`email     ${EMAIL}`,
 				...socialLinks.map(
-					(social) => `${social.label.padEnd(9, ' ')} ${toDisplayUrl(social.url)}`
+					(social: SocialLink) => `${social.label.padEnd(9, ' ')} ${toDisplayUrl(social.url)}`
 				),
 				'hire      adamrobinson.tech/hire'
 			]
@@ -405,12 +405,12 @@ export function runCommand(rawInput: string, mode: Mode): CommandResult {
 const argMap = getArgMap();
 
 function getTopLevelCompletions(partial: string): string[] {
-	return topLevelCommands.filter((command) => command.startsWith(partial));
+	return topLevelCommands.filter((command: string) => command.startsWith(partial));
 }
 
 function getArgumentCompletions(command: string, partial: string): string[] {
 	const args = argMap[command] ?? [];
-	return args.filter((arg) => arg.startsWith(partial));
+	return args.filter((arg: string) => arg.startsWith(partial));
 }
 
 export function getCompletions(input: string): string[] {

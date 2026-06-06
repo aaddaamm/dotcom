@@ -4,7 +4,7 @@
 	import {
 		getTerminalOpen,
 		setTerminalClosed,
-		syncTerminalOpen
+		syncTerminalOpenState
 	} from '$lib/stores/terminal.svelte';
 	import { TerminalState } from '$lib/terminal-state.svelte';
 	import { trackTerminalOpen } from '$lib/analytics';
@@ -23,7 +23,7 @@
 	$effect(() => {
 		const open = state.isOpen;
 		untrack(() => {
-			if (!fullscreen) syncTerminalOpen(open);
+			if (!fullscreen) syncTerminalOpenState({ open });
 		});
 	});
 
