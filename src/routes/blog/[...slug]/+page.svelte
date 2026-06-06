@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { createElementObserver } from '$lib/animations';
-	import { SITE_URL } from '$lib/constants';
+	import { ROLE_TITLE, SITE_URL } from '$lib/constants';
 	import { breadcrumbList, formatPostDate } from '$lib/utils';
 	import BackLink from '../../../components/back-link.svelte';
 	import JsonLd from '../../../components/json-ld.svelte';
@@ -72,9 +72,16 @@
 	<div class="pt-20 sm:pt-28">
 		<BackLink href="/blog" label="Blog" />
 		<div class="post-header">
-			<time class="text-xs muted-text" datetime={data.post.date}>
-				{formatPostDate(data.post.date)}
-			</time>
+			<div class="post-meta text-xs muted-text">
+				<address>
+					By <a rel="author" href="/">Adam Robinson</a>
+					<span>, {ROLE_TITLE}</span>
+				</address>
+				<span aria-hidden="true">·</span>
+				<time datetime={data.post.date}>
+					{formatPostDate(data.post.date)}
+				</time>
+			</div>
 			<h1 class="page-title text-3xl font-semibold tracking-tight mt-2 mb-3">{data.post.title}</h1>
 			{#if data.post.tags.length > 0}
 				<div class="flex gap-2 mb-0">
@@ -124,6 +131,24 @@
 		border-left: 2px solid var(--color-accent);
 		padding-left: 20px;
 		margin-bottom: 48px;
+	}
+
+	.post-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.35rem;
+		align-items: center;
+	}
+
+	.post-meta address {
+		font-style: normal;
+	}
+
+	.post-meta a {
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-color: color-mix(in srgb, var(--color-text) 28%, transparent);
+		text-underline-offset: 0.18em;
 	}
 
 	.tag {

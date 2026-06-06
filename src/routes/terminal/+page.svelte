@@ -65,6 +65,7 @@
 </svelte:head>
 
 <div class="max-w-3xl mx-auto px-6 py-8">
+	<h1 class="sr-only">Interactive terminal</h1>
 	<div
 		style="
 			font-family: var(--font-mono);

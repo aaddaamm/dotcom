@@ -1,6 +1,6 @@
 ---
 title: 'Why I Switched to pi (And Why Most CLI Agents Are Built Backwards)'
-description: "Most CLI coding agents ship opinionated features you can't change. Pi ships a minimal core you extend yourself. The difference matters more than you think."
+description: "Most CLI coding agents ship opinionated features you can't change. Pi takes the opposite approach: a minimal core you extend around your own workflow."
 date: '2026-04-20'
 tags: ['ai', 'developer-tools', 'productivity']
 published: true
