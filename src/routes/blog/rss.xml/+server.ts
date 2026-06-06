@@ -1,15 +1,15 @@
-import { getAllPosts } from '$lib/server/blog';
+import { getAllPosts, type BlogPost } from '$lib/server/blog';
 import { escapeHtml as escapeXml } from '$lib/server/http';
 import { SITE_URL as base } from '$lib/constants';
 
 export const prerender = true;
 
-export function GET() {
-	const posts = getAllPosts();
+export function GET(): Response {
+	const posts: BlogPost[] = getAllPosts();
 
 	const items = posts
 		.map(
-			(post) => `		<item>
+			(post: BlogPost) => `		<item>
 			<title>${escapeXml(post.title)}</title>
 			<link>${base}/blog/${post.slug}</link>
 			<guid isPermaLink="true">${base}/blog/${post.slug}</guid>

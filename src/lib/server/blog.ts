@@ -30,12 +30,12 @@ export type BlogPostWithContent = BlogPost & {
 };
 
 // Bundled at build time by Vite — works in Vercel serverless
-const publishedRaw = import.meta.glob('/src/content/blog/*.md', {
+const publishedRaw = import.meta.glob<string>('/src/content/blog/*.md', {
 	query: '?raw',
 	import: 'default',
 	eager: true
 });
-const draftsRaw = import.meta.glob('/src/content/blog/drafts/*.md', {
+const draftsRaw = import.meta.glob<string>('/src/content/blog/drafts/*.md', {
 	query: '?raw',
 	import: 'default',
 	eager: true
@@ -115,7 +115,7 @@ function parseEntry(
 
 function appendParsedPosts(
 	posts: BlogPost[],
-	source: Record<string, unknown>,
+	source: Record<string, string>,
 	options?: {
 		slugPrefix?: string;
 		includeUnpublished?: boolean;
@@ -124,7 +124,7 @@ function appendParsedPosts(
 	const { slugPrefix = '', includeUnpublished = false } = options ?? {};
 
 	for (const [filepath, raw] of Object.entries(source)) {
-		const entry = parseEntry(filepath, raw as string, slugPrefix);
+		const entry = parseEntry(filepath, raw, slugPrefix);
 		if (!entry) continue;
 		if (!entry.published && !includeUnpublished) continue;
 		const { _content: _, ...post } = entry;
@@ -148,7 +148,7 @@ export function getAllPosts(includeDrafts = false): BlogPost[] {
 }
 
 function resolvePostSource(slug: string): {
-	source: Record<string, unknown>;
+	source: Record<string, string>;
 	actualSlug: string;
 	slugPrefix: string;
 } {
@@ -166,7 +166,7 @@ export function getPostBySlug(slug: string, includeDrafts = false): BlogPostWith
 	const filepath = Object.keys(source).find((f) => f.endsWith(`/${actualSlug}.md`));
 	if (!filepath) return null;
 
-	const entry = parseEntry(filepath, source[filepath] as string, slugPrefix);
+	const entry = parseEntry(filepath, source[filepath], slugPrefix);
 	if (!entry) return null;
 	if (!entry.published && !includeDrafts) return null;
 

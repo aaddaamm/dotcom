@@ -3,6 +3,7 @@ import type { GoodreadsBook } from '$lib/types';
 import { GOODREADS_SHELVES } from '$lib/constants';
 import { getRedis } from '$lib/server/redis';
 import { contactLogger } from '$lib/server/contact-logger';
+import { isRecord } from '$lib/server/content-frontmatter';
 
 const RSS_BASE_URL = 'https://www.goodreads.com/review/list_rss/92024399';
 const CACHE_TTL_SECONDS = 60 * 60; // 1 hour
@@ -15,6 +16,24 @@ const memoryCache = new Map<string, { data: GoodreadsBook[]; timestamp: number }
 const CACHE_TTL_MS = CACHE_TTL_SECONDS * 1000;
 
 const parser = new XMLParser({ isArray: (name) => name === 'item' });
+
+type GoodreadsRssChannel = {
+	'openSearch:totalResults'?: unknown;
+	item?: unknown;
+};
+
+function getRssChannel(parsed: unknown): GoodreadsRssChannel | null {
+	if (!isRecord(parsed)) return null;
+	const rss = parsed.rss;
+	if (!isRecord(rss)) return null;
+	const channel = rss.channel;
+	if (!isRecord(channel)) return null;
+	return channel;
+}
+
+function getRssItems(channel: GoodreadsRssChannel): unknown[] {
+	return Array.isArray(channel.item) ? channel.item : [];
+}
 
 function getStaleMemoryData(shelf: GOODREADS_SHELVES): GoodreadsBook[] | null {
 	const cached = memoryCache.get(shelf);
@@ -90,73 +109,98 @@ async function fetchRSSPage(
 	}
 
 	const text = await response.text();
-	const parsed = parser.parse(text);
-	const channel = parsed?.rss?.channel;
+	const parsed: unknown = parser.parse(text);
+	const channel = getRssChannel(parsed);
 	if (!channel) {
 		throw new Error('Goodreads RSS response did not contain rss.channel');
 	}
 
 	const total = Number(channel['openSearch:totalResults'] ?? 0);
-	const items: unknown[] = channel.item ?? [];
-	const books = items.map((item) => parseBookFromItem(item as Record<string, unknown>));
+	const books = getRssItems(channel)
+		.filter(isRecord)
+		.map((item: Record<string, unknown>) => parseBookFromItem(item));
 
 	return { books, total };
+}
+
+async function getCachedBooks(shelf: GOODREADS_SHELVES): Promise<GoodreadsBook[] | null> {
+	const cached = memoryCache.get(shelf);
+	if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) return cached.data;
+
+	const redis = getRedis();
+	if (!redis) return null;
+
+	const redisData = await redis.get<GoodreadsBook[]>(`goodreads:${shelf}`);
+	if (!redisData) return null;
+
+	memoryCache.set(shelf, { data: redisData, timestamp: Date.now() });
+	return redisData;
+}
+
+async function fetchRemainingKnownPages(
+	shelf: GOODREADS_SHELVES,
+	total: number,
+	fetch: typeof globalThis.fetch
+): Promise<GoodreadsBook[]> {
+	const remainingCount = Math.min(Math.ceil((total - PAGE_SIZE) / PAGE_SIZE), 19);
+	const pageNumbers = Array.from({ length: remainingCount }, (_, i) => i + 2);
+	const pages = await Promise.all(pageNumbers.map((page) => fetchRSSPage(shelf, page, fetch)));
+	return pages.flatMap(({ books }) => books);
+}
+
+async function fetchSequentialFallbackPages(
+	shelf: GOODREADS_SHELVES,
+	fetch: typeof globalThis.fetch
+): Promise<GoodreadsBook[]> {
+	const books: GoodreadsBook[] = [];
+
+	for (let page = 2; page <= 20; page++) {
+		const result = await fetchRSSPage(shelf, page, fetch);
+		books.push(...result.books);
+		if (result.books.length < PAGE_SIZE) break;
+	}
+
+	return books;
+}
+
+async function fetchFreshBooks(
+	shelf: GOODREADS_SHELVES,
+	fetch: typeof globalThis.fetch
+): Promise<GoodreadsBook[]> {
+	const { books: firstPage, total } = await fetchRSSPage(shelf, 1, fetch);
+	const remainingBooks =
+		total > PAGE_SIZE
+			? await fetchRemainingKnownPages(shelf, total, fetch)
+			: total === 0 && firstPage.length === PAGE_SIZE
+				? await fetchSequentialFallbackPages(shelf, fetch)
+				: [];
+
+	return [...firstPage, ...remainingBooks];
+}
+
+async function cacheBooks(shelf: GOODREADS_SHELVES, books: GoodreadsBook[]): Promise<void> {
+	memoryCache.set(shelf, { data: books, timestamp: Date.now() });
+
+	const redis = getRedis();
+	if (!redis) return;
+
+	await Promise.all([
+		redis.set(`goodreads:${shelf}`, books, { ex: CACHE_TTL_SECONDS }),
+		redis.set(`goodreads:stale:${shelf}`, books, { ex: STALE_CACHE_TTL_SECONDS })
+	]);
 }
 
 async function getBooksFromShelf(
 	shelf: GOODREADS_SHELVES,
 	fetch: typeof globalThis.fetch
 ): Promise<GoodreadsBook[]> {
-	const redis = getRedis();
 	try {
-		// L1: in-memory cache
-		const cached = memoryCache.get(shelf);
-		if (cached && Date.now() - cached.timestamp < CACHE_TTL_MS) {
-			return cached.data;
-		}
+		const cachedBooks = await getCachedBooks(shelf);
+		if (cachedBooks) return cachedBooks;
 
-		// L2: Upstash Redis (shared across instances)
-		if (redis) {
-			const redisData = await redis.get<GoodreadsBook[]>(`goodreads:${shelf}`);
-			if (redisData) {
-				memoryCache.set(shelf, { data: redisData, timestamp: Date.now() });
-				return redisData;
-			}
-		}
-
-		// Fetch page 1 to get books and total count
-		const { books: firstPage, total } = await fetchRSSPage(shelf, 1, fetch);
-		const allBooks: GoodreadsBook[] = [...firstPage];
-
-		if (total > PAGE_SIZE) {
-			// Total known — fetch remaining pages in parallel
-			const remainingCount = Math.min(Math.ceil((total - PAGE_SIZE) / PAGE_SIZE), 19);
-			const pageNumbers = Array.from({ length: remainingCount }, (_, i) => i + 2);
-			const results = await Promise.all(pageNumbers.map((p) => fetchRSSPage(shelf, p, fetch)));
-			for (const { books } of results) allBooks.push(...books);
-		} else if (total === 0 && firstPage.length === PAGE_SIZE) {
-			// Total unavailable — fall back to sequential paging
-			let page = 2;
-			while (page <= 20) {
-				const { books } = await fetchRSSPage(shelf, page, fetch);
-				allBooks.push(...books);
-				if (books.length < PAGE_SIZE) break;
-				page++;
-			}
-		}
-
-		// Write to both caches
-		memoryCache.set(shelf, { data: allBooks, timestamp: Date.now() });
-		if (redis) {
-			await Promise.all([
-				redis.set(`goodreads:${shelf}`, allBooks, { ex: CACHE_TTL_SECONDS }),
-				redis.set(`goodreads:stale:${shelf}`, allBooks, {
-					ex: STALE_CACHE_TTL_SECONDS
-				})
-			]);
-		}
-
-		return allBooks;
+		const freshBooks = await fetchFreshBooks(shelf, fetch);
+		await cacheBooks(shelf, freshBooks);
+		return freshBooks;
 	} catch (err) {
 		contactLogger.error(`GoodreadsService: failed to fetch shelf "${shelf}":`, err);
 		return getStaleData(shelf);

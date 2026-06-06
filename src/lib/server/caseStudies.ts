@@ -32,24 +32,34 @@ type CaseStudyFrontmatter = {
 	outcome: string;
 };
 
+type RequiredCaseStudyFields = Pick<
+	CaseStudyFrontmatter,
+	'title' | 'audience' | 'situation' | 'approach' | 'outcome'
+>;
+
+function getRequiredCaseStudyFields(
+	record: Record<string, unknown>
+): RequiredCaseStudyFields | null {
+	const fields = {
+		title: asNonEmptyString(record.title),
+		audience: asNonEmptyString(record.audience),
+		situation: asNonEmptyString(record.situation),
+		approach: asNonEmptyString(record.approach),
+		outcome: asNonEmptyString(record.outcome)
+	};
+
+	if (Object.values(fields).some((value) => value === null)) return null;
+
+	return fields as RequiredCaseStudyFields;
+}
+
 function toCaseStudyFrontmatter(data: unknown): FrontmatterValidationResult<CaseStudyFrontmatter> {
 	if (!isRecord(data)) return { frontmatter: null, reason: 'frontmatter is not an object' };
 	const record = data;
-	const title = asNonEmptyString(record.title);
-	const audience = asNonEmptyString(record.audience);
-	const situation = asNonEmptyString(record.situation);
-	const approach = asNonEmptyString(record.approach);
-	const outcome = asNonEmptyString(record.outcome);
-	const confidentiality = record.confidentiality;
+	const fields = getRequiredCaseStudyFields(record);
+	const isAnonymized = record.confidentiality === 'anonymized';
 
-	if (
-		!title ||
-		!audience ||
-		!situation ||
-		!approach ||
-		!outcome ||
-		confidentiality !== 'anonymized'
-	) {
+	if (!fields || !isAnonymized) {
 		return {
 			frontmatter: null,
 			reason: 'missing required anonymized case-study fields'
@@ -58,12 +68,8 @@ function toCaseStudyFrontmatter(data: unknown): FrontmatterValidationResult<Case
 
 	return {
 		frontmatter: {
-			title,
-			audience,
-			confidentiality,
-			situation,
-			approach,
-			outcome
+			...fields,
+			confidentiality: 'anonymized'
 		}
 	};
 }
