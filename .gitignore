@@ -15,3 +15,4 @@ vite.config.ts.timestamp-*
 docs/superpowers/
 
 .context/
+.pi-lens/

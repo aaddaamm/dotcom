@@ -7,7 +7,8 @@
 		trackFormValidationError
 	} from '$lib/analytics';
 	import { onMount } from 'svelte';
-	import { EMAIL } from '$lib/constants';
+	import ContactField from './contact-field.svelte';
+	import ContactSuccessMessage from './contact-success-message.svelte';
 	import {
 		budgetOptions,
 		inquiryIntentOptions,
@@ -45,10 +46,6 @@
 		if (trackedStart) return;
 		trackedStart = true;
 		trackFormStart('contact-page');
-	}
-
-	function getErrorId(field: string) {
-		return fieldErrors[field] ? `${field}-error` : undefined;
 	}
 
 	function resetForm() {
@@ -132,23 +129,7 @@
 
 <div class="contact-form-container">
 	{#if submitted && successMessage}
-		<div role="status" aria-live="polite" class="success-message p-6 rounded-lg text-center">
-			<h3 class="text-xl font-semibold mb-2">Thanks — your message is in.</h3>
-			<p class="body-text mb-4">{successMessage}</p>
-			<p class="text-sm muted-text mb-2">What happens next:</p>
-			<ul class="next-steps mb-4" aria-label="Next steps">
-				<li>I review your message and reply within 24 hours.</li>
-				<li>We align on goals, timeline, and constraints.</li>
-				<li>If it’s a fit, I’ll propose clear next steps.</li>
-			</ul>
-			<p class="text-sm muted-text mb-4">
-				If you need to reach me urgently, you can also email me directly at
-				<a href="mailto:{EMAIL}" class="accent-link">{EMAIL}</a>
-			</p>
-			<button class="text-sm accent-link underline" onclick={() => (submitted = false)}>
-				Send another message
-			</button>
-		</div>
+		<ContactSuccessMessage message={successMessage} onSendAnother={() => (submitted = false)} />
 	{:else}
 		<form onsubmit={handleSubmit} class="contact-form">
 			{#if errorMessage}
@@ -159,154 +140,95 @@
 
 			<fieldset class="form-section">
 				<legend class="section-legend">Contact details</legend>
-				<div class="form-group">
-					<label for="name" class="form-label">Name *</label>
-					<input
-						type="text"
-						id="name"
-						bind:value={name}
-						required
-						class="form-input"
-						class:field-error={fieldErrors.name}
-						placeholder="Your name"
-						disabled={isSubmitting}
-						onfocus={trackStart}
-						aria-describedby={getErrorId('name')}
-					/>
-					{#if fieldErrors.name}<p id="name-error" class="field-error-msg">
-							{fieldErrors.name}
-						</p>{/if}
-				</div>
-
-				<div class="form-group">
-					<label for="email" class="form-label">Email *</label>
-					<input
-						type="email"
-						id="email"
-						bind:value={email}
-						required
-						class="form-input"
-						class:field-error={fieldErrors.email}
-						placeholder="your@email.com"
-						disabled={isSubmitting}
-						onfocus={trackStart}
-						aria-describedby={getErrorId('email')}
-					/>
-					{#if fieldErrors.email}<p id="email-error" class="field-error-msg">
-							{fieldErrors.email}
-						</p>{/if}
-				</div>
-
-				<div class="form-group">
-					<label for="phone" class="form-label">Phone (Optional)</label>
-					<input
-						type="tel"
-						id="phone"
-						bind:value={phone}
-						class="form-input"
-						placeholder="(401) 555-0123"
-						disabled={isSubmitting}
-						onfocus={trackStart}
-					/>
-				</div>
+				<ContactField
+					id="name"
+					label="Name *"
+					bind:value={name}
+					required
+					error={fieldErrors.name}
+					placeholder="Your name"
+					disabled={isSubmitting}
+					onFocus={trackStart}
+				/>
+				<ContactField
+					id="email"
+					label="Email *"
+					type="email"
+					bind:value={email}
+					required
+					error={fieldErrors.email}
+					placeholder="your@email.com"
+					disabled={isSubmitting}
+					onFocus={trackStart}
+				/>
+				<ContactField
+					id="phone"
+					label="Phone (Optional)"
+					type="tel"
+					bind:value={phone}
+					placeholder="(401) 555-0123"
+					disabled={isSubmitting}
+					onFocus={trackStart}
+				/>
 			</fieldset>
 
 			<fieldset class="form-section">
 				<legend class="section-legend">Project details</legend>
-				<div class="form-group">
-					<label for="intent" class="form-label">Inquiry Type *</label>
-					<select
-						id="intent"
-						bind:value={intent}
-						required
-						class="form-input"
-						class:field-error={fieldErrors.intent}
-						disabled={isSubmitting}
-						onfocus={trackStart}
-						aria-describedby={getErrorId('intent')}
-					>
-						<option value="">What kind of inquiry is this...</option>
-						{#each inquiryIntentOptions as option (option)}
-							<option value={option}>{option}</option>
-						{/each}
-					</select>
-					{#if fieldErrors.intent}<p id="intent-error" class="field-error-msg">
-							{fieldErrors.intent}
-						</p>{/if}
-				</div>
-
-				<div class="form-group">
-					<label for="project" class="form-label">Project Type *</label>
-					<select
-						id="project"
-						bind:value={project}
-						required
-						class="form-input"
-						class:field-error={fieldErrors.project}
-						disabled={isSubmitting}
-						onfocus={trackStart}
-						aria-describedby={getErrorId('project')}
-					>
-						<option value="">What brings you here...</option>
-						{#each projectTypeOptions as option (option)}
-							<option value={option}>{option}</option>
-						{/each}
-					</select>
-					{#if fieldErrors.project}<p id="project-error" class="field-error-msg">
-							{fieldErrors.project}
-						</p>{/if}
-				</div>
-
-				<div class="form-group">
-					<label for="timeline" class="form-label">Preferred Timeline (Optional)</label>
-					<select
-						id="timeline"
-						bind:value={timeline}
-						class="form-input"
-						disabled={isSubmitting}
-						onfocus={trackStart}
-					>
-						<option value="">No preference yet</option>
-						{#each timelineOptions as option (option)}
-							<option value={option}>{option}</option>
-						{/each}
-					</select>
-				</div>
-
-				<div class="form-group">
-					<label for="budget" class="form-label">Budget Range (Optional)</label>
-					<select
-						id="budget"
-						bind:value={budget}
-						class="form-input"
-						disabled={isSubmitting}
-						onfocus={trackStart}
-					>
-						<option value="">Prefer not to say</option>
-						{#each budgetOptions as option (option)}
-							<option value={option}>{option}</option>
-						{/each}
-					</select>
-				</div>
-
-				<div class="form-group">
-					<label for="message" class="form-label">Project Details *</label>
-					<textarea
-						id="message"
-						bind:value={message}
-						required
-						rows="4"
-						class="form-input"
-						class:field-error={fieldErrors.message}
-						placeholder="Tell me about your project and any specific challenges you're facing..."
-						disabled={isSubmitting}
-						onfocus={trackStart}
-						aria-describedby={getErrorId('message')}
-					></textarea>
-					{#if fieldErrors.message}<p id="message-error" class="field-error-msg">
-							{fieldErrors.message}
-						</p>{/if}
-				</div>
+				<ContactField
+					id="intent"
+					label="Inquiry Type *"
+					kind="select"
+					bind:value={intent}
+					required
+					error={fieldErrors.intent}
+					placeholder="What kind of inquiry is this..."
+					disabled={isSubmitting}
+					options={inquiryIntentOptions}
+					onFocus={trackStart}
+				/>
+				<ContactField
+					id="project"
+					label="Project Type *"
+					kind="select"
+					bind:value={project}
+					required
+					error={fieldErrors.project}
+					placeholder="What brings you here..."
+					disabled={isSubmitting}
+					options={projectTypeOptions}
+					onFocus={trackStart}
+				/>
+				<ContactField
+					id="timeline"
+					label="Preferred Timeline (Optional)"
+					kind="select"
+					bind:value={timeline}
+					placeholder="No preference yet"
+					disabled={isSubmitting}
+					options={timelineOptions}
+					onFocus={trackStart}
+				/>
+				<ContactField
+					id="budget"
+					label="Budget Range (Optional)"
+					kind="select"
+					bind:value={budget}
+					placeholder="Prefer not to say"
+					disabled={isSubmitting}
+					options={budgetOptions}
+					onFocus={trackStart}
+				/>
+				<ContactField
+					id="message"
+					label="Project Details *"
+					kind="textarea"
+					bind:value={message}
+					required
+					error={fieldErrors.message}
+					placeholder="Tell me about your project and any specific challenges you're facing..."
+					disabled={isSubmitting}
+					onFocus={trackStart}
+				/>
 			</fieldset>
 
 			<div class="honeypot" aria-hidden="true">
@@ -386,46 +308,6 @@
 		color: var(--color-muted);
 	}
 
-	.form-group {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
-	.form-label {
-		font-weight: 500;
-		color: var(--color-text);
-		font-size: 0.95rem;
-	}
-
-	.form-input {
-		padding: 0.75rem;
-		border: 1px solid var(--color-border);
-		border-radius: 0.5rem;
-		background-color: var(--color-bg);
-		color: var(--color-text);
-		font-family: inherit;
-		font-size: 0.95rem;
-		transition:
-			border-color 300ms ease,
-			box-shadow 300ms ease;
-	}
-
-	.form-input:focus {
-		outline: none;
-		border-color: var(--color-accent);
-		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 15%, transparent);
-	}
-
-	.form-input:disabled {
-		opacity: 0.6;
-		cursor: not-allowed;
-	}
-
-	.form-input::placeholder {
-		color: var(--color-muted);
-	}
-
 	.submit-button {
 		background-color: var(--color-accent);
 		color: var(--color-on-accent);
@@ -454,40 +336,9 @@
 		text-align: center;
 	}
 
-	.success-message {
-		background-color: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg));
-		border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
-	}
-
-	.success-message h3 {
-		color: var(--color-text);
-	}
-
-	.next-steps {
-		text-align: left;
-		list-style: disc;
-		padding-left: 1.25rem;
-		color: var(--color-muted);
-		font-size: 0.875rem;
-	}
-
-	.next-steps li + li {
-		margin-top: 0.25rem;
-	}
-
 	.error-message {
 		background-color: color-mix(in srgb, var(--color-error) 10%, var(--color-bg));
 		border: 1px solid color-mix(in srgb, var(--color-error) 20%, transparent);
 		color: var(--color-error);
-	}
-
-	.form-input.field-error {
-		border-color: var(--color-error);
-	}
-
-	.field-error-msg {
-		font-size: 0.8rem;
-		color: var(--color-error);
-		margin: 0;
 	}
 </style>
