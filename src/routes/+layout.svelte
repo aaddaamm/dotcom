@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import { SvelteSet } from 'svelte/reactivity';
 	import { dev } from '$app/environment';
 	import { onMount } from 'svelte';
@@ -22,6 +23,7 @@
 	onMount(() => {
 		initTheme();
 		initSeveranceMode();
+		injectSpeedInsights();
 
 		// In dev only, clear old service workers to avoid stale-cache confusion.
 		if (dev && 'serviceWorker' in navigator) {

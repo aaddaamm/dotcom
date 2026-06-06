@@ -48,6 +48,7 @@
 		"@sveltejs/adapter-vercel": "^6.3.3",
 		"@tailwindcss/vite": "^4.2.2",
 		"@upstash/redis": "^1.37.0",
+		"@vercel/speed-insights": "^2.0.0",
 		"fast-xml-parser": "^5.5.11",
 		"gray-matter": "^4.0.3",
 		"marked": "^18.0.3",
