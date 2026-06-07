@@ -1,4 +1,5 @@
 export const SITE_URL = 'https://www.adamrobinson.tech';
+export const SITE_CONTENT_LASTMOD = '2026-06-06';
 export const EMAIL = 'adam@adamrobinson.tech';
 export const ROLE_TITLE = 'Senior Software Engineer';
 export const GITHUB_USERNAME = 'aaddaamm';

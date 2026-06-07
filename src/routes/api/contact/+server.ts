@@ -37,7 +37,9 @@ function isAllowedOrigin(origin: string | null): boolean {
 	if (!origin) return false;
 
 	const allowedOrigins = new Set([SITE_URL]);
-	if (SITE_URL.startsWith('https://') && !SITE_URL.includes('://www.')) {
+	if (SITE_URL.startsWith('https://www.')) {
+		allowedOrigins.add(SITE_URL.replace('https://www.', 'https://'));
+	} else if (SITE_URL.startsWith('https://')) {
 		allowedOrigins.add(SITE_URL.replace('https://', 'https://www.'));
 	}
 

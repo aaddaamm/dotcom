@@ -2,10 +2,8 @@ import type { RequestHandler } from './$types';
 import { SitemapStream, streamToPromise } from 'sitemap';
 import { getAllPosts } from '$lib/server/blog';
 import { selectedWork } from '$lib/copy';
-import { SITE_URL } from '$lib/constants';
+import { SITE_CONTENT_LASTMOD, SITE_URL } from '$lib/constants';
 import { CACHE_CONTROL } from '$lib/server/http';
-
-const STATIC_LASTMOD = new Date().toISOString().slice(0, 10);
 
 const staticRoutes: Array<{
 	url: string;
@@ -13,43 +11,43 @@ const staticRoutes: Array<{
 	priority: number;
 	lastmod?: string;
 }> = [
-	{ url: '/', changefreq: 'monthly', priority: 1.0, lastmod: STATIC_LASTMOD },
+	{ url: '/', changefreq: 'monthly', priority: 1.0, lastmod: SITE_CONTENT_LASTMOD },
 	{
 		url: '/work',
 		changefreq: 'monthly',
 		priority: 0.8,
-		lastmod: STATIC_LASTMOD
+		lastmod: SITE_CONTENT_LASTMOD
 	},
 	{
 		url: '/contact',
 		changefreq: 'monthly',
 		priority: 0.9,
-		lastmod: STATIC_LASTMOD
+		lastmod: SITE_CONTENT_LASTMOD
 	},
 	{
 		url: '/hire',
 		changefreq: 'monthly',
 		priority: 0.9,
-		lastmod: STATIC_LASTMOD
+		lastmod: SITE_CONTENT_LASTMOD
 	},
 	{
 		url: '/blog',
 		changefreq: 'weekly',
 		priority: 0.8,
-		lastmod: STATIC_LASTMOD
+		lastmod: SITE_CONTENT_LASTMOD
 	},
 	{
 		url: '/now',
 		changefreq: 'monthly',
 		priority: 0.7,
-		lastmod: STATIC_LASTMOD
+		lastmod: SITE_CONTENT_LASTMOD
 	},
-	{ url: '/play', changefreq: 'weekly', priority: 0.6 },
+	{ url: '/play', changefreq: 'weekly', priority: 0.6, lastmod: SITE_CONTENT_LASTMOD },
 	{
 		url: '/teach',
 		changefreq: 'monthly',
 		priority: 0.7,
-		lastmod: STATIC_LASTMOD
+		lastmod: SITE_CONTENT_LASTMOD
 	}
 ];
 
@@ -65,7 +63,7 @@ export const GET: RequestHandler = async () => {
 			url: `/work/${project.slug}`,
 			changefreq: 'monthly',
 			priority: 0.7,
-			lastmod: STATIC_LASTMOD
+			lastmod: SITE_CONTENT_LASTMOD
 		});
 	}
 
