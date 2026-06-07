@@ -10,6 +10,7 @@
 	import { breadcrumbList } from '$lib/utils';
 	import { getFilter } from '$lib/stores/work-filter.svelte';
 	import { pageSeo } from '$lib/seo';
+	import { SITE_URL } from '$lib/constants';
 
 	type AnonymizedCaseStudyView = {
 		slug: string;
@@ -48,13 +49,13 @@
 		'@type': 'CollectionPage',
 		name: 'Adam Robinson Work',
 		description: pageSeo.work.description,
-		url: 'https://adamrobinson.tech/work',
+		url: `${SITE_URL}/work`,
 		mainEntity: {
 			'@type': 'ItemList',
 			itemListElement: selectedWork.map((project, index) => ({
 				'@type': 'ListItem',
 				position: index + 1,
-				url: `https://adamrobinson.tech/work/${project.slug}`,
+				url: `${SITE_URL}/work/${project.slug}`,
 				name: project.title
 			}))
 		}
