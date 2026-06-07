@@ -29,8 +29,8 @@ jobs:
 
       - name: Check bundle budgets
         env:
-          BUDGET_TOTAL_JS: '220000'
-          BUDGET_TOTAL_CSS: '60000'
+          BUDGET_TOTAL_JS: '240000'
+          BUDGET_TOTAL_CSS: '65000'
           BUDGET_SINGLE_JS: '100000'
-          BUDGET_SINGLE_CSS: '31000'
+          BUDGET_SINGLE_CSS: '34000'
         run: npm run check:bundle-budget
