@@ -147,6 +147,7 @@
 					required
 					error={fieldErrors.name}
 					placeholder="Your name"
+					autocomplete="name"
 					disabled={isSubmitting}
 					onFocus={trackStart}
 				/>
@@ -157,7 +158,10 @@
 					bind:value={email}
 					required
 					error={fieldErrors.email}
-					placeholder="your@email.com"
+					placeholder="adam@example.com"
+					autocomplete="email"
+					inputmode="email"
+					spellcheck={false}
 					disabled={isSubmitting}
 					onFocus={trackStart}
 				/>
@@ -167,6 +171,8 @@
 					type="tel"
 					bind:value={phone}
 					placeholder="(401) 555-0123"
+					autocomplete="tel"
+					inputmode="tel"
 					disabled={isSubmitting}
 					onFocus={trackStart}
 				/>
@@ -181,7 +187,7 @@
 					bind:value={intent}
 					required
 					error={fieldErrors.intent}
-					placeholder="What kind of inquiry is this..."
+					placeholder="What kind of inquiry is this…"
 					disabled={isSubmitting}
 					options={inquiryIntentOptions}
 					onFocus={trackStart}
@@ -193,7 +199,7 @@
 					bind:value={project}
 					required
 					error={fieldErrors.project}
-					placeholder="What brings you here..."
+					placeholder="What brings you here…"
 					disabled={isSubmitting}
 					options={projectTypeOptions}
 					onFocus={trackStart}
@@ -225,7 +231,7 @@
 					bind:value={message}
 					required
 					error={fieldErrors.message}
-					placeholder="Tell me about your project and any specific challenges you're facing..."
+					placeholder="Tell me about your project and any specific challenges you're facing…"
 					disabled={isSubmitting}
 					onFocus={trackStart}
 				/>
@@ -246,7 +252,7 @@
 			<button
 				type="submit"
 				disabled={isSubmitDisabled}
-				class="submit-button w-full px-6 py-3 rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+				class="submit-button w-full px-6 py-3 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
 			>
 				<span class="flex items-center justify-center gap-2">
 					{#if isSubmitting}
@@ -265,7 +271,7 @@
 								d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
 							/>
 						</svg>
-						Sending message...
+						Sending message…
 					{:else}
 						Send project details
 					{/if}
@@ -313,6 +319,10 @@
 		color: var(--color-on-accent);
 		border: none;
 		cursor: pointer;
+		transition:
+			background-color 200ms ease,
+			opacity 200ms ease,
+			transform 200ms ease;
 	}
 
 	.submit-button:hover:not(:disabled) {

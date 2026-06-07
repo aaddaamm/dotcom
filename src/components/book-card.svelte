@@ -18,7 +18,7 @@
 	href={book.url}
 	target="_blank"
 	rel="noopener noreferrer"
-	class="book-card rounded-lg overflow-hidden transition-all"
+	class="book-card rounded-lg overflow-hidden"
 >
 	<div class="book-cover-bg aspect-2/3 overflow-hidden">
 		{#if book.cover}

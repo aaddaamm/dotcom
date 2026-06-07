@@ -28,13 +28,9 @@ export function shouldCaptureTerminalShortcut({
 	return true;
 }
 
-export function terminalInputAction(key: string):
-	| 'submit'
-	| 'close'
-	| 'history-up'
-	| 'history-down'
-	| 'tab-complete'
-	| null {
+export function terminalInputAction(
+	key: string
+): 'submit' | 'close' | 'history-up' | 'history-down' | 'tab-complete' | null {
 	if (key === 'Enter') return 'submit';
 	if (key === 'Escape') return 'close';
 	if (key === 'ArrowUp') return 'history-up';

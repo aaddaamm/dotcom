@@ -192,7 +192,9 @@ p {
 
 .accent-link {
 	color: var(--color-accent);
-	transition: all 150ms ease;
+	transition:
+		color 150ms ease,
+		transform 150ms ease;
 }
 
 .accent-link:hover {
@@ -267,7 +269,10 @@ p {
 	font-weight: 600;
 	text-decoration: none;
 	display: inline-block;
-	transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+	transition:
+		background-color var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1),
+		box-shadow var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1),
+		transform var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
 	border: none;
 	cursor: pointer;
 }
@@ -292,7 +297,11 @@ p {
 	font-weight: 600;
 	text-decoration: none;
 	display: inline-block;
-	transition: all var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
+	transition:
+		background-color var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1),
+		box-shadow var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1),
+		color var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1),
+		transform var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
 	cursor: pointer;
 }
 
@@ -312,7 +321,11 @@ p {
 .card-base {
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius-md);
-	transition: all var(--transition-slow) ease;
+	transition:
+		background-color var(--transition-slow) ease,
+		border-color var(--transition-slow) ease,
+		box-shadow var(--transition-slow) ease,
+		transform var(--transition-slow) ease;
 }
 
 .card-accent-border {
@@ -329,7 +342,10 @@ p {
 .card-work {
 	border-left: 2px solid var(--color-accent);
 	transition:
-		all var(--transition-slow) ease,
+		background-color var(--transition-slow) ease,
+		border-color var(--transition-slow) ease,
+		border-left-color var(--transition-slow) ease,
+		box-shadow var(--transition-slow) ease,
 		transform var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
