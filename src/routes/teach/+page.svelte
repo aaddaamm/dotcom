@@ -54,7 +54,7 @@
 
 	<div class="grid gap-6 md:grid-cols-2" id="resources-grid">
 		{#each filteredResources as resource (resource.title)}
-			<article class="resource-card p-6 rounded-lg border transition-all duration-300">
+			<article class="resource-card p-6 rounded-lg border">
 				<div class="flex items-start justify-between mb-3">
 					<h3 class="text-xl font-semibold">
 						<a
@@ -122,6 +122,11 @@
 	.resource-card {
 		border-color: var(--color-border);
 		background-color: var(--color-bg);
+		transition:
+			background-color 300ms ease,
+			border-color 300ms ease,
+			box-shadow 300ms ease,
+			transform 300ms ease;
 	}
 
 	.resource-card:hover {

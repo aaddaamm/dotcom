@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { HTMLInputAttributes } from 'svelte/elements';
+
 	type FieldOption = string;
 	type FieldKind = 'input' | 'select' | 'textarea';
 
@@ -14,6 +16,10 @@
 		disabled = false,
 		rows = 4,
 		options = [],
+		name = id,
+		autocomplete = 'off',
+		inputmode,
+		spellcheck,
 		onFocus
 	}: {
 		id: string;
@@ -27,6 +33,10 @@
 		disabled?: boolean;
 		rows?: number;
 		options?: FieldOption[];
+		name?: string;
+		autocomplete?: HTMLInputAttributes['autocomplete'];
+		inputmode?: 'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
+		spellcheck?: boolean;
 		onFocus: () => void;
 	} = $props();
 
@@ -38,8 +48,10 @@
 	{#if kind === 'select'}
 		<select
 			{id}
+			{name}
 			bind:value
 			{required}
+			{autocomplete}
 			class="form-input"
 			class:field-error={error}
 			{disabled}
@@ -54,8 +66,11 @@
 	{:else if kind === 'textarea'}
 		<textarea
 			{id}
+			{name}
 			bind:value
 			{required}
+			{autocomplete}
+			{spellcheck}
 			{rows}
 			class="form-input"
 			class:field-error={error}
@@ -68,8 +83,12 @@
 		<input
 			{type}
 			{id}
+			{name}
 			bind:value
 			{required}
+			{autocomplete}
+			{inputmode}
+			{spellcheck}
 			class="form-input"
 			class:field-error={error}
 			{placeholder}
