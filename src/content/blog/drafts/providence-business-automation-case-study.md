@@ -1,6 +1,6 @@
 ---
 title: 'Before & After: Cutting Admin Time in Half for a Providence Service Business'
-description: 'How a Providence service business went from 4 hours of daily admin work to under an hour, with custom booking and billing automation. The process, the results, and what made it work.'
+description: 'How a Providence service business cut daily admin work from four hours to under one with booking and billing automation.'
 date: '2026-04-05'
 tags: ['automation', 'case-study', 'rhode-island', 'providence']
 published: false
@@ -14,7 +14,7 @@ A Providence-based service business, about 10–15 employees, came to me a coupl
 
 ## The before state
 
-Scheduling was phone tag. Staff would call clients, leave voicemails, wait for callbacks, check a shared calendar, confirm a time, then manually enter it. No automated reminders went out, so about 15% of appointments were no-shows. Each one was just lost revenue — the slot was blocked, the work didn't happen.
+Scheduling was phone tag. Staff would call clients, leave voicemails, wait for callbacks, check a shared calendar, confirm a time, then manually enter it. No automated reminders went out, so about 15% of appointments were no-shows. Each one was lost revenue — the slot was blocked, the work didn't happen.
 
 Billing ran on handwritten notes from appointments. Someone would collect those notes, type up invoices, send them out, and then follow up by phone when payment was late. Average time from service to payment: 45 days. That's a long time to wait to get paid for work you've already done.
 
@@ -30,7 +30,7 @@ That session made two things clear: scheduling and billing were the biggest time
 
 The first thing we built was an online booking portal. Clients could schedule themselves, which removed the phone tag entirely. The portal connected directly to the staff calendar, so availability was always current. Confirmation emails went out automatically, and reminders followed at 48 hours and 24 hours before each appointment.
 
-The no-show rate dropped from around 15% to around 3%. Scheduling time went from two hours a day to about 15 minutes — mostly just glancing at the day's calendar in the morning.
+The no-show rate dropped from around 15% to around 3%. Scheduling time went from two hours a day to about 15 minutes — mostly glancing at the day's calendar in the morning.
 
 That phase was live within a month. We let it run for a few weeks before touching anything else.
 
@@ -52,4 +52,4 @@ None of the technology here was exotic. Online booking exists. Automated invoici
 
 The biggest wins usually aren't the flashiest technology. They're fixing the repetitive stuff that everyone has learned to live with.
 
-If your business has a version of this — tasks that eat hours every week because that's just how it's always been done — [get in touch](/contact).
+If your business has a version of this — tasks that eat hours every week because that's how it's always been done — [get in touch](/contact).

@@ -8,7 +8,7 @@ status: 'draft'
 reviewed: false
 ---
 
-After a decade-plus helping Rhode Island businesses with their software, I've spent a good chunk of that time cleaning up after bad development experiences. The clients who come to me in that situation aren't careless — they just didn't know what to look for. So here's what I've learned to watch for.
+After a decade-plus helping Rhode Island businesses with their software, I've spent a good chunk of that time cleaning up after bad development experiences. The clients who come to me in that situation aren't careless — they didn't know what to look for. Here's what I've learned to watch for.
 
 ## No clear scope or timeline
 
@@ -32,11 +32,11 @@ You don't need to know how it works under the hood. But you should understand wh
 
 A portfolio of personal projects from five years ago doesn't tell you much. Neither does a developer who's reluctant to connect you with past clients.
 
-If someone has done good work for businesses like yours, they should be able to show you. Not just screenshots — live examples, and people you can actually talk to. If that's not available, you're taking a bigger leap of faith than you might realize.
+If someone has done good work for businesses like yours, they should be able to show you. Not screenshots alone — live examples, and people you can actually talk to. If that's not available, you're taking a bigger leap of faith than you might realize.
 
 ## Wants full payment upfront
 
-Asking for 100% payment before a single line of code is written removes all your leverage if something goes wrong. Legitimate developers don't need to do this. Payment should be tied to progress — a reasonable deposit to start, then milestones as work is delivered.
+Asking for 100% payment before a single line of code is written removes your protection if something goes wrong. Legitimate developers don't need to do this. Payment should be tied to progress — a reasonable deposit to start, then milestones as work is delivered.
 
 I ask for 25-30% upfront, with the rest split across milestones. That structure protects both sides. Be wary of anything that doesn't.
 
@@ -47,7 +47,7 @@ I ask for 25-30% upfront, with the rest split across milestones. That structure 
 A few more that don't fit neatly into a category but matter:
 
 - Takes days to respond to basic questions
-- No written contract or refuses to sign a simple NDA
+- No written contract or refuses to sign a basic NDA
 - Can't do a video call or meet in person if you're local
 - All portfolio examples look the same regardless of client type
 
@@ -61,12 +61,12 @@ A few more that don't fit neatly into a category but matter:
 4. Can I speak with a recent client?
 5. What do I actually own when this is done?
 
-Pay attention to how they answer, not just what they say. A developer who's done this before welcomes these questions — they know it leads to a better working relationship for everyone.
+Pay attention to how they answer, not only what they say. A developer who's done this before welcomes these questions — they know it leads to a better working relationship for everyone.
 
 ---
 
 Getting burned by the wrong developer is expensive in ways beyond the invoice. There's the time lost, the internal trust that gets damaged, and the reluctance to invest in technology again after a bad experience. Most of the businesses that come to me after one of these situations say the same thing: they thought they were saving money.
 
-If you're evaluating a developer and want a second opinion on a proposal, I'm happy to take a look. No obligation — just a straight answer about what you're looking at.
+If you're evaluating a developer and want a second opinion on a proposal, I'm happy to take a look. No obligation — a straight answer about what you're looking at.
 
 [Get in touch](/contact)

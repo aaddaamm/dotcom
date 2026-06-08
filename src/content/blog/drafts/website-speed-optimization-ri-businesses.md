@@ -20,7 +20,7 @@ Below roughly 3 seconds on mobile, most users don't consciously notice a differe
 
 Google's PageSpeed Insights is a useful tool that gets treated like a report card. A 72 score on a site that's clean, mobile-friendly, and has solid local content will outrank a 95-score site with thin copy and no relevance to your area. The score is a proxy for good practices — not the goal itself.
 
-Chasing a perfect score often means spending real money on diminishing returns. That time and budget are almost always better spent elsewhere.
+Chasing a perfect score can mean spending real money on diminishing returns. That time and budget are almost always better spent elsewhere.
 
 ## Not all fixes are worth doing
 
@@ -38,7 +38,7 @@ Website performance follows something like an 80/20 rule. A handful of things ca
 
 ## The honest benchmark
 
-Load your site on your phone on LTE, not office WiFi. Walk through it the way a new customer would. Does it feel usable? Do images load promptly? Does the contact form work without frustration?
+Load your site on your phone on LTE, not office WiFi. Walk through it the way a new customer would. Check whether it feels usable, images load promptly, and the contact form works without frustration.
 
 That experience is closer to what your customers actually encounter than any score in a performance tool. Fix the things that make that experience bad, and you've done the work that matters.
 

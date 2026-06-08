@@ -30,7 +30,7 @@ Pi ships four tools: `read`, `write`, `edit`, `bash`. No sub-agents, no plan mod
 
 Sounds like a limitation until you see what it enables.
 
-Want sub-agents? Write an extension that spawns pi instances. Want them in tmux panes so you can watch them work? Do that instead. Want confirmation before destructive commands? Build a flow that matches your security requirements — not a generic popup that's either too aggressive or too permissive. Want plan mode? Write plans to a file, or build an interactive planner as an extension. The tool doesn't care which approach you pick. It just gives you the surface area to build it.
+Want sub-agents? Write an extension that spawns pi instances. Want them in tmux panes so you can watch them work? Do that instead. Want confirmation before destructive commands? Build a flow that matches your security requirements — not a generic popup that's either too aggressive or too permissive. Want plan mode? Write plans to a file, or build an interactive planner as an extension. The tool doesn't care which approach you pick. It gives you the surface area to build it.
 
 ## Less Bloat, More Signal
 
@@ -38,11 +38,11 @@ One thing that struck me immediately: pi is lean in a way that Claude Code isn't
 
 Pi's system prompt is minimal. Four tools, basic instructions, done. Everything else is opt-in. You load what you need and nothing else. The result is more of your context window available for actual work, and less money burned on token overhead you never asked for.
 
-This matters more than it sounds. When you're deep in a long session and the model starts drifting, it's often because the context is full of stuff that isn't helping. A leaner baseline means you hit that wall later — or not at all.
+This matters more than it sounds. When you're deep in a long session and the model starts drifting, it can be because the context is full of stuff that isn't helping. A leaner baseline means you hit that wall later — or not at all.
 
 ## Seeing What the Agent Sees
 
-Here's something that frustrated me about Claude Code: you're often guessing what the tool is doing. It loads context files silently. It makes decisions about which tools to call and you see the result, but the path it took to get there is partially hidden. When something goes wrong, you're reverse-engineering the agent's reasoning from its output.
+Here's something that frustrated me about Claude Code: you're left guessing what the tool is doing. It loads context files silently. It makes decisions about which tools to call and you see the result, but the path it took to get there is partially hidden. When something goes wrong, you're reverse-engineering the agent's reasoning from its output.
 
 Pi shows you everything. Tool calls, their inputs, their outputs — it's all there in the conversation stream. When the model reads a file, you see it read the file. When it runs a command, you see the command and the result. The startup header tells you exactly which context files, extensions, skills, and prompt templates are loaded. Nothing is hidden, nothing is inferred.
 
@@ -103,9 +103,9 @@ Loading is predictable: global file, parent directories up from cwd, current dir
 
 I'm not going to pretend there's no cost.
 
-**Onboarding is steeper.** Claude Code works the second you install it. Pi works too, but getting the most out of it means understanding extensions, skills, and how to shape the tool. If you want something that just works with zero thought, the opinionated tools are genuinely good at that.
+**Onboarding is steeper.** Claude Code works the second you install it. Pi works too, but getting the most out of it means understanding extensions, skills, and how to shape the tool. If you want something that works with zero thought, the opinionated tools are genuinely good at that.
 
-**You build more yourself.** That sub-agent system? You're writing it or finding a package. Plan mode? Same. If you like thinking about your tooling, this is a feature. If you'd rather never think about your agent and just ship product, it's overhead.
+**You build more yourself.** That sub-agent system? You're writing it or finding a package. Plan mode? Same. If you like thinking about your tooling, this is a feature. If you'd rather never think about your agent and ship product, it's overhead.
 
 **Smaller ecosystem.** Claude Code has Anthropic behind it. Aider has years of contributions. Pi is newer. The packages that exist are solid, but there are fewer of them. This is changing fast, but it's honest to say you'll find fewer drop-in solutions today.
 
@@ -115,7 +115,7 @@ The argument isn't that pi is universally better. It's that these tools serve di
 
 If you want polished, zero-config, good defaults, and you're fine within constraints — Claude Code or Codex will serve you well. They're good products doing what they set out to do.
 
-If you've hit the walls — wanted to change the permission flow, switch providers mid-task, build custom tools without forking, share workflow automation as installable packages, or just see what the hell your agent is actually doing — pi is built for exactly that gap.
+If you've hit the walls — wanted to change the permission flow, switch providers mid-task, build custom tools without forking, share workflow automation as installable packages, or see what the hell your agent is actually doing — pi is built for exactly that gap.
 
 The best coding agent is the one that fits how you actually work. For me, that's the one that lets me define what that means.
 

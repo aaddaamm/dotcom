@@ -24,15 +24,15 @@ Freelancers work best for focused projects with a clear scope, ongoing relations
 
 A bigger team means more capacity for larger or more complex projects. If you need design, development, and strategy all at once, an agency can provide all three without you having to coordinate between separate people. Project management is usually built in.
 
-Cost is higher — significantly higher, in some cases. You're paying for that infrastructure. Agencies also tend to move more deliberately: more process, more meetings, longer timelines. That's appropriate for large projects and can be frustrating for small ones.
+Cost is higher — much higher, in some cases. You're paying for that infrastructure. Agencies also tend to move more deliberately: more process, more meetings, longer timelines. That's appropriate for large projects and can be frustrating for small ones.
 
-The quality variance is real. Some Providence agencies are genuinely excellent. Others are essentially a few freelancers with an office and a higher rate. Ask to talk to past clients and look at actual work they've done, not just case studies on their website.
+The quality variance is real. Some Providence agencies are genuinely excellent. Others are essentially a few freelancers with an office and a higher rate. Ask to talk to past clients and look at actual work they've done, not only case studies on their website.
 
 Agencies make the most sense for larger or more complex projects, teams that want a formal vendor relationship with contracts and SLAs, and situations where you need multiple disciplines at once.
 
 ## Remote and offshore teams
 
-The appeal is cost — significantly lower rates, especially for offshore teams. If the spec is extremely clear and you can manage asynchronous communication, remote teams can deliver real value.
+The appeal is cost — lower rates, especially for offshore teams. If the spec is extremely clear and you can manage asynchronous communication, remote teams can deliver real value.
 
 The risks are also real. Timezone gaps mean a question you ask at 9am might not get answered until the next morning. Communication overhead adds up. Quality is variable and harder to verify before you're already into the project. And you lose local knowledge and the kind of accountability that comes from someone who lives and works in the same community you do.
 

@@ -8,7 +8,7 @@ status: 'ready'
 reviewed: true
 ---
 
-So you have this brand new tool: Claude Code. Maybe you're late to the game, maybe you only just got it approved for use at your company. Either way, it's time to dig in. You've been running agentic operations from your editor for a while, so you have plenty of experience communicating with LLMs. You tag files, explain what you want, and review the edits.
+So you have this brand new tool: Claude Code. Maybe you're late to the game, maybe you only recently got it approved for use at your company. Either way, it's time to dig in. You've been running agentic operations from your editor for a while, so you have plenty of experience communicating with LLMs. You tag files, explain what you want, and review the edits.
 
 You log in, run your first prompt, and ask it to start exploring the repository. Maybe you've read that a good CLAUDE.md file gives the agent a strong foundation — so you build one. Then you read about domain-level files, more narrowly scoped instructions living closer to the code they describe. Smart, right? Focused context for focused work.
 
@@ -50,7 +50,7 @@ There are two distinct behaviors depending on where a file sits.
 
 **On demand**, as Claude reads files in subdirectories below your project root, it picks up any CLAUDE.md it finds there. The trigger is a file read — not a write, not a command execution. Go deeper and the same thing happens again. Root → domain → subdomain.
 
-The stack is additive. On any non-trivial task, the agent reads files across many directories, and each one is another instruction file added to the context. The stack grows silently as the agent works.
+The stack is additive. On any non-trivial task, the agent reads files across several directories, and each one is another instruction file added to the context. The stack grows silently as the agent works.
 
 One caveat worth noting: subdirectory loading hasn't always been perfectly consistent in practice. Some users have reported nested CLAUDE.md files not loading as expected across different versions. Treat it as the intended behavior, but don't be surprised if it doesn't fire reliably in all cases.
 
@@ -70,7 +70,7 @@ Quite a lot, it turns out.
 
 ### Trim aggressively
 
-The official guidance from Anthropic is blunt: keep your CLAUDE.md short and human-readable, and for each line ask yourself "would removing this cause Claude to make mistakes?" If not, cut it. Instructions that feel useful but aren't load-bearing just burn budget. A lean file that gets loaded everywhere does less damage than a bloated one.
+The official guidance from Anthropic is blunt: keep your CLAUDE.md short and human-readable, and for each line ask yourself "would removing this cause Claude to make mistakes?" If not, cut it. Instructions that feel useful but aren't load-bearing burn budget. A lean file that gets loaded everywhere does less damage than a bloated one.
 
 ### Scope your tasks tightly
 
@@ -78,7 +78,7 @@ The agent only loads subdirectory files when it reads files there. A well-scoped
 
 ### Use `/clear` between unrelated tasks
 
-This resets the context window entirely. If you notice the agent starting to drift or repeat mistakes, that's often a sign the context is cluttered — not that the agent is broken. A fresh session with a better prompt will almost always outperform a long session with accumulated noise.
+This resets the context window entirely. If you notice the agent starting to drift or repeat mistakes, that can mean the context is cluttered — not that the agent is broken. A fresh session with a better prompt will almost always outperform a long session with accumulated noise.
 
 ### Use `/compact` when you need continuity
 
@@ -92,8 +92,8 @@ This is the real fix for the splitting problem. Instead of ten CLAUDE.md files s
 
 ### Reach for subagents on broad tasks
 
-For tasks that genuinely need to span many domains, subagents run in isolated context windows and report back summaries. The exploration still happens — it just doesn't consume your primary context doing it. Your main conversation stays clean while the broad work happens in parallel.
+For tasks that genuinely need to span several domains, subagents run in isolated context windows and report back summaries. The exploration still happens — it doesn't consume your primary context doing it. Your main conversation stays clean while the broad work happens in parallel.
 
 ---
 
-The mental model shift is simple but important: every directory where the agent reads a file is a potential context load. Once that's clear, decisions about file structure, task scope, and session hygiene all follow naturally.
+The mental model shift is small but important: every directory where the agent reads a file is a potential context load. Once that's clear, decisions about file structure, task scope, and session hygiene all follow naturally.

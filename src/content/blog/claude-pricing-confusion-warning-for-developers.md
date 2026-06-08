@@ -79,11 +79,11 @@ A few concrete examples:
 - **Continue** uses a different structure: **$3 per million tokens** on Starter, **$20 per seat/month** on Team with **$10 in credits per seat**, and BYOK on Company plans ([Continue pricing](https://www.continue.dev/pricing)).
 - **Cline** is the clearest contrast: its open source extension is free for individual developers, and its pricing page says you pay only for inference on a usage basis with no subscription and no vendor lock-in, including support for your own Anthropic API key ([Cline pricing](https://cline.bot/pricing)).
 
-That spread matters. "Using Claude" can mean four very different cost models depending on which layer you are actually buying from.
+That spread matters. "Using Claude" can mean four different cost models depending on which layer you are actually buying from.
 
 ## Why this keeps happening
 
-This isn’t just an Anthropic problem. It’s a market problem.
+This isn’t only an Anthropic problem. It’s a market problem.
 
 AI companies want the simplicity of SaaS pricing because users like fixed monthly numbers. But heavy AI usage behaves less like SaaS and more like infrastructure.
 
@@ -96,7 +96,7 @@ Coding agents are the clearest example:
 - they run background summarization and support tasks
 - they encourage much more usage than a normal chat app ever would
 
-Anthropic’s own Claude Code cost docs quietly acknowledge this: costs vary significantly based on model choice, codebase size, automation patterns, and how many agent instances you run ([Claude Code cost docs](https://docs.anthropic.com/en/docs/claude-code/costs)). That is not how a flat, predictable seat product behaves. That is how metered infrastructure behaves.
+Anthropic’s own Claude Code cost docs quietly acknowledge this: costs vary based on model choice, codebase size, automation patterns, and agent instance count ([Claude Code cost docs](https://docs.anthropic.com/en/docs/claude-code/costs)). That is not how a flat, predictable seat product behaves. That is how metered infrastructure behaves.
 
 That is why I think the direction is obvious: serious AI usage gets pushed toward tighter limits, hybrid pricing, or full usage-based billing.
 
@@ -131,11 +131,11 @@ I’d expect more of the following across the AI tool market:
 
 That doesn’t mean the AI market disappears.
 
-It means users should stop thinking of these tools as simple unlimited subscriptions.
+It means users should stop thinking of these tools as unlimited subscriptions.
 
-## This is really about flexibility
+## This is about flexibility
 
-To me, this is not just a pricing problem. It is a flexibility problem.
+To me, this is not only a pricing problem. It is a flexibility problem.
 
 The more your workflow depends on a closed, first-party AI product, the more exposed you are to changes in entitlements, rate limits, billing structure, and product direction. You can get real productivity from those tools, but you are also building habits inside someone else’s box.
 
@@ -185,7 +185,7 @@ That mismatch is why pricing keeps getting messier. It is also why flexibility m
 
 If too much of your workflow depends on a closed system you do not control, every pricing experiment, limit change, or plan reshuffle becomes your problem.
 
-So if you rely on Claude Code, don’t just ask whether Pro is enough right now. Ask:
+So if you rely on Claude Code, don’t only ask whether Pro is enough right now. Ask:
 
 - What happens when my usage grows?
 - What gets billed separately?

@@ -12,11 +12,11 @@ Most people, before they hire a developer, want to know what it's going to cost.
 
 ## The problem with hourly
 
-The math seems simple at first: developer charges $X per hour, project takes Y hours, you pay $X times Y. The problem is that nobody knows Y in advance, including the developer. So you start the project, watch the hours accumulate, and hope the final number lands somewhere near what you were expecting.
+The math looks tidy at first: developer charges $X per hour, project takes Y hours, you pay $X times Y. The problem is that nobody knows Y in advance, including the developer. So you start the project, watch the hours accumulate, and hope the final number lands somewhere near what you were expecting.
 
 There's also an incentive problem. A developer billing hourly gets paid more when things take longer. I'm not saying developers deliberately slow down — most don't. But the billing model points in the wrong direction. Efficiency benefits the developer's schedule, not the client's wallet. Every unexpected complication, every revision, every question that takes an hour to think through adds to your bill.
 
-Budget planning becomes guesswork. You might get a range estimate, but a range that spans thousands of dollars isn't really a plan.
+Budget planning becomes guesswork. You might get a range estimate, but a range that spans thousands of dollars is not a plan.
 
 ## What project pricing does instead
 
@@ -26,9 +26,9 @@ The incentives flip. I have a reason to work efficiently and solve problems clea
 
 ## How it works in practice
 
-The key is the scoping conversation upfront. Before any number is agreed to, I want to understand exactly what's being built — not just the features, but the edge cases, the integrations, the places where requirements tend to expand. That conversation is where the real work of pricing happens.
+The key is the scoping conversation upfront. Before any number is agreed to, I want to understand exactly what's being built — the features, the edge cases, the integrations, and the places where requirements tend to expand. That conversation is where the real work of pricing happens.
 
-From that, I put together a written estimate with clear deliverables. What's included, what's not, and what milestones mark progress. Payment is typically 25–30% at the start and the rest tied to delivery points — not to time spent.
+From that, I put together a written estimate with clear deliverables: what's included, what's not, and what milestones mark progress. Payment is 25–30% at the start and the rest tied to delivery points — not to time spent.
 
 Changes outside the agreed scope get handled as a separate conversation with a separate estimate. No surprise bills for the work you originally asked for.
 
