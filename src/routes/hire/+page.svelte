@@ -12,6 +12,7 @@
 	import SeoHead from '../../components/seo-head.svelte';
 	import ServicesSection from '../../components/services-section.svelte';
 	import TrustStrip from '../../components/trust-strip.svelte';
+	import { EMAIL, SITE_URL } from '$lib/constants';
 	import { pageSeo } from '$lib/seo';
 </script>
 
@@ -37,6 +38,78 @@
 		{ name: 'Home', path: '/' },
 		{ name: 'Hire', path: '/hire' }
 	])}
+/>
+
+<JsonLd
+	data={{
+		'@context': 'https://schema.org',
+		'@type': 'ProfessionalService',
+		'@id': `${SITE_URL}/hire#software-consulting`,
+		name: 'Adam Robinson Software Engineering',
+		description:
+			'Providence, Rhode Island software engineering consultant for startups, agencies, and product teams that need senior engineering experience across product delivery, platform modernization, and production reliability.',
+		url: `${SITE_URL}/hire`,
+		email: EMAIL,
+		areaServed: [
+			{
+				'@type': 'State',
+				name: 'Rhode Island'
+			},
+			{
+				'@type': 'City',
+				name: 'Providence'
+			},
+			{
+				'@type': 'Country',
+				name: 'United States'
+			}
+		],
+		address: {
+			'@type': 'PostalAddress',
+			addressLocality: 'Providence',
+			addressRegion: 'RI',
+			addressCountry: 'US'
+		},
+		founder: {
+			'@id': `${SITE_URL}/#person`
+		},
+		knowsAbout: [
+			'product engineering',
+			'web application development',
+			'platform modernization',
+			'production reliability',
+			'technical leadership',
+			'staff augmentation',
+			'startup delivery'
+		],
+		hasOfferCatalog: {
+			'@type': 'OfferCatalog',
+			name: 'Software engineering services',
+			itemListElement: [
+				{
+					'@type': 'Offer',
+					itemOffered: {
+						'@type': 'Service',
+						name: 'Startup product delivery'
+					}
+				},
+				{
+					'@type': 'Offer',
+					itemOffered: {
+						'@type': 'Service',
+						name: 'Agency development partner'
+					}
+				},
+				{
+					'@type': 'Offer',
+					itemOffered: {
+						'@type': 'Service',
+						name: 'Platform stabilization and modernization'
+					}
+				}
+			]
+		}
+	}}
 />
 
 <div class="max-w-3xl mx-auto px-6">
@@ -71,6 +144,28 @@
 	<OutcomeProof />
 
 	<ServicesSection />
+
+	<section aria-labelledby="local-service-heading" class="py-14 section-border local-service">
+		<h2 id="local-service-heading" class="section-heading">
+			Providence software consulting for practical delivery
+			<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
+		</h2>
+		<p class="body-text">
+			I work with Rhode Island startups, agencies, and local businesses that need a senior software
+			engineer who can step into real production constraints: unfinished product ideas, legacy
+			systems, fragile integrations, slow internal tools, or a small team that needs more delivery
+			capacity without adding process overhead.
+		</p>
+		<ul class="local-service-list">
+			<li>Build or stabilize web applications across whatever stack the business already uses.</li>
+			<li>Help agencies ship client work without hiding behind vague technical language.</li>
+			<li>Modernize brittle platforms while preserving the workflows the business depends on.</li>
+		</ul>
+		<p class="body-text muted-text local-service-note">
+			Most work is remote, with Providence and Rhode Island availability when local context or
+			in-person planning helps the project move faster.
+		</p>
+	</section>
 
 	<PhilosophySection />
 
@@ -182,6 +277,23 @@
 		margin-bottom: 2rem;
 		font-size: 0.875rem;
 		color: var(--color-muted);
+	}
+
+	.local-service {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.local-service-list {
+		display: grid;
+		gap: 0.6rem;
+		margin: 0;
+		padding-left: 1.1rem;
+		color: var(--color-text);
+	}
+
+	.local-service-note {
+		margin: 0;
 	}
 
 	.stack-list {
