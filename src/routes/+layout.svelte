@@ -23,6 +23,7 @@
 	onMount(() => {
 		initTheme();
 		initSeveranceMode();
+		loadMonitoringScriptsWhenIdle();
 
 		// In dev only, clear old service workers to avoid stale-cache confusion.
 		if (dev && 'serviceWorker' in navigator) {
@@ -75,6 +76,19 @@
 		if (!element) return;
 		if (!element.hasAttribute('tabindex')) element.setAttribute('tabindex', '-1');
 		element.focus({ preventScroll: true });
+	}
+
+	function loadMonitoringScriptsWhenIdle() {
+		globalThis.setTimeout(() => {
+			import('@vercel/speed-insights/sveltekit').then(({ injectSpeedInsights }) => {
+				injectSpeedInsights();
+			});
+
+			const script = document.createElement('script');
+			script.src = '/_vercel/insights/script.js';
+			script.async = true;
+			document.head.append(script);
+		}, 5000);
 	}
 
 	function onScroll() {
