@@ -47,6 +47,6 @@ export default ts.config(
 		}
 	},
 	{
-		ignores: ['build/', '.svelte-kit/', '.vercel/', 'package/', 'node_modules/']
+		ignores: ['build/', '.svelte-kit/', '.unlighthouse/', '.vercel/', 'package/', 'node_modules/']
 	}
 );

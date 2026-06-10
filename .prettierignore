@@ -6,6 +6,7 @@ yarn.lock
 # Build artifacts
 build/
 .svelte-kit/
+.unlighthouse/
 .vercel/
 
 # Local agent/cache files
