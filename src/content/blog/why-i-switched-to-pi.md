@@ -1,5 +1,6 @@
 ---
 title: 'Why I Switched to pi (And Why Most CLI Agents Are Built Backwards)'
+seoTitle: 'Why I Switched to pi — Adam Robinson'
 description: "Most CLI coding agents ship opinionated features you can't change. Pi takes the opposite approach: a minimal core you extend around your own workflow."
 date: '2026-04-20'
 tags: ['ai', 'developer-tools', 'productivity']

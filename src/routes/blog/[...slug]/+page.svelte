@@ -11,6 +11,11 @@
 	let { data } = $props();
 	let proseEl: HTMLElement;
 	let postUrl = $derived(`${SITE_URL}/blog/${data.post.slug}`);
+	let personSchemaId = $derived(`${SITE_URL}/#person`);
+	type PostWithSeoTitle = typeof data.post & { seoTitle?: string };
+	let postSeoTitle = $derived(
+		(data.post as PostWithSeoTitle).seoTitle ?? `${data.post.title} — Adam Robinson`
+	);
 
 	onMount(() => {
 		const observer = createElementObserver({
@@ -24,7 +29,7 @@
 </script>
 
 <SeoHead
-	title="{data.post.title} — Adam Robinson"
+	title={postSeoTitle}
 	description={data.post.description}
 	path="/blog/{data.post.slug}"
 	image={data.post.image}
@@ -46,14 +51,10 @@
 		wordCount: data.post.wordCount,
 		image: data.post.image ?? `${SITE_URL}/og-card.png`,
 		author: {
-			'@type': 'Person',
-			name: 'Adam Robinson',
-			url: SITE_URL
+			'@id': personSchemaId
 		},
 		publisher: {
-			'@type': 'Person',
-			name: 'Adam Robinson',
-			url: SITE_URL
+			'@id': personSchemaId
 		},
 		url: `${SITE_URL}/blog/${data.post.slug}`,
 		keywords: data.post.tags

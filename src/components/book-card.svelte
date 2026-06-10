@@ -5,12 +5,14 @@
 		book,
 		compact = false,
 		showSeries = false,
-		showRating = false
+		showRating = false,
+		priority = false
 	}: {
 		book: GoodreadsBook;
 		compact?: boolean;
 		showSeries?: boolean;
 		showRating?: boolean;
+		priority?: boolean;
 	} = $props();
 </script>
 
@@ -26,7 +28,10 @@
 				class="w-full h-full object-cover book-img"
 				alt={book.title}
 				src={book.cover}
-				loading="lazy"
+				width="198"
+				height="297"
+				loading={priority ? 'eager' : 'lazy'}
+				fetchpriority={priority ? 'high' : 'auto'}
 			/>
 		{/if}
 	</div>

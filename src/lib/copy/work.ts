@@ -43,7 +43,7 @@ export const selectedWork: WorkItem[] = [
 		description:
 			'Embedded senior engineer on an alternative investment platform. Full-stack delivery across a large, complex enterprise codebase.',
 		seoDescription:
-			"Senior staff-aug engineer on iCapital's fintech platform. Rails, React, TypeScript — i18n, bulk nominee investment processing, and a component library migration on a complex enterprise codebase.",
+			"Senior engineer on iCapital's fintech platform. Rails, React, TypeScript, i18n, bulk investment processing, and component library migration.",
 		stack: ['React', 'TypeScript', 'Node.js', 'Rails'],
 		outcome: 'Ongoing contributor across multiple subdomains of an enterprise fintech platform',
 		impactMetric:
@@ -83,7 +83,7 @@ export const selectedWork: WorkItem[] = [
 		description:
 			'Contributed across three separate product codebases inside a single engagement. Also mentored a team of interns through their first real shipped feature.',
 		seoDescription:
-			"Senior staff-aug engineer across three merged codebases in a single engagement — Vue/Java, Rails/React, and Next.js/Contentful across HomeAdvisor, Handy, and Angie's List.",
+			"Senior engineer across merged Angi codebases: Vue/Java, Rails/React, and Next.js/Contentful for HomeAdvisor, Handy, and Angie's List.",
 		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js', 'Contentful'],
 		outcome:
 			'Cross-product delivery and intern mentorship across a newly merged home services platform',
@@ -122,7 +122,7 @@ export const selectedWork: WorkItem[] = [
 		description:
 			'Built decommissioning tooling for Shell Techworks in Boston. MVP delivered onsite using the Google Design Sprint process.',
 		seoDescription:
-			'Software engineer building full-stack React/Node.js decommissioning tooling for Shell Techworks. MVP scoped and delivered onsite in Boston using the Google Design Sprint process.',
+			'Software engineer building React and Node.js decommissioning tooling for Shell Techworks. MVP scoped and delivered onsite in Boston.',
 		stack: ['React', 'Node.js', 'Ant Design'],
 		outcome:
 			'MVP delivered on schedule using Design Sprint methodology with Shell engineering in Boston',
@@ -156,7 +156,7 @@ export const selectedWork: WorkItem[] = [
 		description:
 			'Tech lead on a platform modernization that grew into a four-year collaboration. New CMS, custom rendering layer, and a full authentication overhaul — all shipped to production.',
 		seoDescription:
-			'Technical lead on a full platform modernization — headless CMS pipeline with Strapi and React, rebuilt AWS infrastructure, and Auth0 authentication overhaul unifying login across all platforms.',
+			'Technical lead for platform modernization: Strapi and React publishing pipeline, rebuilt AWS infrastructure, and Auth0 login overhaul.',
 		stack: ['React', 'Express', 'Auth0', 'AWS', 'Strapi', 'PHP (legacy)'],
 		outcome: 'Successful MVP delivery that led to a four-year continued engagement',
 		impactMetric:

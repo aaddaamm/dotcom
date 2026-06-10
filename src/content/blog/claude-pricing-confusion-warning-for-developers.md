@@ -1,5 +1,6 @@
 ---
 title: 'Claude Pricing Confusion Is a Warning for Developers'
+seoTitle: 'Claude Pricing Warning for Developers — Adam Robinson'
 description: 'Claude Code pricing confusion shows why AI subscriptions are not cost ceilings and why serious developer tooling keeps moving toward metered usage.'
 date: '2026-04-22'
 tags: ['ai-tools', 'pricing', 'developer-tools']

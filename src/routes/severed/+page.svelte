@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import SeoHead from '../../components/seo-head.svelte';
 	import { isSeveredUnlocked } from '$lib/stores/severance';
 
 	onMount(() => {
@@ -9,6 +10,13 @@
 		}
 	});
 </script>
+
+<SeoHead
+	title="Severed Floor — Adam Robinson"
+	description="Private interactive easter egg on adamrobinson.tech."
+	path="/severed"
+	robots="noindex, nofollow"
+/>
 
 <section class="severed max-w-2xl mx-auto px-6 py-16">
 	<p class="eyebrow">LUMON INDUSTRIES</p>

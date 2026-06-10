@@ -1,3 +1,22 @@
+User-agent: OAI-SearchBot
+Allow: /api/sitemap
+Disallow: /api/
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /api/sitemap
+Disallow: /api/
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
 User-agent: *
 Allow: /api/sitemap
 Disallow: /api/

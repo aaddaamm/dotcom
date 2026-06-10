@@ -58,11 +58,7 @@
 	}
 </script>
 
-<SeoHead {...pageSeo.terminal} />
-
-<svelte:head>
-	<meta name="robots" content="noindex" />
-</svelte:head>
+<SeoHead {...pageSeo.terminal} robots="noindex, nofollow" />
 
 <div class="max-w-3xl mx-auto px-6 py-8">
 	<h1 class="sr-only">Interactive terminal</h1>

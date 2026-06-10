@@ -13,6 +13,7 @@ import {
 export type BlogPost = {
 	slug: string;
 	title: string;
+	seoTitle?: string;
 	description: string;
 	date: string;
 	updated?: string;
@@ -45,6 +46,7 @@ type BlogStatus = 'draft' | 'review' | 'ready';
 
 type BlogFrontmatter = {
 	title: string;
+	seoTitle?: string;
 	description: string;
 	date: string;
 	updated?: string;
@@ -70,6 +72,7 @@ function toBlogFrontmatter(data: unknown): FrontmatterValidationResult<BlogFront
 	return {
 		frontmatter: {
 			title,
+			seoTitle: asNonEmptyString(record.seoTitle) ?? undefined,
 			description: asNonEmptyString(record.description) ?? '',
 			date,
 			updated: asNonEmptyString(record.updated) ?? undefined,
@@ -100,6 +103,7 @@ function parseEntry(
 	return {
 		slug,
 		title: frontmatter.title,
+		seoTitle: frontmatter.seoTitle,
 		description: frontmatter.description,
 		date: frontmatter.date,
 		updated: frontmatter.updated,

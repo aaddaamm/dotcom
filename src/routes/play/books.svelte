@@ -33,8 +33,8 @@
 			</div>
 		{:else}
 			<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-				{#each currentlyReading as book (book.url)}
-					<BookCard {book} showSeries />
+				{#each currentlyReading as book, i (book.url)}
+					<BookCard {book} showSeries priority={i === 0} />
 				{/each}
 			</div>
 		{/if}
@@ -58,8 +58,8 @@
 			</div>
 		{:else}
 			<div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-				{#each visibleReadBooks as book (book.url)}
-					<BookCard {book} compact showRating />
+				{#each visibleReadBooks as book, i (book.url)}
+					<BookCard {book} compact showRating priority={currentlyReading.length === 0 && i === 0} />
 				{/each}
 			</div>
 			{#if readBooks.length > READ_PREVIEW_COUNT}

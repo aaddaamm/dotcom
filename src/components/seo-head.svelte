@@ -12,6 +12,7 @@
 		publishedTime?: string;
 		modifiedTime?: string;
 		tags?: string[];
+		robots?: string;
 	}
 
 	const DEFAULT_IMAGE_PATH = '/og-card.png';
@@ -28,7 +29,8 @@
 		type = 'website',
 		publishedTime,
 		modifiedTime,
-		tags = []
+		tags = [],
+		robots = 'index, follow, max-image-preview:large'
 	}: SeoHeadProps = $props();
 
 	let url = $derived(toAbsoluteUrl(path));
@@ -38,6 +40,7 @@
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={description} />
+	<meta name="robots" content={robots} />
 	<meta property="og:type" content={type} />
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />

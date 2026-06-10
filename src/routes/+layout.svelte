@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import { SvelteSet } from 'svelte/reactivity';
 	import { dev } from '$app/environment';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { trackCTA, trackScrollDepth } from '$lib/analytics';
 	import { getReachedMilestones } from '$lib/scroll-depth';
@@ -39,22 +39,43 @@
 
 	const firedDepths = new SvelteSet<number>();
 	const sameAs = socialLinks.map((social) => social.url);
+	const personSchemaId = `${SITE_URL}/#person`;
+	const websiteSchemaId = `${SITE_URL}/#website`;
 
 	afterNavigate((navigation) => {
+		if (!navigation.from) {
+			firedDepths.clear();
+			return;
+		}
+
 		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		const hash = navigation.to?.url.hash;
 		if (hash) {
-			const el = document.querySelector(hash);
+			const el = document.querySelector<HTMLElement>(hash);
 			if (el) {
 				el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+				focusElement(el);
 				return;
 			}
 		}
 		window.scrollTo({ top: 0, behavior: 'auto' });
+		focusPageHeading();
 
 		// Reset scroll depth tracking on each navigation
 		firedDepths.clear();
 	});
+
+	async function focusPageHeading() {
+		await tick();
+		const heading = document.querySelector<HTMLElement>('#main-content h1');
+		focusElement(heading ?? document.querySelector<HTMLElement>('#main-content'));
+	}
+
+	function focusElement(element: HTMLElement | null) {
+		if (!element) return;
+		if (!element.hasAttribute('tabindex')) element.setAttribute('tabindex', '-1');
+		element.focus({ preventScroll: true });
+	}
 
 	function onScroll() {
 		if (firedDepths.size === 4) return;
@@ -81,6 +102,7 @@
 	data={{
 		'@context': 'https://schema.org',
 		'@type': 'Person',
+		'@id': personSchemaId,
 		name: 'Adam Robinson',
 		jobTitle: ROLE_TITLE,
 		hasOccupation: {
@@ -123,14 +145,14 @@
 	data={{
 		'@context': 'https://schema.org',
 		'@type': 'WebSite',
+		'@id': websiteSchemaId,
 		name: 'Adam Robinson',
 		url: SITE_URL,
 		description:
 			'Senior software engineer with ten-plus years across fintech, healthcare, and enterprise.',
 		inLanguage: 'en-US',
 		author: {
-			'@type': 'Person',
-			name: 'Adam Robinson'
+			'@id': personSchemaId
 		}
 	}}
 />

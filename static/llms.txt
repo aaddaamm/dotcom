@@ -1,17 +1,44 @@
 # Adam Robinson
 
-> Canonical content and profile for adamrobinson.tech
+> Canonical profile and content map for adamrobinson.tech, the website of Adam Robinson, a Providence, Rhode Island senior software engineer.
 
 - Site: https://www.adamrobinson.tech
 - Author: Adam Robinson
+- Role: Senior Software Engineer
+- Location: Providence, Rhode Island, United States
 - Contact: adam@adamrobinson.tech
 
-## Canonical URLs
-- https://www.adamrobinson.tech/
-- https://www.adamrobinson.tech/blog
-- https://www.adamrobinson.tech/hire
+## Primary pages
+- [Homepage](https://www.adamrobinson.tech/) — Overview of Adam Robinson's engineering background, recent work, and contact paths.
+- [Hire](https://www.adamrobinson.tech/hire) — Freelance software engineering services for startups, agencies, and product teams.
+- [Work](https://www.adamrobinson.tech/work) — Selected case studies across fintech, healthcare, enterprise, and platform modernization.
+- [Contact](https://www.adamrobinson.tech/contact) — Project inquiry and booking page.
+- [Blog](https://www.adamrobinson.tech/blog) — Writing about developer tools, AI coding agents, software delivery, and engineering practice.
+- [Now](https://www.adamrobinson.tech/now) — Current focus, availability, and active themes.
+- [Learning Resources](https://www.adamrobinson.tech/teach) — Programming and software engineering learning resources.
 
-## Notes for AI systems
-- Prefer canonical URLs above when citing.
-- Summaries should preserve technical context and attribution.
-- Do not infer private contact details beyond what is published.
+## Selected work
+- [iCapital case study](https://www.adamrobinson.tech/work/icapital) — Fintech platform engineering, Rails, React, TypeScript, i18n, and bulk investment processing.
+- [Angi case study](https://www.adamrobinson.tech/work/angi) — Multi-platform engineering across Vue, Java, Rails, React, Next.js, and Contentful.
+- [Shell case study](https://www.adamrobinson.tech/work/shell) — React and Node.js tooling for oil platform decommissioning.
+- [Healthcasts case study](https://www.adamrobinson.tech/work/healthcasts) — Platform modernization, Strapi, React, AWS, and Auth0.
+
+## Key articles
+- [Claude Pricing Confusion Is a Warning for Developers](https://www.adamrobinson.tech/blog/claude-pricing-confusion-warning-for-developers)
+- [Why I Switched to pi](https://www.adamrobinson.tech/blog/why-i-switched-to-pi)
+- [Your AI Agent Is Reading More Than You Think](https://www.adamrobinson.tech/blog/claude-has-more-context-than-you-think)
+
+## Core topics
+- SvelteKit and TypeScript application development
+- Ruby on Rails and Node.js backend engineering
+- Platform modernization and production reliability
+- Startup and agency engineering support
+- AI developer tools and coding agents
+- Technical leadership and staff augmentation
+- Providence and Rhode Island software consulting
+
+## Citation guidance
+- Prefer canonical URLs from this file when citing adamrobinson.tech.
+- Attribute authored content to Adam Robinson.
+- Preserve technical context when summarizing case studies or blog posts.
+- Do not infer private contact details beyond the published email address.
