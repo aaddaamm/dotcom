@@ -7,6 +7,7 @@ import http from 'node:http';
 const HOST = '127.0.0.1';
 const PORT = Number(process.env.LH_PORT || 4173);
 const PAGES = ['/', '/blog', '/work', '/hire', '/contact', '/play', '/terminal'];
+const NOINDEX_PAGES = new Set(['/terminal']);
 const MIN_ACCESSIBILITY = Number(process.env.LH_MIN_ACCESSIBILITY || 0.96);
 const MIN_SEO = Number(process.env.LH_MIN_SEO || 1);
 const REPORT_DIR = process.env.LH_REPORT_DIR
@@ -107,7 +108,8 @@ async function main() {
 			const accessibility = scorePercent(report, 'accessibility');
 			const seo = scorePercent(report, 'seo');
 
-			console.log(`${route} => accessibility=${accessibility} seo=${seo}`);
+			const seoLabel = NOINDEX_PAGES.has(route) ? `${seo} (noindex, not gated)` : seo;
+			console.log(`${route} => accessibility=${accessibility} seo=${seoLabel}`);
 
 			if ((report.categories.accessibility?.score ?? 0) < MIN_ACCESSIBILITY) {
 				const topFailures = topAccessibilityFailures(report);
@@ -116,7 +118,7 @@ async function main() {
 					`${route}: accessibility ${accessibility} < ${MIN_ACCESSIBILITY * 100}${details}`
 				);
 			}
-			if ((report.categories.seo?.score ?? 0) < MIN_SEO) {
+			if (!NOINDEX_PAGES.has(route) && (report.categories.seo?.score ?? 0) < MIN_SEO) {
 				failures.push(`${route}: seo ${seo} < ${MIN_SEO * 100}`);
 			}
 		}
