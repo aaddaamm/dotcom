@@ -4,11 +4,11 @@ import { createGoodreadsHandler } from '$lib/server/goodreads-route';
 
 const handlers = {
 	read: createGoodreadsHandler(
-		(fetchFn) => GoodreadsService.fetchReadShelf(fetchFn),
+		(fetchFn: typeof fetch) => GoodreadsService.fetchReadShelf(fetchFn),
 		'Goodreads read shelf unavailable'
 	),
 	'currently-reading': createGoodreadsHandler(
-		(fetchFn) => GoodreadsService.fetchCurrentlyReadingShelf(fetchFn),
+		(fetchFn: typeof fetch) => GoodreadsService.fetchCurrentlyReadingShelf(fetchFn),
 		'Goodreads currently-reading unavailable'
 	)
 } as const;

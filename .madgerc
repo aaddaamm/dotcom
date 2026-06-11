@@ -1,0 +1,6 @@
+{
+	"excludeRegExp": [
+		"^\\.svelte-kit/",
+		"/\\.svelte-kit/"
+	]
+}

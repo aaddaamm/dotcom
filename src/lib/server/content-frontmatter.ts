@@ -29,7 +29,7 @@ export function asNonEmptyString(value: unknown): string | null {
 
 export function asStringArray(value: unknown): string[] {
 	if (!Array.isArray(value)) return [];
-	return value.filter((item): item is string => typeof item === 'string');
+	return value.filter((item: unknown): item is string => typeof item === 'string');
 }
 
 export function asBoolean(value: unknown, fallback = false): boolean {

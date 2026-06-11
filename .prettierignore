@@ -9,6 +9,9 @@ build/
 .unlighthouse/
 .vercel/
 
+# Tool config without a Prettier-inferred parser
+.madgerc
+
 # Local agent/cache files
 .pi/
 .pi-lens/
