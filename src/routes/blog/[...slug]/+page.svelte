@@ -3,7 +3,6 @@
 	import { createElementObserver } from '$lib/animations';
 	import { ROLE_TITLE, SITE_URL } from '$lib/constants';
 	import { breadcrumbList, formatPostDate } from '$lib/utils';
-	import BackLink from '../../../components/back-link.svelte';
 	import JsonLd from '../../../components/json-ld.svelte';
 	import SeoHead from '../../../components/seo-head.svelte';
 	import ShareLinks from '../../../components/share-links.svelte';
@@ -71,7 +70,10 @@
 
 <article class="max-w-3xl mx-auto px-6">
 	<div class="pt-20 sm:pt-28">
-		<BackLink href="/blog" label="Blog" />
+		<a href="/blog" class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors">
+			<span aria-hidden="true">&larr;</span>
+			Blog
+		</a>
 		<div class="post-header">
 			<div class="post-meta text-xs muted-text">
 				<address>

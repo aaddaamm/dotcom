@@ -1,6 +1,4 @@
 <script lang="ts">
-	import BackLink from './back-link.svelte';
-
 	let {
 		title,
 		description,
@@ -20,7 +18,13 @@
 
 <section class="pt-20 sm:pt-28">
 	{#if showBackLink}
-		<BackLink href={backHref} label={backLabel} />
+		<a
+			href={backHref}
+			class="back-link text-sm inline-flex items-center gap-1 mb-8 transition-colors"
+		>
+			<span aria-hidden="true">&larr;</span>
+			{backLabel}
+		</a>
 	{/if}
 	<h1 class="page-title text-3xl font-semibold tracking-tight mb-3">{title}</h1>
 	{#if description}
