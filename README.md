@@ -4,10 +4,11 @@ Personal website for Adam Robinson, Senior Software Engineer.
 
 ## Stack
 
-- **Framework**: SvelteKit 2 (Svelte 5) with TypeScript
+- **Framework**: SvelteKit 2 / Svelte 5 / TypeScript / Vite 8
 - **Styling**: Tailwind CSS 4 + CSS custom properties
-- **Hosting**: Vercel (adapter-vercel)
-- **Email**: Resend API for contact form
+- **Hosting**: Vercel (`@sveltejs/adapter-vercel`)
+- **Email**: Resend API for contact notifications
+- **Cache/rate limits**: Upstash Redis
 - **Analytics**: Vercel Analytics + Speed Insights
 
 ## Quick Start
@@ -15,30 +16,45 @@ Personal website for Adam Robinson, Senior Software Engineer.
 ```bash
 npm install
 cp .env.example .env.local
-# Add your RESEND_API_KEY to .env.local
+# Add the environment variables you need for local integrations
 npm run dev
 ```
 
 ## Environment Setup
 
-1. **Resend Email API** (for contact form):
+Create `.env.local` from `.env.example`, then add the values needed for the integrations you are testing:
 
-   ```bash
-   RESEND_API_KEY=re_xxxxxxxxx
-   ```
+```bash
+RESEND_API_KEY=re_xxxxxxxxx
+KV_REST_API_URL=https://...
+KV_REST_API_TOKEN=...
+GITHUB_TOKEN=github_pat_...
+SHOW_DRAFTS=true
+```
 
-   Get your API key from: https://resend.com/api-keys
+- `RESEND_API_KEY` powers contact notification email delivery.
+- `KV_REST_API_URL` and `KV_REST_API_TOKEN` power Upstash Redis rate limits/cache.
+- `GITHUB_TOKEN` powers the `/api/github` public activity endpoint.
+- `SHOW_DRAFTS=true` shows draft blog posts in dev/preview flows.
+
+Get a Resend API key from https://resend.com/api-keys.
 
 ## Development Commands
 
-| Command           | Purpose                      |
-| ----------------- | ---------------------------- |
-| `npm run dev`     | Dev server (opens browser)   |
-| `npx vite build`  | Production build             |
-| `npm run preview` | Preview production build     |
-| `npm run check`   | Svelte + TypeScript checking |
-| `npm run lint`    | Prettier + ESLint            |
-| `npm run format`  | Auto-format with Prettier    |
+| Command                       | Purpose                                 |
+| ----------------------------- | --------------------------------------- |
+| `npm run dev`                 | Dev server (opens browser)              |
+| `npm run build`               | Production build                        |
+| `npm run preview`             | Preview production build                |
+| `npm run check`               | Svelte + TypeScript checks              |
+| `npm run lint`                | Prettier + ESLint                       |
+| `npm run format`              | Auto-format with Prettier               |
+| `npm run test`                | Vitest test suite                       |
+| `npm run check:blog-drafts`   | Draft frontmatter/readiness checks      |
+| `npm run check:lighthouse`    | Local Lighthouse SEO/accessibility gate |
+| `npm run check:bundle-budget` | Client JS/CSS bundle budget gate        |
+| `npm run check:links`         | Linkinator broken-link check            |
+| `npm run check:seo`           | Unlighthouse crawl against `SITE_URL`   |
 
 ## Features
 

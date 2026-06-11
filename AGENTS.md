@@ -4,7 +4,7 @@ Personal website for Adam Robinson, Senior Software Engineer.
 
 ## Stack
 
-- SvelteKit 2 / Svelte 5 / TypeScript / Vite 6
+- SvelteKit 2 / Svelte 5 / TypeScript / Vite 8
 - Tailwind CSS 4 via `@tailwindcss/vite`; theme tokens live in `src/app.css`
 - Vercel hosting with `@sveltejs/adapter-vercel`
 - Vercel Analytics + Speed Insights
@@ -45,12 +45,17 @@ Personal website for Adam Robinson, Senior Software Engineer.
 
 ## Commands
 
-| Command                     | Purpose                            |
-| --------------------------- | ---------------------------------- |
-| `npm run dev`               | Start dev server                   |
-| `npm run check`             | Svelte + TypeScript checks         |
-| `npm run lint`              | Prettier + ESLint                  |
-| `npm run check:blog-drafts` | Draft frontmatter/readiness checks |
-| `npm run build`             | Production build                   |
+| Command                       | Purpose                               |
+| ----------------------------- | ------------------------------------- |
+| `npm run dev`                 | Start dev server                      |
+| `npm run check`               | Svelte + TypeScript checks            |
+| `npm run lint`                | Prettier + ESLint                     |
+| `npm run test`                | Vitest test suite                     |
+| `npm run check:blog-drafts`   | Draft frontmatter/readiness checks    |
+| `npm run check:lighthouse`    | Lighthouse SEO/accessibility gate     |
+| `npm run check:bundle-budget` | Client JS/CSS bundle budget gate      |
+| `npm run check:links`         | Linkinator broken-link check          |
+| `npm run check:seo`           | Unlighthouse crawl against `SITE_URL` |
+| `npm run build`               | Production build                      |
 
 Run `npm run check` and `npm run build` before considering code changes complete.

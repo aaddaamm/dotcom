@@ -1,5 +1,7 @@
 # Performance Baseline — 2026-04-22
 
+Last verified: 2026-06-10
+
 ## Route-level targets (mobile-focused)
 
 Primary routes:
@@ -24,12 +26,14 @@ Notes:
 
 A bundle-budget check runs in CI (`.github/workflows/performance-budget.yml`) after build.
 
-Current default budgets:
+Current CI budgets:
 
-- Total client JS: `220000` bytes
+- Total client JS: `240000` bytes
 - Largest JS chunk: `100000` bytes
-- Total client CSS: `60000` bytes
-- Largest CSS chunk: `31000` bytes
+- Total client CSS: `65000` bytes
+- Largest CSS chunk: `34000` bytes
+
+Local script defaults match these values unless overridden with `BUDGET_TOTAL_JS`, `BUDGET_SINGLE_JS`, `BUDGET_TOTAL_CSS`, or `BUDGET_SINGLE_CSS`.
 
 Script:
 
@@ -38,10 +42,12 @@ Script:
 
 ## Current baseline snapshot (latest local build)
 
-- JS total: ~192 KB
-- Largest JS chunk: ~85 KB
-- CSS total: ~50.7 KB
-- Largest CSS chunk: ~27.6 KB
+Measured after `npm run build && npm run check:bundle-budget` on 2026-06-10.
+
+- JS total: `234758` bytes (~229.3 KiB)
+- Largest JS chunk: `96138` bytes (~93.9 KiB)
+- CSS total: `63905` bytes (~62.4 KiB)
+- Largest CSS chunk: `33537` bytes (~32.8 KiB)
 
 ## Follow-up
 
