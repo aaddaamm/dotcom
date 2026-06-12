@@ -12,17 +12,13 @@ import { trackTerminalOpen, trackTerminalCommand, trackTerminalModeChange } from
 import { getSeveranceMode, setSeveranceMode } from '$lib/stores/severance';
 import { MacrodataSession } from '$lib/terminal-macrodata';
 import { TerminalMemory } from '$lib/terminal-memory';
-
-const ARGUMENT_EXPECTING_COMMANDS = [
-	'ls',
-	'cat',
-	'open',
-	'git',
-	'sudo',
-	'mode',
-	'echo',
-	'translate'
-];
+import {
+	commandShouldBeTracked,
+	completionForInput,
+	initialTerminalMode,
+	severanceModeForTerminalMode,
+	shouldSeedModeHistory
+} from '$lib/terminal-state-helpers';
 
 export class TerminalState {
 	isOpen = $state(false);
@@ -43,7 +39,7 @@ export class TerminalState {
 	) {
 		this.#fullscreen = typeof fullscreen === 'function' ? fullscreen : () => fullscreen;
 		this.#navigate = navigate;
-		this.mode = getSeveranceMode() === 'innie' ? 'innie' : 'terminal';
+		this.mode = initialTerminalMode(getSeveranceMode());
 		this.#loadMemory(this.#memory.modeMemoryKey(this.mode));
 	}
 
@@ -80,7 +76,7 @@ export class TerminalState {
 		const key = normalize(lower);
 		const result = runCommand(cmd, this.mode);
 
-		if (this.#shouldTrackCommand(lower, result.lines[0])) {
+		if (commandShouldBeTracked(lower, result.lines[0])) {
 			trackTerminalCommand(key, this.mode);
 		}
 
@@ -94,14 +90,13 @@ export class TerminalState {
 	}
 
 	tabComplete() {
-		const completions = getCompletions(this.input);
-		if (completions.length === 0) return;
-		if (completions.length === 1) {
-			this.#applySingleCompletion(completions[0]);
+		const result = completionForInput(this.input, getCompletions(this.input));
+		if (result.kind === 'none') return;
+		if (result.kind === 'multiple') {
+			this.#pushOutput(result.lines);
 			return;
 		}
-
-		this.#pushOutput([completions.join('   ')]);
+		this.input = result.input;
 	}
 
 	#applyCommandResult(result: ReturnType<typeof runCommand>) {
@@ -121,18 +116,6 @@ export class TerminalState {
 			this.#navigateWithOptionalClose(result.navigate, result.navigateDelay ?? 0);
 	}
 
-	#applySingleCompletion(completion: string) {
-		const tokens = this.input.split(' ');
-		if (tokens.length === 1) {
-			this.input = completion;
-			if (ARGUMENT_EXPECTING_COMMANDS.includes(completion)) this.input += ' ';
-			return;
-		}
-
-		tokens[tokens.length - 1] = completion;
-		this.input = tokens.join(' ');
-	}
-
 	#recordInput(cmd: string) {
 		this.history = [...this.history, inputEntry(this.#nextId++, cmd)];
 		this.cmdHistory = [cmd, ...this.cmdHistory.slice(0, 49)];
@@ -144,15 +127,6 @@ export class TerminalState {
 		if (!this.#macrodata.handle(lower, this.#pushOutput.bind(this))) return false;
 		trackTerminalCommand('macrodata', this.mode);
 		return true;
-	}
-
-	#shouldTrackCommand(lower: string, firstLine?: string) {
-		return (
-			lower === 'clear' ||
-			lower === 'exit' ||
-			lower === 'quit' ||
-			!firstLine?.startsWith('command not found')
-		);
 	}
 
 	#applyModeChange(nextMode: Mode) {
@@ -186,8 +160,8 @@ export class TerminalState {
 	}
 
 	#syncSeveranceMode(nextMode: Mode) {
-		if (nextMode === 'innie') setSeveranceMode('innie');
-		if (nextMode === 'terminal') setSeveranceMode('outie');
+		const severanceMode = severanceModeForTerminalMode(nextMode);
+		if (severanceMode) setSeveranceMode(severanceMode);
 	}
 
 	#switchMemoryIfNeeded(previousMode: Mode, nextMode: Mode) {
@@ -196,7 +170,7 @@ export class TerminalState {
 		if (prevKey === nextKey) return;
 		this.#saveMemory(prevKey);
 		this.#loadMemory(nextKey);
-		if (this.history.length > 0) return;
+		if (!shouldSeedModeHistory(this.history)) return;
 		this.#pushOutput(initialModeLines(nextKey));
 	}
 }
