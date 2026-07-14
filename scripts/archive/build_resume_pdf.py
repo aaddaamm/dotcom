@@ -13,6 +13,10 @@ BLACK = HexColor('#0A0A0A')
 MUTED = HexColor('#555555')
 
 OUT = '/Users/adam/dotcom/static/adam_robinson.pdf'
+SITE_URL = 'https://www.adamrobinson.tech'
+GITHUB_URL = 'https://github.com/aaddaamm'
+LINKEDIN_URL = 'https://www.linkedin.com/in/adam-robinson-software/'
+EMAIL = 'adam@adamrobinson.tech'
 
 
 def styles():
@@ -63,6 +67,10 @@ def build():
     doc = SimpleDocTemplate(
         OUT,
         pagesize=letter,
+        title='Adam Robinson - Senior Software Engineer',
+        author='Adam Robinson',
+        subject='Resume for Adam Robinson, Senior Software Engineer and Technical Lead',
+        keywords=['senior software engineer', 'technical lead', 'TypeScript', 'Ruby on Rails'],
         leftMargin=0.85 * inch,
         rightMargin=0.85 * inch,
         topMargin=0.75 * inch,
@@ -77,8 +85,10 @@ def build():
     story.append(Paragraph('SENIOR SOFTWARE ENGINEER', st['subtitle']))
     story.append(Paragraph('Providence, RI', st['meta']))
     story.append(Paragraph(
-        'adamrobinson.tech  ·  github.com/aaddaamm  ·  '
-        'linkedin.com/in/adam-robinson-software  ·  adam@adamrobinson.tech',
+        f'<link href="{SITE_URL}" color="#555555">adamrobinson.tech</link>  ·  '
+        f'<link href="{GITHUB_URL}" color="#555555">GitHub</link>  ·  '
+        f'<link href="{LINKEDIN_URL}" color="#555555">LinkedIn</link>  ·  '
+        f'<link href="mailto:{EMAIL}" color="#555555">{EMAIL}</link>',
         st['meta']
     ))
     story.append(Spacer(1, 6))
@@ -87,10 +97,11 @@ def build():
     story.append(rule())
     story.append(Paragraph('SUMMARY', st['section']))
     story.append(Paragraph(
-        'Senior software engineer with over a decade of experience across fintech, healthcare, '
-        'and enterprise. Full-stack, backend-leaning — specializing in Rails, Node.js, and '
-        'TypeScript. Embeds with existing teams, gets up to speed fast in complex codebases, '
-        'and ships reliably. Daily user of AI-assisted development tools.',
+        'Senior software engineer and technical lead with 15+ years delivering and modernizing '
+        'production systems across fintech, healthcare, and enterprise. Backend-leaning full-stack '
+        'engineer across Rails, TypeScript/Node.js, and React. Ramps quickly in complex codebases, '
+        'turns ambiguous work into shippable plans, and builds agent-assisted workflows with '
+        'explicit review and verification.',
         st['body']
     ))
 
@@ -99,45 +110,43 @@ def build():
     story.append(Paragraph('EXPERIENCE', st['section']))
 
     story.append(Paragraph(company_line('MojoTech', 'Senior Software Engineer / Technical Lead'), st['company']))
-    story.append(Paragraph('2015 – Present  ·  Providence, RI', st['period']))
+    story.append(Paragraph('Feb 2015 - Present  ·  Providence, RI', st['period']))
     story.append(Paragraph(
-        'Delivered across dozens of client engagements as an embedded senior engineer and '
-        'technical lead. Selected clients:',
+        'Delivered 15+ client projects as an embedded senior engineer and technical lead across '
+        'product delivery, platform modernization, and production systems. Selected clients:',
         st['body']
     ))
 
     clients = [
         (
-            'iCapital', 'Staff Augmentation / Senior Engineer', '2024 – present',
-            'Embedded on a large-scale alternative investment platform serving wealth managers. '
-            'Expanded i18n support across static and database-backed content, co-designed a '
-            'Rails service for bulk nominee investment processing, and led a component library '
-            'migration (Supernova v1 → v2).'
+            'iCapital', 'Senior Software Engineer, Consultant', 'May 2024 - present',
+            'Co-designed a Rails service that consolidated bulk nominee processing for thousands '
+            'of investments. Expanded localization across static and database-backed content and '
+            'led the team\'s Supernova v1-to-v2 component library migration.'
         ),
         (
-            'Healthcasts', 'Technical Lead', '2022 – 2024',
-            'Led platform modernization for a medical publishing company. Built a headless CMS '
-            'publishing pipeline (Strapi + React), rebuilt AWS infrastructure, and delivered an '
-            'Auth0 authentication overhaul unifying login across all platforms — unblocking a '
-            'parallel AI initiative in the process.'
+            'Healthcasts', 'Technical Lead', 'Oct 2022 - May 2024',
+            'Led phased modernization of a medical publishing platform. Built a Strapi and React '
+            'publishing pipeline, modernized AWS infrastructure, and unified authentication across '
+            'products with Auth0, improving publishing throughput and unblocking an AI initiative.'
         ),
         (
-            'Angi', 'Staff Augmentation / Senior Engineer', '2021 – 2022',
-            "Delivered across three separate codebases (HomeAdvisor, Handy, Angie's List) in a "
-            'single engagement — Vue/Java, Rails/React, and Next.js/Contentful. Mentored a team '
-            'of interns through their first fully shipped feature.'
+            'Angi', 'Senior Software Engineer, Consultant', 'Nov 2020 - Sep 2022',
+            "Shipped across three post-merger codebases for HomeAdvisor, Handy, and Angie's List "
+            'using Vue/Java, Rails/React, and Next.js/Contentful. Mentored interns through a live '
+            'Careers page launch and their first production release.'
         ),
         (
-            'Shell Techworks', 'Software Engineer', '2018 – 2019',
-            'Built decommissioning tooling for end-of-life offshore oil platforms. Full-stack '
-            'React/Node application. Used the Google Design Sprint process to compress scope '
-            'and deliver MVP on schedule onsite in Boston.'
+            'Shell Techworks', 'Software Engineer', 'Jun 2018 - Jul 2019',
+            'Built a React and Node.js application that evaluated least-cost decommissioning paths '
+            'for end-of-life offshore oil platforms. Used an onsite Google Design Sprint to narrow '
+            'scope and deliver the MVP on schedule.'
         ),
     ]
 
     for company, title, period, desc in clients:
         story.append(Paragraph(
-            f'<font color="#2A7A7A">▸</font>  <b>{company}</b>  <font color="#555555">· {title} · {period}</font>',
+            f'<font color="#2A7A7A">-</font>  <b>{company}</b>  <font color="#555555">· {title} · {period}</font>',
             st['client']
         ))
         story.append(Paragraph(desc, st['client_body']))
@@ -148,12 +157,11 @@ def build():
     ))
     story.append(Spacer(1, 2))
 
-    story.append(Paragraph(company_line('Beacon Mutual Insurance', 'Software Engineer'), st['company']))
-    story.append(Paragraph('2013 – 2016  ·  Warwick, RI', st['period']))
+    story.append(Paragraph(company_line('Beacon Mutual Insurance', 'Associate Developer / Production Control'), st['company']))
+    story.append(Paragraph('Mar 2011 - Feb 2015  ·  Warwick, RI', st['period']))
     story.append(Paragraph(
-        'Built backend systems for claims and policy management in a regulated, '
-        'high-reliability environment. Designed financial transaction and payment processing '
-        'systems with strong correctness requirements.',
+        'Progressed from deployment and environment management to full-stack and database development, '
+        'building claims, policy, financial transaction, and payment systems in a regulated environment.',
         st['body']
     ))
 
@@ -163,9 +171,8 @@ def build():
     skills = [
         ('Backend', 'TypeScript, Ruby, SQL, Elixir  ·  Node.js, Ruby on Rails, Express, Phoenix'),
         ('Frontend', 'React, SvelteKit, Vue, Next.js'),
-        ('Cloud', 'AWS  ·  Vercel  ·  GitHub Actions'),
-        ('Tools', 'Git, Prisma, Strapi, Contentful, Auth0'),
-        ('AI', 'GitHub Copilot, Claude, AMP  (daily — VS Code / Zed)'),
+        ('Platform', 'AWS, Vercel, GitHub Actions  ·  Git, Prisma, Strapi, Contentful, Auth0'),
+        ('AI', 'Codex, Claude, Pi, GitHub Copilot  ·  agent instructions, skills, verification workflows'),
     ]
     for category, items in skills:
         story.append(Paragraph(skill_line(category, items), st['skill_row']))

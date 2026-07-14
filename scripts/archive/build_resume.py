@@ -6,10 +6,15 @@ from docx.shared import Pt, RGBColor, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
+from docx.opc.constants import RELATIONSHIP_TYPE as RT
 
 TEAL = RGBColor(0x2A, 0x7A, 0x7A)
 BLACK = RGBColor(0x0A, 0x0A, 0x0A)
 MUTED = RGBColor(0x44, 0x44, 0x44)
+SITE_URL = 'https://www.adamrobinson.tech'
+GITHUB_URL = 'https://github.com/aaddaamm'
+LINKEDIN_URL = 'https://www.linkedin.com/in/adam-robinson-software/'
+EMAIL = 'adam@adamrobinson.tech'
 
 
 def clear_paragraph_spacing(p):
@@ -20,8 +25,8 @@ def clear_paragraph_spacing(p):
 def add_rule(doc):
     p = doc.add_paragraph()
     clear_paragraph_spacing(p)
-    p.paragraph_format.space_before = Pt(6)
-    p.paragraph_format.space_after = Pt(6)
+    p.paragraph_format.space_before = Pt(5)
+    p.paragraph_format.space_after = Pt(5)
     pPr = p._p.get_or_add_pPr()
     pBdr = OxmlElement('w:pBdr')
     bottom = OxmlElement('w:bottom')
@@ -31,6 +36,32 @@ def add_rule(doc):
     bottom.set(qn('w:color'), '2A7A7A')
     pBdr.append(bottom)
     pPr.append(pBdr)
+
+
+def add_hyperlink(paragraph, text, url):
+    relationship_id = paragraph.part.relate_to(url, RT.HYPERLINK, is_external=True)
+    hyperlink = OxmlElement('w:hyperlink')
+    hyperlink.set(qn('r:id'), relationship_id)
+
+    run = OxmlElement('w:r')
+    properties = OxmlElement('w:rPr')
+    fonts = OxmlElement('w:rFonts')
+    fonts.set(qn('w:ascii'), 'Calibri')
+    fonts.set(qn('w:hAnsi'), 'Calibri')
+    size = OxmlElement('w:sz')
+    size.set(qn('w:val'), '18')
+    color = OxmlElement('w:color')
+    color.set(qn('w:val'), '444444')
+    underline = OxmlElement('w:u')
+    underline.set(qn('w:val'), 'none')
+    properties.extend([fonts, size, color, underline])
+    run.append(properties)
+
+    node = OxmlElement('w:t')
+    node.text = text
+    run.append(node)
+    hyperlink.append(run)
+    paragraph._p.append(hyperlink)
 
 
 def add_name_block(doc):
@@ -61,12 +92,18 @@ def add_name_block(doc):
 
     p4 = doc.add_paragraph()
     clear_paragraph_spacing(p4)
-    p4.paragraph_format.space_after = Pt(10)
-    contact = 'adamrobinson.tech  ·  github.com/aaddaamm  ·  linkedin.com/in/adam-robinson-software  ·  adam@adamrobinson.tech'
-    run4 = p4.add_run(contact)
-    run4.font.name = 'Calibri'
-    run4.font.size = Pt(9)
-    run4.font.color.rgb = MUTED
+    p4.paragraph_format.space_after = Pt(8)
+    add_hyperlink(p4, 'adamrobinson.tech', SITE_URL)
+    for label, url in [
+        ('GitHub', GITHUB_URL),
+        ('LinkedIn', LINKEDIN_URL),
+        (EMAIL, f'mailto:{EMAIL}')
+    ]:
+        separator = p4.add_run('  ·  ')
+        separator.font.name = 'Calibri'
+        separator.font.size = Pt(9)
+        separator.font.color.rgb = MUTED
+        add_hyperlink(p4, label, url)
 
 
 def add_section_heading(doc, text):
@@ -127,7 +164,7 @@ def add_client_entry(doc, company, title, period, desc):
     p.paragraph_format.space_after = Pt(1)
     p.paragraph_format.left_indent = Inches(0.18)
 
-    r1 = p.add_run('▸  ')
+    r1 = p.add_run('-  ')
     r1.font.name = 'Calibri'
     r1.font.size = Pt(9)
     r1.font.color.rgb = TEAL
@@ -168,7 +205,7 @@ def add_bullet(doc, text):
 def add_skill_row(doc, category, items):
     p = doc.add_paragraph()
     clear_paragraph_spacing(p)
-    p.paragraph_format.space_after = Pt(3)
+    p.paragraph_format.space_after = Pt(2)
 
     r1 = p.add_run(f'{category:<12}')
     r1.font.name = 'JetBrains Mono'
@@ -183,11 +220,15 @@ def add_skill_row(doc, category, items):
 
 def build():
     doc = Document()
+    doc.core_properties.title = 'Adam Robinson - Senior Software Engineer'
+    doc.core_properties.author = 'Adam Robinson'
+    doc.core_properties.subject = 'Resume for Adam Robinson, Senior Software Engineer and Technical Lead'
+    doc.core_properties.keywords = 'senior software engineer, technical lead, TypeScript, Ruby on Rails'
 
     # Margins
     for section in doc.sections:
-        section.top_margin = Inches(0.75)
-        section.bottom_margin = Inches(0.75)
+        section.top_margin = Inches(0.65)
+        section.bottom_margin = Inches(0.65)
         section.left_margin = Inches(0.9)
         section.right_margin = Inches(0.9)
 
@@ -201,41 +242,40 @@ def build():
     # Summary
     add_section_heading(doc, 'Summary')
     add_body(doc,
-        'Senior software engineer with over a decade of experience across fintech, healthcare, '
-        'and enterprise. Full-stack, backend-leaning — specializing in Rails, Node.js, and '
-        'TypeScript. Embeds with existing teams, gets up to speed fast in complex codebases, '
-        'and ships reliably. Daily user of AI-assisted development tools.'
+        'Senior software engineer and technical lead with 15+ years delivering and modernizing '
+        'production systems across fintech, healthcare, and enterprise. Backend-leaning full-stack '
+        'engineer across Rails, TypeScript/Node.js, and React. Ramps quickly in complex codebases, '
+        'turns ambiguous work into shippable plans, and builds agent-assisted workflows with '
+        'explicit review and verification.'
     )
 
     # Experience
     add_section_heading(doc, 'Experience')
 
-    add_role_header(doc, 'MojoTech', 'Senior Software Engineer / Technical Lead', '2015 – Present', 'Providence, RI')
+    add_role_header(doc, 'MojoTech', 'Senior Software Engineer / Technical Lead', 'Feb 2015 - Present', 'Providence, RI')
     add_body(doc,
-        'Delivered across dozens of client engagements as an embedded senior engineer and '
-        'technical lead. Selected clients:',
+        'Delivered 15+ client projects as an embedded senior engineer and technical lead across '
+        'product delivery, platform modernization, and production systems. Selected clients:',
         space_after=6
     )
 
     clients = [
-        ('iCapital', 'Staff Augmentation / Senior Engineer', '2024 – present',
-         'Embedded on a large-scale alternative investment platform serving wealth managers. '
-         'Expanded i18n support across static and database-backed content, co-designed a Rails '
-         'service for bulk nominee investment processing, and led a component library migration '
-         '(Supernova v1 → v2).'),
-        ('Healthcasts', 'Technical Lead', '2022 – 2024',
-         'Led platform modernization for a medical publishing company. Built a headless CMS '
-         'publishing pipeline (Strapi + React), rebuilt AWS infrastructure, and delivered an '
-         'Auth0 authentication overhaul unifying login across all platforms — unblocking a '
-         'parallel AI initiative in the process.'),
-        ('Angi', 'Staff Augmentation / Senior Engineer', '2021 – 2022',
-         "Delivered across three separate codebases (HomeAdvisor, Handy, Angie's List) in a "
-         'single engagement — Vue/Java, Rails/React, and Next.js/Contentful. Mentored a team '
-         'of interns through their first fully shipped feature.'),
-        ('Shell Techworks', 'Software Engineer', '2018 – 2019',
-         'Built decommissioning tooling for end-of-life offshore oil platforms. Full-stack '
-         'React/Node application. Used the Google Design Sprint process to compress scope '
-         'and deliver MVP on schedule onsite in Boston.'),
+        ('iCapital', 'Senior Software Engineer, Consultant', 'May 2024 - present',
+         'Co-designed a Rails service that consolidated bulk nominee processing for thousands '
+         'of investments. Expanded localization across static and database-backed content and '
+         "led the team's Supernova v1-to-v2 component library migration."),
+        ('Healthcasts', 'Technical Lead', 'Oct 2022 - May 2024',
+         'Led phased modernization of a medical publishing platform. Built a Strapi and React '
+         'publishing pipeline, modernized AWS infrastructure, and unified authentication across '
+         'products with Auth0, improving publishing throughput and unblocking an AI initiative.'),
+        ('Angi', 'Senior Software Engineer, Consultant', 'Nov 2020 - Sep 2022',
+         "Shipped across three post-merger codebases for HomeAdvisor, Handy, and Angie's List "
+         'using Vue/Java, Rails/React, and Next.js/Contentful. Mentored interns through a live '
+         'Careers page launch and their first production release.'),
+        ('Shell Techworks', 'Software Engineer', 'Jun 2018 - Jul 2019',
+         'Built a React and Node.js application that evaluated least-cost decommissioning paths '
+         'for end-of-life offshore oil platforms. Used an onsite Google Design Sprint to narrow '
+         'scope and deliver the MVP on schedule.'),
     ]
     for company, title, period, desc in clients:
         add_client_entry(doc, company, title, period, desc)
@@ -251,20 +291,18 @@ def build():
     r.font.italic = True
     r.font.color.rgb = MUTED
 
-    add_role_header(doc, 'Beacon Mutual Insurance', 'Software Engineer', '2013 – 2016', 'Warwick, RI')
+    add_role_header(doc, 'Beacon Mutual Insurance', 'Associate Developer / Production Control', 'Mar 2011 - Feb 2015', 'Warwick, RI')
     add_body(doc,
-        'Built backend systems for claims and policy management in a regulated, '
-        'high-reliability environment. Designed financial transaction and payment processing '
-        'systems with strong correctness requirements.'
+        'Progressed from deployment and environment management to full-stack and database development, '
+        'building claims, policy, financial transaction, and payment systems in a regulated environment.'
     )
 
     # Skills
     add_section_heading(doc, 'Skills')
     add_skill_row(doc, 'Backend', 'TypeScript, Ruby, SQL, Elixir  ·  Node.js, Ruby on Rails, Express, Phoenix')
     add_skill_row(doc, 'Frontend', 'React, SvelteKit, Vue, Next.js')
-    add_skill_row(doc, 'Cloud', 'AWS  ·  Vercel  ·  GitHub Actions')
-    add_skill_row(doc, 'Tools', 'Git, Prisma, Strapi, Contentful, Auth0')
-    add_skill_row(doc, 'AI', 'GitHub Copilot, Claude, AMP  (daily — VS Code / Zed)')
+    add_skill_row(doc, 'Platform', 'AWS, Vercel, GitHub Actions  ·  Git, Prisma, Strapi, Contentful, Auth0')
+    add_skill_row(doc, 'AI', 'Codex, Claude, Pi, GitHub Copilot  ·  agent instructions, skills, verification workflows')
 
     out = '/Users/adam/dotcom/static/adam_robinson.docx'
     doc.save(out)
