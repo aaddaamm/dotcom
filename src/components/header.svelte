@@ -23,9 +23,9 @@
 			</span>
 		</a>
 
-		<div class="flex items-center gap-6">
+		<div class="flex items-center gap-6 header-actions">
 			<div class="hidden sm:block nav-divider" aria-hidden="true"></div>
-			<nav aria-label="Main navigation" class="flex items-center gap-6">
+			<nav aria-label="Main navigation" class="flex items-center gap-6 header-nav">
 				<a
 					href="/work"
 					class="nav-link link-underline"
@@ -124,17 +124,22 @@
 	}
 
 	@media (max-width: 640px) {
+		.header-wordmark {
+			display: none;
+		}
+
 		.header-cursor {
 			height: 32px;
 			width: 10px;
 		}
 
-		.header-name {
-			font-size: 17px;
+		.header-actions,
+		.header-nav {
+			gap: 16px;
 		}
 
-		.header-subtitle {
-			display: none;
+		.header-inner {
+			padding: 0 16px;
 		}
 	}
 

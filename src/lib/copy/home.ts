@@ -18,7 +18,7 @@ export const outcomeProofPoints: OutcomeProofPoint[] = [
 		href: '/work/icapital'
 	},
 	{
-		headline: 'Healthcasts — MVP modernization that grew into a 4-year engagement',
+		headline: 'Healthcasts — publishing, infrastructure, and auth modernization over 18 months',
 		detail:
 			'Led a Strapi + React publishing pipeline and Auth0 unification across platforms, reducing publishing friction and creating a stronger identity foundation.',
 		href: '/work/healthcasts'

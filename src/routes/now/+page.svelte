@@ -46,7 +46,7 @@
 		</ul>
 	</section>
 
-	<p class="updated">Last updated: May 2026</p>
+	<p class="updated">Last updated: July 2026</p>
 </div>
 
 <style>

@@ -26,7 +26,7 @@ export const pageSeo = {
 	work: {
 		title: 'Work — Adam Robinson',
 		description:
-			'Ten-plus years of engineering work across fintech, healthcare, and enterprise. Rails, Node.js, TypeScript. Staff augmentation and technical leadership.',
+			'Fifteen-plus years of engineering work across fintech, healthcare, and enterprise. Rails, Node.js, TypeScript. Embedded delivery and technical leadership.',
 		path: '/work'
 	},
 	now: {
@@ -38,7 +38,7 @@ export const pageSeo = {
 	blog: {
 		title: 'Blog — Adam Robinson',
 		description:
-			'Writing on backend engineering, Rails, Node.js, and TypeScript — practical insights from ten-plus years across fintech, healthcare, and enterprise.',
+			'Writing on backend engineering, Rails, Node.js, and TypeScript — practical insights from fifteen-plus years across fintech, healthcare, and enterprise.',
 		path: '/blog'
 	},
 	teach: {

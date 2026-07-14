@@ -12,6 +12,7 @@
 	interface WorkItem {
 		slug?: string;
 		title: string;
+		employer: string;
 		period: string;
 		role: string;
 		description?: string;
@@ -40,7 +41,7 @@
 	</div>
 
 	<div class="meta-row">
-		<span class="meta-role">{project.role}</span>
+		<span class="meta-role">{project.role} · via {project.employer}</span>
 		{#if project.slug && variant === 'full'}
 			<a href="/work/{project.slug}" class="case-study-link">full case study →</a>
 		{/if}

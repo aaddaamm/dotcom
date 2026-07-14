@@ -43,7 +43,7 @@ export const techStack: TechStackGroup[] = [
 	},
 	{
 		category: 'AI',
-		items: ['GitHub Copilot', 'Claude', 'AMP']
+		items: ['Codex', 'Claude', 'Pi', 'GitHub Copilot']
 	}
 ];
 
@@ -137,7 +137,7 @@ export const faqItems: FaqItem[] = [
 
 export const heroMessaging: HeroMessaging = {
 	audienceKeywords: ['Startups', 'Agencies', 'Book a project call'],
-	availability: 'Available for select freelance engagements.',
+	availability: 'Available for full-time senior/staff roles and select contract engagements.',
 	ctaOrder: ['Book a project call', 'See services fit', 'Download résumé']
 };
 
@@ -146,14 +146,14 @@ export const homepageMetrics: {
 	industries: string[];
 } = {
 	numbers: [
-		{ value: '10+', label: 'Years' },
+		{ value: '15+', label: 'Years' },
 		{ value: '15+', label: 'Projects' }
 	],
 	industries: ['fintech', 'healthcare', 'enterprise']
 };
 
 export const trustProofItems: TrustProofItem[] = [
-	{ label: 'Experience', value: '10+ years' },
+	{ label: 'Experience', value: '15+ years' },
 	{ label: 'Sectors', value: 'Fintech · Healthcare · Enterprise' },
 	{ label: 'Engagements', value: '15+ delivered' },
 	{ label: 'Mode', value: 'Embedded senior IC / tech lead' }

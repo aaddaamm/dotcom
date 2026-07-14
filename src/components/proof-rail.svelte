@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { SOCIAL_URLS } from '$lib/constants';
+
 	const proofRail: Array<{ label: string; value: string; href?: string }> = [
 		{
 			label: 'Talks',
@@ -8,7 +10,7 @@
 		{
 			label: 'Open source',
 			value: 'Code, experiments, and public engineering artifacts',
-			href: 'https://github.com/adamwooly'
+			href: SOCIAL_URLS.github
 		},
 		{
 			label: 'Delivery mode',

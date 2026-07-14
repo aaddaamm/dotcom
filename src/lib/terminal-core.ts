@@ -28,8 +28,8 @@ const commands: Record<string, CommandDef> = {
 		terminal: {
 			lines: [
 				'adam robinson',
-				'lead software engineer · 10+ years',
-				'currently: staff aug at icapital (fintech)',
+				'senior software engineer · 15+ years',
+				'currently: embedded at icapital via mojotech (fintech)',
 				'past: healthcasts · angi · shell',
 				'',
 				"type 'help' for available commands."
@@ -155,17 +155,17 @@ const commands: Record<string, CommandDef> = {
 	'cat resume.txt': {
 		terminal: {
 			lines: [
-				'Adam Robinson — Lead Software Engineer',
+				'Adam Robinson — Senior Software Engineer',
 				'════════════════════════════════════════',
-				'10+ years · full-stack, backend-leaning',
+				'15+ years · full-stack, backend-leaning',
 				'',
 				'Current',
-				'  iCapital · Staff Aug / Lead Engineer · 2024–present',
+				'  iCapital · Senior Software Engineer, Consultant · May 2024–present',
 				'',
 				'Past',
-				'  Healthcasts · Team Lead · 2022–2024',
-				'  Angi · Staff Aug / Senior Engineer · 2021–2022',
-				'  Shell · Software Engineer · 2018–2019',
+				'  Healthcasts · Technical Lead · Oct 2022–May 2024',
+				'  Angi · Senior Software Engineer, Consultant · Nov 2020–Sep 2022',
+				'  Shell · Software Engineer · Jun 2018–Jul 2019',
 				'',
 				'Stack',
 				'  React · TypeScript · Node.js · Elixir · Ruby on Rails',

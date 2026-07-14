@@ -8,6 +8,7 @@
 	type CaseStudyProject = {
 		title: string;
 		slug: string;
+		employer: string;
 		role: string;
 		period: string;
 		description: string;
@@ -56,7 +57,7 @@
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader
 		title={project.title}
-		description="{project.role} · {project.period}"
+		description="{project.role} · via {project.employer} · {project.period}"
 		backHref="/work"
 		backLabel="back to work"
 	/>

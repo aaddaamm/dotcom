@@ -91,7 +91,7 @@
 				experience
 				<span class="colon">:</span>
 			</dt>
-			<dd class="work-stat-val">10+ years</dd>
+			<dd class="work-stat-val">15+ years</dd>
 		</div>
 		<div class="work-stat-row">
 			<dt class="work-stat-key">
@@ -141,12 +141,13 @@
 	</section>
 
 	<section class="earlier-work" aria-labelledby="earlier-heading">
-		<h2 id="earlier-heading" class="earlier-heading">Earlier work</h2>
+		<h2 id="earlier-heading" class="earlier-heading">Earlier clients and employment</h2>
 		<ul class="earlier-list">
 			{#each earlierWork as engagement (engagement.name)}
 				<li class="earlier-item">
 					<span class="earlier-name">{engagement.name}</span>
 					<span class="earlier-meta">
+						<span class="earlier-context">{engagement.context}</span>
 						<span class="earlier-industry">{engagement.industry}</span>
 						<span class="earlier-period">{engagement.period}</span>
 					</span>
@@ -249,6 +250,7 @@
 		align-items: baseline;
 		justify-content: space-between;
 		gap: 1rem;
+		flex-wrap: wrap;
 		padding: 0.6rem 0;
 		border-bottom: 1px solid var(--color-border);
 	}
@@ -266,7 +268,17 @@
 		display: flex;
 		align-items: baseline;
 		gap: 1rem;
+		flex-wrap: wrap;
+		justify-content: flex-end;
 		flex-shrink: 0;
+	}
+
+	.earlier-context {
+		font-size: 0.7rem;
+		font-family: var(--font-mono);
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		color: var(--color-accent);
 	}
 
 	.earlier-industry {

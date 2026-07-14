@@ -126,7 +126,7 @@
 				'TypeScript, SvelteKit, React, Node.js, Ruby on Rails, backend engineering, platform modernization'
 		},
 		description:
-			'Senior software engineer with ten-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning.',
+			'Senior software engineer with fifteen-plus years across fintech, healthcare, and enterprise. Full-stack, backend-leaning.',
 		url: SITE_URL,
 		email: EMAIL,
 		address: {
@@ -163,7 +163,7 @@
 		name: 'Adam Robinson',
 		url: SITE_URL,
 		description:
-			'Senior software engineer with ten-plus years across fintech, healthcare, and enterprise.',
+			'Senior software engineer with fifteen-plus years across fintech, healthcare, and enterprise.',
 		inLanguage: 'en-US',
 		author: {
 			'@id': personSchemaId

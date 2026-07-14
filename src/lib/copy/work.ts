@@ -7,6 +7,7 @@ type CaseStudy = {
 export type WorkItem = {
 	slug: string;
 	title: string;
+	employer: 'MojoTech';
 	period: string;
 	role: string;
 	description: string;
@@ -23,6 +24,7 @@ export type WorkItem = {
 
 export type EarlierWorkItem = {
 	name: string;
+	context: 'MojoTech client' | 'Employer';
 	industry: string;
 	period: string;
 };
@@ -38,8 +40,9 @@ export const selectedWork: WorkItem[] = [
 	{
 		slug: 'icapital',
 		title: 'iCapital — Fintech Platform Engineering',
-		period: '2024–present',
-		role: 'Staff Augmentation / Senior Engineer',
+		employer: 'MojoTech',
+		period: 'May 2024–present',
+		role: 'Senior Software Engineer, Consultant',
 		description:
 			'Embedded senior engineer on an alternative investment platform. Full-stack delivery across a large, complex enterprise codebase.',
 		seoDescription:
@@ -69,7 +72,7 @@ export const selectedWork: WorkItem[] = [
 		],
 		caseStudy: {
 			situation:
-				"iCapital's platform handles alternative investment transactions for wealth managers at scale — a large, complex codebase with many specialized teams. Joined as a staff aug senior engineer, embedded with one of those teams and contributing across the full stack.",
+				"iCapital's platform handles alternative investment transactions for wealth managers at scale — a large, complex codebase with many specialized teams. Joined through MojoTech as an embedded senior engineer, contributing across the full stack.",
 			work: "Expanded translation support across the platform, covering both static UI copy and dynamic database-backed content using the Mobility gem. On the Nominee Investments project — a high-visibility initiative to unify several disparate nominee investment flows — co-designed and built a new Rails service to consolidate bulk processing for thousands of investments. Also drove the team's migration from Supernova v1 to v2, navigating breaking changes and coordinating with the library team when components needed fixes before the upgrade could proceed.",
 			outcome:
 				'Still engaged — trusted with backend service design, a cross-stack i18n rollout, and a component library migration on one of the more complex fintech platforms in the alternatives space.'
@@ -78,8 +81,9 @@ export const selectedWork: WorkItem[] = [
 	{
 		slug: 'angi',
 		title: 'Angi — Multi-Platform Engineering',
-		period: '2021–2022',
-		role: 'Staff Augmentation / Senior Engineer',
+		employer: 'MojoTech',
+		period: 'Nov 2020–Sep 2022',
+		role: 'Senior Software Engineer, Consultant',
 		description:
 			'Contributed across three separate product codebases inside a single engagement. Also mentored a team of interns through their first real shipped feature.',
 		seoDescription:
@@ -117,7 +121,8 @@ export const selectedWork: WorkItem[] = [
 	{
 		slug: 'shell',
 		title: 'Shell — Oil Platform Decommissioning',
-		period: '2018–2019',
+		employer: 'MojoTech',
+		period: 'Jun 2018–Jul 2019',
 		role: 'Software Engineer',
 		description:
 			'Built decommissioning tooling for Shell Techworks in Boston. MVP delivered onsite using the Google Design Sprint process.',
@@ -151,16 +156,18 @@ export const selectedWork: WorkItem[] = [
 	{
 		slug: 'healthcasts',
 		title: 'Healthcasts — Platform Modernization',
-		period: '2022–2024',
-		role: 'Team Lead',
+		employer: 'MojoTech',
+		period: 'Oct 2022–May 2024',
+		role: 'Technical Lead',
 		description:
-			'Tech lead on a platform modernization that grew into a four-year collaboration. New CMS, custom rendering layer, and a full authentication overhaul — all shipped to production.',
+			'Tech lead on an 18-month platform modernization. New CMS, custom rendering layer, and a full authentication overhaul — all shipped to production.',
 		seoDescription:
 			'Technical lead for platform modernization: Strapi and React publishing pipeline, rebuilt AWS infrastructure, and Auth0 login overhaul.',
 		stack: ['React', 'Express', 'Auth0', 'AWS', 'Strapi', 'PHP (legacy)'],
-		outcome: 'Successful MVP delivery that led to a four-year continued engagement',
+		outcome:
+			'Sustained 18-month engagement spanning publishing, infrastructure, and authentication',
 		impactMetric:
-			'Baseline: slow publishing + fragmented auth → intervention: Strapi/React pipeline + Auth0 unification → outcome: engagement extended into a 4-year partnership.',
+			'Baseline: slow publishing + fragmented auth → intervention: Strapi/React pipeline + Auth0 unification → outcome: sustained delivery across an 18-month engagement.',
 		constraints: [
 			'Legacy platform and publishing workflow friction',
 			'Auth fragmentation across multiple product surfaces'
@@ -177,14 +184,14 @@ export const selectedWork: WorkItem[] = [
 		results: [
 			'Before: slower publishing workflow. After: faster time-to-publish for core medical deliverables.',
 			'Before: fragmented auth. After: single secure login flow across platforms.',
-			'Initial MVP engagement extended into a four-year delivery partnership.'
+			'Initial MVP expanded into an 18-month delivery engagement.'
 		],
 		caseStudy: {
 			situation:
 				"Brought in as tech lead to modernize Healthcasts' core publication workflow and platform infrastructure.",
 			work: 'Built a new publishing pipeline around a headless CMS (Strapi) and a custom React rendering layer, dramatically reducing time-to-publish for their core medical consensus deliverable. Updated AWS infrastructure and migrated frameworks to current, supported versions. Then led a full authentication overhaul — unifying login across all their platforms with Auth0, moving to a single secure flow that also unblocked a parallel AI initiative dependent on a cleaner identity layer.',
 			outcome:
-				'The MVP engagement grew into a four-year collaboration — a rare signal that the work held up under real production conditions.'
+				'The MVP expanded into an 18-month engagement spanning publishing, infrastructure, and authentication.'
 		}
 	}
 ];
@@ -199,13 +206,24 @@ export const blogTagToWorkSlugs: Record<string, WorkItem['slug'][]> = {
 };
 
 export const earlierWork: EarlierWorkItem[] = [
-	{ name: 'School of Motion', industry: 'Edtech', period: '2020' },
-	{ name: 'Amica Mutual', industry: 'Insurance', period: '2017–2018' },
-	{ name: 'AutoRaptor', industry: 'Automotive CRM', period: '2015' },
+	{ name: 'School of Motion', context: 'MojoTech client', industry: 'Edtech', period: '2020' },
+	{
+		name: 'Amica Mutual',
+		context: 'MojoTech client',
+		industry: 'Insurance',
+		period: '2017–2018'
+	},
+	{
+		name: 'AutoRaptor',
+		context: 'MojoTech client',
+		industry: 'Automotive CRM',
+		period: '2015'
+	},
 	{
 		name: 'Beacon Mutual Insurance',
+		context: 'Employer',
 		industry: 'Insurance',
-		period: '2013–2016'
+		period: 'Mar 2011–Feb 2015'
 	}
 ];
 
@@ -223,19 +241,19 @@ export const gitLog: GitLogItem[] = [
 		sha: sha('icapital-2024'),
 		ref: 'HEAD → main',
 		message: 'feat(icapital): embed with fintech platform engineering team',
-		period: '2024–'
+		period: 'May 2024–present'
 	},
 	{
 		sha: sha('healthcasts-2022'),
 		ref: 'feat/healthcasts',
 		message: 'feat(healthcasts): lead platform modernization from legacy PHP',
-		period: '2022–2024'
+		period: 'Oct 2022–May 2024'
 	},
 	{
 		sha: sha('angi-2021'),
 		ref: 'feat/angi',
 		message: 'feat(angi): deliver across three merged product codebases',
-		period: '2021–2022'
+		period: 'Nov 2020–Sep 2022'
 	},
 	{
 		sha: sha('school-of-motion-2020'),
@@ -247,7 +265,7 @@ export const gitLog: GitLogItem[] = [
 		sha: sha('shell-2018'),
 		ref: 'feat/shell',
 		message: 'feat(shell): build decommissioning tooling for oil platforms',
-		period: '2018–2019'
+		period: 'Jun 2018–Jul 2019'
 	},
 	{
 		sha: sha('amica-2017'),
@@ -262,9 +280,9 @@ export const gitLog: GitLogItem[] = [
 		period: '2015'
 	},
 	{
-		sha: sha('beacon-2013'),
+		sha: sha('beacon-2011'),
 		ref: 'feat/beacon',
-		message: 'feat(beacon): build claims and policy management systems',
-		period: '2013–2016'
+		message: 'feat(beacon): progress from production control to application development',
+		period: 'Mar 2011–Feb 2015'
 	}
 ];
