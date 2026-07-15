@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: npm
@@ -34,12 +34,12 @@ jobs:
         env:
           LH_MIN_ACCESSIBILITY: '0.96'
           LH_MIN_SEO: '1'
-          LH_REPORT_DIR: .lighthouse
+          LH_REPORT_DIR: lighthouse-reports
         run: npm run check:lighthouse
 
       - name: Upload Lighthouse reports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: lighthouse-reports
-          path: .lighthouse/*.json
+          path: lighthouse-reports/*.json
