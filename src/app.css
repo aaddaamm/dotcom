@@ -12,6 +12,7 @@
 }
 
 :root {
+	color-scheme: light;
 	--color-bg: #fafafa;
 	--color-text: #0a0a0a;
 	--color-accent: #2a7a7a;
@@ -33,6 +34,7 @@
 }
 
 [data-theme='dark'] {
+	color-scheme: dark;
 	--color-bg: #0a0a0a;
 	--color-text: #ffffff;
 	--color-accent: #3aafa9;

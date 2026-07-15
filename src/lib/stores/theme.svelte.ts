@@ -7,6 +7,9 @@ let current = $state<Theme>('dark');
 function applyTheme(theme: Theme) {
 	if (!browser) return;
 	document.documentElement.setAttribute('data-theme', theme);
+	document
+		.querySelector('meta[name="theme-color"]')
+		?.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#fafafa');
 }
 
 export function getTheme() {

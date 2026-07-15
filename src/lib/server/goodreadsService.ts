@@ -51,8 +51,10 @@ async function getStaleSharedData(shelf: GOODREADS_SHELVES): Promise<GoodreadsBo
 			memoryCache.set(shelf, { data: staleData, timestamp: Date.now() });
 			return staleData;
 		}
-	} catch {
-		// noop
+	} catch (err) {
+		contactLogger.warn(`GoodreadsService: stale cache read failed for shelf "${shelf}"`, {
+			error: err
+		});
 	}
 
 	return null;
@@ -203,7 +205,9 @@ async function getBooksFromShelf(
 		return freshBooks;
 	} catch (err) {
 		contactLogger.error(`GoodreadsService: failed to fetch shelf "${shelf}":`, err);
-		return getStaleData(shelf);
+		const staleBooks = await getStaleData(shelf);
+		if (staleBooks.length) return staleBooks;
+		throw err;
 	}
 }
 
