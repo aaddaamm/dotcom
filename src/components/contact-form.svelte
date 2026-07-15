@@ -15,17 +15,9 @@
 		projectTypeOptions,
 		timelineOptions
 	} from '$lib/contact-form';
-	import { submitContactForm } from '$lib/contact-form-logic';
+	import { createEmptyContactFormState, submitContactForm } from '$lib/contact-form-logic';
 
-	let name = $state('');
-	let email = $state('');
-	let intent = $state('');
-	let project = $state('');
-	let timeline = $state('');
-	let budget = $state('');
-	let message = $state('');
-	let phone = $state('');
-	let website = $state(''); // honeypot
+	let form = $state(createEmptyContactFormState());
 	let isSubmitting = $state(false);
 	let submitted = $state(false);
 	let errorMessage = $state('');
@@ -35,7 +27,7 @@
 	const SUCCESS_RESET_MS = 8000;
 
 	const isSubmitDisabled = $derived(
-		isSubmitting || !name || !email || !intent || !project || !message
+		isSubmitting || !form.name || !form.email || !form.intent || !form.project || !form.message
 	);
 
 	onMount(() => {
@@ -49,28 +41,7 @@
 	}
 
 	function resetForm() {
-		name = '';
-		email = '';
-		project = '';
-		timeline = '';
-		budget = '';
-		message = '';
-		intent = '';
-		phone = '';
-	}
-
-	function buildFormState() {
-		return {
-			name,
-			email,
-			intent,
-			phone,
-			project,
-			timeline,
-			budget,
-			message,
-			website
-		};
+		form = createEmptyContactFormState();
 	}
 
 	function handleFailedSubmit(
@@ -115,7 +86,7 @@
 		successMessage = '';
 		fieldErrors = {};
 
-		const result = await submitContactForm(buildFormState());
+		const result = await submitContactForm(form);
 		if (!result.ok) {
 			handleFailedSubmit(result);
 			isSubmitting = false;
@@ -143,7 +114,7 @@
 				<ContactField
 					id="name"
 					label="Name *"
-					bind:value={name}
+					bind:value={form.name}
 					required
 					error={fieldErrors.name}
 					placeholder="Your name"
@@ -155,7 +126,7 @@
 					id="email"
 					label="Email *"
 					type="email"
-					bind:value={email}
+					bind:value={form.email}
 					required
 					error={fieldErrors.email}
 					placeholder="adam@example.com"
@@ -169,7 +140,7 @@
 					id="phone"
 					label="Phone (Optional)"
 					type="tel"
-					bind:value={phone}
+					bind:value={form.phone}
 					placeholder="(401) 555-0123"
 					autocomplete="tel"
 					inputmode="tel"
@@ -184,7 +155,7 @@
 					id="intent"
 					label="Inquiry Type *"
 					kind="select"
-					bind:value={intent}
+					bind:value={form.intent}
 					required
 					error={fieldErrors.intent}
 					placeholder="What kind of inquiry is this…"
@@ -196,7 +167,7 @@
 					id="project"
 					label="Project Type *"
 					kind="select"
-					bind:value={project}
+					bind:value={form.project}
 					required
 					error={fieldErrors.project}
 					placeholder="What brings you here…"
@@ -208,7 +179,7 @@
 					id="timeline"
 					label="Preferred Timeline (Optional)"
 					kind="select"
-					bind:value={timeline}
+					bind:value={form.timeline}
 					placeholder="No preference yet"
 					disabled={isSubmitting}
 					options={timelineOptions}
@@ -218,7 +189,7 @@
 					id="budget"
 					label="Budget Range (Optional)"
 					kind="select"
-					bind:value={budget}
+					bind:value={form.budget}
 					placeholder="Prefer not to say"
 					disabled={isSubmitting}
 					options={budgetOptions}
@@ -228,7 +199,7 @@
 					id="message"
 					label="Project Details *"
 					kind="textarea"
-					bind:value={message}
+					bind:value={form.message}
 					required
 					error={fieldErrors.message}
 					placeholder="Tell me about your project and any specific challenges you're facing…"
@@ -243,7 +214,7 @@
 					type="text"
 					id="website"
 					name="website"
-					bind:value={website}
+					bind:value={form.website}
 					tabindex="-1"
 					autocomplete="off"
 				/>

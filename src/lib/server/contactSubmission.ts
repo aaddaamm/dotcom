@@ -31,11 +31,17 @@ export function getContactValidationError(data: ContactFormData): string | null 
 	return Object.values(validation.errors)[0] || 'Invalid form data';
 }
 
-export function buildFailedSubmissionBody(
-	data: ContactFormData,
-	ip: string,
-	userAgent: string | null
-): string {
+type FailedSubmissionBodyOptions = {
+	data: ContactFormData;
+	ip: string;
+	userAgent: string | null;
+};
+
+export function buildFailedSubmissionBody({
+	data,
+	ip,
+	userAgent
+}: FailedSubmissionBodyOptions): string {
 	return [
 		'New contact form submission from adamrobinson.tech:',
 		`Name: ${data.name}`,

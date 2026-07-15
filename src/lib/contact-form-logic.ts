@@ -13,6 +13,24 @@ export type ContactFormState = {
 	website: string;
 };
 
+type ContactApiResponse = {
+	success?: boolean;
+	message?: string;
+	error?: string;
+};
+
+type ContactRequestOptions = {
+	payload: ContactFormData;
+	website: string;
+	endpoint: string;
+	fetcher: typeof fetch;
+};
+
+type SubmitContactFormOptions = {
+	endpoint?: string;
+	fetcher?: typeof fetch;
+};
+
 export type ContactFormSubmitResult =
 	| {
 			ok: true;
@@ -34,6 +52,20 @@ export type ContactFormSubmitResult =
 			errorMessage: string;
 	  };
 
+export function createEmptyContactFormState(): ContactFormState {
+	return {
+		name: '',
+		email: '',
+		intent: '',
+		phone: '',
+		project: '',
+		timeline: '',
+		budget: '',
+		message: '',
+		website: ''
+	};
+}
+
 function toContactPayload(state: ContactFormState): ContactFormData {
 	return {
 		name: state.name.trim(),
@@ -47,7 +79,30 @@ function toContactPayload(state: ContactFormState): ContactFormData {
 	};
 }
 
-export async function submitContactForm(state: ContactFormState): Promise<ContactFormSubmitResult> {
+async function requestContactSubmission({
+	payload,
+	website,
+	endpoint,
+	fetcher
+}: ContactRequestOptions): Promise<{ response: Response; result: ContactApiResponse }> {
+	const response = await fetcher(endpoint, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({ ...payload, website })
+	});
+
+	return {
+		response,
+		result: (await response.json()) as ContactApiResponse
+	};
+}
+
+export async function submitContactForm(
+	state: ContactFormState,
+	{ endpoint = '/api/contact', fetcher = fetch }: SubmitContactFormOptions = {}
+): Promise<ContactFormSubmitResult> {
 	const payload = toContactPayload(state);
 	const validation = validateContactForm(payload);
 
@@ -63,19 +118,12 @@ export async function submitContactForm(state: ContactFormState): Promise<Contac
 	const normalizedIntent = inferIntent(payload.intent ?? '', payload.project ?? '');
 
 	try {
-		const response = await fetch('/api/contact', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ ...payload, website: state.website })
+		const { response, result } = await requestContactSubmission({
+			payload,
+			website: state.website,
+			endpoint,
+			fetcher
 		});
-
-		const result = (await response.json()) as {
-			success?: boolean;
-			message?: string;
-			error?: string;
-		};
 		const resultMessage = result.message ?? '';
 
 		if (response.ok && result.success) {
