@@ -1,29 +1,17 @@
 import { techStack, type TechStackGroup } from '$lib/copy';
-import {
-	getArgMap,
-	INCANTATIONS,
-	NORMALIZED_ALIASES,
-	RPG_MODE_LINES,
-	topLevelCommands
-} from '$lib/terminal-command-data';
+import { INCANTATIONS, RPG_MODE_LINES } from '$lib/terminal-command-data';
 import { EMAIL, SOCIAL_URLS } from '$lib/constants';
 import { socialLinks, toDisplayUrl, type SocialLink } from '$lib/social-links';
-import type { CommandDef, CommandResult, Mode } from '$lib/terminal-types';
+import type { CommandDef, CommandResult } from '$lib/terminal-types';
 
 const allStack = techStack.flatMap((group: TechStackGroup) => group.items);
-const CONTROL_COMMANDS = new Set(['clear', 'exit', 'quit']);
 
 const OUTIE_MODE_RESULT: CommandResult = {
 	lines: ['you are now in outie mode. welcome back.'],
 	modeChange: 'terminal'
 };
 
-export function normalize(lower: string): string {
-	if (lower in INCANTATIONS) return `translate ${lower}`;
-	return NORMALIZED_ALIASES[lower] ?? lower;
-}
-
-const commands: Record<string, CommandDef> = {
+export const commands: Record<string, CommandDef> = {
 	whoami: {
 		terminal: {
 			lines: [
@@ -354,70 +342,3 @@ const commands: Record<string, CommandDef> = {
 		}
 	}
 };
-
-function resolveTranslateResult(lower: string): CommandResult | null {
-	if (!lower.startsWith('translate ')) return null;
-
-	const phrase = lower.slice('translate '.length).trim();
-	const translation = INCANTATIONS[phrase];
-	if (translation) return { lines: [`${phrase} → "${translation}"`] };
-
-	return {
-		lines: [`unknown incantation: ${phrase}`, 'try: translate ex codice lumen']
-	};
-}
-
-function resolveModeCommand(key: string, mode: Mode): CommandResult | null {
-	const def = commands[key];
-	if (!def) return null;
-	if (mode === 'rpg' && def.rpg) return def.rpg;
-	if (mode === 'innie' && def.innie) return def.innie;
-	return def.terminal;
-}
-
-function resolveControlCommand(lower: string): CommandResult | null {
-	if (!CONTROL_COMMANDS.has(lower)) return null;
-	if (lower === 'clear') return { lines: [], clear: true };
-	return { lines: [], close: true };
-}
-
-export function runCommand(rawInput: string, mode: Mode): CommandResult {
-	const input = rawInput.trim();
-	const lower = input.toLowerCase();
-
-	if (!input) return { lines: [] };
-
-	const controlResult = resolveControlCommand(lower);
-	if (controlResult) return controlResult;
-
-	const translateResult = resolveTranslateResult(lower);
-	if (translateResult) return translateResult;
-
-	const key = normalize(lower);
-	const modeResult = resolveModeCommand(key, mode);
-	if (modeResult) return modeResult;
-
-	return {
-		lines: [`command not found: ${input}`, "type 'help' for available commands."]
-	};
-}
-
-const argMap = getArgMap();
-
-function getTopLevelCompletions(partial: string): string[] {
-	return topLevelCommands.filter((command: string) => command.startsWith(partial));
-}
-
-function getArgumentCompletions(command: string, partial: string): string[] {
-	const args = argMap[command] ?? [];
-	return args.filter((arg: string) => arg.startsWith(partial));
-}
-
-export function getCompletions(input: string): string[] {
-	const tokens = input.split(' ');
-	if (tokens.length === 1) {
-		return getTopLevelCompletions(tokens[0].toLowerCase());
-	}
-
-	return getArgumentCompletions(tokens[0].toLowerCase(), tokens.slice(1).join(' ').toLowerCase());
-}
