@@ -17,6 +17,7 @@
 		"check:bundle-budget": "node scripts/bundle-budget-check.mjs",
 		"check:links": "node scripts/link-check.mjs",
 		"check:blog-drafts": "node scripts/blog-draft-readiness.mjs",
+		"check:dead-code": "knip --reporter compact",
 		"test": "vitest run"
 	},
 	"devDependencies": {
@@ -31,6 +32,7 @@
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.20.0",
 		"globals": "^17.7.0",
+		"knip": "^6.26.0",
 		"prettier": "^3.8.4",
 		"prettier-plugin-svelte": "^4.1.0",
 		"svelte": "^5.56.5",

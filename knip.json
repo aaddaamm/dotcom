@@ -1,18 +1,14 @@
 {
-	"entry": [
-		"src/routes/+layout.svelte",
-		"src/routes/**/*.svelte",
-		"src/routes/**/+server.ts",
-		"src/routes/**/+page.ts",
-		"src/routes/**/+page.server.ts",
-		"scripts/*.mjs",
-		"unlighthouse.config.ts"
-	],
+	"$schema": "https://unpkg.com/knip@6/schema.json",
+	"entry": ["unlighthouse.config.ts"],
+	"ignoreDependencies": ["tailwindcss"],
 	"project": [
 		"src/**/*.{ts,svelte}",
-		"scripts/*.mjs",
-		"*.config.{js,ts}",
-		"unlighthouse.config.ts"
-	],
-	"ignoreDependencies": ["@vercel/speed-insights", "tailwindcss"]
+		"scripts/**/*.mjs",
+		"*.{js,mjs,ts}",
+		"!scripts/archive/**",
+		"!.svelte-kit/**",
+		"!.vercel/**",
+		"!.unlighthouse/**"
+	]
 }
