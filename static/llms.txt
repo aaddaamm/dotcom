@@ -10,7 +10,7 @@
 
 ## Primary pages
 - [Homepage](https://www.adamrobinson.tech/) — Overview of Adam Robinson's engineering background, recent work, and contact paths.
-- [Hire](https://www.adamrobinson.tech/hire) — Freelance software engineering services for startups, agencies, and product teams.
+- [Hire](https://www.adamrobinson.tech/hire) — Full-time senior/staff availability and select embedded contract engineering services.
 - [Work](https://www.adamrobinson.tech/work) — Selected case studies across fintech, healthcare, enterprise, and platform modernization.
 - [Contact](https://www.adamrobinson.tech/contact) — Project inquiry and booking page.
 - [Blog](https://www.adamrobinson.tech/blog) — Writing about developer tools, AI coding agents, software delivery, and engineering practice.
@@ -32,7 +32,8 @@
 - SvelteKit and TypeScript application development
 - Ruby on Rails and Node.js backend engineering
 - Platform modernization and production reliability
-- Startup and agency engineering support
+- Full-time senior and staff engineering roles
+- Embedded contract engineering for startups, agencies, and product teams
 - AI developer tools and coding agents
 - Technical leadership and staff augmentation
 - Providence and Rhode Island software consulting

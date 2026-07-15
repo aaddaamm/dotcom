@@ -101,12 +101,12 @@ export const faqItems: FaqItem[] = [
 	{
 		question: 'Are you open to full-time roles?',
 		answer:
-			"Yes — primarily I take on contract work, but I'm open to full-time for the right team and problem. If you're building something interesting and want someone who can operate as a senior IC or tech lead, reach out."
+			"Yes. I'm actively open to full-time senior or staff roles with strong product ownership. I also consider select contract engagements where I can embed with an existing team and ship quickly."
 	},
 	{
 		question: 'What kinds of engagements do you take on?',
 		answer:
-			"Primarily contract work — embedded with an existing engineering team as a senior contributor. I'm also open to full-time roles for the right opportunity."
+			'Full-time senior or staff roles are a strong fit, particularly where I can own complex product and platform work. For contract work, I embed with an existing engineering team as a senior contributor or technical lead.'
 	},
 	{
 		question: 'How quickly can you get up to speed?',
@@ -136,9 +136,9 @@ export const faqItems: FaqItem[] = [
 ];
 
 export const heroMessaging: HeroMessaging = {
-	audienceKeywords: ['Startups', 'Agencies', 'Book a project call'],
+	audienceKeywords: ['Full-time', 'product teams', 'Contract engagements'],
 	availability: 'Available for full-time senior/staff roles and select contract engagements.',
-	ctaOrder: ['Book a project call', 'See services fit', 'Download résumé']
+	ctaOrder: ['Start a conversation', 'See how I work', 'Download résumé']
 };
 
 export const homepageMetrics: {

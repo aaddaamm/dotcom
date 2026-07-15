@@ -33,7 +33,7 @@
 			case 'help':
 				return 'commands: help, whoami, ls, cat services.txt, contact, clear';
 			case 'whoami':
-				return 'adam robinson — freelance engineer for startups and agencies';
+				return 'adam robinson — senior software engineer · full-time and contract';
 			case 'ls':
 				return 'services.txt  work/  blog/  contact';
 			case 'cat services.txt':

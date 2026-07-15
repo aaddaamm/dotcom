@@ -6,21 +6,21 @@ export type SeoConfig = {
 
 export const pageSeo = {
 	home: {
-		title: 'Adam Robinson — Freelance Engineer for Startups & Agencies',
+		title: 'Adam Robinson — Senior Software Engineer',
 		description:
-			'Providence freelance senior software engineer for startups and agencies. SvelteKit, TypeScript, Rails, and Node.js delivery with production-ready outcomes.',
+			'Providence senior software engineer with fifteen-plus years across fintech, healthcare, and enterprise. Open to full-time roles and select contract work.',
 		path: '/'
 	},
 	hire: {
-		title: 'Hire Adam Robinson — Freelance Senior Engineer',
+		title: 'Hire Adam Robinson — Senior Software Engineer',
 		description:
-			'Freelance senior software engineer in Providence, RI. I help startup and agency teams ship reliable web products faster through embedded contract engagements.',
+			'Providence senior software engineer available for full-time senior or staff roles and select embedded contract engagements.',
 		path: '/hire'
 	},
 	contact: {
-		title: 'Book a Project Call — Adam Robinson',
+		title: 'Contact Adam Robinson — Senior Software Engineer',
 		description:
-			'Book a project call with Adam Robinson, Providence freelance senior engineer for startups and agencies shipping production web products.',
+			'Contact Adam Robinson about full-time senior or staff engineering roles, embedded contract delivery, consulting, or technical collaboration.',
 		path: '/contact'
 	},
 	work: {

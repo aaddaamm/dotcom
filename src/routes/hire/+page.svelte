@@ -116,17 +116,17 @@
 	<p class="eyebrow">Senior Software Engineer • SvelteKit / TypeScript</p>
 
 	<PageHeader
-		title="I help teams ship reliable web products faster."
-		description="I partner with founders and product teams to design, build, and stabilize high-impact web experiences. From new features to legacy cleanup, I focus on measurable outcomes: faster delivery, fewer regressions, and stronger production performance."
+		title="Senior engineering ownership for teams that need to ship."
+		description="I'm open to full-time senior or staff roles and select contract engagements. I design, build, and stabilize production software with an emphasis on delivery, reliability, and clear technical judgment."
 	/>
 
 	<div class="cta-row">
 		<a
 			href="/contact"
 			class="btn-primary"
-			onclick={() => trackCTA('Start a project', 'hire-top-primary')}
+			onclick={() => trackCTA('Start a conversation', 'hire-top-primary')}
 		>
-			Start a project
+			Start a conversation
 		</a>
 		<a
 			href="/work"
@@ -195,9 +195,9 @@
 			<a
 				href="/contact"
 				class="btn-primary px-8 py-4"
-				onclick={() => trackCTA('Start a project', 'hire-bottom-primary')}
+				onclick={() => trackCTA('Start a conversation', 'hire-bottom-primary')}
 			>
-				Start a project
+				Start a conversation
 			</a>
 			<div class="resume-link-row" aria-label="Resume download options">
 				<a

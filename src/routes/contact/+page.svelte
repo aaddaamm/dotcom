@@ -43,8 +43,8 @@
 <div class="max-w-3xl mx-auto px-6">
 	<section>
 		<PageHeader
-			title="Start a project"
-			description="Tell me what you're building, what's blocked, and the timeline you have in mind. I review every message personally and reply within 24 hours with clear next steps."
+			title="Start a conversation"
+			description="Tell me about the team, role, project, or technical problem you have in mind. I review every message personally and reply within 24 hours with clear next steps."
 			descriptionClass="mb-6"
 		/>
 

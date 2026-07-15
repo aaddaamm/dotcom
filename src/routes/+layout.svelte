@@ -19,6 +19,7 @@
 	import { page } from '$app/state';
 
 	let { children }: { children: Snippet } = $props();
+	let showMobileFab = $state(false);
 
 	onMount(() => {
 		initTheme();
@@ -35,6 +36,7 @@
 		}
 
 		window.addEventListener('scroll', onScroll, { passive: true });
+		onScroll();
 		return () => window.removeEventListener('scroll', onScroll);
 	});
 
@@ -44,6 +46,7 @@
 	const websiteSchemaId = `${SITE_URL}/#website`;
 
 	afterNavigate((navigation) => {
+		showMobileFab = false;
 		if (!navigation.from) {
 			firedDepths.clear();
 			return;
@@ -92,9 +95,12 @@
 	}
 
 	function onScroll() {
-		if (firedDepths.size === 4) return;
 		const scrolled = window.scrollY + window.innerHeight;
 		const total = document.documentElement.scrollHeight;
+		const remaining = total - scrolled;
+		showMobileFab = window.scrollY > window.innerHeight * 0.75 && remaining > 160;
+
+		if (firedDepths.size === 4) return;
 		const pct = (scrolled / total) * 100;
 		for (const milestone of getReachedMilestones(pct, firedDepths)) {
 			firedDepths.add(milestone);
@@ -181,7 +187,7 @@
 	<Terminal />
 </div>
 
-{#if page.url.pathname !== '/contact'}
+{#if page.url.pathname !== '/contact' && showMobileFab}
 	<a
 		href="/contact"
 		class="mobile-fab sm:hidden"
