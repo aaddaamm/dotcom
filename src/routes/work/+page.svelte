@@ -65,7 +65,7 @@
 <div class="max-w-3xl mx-auto px-6">
 	<PageHeader
 		title="Work"
-		description="Selected case studies focused on measurable outcomes: faster delivery, lower risk, and production impact across different stacks and team contexts."
+		description="Selected case studies covering product delivery, platform modernization, and production work across different stacks and teams."
 	/>
 
 	<div class="cta-row" aria-label="Work page actions">

@@ -41,8 +41,8 @@
 
 	<div class="mt-8 text-center">
 		<p class="body-text mb-4">
-			For contract work, you work directly with me from kickoff to handoff — clear scope, weekly
-			progress, and production-ready delivery.
+			For contract work, you work directly with me throughout the engagement. I provide a written
+			scope and weekly progress updates, then hand off production-ready work.
 		</p>
 		<a
 			href="/contact"

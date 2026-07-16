@@ -60,40 +60,40 @@ export const services: Array<{
 		title: 'Startup Product Delivery',
 		icon: 'code',
 		description:
-			'Embed quickly with your product team to unblock roadmap work, ship core features, and reduce technical drag without adding management overhead.',
+			'Join your product team as a senior engineer and take ownership of roadmap work without adding another management layer.',
 		examples: [
 			'MVP feature delivery',
 			'Full-stack execution',
 			'Tech debt cleanup',
 			'Ship-ready handoff'
 		],
-		outcome: 'Faster shipping velocity with senior-level ownership'
+		outcome: 'Senior ownership for work already on the roadmap'
 	},
 	{
 		title: 'Agency Delivery Partner',
 		icon: 'globe',
 		description:
-			'Partner with your agency team as a senior engineer for high-trust client work, technical scoping, and production delivery across modern web stacks.',
+			'Support your agency team with technical scoping and hands-on production work for client projects.',
 		examples: [
 			'Client project support',
 			'Technical discovery',
 			'Backend/API work',
 			'Launch support'
 		],
-		outcome: 'Reliable technical execution your clients can trust'
+		outcome: 'Senior engineering support for client delivery'
 	},
 	{
 		title: 'Platform Stabilization & Modernization',
 		icon: 'lightbulb',
 		description:
-			'Fix fragile systems, modernize legacy areas, and make your stack easier to maintain so your team can ship confidently after the engagement.',
+			'Stabilize fragile systems and modernize legacy code so your team can maintain and extend the platform after the engagement.',
 		examples: [
 			'Legacy modernization',
 			'Architecture guidance',
 			'Performance and reliability',
 			'Cross-team enablement'
 		],
-		outcome: 'A healthier platform with clearer execution paths'
+		outcome: 'A platform your team can maintain and extend'
 	}
 ];
 
@@ -111,7 +111,7 @@ export const faqItems: FaqItem[] = [
 	{
 		question: 'How quickly can you get up to speed?',
 		answer:
-			"Quickly. I've navigated enough large, unfamiliar codebases to know how to orient fast, ask the right questions early, and start contributing without heavy ramp-up support."
+			"I've worked in large, unfamiliar codebases throughout my career. I begin with the code paths tied to the task and the team's existing conventions, then start contributing."
 	},
 	{
 		question: 'Do you work remotely?',
@@ -161,5 +161,5 @@ export const trustProofItems: TrustProofItem[] = [
 
 export const philosophy = {
 	heading: 'How I work',
-	body: "The best engineers I've worked with weren't the ones with the strongest opinions — they were the ones who listened first. When I join a team, my job isn't to replace your culture, your patterns, or your conventions. It's to slot in, read the code before I write any, ask the questions a newcomer notices but regulars have stopped asking, and then ship reliably. I'd rather land one well-scoped change than three speculative ones. I treat every codebase as something other engineers will inherit from me — including the one I'm touching right now."
+	body: "The best engineers I've worked with listened before offering an opinion. I try to do the same. When I join a team, I read the code before I write any, learn its conventions, and ask the questions a newcomer notices but regulars have stopped asking. Then I ship reliably. I'd rather land one well-scoped change than three speculative ones. I treat every codebase as something another engineer will inherit from me."
 };

@@ -3,8 +3,8 @@
 	import PageHeader from '../../components/page-header.svelte';
 
 	const focusAreas = [
-		'Staff-level full-stack execution across product teams that need fast ramp + dependable delivery.',
-		'Case-study upgrades on this site with clearer constraints, decisions, and results.',
+		'Staff-level full-stack work for product teams that need a senior engineer to contribute without a long ramp.',
+		'Updating case studies with clearer accounts of constraints and technical decisions.',
 		'Practical writing on engineering judgment, delivery tradeoffs, and AI-assisted workflows.'
 	];
 

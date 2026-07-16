@@ -50,7 +50,7 @@ export const selectedWork: WorkItem[] = [
 		stack: ['React', 'TypeScript', 'Node.js', 'Rails'],
 		outcome: 'Ongoing contributor across multiple subdomains of an enterprise fintech platform',
 		impactMetric:
-			'Baseline: fragmented nominee flows → intervention: centralized Rails bulk-processing service → outcome: thousands of investments handled in one flow.',
+			'Centralized fragmented nominee flows in a Rails bulk-processing service that handles thousands of investments in one flow.',
 		constraints: [
 			'Large enterprise codebase with multiple specialized teams',
 			'High-visibility nominee investments initiative',
@@ -66,16 +66,16 @@ export const selectedWork: WorkItem[] = [
 			'Accepted incremental rollout to reduce risk in core investment flows'
 		],
 		results: [
-			'Before: fragmented nominee flows. After: centralized bulk flow for thousands of investments.',
-			'Before: partial localization. After: expanded i18n across static UI and DB-backed content.',
+			'Centralized fragmented nominee flows into a bulk flow for thousands of investments.',
+			'Expanded localization across static UI and database-backed content.',
 			'Completed Supernova v1→v2 migration while maintaining active delivery.'
 		],
 		caseStudy: {
 			situation:
-				"iCapital's platform handles alternative investment transactions for wealth managers at scale — a large, complex codebase with many specialized teams. Joined through MojoTech as an embedded senior engineer, contributing across the full stack.",
-			work: "Expanded translation support across the platform, covering both static UI copy and dynamic database-backed content using the Mobility gem. On the Nominee Investments project — a high-visibility initiative to unify several disparate nominee investment flows — co-designed and built a new Rails service to consolidate bulk processing for thousands of investments. Also drove the team's migration from Supernova v1 to v2, navigating breaking changes and coordinating with the library team when components needed fixes before the upgrade could proceed.",
+				"iCapital's platform handles alternative investment transactions for wealth managers in a large codebase maintained by specialized teams. I joined through MojoTech as an embedded senior engineer working across the stack.",
+			work: "Expanded translation support across static UI copy and database-backed content using the Mobility gem. For the Nominee Investments project, co-designed and built a Rails service that consolidated several bulk-processing flows for thousands of investments. Also drove the team's migration from Supernova v1 to v2, working through breaking changes and coordinating upstream component fixes with the library team.",
 			outcome:
-				'Still engaged — trusted with backend service design, a cross-stack i18n rollout, and a component library migration on one of the more complex fintech platforms in the alternatives space.'
+				'The engagement continues across backend service design, localization, and component-library migration.'
 		}
 	},
 	{
@@ -92,7 +92,7 @@ export const selectedWork: WorkItem[] = [
 		outcome:
 			'Cross-product delivery and intern mentorship across a newly merged home services platform',
 		impactMetric:
-			'Baseline: siloed post-merger product streams → intervention: shipped across 3 codebases (Vue/Java, Rails/React, Next.js) → outcome: unified delivery across brands.',
+			'Shipped unified flows across three post-merger codebases: Vue/Java, Rails/React, and Next.js.',
 		constraints: [
 			'Post-merger environment with separate stacks and teams',
 			'Need to deliver while context-switching between codebases'
@@ -107,15 +107,15 @@ export const selectedWork: WorkItem[] = [
 			'Balanced mentorship time with hands-on product delivery'
 		],
 		results: [
-			'Before: siloed brand experiences. After: unified and shipped flows across HomeAdvisor, Handy, and Angi.',
+			'Unified and shipped flows across HomeAdvisor, Handy, and Angi.',
 			'Mentored interns through a real release; delivered a production-ready Careers revamp.'
 		],
 		caseStudy: {
 			situation:
-				"Angi was in the middle of a merger — HomeAdvisor, Handy, and Angie's List operating as separate products under one roof, each with its own codebase, stack, and team.",
-			work: "On HomeAdvisor, worked in Vue and Java to unify the user quiz flow across the merging brands into a single Angi experience. On Handy, worked in Rails and React on professional assignment logic and job ingestion for Handy partner stores. On Angie's List, built out a CMS-driven content experience in Next.js — blog-style project descriptions with varied visual layouts. Along the way, took on a team of interns: coached them through real development workflows using a live use case — a Careers page revamp — and by the end they had something real to demo.",
+				"Angi was in the middle of a merger. HomeAdvisor, Handy, and Angie's List still operated as separate products with their own codebases, stacks, and teams.",
+			work: "On HomeAdvisor, worked in Vue and Java to unify the user quiz flow across the merging brands. On Handy, worked in Rails and React on professional assignment logic and job ingestion for partner stores. On Angie's List, built a CMS-driven Next.js content experience for project descriptions with varied layouts. I also coached a team of interns through a Careers page revamp and their first production release.",
 			outcome:
-				'Delivered across three separate products and stacks inside a single engagement — and left a cleaner codebase and a team of interns who shipped something they could be proud of.'
+				'Shipped across three products and stacks while mentoring interns through a production release.'
 		}
 	},
 	{
@@ -132,7 +132,7 @@ export const selectedWork: WorkItem[] = [
 		outcome:
 			'MVP delivered on schedule using Design Sprint methodology with Shell engineering in Boston',
 		impactMetric:
-			'Baseline: months of planning ambiguity → intervention: rapid onsite Design Sprint + full-stack build → outcome: MVP delivered on schedule.',
+			'Used an onsite Design Sprint to resolve planning ambiguity and deliver the decommissioning MVP on schedule.',
 		constraints: [
 			'Complex domain with high operational and cost implications',
 			'Tight timeline for MVP definition and delivery'
@@ -142,15 +142,13 @@ export const selectedWork: WorkItem[] = [
 			'Built full-stack React/Node system for least-cost path evaluation'
 		],
 		tradeoffs: ['Prioritized core optimization workflow over lower-value peripheral tooling'],
-		results: [
-			'Before: manual planning ambiguity. After: MVP tooling with clear least-cost decommissioning guidance.'
-		],
+		results: ['Delivered MVP tooling for evaluating least-cost decommissioning paths.'],
 		caseStudy: {
 			situation:
-				'Brought in to build tooling for Shell Techworks to support the decommissioning of end-of-life offshore oil platforms — a domain with real cost and logistical complexity.',
-			work: 'Built a full-stack application that ingested oil platform data and determined the optimal, least-cost decommissioning path. Frontend in React with Ant Design, backend in Node. Worked onsite with the Shell Techworks team in Boston, using the Google Design Sprint process to rapidly iterate and arrive at a clear MVP scope — compressing months of potential back-and-forth into focused, structured sessions.',
+				'Brought in to build tooling for Shell Techworks to support the decommissioning of end-of-life offshore oil platforms, a domain with significant cost and logistical constraints.',
+			work: 'Built a full-stack application that ingested oil-platform data and evaluated the least-cost decommissioning path. The frontend used React with Ant Design, and the backend used Node. Worked onsite with the Shell Techworks team in Boston and used the Google Design Sprint process to define the MVP scope before implementation.',
 			outcome:
-				'MVP delivered on schedule, with the Design Sprint process doing real work — not just ceremony.'
+				'Delivered the MVP on schedule after defining its scope through the onsite Design Sprint.'
 		}
 	},
 	{
@@ -160,14 +158,14 @@ export const selectedWork: WorkItem[] = [
 		period: 'Oct 2022–May 2024',
 		role: 'Technical Lead',
 		description:
-			'Tech lead on an 18-month platform modernization. New CMS, custom rendering layer, and a full authentication overhaul — all shipped to production.',
+			'Tech lead on an 18-month platform modernization. Shipped a new CMS, custom rendering layer, and authentication overhaul to production.',
 		seoDescription:
 			'Technical lead for platform modernization: Strapi and React publishing pipeline, rebuilt AWS infrastructure, and Auth0 login overhaul.',
 		stack: ['React', 'Express', 'Auth0', 'AWS', 'Strapi', 'PHP (legacy)'],
 		outcome:
 			'Sustained 18-month engagement spanning publishing, infrastructure, and authentication',
 		impactMetric:
-			'Baseline: slow publishing + fragmented auth → intervention: Strapi/React pipeline + Auth0 unification → outcome: sustained delivery across an 18-month engagement.',
+			'Replaced a slow publishing workflow and fragmented authentication with a Strapi/React pipeline and unified Auth0 login during an 18-month engagement.',
 		constraints: [
 			'Legacy platform and publishing workflow friction',
 			'Auth fragmentation across multiple product surfaces'
@@ -182,14 +180,14 @@ export const selectedWork: WorkItem[] = [
 			'Deferred non-critical polish while unblocking identity-dependent initiatives'
 		],
 		results: [
-			'Before: slower publishing workflow. After: faster time-to-publish for core medical deliverables.',
-			'Before: fragmented auth. After: single secure login flow across platforms.',
+			'Reduced time-to-publish for core medical deliverables.',
+			'Unified fragmented authentication in one secure login flow across platforms.',
 			'Initial MVP expanded into an 18-month delivery engagement.'
 		],
 		caseStudy: {
 			situation:
 				"Brought in as tech lead to modernize Healthcasts' core publication workflow and platform infrastructure.",
-			work: 'Built a new publishing pipeline around a headless CMS (Strapi) and a custom React rendering layer, dramatically reducing time-to-publish for their core medical consensus deliverable. Updated AWS infrastructure and migrated frameworks to current, supported versions. Then led a full authentication overhaul — unifying login across all their platforms with Auth0, moving to a single secure flow that also unblocked a parallel AI initiative dependent on a cleaner identity layer.',
+			work: 'Built a new publishing pipeline around a headless CMS (Strapi) and a custom React rendering layer, reducing time-to-publish for their core medical consensus deliverable. Updated AWS infrastructure and migrated frameworks to current, supported versions. Then unified login across all their platforms with Auth0. The single secure flow also unblocked a parallel AI initiative dependent on a cleaner identity layer.',
 			outcome:
 				'The MVP expanded into an 18-month engagement spanning publishing, infrastructure, and authentication.'
 		}

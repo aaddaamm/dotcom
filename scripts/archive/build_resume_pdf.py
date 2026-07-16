@@ -70,7 +70,15 @@ def build():
         title='Adam Robinson - Senior Software Engineer',
         author='Adam Robinson',
         subject='Resume for Adam Robinson, Senior Software Engineer and Technical Lead',
-        keywords=['senior software engineer', 'technical lead', 'TypeScript', 'Ruby on Rails'],
+        keywords=[
+            'senior software engineer',
+            'technical lead',
+            'React',
+            'TypeScript',
+            'Node.js',
+            'Ruby on Rails',
+            'embedded consultant'
+        ],
         leftMargin=0.85 * inch,
         rightMargin=0.85 * inch,
         topMargin=0.75 * inch,
@@ -97,11 +105,11 @@ def build():
     story.append(rule())
     story.append(Paragraph('SUMMARY', st['section']))
     story.append(Paragraph(
-        'Senior software engineer and technical lead with 15+ years delivering and modernizing '
-        'production systems across fintech, healthcare, and enterprise. Backend-leaning full-stack '
-        'engineer across Rails, TypeScript/Node.js, and React. Ramps quickly in complex codebases, '
-        'turns ambiguous work into shippable plans, and builds agent-assisted workflows with '
-        'explicit review and verification.',
+        'Senior software engineer and technical lead with 15+ years delivering production systems '
+        'across 15+ client engagements. Full-stack work in React, TypeScript/Node.js, and Rails '
+        'across fintech, healthcare, industrial technology, and enterprise products. Recent work '
+        'includes Rails bulk processing for nominee investments and a Strapi/React publishing '
+        'pipeline with unified Auth0 login.',
         st['body']
     ))
 
@@ -112,8 +120,8 @@ def build():
     story.append(Paragraph(company_line('MojoTech', 'Senior Software Engineer / Technical Lead'), st['company']))
     story.append(Paragraph('Feb 2015 - Present  ·  Providence, RI', st['period']))
     story.append(Paragraph(
-        'Delivered 15+ client projects as an embedded senior engineer and technical lead across '
-        'product delivery, platform modernization, and production systems. Selected clients:',
+        'Delivered 15+ client projects as an embedded senior engineer and technical lead. '
+        'Selected clients:',
         st['body']
     ))
 
@@ -126,15 +134,15 @@ def build():
         ),
         (
             'Healthcasts', 'Technical Lead', 'Oct 2022 - May 2024',
-            'Led phased modernization of a medical publishing platform. Built a Strapi and React '
-            'publishing pipeline, modernized AWS infrastructure, and unified authentication across '
-            'products with Auth0, improving publishing throughput and unblocking an AI initiative.'
+            'Led phased modernization of a medical publishing platform. Built a Strapi/React publishing '
+            'pipeline and updated AWS infrastructure and frameworks. Unified authentication across '
+            'products with Auth0, reducing publishing friction and unblocking an AI initiative.'
         ),
         (
             'Angi', 'Senior Software Engineer, Consultant', 'Nov 2020 - Sep 2022',
             "Shipped across three post-merger codebases for HomeAdvisor, Handy, and Angie's List "
-            'using Vue/Java, Rails/React, and Next.js/Contentful. Mentored interns through a live '
-            'Careers page launch and their first production release.'
+            'using Vue/Java, Rails/React, and Next.js/Contentful. Mentored interns through their first '
+            'production release, a Careers page revamp.'
         ),
         (
             'Shell Techworks', 'Software Engineer', 'Jun 2018 - Jul 2019',

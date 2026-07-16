@@ -6,6 +6,9 @@
 - Author: Adam Robinson
 - Role: Senior Software Engineer
 - Location: Providence, Rhode Island, United States
+- Experience: 15+ years and 15+ client engagements
+- Primary stack: React, TypeScript/Node.js, and Ruby on Rails
+- Delivery model: Embedded senior engineer and technical lead
 - Contact: adam@adamrobinson.tech
 
 ## Primary pages
@@ -29,7 +32,7 @@
 - [Your AI Agent Is Reading More Than You Think](https://www.adamrobinson.tech/blog/claude-has-more-context-than-you-think)
 
 ## Core topics
-- SvelteKit and TypeScript application development
+- React and TypeScript application development
 - Ruby on Rails and Node.js backend engineering
 - Platform modernization and production reliability
 - Full-time senior and staff engineering roles

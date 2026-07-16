@@ -29,7 +29,7 @@
 <div class="max-w-4xl mx-auto px-6 pt-20 sm:pt-28 pb-16">
 	<PageHeader
 		title="Learning Resources"
-		description="The best places to learn programming and develop your skills, curated from years of experience in the field."
+		description="Programming resources I've found useful or regularly recommend."
 	/>
 
 	<div class="mb-8">

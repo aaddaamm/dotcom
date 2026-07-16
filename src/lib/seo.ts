@@ -14,7 +14,7 @@ export const pageSeo = {
 	hire: {
 		title: 'Hire Adam Robinson — Senior Software Engineer',
 		description:
-			'Providence senior software engineer available for full-time senior or staff roles and select embedded contract engagements.',
+			'Providence senior software engineer with 15+ years across React, TypeScript/Node.js, and Rails. Open to senior/staff roles and select contract work.',
 		path: '/hire'
 	},
 	contact: {
@@ -26,7 +26,7 @@ export const pageSeo = {
 	work: {
 		title: 'Work — Adam Robinson',
 		description:
-			'Fifteen-plus years of engineering work across fintech, healthcare, and enterprise. Rails, Node.js, TypeScript. Embedded delivery and technical leadership.',
+			'Fifteen-plus years across fintech, healthcare, industrial technology, and enterprise. React, TypeScript/Node.js, Rails, and embedded technical leadership.',
 		path: '/work'
 	},
 	now: {
@@ -44,7 +44,7 @@ export const pageSeo = {
 	teach: {
 		title: 'Learning Resources — Adam Robinson',
 		description:
-			'Curated list of the best free and paid resources for learning programming, web development, and software engineering skills.',
+			'A curated list of free and paid resources for learning programming, web development, and software engineering skills.',
 		path: '/teach'
 	},
 	play: {

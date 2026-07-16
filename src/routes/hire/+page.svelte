@@ -113,11 +113,11 @@
 />
 
 <div class="max-w-3xl mx-auto px-6">
-	<p class="eyebrow">Senior Software Engineer • SvelteKit / TypeScript</p>
+	<p class="eyebrow">Senior Software Engineer • React / TypeScript / Rails</p>
 
 	<PageHeader
 		title="Senior engineering ownership for teams that need to ship."
-		description="I'm open to full-time senior or staff roles and select contract engagements. I design, build, and stabilize production software with an emphasis on delivery, reliability, and clear technical judgment."
+		description="I'm open to full-time senior or staff roles and select contract engagements. I take ownership of production software, from new product work to platform stabilization."
 	/>
 
 	<div class="cta-row">

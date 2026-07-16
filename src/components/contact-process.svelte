@@ -21,9 +21,7 @@
 			<span class="step-number" aria-hidden="true">3</span>
 			<div>
 				<p class="step-title">Scoped next steps</p>
-				<p class="step-copy">
-					You get concrete options, timeline expectations, and a clear path forward.
-				</p>
+				<p class="step-copy">I send the proposed scope and timeline in writing.</p>
 			</div>
 		</li>
 	</ol>
