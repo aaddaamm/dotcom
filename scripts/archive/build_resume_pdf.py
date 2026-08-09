@@ -30,6 +30,8 @@ def styles():
                   spaceAfter=2, leading=26),
         'subtitle': s('subtitle', fontName='Helvetica', fontSize=8, textColor=TEAL,
                       spaceAfter=3, leading=12, letterSpacing=2),
+        'subtitle_meta': s('subtitle_meta', fontName='Helvetica', fontSize=8.5, textColor=TEAL,
+                           spaceAfter=3, leading=12),
         'meta': s('meta', fontName='Helvetica', fontSize=9, textColor=MUTED,
                   spaceAfter=2, leading=13),
         'section': s('section', fontName='Helvetica-Bold', fontSize=7.5, textColor=TEAL,
@@ -48,6 +50,8 @@ def styles():
                            spaceAfter=2, leading=12, leftIndent=12),
         'client_body': s('client_body', fontName='Helvetica', fontSize=9.5, textColor=BLACK,
                          spaceAfter=3, leading=14, leftIndent=12),
+        'client_list': s('client_list', fontName='Helvetica', fontSize=8.5, textColor=MUTED,
+                         spaceAfter=1, leading=11, leftIndent=12),
     }
 
 
@@ -81,17 +85,19 @@ def build():
         ],
         leftMargin=0.85 * inch,
         rightMargin=0.85 * inch,
-        topMargin=0.75 * inch,
-        bottomMargin=0.75 * inch,
+        topMargin=0.65 * inch,
+        bottomMargin=0.55 * inch,
     )
 
     st = styles()
     story = []
 
     # Header
-    story.append(Paragraph('adam robinson', st['name']))
-    story.append(Paragraph('SENIOR SOFTWARE ENGINEER', st['subtitle']))
-    story.append(Paragraph('Providence, RI', st['meta']))
+    story.append(Paragraph('Adam Robinson', st['name']))
+    story.append(Paragraph(
+        'SENIOR SOFTWARE ENGINEER  <font color="#555555">· Providence, RI</font>',
+        st['subtitle_meta']
+    ))
     story.append(Paragraph(
         f'<link href="{SITE_URL}" color="#555555">adamrobinson.tech</link>  ·  '
         f'<link href="{GITHUB_URL}" color="#555555">GitHub</link>  ·  '
@@ -105,11 +111,11 @@ def build():
     story.append(rule())
     story.append(Paragraph('SUMMARY', st['section']))
     story.append(Paragraph(
-        'Senior software engineer and technical lead with 15+ years delivering production systems '
-        'across 15+ client engagements. Full-stack work in React, TypeScript/Node.js, and Rails '
-        'across fintech, healthcare, industrial technology, and enterprise products. Recent work '
-        'includes Rails bulk processing for nominee investments and a Strapi/React publishing '
-        'pipeline with unified Auth0 login.',
+        'I have 15+ years building and modernizing production systems across fintech, healthcare, industrial '
+        'technology, and enterprise products. I take ownership of unfamiliar or difficult parts of a product: '
+        'read the code, learn the team\'s conventions, and work from the paths closest to the problem. I prefer '
+        'well-scoped changes that ship and leave the system and the handoff to the next engineer in better shape. '
+        'Recent work spans React, TypeScript/Node.js, and Rails.',
         st['body']
     ))
 
@@ -117,51 +123,54 @@ def build():
     story.append(rule())
     story.append(Paragraph('EXPERIENCE', st['section']))
 
-    story.append(Paragraph(company_line('MojoTech', 'Senior Software Engineer / Technical Lead'), st['company']))
+    story.append(Paragraph(company_line('MojoTech', 'Senior Software Engineer'), st['company']))
     story.append(Paragraph('Feb 2015 - Present  ·  Providence, RI', st['period']))
     story.append(Paragraph(
-        'Delivered 15+ client projects as an embedded senior engineer and technical lead. '
-        'Selected clients:',
+        'Software consultancy. Embedded with client teams across 15+ engagements. '
+        '<b>Selected client engagements:</b>',
         st['body']
     ))
 
     clients = [
         (
-            'iCapital', 'Senior Software Engineer, Consultant', 'May 2024 - present',
+            'iCapital', 'May 2024 - present',
             'Co-designed a Rails service that consolidated bulk nominee processing for thousands '
             'of investments. Expanded localization across static and database-backed content and '
             'led the team\'s Supernova v1-to-v2 component library migration.'
         ),
         (
-            'Healthcasts', 'Technical Lead', 'Oct 2022 - May 2024',
-            'Led phased modernization of a medical publishing platform. Built a Strapi/React publishing '
-            'pipeline and updated AWS infrastructure and frameworks. Unified authentication across '
-            'products with Auth0, reducing publishing friction and unblocking an AI initiative.'
+            'Healthcasts', 'Oct 2022 - May 2024',
+            'Partnered with Healthcasts across publishing, infrastructure, and identity. Delivered a headless '
+            'CMS that cut time-to-publish from weeks to days, then modernized EC2, deployed databases, '
+            'and the backend to TypeScript. Unified auth between legacy PHP/CMS and React/CMS applications, '
+            'enabling the next phase of an AI-platform overhaul.'
         ),
         (
-            'Angi', 'Senior Software Engineer, Consultant', 'Nov 2020 - Sep 2022',
-            "Shipped across three post-merger codebases for HomeAdvisor, Handy, and Angie's List "
-            'using Vue/Java, Rails/React, and Next.js/Contentful. Mentored interns through their first '
-            'production release, a Careers page revamp.'
+            'Angi', 'Nov 2020 - Sep 2022',
+            "Adapted to an expanded scope during Angi's rebrand, helping consolidate HomeAdvisor flows "
+            'into a shared Angi quiz flow in Java/Vue. Also worked in Rails/React at Handy and '
+            "Next.js/Contentful at Angie's List, took ownership of a Careers rewrite, and guided interns "
+            'through their first production release.'
         ),
         (
-            'Shell Techworks', 'Software Engineer', 'Jun 2018 - Jul 2019',
-            'Built a React and Node.js application that evaluated least-cost decommissioning paths '
-            'for end-of-life offshore oil platforms. Used an onsite Google Design Sprint to narrow '
-            'scope and deliver the MVP on schedule.'
+            'Shell Techworks', 'Jun 2018 - Jul 2019',
+            'At Shell Techworks, a startup-style group inside Shell, built a React/Node.js application '
+            'for evaluating least-cost offshore-platform decommissioning paths. Used Ant Design and '
+            'LoopBack, iterating quickly to deliver the MVP onsite in Boston.'
         ),
     ]
 
-    for company, title, period, desc in clients:
+    for company, period, desc in clients:
         story.append(Paragraph(
-            f'<font color="#2A7A7A">-</font>  <b>{company}</b>  <font color="#555555">· {title} · {period}</font>',
+            f'<font color="#2A7A7A">-</font>  <b>{company}</b>  <font color="#555555">· {period}</font>',
             st['client']
         ))
         story.append(Paragraph(desc, st['client_body']))
 
     story.append(Paragraph(
-        '<i><font color="#555555">Earlier clients include School of Motion, Amica Mutual, and AutoRaptor.</font></i>',
-        st['client_body']
+        '<i><font color="#555555">Additional client engagements: Two Sigma · Welltok · Credit Karma · '
+        'Schneider Electric · School of Motion · Amica Mutual · AutoRaptor.</font></i>',
+        st['client_list']
     ))
     story.append(Spacer(1, 2))
 
@@ -180,7 +189,6 @@ def build():
         ('Backend', 'TypeScript, Ruby, SQL, Elixir  ·  Node.js, Ruby on Rails, Express, Phoenix'),
         ('Frontend', 'React, SvelteKit, Vue, Next.js'),
         ('Platform', 'AWS, Vercel, GitHub Actions  ·  Git, Prisma, Strapi, Contentful, Auth0'),
-        ('AI', 'Codex, Claude, Pi, GitHub Copilot  ·  agent instructions, skills, verification workflows'),
     ]
     for category, items in skills:
         story.append(Paragraph(skill_line(category, items), st['skill_row']))

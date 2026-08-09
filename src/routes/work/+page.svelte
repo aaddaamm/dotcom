@@ -110,14 +110,7 @@
 				clients
 				<span class="colon">:</span>
 			</dt>
-			<dd class="work-stat-val">
-				iCapital <span class="dot">·</span>
-				Healthcasts
-				<span class="dot">·</span>
-				Angi
-				<span class="dot">·</span>
-				Shell
-			</dd>
+			<dd class="work-stat-val">15+ client engagements</dd>
 		</div>
 	</dl>
 
@@ -141,7 +134,7 @@
 	</section>
 
 	<section class="earlier-work" aria-labelledby="earlier-heading">
-		<h2 id="earlier-heading" class="earlier-heading">Earlier clients and employment</h2>
+		<h2 id="earlier-heading" class="earlier-heading">Additional client engagements and earlier employment</h2>
 		<ul class="earlier-list">
 			{#each earlierWork as engagement (engagement.name)}
 				<li class="earlier-item">
@@ -151,6 +144,7 @@
 						<span class="earlier-industry">{engagement.industry}</span>
 						<span class="earlier-period">{engagement.period}</span>
 					</span>
+					<p class="earlier-description">{engagement.description}</p>
 				</li>
 			{/each}
 		</ul>
@@ -253,6 +247,14 @@
 		flex-wrap: wrap;
 		padding: 0.6rem 0;
 		border-bottom: 1px solid var(--color-border);
+	}
+
+	.earlier-description {
+		width: 100%;
+		margin: -0.2rem 0 0;
+		font-size: 0.85rem;
+		line-height: 1.55;
+		color: var(--color-muted);
 	}
 
 	.earlier-item:first-child {

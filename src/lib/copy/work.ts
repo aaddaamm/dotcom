@@ -27,6 +27,7 @@ export type EarlierWorkItem = {
 	context: 'MojoTech client' | 'Employer';
 	industry: string;
 	period: string;
+	description: string;
 };
 
 export type GitLogItem = {
@@ -204,24 +205,63 @@ export const blogTagToWorkSlugs: Record<string, WorkItem['slug'][]> = {
 };
 
 export const earlierWork: EarlierWorkItem[] = [
-	{ name: 'School of Motion', context: 'MojoTech client', industry: 'Edtech', period: '2020' },
-	{
-		name: 'Amica Mutual',
-		context: 'MojoTech client',
-		industry: 'Insurance',
-		period: '2017–2018'
-	},
 	{
 		name: 'AutoRaptor',
 		context: 'MojoTech client',
 		industry: 'Automotive CRM',
-		period: '2015'
+		period: 'Jun–Dec 2015',
+		description: 'Early client engagement on an automotive CRM platform.'
+	},
+	{
+		name: 'Two Sigma',
+		context: 'MojoTech client',
+		industry: 'Investment management',
+		period: 'Dec 2015–Jul 2016',
+		description:
+			'Worked on the Client Solutions Platform during an early period of React adoption.'
+	},
+	{
+		name: 'Welltok',
+		context: 'MojoTech client',
+		industry: 'Healthcare technology',
+		period: 'Aug 2016–Jan 2017',
+		description: 'Client engagement on a healthcare technology platform.'
+	},
+	{
+		name: 'Amica Mutual',
+		context: 'MojoTech client',
+		industry: 'Insurance',
+		period: 'Mar 2017–May 2018',
+		description: 'Worked on insurance platform delivery after earlier employment at Beacon Mutual.'
+	},
+	{
+		name: 'Credit Karma',
+		context: 'MojoTech client',
+		industry: 'Consumer finance',
+		period: 'Aug 2019–Jan 2020',
+		description: 'Contributed across multiple product tracks during a short, focused engagement.'
+	},
+	{
+		name: 'School of Motion',
+		context: 'MojoTech client',
+		industry: 'Edtech',
+		period: 'Apr–Jul 2020',
+		description: 'Client engagement on an online education platform.'
+	},
+	{
+		name: 'Schneider Electric',
+		context: 'MojoTech client',
+		industry: 'Industrial technology',
+		period: 'Feb–Mar, Oct 2020',
+		description: 'Stepped in as technical lead for the Layout Fast project between engagements.'
 	},
 	{
 		name: 'Beacon Mutual Insurance',
 		context: 'Employer',
 		industry: 'Insurance',
-		period: 'Mar 2011–Feb 2015'
+		period: 'Mar 2011–Feb 2015',
+		description:
+			'Progressed from production control into full-stack and database development for claims, policy, financial transaction, and payment systems.'
 	}
 ];
 
