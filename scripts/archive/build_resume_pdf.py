@@ -64,7 +64,7 @@ def company_line(company, title):
 
 
 def skill_line(category, items):
-    return f'<font color="#2A7A7A"><b>{category}</b></font>{"&nbsp;" * (14 - len(category))}{items}'
+    return f'<font color="#2A7A7A"><b>{category}</b></font>  <font color="#555555">·</font>  {items}'
 
 
 def build():
@@ -186,9 +186,10 @@ def build():
     story.append(rule())
     story.append(Paragraph('SKILLS', st['section']))
     skills = [
-        ('Backend', 'TypeScript, Ruby, SQL, Elixir  ·  Node.js, Ruby on Rails, Express, Phoenix'),
-        ('Frontend', 'React, SvelteKit, Vue, Next.js'),
-        ('Platform', 'AWS, Vercel, GitHub Actions  ·  Git, Prisma, Strapi, Contentful, Auth0'),
+        ('Core stack', 'TypeScript, React, Ruby on Rails, Node.js, SQL'),
+        ('Delivery range', 'Vue, Next.js, SvelteKit, Java, PHP (legacy)'),
+        ('Platform work', 'AWS/EC2, GitHub Actions, Auth0, Strapi, Contentful, i18n, component-library migration'),
+        ('Leadership', 'System design, technical discovery and scoping, embedded consulting, cross-team delivery, mentoring'),
     ]
     for category, items in skills:
         story.append(Paragraph(skill_line(category, items), st['skill_row']))
