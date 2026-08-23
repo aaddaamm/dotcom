@@ -45,7 +45,7 @@ export const selectedWork: WorkItem[] = [
 		period: 'May 2024–present',
 		role: 'Senior Software Engineer, Consultant',
 		description:
-			'Embedded senior engineer on an alternative investment platform. Full-stack delivery across a large, complex enterprise codebase.',
+			'Co-designed a Rails service that consolidated bulk nominee processing for thousands of investments, expanded localization, and led a component-library migration.',
 		seoDescription:
 			"Senior engineer on iCapital's fintech platform. Rails, React, TypeScript, i18n, bulk investment processing, and component library migration.",
 		stack: ['React', 'TypeScript', 'Node.js', 'Rails'],
@@ -86,7 +86,7 @@ export const selectedWork: WorkItem[] = [
 		period: 'Nov 2020–Sep 2022',
 		role: 'Senior Software Engineer, Consultant',
 		description:
-			'Contributed across three separate product codebases inside a single engagement. Also mentored a team of interns through their first real shipped feature.',
+			'Shipped across three post-merger product codebases in Vue/Java, Rails/React, and Next.js/Contentful while mentoring interns through their first production release.',
 		seoDescription:
 			"Senior engineer across merged Angi codebases: Vue/Java, Rails/React, and Next.js/Contentful for HomeAdvisor, Handy, and Angie's List.",
 		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js', 'Contentful'],
@@ -126,7 +126,7 @@ export const selectedWork: WorkItem[] = [
 		period: 'Jun 2018–Jul 2019',
 		role: 'Software Engineer',
 		description:
-			'Built decommissioning tooling for Shell Techworks in Boston. MVP delivered onsite using the Google Design Sprint process.',
+			'Built a React and Node.js application for evaluating least-cost offshore-platform decommissioning paths, delivering the MVP onsite in Boston.',
 		seoDescription:
 			'Software engineer building React and Node.js decommissioning tooling for Shell Techworks. MVP scoped and delivered onsite in Boston.',
 		stack: ['React', 'Node.js', 'Ant Design'],
@@ -154,19 +154,19 @@ export const selectedWork: WorkItem[] = [
 	},
 	{
 		slug: 'healthcasts',
-		title: 'Healthcasts — Platform Modernization',
+		title: 'Healthcasts — Publishing and Platform Modernization',
 		employer: 'MojoTech',
 		period: 'Oct 2022–May 2024',
 		role: 'Technical Lead',
 		description:
-			'Tech lead on an 18-month platform modernization. Shipped a new CMS, custom rendering layer, and authentication overhaul to production.',
+			'Technical lead who delivered a Strapi/React publishing pipeline that cut time-to-publish from weeks to days, then modernized infrastructure and unified authentication.',
 		seoDescription:
 			'Technical lead for platform modernization: Strapi and React publishing pipeline, rebuilt AWS infrastructure, and Auth0 login overhaul.',
 		stack: ['React', 'Express', 'Auth0', 'AWS', 'Strapi', 'PHP (legacy)'],
 		outcome:
-			'Sustained 18-month engagement spanning publishing, infrastructure, and authentication',
+			'Cut time-to-publish from weeks to days during an 18-month engagement spanning publishing, infrastructure, and authentication',
 		impactMetric:
-			'Replaced a slow publishing workflow and fragmented authentication with a Strapi/React pipeline and unified Auth0 login during an 18-month engagement.',
+			'Cut time-to-publish from weeks to days with a Strapi/React publishing pipeline, then unified authentication with Auth0 during an 18-month engagement.',
 		constraints: [
 			'Legacy platform and publishing workflow friction',
 			'Auth fragmentation across multiple product surfaces'
@@ -181,7 +181,7 @@ export const selectedWork: WorkItem[] = [
 			'Deferred non-critical polish while unblocking identity-dependent initiatives'
 		],
 		results: [
-			'Reduced time-to-publish for core medical deliverables.',
+			'Cut time-to-publish from weeks to days for core medical deliverables.',
 			'Unified fragmented authentication in one secure login flow across platforms.',
 			'Initial MVP expanded into an 18-month delivery engagement.'
 		],

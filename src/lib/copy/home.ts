@@ -12,33 +12,33 @@ export type RecentShippedItem = {
 
 export const outcomeProofPoints: OutcomeProofPoint[] = [
 	{
-		headline: 'iCapital — bulk processing designed for thousands of investments',
+		headline: 'iCapital — bulk processing for thousands of investments',
 		detail:
-			'Co-designed a Rails bulk-processing service for nominee investments and expanded i18n coverage across both static UI copy and database-backed content.',
+			'Co-designed a Rails service that consolidated fragmented nominee processing, expanded localization, and led a component-library migration.',
 		href: '/work/icapital'
 	},
 	{
-		headline: 'Healthcasts — publishing, infrastructure, and auth modernization over 18 months',
+		headline: 'Healthcasts — publishing moved from weeks to days',
 		detail:
-			'Led a Strapi + React publishing pipeline and Auth0 unification across platforms, reducing publishing friction and creating a stronger identity foundation.',
+			'Led a Strapi + React publishing pipeline, platform modernization, and Auth0 unification across products during an 18-month technical-lead engagement.',
 		href: '/work/healthcasts'
 	},
 	{
-		headline: 'Angi — shipped across 3 product codebases in one engagement',
+		headline: 'Angi — production delivery across 3 post-merger codebases',
 		detail:
-			'Delivered production work in Vue/Java, Rails/React, and Next.js/Contentful while mentoring interns through their first real launch.',
+			'Shipped in Vue/Java, Rails/React, and Next.js/Contentful while mentoring interns through their first production release.',
 		href: '/work/angi'
 	}
 ];
 
 export const recentShipped: RecentShippedItem[] = [
 	{
-		title: 'iCapital — bulk nominee investment processing + i18n rollout',
+		title: 'iCapital — bulk nominee investment processing + localization',
 		href: '/work/icapital',
 		type: 'Work'
 	},
 	{
-		title: 'Healthcasts — publishing pipeline + auth modernization',
+		title: 'Healthcasts — weeks-to-days publishing + auth modernization',
 		href: '/work/healthcasts',
 		type: 'Work'
 	},

@@ -24,6 +24,18 @@ export type TrustProofItem = {
 	value: string;
 };
 
+export const positioning = {
+	headline: 'Senior software engineer for teams with consequential work to ship.',
+	summary:
+		'I take ownership of unfamiliar, high-leverage product and platform work: learn the system, create momentum, and leave it easier to maintain.',
+	consultingNote:
+		'I also take select longer-term embedded consulting engagements where the scope, duration, and terms support real senior-level ownership.',
+	workingStyle:
+		'I mentor engineers, make room for good ideas, and step into leadership gaps when a team needs someone to create clarity and momentum.',
+	aiPractice:
+		'I use AI-assisted tools pragmatically, with the same—or more—review and accountability I bring to any contributor output.'
+} as const;
+
 export const techStack: TechStackGroup[] = [
 	{
 		category: 'Frontend',
@@ -57,43 +69,43 @@ export const services: Array<{
 	outcome: string;
 }> = [
 	{
-		title: 'Startup Product Delivery',
+		title: 'Difficult Roadmap Ownership',
 		icon: 'code',
 		description:
-			'Join your product team as a senior engineer and take ownership of roadmap work without adding another management layer.',
+			'Take ownership of unfamiliar product and platform work as an embedded senior engineer or technical lead, from context-building through production handoff.',
 		examples: [
-			'MVP feature delivery',
-			'Full-stack execution',
-			'Tech debt cleanup',
-			'Ship-ready handoff'
+			'Full-stack product delivery',
+			'Complex codebase context-building',
+			'Production-ready handoff',
+			'Cross-team delivery'
 		],
-		outcome: 'Senior ownership for work already on the roadmap'
+		outcome: 'Senior ownership for consequential roadmap work'
 	},
 	{
-		title: 'Agency Delivery Partner',
+		title: 'Platform Modernization',
 		icon: 'globe',
 		description:
-			'Support your agency team with technical scoping and hands-on production work for client projects.',
+			'Modernize production platforms through focused, maintainable changes that preserve delivery while improving the systems a team inherits.',
 		examples: [
-			'Client project support',
-			'Technical discovery',
-			'Backend/API work',
-			'Launch support'
+			'Publishing workflow modernization',
+			'Infrastructure and framework updates',
+			'Authentication unification',
+			'Rails and React delivery'
 		],
-		outcome: 'Senior engineering support for client delivery'
+		outcome: 'A more maintainable platform with delivery momentum'
 	},
 	{
-		title: 'Platform Stabilization & Modernization',
+		title: 'Team Delivery and Mentorship',
 		icon: 'lightbulb',
 		description:
-			'Stabilize fragile systems and modernize legacy code so your team can maintain and extend the platform after the engagement.',
+			'Contribute hands-on across complex delivery work while mentoring engineers and creating clarity when a team needs technical leadership.',
 		examples: [
-			'Legacy modernization',
-			'Architecture guidance',
-			'Performance and reliability',
-			'Cross-team enablement'
+			'Embedded senior IC work',
+			'Technical-lead delivery',
+			'Engineer mentorship',
+			'Production release support'
 		],
-		outcome: 'A platform your team can maintain and extend'
+		outcome: 'Hands-on senior contribution with stronger team delivery'
 	}
 ];
 
@@ -101,43 +113,44 @@ export const faqItems: FaqItem[] = [
 	{
 		question: 'Are you open to full-time roles?',
 		answer:
-			"Yes. I'm actively open to full-time senior or staff roles with strong product ownership. I also consider select contract engagements where I can embed with an existing team and ship quickly."
+			'Yes. I am open to full-time senior or staff roles with meaningful product and platform ownership.'
 	},
 	{
 		question: 'What kinds of engagements do you take on?',
 		answer:
-			'Full-time senior or staff roles are a strong fit, particularly where I can own complex product and platform work. For contract work, I embed with an existing engineering team as a senior contributor or technical lead.'
+			'I am a fit for senior or staff roles where I can own difficult product and platform work. I also take select longer-term embedded consulting engagements as a senior contributor or technical lead.'
 	},
 	{
 		question: 'How quickly can you get up to speed?',
 		answer:
-			"I've worked in large, unfamiliar codebases throughout my career. I begin with the code paths tied to the task and the team's existing conventions, then start contributing."
+			'I start with the code paths tied to the problem and the team’s existing conventions, then contribute with the context needed to make maintainable changes.'
 	},
 	{
 		question: 'Do you work remotely?',
 		answer:
-			"Yes — all of my recent engagements have been fully remote. I'm comfortable with async communication, distributed teams, and working across time zones."
+			'Yes — recent engagements have been fully remote. I am comfortable with async communication, distributed teams, and working across time zones.'
 	},
 	{
 		question: "What's your current availability?",
 		answer:
-			"I'm currently available for new engagements. Reach out and I can give you a clear picture of my timeline."
+			'I am open to senior or staff roles and select longer-term embedded consulting engagements. Reach out and I can give you a clear picture of my timeline.'
 	},
 	{
 		question: 'What size teams do you work well with?',
 		answer:
-			"I've worked with small product teams and large enterprise engineering organizations. I adapt to existing processes and culture rather than imposing my own."
+			'I have worked with small product teams and large enterprise engineering organizations, adapting to existing processes and culture rather than imposing my own.'
 	},
 	{
 		question: "What's your rate?",
 		answer:
-			"I don't publish rates — they vary by engagement type, scope, and duration. Happy to have a direct conversation about it."
+			'I do not publish rates. They vary by engagement type, scope, duration, and terms, and I am happy to discuss them directly.'
 	}
 ];
 
 export const heroMessaging: HeroMessaging = {
 	audienceKeywords: ['Full-time', 'product teams', 'Contract engagements'],
-	availability: 'Available for full-time senior/staff roles and select contract engagements.',
+	availability:
+		'Available for senior/staff roles and select longer-term embedded consulting engagements.',
 	ctaOrder: ['Start a conversation', 'See how I work', 'Download résumé']
 };
 
@@ -147,19 +160,19 @@ export const homepageMetrics: {
 } = {
 	numbers: [
 		{ value: '15+', label: 'Years' },
-		{ value: '15+', label: 'Projects' }
+		{ value: '15+', label: 'Engagements' }
 	],
-	industries: ['fintech', 'healthcare', 'enterprise']
+	industries: ['fintech', 'healthcare', 'industrial technology', 'enterprise']
 };
 
 export const trustProofItems: TrustProofItem[] = [
-	{ label: 'Experience', value: '15+ years' },
-	{ label: 'Sectors', value: 'Fintech · Healthcare · Enterprise' },
-	{ label: 'Engagements', value: '15+ delivered' },
-	{ label: 'Mode', value: 'Embedded senior IC / tech lead' }
+	{ label: 'Experience', value: '15+ years in production software' },
+	{ label: 'Sectors', value: 'Fintech · Healthcare · Industrial technology · Enterprise' },
+	{ label: 'Engagements', value: '15+ embedded engagements' },
+	{ label: 'Mode', value: 'Embedded senior IC / technical lead' }
 ];
 
 export const philosophy = {
 	heading: 'How I work',
-	body: "The best engineers I've worked with listened before offering an opinion. I try to do the same. When I join a team, I read the code before I write any, learn its conventions, and ask the questions a newcomer notices but regulars have stopped asking. Then I ship reliably. I'd rather land one well-scoped change than three speculative ones. I treat every codebase as something another engineer will inherit from me."
+	body: 'I build context before proposing solutions: read the code, learn the team’s conventions, and focus on the paths closest to the problem. Then I make well-scoped changes that ship, leave the system easier to maintain, and support a clear handoff to the next engineer.'
 };
