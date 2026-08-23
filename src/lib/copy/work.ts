@@ -47,9 +47,10 @@ export const selectedWork: WorkItem[] = [
 		description:
 			'Co-designed a Rails service that consolidated bulk nominee processing for thousands of investments, expanded localization, and led a component-library migration.',
 		seoDescription:
-			"Senior engineer on iCapital's fintech platform. Rails, React, TypeScript, i18n, bulk investment processing, and component library migration.",
+			'iCapital case study: embedded senior engineer co-designing Rails bulk nominee processing, localization, and component-library migration.',
 		stack: ['React', 'TypeScript', 'Node.js', 'Rails'],
-		outcome: 'Ongoing contributor across multiple subdomains of an enterprise fintech platform',
+		outcome:
+			'Consolidated bulk nominee processing, expanded localization, and completed a Supernova v1→v2 component-library migration.',
 		impactMetric:
 			'Centralized fragmented nominee flows in a Rails bulk-processing service that handles thousands of investments in one flow.',
 		constraints: [
@@ -88,10 +89,10 @@ export const selectedWork: WorkItem[] = [
 		description:
 			'Shipped across three post-merger product codebases in Vue/Java, Rails/React, and Next.js/Contentful while mentoring interns through their first production release.',
 		seoDescription:
-			"Senior engineer across merged Angi codebases: Vue/Java, Rails/React, and Next.js/Contentful for HomeAdvisor, Handy, and Angie's List.",
+			'Angi case study: senior engineering delivery across post-merger Vue/Java, Rails/React, and Next.js/Contentful codebases.',
 		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js', 'Contentful'],
 		outcome:
-			'Cross-product delivery and intern mentorship across a newly merged home services platform',
+			'Shipped across three post-merger codebases while mentoring interns through a production release.',
 		impactMetric:
 			'Shipped unified flows across three post-merger codebases: Vue/Java, Rails/React, and Next.js.',
 		constraints: [
@@ -128,10 +129,10 @@ export const selectedWork: WorkItem[] = [
 		description:
 			'Built a React and Node.js application for evaluating least-cost offshore-platform decommissioning paths, delivering the MVP onsite in Boston.',
 		seoDescription:
-			'Software engineer building React and Node.js decommissioning tooling for Shell Techworks. MVP scoped and delivered onsite in Boston.',
+			'Shell case study: React and Node.js tooling for least-cost offshore-platform decommissioning, scoped and delivered onsite in Boston.',
 		stack: ['React', 'Node.js', 'Ant Design'],
 		outcome:
-			'MVP delivered on schedule using Design Sprint methodology with Shell engineering in Boston',
+			'MVP delivered on schedule after an onsite Design Sprint with Shell Techworks in Boston.',
 		impactMetric:
 			'Used an onsite Design Sprint to resolve planning ambiguity and deliver the decommissioning MVP on schedule.',
 		constraints: [
@@ -161,7 +162,7 @@ export const selectedWork: WorkItem[] = [
 		description:
 			'Technical lead who delivered a Strapi/React publishing pipeline that cut time-to-publish from weeks to days, then modernized infrastructure and unified authentication.',
 		seoDescription:
-			'Technical lead for platform modernization: Strapi and React publishing pipeline, rebuilt AWS infrastructure, and Auth0 login overhaul.',
+			'Healthcasts case study: technical lead who cut publishing from weeks to days with Strapi/React, then modernized infrastructure and Auth0 login.',
 		stack: ['React', 'Express', 'Auth0', 'AWS', 'Strapi', 'PHP (legacy)'],
 		outcome:
 			'Cut time-to-publish from weeks to days during an 18-month engagement spanning publishing, infrastructure, and authentication',
@@ -217,8 +218,7 @@ export const earlierWork: EarlierWorkItem[] = [
 		context: 'MojoTech client',
 		industry: 'Investment management',
 		period: 'Dec 2015–Jul 2016',
-		description:
-			'Worked on the Client Solutions Platform during an early period of React adoption.'
+		description: 'Worked on the Client Solutions Platform during an early period of React adoption.'
 	},
 	{
 		name: 'Welltok',

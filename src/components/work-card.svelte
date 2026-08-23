@@ -42,7 +42,7 @@
 
 	<div class="meta-row">
 		<span class="meta-role">{project.role} · via {project.employer}</span>
-		{#if project.slug && variant === 'full'}
+		{#if project.slug}
 			<a href="/work/{project.slug}" class="case-study-link">full case study →</a>
 		{/if}
 	</div>
@@ -64,12 +64,12 @@
 		{/each}
 	</div>
 
-	{#if variant === 'preview' && project.description}
-		<p class="body-text">{project.description}</p>
-	{/if}
-
 	{#if project.impactMetric}
 		<p class="impact-metric">Impact: {project.impactMetric}</p>
+	{/if}
+
+	{#if variant === 'preview' && project.description}
+		<p class="body-text">{project.description}</p>
 	{/if}
 
 	{#if project.caseStudy && variant === 'full'}

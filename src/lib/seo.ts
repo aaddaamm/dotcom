@@ -24,9 +24,9 @@ export const pageSeo = {
 		path: '/contact'
 	},
 	work: {
-		title: 'Work — Adam Robinson',
+		title: 'Engineering Case Studies — Adam Robinson',
 		description:
-			'Fifteen-plus years across fintech, healthcare, industrial technology, and enterprise. React, TypeScript/Node.js, Rails, and embedded technical leadership.',
+			'Selected case studies documenting senior engineering and technical-lead work across product delivery, platform modernization, and embedded engagements.',
 		path: '/work'
 	},
 	now: {
