@@ -12,9 +12,9 @@ export const pageSeo = {
 		path: '/'
 	},
 	hire: {
-		title: 'Hire Adam Robinson — Senior Software Engineer',
+		title: 'Hire Adam Robinson — Senior Software Engineer & Technical Lead',
 		description:
-			'Providence senior software engineer with 15+ years across React, TypeScript/Node.js, and Rails. Open to senior/staff roles and select contract work.',
+			'Providence-based senior software engineer and technical lead with 15+ years in product and platform delivery. Open to senior/staff roles and select embedded consulting engagements.',
 		path: '/hire'
 	},
 	contact: {

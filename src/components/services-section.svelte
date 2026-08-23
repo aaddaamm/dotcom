@@ -7,7 +7,7 @@
 <!-- Services -->
 <section id="services" aria-labelledby="services-heading" class="py-14 section-border">
 	<h2 id="services-heading" class="section-heading mb-8">
-		How I Help Product Teams
+		How I contribute
 		<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 	</h2>
 	<div class="grid gap-8">
@@ -41,8 +41,8 @@
 
 	<div class="mt-8 text-center">
 		<p class="body-text mb-4">
-			For contract work, you work directly with me throughout the engagement. I provide a written
-			scope and weekly progress updates, then hand off production-ready work.
+			For full-time roles or select longer-term embedded consulting, start a conversation about the
+			work, team, and ownership needed.
 		</p>
 		<a
 			href="/contact"

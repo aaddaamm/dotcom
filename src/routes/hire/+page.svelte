@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { trackCTA, trackResumeDownload } from '$lib/analytics';
-	import { faqItems, techStack } from '$lib/copy';
+	import { faqItems, positioning, techStack } from '$lib/copy';
 	import { breadcrumbList } from '$lib/utils';
 	import FaqSection from '../../components/faq-section.svelte';
 	import JsonLd from '../../components/json-ld.svelte';
@@ -47,7 +47,7 @@
 		'@id': `${SITE_URL}/hire#software-consulting`,
 		name: 'Adam Robinson Software Engineering',
 		description:
-			'Providence, Rhode Island software engineering consultant for startups, agencies, and product teams that need senior engineering experience across product delivery, platform modernization, and production reliability.',
+			'Providence-based senior software engineer and technical lead for senior/staff roles and select longer-term embedded consulting engagements.',
 		url: `${SITE_URL}/hire`,
 		email: EMAIL,
 		areaServed: [
@@ -74,37 +74,36 @@
 			'@id': `${SITE_URL}/#person`
 		},
 		knowsAbout: [
-			'product engineering',
-			'web application development',
+			'product and platform delivery',
+			'embedded senior engineering',
 			'platform modernization',
-			'production reliability',
 			'technical leadership',
-			'staff augmentation',
-			'startup delivery'
+			'engineer mentorship',
+			'web application development'
 		],
 		hasOfferCatalog: {
 			'@type': 'OfferCatalog',
-			name: 'Software engineering services',
+			name: 'Senior engineering contribution themes',
 			itemListElement: [
 				{
 					'@type': 'Offer',
 					itemOffered: {
 						'@type': 'Service',
-						name: 'Startup product delivery'
+						name: 'Difficult roadmap ownership'
 					}
 				},
 				{
 					'@type': 'Offer',
 					itemOffered: {
 						'@type': 'Service',
-						name: 'Agency development partner'
+						name: 'Platform modernization'
 					}
 				},
 				{
 					'@type': 'Offer',
 					itemOffered: {
 						'@type': 'Service',
-						name: 'Platform stabilization and modernization'
+						name: 'Team delivery and mentorship'
 					}
 				}
 			]
@@ -115,10 +114,7 @@
 <div class="max-w-3xl mx-auto px-6">
 	<p class="eyebrow">Senior Software Engineer • React / TypeScript / Rails</p>
 
-	<PageHeader
-		title="Senior engineering ownership for teams that need to ship."
-		description="I'm open to full-time senior or staff roles and select contract engagements. I take ownership of production software, from new product work to platform stabilization."
-	/>
+	<PageHeader title="Senior/staff role fit" description={positioning.summary} />
 
 	<div class="cta-row">
 		<a
@@ -136,34 +132,24 @@
 			View selected work
 		</a>
 	</div>
-	<p class="availability-note">
-		Available for full-time senior/staff roles and select contract/advisory engagements.
+	<p class="role-statement">
+		Open to full-time senior or staff roles with meaningful product and platform ownership.
 	</p>
+	<p class="availability-note">{positioning.consultingNote}</p>
 
 	<TrustStrip />
 	<OutcomeProof />
 
 	<ServicesSection />
 
-	<section aria-labelledby="local-service-heading" class="py-14 section-border local-service">
-		<h2 id="local-service-heading" class="section-heading">
-			Providence software consulting for practical delivery
+	<section aria-labelledby="location-heading" class="py-14 section-border location-availability">
+		<h2 id="location-heading" class="section-heading">
+			Providence and remote availability
 			<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 		</h2>
 		<p class="body-text">
-			I work with Rhode Island startups, agencies, and local businesses that need a senior software
-			engineer who can step into real production constraints: unfinished product ideas, legacy
-			systems, fragile integrations, slow internal tools, or a small team that needs more delivery
-			capacity without adding process overhead.
-		</p>
-		<ul class="local-service-list">
-			<li>Build or stabilize web applications across whatever stack the business already uses.</li>
-			<li>Help agencies ship client work without hiding behind vague technical language.</li>
-			<li>Modernize brittle platforms while preserving the workflows the business depends on.</li>
-		</ul>
-		<p class="body-text muted-text local-service-note">
-			Most work is remote, with Providence and Rhode Island availability when local context or
-			in-person planning helps the project move faster.
+			I am based in Providence, Rhode Island. Recent engagements have been fully remote, and I am
+			comfortable with async communication, distributed teams, and working across time zones.
 		</p>
 	</section>
 
@@ -279,20 +265,19 @@
 		color: var(--color-muted);
 	}
 
-	.local-service {
+	.role-statement {
+		margin: 0 0 0.5rem;
+		font-size: 0.9rem;
+		font-weight: 500;
+		color: var(--color-text);
+	}
+
+	.location-availability {
 		display: grid;
 		gap: 1rem;
 	}
 
-	.local-service-list {
-		display: grid;
-		gap: 0.6rem;
-		margin: 0;
-		padding-left: 1.1rem;
-		color: var(--color-text);
-	}
-
-	.local-service-note {
+	.location-availability p {
 		margin: 0;
 	}
 
