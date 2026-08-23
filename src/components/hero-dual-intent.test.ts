@@ -1,30 +1,28 @@
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { heroMessaging } from '$lib/copy';
 
-describe('hero dual intent messaging', () => {
+describe('hero positioning', () => {
 	const heroPath = resolve('src/components/hero-section.svelte');
 	const hero = readFileSync(heroPath, 'utf8');
 
-	it('includes explicit full-time and contract audience language', () => {
-		for (const keyword of heroMessaging.audienceKeywords) {
-			expect(hero).toContain(keyword);
-		}
-		expect(heroMessaging.availability.length).toBeGreaterThan(20);
-		expect(hero).toContain('{heroMessaging.availability}');
+	it('renders the approved ownership message and selective consulting note', () => {
+		expect(hero).toContain('{positioning.headline}');
+		expect(hero).toContain('{positioning.summary}');
+		expect(hero).toContain('{positioning.consultingNote}');
+		expect(hero).not.toContain('Full-time product teams:');
+		expect(hero).not.toContain('Contract engagements:');
 	});
 
 	it('keeps contact as primary CTA ahead of secondary options', () => {
-		const [primary, secondary, tertiary] = heroMessaging.ctaOrder;
-		const contactIndex = hero.indexOf(primary);
-		const hireIndex = hero.indexOf(secondary);
-		const resumeIndex = hero.indexOf(tertiary);
+		const contactIndex = hero.indexOf('Start a conversation');
+		const workIndex = hero.indexOf('Explore selected work');
+		const resumeIndex = hero.indexOf('Download résumé');
 
 		expect(contactIndex).toBeGreaterThan(-1);
-		expect(hireIndex).toBeGreaterThan(-1);
+		expect(workIndex).toBeGreaterThan(-1);
 		expect(resumeIndex).toBeGreaterThan(-1);
-		expect(contactIndex).toBeLessThan(hireIndex);
-		expect(hireIndex).toBeLessThan(resumeIndex);
+		expect(contactIndex).toBeLessThan(workIndex);
+		expect(workIndex).toBeLessThan(resumeIndex);
 	});
 });

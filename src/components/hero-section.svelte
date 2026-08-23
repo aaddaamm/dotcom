@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { trackCTA } from '$lib/analytics';
-	import { heroMessaging, homepageMetrics } from '$lib/copy';
+	import { heroMessaging, homepageMetrics, positioning } from '$lib/copy';
 	import { ROLE_TITLE } from '$lib/constants';
 </script>
 
@@ -14,14 +14,9 @@
 		</h1>
 	</div>
 	<p class="hero-subtitle font-mono" role="doc-subtitle">{ROLE_TITLE}</p>
-	<p class="body-text">
-		Providence-based senior engineer with 15+ years delivering production software across fintech,
-		healthcare, and enterprise teams.
-	</p>
-	<p class="audience-line">
-		<span>• Full-time product teams: senior/staff ownership across product and platform work.</span>
-		<span>• Contract engagements: embedded delivery for high-stakes roadmap work.</span>
-	</p>
+	<p class="positioning-headline">{positioning.headline}</p>
+	<p class="body-text">{positioning.summary}</p>
+	<p class="consulting-note">{positioning.consultingNote}</p>
 	<p class="availability-line" aria-label="Current availability">
 		<span class="availability-dot" aria-hidden="true"></span>
 		{heroMessaging.availability}
@@ -52,11 +47,11 @@
 			Start a conversation
 		</a>
 		<a
-			href="/hire"
+			href="/work"
 			class="btn-secondary text-center"
-			onclick={() => trackCTA('See how I work', 'home-hero-secondary')}
+			onclick={() => trackCTA('Explore selected work', 'home-hero-secondary')}
 		>
-			See how I work
+			Explore selected work
 		</a>
 		<a
 			href="/adam_robinson.pdf"
@@ -157,12 +152,20 @@
 		color: var(--color-muted);
 	}
 
-	.audience-line {
-		display: grid;
-		gap: 0.5rem;
-		margin-top: 0.75rem;
+	.positioning-headline {
+		font-family: var(--font-mono);
+		font-size: 1rem;
+		font-weight: 500;
+		line-height: 1.6;
+		color: var(--color-text);
+		margin: 0 0 0.5rem;
+	}
+
+	.consulting-note {
 		font-size: 0.9rem;
+		line-height: 1.6;
 		color: var(--color-muted);
+		margin: 0.75rem 0 0;
 	}
 
 	.availability-line {

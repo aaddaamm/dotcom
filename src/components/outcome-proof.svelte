@@ -16,12 +16,12 @@
 
 <section aria-labelledby="outcomes-heading" class="py-10 section-border">
 	<h2 id="outcomes-heading" class="section-heading mb-6">
-		Outcome timeline
+		Delivery outcomes
 		<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 	</h2>
 
 	<div class="outcomes-grid">
-		<div role="tablist" aria-label="Outcome timeline" class="timeline-list">
+		<div role="tablist" aria-label="Delivery outcomes" class="timeline-list">
 			{#each outcomeProofPoints as point, index (point.headline)}
 				<button
 					id={`timeline-tab-${index}`}

@@ -4,10 +4,10 @@
 
 <section aria-labelledby="trust-heading" class="py-10 section-border">
 	<h2 id="trust-heading" class="section-heading mb-6">
-		Proof points
+		Experience and delivery range
 		<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
 	</h2>
-	<ul class="trust-grid" aria-label="Trust indicators">
+	<ul class="trust-grid" aria-label="Experience and delivery evidence">
 		{#each trustProofItems as item (item.label)}
 			<li class="trust-item">
 				<p class="trust-label">{item.label}</p>

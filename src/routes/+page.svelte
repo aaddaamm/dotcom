@@ -4,6 +4,7 @@
 	import TrustStrip from '../components/trust-strip.svelte';
 	import RecentlyShipped from '../components/recently-shipped.svelte';
 	import OutcomeProof from '../components/outcome-proof.svelte';
+	import HowIWorkSection from '../components/how-i-work-section.svelte';
 	import ProofRail from '../components/proof-rail.svelte';
 	import HomeStackSection from '../components/home-stack-section.svelte';
 	import HomeSelectedWorkSection from '../components/home-selected-work-section.svelte';
@@ -93,8 +94,9 @@
 <div class="max-w-3xl mx-auto px-6" class:rune-glow={showRuneToast} bind:this={mainContainer}>
 	<HeroSection />
 	<TrustStrip />
-	<ProofRail />
 	<OutcomeProof />
+	<HowIWorkSection />
+	<ProofRail />
 	<RecentlyShipped />
 
 	<HomeStackSection />
