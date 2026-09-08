@@ -37,7 +37,7 @@ SHOW_DRAFTS=true
 - `GITHUB_TOKEN` powers the `/api/github` public activity endpoint.
 - `SHOW_DRAFTS=true` shows draft blog posts in dev/preview flows.
 
-Get a Resend API key from https://resend.com/api-keys.
+Get a Resend API key from <https://resend.com/api-keys>.
 
 ## Development Commands
 
@@ -54,7 +54,6 @@ Get a Resend API key from https://resend.com/api-keys.
 | `npm run check:lighthouse`    | Local Lighthouse SEO/accessibility gate |
 | `npm run check:bundle-budget` | Client JS/CSS bundle budget gate        |
 | `npm run check:links`         | Linkinator broken-link check            |
-| `npm run check:seo`           | Unlighthouse crawl against `SITE_URL`   |
 
 ## Features
 
