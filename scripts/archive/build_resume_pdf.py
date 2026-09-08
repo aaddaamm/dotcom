@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Generates static/adam_robinson.pdf directly from structured content."""
 
+import json
+from pathlib import Path
+
+CONTENT = json.loads(Path(__file__).with_name('resume_content.json').read_text())
+
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
 from reportlab.lib.colors import HexColor
@@ -110,20 +115,13 @@ def build():
     # Summary
     story.append(rule())
     story.append(Paragraph('SUMMARY', st['section']))
-    story.append(Paragraph(
-        'I have 15+ years building and modernizing production systems across fintech, healthcare, industrial '
-        'technology, and enterprise products. I take ownership of unfamiliar or difficult parts of a product: '
-        'read the code, learn the team\'s conventions, and work from the paths closest to the problem. I prefer '
-        'well-scoped changes that ship and leave the system and the handoff to the next engineer in better shape. '
-        'Recent work spans React, TypeScript/Node.js, and Rails.',
-        st['body']
-    ))
+    story.append(Paragraph(CONTENT['summary'], st['body']))
 
     # Experience
     story.append(rule())
     story.append(Paragraph('EXPERIENCE', st['section']))
 
-    story.append(Paragraph(company_line('MojoTech', 'Senior Software Engineer'), st['company']))
+    story.append(Paragraph(company_line('MojoTech', 'Senior Software Engineer / Technical Lead'), st['company']))
     story.append(Paragraph('Feb 2015 - Present  ·  Providence, RI', st['period']))
     story.append(Paragraph(
         'Software consultancy. Embedded with client teams across 15+ engagements. '
@@ -131,45 +129,17 @@ def build():
         st['body']
     ))
 
-    clients = [
-        (
-            'iCapital', 'May 2024 - present',
-            'Co-designed a Rails service that consolidated bulk nominee processing for thousands '
-            'of investments. Expanded localization across static and database-backed content and '
-            'led the team\'s Supernova v1-to-v2 component library migration.'
-        ),
-        (
-            'Healthcasts', 'Oct 2022 - May 2024',
-            'Partnered with Healthcasts across publishing, infrastructure, and identity. Delivered a headless '
-            'CMS that cut time-to-publish from weeks to days, then modernized EC2, deployed databases, '
-            'and the backend to TypeScript. Unified auth between legacy PHP/CMS and React/CMS applications, '
-            'enabling the next phase of an AI-platform overhaul.'
-        ),
-        (
-            'Angi', 'Nov 2020 - Sep 2022',
-            "Adapted to an expanded scope during Angi's rebrand, helping consolidate HomeAdvisor flows "
-            'into a shared Angi quiz flow in Java/Vue. Also worked in Rails/React at Handy and '
-            "Next.js/Contentful at Angie's List, took ownership of a Careers rewrite, and guided interns "
-            'through their first production release.'
-        ),
-        (
-            'Shell Techworks', 'Jun 2018 - Jul 2019',
-            'At Shell Techworks, a startup-style group inside Shell, built a React/Node.js application '
-            'for evaluating least-cost offshore-platform decommissioning paths. Used Ant Design and '
-            'LoopBack, iterating quickly to deliver the MVP onsite in Boston.'
-        ),
-    ]
+    clients = CONTENT['clients']
 
-    for company, period, desc in clients:
+    for company, title, period, desc in clients:
         story.append(Paragraph(
-            f'<font color="#2A7A7A">-</font>  <b>{company}</b>  <font color="#555555">· {period}</font>',
+            f'<font color="#2A7A7A">-</font>  <b>{company}</b>  <font color="#555555">· {title} · {period}</font>',
             st['client']
         ))
         story.append(Paragraph(desc, st['client_body']))
 
     story.append(Paragraph(
-        '<i><font color="#555555">Additional client engagements: Two Sigma · Welltok · Credit Karma · '
-        'Schneider Electric · School of Motion · Amica Mutual · AutoRaptor.</font></i>',
+        '<i><font color="#555555">' + CONTENT['earlier'] + '</font></i>',
         st['client_list']
     ))
     story.append(Spacer(1, 2))
@@ -185,12 +155,7 @@ def build():
     # Skills
     story.append(rule())
     story.append(Paragraph('SKILLS', st['section']))
-    skills = [
-        ('Core stack', 'TypeScript, React, Ruby on Rails, Node.js, SQL'),
-        ('Delivery range', 'Vue, Next.js, SvelteKit, Java, PHP (legacy)'),
-        ('Platform work', 'AWS/EC2, GitHub Actions, Auth0, Strapi, Contentful, i18n, component-library migration'),
-        ('Leadership', 'System design, technical discovery and scoping, embedded consulting, cross-team delivery, mentoring'),
-    ]
+    skills = CONTENT['skills']
     for category, items in skills:
         story.append(Paragraph(skill_line(category, items), st['skill_row']))
 

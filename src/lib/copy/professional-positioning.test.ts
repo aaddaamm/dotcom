@@ -4,7 +4,7 @@ import { positioning } from '$lib/copy';
 describe('professional positioning copy', () => {
 	it('leads with senior ownership while keeping consulting selective', () => {
 		expect(positioning.headline).toContain('Senior software engineer');
-		expect(positioning.summary).toContain('high-leverage');
+		expect(positioning.summary).toContain('lead delivery');
 		expect(positioning.consultingNote).toContain('select');
 		expect(positioning.consultingNote).toContain('embedded');
 	});

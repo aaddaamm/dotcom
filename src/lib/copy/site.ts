@@ -25,13 +25,13 @@ export type TrustProofItem = {
 };
 
 export const positioning = {
-	headline: 'Senior software engineer for teams with consequential work to ship.',
+	headline: 'Senior software engineer and technical lead.',
 	summary:
-		'I take ownership of unfamiliar, high-leverage product and platform work: learn the system, create momentum, and leave it easier to maintain.',
+		'I design systems, lead delivery, and build features across the stack. My work spans backend service architecture, full-stack feature development, and platform modernization.',
 	consultingNote:
 		'I also take select longer-term embedded consulting engagements where the scope, duration, and terms support real senior-level ownership.',
 	workingStyle:
-		'I mentor engineers, make room for good ideas, and step into leadership gaps when a team needs someone to create clarity and momentum.',
+		'I help define goals and technical approaches, coordinate delivery, and mentor engineers while contributing hands-on development.',
 	aiPractice:
 		'I use AI-assisted tools pragmatically, with the same—or more—review and accountability I bring to any contributor output.'
 } as const;

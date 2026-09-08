@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Generates static/adam_robinson.docx from structured content."""
 
+import json
+from pathlib import Path
+
+CONTENT = json.loads(Path(__file__).with_name('resume_content.json').read_text())
+
 from docx import Document
 from docx.shared import Pt, RGBColor, Inches
 from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -18,6 +23,7 @@ EMAIL = 'adam@adamrobinson.tech'
 
 
 def clear_paragraph_spacing(p):
+    p.paragraph_format.line_spacing = 1
     p.paragraph_format.space_before = Pt(0)
     p.paragraph_format.space_after = Pt(0)
 
@@ -68,9 +74,15 @@ def add_name_block(doc):
     p = doc.add_paragraph()
     clear_paragraph_spacing(p)
     p.paragraph_format.space_after = Pt(2)
-    run = p.add_run('adam robinson')
+    p.style = doc.styles['Title']
+    for style_name in ['Title', 'Normal']:
+        props = doc.styles[style_name].element.find(qn('w:pPr'))
+        if props is not None:
+            for border in list(props.findall(qn('w:pBdr'))):
+                props.remove(border)
+    run = p.add_run('Adam Robinson')
     run.font.name = 'JetBrains Mono'
-    run.font.size = Pt(26)
+    run.font.size = Pt(22)
     run.font.bold = False
     run.font.color.rgb = BLACK
 
@@ -111,7 +123,7 @@ def add_section_heading(doc, text):
     p = doc.add_paragraph()
     clear_paragraph_spacing(p)
     p.paragraph_format.space_before = Pt(2)
-    p.paragraph_format.space_after = Pt(6)
+    p.paragraph_format.space_after = Pt(3)
     run = p.add_run(text.upper())
     run.font.name = 'JetBrains Mono'
     run.font.size = Pt(8)
@@ -132,7 +144,7 @@ def add_body(doc, text, space_after=4):
 def add_role_header(doc, company, title, period, location=None):
     p = doc.add_paragraph()
     clear_paragraph_spacing(p)
-    p.paragraph_format.space_before = Pt(8)
+    p.paragraph_format.space_before = Pt(5)
     p.paragraph_format.space_after = Pt(1)
 
     r1 = p.add_run(company)
@@ -207,7 +219,7 @@ def add_skill_row(doc, category, items):
     clear_paragraph_spacing(p)
     p.paragraph_format.space_after = Pt(2)
 
-    r1 = p.add_run(f'{category:<12}')
+    r1 = p.add_run(f'{category}  ·  ')
     r1.font.name = 'JetBrains Mono'
     r1.font.size = Pt(9)
     r1.font.color.rgb = TEAL
@@ -244,51 +256,28 @@ def build():
 
     # Summary
     add_section_heading(doc, 'Summary')
-    add_body(doc,
-        'Senior software engineer and technical lead with 15+ years delivering production systems '
-        'across 15+ client engagements. Full-stack work in React, TypeScript/Node.js, and Rails '
-        'across fintech, healthcare, industrial technology, and enterprise products. Recent work '
-        'includes Rails bulk processing for nominee investments and a Strapi/React publishing '
-        'pipeline with unified Auth0 login.'
-    )
+    add_body(doc, CONTENT['summary'])
 
     # Experience
     add_section_heading(doc, 'Experience')
 
     add_role_header(doc, 'MojoTech', 'Senior Software Engineer / Technical Lead', 'Feb 2015 - Present', 'Providence, RI')
     add_body(doc,
-        'Delivered 15+ client projects as an embedded senior engineer and technical lead. '
-        'Selected clients:',
+        'Software consultancy. Embedded with client teams across 15+ engagements. Selected client engagements:',
         space_after=6
     )
 
-    clients = [
-        ('iCapital', 'Senior Software Engineer, Consultant', 'May 2024 - present',
-         'Co-designed a Rails service that consolidated bulk nominee processing for thousands '
-         'of investments. Expanded localization across static and database-backed content and '
-         "led the team's Supernova v1-to-v2 component library migration."),
-        ('Healthcasts', 'Technical Lead', 'Oct 2022 - May 2024',
-         'Led phased modernization of a medical publishing platform. Built a Strapi/React publishing '
-         'pipeline and updated AWS infrastructure and frameworks. Unified authentication across '
-         'products with Auth0, reducing publishing friction and unblocking an AI initiative.'),
-        ('Angi', 'Senior Software Engineer, Consultant', 'Nov 2020 - Sep 2022',
-         "Shipped across three post-merger codebases for HomeAdvisor, Handy, and Angie's List "
-         'using Vue/Java, Rails/React, and Next.js/Contentful. Mentored interns through their first '
-         'production release, a Careers page revamp.'),
-        ('Shell Techworks', 'Software Engineer', 'Jun 2018 - Jul 2019',
-         'Built a React and Node.js application that evaluated least-cost decommissioning paths '
-         'for end-of-life offshore oil platforms. Used an onsite Google Design Sprint to narrow '
-         'scope and deliver the MVP on schedule.'),
-    ]
+    clients = CONTENT['clients']
+
     for company, title, period, desc in clients:
         add_client_entry(doc, company, title, period, desc)
 
     p = doc.add_paragraph()
     clear_paragraph_spacing(p)
     p.paragraph_format.space_before = Pt(6)
-    p.paragraph_format.space_after = Pt(6)
+    p.paragraph_format.space_after = Pt(3)
     p.paragraph_format.left_indent = Inches(0.35)
-    r = p.add_run('Earlier clients include School of Motion, Amica Mutual, and AutoRaptor.')
+    r = p.add_run(CONTENT['earlier'])
     r.font.name = 'Calibri'
     r.font.size = Pt(9)
     r.font.italic = True
@@ -302,10 +291,8 @@ def build():
 
     # Skills
     add_section_heading(doc, 'Skills')
-    add_skill_row(doc, 'Backend', 'TypeScript, Ruby, SQL, Elixir  ·  Node.js, Ruby on Rails, Express, Phoenix')
-    add_skill_row(doc, 'Frontend', 'React, SvelteKit, Vue, Next.js')
-    add_skill_row(doc, 'Platform', 'AWS, Vercel, GitHub Actions  ·  Git, Prisma, Strapi, Contentful, Auth0')
-    add_skill_row(doc, 'AI', 'Codex, Claude, Pi, GitHub Copilot  ·  agent instructions, skills, verification workflows')
+    for category, items in CONTENT['skills']:
+        add_skill_row(doc, category, items)
 
     out = '/Users/adam/dotcom/static/adam_robinson.docx'
     doc.save(out)

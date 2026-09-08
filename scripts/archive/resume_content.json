@@ -1,0 +1,39 @@
+{
+	"summary": "Senior software engineer and technical lead with 15+ years of experience building production software. My work spans full-stack feature development, backend service architecture, and platform modernization. I combine hands-on development with technical leadership, from defining goals and technical approaches to coordinating delivery and mentoring engineers.",
+	"clients": [
+		[
+			"iCapital",
+			"Senior Software Engineer, Consultant",
+			"May 2024 - present",
+			"Develop features across iCapital’s investment platform. Helped architect and implement a Rails backend service for the Nominees reimplementation, supporting specialized international investments. Worked on backend translation migration using Mobility. Currently migrating custom frontend forms to a shared internal package."
+		],
+		[
+			"Healthcasts",
+			"Technical Lead",
+			"Oct 2022 - May 2024",
+			"Led development across publishing, authentication, and AI platform initiatives, helping define goals and technical approaches while implementing throughout. Co-designed and built a headless CMS workflow with another engineer, reducing a core process from weeks to a couple of days. Helped define and led an Auth0 authentication strategy requiring an extensive authentication-layer and backend rewrite. Led development and implemented parts of the AI platform."
+		],
+		[
+			"Angi",
+			"Senior Software Engineer, Consultant",
+			"Nov 2020 - Sep 2022",
+			"Developed Java/Vue.js features for the unified quiz flow during the Angi rebrand, then React/Rails features at Handy and Contentful/Next.js pages at Angi. Managed interns rebuilding the Careers page, then took over the remaining implementation after their internships ended."
+		],
+		[
+			"Shell Techworks",
+			"Software Engineer",
+			"Jun 2018 - Jul 2019",
+			"Built a React and Node.js application that evaluated least-cost decommissioning paths for end-of-life offshore oil platforms. Used an onsite Google Design Sprint to narrow scope and deliver the MVP on schedule."
+		]
+	],
+	"earlier": "Additional client engagements: Two Sigma · Welltok · Credit Karma · Schneider Electric · School of Motion · Amica Mutual · AutoRaptor.",
+	"skills": [
+		["Core stack", "TypeScript, React, Ruby on Rails, Node.js, SQL"],
+		["Delivery range", "Vue, Next.js, SvelteKit, Java, PHP (legacy)"],
+		["Platform work", "AWS/EC2, GitHub Actions, Auth0, Strapi, Contentful, Mobility"],
+		[
+			"Leadership",
+			"System design, goal setting, technical approach, delivery coordination, mentoring"
+		]
+	]
+}

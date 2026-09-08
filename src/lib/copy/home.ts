@@ -12,33 +12,33 @@ export type RecentShippedItem = {
 
 export const outcomeProofPoints: OutcomeProofPoint[] = [
 	{
-		headline: 'iCapital — bulk processing for thousands of investments',
+		headline: 'iCapital — backend services and full-stack features',
 		detail:
-			'Co-designed a Rails service that consolidated fragmented nominee processing, expanded localization, and led a component-library migration.',
+			'Helped architect and implement the Nominees backend service, worked on Mobility translations, and am migrating custom forms to a shared internal package.',
 		href: '/work/icapital'
 	},
 	{
 		headline: 'Healthcasts — publishing moved from weeks to days',
 		detail:
-			'Led a Strapi + React publishing pipeline, platform modernization, and Auth0 unification across products during an 18-month technical-lead engagement.',
+			'Led development and helped define goals and technical approaches across a Strapi/React publishing workflow, an authentication rewrite, and AI platform development.',
 		href: '/work/healthcasts'
 	},
 	{
-		headline: 'Angi — production delivery across 3 post-merger codebases',
+		headline: 'Angi — full-stack delivery and intern management',
 		detail:
-			'Shipped in Vue/Java, Rails/React, and Next.js/Contentful while mentoring interns through their first production release.',
+			'Built features in Java/Vue, Rails/React, and Next.js/Contentful. Managed interns rebuilding Careers, then took over the remaining implementation.',
 		href: '/work/angi'
 	}
 ];
 
 export const recentShipped: RecentShippedItem[] = [
 	{
-		title: 'iCapital — bulk nominee investment processing + localization',
+		title: 'iCapital — Nominees backend service + localization',
 		href: '/work/icapital',
 		type: 'Work'
 	},
 	{
-		title: 'Healthcasts — weeks-to-days publishing + auth modernization',
+		title: 'Healthcasts — publishing, authentication + AI development',
 		href: '/work/healthcasts',
 		type: 'Work'
 	},

@@ -40,44 +40,40 @@ export type GitLogItem = {
 export const selectedWork: WorkItem[] = [
 	{
 		slug: 'icapital',
-		title: 'iCapital — Fintech Platform Engineering',
+		title: 'iCapital — Full-Stack Feature Development',
 		employer: 'MojoTech',
 		period: 'May 2024–present',
 		role: 'Senior Software Engineer, Consultant',
 		description:
-			'Co-designed a Rails service that consolidated bulk nominee processing for thousands of investments, expanded localization, and led a component-library migration.',
+			'Develop features across iCapital’s investment platform, spanning backend services, localization, and shared frontend tooling.',
 		seoDescription:
-			'iCapital case study: embedded senior engineer co-designing Rails bulk nominee processing, localization, and component-library migration.',
+			'iCapital case study: Rails service architecture for Nominees, backend translation migration with Mobility, and custom forms migration to a shared package.',
 		stack: ['React', 'TypeScript', 'Node.js', 'Rails'],
 		outcome:
-			'Consolidated bulk nominee processing, expanded localization, and completed a Supernova v1→v2 component-library migration.',
+			'Helped architect and implement the Nominees backend service; ongoing work includes localization and shared frontend tooling.',
 		impactMetric:
-			'Centralized fragmented nominee flows in a Rails bulk-processing service that handles thousands of investments in one flow.',
+			'Helped architect and implement a Rails backend service for the Nominees reimplementation.',
 		constraints: [
-			'Large enterprise codebase with multiple specialized teams',
-			'High-visibility nominee investments initiative',
-			'Migration work depended on upstream component-library fixes'
+			'Specialized international investment workflows',
+			'Feature development within a large enterprise platform'
 		],
 		decisions: [
-			'Co-designed a Rails service to centralize bulk nominee processing',
-			'Expanded i18n through both static UI and database-backed content',
-			'Sequenced Supernova migration with coordinated library-team feedback'
+			'Helped architect a Rails backend service for the Nominees reimplementation',
+			'Worked on migrating backend translation capabilities using Mobility',
+			'Migrating custom frontend forms to a shared internal package'
 		],
-		tradeoffs: [
-			'Prioritized scalable service boundaries over quick one-off patches',
-			'Accepted incremental rollout to reduce risk in core investment flows'
-		],
+		tradeoffs: [],
 		results: [
-			'Centralized fragmented nominee flows into a bulk flow for thousands of investments.',
-			'Expanded localization across static UI and database-backed content.',
-			'Completed Supernova v1→v2 migration while maintaining active delivery.'
+			'Helped architect and implement the Nominees backend service.',
+			'Worked on the backend translation migration using Mobility.',
+			'Custom frontend forms migration to a shared internal package is in progress.'
 		],
 		caseStudy: {
 			situation:
-				"iCapital's platform handles alternative investment transactions for wealth managers in a large codebase maintained by specialized teams. I joined through MojoTech as an embedded senior engineer working across the stack.",
-			work: "Expanded translation support across static UI copy and database-backed content using the Mobility gem. For the Nominee Investments project, co-designed and built a Rails service that consolidated several bulk-processing flows for thousands of investments. Also drove the team's migration from Supernova v1 to v2, working through breaking changes and coordinating upstream component fixes with the library team.",
+				'I joined iCapital through MojoTech as an embedded senior engineer. My work has focused primarily on feature development across its investment platform.',
+			work: 'Helped architect and implement a Rails backend service for the reimplementation of Nominees, a business unit handling specialized international investments. Worked on migrating backend translation capabilities using Mobility. More recently, I have been migrating custom frontend forms to a shared internal package.',
 			outcome:
-				'The engagement continues across backend service design, localization, and component-library migration.'
+				'The engagement continues across feature development, backend service architecture, localization, and shared frontend tooling.'
 		}
 	},
 	{
@@ -87,37 +83,36 @@ export const selectedWork: WorkItem[] = [
 		period: 'Nov 2020–Sep 2022',
 		role: 'Senior Software Engineer, Consultant',
 		description:
-			'Shipped across three post-merger product codebases in Vue/Java, Rails/React, and Next.js/Contentful while mentoring interns through their first production release.',
+			'Delivered frontend and backend features across Angi and Handy, and managed interns rebuilding the Careers page before taking over the remaining implementation.',
 		seoDescription:
-			'Angi case study: senior engineering delivery across post-merger Vue/Java, Rails/React, and Next.js/Contentful codebases.',
+			'Angi case study: Java/Vue quiz features, React/Rails work at Handy, Contentful/Next.js pages, and managing interns on a Careers rebuild.',
 		stack: ['Vue', 'Java', 'Ruby on Rails', 'Next.js', 'Contentful'],
 		outcome:
-			'Shipped across three post-merger codebases while mentoring interns through a production release.',
+			'Delivered across Java/Vue, React/Rails, and Next.js/Contentful; managed the Careers interns and took over the remaining implementation.',
 		impactMetric:
-			'Shipped unified flows across three post-merger codebases: Vue/Java, Rails/React, and Next.js.',
+			'Delivered frontend and backend features across Angi and Handy during the Angi rebrand.',
 		constraints: [
-			'Post-merger environment with separate stacks and teams',
-			'Need to deliver while context-switching between codebases'
+			'A product-direction pivot during the Angi rebrand',
+			'Work spanning multiple frontend and backend stacks'
 		],
 		decisions: [
-			'Unified quiz flow across brands in Vue/Java',
-			'Improved assignment and ingestion workflows in Rails/React',
-			'Built CMS-driven Next.js content experience and mentored interns on a live launch'
+			'Developed Java and Vue.js features for the unified quiz flow',
+			'Contributed React and Rails features under the Handy brand',
+			'Built CMS-driven Angi pages using Contentful and Next.js',
+			'Managed interns rebuilding the Careers page and took over remaining implementation after their internships ended'
 		],
-		tradeoffs: [
-			'Optimized for delivery velocity instead of deep rewrites in each codebase',
-			'Balanced mentorship time with hands-on product delivery'
-		],
+		tradeoffs: [],
 		results: [
-			'Unified and shipped flows across HomeAdvisor, Handy, and Angi.',
-			'Mentored interns through a real release; delivered a production-ready Careers revamp.'
+			'Delivered frontend and backend features across Angi and Handy.',
+			'Built CMS-driven Angi pages using Contentful and Next.js.',
+			'Managed interns on the Careers rebuild, then took over the remaining implementation.'
 		],
 		caseStudy: {
 			situation:
-				"Angi was in the middle of a merger. HomeAdvisor, Handy, and Angie's List still operated as separate products with their own codebases, stacks, and teams.",
-			work: "On HomeAdvisor, worked in Vue and Java to unify the user quiz flow across the merging brands. On Handy, worked in Rails and React on professional assignment logic and job ingestion for partner stores. On Angie's List, built a CMS-driven Next.js content experience for project descriptions with varied layouts. I also coached a team of interns through a Careers page revamp and their first production release.",
+				'I worked as part of a team at Angi through MojoTech. Our assignment pivoted to the unified quiz flow when the company chose to rebrand as Angi.',
+			work: 'Developed backend features in Java and frontend features in Vue.js for the unified quiz flow. Then contributed frontend and backend development under the Handy brand using React and Rails. Built CMS-driven Angi pages using Contentful and Next.js. I also managed interns rebuilding the Careers page, then took over the remaining implementation after their internships ended.',
 			outcome:
-				'Shipped across three products and stacks while mentoring interns through a production release.'
+				'Delivered across multiple products and stacks while taking on responsibility for the Careers rebuild and the interns working on it.'
 		}
 	},
 	{
@@ -160,38 +155,35 @@ export const selectedWork: WorkItem[] = [
 		period: 'Oct 2022–May 2024',
 		role: 'Technical Lead',
 		description:
-			'Technical lead who delivered a Strapi/React publishing pipeline that cut time-to-publish from weeks to days, then modernized infrastructure and unified authentication.',
+			'Led development across publishing, authentication, and AI platform initiatives, helping define goals and technical approaches while implementing throughout.',
 		seoDescription:
-			'Healthcasts case study: technical lead who cut publishing from weeks to days with Strapi/React, then modernized infrastructure and Auth0 login.',
+			'Healthcasts case study: technical leadership and hands-on development across a weeks-to-days CMS workflow, authentication rewrite, and AI platform.',
 		stack: ['React', 'Express', 'Auth0', 'AWS', 'Strapi', 'PHP (legacy)'],
 		outcome:
-			'Cut time-to-publish from weeks to days during an 18-month engagement spanning publishing, infrastructure, and authentication',
+			'Reduced a core publishing process from weeks to a couple of days; led development across authentication and AI platform initiatives.',
 		impactMetric:
-			'Cut time-to-publish from weeks to days with a Strapi/React publishing pipeline, then unified authentication with Auth0 during an 18-month engagement.',
+			'Co-designed and implemented a headless CMS workflow that reduced a core publishing process from weeks to a couple of days.',
 		constraints: [
-			'Legacy platform and publishing workflow friction',
-			'Auth fragmentation across multiple product surfaces'
+			'A core publishing workflow that took weeks',
+			'A new authentication strategy requiring an extensive backend rewrite'
 		],
 		decisions: [
-			'Built Strapi + React publishing pipeline for faster editorial throughput',
-			'Modernized AWS/framework stack to supported versions',
-			'Unified authentication with Auth0 across platforms'
+			'Helped define goals and technical approaches across publishing, authentication, and AI platform work',
+			'Co-designed and implemented a custom headless CMS workflow with another engineer',
+			'Helped define and led implementation of a new authentication strategy using Auth0'
 		],
-		tradeoffs: [
-			'Phased modernization to keep production operations stable',
-			'Deferred non-critical polish while unblocking identity-dependent initiatives'
-		],
+		tradeoffs: [],
 		results: [
-			'Cut time-to-publish from weeks to days for core medical deliverables.',
-			'Unified fragmented authentication in one secure login flow across platforms.',
-			'Initial MVP expanded into an 18-month delivery engagement.'
+			'Reduced a core publishing process from weeks of work to a couple of days.',
+			'Led and contributed to an extensive rewrite of the authentication layer and backend.',
+			'Led development and implemented parts of the AI platform.'
 		],
 		caseStudy: {
 			situation:
-				"Brought in as tech lead to modernize Healthcasts' core publication workflow and platform infrastructure.",
-			work: 'Built a new publishing pipeline around a headless CMS (Strapi) and a custom React rendering layer, reducing time-to-publish for their core medical consensus deliverable. Updated AWS infrastructure and migrated frameworks to current, supported versions. Then unified login across all their platforms with Auth0. The single secure flow also unblocked a parallel AI initiative dependent on a cleaner identity layer.',
+				'I served as technical lead throughout the Healthcasts engagement, leading development and helping define project goals and technical approaches across publishing, authentication, and AI platform initiatives.',
+			work: 'Co-designed and implemented a custom headless CMS workflow using Strapi and React with another engineer. Helped define and led implementation of a new authentication strategy using Auth0, including an extensive rewrite of the authentication layer and backend. Subsequently led development and implemented parts of the client’s AI platform, helping shape its goals and technical approach.',
 			outcome:
-				'The MVP expanded into an 18-month engagement spanning publishing, infrastructure, and authentication.'
+				'The publishing workflow reduced a core process from weeks of work to a couple of days. Throughout the engagement, I combined technical leadership with hands-on implementation across publishing, authentication, and AI platform development.'
 		}
 	}
 ];
@@ -278,13 +270,13 @@ export const gitLog: GitLogItem[] = [
 	{
 		sha: sha('icapital-2024'),
 		ref: 'HEAD → main',
-		message: 'feat(icapital): embed with fintech platform engineering team',
+		message: 'feat(icapital): build investment platform features and backend services',
 		period: 'May 2024–present'
 	},
 	{
 		sha: sha('healthcasts-2022'),
 		ref: 'feat/healthcasts',
-		message: 'feat(healthcasts): lead platform modernization from legacy PHP',
+		message: 'feat(healthcasts): lead publishing, authentication, and AI development',
 		period: 'Oct 2022–May 2024'
 	},
 	{
