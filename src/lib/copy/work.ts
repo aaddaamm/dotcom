@@ -30,13 +30,6 @@ export type EarlierWorkItem = {
 	description: string;
 };
 
-export type GitLogItem = {
-	sha: string;
-	ref: string;
-	message: string;
-	period: string;
-};
-
 export const selectedWork: WorkItem[] = [
 	{
 		slug: 'icapital',
@@ -254,65 +247,5 @@ export const earlierWork: EarlierWorkItem[] = [
 		period: 'Mar 2011–Feb 2015',
 		description:
 			'Progressed from production control into full-stack and database development for claims, policy, financial transaction, and payment systems.'
-	}
-];
-
-function sha(seed: string): string {
-	let h = 0x811c9dc5;
-	for (let i = 0; i < seed.length; i++) {
-		h ^= seed.charCodeAt(i);
-		h = Math.imul(h, 0x01000193) >>> 0;
-	}
-	return h.toString(16).slice(0, 7);
-}
-
-export const gitLog: GitLogItem[] = [
-	{
-		sha: sha('icapital-2024'),
-		ref: 'HEAD → main',
-		message: 'feat(icapital): build investment platform features and backend services',
-		period: 'May 2024–present'
-	},
-	{
-		sha: sha('healthcasts-2022'),
-		ref: 'feat/healthcasts',
-		message: 'feat(healthcasts): lead publishing, authentication, and AI development',
-		period: 'Oct 2022–May 2024'
-	},
-	{
-		sha: sha('angi-2021'),
-		ref: 'feat/angi',
-		message: 'feat(angi): deliver across three merged product codebases',
-		period: 'Nov 2020–Sep 2022'
-	},
-	{
-		sha: sha('school-of-motion-2020'),
-		ref: 'feat/school-of-motion',
-		message: 'feat(school-of-motion): build edtech platform features',
-		period: '2020'
-	},
-	{
-		sha: sha('shell-2018'),
-		ref: 'feat/shell',
-		message: 'feat(shell): build decommissioning tooling for oil platforms',
-		period: 'Jun 2018–Jul 2019'
-	},
-	{
-		sha: sha('amica-2017'),
-		ref: 'chore/amica',
-		message: 'chore(amica): maintain insurance backend systems',
-		period: '2017–2018'
-	},
-	{
-		sha: sha('autoraptor-2015'),
-		ref: 'feat/autoraptor',
-		message: 'feat(autoraptor): build automotive crm features',
-		period: '2015'
-	},
-	{
-		sha: sha('beacon-2011'),
-		ref: 'feat/beacon',
-		message: 'feat(beacon): progress from production control to application development',
-		period: 'Mar 2011–Feb 2015'
 	}
 ];
