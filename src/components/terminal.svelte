@@ -123,6 +123,7 @@
 	class:innie-mode={state.isInnieMode()}
 	role="region"
 	aria-label="Terminal"
+	inert={!fullscreen && !state.isOpen}
 >
 	{#if !fullscreen}
 		<div class="terminal-bar">
@@ -194,11 +195,13 @@
 		max-height: 500px;
 		z-index: 200;
 		border-top: 1px solid #1a1a1a;
+		visibility: hidden;
 		transform: translateY(100%);
 		transition: transform 300ms ease-out;
 	}
 
 	.drawer.open {
+		visibility: visible;
 		transform: translateY(0);
 	}
 

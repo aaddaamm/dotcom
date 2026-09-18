@@ -1,57 +1,25 @@
 <script lang="ts">
 	import { trackCTA } from '$lib/analytics';
-	import { heroMessaging, homepageMetrics, positioning } from '$lib/copy';
+	import { positioning } from '$lib/copy';
 	import { ROLE_TITLE } from '$lib/constants';
 </script>
 
-<!-- Hero -->
-<section aria-label="Introduction" class="pt-20 sm:pt-28 pb-10">
-	<div class="flex items-center gap-4 mb-4">
+<section aria-label="Introduction" class="pt-20 sm:pt-28 pb-16">
+	<div class="wordmark">
 		<div class="hero-cursor cursor-blink" aria-hidden="true"></div>
-		<h1 class="hero-name font-mono">
-			adam robinson
-			<span class="sr-only">— {ROLE_TITLE}</span>
-		</h1>
+		<p class="hero-name font-mono">adam robinson</p>
 	</div>
-	<p class="hero-subtitle font-mono" role="doc-subtitle">{ROLE_TITLE}</p>
-	<p class="positioning-headline">{positioning.headline}</p>
-	<p class="body-text">{positioning.summary}</p>
-	<p class="consulting-note">{positioning.consultingNote}</p>
-	<p class="availability-line" aria-label="Current availability">
-		<span class="availability-dot" aria-hidden="true"></span>
-		{heroMessaging.availability}
-	</p>
-	<div class="hero-stats mt-4 mb-2">
-		<div class="stats-numbers">
-			{#each homepageMetrics.numbers as metric (metric.label)}
-				<div class="stat-item">
-					<span class="stat-number">{metric.value}</span>
-					<span class="stat-label">{metric.label}</span>
-				</div>
-			{/each}
-		</div>
-		<div class="stats-industries" aria-label="Industries">
-			{#each homepageMetrics.industries as industry, i (industry)}
-				{#if i > 0}<span class="industry-sep" aria-hidden="true">/</span>{/if}
-				<span class="industry-tag">{industry}</span>
-			{/each}
-		</div>
-	</div>
-
-	<div class="flex flex-col sm:flex-row gap-3 mt-3">
+	<p class="hero-subtitle font-mono">{ROLE_TITLE}</p>
+	<h1>{positioning.headline}</h1>
+	<p class="summary">{positioning.summary}</p>
+	<p class="industries">Fintech · Healthcare · Industrial Technology · Insurance</p>
+	<div class="actions">
 		<a
-			href="/contact"
+			href="#work"
 			class="btn-primary text-center"
-			onclick={() => trackCTA('Start a conversation', 'home-hero-primary')}
+			onclick={() => trackCTA('Explore my work', 'home-hero-primary')}
 		>
-			Start a conversation
-		</a>
-		<a
-			href="/work"
-			class="btn-secondary text-center"
-			onclick={() => trackCTA('Explore selected work', 'home-hero-secondary')}
-		>
-			Explore selected work
+			Explore my work
 		</a>
 		<a
 			href="/adam_robinson.pdf"
@@ -61,150 +29,64 @@
 			Download résumé
 		</a>
 	</div>
-
-	<div class="mini-cta-links" aria-label="Choose your path">
-		<a href="/contact" onclick={() => trackCTA('Hiring mini-CTA', 'home-hero-hiring')}>
-			Hiring a senior engineer?
-		</a>
-		<span aria-hidden="true">•</span>
-		<a href="/contact" onclick={() => trackCTA('Contract mini-CTA', 'home-hero-contract')}>
-			Need embedded contract help?
-		</a>
-	</div>
 </section>
 
 <style>
+	.wordmark {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		margin-bottom: 24px;
+	}
 	.hero-cursor {
 		width: 18px;
 		height: 64px;
 		border-radius: 3px;
-		background-color: var(--color-accent);
+		background: var(--color-accent);
 		flex-shrink: 0;
 	}
-
 	.hero-name {
-		font-size: 52px;
+		font-size: clamp(28px, 6vw, 52px);
 		font-weight: 500;
 		letter-spacing: -1.5px;
-		color: var(--color-text);
-		line-height: 1;
+		line-height: 1.1;
+		margin: 0;
 	}
-
 	.hero-subtitle {
-		font-size: 14px;
-		font-weight: 500;
-		letter-spacing: 3px;
-		color: var(--color-accent);
+		font-size: 12px;
+		letter-spacing: 1.5px;
 		text-transform: uppercase;
+		color: var(--color-muted);
 		margin-bottom: 24px;
 	}
-
-	.hero-stats {
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-		align-items: flex-start;
+	h1 {
+		font-size: clamp(30px, 5vw, 44px);
+		font-weight: 500;
+		line-height: 1.18;
+		letter-spacing: -1.5px;
+		text-wrap: balance;
+		margin-bottom: 24px;
 	}
-
-	.stats-numbers {
-		display: flex;
-		gap: 32px;
+	.summary {
+		font-size: 17px;
+		line-height: 1.8;
+		max-width: 42rem;
 	}
-
-	.stat-item {
-		text-align: left;
-	}
-
-	.stat-number {
-		display: block;
-		font-weight: 600;
-		font-size: 1.125rem;
-		color: var(--color-accent);
-		font-family: var(--font-mono);
-	}
-
-	.stat-label {
-		display: block;
-		font-size: 0.7rem;
+	.industries {
 		color: var(--color-muted);
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		margin-top: 2px;
+		font-size: 13px;
+		line-height: 1.8;
+		margin-top: 24px;
 	}
-
-	.stats-industries {
+	.actions {
 		display: flex;
 		flex-wrap: wrap;
-		align-items: center;
-		gap: 8px;
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		color: var(--color-muted);
-		text-transform: uppercase;
-		letter-spacing: 1.5px;
+		gap: 16px;
+		margin-top: 32px;
 	}
-
-	.industry-sep {
-		color: color-mix(in srgb, var(--color-muted) 40%, transparent);
-	}
-
-	.industry-tag {
-		color: var(--color-muted);
-	}
-
-	.positioning-headline {
-		font-family: var(--font-mono);
-		font-size: 1rem;
-		font-weight: 500;
-		line-height: 1.6;
-		color: var(--color-text);
-		margin: 0 0 0.5rem;
-	}
-
-	.consulting-note {
-		font-size: 0.9rem;
-		line-height: 1.6;
-		color: var(--color-muted);
-		margin: 0.75rem 0 0;
-	}
-
-	.availability-line {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		margin-top: 0.75rem;
-		font-family: var(--font-mono);
-		font-size: 0.78rem;
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		color: var(--color-text);
-	}
-
-	.availability-dot {
-		width: 0.5rem;
-		height: 0.5rem;
-		border-radius: 999px;
-		background: var(--color-accent);
-		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 18%, transparent);
-	}
-
-	.mini-cta-links {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.45rem;
-		margin-top: 0.75rem;
-		font-size: 0.82rem;
-		color: var(--color-muted);
-	}
-
-	.mini-cta-links a {
-		color: var(--color-muted);
-		text-decoration: underline;
-		text-underline-offset: 2px;
-		transition: color 0.2s ease;
-	}
-
-	.mini-cta-links a:hover {
-		color: var(--color-text);
+	@media (max-width: 480px) {
+		.actions {
+			flex-direction: column;
+		}
 	}
 </style>

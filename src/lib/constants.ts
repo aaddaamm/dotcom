@@ -1,7 +1,7 @@
 export const SITE_URL = 'https://www.adamrobinson.tech';
 export const SITE_CONTENT_LASTMOD = '2026-07-14';
 export const EMAIL = 'adam@adamrobinson.tech';
-export const ROLE_TITLE = 'Senior Software Engineer';
+export const ROLE_TITLE = 'Senior Software Engineer & Technical Lead';
 export const GITHUB_USERNAME = 'aaddaamm';
 const X_HANDLE = 'Adam623753';
 const INSTAGRAM_HANDLE = 'adamrobinson7251';

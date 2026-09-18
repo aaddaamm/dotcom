@@ -25,9 +25,9 @@ export type TrustProofItem = {
 };
 
 export const positioning = {
-	headline: 'Senior software engineer and technical lead.',
+	headline: 'I turn complicated business problems into software that ships.',
 	summary:
-		'I design systems, lead delivery, and build features across the stack. My work spans backend service architecture, full-stack feature development, and platform modernization.',
+		'For 15+ years, I’ve worked across software engineering, technical leadership, architecture, and platform modernization. I help teams turn ambiguous requirements into practical technical solutions, then stay hands-on to build and deliver them.',
 	consultingNote:
 		'I also take select longer-term embedded consulting engagements where the scope, duration, and terms support real senior-level ownership.',
 	workingStyle:

@@ -1,36 +1,52 @@
 <script lang="ts">
 	import { positioning } from '$lib/copy';
+	const principles = [
+		{
+			title: 'Understand the problem',
+			detail:
+				'Learn the domain, read the existing code, and work with stakeholders to turn ambiguous requirements into a useful scope.'
+		},
+		{
+			title: 'Make the technical decisions clear',
+			detail:
+				'Define service boundaries, evaluate tradeoffs, and break modernization work into changes the team can implement and support.'
+		},
+		{ title: 'Build alongside the team', detail: positioning.workingStyle }
+	];
 </script>
 
 <section aria-labelledby="how-i-work-heading" class="py-14 section-border">
-	<h2 id="how-i-work-heading" class="section-heading">
-		How I work
-		<span class="accent-dot heading-accent-dot" aria-hidden="true">.</span>
-	</h2>
-	<div class="how-i-work-copy">
-		<p class="body-text">{positioning.workingStyle}</p>
-		<p class="body-text muted-text">{positioning.aiPractice}</p>
-		<p class="consulting-note">{positioning.consultingNote}</p>
+	<h2 id="how-i-work-heading" class="section-heading">How I Work</h2>
+	<div class="principles">
+		{#each principles as principle (principle.title)}
+			<div>
+				<h3>{principle.title}</h3>
+				<p>{principle.detail}</p>
+			</div>
+		{/each}
 	</div>
+	<p class="ai-practice">{positioning.aiPractice}</p>
 </section>
 
 <style>
-	.how-i-work-copy {
+	.principles {
 		display: grid;
-		gap: 1rem;
-		max-width: 46rem;
+		gap: 24px;
 	}
-
-	.how-i-work-copy p {
+	h3 {
+		font-size: 17px;
+		font-weight: 500;
+		margin-bottom: 8px;
+	}
+	p {
+		color: var(--color-muted);
+		line-height: 1.8;
 		margin: 0;
 	}
-
-	.consulting-note {
-		padding-top: 1rem;
+	.ai-practice {
 		border-top: 1px solid var(--color-border);
-		font-family: var(--font-mono);
-		font-size: 0.82rem;
-		line-height: 1.7;
-		color: var(--color-muted);
+		padding-top: 24px;
+		margin-top: 24px;
+		font-size: 14px;
 	}
 </style>

@@ -1,5 +1,13 @@
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+
+// Authorize the existing early theme initializer without allowing arbitrary inline scripts.
+const appTemplate = readFileSync(new URL('./src/app.html', import.meta.url), 'utf8');
+const themeScript = appTemplate.match(/<script id="theme-init">([\s\S]*?)<\/script>/)?.[1];
+if (!themeScript) throw new Error('Theme initializer is missing from app.html');
+const themeScriptHash = `sha256-${createHash('sha256').update(themeScript).digest('base64')}`;
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -19,7 +27,7 @@ const config = {
 				'default-src': ['self'],
 				'script-src': isDev
 					? ['self', 'unsafe-inline', 'unsafe-eval', 'va.vercel-scripts.com']
-					: ['self', 'va.vercel-scripts.com'],
+					: ['self', 'va.vercel-scripts.com', themeScriptHash],
 				'style-src': ['self', 'unsafe-inline'],
 				'img-src': ['self', 'data:', 'https:'],
 				'connect-src': isDev

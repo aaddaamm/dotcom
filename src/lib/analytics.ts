@@ -10,6 +10,8 @@ function track(name: string, data?: VaEventPayload) {
 }
 
 export type CtaLocation =
+	| 'home-bottom-primary'
+	| 'home-bottom-resume'
 	| 'home-hero-primary'
 	| 'home-hero-secondary'
 	| 'home-hero-hiring'
@@ -49,12 +51,7 @@ export function trackFormValidationError(fieldCount: number) {
 }
 
 export type ContactIntent =
-	| 'full-time'
-	| 'contract'
-	| 'consulting'
-	| 'speaking'
-	| 'collaboration'
-	| 'general';
+	'full-time' | 'contract' | 'consulting' | 'speaking' | 'collaboration' | 'general';
 
 export function trackFormSubmit(
 	intent: ContactIntent,

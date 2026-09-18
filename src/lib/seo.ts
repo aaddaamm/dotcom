@@ -6,9 +6,9 @@ export type SeoConfig = {
 
 export const pageSeo = {
 	home: {
-		title: 'Adam Robinson — Senior Software Engineer',
+		title: 'Adam Robinson — Senior Software Engineer & Technical Lead',
 		description:
-			'Providence senior software engineer with fifteen-plus years across fintech, healthcare, and enterprise. Open to full-time roles and select contract work.',
+			'Senior software engineer and technical lead turning complicated business problems into software that ships. Architecture, modernization, and hands-on delivery.',
 		path: '/'
 	},
 	hire: {

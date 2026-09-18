@@ -1,7 +1,6 @@
 <script lang="ts">
 	import SeoHead from '../../../components/seo-head.svelte';
 	import PageHeader from '../../../components/page-header.svelte';
-	import CaseStudy from '../../../components/case-study.svelte';
 	import JsonLd from '../../../components/json-ld.svelte';
 	import { breadcrumbList } from '$lib/utils';
 
@@ -62,22 +61,15 @@
 		backLabel="back to work"
 	/>
 
-	<div class="stack-tags">
-		{#each project.stack as tag (tag)}
-			<span class="stack-tag">{tag}</span>
-		{/each}
-	</div>
-
+	<p class="case-intro">{project.description}</p>
 	{#if project.impactMetric}
-		<p class="impact-metric">Impact: {project.impactMetric}</p>
+		<p class="impact-metric">{project.impactMetric}</p>
 	{/if}
-
 	{#if project.caseStudy}
-		<CaseStudy
-			situation={project.caseStudy.situation}
-			work={project.caseStudy.work}
-			outcome={project.caseStudy.outcome}
-		/>
+		<section class="detail-block" aria-labelledby="problem-heading">
+			<h2 id="problem-heading" class="detail-heading">The problem and my role</h2>
+			<p class="case-copy">{project.caseStudy.situation}</p>
+		</section>
 	{/if}
 
 	{#if project.constraints?.length}
@@ -93,7 +85,7 @@
 
 	{#if project.decisions?.length}
 		<section class="detail-block" aria-labelledby="decisions-heading">
-			<h2 id="decisions-heading" class="detail-heading">Key decisions</h2>
+			<h2 id="decisions-heading" class="detail-heading">Technical approach</h2>
 			<ul class="detail-list">
 				{#each project.decisions as item (item)}
 					<li>{item}</li>
@@ -113,16 +105,21 @@
 		</section>
 	{/if}
 
-	{#if project.results?.length}
-		<section class="detail-block" aria-labelledby="results-heading">
-			<h2 id="results-heading" class="detail-heading">Results</h2>
-			<ul class="detail-list">
-				{#each project.results as item (item)}
-					<li>{item}</li>
-				{/each}
-			</ul>
+	{#if project.caseStudy}
+		<section class="detail-block" aria-labelledby="built-heading">
+			<h2 id="built-heading" class="detail-heading">What I built</h2>
+			<p class="case-copy">{project.caseStudy.work}</p>
+		</section>
+		<section class="detail-block" aria-labelledby="outcome-heading">
+			<h2 id="outcome-heading" class="detail-heading">Outcome</h2>
+			<p class="case-copy">{project.caseStudy.outcome}</p>
 		</section>
 	{/if}
+	<div class="stack-tags" aria-label="Technologies used">
+		{#each project.stack as tag (tag)}
+			<span class="stack-tag">{tag}</span>
+		{/each}
+	</div>
 
 	<div class="cs-cta">
 		<a href="/contact" class="btn-primary">Get In Touch</a>
@@ -150,6 +147,17 @@
 </div>
 
 <style>
+	.case-intro,
+	.case-copy {
+		line-height: 1.8;
+	}
+	.case-intro {
+		margin-bottom: 24px;
+		font-size: 18px;
+	}
+	.stack-tags {
+		margin-top: 32px;
+	}
 	.stack-tags {
 		display: flex;
 		flex-wrap: wrap;

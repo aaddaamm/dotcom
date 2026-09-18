@@ -1,0 +1,70 @@
+{
+	"headline": "SENIOR SOFTWARE ENGINEER & TECHNICAL LEAD",
+	"summary": "Solutions-focused technical leader with 15+ years of experience translating complex business and operational needs into production software, platform architecture, and modernization plans. Trusted across 15+ embedded client engagements in fintech, healthcare, industrial technology, insurance, and enterprise environments. Combines systems thinking, stakeholder discovery, technical decision-making, and cross-functional delivery with enough hands-on depth to guide implementation, resolve ambiguity, and carry solutions into production.",
+	"capabilities": "Solution design and technical discovery • Requirements translation and MVP definition • Backend services and API architecture • Platform and legacy modernization • Authentication and identity strategy • Cloud-based application delivery • Integration and localization workflows • Technical leadership and mentoring • Cross-functional and distributed-team delivery",
+	"outcomes": [
+		"Reduced a core healthcare publishing workflow from weeks to a couple of days by co-designing and delivering a headless CMS architecture.",
+		"Defined the scope and delivered an industrial decommissioning MVP on schedule after resolving domain and planning ambiguity through an onsite Design Sprint.",
+		"Helped architect a Rails service boundary for specialized international investment processing and advanced shared localization and frontend-platform capabilities."
+	],
+	"clients": [
+		[
+			"iCapital",
+			"Senior Software Engineer Consultant",
+			"May 2024–Present",
+			[
+				"Helped architect and implement a Rails backend service for Nominees, a business unit supporting specialized international investments; translated complex domain workflows into a maintainable service boundary.",
+				"Modernized backend localization with Mobility and migrated custom frontend forms toward a shared internal package, improving consistency and reuse across the investment platform.",
+				"Partner across an enterprise engineering environment on feature delivery, service architecture, localization, and shared tooling using Rails, React, TypeScript, and Node.js."
+			]
+		],
+		[
+			"Healthcasts",
+			"Technical Lead",
+			"Oct 2022–May 2024",
+			[
+				"Led technical direction and delivery across publishing, identity, and AI-platform initiatives, helping define project goals, solution approaches, and phased implementation plans.",
+				"Co-designed and implemented a Strapi and React headless CMS workflow that reduced a core publishing process from weeks to a couple of days.",
+				"Helped define and led an Auth0 authentication strategy, including an extensive rewrite of the authentication layer and backend; later led development and implementation of portions of the client’s AI platform."
+			]
+		],
+		[
+			"Angi and Handy",
+			"Senior Software Engineer Consultant",
+			"Nov 2020–Sep 2022",
+			[
+				"Delivered backend and frontend capabilities across the Angi rebrand and multiple product platforms using Java, Vue, React, Rails, Next.js, and Contentful.",
+				"Adapted to changing business priorities and technology stacks while maintaining delivery continuity across the unified quiz flow, Handy product work, and CMS-driven Angi experiences.",
+				"Managed interns rebuilding the Careers experience, then assumed ownership of the remaining implementation to carry the initiative through completion."
+			]
+		],
+		[
+			"Shell Techworks",
+			"Software Engineer",
+			"Jun 2018–Jul 2019",
+			[
+				"Worked onsite with business and technical stakeholders to turn an ambiguous, high-cost operational problem into a defined MVP using the Google Design Sprint process.",
+				"Designed and built a React and Node.js application that ingested offshore-platform data and evaluated least-cost paths for decommissioning end-of-life assets; delivered the MVP on schedule."
+			]
+		]
+	],
+	"earlier": "Two Sigma (investment management) · Credit Karma (consumer finance) · Schneider Electric (industrial technology; technical lead) · Welltok (healthcare) · Amica Mutual (insurance) · School of Motion (education) · AutoRaptor (automotive CRM)",
+	"beacon": [
+		"Progressed from deployment and environment management into full-stack and database development for claims, policy, financial transaction, and payment systems in a regulated insurance environment.",
+		"Built broad operational and application context across production support, releases, databases, and business-critical systems, establishing the foundation for later architecture and consulting work."
+	],
+	"skills": [
+		[
+			"Architecture and delivery",
+			"System design, technical discovery, service boundaries, modernization roadmaps, authentication, CMS architecture, localization, delivery coordination, mentorship"
+		],
+		[
+			"Cloud and platforms",
+			"AWS, Auth0, GitHub Actions, Docker, Vercel, Netlify, Redis, PostgreSQL, Contentful, Strapi"
+		],
+		[
+			"Engineering depth",
+			"TypeScript, React, Node.js, Ruby on Rails, SQL, Java, Vue, Next.js, Express, Elixir/Phoenix, PHP, Svelte"
+		]
+	]
+}

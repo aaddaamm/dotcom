@@ -5,14 +5,14 @@ import { resolve } from 'node:path';
 describe('outcome proof interactions', () => {
 	const file = readFileSync(resolve('src/components/outcome-proof.svelte'), 'utf8');
 
-	it('renders interactive timeline tab buttons', () => {
-		expect(file).toContain('role="tablist"');
-		expect(file).toContain('role="tab"');
-		expect(file).toContain('aria-selected');
+	it('keeps every outcome visible without tab interaction', () => {
+		expect(file).toContain('{#each outcomeProofPoints');
+		expect(file).not.toContain('role="tab"');
+		expect(file).not.toContain('activeIndex');
 	});
 
-	it('renders panel with reduced-motion safe interaction state', () => {
-		expect(file).toContain('role="tabpanel"');
-		expect(file).toContain('prefers-reduced-motion');
+	it('links outcomes to their case studies without motion dependencies', () => {
+		expect(file).toContain('href={point.href}');
+		expect(file).not.toContain('svelte/transition');
 	});
 });

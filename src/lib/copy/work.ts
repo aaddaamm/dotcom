@@ -33,12 +33,12 @@ export type EarlierWorkItem = {
 export const selectedWork: WorkItem[] = [
 	{
 		slug: 'icapital',
-		title: 'iCapital — Full-Stack Feature Development',
+		title: 'iCapital — Service Architecture and Platform Development',
 		employer: 'MojoTech',
 		period: 'May 2024–present',
 		role: 'Senior Software Engineer, Consultant',
 		description:
-			'Develop features across iCapital’s investment platform, spanning backend services, localization, and shared frontend tooling.',
+			'Translate specialized investment workflows into a maintainable Rails service boundary, with hands-on work across localization and shared frontend tooling.',
 		seoDescription:
 			'iCapital case study: Rails service architecture for Nominees, backend translation migration with Mobility, and custom forms migration to a shared package.',
 		stack: ['React', 'TypeScript', 'Node.js', 'Rails'],
@@ -148,7 +148,7 @@ export const selectedWork: WorkItem[] = [
 		period: 'Oct 2022–May 2024',
 		role: 'Technical Lead',
 		description:
-			'Led development across publishing, authentication, and AI platform initiatives, helping define goals and technical approaches while implementing throughout.',
+			'Led technical direction and hands-on delivery across publishing, identity, and AI platform initiatives, from defining goals and solution approaches to implementation.',
 		seoDescription:
 			'Healthcasts case study: technical leadership and hands-on development across a weeks-to-days CMS workflow, authentication rewrite, and AI platform.',
 		stack: ['React', 'Express', 'Auth0', 'AWS', 'Strapi', 'PHP (legacy)'],

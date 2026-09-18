@@ -1,13 +1,14 @@
 <script lang="ts">
 	import SeoHead from '../components/seo-head.svelte';
 	import HeroSection from '../components/hero-section.svelte';
-	import TrustStrip from '../components/trust-strip.svelte';
-	import RecentlyShipped from '../components/recently-shipped.svelte';
 	import OutcomeProof from '../components/outcome-proof.svelte';
 	import HowIWorkSection from '../components/how-i-work-section.svelte';
-	import ProofRail from '../components/proof-rail.svelte';
 	import HomeStackSection from '../components/home-stack-section.svelte';
 	import HomeSelectedWorkSection from '../components/home-selected-work-section.svelte';
+	import HomeConsultingSection from '../components/home-consulting-section.svelte';
+	import HomeCareerSection from '../components/home-career-section.svelte';
+	import HomeWritingSection from '../components/home-writing-section.svelte';
+	import HomeContactSection from '../components/home-contact-section.svelte';
 	import { setupScrollAnimations } from '$lib/animations';
 	import { onMount } from 'svelte';
 	import { unlockSeveredRoute } from '$lib/stores/severance';
@@ -93,14 +94,14 @@
 
 <div class="max-w-3xl mx-auto px-6" class:rune-glow={showRuneToast} bind:this={mainContainer}>
 	<HeroSection />
-	<TrustStrip />
 	<OutcomeProof />
-	<HowIWorkSection />
-	<ProofRail />
-	<RecentlyShipped />
-
-	<HomeStackSection />
+	<HomeConsultingSection />
 	<HomeSelectedWorkSection />
+	<HowIWorkSection />
+	<HomeCareerSection />
+	<HomeStackSection />
+	<HomeWritingSection />
+	<HomeContactSection />
 	{#if showRuneToast}
 		<div class="rune-light" aria-hidden="true"></div>
 		<div class="rune-toast" role="status" aria-live="polite">

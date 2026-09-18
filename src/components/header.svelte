@@ -117,8 +117,8 @@
 	.header-subtitle {
 		margin-top: 6px;
 		font-family: var(--font-mono);
-		font-size: 10px;
-		letter-spacing: 5px;
+		font-size: 8px;
+		letter-spacing: 0.5px;
 		text-transform: uppercase;
 		color: var(--color-accent);
 	}

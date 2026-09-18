@@ -7,9 +7,9 @@ describe('how I work section', () => {
 
 	it('renders one labelled section with the approved working-practice copy', () => {
 		expect(section).toContain('<section aria-labelledby="how-i-work-heading"');
-		expect(section).toContain('{positioning.workingStyle}');
+		expect(section).toContain('positioning.workingStyle');
 		expect(section).toContain('{positioning.aiPractice}');
-		expect(section).toContain('{positioning.consultingNote}');
+		expect(section).not.toContain('{positioning.consultingNote}');
 	});
 
 	it('has no browser event handlers', () => {

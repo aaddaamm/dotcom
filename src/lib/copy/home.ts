@@ -12,22 +12,22 @@ export type RecentShippedItem = {
 
 export const outcomeProofPoints: OutcomeProofPoint[] = [
 	{
-		headline: 'iCapital — backend services and full-stack features',
+		headline: 'Weeks → days',
 		detail:
-			'Helped architect and implement the Nominees backend service, worked on Mobility translations, and am migrating custom forms to a shared internal package.',
-		href: '/work/icapital'
-	},
-	{
-		headline: 'Healthcasts — publishing moved from weeks to days',
-		detail:
-			'Led development and helped define goals and technical approaches across a Strapi/React publishing workflow, an authentication rewrite, and AI platform development.',
+			'Healthcasts · Co-designed and built a headless CMS workflow that reduced a core publishing process from weeks to a couple of days.',
 		href: '/work/healthcasts'
 	},
 	{
-		headline: 'Angi — full-stack delivery and intern management',
+		headline: 'Ambiguity → shipped MVP',
 		detail:
-			'Built features in Java/Vue, Rails/React, and Next.js/Contentful. Managed interns rebuilding Careers, then took over the remaining implementation.',
-		href: '/work/angi'
+			'Shell · Defined the scope through an onsite Design Sprint, then built and delivered the decommissioning MVP on schedule.',
+		href: '/work/shell'
+	},
+	{
+		headline: 'Complex domain → service boundary',
+		detail:
+			'iCapital · Helped architect and implement a Rails backend service for specialized international investment processing.',
+		href: '/work/icapital'
 	}
 ];
 

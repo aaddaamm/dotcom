@@ -10,7 +10,9 @@ describe('work evidence and SEO', () => {
 	it('leads work with evidence and links to indexable case studies', () => {
 		expect(pageSeo.work.description).toContain('case studies');
 		expect(index).toContain('Constraints, contribution, and outcomes');
-		expect(detail).toContain('<CaseStudy');
+		expect(detail).toContain('{project.caseStudy.situation}');
+		expect(detail).toContain('{project.caseStudy.work}');
+		expect(detail).toContain('{project.caseStudy.outcome}');
 		expect(detail).toContain('title="{projectCompany} Case Study — Adam Robinson"');
 	});
 });
